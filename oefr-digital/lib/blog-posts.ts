@@ -441,6 +441,310 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "ai-prompts-job-interview-prep-2026",
+    title: "AI Prompts That Actually Help You Prepare for Job Interviews in 2026",
+    description:
+      "Stop rehearsing generic answers. Use these engineered AI prompts to prepare for behavioral, technical, and salary negotiation conversations like a pro.",
+    keywords: [
+      "AI prompts job interview",
+      "ChatGPT interview prep",
+      "AI job interview preparation",
+      "ChatGPT behavioral interview",
+      "AI salary negotiation prompts",
+      "job interview AI 2026",
+      "ChatGPT career coaching",
+    ],
+    publishedDate: "2026-03-18",
+    readingTime: "8 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "The candidates landing $200K+ offers in 2026 aren't winging it — they're using AI to reverse-engineer exactly what interviewers want to hear.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Job interviews in 2026 are brutal. Companies have raised the bar, AI is screening resumes before humans see them, and the competition for six-figure roles has never been fiercer. But there's an asymmetry most candidates are missing: the same AI tools companies use to filter you OUT can help you prepare to stand out.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The catch? Most people open ChatGPT, type "help me prepare for an interview," and get a generic list of tips they've already read on Indeed. The candidates landing $200K+ offers are using <em>engineered</em> prompts — prompts that simulate real interviewers, dissect job descriptions, and build customized answer frameworks.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">1. Reverse-Engineering the Job Description</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Before you prepare a single answer, you need to understand what the company actually wants — not what the job posting says, but what it <em>means</em>:
+      </p>
+
+      <div class="bg-green-950/30 border border-green-800/50 rounded-xl p-5 mb-6">
+        <p class="text-green-400 font-semibold text-sm mb-2">✅ Engineered Prompt</p>
+        <p class="text-slate-300 font-mono text-sm">"Here is a job description for [Senior Software Engineer at Stripe]. Analyze it and give me: (1) the 5 most critical skills they're testing for, ranked by emphasis in the posting, (2) the likely interview format based on the role level and company (technical screen, system design, behavioral, etc.), (3) any hidden requirements not explicitly stated (e.g., if they mention 'fast-paced' they mean 'we ship weekly and you better keep up'), (4) the 3 things that would make a candidate stand out vs. merely qualify. Be specific to this company and role — no generic advice."</p>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This gives you an X-ray of what the hiring manager is actually looking for. The "hidden requirements" analysis alone is worth it — most job postings contain coded language that experienced recruiters understand but candidates miss. Now you're preparing for the <em>real</em> interview, not the one described on paper.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">2. The Behavioral Interview Simulator</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Behavioral interviews ("Tell me about a time when...") trip up even experienced professionals because they require structured storytelling under pressure. Here's how to prepare:
+      </p>
+
+      <div class="bg-green-950/30 border border-green-800/50 rounded-xl p-5 mb-6">
+        <p class="text-green-400 font-semibold text-sm mb-2">✅ Engineered Prompt</p>
+        <p class="text-slate-300 font-mono text-sm">"Act as a senior hiring manager at [Company] interviewing for [Role]. Ask me one behavioral question at a time based on the STAR framework. After I answer, score my response on: (1) specificity (did I give concrete details or vague generalities?), (2) impact (did I quantify results?), (3) relevance (does the story match what this role needs?), (4) conciseness (was it under 2 minutes when spoken aloud?). Give me a revised version of my answer that scores higher, then ask the next question. Cover: conflict resolution, leadership under pressure, and a technical failure I recovered from."</p>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This turns ChatGPT into a mock interviewer that actually coaches you. The scoring rubric forces honest self-assessment instead of the "that sounds good" feedback you get from friends. Run through 5-6 questions, and you'll walk into the real interview with polished, battle-tested answers.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">3. Technical Interview Deep Prep</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        For technical roles, the prep needs to be specific to the company's stack and interview style:
+      </p>
+
+      <div class="bg-green-950/30 border border-green-800/50 rounded-xl p-5 mb-6">
+        <p class="text-green-400 font-semibold text-sm mb-2">✅ Engineered Prompt</p>
+        <p class="text-slate-300 font-mono text-sm">"I'm interviewing for a Senior Network Architect role at a financial services firm. The job requires BGP, MPLS, SD-WAN, and cloud networking (AWS/Azure). Generate 10 technical interview questions spanning: (1) design — 'how would you architect...' scenarios, (2) troubleshooting — 'something is broken, walk me through...' scenarios, (3) trade-off analysis — 'why would you choose X over Y?' comparisons, (4) real-world judgment — 'a P1 incident happens at 2 AM, what do you do?' For each question, give me the interviewer's mental model — what answer would earn a 'strong hire' vs. 'no hire' rating."</p>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The "interviewer's mental model" directive is the secret weapon. Instead of just knowing the right answer, you understand <em>why</em> it's right and what the interviewer is really evaluating. This level of preparation is how candidates get $250K+ offers in competitive markets.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">4. Salary Negotiation — The Conversation Most People Lose</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        According to Glassdoor, 73% of employers expect candidates to negotiate — yet only 39% actually do. Those who negotiate earn an average of $7,500+ more per year. Over a career, that compounds into hundreds of thousands of dollars:
+      </p>
+
+      <div class="bg-green-950/30 border border-green-800/50 rounded-xl p-5 mb-6">
+        <p class="text-green-400 font-semibold text-sm mb-2">✅ Engineered Prompt</p>
+        <p class="text-slate-300 font-mono text-sm">"I received an offer for [Senior Engineer] at [Company] in [City]. Base: $185K, bonus: 15%, RSUs: $50K/4yr. I believe market rate is $200-220K base for this role and location. Draft 3 negotiation scripts: (1) confident counter asking for $210K base + signing bonus, (2) soft counter focusing on total comp (RSU acceleration, bonus guarantee), (3) creative counter trading base for remote flexibility + extra PTO. For each script: give me the exact words to say, anticipate the recruiter's likely pushback, and prepare my response to that pushback. Tone: grateful, collaborative, never adversarial."</p>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Most negotiation advice is generic: "know your worth" and "don't accept the first offer." This prompt gives you actual scripts with the recruiter's likely objections pre-handled. The "grateful, collaborative" directive prevents the AI from generating aggressive scripts that damage the relationship — the goal is to negotiate UP, not to win an argument.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">5. The Post-Interview Follow-Up That Gets Remembered</h2>
+
+      <div class="bg-green-950/30 border border-green-800/50 rounded-xl p-5 mb-6">
+        <p class="text-green-400 font-semibold text-sm mb-2">✅ Engineered Prompt</p>
+        <p class="text-slate-300 font-mono text-sm">"I just finished interviewing for [Role] at [Company]. The interviewer's name was [Name], title [Title]. We discussed: [2-3 specific topics from the interview]. Write a follow-up thank-you email that: (1) references a specific moment from the conversation (not generic 'great chat'), (2) addresses one concern they raised about my candidacy and reframes it as a strength, (3) briefly mentions something relevant I thought of after the interview that adds value, (4) is under 150 words. Don't be sycophantic. Be genuine, confident, and memorable."</p>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The "reference a specific moment" directive is what separates this from the 50 identical "Thank you for your time" emails the hiring manager receives. Combined with addressing their concern proactively, this email positions you as thoughtful and self-aware — exactly the traits that tip close decisions in your favor.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Interview Prep Stack</h2>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li>🔍 <strong class="text-white">Day 1:</strong> Reverse-engineer the job description</li>
+          <li>🎭 <strong class="text-white">Day 2-3:</strong> Run behavioral interview simulations (5-8 questions)</li>
+          <li>⚙️ <strong class="text-white">Day 3-4:</strong> Deep technical prep with interviewer mental models</li>
+          <li>💰 <strong class="text-white">Day 5:</strong> Prepare salary negotiation scripts</li>
+          <li>📧 <strong class="text-white">Post-interview:</strong> Send a follow-up that stands out</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This 5-day prep cycle — powered by engineered prompts — replaces weeks of unfocused Googling with structured, company-specific preparation. The candidates who use this approach don't just perform better in interviews; they <em>feel</em> more confident, which is half the battle.
+      </p>
+    `,
+    cta: {
+      text: "Get 150 AI Prompts for Career, Business & Interview Prep",
+      href: "https://oghenetejiri.gumroad.com/l/qjrwxp",
+      discount: "LAUNCH50",
+    },
+    relatedProducts: [
+      {
+        name: "150 AI Prompts for Entrepreneurs",
+        href: "https://oghenetejiri.gumroad.com/l/qjrwxp",
+        description:
+          "Includes career, interview prep, salary negotiation, and personal branding prompts. $9.50 with code LAUNCH50.",
+      },
+      {
+        name: "ResumeForge — AI-Powered Resume Builder",
+        href: "https://oghenetejiri.gumroad.com/l/wntvm",
+        description:
+          "Build ATS-optimized resumes tailored to specific job descriptions.",
+      },
+      {
+        name: "10 Free AI Prompts That Actually Work",
+        href: "https://3563705146415.gumroad.com/l/jawjf",
+        description:
+          "Try 10 free prompts spanning engineering and business — see the difference engineered prompts make.",
+      },
+    ],
+  },
+  {
+    slug: "best-habit-tracker-apps-2026",
+    title: "Best Habit Tracker Apps in 2026 — Build Streaks Without Monthly Fees",
+    description:
+      "Honest review of habit tracker apps in 2026. Compare free, subscription, and one-time purchase options. Find the app that actually helps you stick with habits.",
+    keywords: [
+      "best habit tracker app 2026",
+      "habit tracker app no subscription",
+      "habit tracker with streaks",
+      "habit tracker heatmap",
+      "best habit building app",
+      "daily habit tracker app",
+      "habit tracker app free alternative",
+    ],
+    publishedDate: "2026-03-18",
+    readingTime: "7 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "You don't need to pay $8/month to track whether you drank water today. Here's what actually works for building lasting habits in 2026.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        The habit tracker app market has exploded. There are over 200 options on the App Store alone, ranging from free minimalist trackers to $12/month "habit coaching platforms" with AI-powered accountability partners. But here's what the app store reviews won't tell you: the best predictor of habit success isn't the app — it's how quickly you can log a habit and see your progress. Everything else is decoration.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What the Science Actually Says</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Research on habit formation (Lally et al., European Journal of Social Psychology) found that the average time to form a new habit is 66 days — not 21 days as the popular myth suggests. The study also found that:
+      </p>
+      <ul class="list-disc list-inside text-slate-300 space-y-2 mb-6 pl-2">
+        <li><strong class="text-white">Visual progress tracking</strong> significantly increases habit adherence. Seeing a streak or heatmap triggers loss aversion — you don't want to break the chain.</li>
+        <li><strong class="text-white">Simple logging</strong> beats complex tracking. The faster you can record "done," the more likely you are to keep doing it. Apps that require notes, ratings, and time tracking on every habit create friction that kills consistency.</li>
+        <li><strong class="text-white">Missing one day doesn't reset progress.</strong> The "don't break the chain" mentality is motivating but also dangerous — missing Monday doesn't erase the previous 30 days. Good habit trackers should show you the overall trend, not just the streak.</li>
+        <li><strong class="text-white">Habit stacking works.</strong> Linking a new habit to an existing one ("After I pour my coffee, I'll journal for 5 minutes") is more effective than scheduling habits at arbitrary times. Trackers that support grouping or sequencing habits have an edge.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Free Tier: Minimal but Limited</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Free habit trackers like Loop Habit Tracker (Android) and Habitica (gamified) work if your needs are basic:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">Free Trackers: What You Get</p>
+        <ul class="text-slate-300 space-y-2">
+          <li>✅ Basic daily check-off</li>
+          <li>✅ Simple streak counters</li>
+          <li>✅ Usually ad-supported or open-source</li>
+          <li>❌ No heatmaps or visual analytics</li>
+          <li>❌ Limited to X habits (usually 3-5 on free tier)</li>
+          <li>❌ No data export</li>
+          <li>❌ No web access — phone only</li>
+          <li>❌ Gamification can become a distraction (Habitica)</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Free trackers are fine if you're tracking 2-3 simple habits. But if you're serious about building a system — tracking morning routines, fitness, learning, finances — you'll hit the wall fast.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Subscription Tier: Good but Expensive Over Time</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Streaks ($4.99/month), Habitify ($6.99/month), and Productive ($9.99/month) offer premium features:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">Subscription Trackers: What You Get</p>
+        <ul class="text-slate-300 space-y-2">
+          <li>✅ Unlimited habits</li>
+          <li>✅ Heatmaps and trend charts</li>
+          <li>✅ Reminders and notifications</li>
+          <li>✅ Multi-device sync</li>
+          <li>✅ Detailed analytics and completion rates</li>
+          <li>❌ $60-120/year recurring cost</li>
+          <li>❌ Data locked in the platform</li>
+          <li>❌ Features you pay for but never use</li>
+          <li>❌ Price increases over time (standard SaaS playbook)</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The subscription model makes sense for the app developer, not for you. Habit tracking is a solved problem — the feature set hasn't meaningfully changed in years. You're paying monthly for something that should be a one-time purchase. Over 3 years, that's $180-360 for what is fundamentally a checkbox app with a calendar view.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What a Great Habit Tracker Actually Needs</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        After reviewing dozens of habit trackers, the features that actually drive habit adherence are surprisingly simple:
+      </p>
+
+      <div class="bg-emerald-950/30 border border-emerald-800/50 rounded-xl p-5 mb-6">
+        <p class="text-emerald-400 font-semibold text-sm mb-3">🎯 The Must-Haves</p>
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">One-tap logging:</strong> If it takes more than 2 seconds to mark a habit done, you'll stop using it.</li>
+          <li><strong class="text-white">Streak visualization:</strong> The "chain" you don't want to break. A calendar heatmap is ideal — it shows both streaks and overall consistency at a glance.</li>
+          <li><strong class="text-white">Flexible scheduling:</strong> Not every habit is daily. Some are 3x/week, some are weekdays only, some are "at least 4 out of 7 days."</li>
+          <li><strong class="text-white">Category grouping:</strong> Morning routine habits, fitness habits, learning habits — organized so you can do them in sequence.</li>
+          <li><strong class="text-white">Progress stats:</strong> Completion rate, longest streak, current streak, monthly trends. Numbers that motivate.</li>
+          <li><strong class="text-white">Data privacy:</strong> Your habits are personal. They shouldn't be on someone else's server being mined for insights.</li>
+        </ul>
+      </div>
+
+      <div class="bg-red-950/30 border border-red-800/50 rounded-xl p-5 mb-6">
+        <p class="text-red-400 font-semibold text-sm mb-3">🚫 The Nice-to-Haves You Don't Need</p>
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">AI coaching:</strong> No AI is going to motivate you to go to the gym at 6 AM. Notifications might. AI "insights" on your habit data are marketing fluff.</li>
+          <li><strong class="text-white">Social features:</strong> Sharing your habit streaks on a leaderboard sounds motivating until you realize you're competing with strangers who may or may not be honest about their logging.</li>
+          <li><strong class="text-white">Complex journaling:</strong> If you want to journal, use a journal app. Forcing long-form notes into a habit tracker creates friction that kills the core habit-tracking behavior.</li>
+          <li><strong class="text-white">Gamification:</strong> XP, levels, and virtual rewards feel fun for a week, then become noise. The real reward is the habit itself.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The One-Time Purchase Option</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A growing number of habit trackers are adopting the one-time purchase model — you pay once, you own the tool forever. No monthly drain, no feature gates, no "your trial has expired" interruptions when you're trying to build momentum. The best ones include streak tracking, heatmap visualizations, and clean analytics without the subscription tax.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Verdict</h2>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <div class="grid gap-4">
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">🆓</span>
+            <div>
+              <p class="text-white font-semibold">Free (Loop, Habitica)</p>
+              <p class="text-slate-400 text-sm">Good for: 2-3 simple daily habits. Limited visuals, often ad-supported.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">📅</span>
+            <div>
+              <p class="text-white font-semibold">Subscription ($5-10/month)</p>
+              <p class="text-slate-400 text-sm">Good for: multi-device sync, premium analytics. Bad for: your wallet over time.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">✅</span>
+            <div>
+              <p class="text-white font-semibold">One-time purchase</p>
+              <p class="text-slate-400 text-sm">Good for: serious habit builders who want all features without recurring costs. Privacy-first, own your data.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The best habit tracker is the one you actually open every day. That means fast logging, satisfying visuals, and zero friction from paywalls or subscription nags. Don't overthink the tool — pick one, commit for 66 days, and let the compound effect do its work.
+      </p>
+    `,
+    cta: {
+      text: "Try HabitForge — Streaks, Heatmaps, No Subscription",
+      href: "https://oghenetejiri.gumroad.com/l/sghrcx",
+    },
+    relatedProducts: [
+      {
+        name: "HabitForge",
+        href: "https://oghenetejiri.gumroad.com/l/sghrcx",
+        description:
+          "Habit tracker with streaks, heatmaps, and visual analytics. One-time purchase, $19.",
+      },
+      {
+        name: "BudgetWise Pro",
+        href: "https://oghenetejiri.gumroad.com/l/aedxa",
+        description:
+          "Smart budget tracker — same philosophy: pay once, own forever.",
+      },
+      {
+        name: "10 Free AI Prompts That Actually Work",
+        href: "https://3563705146415.gumroad.com/l/jawjf",
+        description:
+          "Free productivity prompts including habit-building and daily routine optimization.",
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

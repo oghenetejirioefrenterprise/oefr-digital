@@ -1143,6 +1143,520 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "ats-resume-tips-2026",
+    title:
+      "How to Write a Resume That Gets Past ATS in 2026 — The Complete Guide",
+    description:
+      "Learn exactly how Applicant Tracking Systems work in 2026, why 75% of resumes get rejected before a human sees them, and the formatting tricks that get you through. Includes ATS-friendly templates and AI-powered resume tools.",
+    keywords: [
+      "ATS resume tips",
+      "applicant tracking system resume",
+      "resume ATS friendly 2026",
+      "how to beat ATS",
+      "resume formatting tips",
+      "AI resume builder",
+      "resume keywords optimization",
+      "ATS resume checker",
+      "best resume format 2026",
+      "resume rejected by ATS",
+    ],
+    publishedDate: "2026-03-18",
+    readingTime: "10 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "75% of resumes never reach a human recruiter. They're filtered out by ATS software before anyone reads them. Here's how to make sure yours gets through.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Here's a stat that should keep every job seeker up at night: <strong class="text-white">75% of resumes are rejected by Applicant Tracking Systems before a human being ever reads them.</strong> That's not a guess — it's the reality of hiring in 2026. Companies like JPMorgan, Google, Amazon, and thousands of mid-market firms use ATS software to filter the flood of applications down to a manageable pile. If your resume doesn't pass the machine, your qualifications are irrelevant.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The problem has gotten worse, not better. Modern ATS platforms like Workday, Greenhouse, Lever, iCIMS, and Taleo now use AI-powered parsing and semantic matching — they don't just scan for exact keywords anymore. They understand context, evaluate formatting, and rank candidates algorithmically. A beautifully designed resume from Canva that looks stunning as a PDF can score a zero because the parser can't extract your work history from its multi-column layout.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This guide shows you exactly how ATS works in 2026, the seven formatting mistakes that get resumes instantly rejected, and the optimization strategies that put your resume at the top of the pile — in front of an actual recruiter.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Is ATS and How Does It Actually Work?</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        An Applicant Tracking System is software that manages the entire hiring pipeline — from job posting to offer letter. But its most critical function for job seekers is the <strong class="text-white">resume parsing and ranking</strong> step. When you submit your resume through an online application, here's what happens:
+      </p>
+      <ul class="space-y-2 mb-6 ml-4">
+        <li class="text-slate-300 flex items-start gap-2"><span class="text-blue-400 mt-1">1.</span> <span><strong class="text-white">Parsing:</strong> The ATS extracts text from your document and attempts to map it into structured fields — name, email, phone, work history, education, skills. If it can't parse a section, that section effectively doesn't exist.</span></li>
+        <li class="text-slate-300 flex items-start gap-2"><span class="text-blue-400 mt-1">2.</span> <span><strong class="text-white">Keyword matching:</strong> Your resume is compared against the job description. The system looks for required skills, certifications, job titles, and technologies. In 2026, advanced systems also check for <em>semantic equivalents</em> — "project management" matches "PM," and "Kubernetes" relates to "container orchestration."</span></li>
+        <li class="text-slate-300 flex items-start gap-2"><span class="text-blue-400 mt-1">3.</span> <span><strong class="text-white">Ranking:</strong> Each resume gets a match score. Recruiters see a sorted list — highest match scores first. If a role gets 500 applications, most recruiters only review the top 20-50. If you're not in that window, you're invisible.</span></li>
+      </ul>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The major ATS platforms handle this differently. <strong class="text-white">Workday</strong> (used by 50%+ of Fortune 500 companies) is notoriously strict about formatting — it struggles with tables and graphics. <strong class="text-white">Greenhouse</strong> and <strong class="text-white">Lever</strong> are more modern and handle PDFs better, but still choke on multi-column layouts. <strong class="text-white">iCIMS</strong> and <strong class="text-white">Taleo</strong> (Oracle) are legacy systems still widely used, especially in government and large enterprises — they're the least forgiving of non-standard formatting.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The 7 Resume Mistakes That Get You Instantly Rejected</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Every one of these formatting choices looks fine to a human reader. Every one of them can break an ATS parser.
+      </p>
+
+      <div class="bg-red-950/30 border border-red-800/50 rounded-xl p-5 mb-4">
+        <p class="text-red-400 font-semibold text-sm mb-2">❌ Mistake 1: Tables and Multi-Column Layouts</p>
+        <p class="text-slate-300 text-sm">Those gorgeous two-column resume templates from Canva? ATS reads them left-to-right across both columns, scrambling your content. "Senior Engineer" from column 1 gets merged with "Bachelor's Degree" from column 2. Your experience section becomes word salad.</p>
+      </div>
+      <div class="bg-red-950/30 border border-red-800/50 rounded-xl p-5 mb-4">
+        <p class="text-red-400 font-semibold text-sm mb-2">❌ Mistake 2: Headers and Footers</p>
+        <p class="text-slate-300 text-sm">Contact info in a Word header? Many ATS platforms skip headers and footers entirely during parsing. Your name, phone number, and email — the most critical details — simply vanish.</p>
+      </div>
+      <div class="bg-red-950/30 border border-red-800/50 rounded-xl p-5 mb-4">
+        <p class="text-red-400 font-semibold text-sm mb-2">❌ Mistake 3: Images, Icons, and Graphics</p>
+        <p class="text-slate-300 text-sm">LinkedIn icons, skill bar graphics, headshot photos — ATS can't read any of them. Worse, images can break the document flow, causing the parser to skip entire sections that follow.</p>
+      </div>
+      <div class="bg-red-950/30 border border-red-800/50 rounded-xl p-5 mb-4">
+        <p class="text-red-400 font-semibold text-sm mb-2">❌ Mistake 4: Fancy or Non-Standard Fonts</p>
+        <p class="text-slate-300 text-sm">Custom fonts can render as garbled characters. Stick with system fonts: Arial, Calibri, Times New Roman, Georgia, or Helvetica. If the ATS can't render your font, it can't read your text.</p>
+      </div>
+      <div class="bg-red-950/30 border border-red-800/50 rounded-xl p-5 mb-4">
+        <p class="text-red-400 font-semibold text-sm mb-2">❌ Mistake 5: Non-Standard Section Headers</p>
+        <p class="text-slate-300 text-sm">"Where I've Made Impact" instead of "Experience." "My Toolkit" instead of "Skills." ATS looks for standard labels to map your content. Get creative with your bullet points, not your headers.</p>
+      </div>
+      <div class="bg-red-950/30 border border-red-800/50 rounded-xl p-5 mb-4">
+        <p class="text-red-400 font-semibold text-sm mb-2">❌ Mistake 6: Scanned PDFs or Image-Based Files</p>
+        <p class="text-slate-300 text-sm">If you scan a printed resume or export from certain design tools, the result may be an image embedded in a PDF — not selectable text. ATS extracts zero content. Always ensure you can select and copy text from your PDF.</p>
+      </div>
+      <div class="bg-red-950/30 border border-red-800/50 rounded-xl p-5 mb-6">
+        <p class="text-red-400 font-semibold text-sm mb-2">❌ Mistake 7: Generic File Names</p>
+        <p class="text-slate-300 text-sm">"Resume.pdf" or "Document1.docx" tells the recruiter (and some ATS systems) nothing. Use: "FirstName-LastName-JobTitle-Resume.pdf" — it's searchable and professional.</p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The ATS-Friendly Resume Format That Works</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        The format that consistently passes every major ATS platform is straightforward:
+      </p>
+      <div class="bg-green-950/30 border border-green-800/50 rounded-xl p-5 mb-6">
+        <p class="text-green-400 font-semibold text-sm mb-3">✅ Winning Format</p>
+        <ul class="space-y-2 ml-4">
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">•</span> <span><strong class="text-white">Single-column layout.</strong> No tables, no text boxes, no columns.</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">•</span> <span><strong class="text-white">Reverse chronological order.</strong> Most recent job first. This is what 95% of recruiters expect and what ATS parses best.</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">•</span> <span><strong class="text-white">Standard section headers:</strong> Professional Summary, Experience, Education, Skills, Certifications. In that order.</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">•</span> <span><strong class="text-white">Contact info in the body</strong> — not in headers/footers. Name, email, phone, LinkedIn URL, city/state.</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">•</span> <span><strong class="text-white">10-12pt standard font.</strong> Calibri, Arial, or Georgia. Bold for section headers. No color-coded text.</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">•</span> <span><strong class="text-white">Standard bullet points.</strong> Simple round bullets (•). Avoid dashes, arrows, or custom symbols.</span></li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">PDF vs. DOCX:</strong> The conventional wisdom used to be "always use PDF." In 2026, it's more nuanced. Modern ATS (Greenhouse, Lever) parse PDFs well if they contain selectable text. Older systems (Taleo, some Workday implementations) still prefer .docx. The safe bet: <strong class="text-white">submit .docx when the application accepts it, PDF as a fallback.</strong> If a job posting specifically asks for one format, use that format.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Keyword Optimization Without Keyword Stuffing</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        The job description is your cheat sheet. Every requirement listed is a keyword the ATS will look for. But there's a right way and a wrong way to use them.
+      </p>
+      <div class="bg-red-950/30 border border-red-800/50 rounded-xl p-5 mb-4">
+        <p class="text-red-400 font-semibold text-sm mb-2">❌ Keyword Stuffing (Don't Do This)</p>
+        <p class="text-slate-300 font-mono text-sm">"Skills: Python Python Python, project management, project management, Kubernetes, Docker, AWS, AWS, AWS, leadership, leadership"</p>
+        <p class="text-slate-400 text-xs mt-2">Modern ATS penalizes keyword repetition. Some flag it as spam. Recruiters who do see it will reject you immediately.</p>
+      </div>
+      <div class="bg-green-950/30 border border-green-800/50 rounded-xl p-5 mb-6">
+        <p class="text-green-400 font-semibold text-sm mb-2">✅ Natural Keyword Integration (Do This)</p>
+        <p class="text-slate-300 text-sm">"Led a team of 8 engineers to migrate on-premises infrastructure to AWS (Amazon Web Services), reducing hosting costs by 40%. Managed containerized workloads using Kubernetes and Docker, implementing CI/CD pipelines with Jenkins and GitHub Actions."</p>
+        <p class="text-slate-400 text-xs mt-2">Hits 6 keywords naturally: AWS, Amazon Web Services, Kubernetes, Docker, CI/CD, GitHub Actions. Plus quantified impact.</p>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        <strong class="text-white">Pro tips for keyword optimization:</strong>
+      </p>
+      <ul class="space-y-2 mb-6 ml-4">
+        <li class="text-slate-300 flex items-start gap-2"><span class="text-blue-400">•</span> <span><strong class="text-white">Use both the acronym AND full name</strong> — write "BGP (Border Gateway Protocol)" the first time. Some ATS search for "BGP," others for "Border Gateway Protocol." Cover both.</span></li>
+        <li class="text-slate-300 flex items-start gap-2"><span class="text-blue-400">•</span> <span><strong class="text-white">Mirror the job description's exact language.</strong> If they say "stakeholder management," don't write "working with teams." Use their words.</span></li>
+        <li class="text-slate-300 flex items-start gap-2"><span class="text-blue-400">•</span> <span><strong class="text-white">Put keywords in context, not just in a Skills section.</strong> ATS scores are higher when keywords appear in your experience bullets with measurable results.</span></li>
+        <li class="text-slate-300 flex items-start gap-2"><span class="text-blue-400">•</span> <span><strong class="text-white">Include hard skills AND soft skills.</strong> Many job descriptions require "cross-functional collaboration" or "executive communication." Don't skip these just because they're not technical.</span></li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The AI Resume Advantage in 2026</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Here's the reality: manually tailoring a resume for every application takes 30-60 minutes per job. When you're applying to 10-20 roles per week, that's unsustainable. This is where AI-powered resume tools change the game.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Modern AI resume builders can analyze a job description, identify the critical keywords and requirements, and restructure your resume to emphasize relevant experience — all while maintaining ATS-compatible formatting. Instead of spending an hour per application, you spend 5 minutes reviewing and fine-tuning the AI's output.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The best AI resume tools don't just stuff keywords. They <strong class="text-white">rewrite your bullet points</strong> to naturally incorporate required skills, <strong class="text-white">reorder sections</strong> to lead with the most relevant experience, and <strong class="text-white">generate professional summaries</strong> tailored to each specific role. The output reads like a human wrote it — because you did write the original content. The AI just optimized the packaging for each job's ATS.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Your ATS-Proof Resume Checklist</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Before you hit "Submit" on your next application, run through this:
+      </p>
+      <div class="bg-slate-900/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="space-y-2">
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>Single-column layout — no tables, text boxes, or columns</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>Standard section headers (Experience, Education, Skills, Certifications)</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>Contact info in the document body, not headers/footers</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>Standard font (Arial, Calibri, Georgia) at 10-12pt</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>No images, icons, graphics, or skill bars</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>Keywords from the job description appear naturally in experience bullets</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>Both acronyms and full terms included (e.g., "AWS (Amazon Web Services)")</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>Quantified achievements (numbers, percentages, dollar amounts)</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>File saved as .docx (preferred) or text-selectable PDF</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>File named: FirstName-LastName-TargetRole-Resume.pdf</span></li>
+          <li class="text-slate-300 flex items-start gap-2"><span class="text-green-400">☑</span> <span>Resume tailored to THIS specific job — not a generic version</span></li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The irony of modern job hunting is that the best-qualified candidates often lose to less-qualified ones who simply know how to format a resume for machines. ATS isn't going away — if anything, it's getting more sophisticated. But now that you understand how it works, you can make it work <em>for</em> you instead of against you.
+      </p>
+    `,
+    cta: {
+      text: "Build an ATS-proof resume in minutes with ResumeForge",
+      href: "https://3563705146415.gumroad.com/l/wntvm",
+      discount: "LAUNCH50",
+    },
+    relatedProducts: [
+      {
+        name: "ResumeForge — AI Resume Builder",
+        href: "https://3563705146415.gumroad.com/l/wntvm",
+        description:
+          "AI-powered resume builder that generates ATS-optimized resumes tailored to specific job descriptions. $29 (or $14.50 with LAUNCH50).",
+      },
+      {
+        name: "150 AI Prompts for Entrepreneurs",
+        href: "https://3563705146415.gumroad.com/l/qjrwxp",
+        description:
+          "Includes career and business prompts for resume writing, cover letters, LinkedIn optimization, and interview prep. $19 (or $9.50 with LAUNCH50).",
+      },
+      {
+        name: "10 Free AI Prompts That Actually Work",
+        href: "https://3563705146415.gumroad.com/l/jawjf",
+        description:
+          "Free starter pack with prompts for job search, networking, and career advancement. $0.",
+      },
+    ],
+  },
+  {
+    slug: "network-security-audit-checklist-2026",
+    title: "The Network Security Audit Checklist Every Engineer Needs in 2026",
+    description:
+      "A practical, compliance-ready network security audit checklist covering firewall rules, access control, encryption, segmentation, and logging — built for enterprise environments.",
+    keywords: [
+      "network security audit checklist",
+      "network security assessment",
+      "firewall audit checklist",
+      "network compliance checklist 2026",
+      "enterprise network security",
+      "NIST network security",
+      "CIS benchmark network",
+      "network penetration test checklist",
+      "security audit template",
+      "network hardening checklist",
+    ],
+    publishedDate: "2026-03-18",
+    readingTime: "12 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Most network security audits miss the same things every time. Here's the checklist that catches what automated scanners won't — built from 16 years of enterprise architecture experience.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A Verizon 2025 DBIR finding should keep every network engineer awake: 68% of breaches involved a human element — misconfigurations, missing patches, overly permissive firewall rules, forgotten access lists. Automated vulnerability scanners catch the obvious stuff. What they miss is the architecture-level gaps that actually get exploited: flat network segments, firewall rules that grew organically for a decade, SNMP v2c still running in production, management interfaces on the same VLAN as user traffic.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This checklist isn't another generic "secure your network" article. It's the same methodology used across Fortune 500 enterprise environments — organized by domain, mapped to compliance frameworks (NIST 800-53, CIS Controls v8, PCI-DSS 4.0), and designed for engineers who actually touch the CLI.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">1. Perimeter Firewall Audit</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Your firewall ruleset is probably your biggest liability. In most enterprise environments, firewall rules accumulate like technical debt — rules added during emergencies, "temporary" permits that became permanent, rules nobody remembers the purpose of.
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">🔒 Firewall Audit Checklist</p>
+        <ul class="text-slate-300 space-y-2 text-sm">
+          <li>☐ Review every rule with "any" in source, destination, or service — each one needs justification or removal</li>
+          <li>☐ Identify and remove shadow rules (rules that never match because a broader rule above catches traffic first)</li>
+          <li>☐ Verify deny-all default policy on every interface (implicit deny isn't enough — make it explicit and logged)</li>
+          <li>☐ Check for rules permitting inbound ICMP broadly — restrict to specific types (echo-reply, unreachable, TTL-exceeded)</li>
+          <li>☐ Audit management access rules — SSH/HTTPS to firewall should be restricted to jump host IPs only</li>
+          <li>☐ Verify logging is enabled on permit AND deny rules (most only log denies — you need permits too for forensics)</li>
+          <li>☐ Check for expired temporary rules — correlate rule comments/dates with current business need</li>
+          <li>☐ Validate IPS/IDS signatures are updated within the last 7 days</li>
+          <li>☐ Confirm SSL/TLS decryption policy covers non-standard ports (attackers rarely use port 443)</li>
+          <li>☐ Review NAT rules for overly broad translations that expose internal addressing</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">2. Network Segmentation Audit</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Flat networks are the single most common architecture failure in breached organizations. Once an attacker lands on a flat network, lateral movement is trivial — they own everything. Proper segmentation limits blast radius and buys your incident response team time.
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">🏗️ Segmentation Checklist</p>
+        <ul class="text-slate-300 space-y-2 text-sm">
+          <li>☐ Verify separate VLANs/VRFs for: user traffic, server/data center, management, IoT/OT, guest, voice</li>
+          <li>☐ Confirm inter-VLAN routing is filtered by ACL or firewall — not just Layer 3 switched freely</li>
+          <li>☐ Validate PCI cardholder data environment (CDE) is fully segmented with documented data flows</li>
+          <li>☐ Check that management interfaces (iLO, CIMC, iDRAC, IPMI) are on an isolated management network</li>
+          <li>☐ Verify IoT/OT devices cannot reach the internet directly — proxy through inspection point</li>
+          <li>☐ Confirm jump hosts are the only path into server/management segments</li>
+          <li>☐ Audit east-west traffic policies — do server VLANs need to talk to each other? Prove it.</li>
+          <li>☐ Validate micro-segmentation policies if using VMware NSX, Cisco ACI, or cloud security groups</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">3. Access Control & Authentication</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Network device authentication is often the weakest link. Local accounts with shared passwords, TACACS+ servers running on end-of-life platforms, enable passwords stored in Type 7 — these are the things that make auditors cringe and attackers smile.
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">🔑 Access Control Checklist</p>
+        <ul class="text-slate-300 space-y-2 text-sm">
+          <li>☐ All network devices authenticate via TACACS+ or RADIUS — no local-only authentication</li>
+          <li>☐ Local fallback accounts exist but use Type 8 or Type 9 password hashing (not Type 5 or Type 7)</li>
+          <li>☐ Verify TACACS+/RADIUS servers use encrypted transport (IPsec, TLS, or dedicated management VLAN)</li>
+          <li>☐ Audit user accounts — remove departed employees, contractors, and dormant accounts (&gt;90 days inactive)</li>
+          <li>☐ Confirm MFA is required for all network device access (at minimum for privileged/enable mode)</li>
+          <li>☐ Verify SSH v2 only — Telnet should be completely disabled, not just "not configured"</li>
+          <li>☐ Check console port security — auto-logout timer, authentication required, physical access logged</li>
+          <li>☐ Review privilege levels — not everyone needs level 15. Use role-based access control (RBAC)</li>
+          <li>☐ Audit API access — REST API tokens, NETCONF/RESTCONF credentials should follow same MFA/rotation policies</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">4. Encryption & Protocol Security</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Cleartext protocols in production networks are still disturbingly common. SNMP v2c, HTTP management interfaces, unencrypted syslog — each one is a credential or data leak waiting to happen. This section covers the protocol-level security that separates a modern network from a 2010 one.
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">🔐 Encryption & Protocol Checklist</p>
+        <ul class="text-slate-300 space-y-2 text-sm">
+          <li>☐ SNMP v3 with AuthPriv — v1/v2c should be completely removed, not just unused</li>
+          <li>☐ Syslog over TLS (RFC 5425) or sent to collector on management VLAN — never across user networks in cleartext</li>
+          <li>☐ NTP authentication enabled — unauthenticated NTP is a time-spoofing attack vector</li>
+          <li>☐ DNS over encrypted transport where supported — at minimum, restrict DNS resolution to known internal servers</li>
+          <li>☐ HTTPS only for all web management interfaces — verify TLS 1.2 minimum, prefer TLS 1.3</li>
+          <li>☐ Routing protocol authentication: OSPF MD5/SHA (or IPsec for OSPFv3), BGP MD5 or TCP-AO on all peerings</li>
+          <li>☐ HSRP/VRRP authentication enabled — unauthenticated first-hop redundancy = trivial MITM</li>
+          <li>☐ VPN tunnels using IKEv2 with AES-256-GCM and DH Group 20+ — phase out IKEv1 and 3DES</li>
+          <li>☐ 802.1X/MAB/NAC deployed on all access ports — no open ports, period</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">5. Logging, Monitoring & Incident Readiness</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        You can't respond to what you can't see. The most secure networks aren't the ones with the most firewalls — they're the ones with the best visibility. If an attacker laterally moves through your network and nobody notices for 204 days (the 2025 industry median for detection), your firewall rules didn't matter.
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">📊 Logging & Monitoring Checklist</p>
+        <ul class="text-slate-300 space-y-2 text-sm">
+          <li>☐ All network devices send logs to centralized SIEM — no exceptions, including switches, APs, and load balancers</li>
+          <li>☐ Log retention meets compliance requirements (PCI: 1 year, HIPAA: 6 years, SOX: 7 years)</li>
+          <li>☐ Failed login attempts trigger alerts after 3-5 failures within a time window</li>
+          <li>☐ Configuration changes generate immediate alerts — who changed what, when, from which IP</li>
+          <li>☐ NetFlow/sFlow/IPFIX enabled on core and distribution switches for traffic analysis</li>
+          <li>☐ Verify NTP sync across all devices — log timestamps are useless if clocks are drifting</li>
+          <li>☐ DNS query logging enabled — DNS is the most common C2 exfiltration channel</li>
+          <li>☐ Verify SNMP trap destinations are reachable and actively monitored</li>
+          <li>☐ Test incident response runbook quarterly — can your team isolate a compromised VLAN in under 10 minutes?</li>
+          <li>☐ Validate backup configs are stored encrypted and tested for restore within the last 30 days</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">6. Wireless Security Audit</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Wireless networks are often the forgotten attack surface. Enterprise WLANs should meet the same security bar as wired infrastructure — but rarely do. Rogue APs, WPA2-Personal in production, open guest networks bridged to corporate — these are all real findings from real audits.
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">📡 Wireless Checklist</p>
+        <ul class="text-slate-300 space-y-2 text-sm">
+          <li>☐ WPA3-Enterprise (802.1X/EAP-TLS) on all corporate SSIDs — WPA2-Personal has no place in enterprise</li>
+          <li>☐ Guest SSID fully isolated — separate VLAN, captive portal, bandwidth throttled, no access to internal resources</li>
+          <li>☐ Rogue AP detection enabled and alerting to SOC — wired-side port security (802.1X) as backstop</li>
+          <li>☐ Management access to WLC/APs restricted to management VLAN — not accessible from user wireless</li>
+          <li>☐ WIDS/WIPS enabled — detecting deauth attacks, evil twin APs, and client impersonation</li>
+          <li>☐ Verify RF power levels aren't bleeding significantly beyond building perimeter</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why a Checklist Isn't Enough (But It's Where You Start)</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        A checklist catches known gaps. What it can't do is assess your specific risk posture, prioritize findings by business impact, or generate the remediation plan your CISO needs to approve budget. That requires context — your topology, your compliance requirements, your threat model.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The checklist above covers roughly 60% of what a comprehensive network security audit should address. A full audit also includes: vulnerability scan correlation, penetration test findings, configuration drift analysis, vendor-specific hardening benchmarks (CIS Cisco, CIS Palo Alto, CIS Juniper), and executive-ready reporting with risk scores and remediation timelines.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        We built the comprehensive version because we've run these audits hundreds of times and got tired of rebuilding the same checklist from scratch. It covers 200+ checkpoints across 12 domains, maps every finding to NIST 800-53 and CIS Controls v8, and includes a severity-scored Excel template you can hand directly to your security team or compliance officer.
+      </p>
+    `,
+    cta: {
+      text: "Get the full 200+ checkpoint Network Security Audit Checklist",
+      href: "https://3563705146415.gumroad.com/l/ikmxir",
+      discount: "LAUNCH50",
+    },
+    relatedProducts: [
+      {
+        name: "Network Security Audit Checklist",
+        href: "https://3563705146415.gumroad.com/l/ikmxir",
+        description:
+          "200+ checkpoints across 12 domains, mapped to NIST 800-53 & CIS Controls v8. Compliance-ready Excel template included. $24 (or $12 with LAUNCH50).",
+      },
+      {
+        name: "100 AI Prompts for Network Engineers",
+        href: "https://3563705146415.gumroad.com/l/velypm",
+        description:
+          "Production-ready AI prompts including security audit prompts for firewall analysis, incident response, and compliance. $19 (or $9.50 with LAUNCH50).",
+      },
+      {
+        name: "Ansible Network Automation Pack",
+        href: "https://3563705146415.gumroad.com/l/fhvxh",
+        description:
+          "Automate security compliance checks, config backups, and audit evidence collection with ready-made Ansible playbooks. $49.",
+      },
+    ],
+  },
+  {
+    slug: "best-notion-job-application-tracker-2026",
+    title: "The Best Notion Job Application Tracker in 2026 — Stop Losing Track of Where You Applied",
+    description:
+      "A complete Notion job application tracker with pipeline views, interview prep, follow-up templates, and analytics. Track every application from apply to offer.",
+    keywords: [
+      "Notion job application tracker",
+      "job tracker Notion template",
+      "job search organizer 2026",
+      "Notion job hunt template",
+      "job application spreadsheet alternative",
+      "track job applications Notion",
+      "job search tracker template",
+      "Notion career template",
+      "application pipeline tracker",
+      "job search dashboard Notion",
+    ],
+    publishedDate: "2026-03-18",
+    readingTime: "9 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "You've applied to 47 jobs. You can't remember which ones. Half your follow-ups are overdue. Here's how to fix your entire job search with one Notion template.",
+    content: \`
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Here's a stat that should alarm every job seeker: the average hire in 2026 applies to 100-200 jobs before landing an offer. At that volume, the people who succeed aren't the ones with the best resumes — they're the ones who track everything. They know which recruiter to follow up with, which companies ghosted them, which roles are worth a second push, and which applications are dead weight. The ones who lose? They're managing 150 applications in their email inbox, a sticky note, and "I'll remember."
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Most job seekers start with a spreadsheet. It works for the first 10 applications. By application 30, it's a wall of text with no visual structure. By 50, you've stopped updating it. By 100, you've applied to the same company twice without realizing it. Notion solves this because it gives you multiple views of the same data — a pipeline board, a calendar, a filtered list of active applications, and analytics — without duplicating anything.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why Notion Beats Spreadsheets for Job Tracking</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Google Sheets is great for structured data. It's terrible for workflows. A job search isn't a dataset — it's a pipeline with stages, deadlines, follow-ups, and context that changes daily. You need to see your applications as a Kanban board on Monday (what's moving?), as a calendar on Tuesday (what interviews are coming up?), and as a filtered list on Wednesday (which applications need follow-up?).
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">📊 Spreadsheet vs. Notion Comparison</p>
+        <ul class="text-slate-300 space-y-2 text-sm">
+          <li><strong class="text-white">Multiple views:</strong> Spreadsheets give you rows. Notion gives you Kanban boards, calendars, galleries, and filtered lists — all from the same database</li>
+          <li><strong class="text-white">Relations:</strong> Link your applications to interview prep notes, company research, and networking contacts — something spreadsheets simply can't do</li>
+          <li><strong class="text-white">Formulas:</strong> Calculate response rates, time-to-response, and offer conversion rates automatically</li>
+          <li><strong class="text-white">Templates:</strong> Create follow-up email templates, STAR story frameworks, and company research checklists that auto-populate for each application</li>
+          <li><strong class="text-white">Mobile access:</strong> Update applications from your phone right after an interview — it syncs everywhere instantly</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What a Good Job Application Tracker Needs</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        After watching hundreds of job seekers burn out from disorganized searches, the pattern is clear. The trackers that actually get used — and lead to offers — share five features:
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">✅ Essential Tracker Features</p>
+        <ul class="text-slate-300 space-y-3 text-sm">
+          <li><strong class="text-white">1. Pipeline Kanban Board:</strong> Drag applications through stages — Applied → Screening → Phone Interview → Technical → Onsite → Offer → Accepted/Rejected. You need to SEE the pipeline, not read it in a column.</li>
+          <li><strong class="text-white">2. Calendar View:</strong> See every interview, follow-up deadline, and application date on a calendar. Nothing falls through the cracks when it's visual.</li>
+          <li><strong class="text-white">3. Follow-Up System:</strong> The biggest job search mistake is not following up. Your tracker should surface applications that need follow-up emails — with templates ready to go.</li>
+          <li><strong class="text-white">4. Interview Prep Framework:</strong> For each company, you need a space to prep STAR stories, research the company, and log interviewer names and questions. This should be linked to the application, not in a separate doc.</li>
+          <li><strong class="text-white">5. Analytics Dashboard:</strong> What's your response rate? Average time from apply to first response? Offer conversion rate? These numbers tell you if your strategy is working or if you need to pivot.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">How to Structure Your Notion Job Tracker Database</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        If you're building from scratch, your main database needs these properties at minimum:
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">🗂️ Database Properties</p>
+        <ul class="text-slate-300 space-y-2 text-sm">
+          <li>☐ <strong class="text-white">Company Name</strong> (Title) — the main identifier</li>
+          <li>☐ <strong class="text-white">Role Title</strong> (Text) — exact job title from the posting</li>
+          <li>☐ <strong class="text-white">Status</strong> (Select) — Wishlist, Applied, Screening, Interviewing, Offer, Accepted, Rejected, Ghosted</li>
+          <li>☐ <strong class="text-white">Date Applied</strong> (Date) — enables calendar view and time tracking</li>
+          <li>☐ <strong class="text-white">Salary Range</strong> (Text) — from the posting or your research</li>
+          <li>☐ <strong class="text-white">Location</strong> (Select) — Remote, Hybrid, Onsite + city</li>
+          <li>☐ <strong class="text-white">Job URL</strong> (URL) — link to the original posting</li>
+          <li>☐ <strong class="text-white">Recruiter/Contact</strong> (Text) — name and LinkedIn profile</li>
+          <li>☐ <strong class="text-white">Follow-Up Date</strong> (Date) — when to check in next</li>
+          <li>☐ <strong class="text-white">Priority</strong> (Select) — High, Medium, Low — not all applications deserve equal effort</li>
+          <li>☐ <strong class="text-white">Resume Version</strong> (Select) — which tailored resume you sent</li>
+          <li>☐ <strong class="text-white">Source</strong> (Select) — LinkedIn, Indeed, Referral, Company Site — track what channels work</li>
+          <li>☐ <strong class="text-white">Notes</strong> (Text) — freeform context, interview feedback, gut feelings</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Follow-Up Framework That Gets Responses</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Studies consistently show that a well-timed follow-up email increases response rates by 30-50%. Yet most job seekers either never follow up or send generic "just checking in" emails that get deleted. Here's the framework:
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">📧 Follow-Up Timing & Templates</p>
+        <ul class="text-slate-300 space-y-2 text-sm">
+          <li><strong class="text-white">Day 0 (Post-Apply):</strong> Connect with the recruiter or hiring manager on LinkedIn with a personalized note referencing the specific role</li>
+          <li><strong class="text-white">Day 5-7:</strong> First follow-up email — reference something specific about the company (recent news, product launch, earnings) and reiterate your specific value for the role</li>
+          <li><strong class="text-white">Day 14:</strong> Second follow-up — shorter, forward the original email with "bumping this" + one new data point about your fit</li>
+          <li><strong class="text-white">Day 21+:</strong> Final follow-up — brief, professional close. "I understand timing may not be right. I'd love to stay connected for future opportunities."</li>
+          <li><strong class="text-white">Post-Interview:</strong> Thank-you email within 2 hours. Reference a specific topic discussed. Include one thing you forgot to mention.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Analytics: Know If Your Job Search Is Working</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Most job seekers have no idea if their search strategy is effective. They apply blindly and hope. With a proper tracker, you can calculate the numbers that matter:
+      </p>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold mb-3">📈 Key Metrics</p>
+        <ul class="text-slate-300 space-y-2 text-sm">
+          <li><strong class="text-white">Response Rate:</strong> (Responses ÷ Applications) × 100 — if this is below 10%, your resume or targeting needs work</li>
+          <li><strong class="text-white">Interview Conversion:</strong> (Interviews ÷ Responses) × 100 — low number here means your phone screen game needs improvement</li>
+          <li><strong class="text-white">Offer Rate:</strong> (Offers ÷ Interviews) × 100 — healthy is 20-30% for experienced professionals</li>
+          <li><strong class="text-white">Time to Response:</strong> Average days from application to first response — identifies fast-moving vs. slow companies</li>
+          <li><strong class="text-white">Source Effectiveness:</strong> Which application channels produce the most interviews? Referrals typically convert at 10x the rate of cold applications</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Notion formulas can calculate all of these automatically from your database. Every week, check your dashboard. If your response rate is below 10% after 50+ applications, stop applying and fix your resume first. If interviews aren't converting to offers, practice your interview skills before applying to more companies. Data beats hope.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Skip the Setup: Use a Pre-Built Tracker</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Building a Notion job tracker from scratch takes 3-5 hours if you want it done right — properties, formulas, views, templates, and formatting all need to work together. You can absolutely do it yourself using the framework above. But if you'd rather start tracking today instead of building today, we built the template for you.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Our Job Application Tracker Notion Template includes everything described in this article: the full database with 16 properties, 5 pre-built views (Pipeline Kanban, Calendar, Active Applications, Stats Dashboard, All Applications), interview prep framework with STAR templates, follow-up email system, resume version manager, networking tracker, and auto-calculating analytics formulas. Duplicate it into your Notion workspace and start tracking in 60 seconds.
+      </p>
+    \`,
+    cta: {
+      text: "Get the Notion Job Application Tracker Template",
+      href: "https://3563705146415.gumroad.com/l/ykwatb",
+      discount: "LAUNCH50",
+    },
+    relatedProducts: [
+      {
+        name: "Job Application Tracker — Notion Template",
+        href: "https://3563705146415.gumroad.com/l/ykwatb",
+        description:
+          "Full pipeline tracker with Kanban board, calendar, interview prep, follow-up system, and analytics dashboard. $12 (or $6 with LAUNCH50).",
+      },
+      {
+        name: "ResumeForge — ATS-Optimized Resume Builder",
+        href: "https://3563705146415.gumroad.com/l/rmvnsy",
+        description:
+          "Build ATS-friendly resumes with AI-powered keyword optimization. Pairs perfectly with the job tracker. $29 (or $14.50 with LAUNCH50).",
+      },
+      {
+        name: "150 AI Prompts for Entrepreneurs",
+        href: "https://3563705146415.gumroad.com/l/wbcxwg",
+        description:
+          "Includes interview prep prompts, salary negotiation scripts, and cover letter generators. $19 (or $9.50 with LAUNCH50).",
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

@@ -1529,7 +1529,7 @@ export const blogPosts: BlogPost[] = [
     author: "OEFR Digital",
     excerpt:
       "You've applied to 47 jobs. You can't remember which ones. Half your follow-ups are overdue. Here's how to fix your entire job search with one Notion template.",
-    content: \`
+    content: `
       <p class="text-lg text-slate-300 leading-relaxed mb-6">
         Here's a stat that should alarm every job seeker: the average hire in 2026 applies to 100-200 jobs before landing an offer. At that volume, the people who succeed aren't the ones with the best resumes — they're the ones who track everything. They know which recruiter to follow up with, which companies ghosted them, which roles are worth a second push, and which applications are dead weight. The ones who lose? They're managing 150 applications in their email inbox, a sticky note, and "I'll remember."
       </p>
@@ -1630,7 +1630,7 @@ export const blogPosts: BlogPost[] = [
       <p class="text-slate-300 leading-relaxed mb-6">
         Our Job Application Tracker Notion Template includes everything described in this article: the full database with 16 properties, 5 pre-built views (Pipeline Kanban, Calendar, Active Applications, Stats Dashboard, All Applications), interview prep framework with STAR templates, follow-up email system, resume version manager, networking tracker, and auto-calculating analytics formulas. Duplicate it into your Notion workspace and start tracking in 60 seconds.
       </p>
-    \`,
+    `,
     cta: {
       text: "Get the Notion Job Application Tracker Template",
       href: "https://3563705146415.gumroad.com/l/ykwatb",

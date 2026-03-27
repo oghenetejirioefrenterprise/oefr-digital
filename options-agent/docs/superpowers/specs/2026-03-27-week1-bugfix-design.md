@@ -36,8 +36,7 @@ Rewrite `bwb.py` to a real 3-leg Broken Wing Butterfly.
 **Config changes to `BWBConfig` in `config.py`:**
 - Remove: `wing_width_near`, `wing_width_far`
 - Add: `short_delta_target: float = 0.25` (absolute value, target delta for short strikes)
-- Add: `wing_delta_target: float = 0.08` (target delta for broken wing long put)
-- Add: `min_wing_width: int = 10` (minimum points between short and broken wing)
+- Add: `min_wing_width: int = 10` (minimum points between short and broken wing; wing strike found by searching widths upward, optimizing for R/R)
 - Add: `min_net_credit: float = 0.10` (minimum credit per share to enter)
 - Keep: `dte_target: 7`, `dte_min: 5` (already 5 in current code), `profit_target_pct: 0.50`, `stop_loss_pct: 2.00`
 - Change: `max_dte_hold: 1` (was 3)

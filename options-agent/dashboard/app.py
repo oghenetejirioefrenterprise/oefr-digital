@@ -1,5 +1,5 @@
 """
-Options Agent Dashboard — Professional dark-theme real-time monitor.
+Options Agent Dashboard — Warm Terminal aesthetic.
 Reads data from JSON files written by state_writer.py.
 Never connects to IBKR directly.
 """
@@ -33,219 +33,360 @@ CONFIG_FILE     = os.path.join(DATA_DIR, "agent_config.json")
 PORTFOLIO_FILE  = os.path.join(DATA_DIR, "portfolio.json")
 HEARTBEAT_FILE  = os.path.join(DATA_DIR, "heartbeat.json")
 
+# ─── Color palette ────────────────────────────────────────────────────────────
+C_BG       = "#0b0e13"
+C_SURFACE  = "#12151c"
+C_BORDER   = "#1c2030"
+C_BORDER_L = "#262d40"
+C_TEXT     = "#c5c8d4"
+C_DIM      = "#505672"
+C_MUTED    = "#3a3f54"
+C_AMBER    = "#d4a847"
+C_AMBER_DK = "#b8922e"
+C_GOLD     = "#e5c07b"
+C_GREEN    = "#4ec9b0"
+C_GREEN_DK = "#3a9e8a"
+C_RED      = "#e06c75"
+C_RED_DK   = "#c25a63"
+C_BLUE     = "#61afef"
+C_PURPLE   = "#c678dd"
+C_CYAN     = "#56b6c2"
+
 # ─── CSS ──────────────────────────────────────────────────────────────────────
-st.markdown("""
+st.markdown(f"""
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ── Reset & base ── */
-  .stApp { background: #0a0c10 !important; color: #d0d4dc; }
-  .block-container { padding: 0.75rem 1.25rem 2rem 1.25rem !important; max-width: 100% !important; }
-  section[data-testid="stSidebar"] { display: none; }
-  div[data-testid="stDecoration"] { display: none; }
-  footer { display: none !important; }
-  #MainMenu { display: none !important; }
-  header[data-testid="stHeader"] { display: none !important; }
+  .stApp {{
+    background: {C_BG} !important;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(212,168,71,0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(97,175,239,0.02) 0%, transparent 50%);
+    color: {C_TEXT};
+  }}
+  .block-container {{ padding: 0.6rem 1.5rem 2rem 1.5rem !important; max-width: 100% !important; }}
+  section[data-testid="stSidebar"] {{ display: none; }}
+  div[data-testid="stDecoration"] {{ display: none; }}
+  footer {{ display: none !important; }}
+  #MainMenu {{ display: none !important; }}
+  header[data-testid="stHeader"] {{ display: none !important; }}
 
-  /* ── Metric cards ── */
-  .mcard {
-    background: #13161d;
-    border: 1px solid #222;
-    border-radius: 10px;
-    padding: 14px 18px;
-    text-align: center;
-    height: 96px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .mcard.green  { border-color: #00e676; }
-  .mcard.red    { border-color: #ff1744; }
-  .mcard.blue   { border-color: #2979ff; }
-  .mcard.yellow { border-color: #ffd600; }
-  .mcard.gray   { border-color: #444; }
-  .mlabel {
-    font-size: 10px;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 4px;
-  }
-  .mval {
-    font-size: 26px;
-    font-weight: 700;
-    font-family: 'SF Mono', 'Consolas', monospace;
-    line-height: 1.1;
-  }
-  .mval.green  { color: #00e676; }
-  .mval.red    { color: #ff1744; }
-  .mval.blue   { color: #2979ff; }
-  .mval.yellow { color: #ffd600; }
-  .mval.gray   { color: #888; }
-  .msub { font-size: 11px; color: #555; margin-top: 3px; }
+  /* ── Typography ── */
+  .font-data {{
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }}
+  .font-ui {{
+    font-family: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+  }}
 
   /* ── Header bar ── */
-  .hbar {
-    background: #13161d;
-    border: 1px solid #1e222c;
-    border-radius: 10px;
-    padding: 12px 20px;
+  .hbar {{
+    background: linear-gradient(135deg, {C_SURFACE} 0%, #141824 100%);
+    border: 1px solid {C_BORDER};
+    border-bottom: 1px solid {C_AMBER}33;
+    border-radius: 12px;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
-  }
-  .agent-name {
-    font-size: 16px;
+    gap: 18px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }}
+  .hbar::before {{
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, {C_AMBER}44, transparent);
+  }}
+  .agent-name {{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
     font-weight: 700;
-    letter-spacing: 2px;
-    color: #e0e4ef;
-    font-family: 'SF Mono', 'Consolas', monospace;
-  }
-  .badge {
-    display: inline-block;
-    padding: 2px 9px;
-    border-radius: 5px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    font-family: 'SF Mono', 'Consolas', monospace;
-  }
-  .badge-dry  { background: #ffd60022; color: #ffd600; border: 1px solid #ffd60055; }
-  .badge-live { background: #ff174422; color: #ff1744; border: 1px solid #ff174455; }
-  .badge-halt { background: #ff174422; color: #ff1744; border: 1px solid #ff174455; }
-  .badge-online { background: #00e67622; color: #00e676; border: 1px solid #00e67655; }
-
-  .pulse-dot {
-    display: inline-block;
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: #00e676;
-    box-shadow: 0 0 0 0 #00e67666;
-    animation: pulse-ring 1.8s ease-out infinite;
-    margin-right: 8px;
-    vertical-align: middle;
-  }
-  .dead-dot {
-    display: inline-block;
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: #ff1744;
-    margin-right: 8px;
-    vertical-align: middle;
-  }
-  @keyframes pulse-ring {
-    0%   { box-shadow: 0 0 0 0 #00e67666; }
-    70%  { box-shadow: 0 0 0 7px #00e67600; }
-    100% { box-shadow: 0 0 0 0 #00e67600; }
-  }
-
-  .hb-time { font-size: 12px; color: #555; margin-left: auto; font-family: 'SF Mono', 'Consolas', monospace; }
-
-  /* ── Section headers ── */
-  .sec-hdr {
-    font-size: 11px;
-    color: #555;
+    letter-spacing: 3px;
+    color: {C_AMBER};
     text-transform: uppercase;
-    letter-spacing: 2px;
-    padding-bottom: 7px;
-    border-bottom: 1px solid #1a1e27;
-    margin-bottom: 10px;
-    margin-top: 4px;
-  }
-
-  /* ── Position cards ── */
-  .pos-card {
-    background: #13161d;
-    border: 1px solid #1e222c;
-    border-left: 3px solid #2979ff;
-    border-radius: 8px;
-    padding: 10px 14px;
-    margin-bottom: 8px;
-    font-family: 'SF Mono', 'Consolas', monospace;
+  }}
+  .agent-sub {{
+    font-family: 'DM Sans', sans-serif;
+    color: {C_DIM};
     font-size: 12px;
-  }
-  .pos-card.bwb   { border-left-color: #00e676; }
-  .pos-card.condor { border-left-color: #2979ff; }
-  .strat-badge {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }}
+  .badge {{
     display: inline-block;
-    padding: 1px 7px;
-    border-radius: 4px;
+    padding: 3px 10px;
+    border-radius: 6px;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1px;
-  }
-  .strat-bwb    { background: #00e67622; color: #00e676; border: 1px solid #00e67655; }
-  .strat-condor { background: #2979ff22; color: #2979ff; border: 1px solid #2979ff55; }
-  .pos-label { color: #555; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
-  .pos-val   { color: #c8cdd8; font-size: 12px; }
-  .pos-credit { color: #00e676; font-weight: 700; }
-  .pos-time { color: #444; font-size: 10px; }
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+  }}
+  .badge-dry  {{ background: {C_GOLD}18; color: {C_GOLD}; border: 1px solid {C_GOLD}40; }}
+  .badge-live {{ background: {C_RED}18; color: {C_RED}; border: 1px solid {C_RED}40; }}
+  .badge-halt {{ background: {C_RED}18; color: {C_RED}; border: 1px solid {C_RED}40; }}
+  .badge-online {{ background: {C_GREEN}18; color: {C_GREEN}; border: 1px solid {C_GREEN}40; }}
+  .badge-sleep {{ background: {C_BLUE}18; color: {C_BLUE}; border: 1px solid {C_BLUE}40; }}
+
+  .pulse-dot {{
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: {C_AMBER};
+    box-shadow: 0 0 6px {C_AMBER}88, 0 0 12px {C_AMBER}44;
+    animation: amber-pulse 2s ease-in-out infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+  }}
+  .dead-dot {{
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: {C_RED};
+    box-shadow: 0 0 4px {C_RED}66;
+    margin-right: 10px;
+    vertical-align: middle;
+  }}
+  .sleep-dot {{
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: {C_BLUE};
+    box-shadow: 0 0 4px {C_BLUE}66;
+    animation: sleep-fade 3s ease-in-out infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+  }}
+  @keyframes amber-pulse {{
+    0%, 100% {{ box-shadow: 0 0 6px {C_AMBER}88, 0 0 12px {C_AMBER}44; }}
+    50% {{ box-shadow: 0 0 10px {C_AMBER}cc, 0 0 20px {C_AMBER}66; }}
+  }}
+  @keyframes sleep-fade {{
+    0%, 100% {{ opacity: 1; }}
+    50% {{ opacity: 0.3; }}
+  }}
+
+  .hb-time {{
+    font-size: 11px;
+    color: {C_DIM};
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.5px;
+  }}
+
+  /* ── Metric cards ── */
+  .mcard {{
+    background: {C_SURFACE};
+    border: 1px solid {C_BORDER};
+    border-radius: 10px;
+    padding: 16px 18px;
+    text-align: center;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }}
+  .mcard:hover {{
+    border-color: {C_BORDER_L};
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }}
+  .mcard.amber  {{ border-left: 3px solid {C_AMBER}; }}
+  .mcard.green  {{ border-left: 3px solid {C_GREEN}; }}
+  .mcard.red    {{ border-left: 3px solid {C_RED}; }}
+  .mcard.blue   {{ border-left: 3px solid {C_BLUE}; }}
+  .mcard.gold   {{ border-left: 3px solid {C_GOLD}; }}
+  .mcard.muted  {{ border-left: 3px solid {C_MUTED}; }}
+  .mlabel {{
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    color: {C_DIM};
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }}
+  .mval {{
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.1;
+  }}
+  .mval.amber  {{ color: {C_AMBER}; }}
+  .mval.green  {{ color: {C_GREEN}; }}
+  .mval.red    {{ color: {C_RED}; }}
+  .mval.blue   {{ color: {C_BLUE}; }}
+  .mval.gold   {{ color: {C_GOLD}; }}
+  .mval.muted  {{ color: {C_DIM}; }}
+  .msub {{
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    color: {C_MUTED};
+    margin-top: 4px;
+    font-weight: 500;
+  }}
+
+  /* ── Section headers ── */
+  .sec-hdr {{
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: {C_AMBER};
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid {C_BORDER};
+    margin-bottom: 12px;
+    margin-top: 4px;
+  }}
+
+  /* ── Position cards ── */
+  .pos-card {{
+    background: {C_SURFACE};
+    border: 1px solid {C_BORDER};
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    position: relative;
+    transition: border-color 0.3s ease;
+  }}
+  .pos-card:hover {{ border-color: {C_BORDER_L}; }}
+  .pos-card.bwb   {{ border-left: 3px solid {C_GREEN}; }}
+  .pos-card.condor {{ border-left: 3px solid {C_BLUE}; }}
+  .strat-badge {{
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    font-family: 'JetBrains Mono', monospace;
+  }}
+  .strat-bwb    {{ background: {C_GREEN}18; color: {C_GREEN}; border: 1px solid {C_GREEN}44; }}
+  .strat-condor {{ background: {C_BLUE}18; color: {C_BLUE}; border: 1px solid {C_BLUE}44; }}
+  .pos-label {{
+    font-family: 'DM Sans', sans-serif;
+    color: {C_DIM};
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+  }}
+  .pos-val   {{ color: {C_TEXT}; font-size: 12px; }}
+  .pos-credit {{ color: {C_AMBER}; font-weight: 700; }}
+  .pos-time {{
+    color: {C_MUTED};
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }}
 
   /* ── Log viewer ── */
-  .logbox {
-    background: #0d0f14;
-    border: 1px solid #1a1e27;
-    border-radius: 8px;
-    padding: 10px 12px;
+  .logbox {{
+    background: #090b10;
+    border: 1px solid {C_BORDER};
+    border-radius: 10px;
+    padding: 12px 14px;
     max-height: 420px;
     overflow-y: auto;
-    font-family: 'SF Mono', 'Consolas', monospace;
-    font-size: 11px;
-    line-height: 1.7;
-  }
-  .log-err  { color: #ff1744; }
-  .log-warn { color: #ff9100; }
-  .log-ok   { color: #00e676; }
-  .log-cyan { color: #00b0ff; }
-  .log-info { color: #607080; }
-  .log-dim  { color: #404858; }
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    line-height: 1.8;
+  }}
+  .logbox::-webkit-scrollbar {{ width: 4px; }}
+  .logbox::-webkit-scrollbar-track {{ background: transparent; }}
+  .logbox::-webkit-scrollbar-thumb {{ background: {C_BORDER_L}; border-radius: 2px; }}
+  .log-err  {{ color: {C_RED}; }}
+  .log-warn {{ color: {C_GOLD}; }}
+  .log-ok   {{ color: {C_GREEN}; }}
+  .log-cyan {{ color: {C_CYAN}; }}
+  .log-info {{ color: {C_DIM}; }}
+  .log-dim  {{ color: #363c52; }}
 
   /* ── Trade history table ── */
-  .th-row {
+  .th-row {{
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #1a1e27;
-    padding: 5px 0;
-    font-size: 12px;
-    font-family: 'SF Mono', 'Consolas', monospace;
-  }
-  .th-row:last-child { border-bottom: none; }
-  .th-time { color: #555; width: 160px; flex-shrink: 0; }
-  .th-strat { width: 70px; flex-shrink: 0; }
-  .th-exp  { color: #888; width: 90px; flex-shrink: 0; }
-  .th-strikes { color: #aaa; flex: 1; }
-  .th-pnl  { width: 90px; flex-shrink: 0; text-align: right; font-weight: 700; }
-  .th-res  { width: 50px; flex-shrink: 0; text-align: right; }
-  .pnl-win  { color: #00e676; }
-  .pnl-loss { color: #ff1744; }
-  .pnl-zero { color: #888; }
+    border-bottom: 1px solid {C_BORDER};
+    padding: 7px 0;
+    font-size: 11.5px;
+    font-family: 'JetBrains Mono', monospace;
+  }}
+  .th-row:last-child {{ border-bottom: none; }}
+  .th-time {{ color: {C_DIM}; width: 140px; flex-shrink: 0; }}
+  .th-strat {{ width: 80px; flex-shrink: 0; }}
+  .th-exp  {{ color: {C_DIM}; width: 100px; flex-shrink: 0; }}
+  .th-strikes {{ color: {C_TEXT}; flex: 1; }}
+  .th-pnl  {{ width: 100px; flex-shrink: 0; text-align: right; font-weight: 600; }}
+  .th-res  {{ width: 60px; flex-shrink: 0; text-align: right; font-weight: 600; }}
+  .pnl-win  {{ color: {C_GREEN}; }}
+  .pnl-loss {{ color: {C_RED}; }}
+  .pnl-zero {{ color: {C_DIM}; }}
 
   /* ── Risk bar ── */
-  .risk-bar-bg {
-    background: #1a1e27;
-    border-radius: 4px;
-    height: 6px;
-    margin-top: 5px;
+  .risk-bar-bg {{
+    background: {C_BORDER};
+    border-radius: 3px;
+    height: 5px;
+    margin-top: 6px;
     overflow: hidden;
-  }
-  .risk-bar-fill {
+  }}
+  .risk-bar-fill {{
     height: 100%;
-    border-radius: 4px;
-    transition: width 0.4s ease;
-  }
+    border-radius: 3px;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  }}
 
   /* ── Config row ── */
-  .cfg-item {
-    background: #13161d;
-    border: 1px solid #1a1e27;
-    border-radius: 6px;
-    padding: 8px 12px;
+  .cfg-item {{
+    background: {C_SURFACE};
+    border: 1px solid {C_BORDER};
+    border-radius: 8px;
+    padding: 10px 14px;
     text-align: center;
-  }
-  .cfg-label { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 1px; }
-  .cfg-val   { font-size: 14px; color: #c8cdd8; font-family: 'SF Mono', 'Consolas', monospace; margin-top: 2px; }
+  }}
+  .cfg-label {{
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    color: {C_DIM};
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+  }}
+  .cfg-val {{
+    font-size: 13px;
+    color: {C_TEXT};
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 3px;
+    font-weight: 500;
+  }}
 
   /* ── Empty state ── */
-  .empty-state { color: #444; text-align: center; padding: 40px 0; font-size: 13px; }
+  .empty-state {{
+    color: {C_MUTED};
+    text-align: center;
+    padding: 40px 0;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: italic;
+  }}
+
+  /* ── Stat mini-card ── */
+  .stat-mini {{
+    text-align: center;
+    padding: 6px 0;
+  }}
+  .stat-mini .mlabel {{ margin-bottom: 4px; }}
+  .stat-mini .stat-val {{
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+  }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -263,7 +404,6 @@ def read_json(path: str, default=None):
 def read_log_tail(path: str, n: int = 40) -> list:
     try:
         with open(path, "rb") as f:
-            # Efficient tail: seek from end
             f.seek(0, 2)
             size = f.tell()
             block = min(size, 32768)
@@ -293,7 +433,7 @@ def fmt_money_signed(val) -> str:
 def strikes_display(pos: dict) -> str:
     strat = pos.get("strategy", "")
     if strat == "BWB":
-        return f"{pos.get('strike_high','-')} / {pos.get('strike_mid','-')}×2 / {pos.get('strike_low','-')}"
+        return f"{pos.get('strike_high','-')} / {pos.get('strike_mid','-')}x2 / {pos.get('strike_low','-')}"
     elif strat == "CONDOR":
         return (f"P {pos.get('long_put_strike','-')}/{pos.get('short_put_strike','-')}"
                 f" · C {pos.get('short_call_strike','-')}/{pos.get('long_call_strike','-')}")
@@ -301,7 +441,6 @@ def strikes_display(pos: dict) -> str:
 
 
 def fmt_expiry(exp: str) -> str:
-    """20260402 → Apr 02 '26"""
     try:
         d = datetime.strptime(str(exp), "%Y%m%d")
         return d.strftime("%b %d '%y")
@@ -320,27 +459,15 @@ def dte(exp: str) -> int:
 # ─── BWB payoff diagram ───────────────────────────────────────────────────────
 
 def bwb_payoff_chart(pos: dict, spx_price: float = None) -> go.Figure:
-    """
-    BWB (Broken Wing Butterfly) payoff at expiration.
-    Structure: long 1x strike_high put, short 2x strike_mid put, long 1x strike_low put
-    wing_high = strike_high - strike_mid  (wide wing)
-    wing_low  = strike_mid  - strike_low  (narrow wing)
-    Credit received = net_credit per share × 100
-    Max profit at strike_mid = wing_high × 100 - debit (or + credit)
-    """
     sh = float(pos.get("strike_high", 0))
     sm = float(pos.get("strike_mid", 0))
     sl = float(pos.get("strike_low", 0))
-    credit = float(pos.get("net_credit", 0))   # per share
+    credit = float(pos.get("net_credit", 0))
     qty    = int(pos.get("qty", 1))
 
     if sh == 0 or sm == 0 or sl == 0:
         return None
 
-    wing_wide   = sh - sm   # upper wing width
-    wing_narrow = sm - sl   # lower wing width
-
-    # Price range: ±30 pts around sm, at minimum covering all strikes with padding
     lo = min(sl - 20, sm - 35)
     hi = max(sh + 20, sm + 35)
     prices = [lo + (hi - lo) * i / 200 for i in range(201)]
@@ -349,87 +476,56 @@ def bwb_payoff_chart(pos: dict, spx_price: float = None) -> go.Figure:
         return max(K - S, 0.0)
 
     def bwb_pnl_per_unit(S):
-        # Long 1x high put, short 2x mid put, long 1x low put + credit
         pnl = (
             put_payoff(sh, S)
             - 2 * put_payoff(sm, S)
             + put_payoff(sl, S)
             + credit
         )
-        return pnl * 100  # per-contract ($)
+        return pnl * 100
 
     pnls = [bwb_pnl_per_unit(s) * qty for s in prices]
-
-    # Split into gain/loss segments for fill coloring
     fig = go.Figure()
 
-    # Green fill — profit zones
     pos_y = [max(p, 0) for p in pnls]
     neg_y = [min(p, 0) for p in pnls]
 
     fig.add_trace(go.Scatter(
-        x=prices, y=pos_y,
-        fill="tozeroy",
-        fillcolor="rgba(0,230,118,0.12)",
-        line=dict(color="#00e676", width=1.5),
-        name="Profit",
+        x=prices, y=pos_y, fill="tozeroy",
+        fillcolor=f"rgba(78,201,176,0.10)",
+        line=dict(color=C_GREEN, width=1.5), name="Profit",
         hovertemplate="$%{x:.0f}: +$%{y:.0f}<extra></extra>",
     ))
     fig.add_trace(go.Scatter(
-        x=prices, y=neg_y,
-        fill="tozeroy",
-        fillcolor="rgba(255,23,68,0.12)",
-        line=dict(color="#ff1744", width=1.5),
-        name="Loss",
+        x=prices, y=neg_y, fill="tozeroy",
+        fillcolor=f"rgba(224,108,117,0.10)",
+        line=dict(color=C_RED, width=1.5), name="Loss",
         hovertemplate="$%{x:.0f}: -$%{y:.0f}<extra></extra>",
     ))
 
-    # Key price markers
     for strike, label, color in [
-        (sh, f"H {sh:.0f}", "#00b0ff"),
-        (sm, f"M {sm:.0f}", "#2979ff"),
-        (sl, f"L {sl:.0f}", "#7c4dff"),
+        (sh, f"H {sh:.0f}", C_CYAN),
+        (sm, f"M {sm:.0f}", C_BLUE),
+        (sl, f"L {sl:.0f}", C_PURPLE),
     ]:
         fig.add_vline(
-            x=strike,
-            line=dict(color=color, width=1, dash="dot"),
-            annotation_text=label,
-            annotation_font_size=9,
-            annotation_font_color=color,
+            x=strike, line=dict(color=color, width=1, dash="dot"),
+            annotation_text=label, annotation_font_size=9, annotation_font_color=color,
         )
 
-    # SPX current price
     if spx_price and lo < spx_price < hi:
         fig.add_vline(
-            x=spx_price,
-            line=dict(color="#ffd600", width=1.5, dash="dash"),
+            x=spx_price, line=dict(color=C_AMBER, width=1.5, dash="dash"),
             annotation_text=f"SPX {spx_price:.0f}",
-            annotation_font_size=9,
-            annotation_font_color="#ffd600",
+            annotation_font_size=9, annotation_font_color=C_AMBER,
         )
 
-    # Zero line
-    fig.add_hline(y=0, line=dict(color="#333", width=1))
-
+    fig.add_hline(y=0, line=dict(color=C_BORDER_L, width=1))
     fig.update_layout(
-        template="plotly_dark",
-        paper_bgcolor="#0d0f14",
-        plot_bgcolor="#0d0f14",
-        margin=dict(l=32, r=8, t=8, b=28),
-        height=160,
-        showlegend=False,
-        xaxis=dict(
-            showgrid=False,
-            tickfont=dict(size=9, color="#555"),
-            tickformat=".0f",
-        ),
-        yaxis=dict(
-            showgrid=True,
-            gridcolor="#1a1e27",
-            tickfont=dict(size=9, color="#555"),
-            tickformat="$.0f",
-            zeroline=False,
-        ),
+        template="plotly_dark", paper_bgcolor="#090b10", plot_bgcolor="#090b10",
+        margin=dict(l=32, r=8, t=8, b=28), height=160, showlegend=False,
+        xaxis=dict(showgrid=False, tickfont=dict(size=9, color=C_DIM, family="JetBrains Mono"), tickformat=".0f"),
+        yaxis=dict(showgrid=True, gridcolor=C_BORDER, tickfont=dict(size=9, color=C_DIM, family="JetBrains Mono"), tickformat="$.0f", zeroline=False),
     )
     return fig
 
@@ -454,12 +550,6 @@ def condor_payoff_chart(pos: dict, spx_price: float = None) -> go.Figure:
 
     def condor_pnl(S):
         pnl = (
-            -put_p(lp, S) + put_p(sp, S)
-            + put_p(sc, S) - call_p(lc, S)  # wrong — condor is put spread + call spread
-        )
-        # Iron condor: sell put spread + sell call spread
-        # = (short put sp - long put lp) + (short call sc - long call lc) + credit
-        pnl = (
             (-put_p(lp, S) + put_p(sp, S))
             + (-call_p(lc, S) + call_p(sc, S))
             + credit
@@ -467,42 +557,41 @@ def condor_payoff_chart(pos: dict, spx_price: float = None) -> go.Figure:
         return pnl * 100 * qty
 
     pnls = [condor_pnl(s) for s in prices]
-
     fig = go.Figure()
     pos_y = [max(p, 0) for p in pnls]
     neg_y = [min(p, 0) for p in pnls]
 
     fig.add_trace(go.Scatter(
         x=prices, y=pos_y, fill="tozeroy",
-        fillcolor="rgba(0,230,118,0.12)",
-        line=dict(color="#00e676", width=1.5), name="Profit",
+        fillcolor="rgba(78,201,176,0.10)",
+        line=dict(color=C_GREEN, width=1.5), name="Profit",
     ))
     fig.add_trace(go.Scatter(
         x=prices, y=neg_y, fill="tozeroy",
-        fillcolor="rgba(255,23,68,0.12)",
-        line=dict(color="#ff1744", width=1.5), name="Loss",
+        fillcolor="rgba(224,108,117,0.10)",
+        line=dict(color=C_RED, width=1.5), name="Loss",
     ))
 
     for strike, label, color in [
-        (lp, f"{lp:.0f}", "#7c4dff"),
-        (sp, f"{sp:.0f}", "#2979ff"),
-        (sc, f"{sc:.0f}", "#2979ff"),
-        (lc, f"{lc:.0f}", "#7c4dff"),
+        (lp, f"{lp:.0f}", C_PURPLE),
+        (sp, f"{sp:.0f}", C_BLUE),
+        (sc, f"{sc:.0f}", C_BLUE),
+        (lc, f"{lc:.0f}", C_PURPLE),
     ]:
         fig.add_vline(x=strike, line=dict(color=color, width=1, dash="dot"),
                       annotation_text=label, annotation_font_size=9, annotation_font_color=color)
 
     if spx_price and lo < spx_price < hi:
-        fig.add_vline(x=spx_price, line=dict(color="#ffd600", width=1.5, dash="dash"),
+        fig.add_vline(x=spx_price, line=dict(color=C_AMBER, width=1.5, dash="dash"),
                       annotation_text=f"SPX {spx_price:.0f}", annotation_font_size=9,
-                      annotation_font_color="#ffd600")
+                      annotation_font_color=C_AMBER)
 
-    fig.add_hline(y=0, line=dict(color="#333", width=1))
+    fig.add_hline(y=0, line=dict(color=C_BORDER_L, width=1))
     fig.update_layout(
-        template="plotly_dark", paper_bgcolor="#0d0f14", plot_bgcolor="#0d0f14",
+        template="plotly_dark", paper_bgcolor="#090b10", plot_bgcolor="#090b10",
         margin=dict(l=32, r=8, t=8, b=28), height=160, showlegend=False,
-        xaxis=dict(showgrid=False, tickfont=dict(size=9, color="#555"), tickformat=".0f"),
-        yaxis=dict(showgrid=True, gridcolor="#1a1e27", tickfont=dict(size=9, color="#555"),
+        xaxis=dict(showgrid=False, tickfont=dict(size=9, color=C_DIM, family="JetBrains Mono"), tickformat=".0f"),
+        yaxis=dict(showgrid=True, gridcolor=C_BORDER, tickfont=dict(size=9, color=C_DIM, family="JetBrains Mono"),
                    tickformat="$.0f", zeroline=False),
     )
     return fig
@@ -513,11 +602,11 @@ def condor_payoff_chart(pos: dict, spx_price: float = None) -> go.Figure:
 def pnl_chart(trade_history: list) -> go.Figure:
     if not trade_history:
         fig = go.Figure()
-        fig.add_annotation(text="No closed trades yet", xref="paper", yref="paper",
+        fig.add_annotation(text="Awaiting first trade", xref="paper", yref="paper",
                            x=0.5, y=0.5, showarrow=False,
-                           font=dict(color="#444", size=14))
-        fig.update_layout(template="plotly_dark", paper_bgcolor="#0d0f14",
-                          plot_bgcolor="#0d0f14", height=300,
+                           font=dict(color=C_MUTED, size=13, family="DM Sans"))
+        fig.update_layout(template="plotly_dark", paper_bgcolor="#090b10",
+                          plot_bgcolor="#090b10", height=280,
                           margin=dict(l=40, r=16, t=16, b=40))
         return fig
 
@@ -538,42 +627,28 @@ def pnl_chart(trade_history: list) -> go.Figure:
         cumulative.append(round(running, 2))
 
     final = cumulative[-1] if cumulative else 0
-    color = "#00e676" if final >= 0 else "#ff1744"
-    fill  = "rgba(0,230,118,0.08)" if final >= 0 else "rgba(255,23,68,0.08)"
+    color = C_GREEN if final >= 0 else C_RED
+    fill  = "rgba(78,201,176,0.06)" if final >= 0 else "rgba(224,108,117,0.06)"
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(
-        x=labels,
-        y=cumulative,
+        x=labels, y=cumulative,
         mode="lines+markers",
         line=dict(color=color, width=2),
-        fill="tozeroy",
-        fillcolor=fill,
+        fill="tozeroy", fillcolor=fill,
         marker=dict(size=4, color=color),
         hovertemplate="<b>%{x}</b><br>Cumulative: $%{y:,.2f}<extra></extra>",
     ))
 
-    fig.add_hline(y=0, line=dict(color="#333", width=1))
-
+    fig.add_hline(y=0, line=dict(color=C_BORDER_L, width=1))
     fig.update_layout(
         template="plotly_dark",
-        paper_bgcolor="#0d0f14",
-        plot_bgcolor="#0d0f14",
-        height=300,
+        paper_bgcolor="#090b10", plot_bgcolor="#090b10",
+        height=280,
         margin=dict(l=48, r=16, t=16, b=48),
         showlegend=False,
-        xaxis=dict(
-            showgrid=False,
-            tickfont=dict(size=10, color="#555"),
-            tickangle=-30,
-        ),
-        yaxis=dict(
-            showgrid=True,
-            gridcolor="#1a1e27",
-            tickfont=dict(size=10, color="#555"),
-            tickprefix="$",
-            zeroline=False,
-        ),
+        xaxis=dict(showgrid=False, tickfont=dict(size=10, color=C_DIM, family="JetBrains Mono"), tickangle=-30),
+        yaxis=dict(showgrid=True, gridcolor=C_BORDER, tickfont=dict(size=10, color=C_DIM, family="JetBrains Mono"), tickprefix="$", zeroline=False),
     )
     return fig
 
@@ -589,7 +664,6 @@ heartbeat     = read_json(HEARTBEAT_FILE, {})
 log_lines     = read_log_tail(AGENT_LOG, 40)
 
 # ── Derived values ────────────────────────────────────────────────────────────
-# Agent liveness — check heartbeat first, fall back to log timestamp
 agent_alive    = False
 agent_sleeping = False
 last_alive_ts  = None
@@ -653,27 +727,34 @@ def uptime_str(s: int) -> str:
 
 # ─── HEADER BAR ───────────────────────────────────────────────────────────────
 
-dot_html = '<span class="pulse-dot"></span>' if agent_alive else '<span class="dead-dot"></span>'
+if agent_sleeping:
+    dot_html = '<span class="sleep-dot"></span>'
+elif agent_alive:
+    dot_html = '<span class="pulse-dot"></span>'
+else:
+    dot_html = '<span class="dead-dot"></span>'
 
 badges = ""
 if dry_run:
-    badges += ' <span class="badge badge-dry">DRY RUN</span>'
+    badges += f' <span class="badge badge-dry">Paper</span>'
 else:
-    badges += ' <span class="badge badge-live">⬤ LIVE</span>'
+    badges += f' <span class="badge badge-live">Live</span>'
 if trading_halted:
-    badges += ' <span class="badge badge-halt">⚠ HALTED</span>'
-if agent_alive and not trading_halted:
-    badges += ' <span class="badge badge-online">ONLINE</span>'
+    badges += f' <span class="badge badge-halt">Halted</span>'
+if agent_sleeping:
+    badges += f' <span class="badge badge-sleep">Sleeping</span>'
+elif agent_alive and not trading_halted:
+    badges += f' <span class="badge badge-online">Online</span>'
 
-hb_str = last_alive_ts.strftime("Last heartbeat %H:%M:%S") if last_alive_ts else "No heartbeat"
+hb_str = last_alive_ts.strftime("%H:%M:%S") if last_alive_ts else "—"
 
 st.markdown(f"""
 <div class="hbar">
   {dot_html}
-  <span class="agent-name">OPTIONS AGENT</span>
-  <span style="color:#444;font-size:12px;">{strategy} · {underlying}</span>
+  <span class="agent-name">Options Agent</span>
+  <span class="agent-sub">{strategy} &middot; {underlying}</span>
   {badges}
-  <span class="hb-time">{hb_str} &nbsp;·&nbsp; {datetime.now().strftime("%H:%M:%S")}</span>
+  <span class="hb-time">{hb_str} &nbsp;&middot;&nbsp; {datetime.now().strftime("%H:%M:%S")}</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -682,30 +763,31 @@ st.markdown(f"""
 
 m1, m2, m3, m4, m5, m6 = st.columns(6)
 
-pnl_color = "green" if daily_pnl >= 0 else "red"
+pnl_card = "green" if daily_pnl >= 0 else "red"
+pnl_val_cls = "green" if daily_pnl >= 0 else "red"
 with m1:
     st.markdown(f"""
-    <div class="mcard {pnl_color}">
+    <div class="mcard {pnl_card}">
       <div class="mlabel">Daily P&amp;L</div>
-      <div class="mval {pnl_color}">{fmt_money_signed(daily_pnl)}</div>
+      <div class="mval {pnl_val_cls}">{fmt_money_signed(daily_pnl)}</div>
       <div class="msub">of ${max_loss:,.0f} limit</div>
     </div>
     """, unsafe_allow_html=True)
 
-wr_color = "green" if win_rate >= 60 else ("yellow" if win_rate >= 40 else "red")
+wr_card = "green" if win_rate >= 60 else ("gold" if win_rate >= 40 else "red")
+wr_val  = "green" if win_rate >= 60 else ("gold" if win_rate >= 40 else "red")
 with m2:
     st.markdown(f"""
-    <div class="mcard {wr_color}">
+    <div class="mcard {wr_card}">
       <div class="mlabel">Win Rate</div>
-      <div class="mval {wr_color}">{win_rate:.0f}%</div>
+      <div class="mval {wr_val}">{win_rate:.0f}%</div>
       <div class="msub">{wins}W / {losses_count}L</div>
     </div>
     """, unsafe_allow_html=True)
 
-pos_color = "red" if len(open_positions) >= max_pos else "blue"
 with m3:
     st.markdown(f"""
-    <div class="mcard {pos_color}">
+    <div class="mcard blue">
       <div class="mlabel">Open Positions</div>
       <div class="mval blue">{len(open_positions)}</div>
       <div class="msub">of {max_pos} max</div>
@@ -714,45 +796,45 @@ with m3:
 
 with m4:
     st.markdown(f"""
-    <div class="mcard gray">
+    <div class="mcard muted">
       <div class="mlabel">Trades Today</div>
-      <div class="mval gray">{total_today}</div>
+      <div class="mval muted">{total_today}</div>
       <div class="msub">closed</div>
     </div>
     """, unsafe_allow_html=True)
 
-risk_bar_color = "#ff1744" if risk_pct > 80 else ("#ff9100" if risk_pct > 50 else "#00e676")
-risk_card_cls  = "red" if risk_pct > 80 else ("yellow" if risk_pct > 50 else "green")
+risk_bar_color = C_RED if risk_pct > 80 else (C_GOLD if risk_pct > 50 else C_GREEN)
+risk_card = "red" if risk_pct > 80 else ("gold" if risk_pct > 50 else "green")
 with m5:
     st.markdown(f"""
-    <div class="mcard {risk_card_cls}">
+    <div class="mcard {risk_card}">
       <div class="mlabel">Risk Used</div>
-      <div class="mval {'red' if risk_pct > 80 else 'yellow' if risk_pct > 50 else 'green'}">{risk_pct:.0f}%</div>
+      <div class="mval {risk_card}">{risk_pct:.0f}%</div>
       <div class="risk-bar-bg"><div class="risk-bar-fill" style="width:{min(risk_pct,100):.0f}%;background:{risk_bar_color};"></div></div>
     </div>
     """, unsafe_allow_html=True)
 
 if trading_halted:
-    s_cls, s_val = "red", "HALTED"
+    s_card, s_val_cls, s_val = "red", "red", "Halted"
 elif not agent_alive:
-    s_cls, s_val = "red", "OFFLINE"
+    s_card, s_val_cls, s_val = "red", "red", "Offline"
 elif agent_sleeping:
-    s_cls, s_val = "blue", "SLEEPING"
+    s_card, s_val_cls, s_val = "blue", "blue", "Sleeping"
 elif dry_run:
-    s_cls, s_val = "yellow", "DRY RUN"
+    s_card, s_val_cls, s_val = "amber", "amber", "Paper"
 else:
-    s_cls, s_val = "green", "ONLINE"
+    s_card, s_val_cls, s_val = "green", "green", "Live"
 
 with m6:
     st.markdown(f"""
-    <div class="mcard {s_cls}">
+    <div class="mcard {s_card}">
       <div class="mlabel">Agent Status</div>
-      <div class="mval {s_cls}">{s_val}</div>
+      <div class="mval {s_val_cls}">{s_val}</div>
       <div class="msub">uptime {uptime_str(uptime_sec)}</div>
     </div>
     """, unsafe_allow_html=True)
 
-st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height:14px'></div>", unsafe_allow_html=True)
 
 
 # ─── MAIN 3-COLUMN LAYOUT ─────────────────────────────────────────────────────
@@ -762,7 +844,7 @@ col_left, col_center, col_right = st.columns([4, 3.5, 2.5])
 
 # ── LEFT: Open positions ──────────────────────────────────────────────────────
 with col_left:
-    st.markdown('<div class="sec-hdr">📊 Open Positions</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sec-hdr">Open Positions</div>', unsafe_allow_html=True)
 
     if not open_positions:
         st.markdown('<div class="empty-state">No open positions</div>', unsafe_allow_html=True)
@@ -789,46 +871,43 @@ with col_left:
               <div style="display:flex;justify-content:space-between;align-items:flex-start;">
                 <div>
                   <span class="strat-badge {badge_cls}">{strat}</span>
-                  <span style="color:#88a0c0;font-size:11px;margin-left:8px;">{exp_fmt}</span>
-                  <span style="color:#555;font-size:10px;margin-left:6px;">({dte_days}d)</span>
+                  <span style="color:{C_BLUE};font-size:11px;margin-left:8px;font-family:'DM Sans',sans-serif;">{exp_fmt}</span>
+                  <span style="color:{C_DIM};font-size:10px;margin-left:6px;font-family:'JetBrains Mono',monospace;">({dte_days}d)</span>
                 </div>
                 <div style="text-align:right;">
                   <span class="pos-credit">${credit:.2f} cr</span>
-                  <span style="color:#444;font-size:10px;margin-left:6px;">×{qty}</span>
+                  <span style="color:{C_MUTED};font-size:10px;margin-left:6px;">x{qty}</span>
                 </div>
               </div>
-              <div style="margin-top:5px;">
+              <div style="margin-top:7px;">
                 <span class="pos-label">strikes </span>
                 <span class="pos-val">{strikes}</span>
               </div>
-              <div style="margin-top:3px;">
+              <div style="margin-top:4px;">
                 <span class="pos-label">max profit </span>
-                <span style="color:#00e676;font-size:11px;">${max_profit:.2f}</span>
+                <span style="color:{C_GREEN};font-size:11px;font-family:'JetBrains Mono',monospace;">${max_profit:.2f}</span>
                 <span style="margin-left:14px;" class="pos-label">entered </span>
                 <span class="pos-time">{et_fmt}</span>
               </div>
             </div>
             """, unsafe_allow_html=True)
 
-            # Payoff diagram
             fig = None
             if strat == "BWB":
                 fig = bwb_payoff_chart(pos, spx_price)
             elif strat == "CONDOR":
                 fig = condor_payoff_chart(pos, spx_price)
-
             if fig:
                 st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
 
 # ── CENTER: P&L Chart ─────────────────────────────────────────────────────────
 with col_center:
-    st.markdown('<div class="sec-hdr">📈 Cumulative P&amp;L</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sec-hdr">Cumulative P&amp;L</div>', unsafe_allow_html=True)
 
     fig_pnl = pnl_chart(trade_history)
     st.plotly_chart(fig_pnl, use_container_width=True, config={"displayModeBar": False})
 
-    # Quick stats below chart
     if trade_history:
         total_pnl = sum(float(t.get("realized_pnl", t.get("pnl", 0)) or 0) for t in trade_history)
         avg_pnl   = total_pnl / len(trade_history)
@@ -837,34 +916,30 @@ with col_center:
 
         sa, sb, sc_col = st.columns(3)
         with sa:
-            c = "green" if total_pnl >= 0 else "red"
             st.markdown(f"""
-            <div style="text-align:center;">
-              <div class="mlabel">All-time P&L</div>
-              <div style="font-size:16px;font-weight:700;color:{'#00e676' if total_pnl>=0 else '#ff1744'};
-                           font-family:monospace;">{fmt_money_signed(total_pnl)}</div>
+            <div class="stat-mini">
+              <div class="mlabel">All-time P&amp;L</div>
+              <div class="stat-val" style="color:{'#4ec9b0' if total_pnl>=0 else '#e06c75'}">{fmt_money_signed(total_pnl)}</div>
             </div>
             """, unsafe_allow_html=True)
         with sb:
             st.markdown(f"""
-            <div style="text-align:center;">
-              <div class="mlabel">Avg P&L / Trade</div>
-              <div style="font-size:16px;font-weight:700;color:{'#00e676' if avg_pnl>=0 else '#ff1744'};
-                           font-family:monospace;">{fmt_money_signed(avg_pnl)}</div>
+            <div class="stat-mini">
+              <div class="mlabel">Avg / Trade</div>
+              <div class="stat-val" style="color:{'#4ec9b0' if avg_pnl>=0 else '#e06c75'}">{fmt_money_signed(avg_pnl)}</div>
             </div>
             """, unsafe_allow_html=True)
         with sc_col:
             st.markdown(f"""
-            <div style="text-align:center;">
-              <div class="mlabel">Historical Win%</div>
-              <div style="font-size:16px;font-weight:700;color:#2979ff;font-family:monospace;">{all_wr:.0f}%</div>
+            <div class="stat-mini">
+              <div class="mlabel">Win Rate</div>
+              <div class="stat-val" style="color:{C_AMBER}">{all_wr:.0f}%</div>
             </div>
             """, unsafe_allow_html=True)
 
     st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
 
-    # Account P&L row
-    st.markdown('<div class="sec-hdr" style="margin-top:8px;">💰 Account</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="sec-hdr">Account</div>', unsafe_allow_html=True)
     ac1, ac2, ac3 = st.columns(3)
     for col_a, label, val in [
         (ac1, "Unrealized", unrealized),
@@ -874,21 +949,21 @@ with col_center:
         with col_a:
             if label == "SPX Price":
                 disp = f"${spx_price:,.2f}" if spx_price else "—"
-                color_style = "color:#2979ff"
+                color_style = f"color:{C_AMBER}"
             else:
                 disp        = fmt_money_signed(val)
-                color_style = f"color:{'#00e676' if (val or 0)>=0 else '#ff1744'}"
+                color_style = f"color:{'#4ec9b0' if (val or 0)>=0 else '#e06c75'}"
             st.markdown(f"""
-            <div style="text-align:center;">
+            <div class="stat-mini">
               <div class="mlabel">{label}</div>
-              <div style="font-size:15px;font-weight:700;{color_style};font-family:monospace;">{disp}</div>
+              <div class="stat-val" style="{color_style}">{disp}</div>
             </div>
             """, unsafe_allow_html=True)
 
 
 # ── RIGHT: Live Logs ──────────────────────────────────────────────────────────
 with col_right:
-    st.markdown('<div class="sec-hdr">📋 Live Logs</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sec-hdr">Live Logs</div>', unsafe_allow_html=True)
 
     if log_lines:
         log_html = '<div class="logbox">'
@@ -918,10 +993,9 @@ with col_right:
 
 # ─── TRADE HISTORY TABLE ──────────────────────────────────────────────────────
 
-st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
-st.markdown('<div class="sec-hdr">📜 Trade History (last 20)</div>', unsafe_allow_html=True)
+st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+st.markdown('<div class="sec-hdr">Trade History</div>', unsafe_allow_html=True)
 
-# Merge risk_state trades + trade_history file, deduplicate by exit_time+strategy
 all_trades = []
 seen = set()
 for t in trade_history:
@@ -930,7 +1004,6 @@ for t in trade_history:
         seen.add(key)
         all_trades.append(t)
 
-# Also include risk_state trades not already in history
 for t in trades_today:
     key = (t.get("time", ""), t.get("strategy", ""))
     if key not in seen:
@@ -950,15 +1023,8 @@ display_trades = all_trades[:20]
 if not display_trades:
     st.markdown('<div class="empty-state">No trades yet</div>', unsafe_allow_html=True)
 else:
-    table_html = '<div style="background:#13161d;border:1px solid #1a1e27;border-radius:8px;padding:8px 12px;">'
-    table_html += '''<div class="th-row" style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #2a2e3a;">
-      <span class="th-time">Time</span>
-      <span class="th-strat">Strategy</span>
-      <span class="th-exp">Expiry</span>
-      <span class="th-strikes">Strikes</span>
-      <span class="th-pnl">P&amp;L</span>
-      <span class="th-res">Result</span>
-    </div>'''
+    table_html = f'<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:10px;padding:10px 14px;">'
+    table_html += f'<div class="th-row" style="color:{C_DIM};font-size:10px;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid {C_BORDER_L};font-family:\'DM Sans\',sans-serif;font-weight:600;"><span class="th-time">Time</span><span class="th-strat">Strategy</span><span class="th-exp">Expiry</span><span class="th-strikes">Strikes</span><span class="th-pnl">P&amp;L</span><span class="th-res">Result</span></div>'
 
     for t in display_trades:
         ts_raw = t.get("exit_time", t.get("time", ""))
@@ -970,15 +1036,13 @@ else:
         strat   = t.get("strategy", "?")
         exp     = fmt_expiry(t.get("expiration", ""))
         pnl_val = float(t.get("realized_pnl", t.get("pnl", 0)) or 0)
-        is_win  = pnl_val > 0
         reason  = t.get("exit_reason", "")
 
         badge_cls  = f"strat-{strat.lower()}" if strat in ("BWB", "CONDOR") else ""
         pnl_cls    = "pnl-win" if pnl_val > 0 else ("pnl-loss" if pnl_val < 0 else "pnl-zero")
-        res_txt    = "WIN" if is_win else ("LOSS" if pnl_val < 0 else "—")
-        res_color  = "#00e676" if is_win else ("#ff1744" if pnl_val < 0 else "#666")
+        res_txt    = "WIN" if pnl_val > 0 else ("LOSS" if pnl_val < 0 else "—")
+        res_color  = C_GREEN if pnl_val > 0 else (C_RED if pnl_val < 0 else C_DIM)
 
-        # Build strikes string from position keys
         sh = t.get("strike_high"); sm = t.get("strike_mid"); sl = t.get("strike_low")
         lp = t.get("long_put_strike"); sp_s = t.get("short_put_strike")
         sc_s = t.get("short_call_strike"); lc = t.get("long_call_strike")
@@ -998,8 +1062,8 @@ else:
 
 # ─── CONFIGURATION ROW ────────────────────────────────────────────────────────
 
-st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
-st.markdown('<div class="sec-hdr">⚙️ Configuration</div>', unsafe_allow_html=True)
+st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+st.markdown('<div class="sec-hdr">Configuration</div>', unsafe_allow_html=True)
 
 cfg_items = [
     ("Strategy",        strategy),
@@ -1008,7 +1072,7 @@ cfg_items = [
     ("Daily Loss Limit", f"${max_loss:,.0f}"),
     ("Position Risk",   f"${max_risk:,.0f}"),
     ("Scan Interval",   f"{scan_int}s"),
-    ("Mode",            "DRY RUN" if dry_run else "LIVE"),
+    ("Mode",            "PAPER" if dry_run else "LIVE"),
     ("IV Rank",         f"{iv_rank:.0f}" if iv_rank else "—"),
 ]
 
@@ -1016,7 +1080,7 @@ cfg_cols = st.columns(len(cfg_items))
 for col_c, (label, val) in zip(cfg_cols, cfg_items):
     with col_c:
         is_live = (label == "Mode" and val == "LIVE")
-        val_color = "#ff1744" if is_live else ("#ffd600" if label == "Mode" else "#c8cdd8")
+        val_color = C_RED if is_live else (C_GOLD if label == "Mode" else C_TEXT)
         st.markdown(f"""
         <div class="cfg-item">
           <div class="cfg-label">{label}</div>
@@ -1027,9 +1091,9 @@ for col_c, (label, val) in zip(cfg_cols, cfg_items):
 
 # ─── FOOTER ───────────────────────────────────────────────────────────────────
 
-st.markdown("""
-<div style="text-align:center;color:#2a2e3a;font-size:10px;padding:20px 0 8px;letter-spacing:1px;">
-  OPTIONS AGENT DASHBOARD · IBKR GATEWAY · AUTO-REFRESH 30s
+st.markdown(f"""
+<div style="text-align:center;color:{C_MUTED};font-size:9px;padding:24px 0 8px;letter-spacing:2px;font-family:'DM Sans',sans-serif;font-weight:500;">
+  OPTIONS AGENT &middot; IBKR GATEWAY &middot; AUTO-REFRESH 30s
 </div>
 """, unsafe_allow_html=True)
 

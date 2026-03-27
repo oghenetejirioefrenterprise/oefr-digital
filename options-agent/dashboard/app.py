@@ -950,19 +950,16 @@ display_trades = all_trades[:20]
 if not display_trades:
     st.markdown('<div class="empty-state">No trades yet</div>', unsafe_allow_html=True)
 else:
-    # Header
-    st.markdown("""
-    <div class="th-row" style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #2a2e3a;">
+    table_html = '<div style="background:#13161d;border:1px solid #1a1e27;border-radius:8px;padding:8px 12px;">'
+    table_html += '''<div class="th-row" style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #2a2e3a;">
       <span class="th-time">Time</span>
       <span class="th-strat">Strategy</span>
       <span class="th-exp">Expiry</span>
       <span class="th-strikes">Strikes</span>
       <span class="th-pnl">P&amp;L</span>
       <span class="th-res">Result</span>
-    </div>
-    """, unsafe_allow_html=True)
+    </div>'''
 
-    rows_html = ""
     for t in display_trades:
         ts_raw = t.get("exit_time", t.get("time", ""))
         try:
@@ -993,19 +990,10 @@ else:
         else:
             strikes_txt = reason[:30] if reason else "—"
 
-        rows_html += f"""
-        <div class="th-row">
-          <span class="th-time">{ts_fmt}</span>
-          <span class="th-strat"><span class="strat-badge {badge_cls}">{strat}</span></span>
-          <span class="th-exp">{exp}</span>
-          <span class="th-strikes">{strikes_txt}</span>
-          <span class="th-pnl {pnl_cls}">{fmt_money_signed(pnl_val)}</span>
-          <span class="th-res" style="color:{res_color}">{res_txt}</span>
-        </div>
-        """
+        table_html += f'<div class="th-row"><span class="th-time">{ts_fmt}</span><span class="th-strat"><span class="strat-badge {badge_cls}">{strat}</span></span><span class="th-exp">{exp}</span><span class="th-strikes">{strikes_txt}</span><span class="th-pnl {pnl_cls}">{fmt_money_signed(pnl_val)}</span><span class="th-res" style="color:{res_color}">{res_txt}</span></div>'
 
-    st.markdown(f'<div style="background:#13161d;border:1px solid #1a1e27;border-radius:8px;padding:8px 12px;">{rows_html}</div>',
-                unsafe_allow_html=True)
+    table_html += '</div>'
+    st.markdown(table_html, unsafe_allow_html=True)
 
 
 # ─── CONFIGURATION ROW ────────────────────────────────────────────────────────

@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  options-agent:
+    build: .
+    container_name: options-agent
+    restart: unless-stopped
+    environment:
+      # IBKR — points to the existing ib-gateway container
+      - IBKR_HOST=${IBKR_HOST:-ib-gateway}
+      - IBKR_PORT=${IBKR_PORT:-4003}
+      - IBKR_CLIENT_ID=${IBKR_CLIENT_ID:-20}
+
+      # Strategy
+      - UNDERLYING=${UNDERLYING:-SPX}
+      - ACTIVE_STRATEGY=${ACTIVE_STRATEGY:-BWB}
+
+      # Risk
+      - MAX_CONCURRENT=${MAX_CONCURRENT:-2}
+      - MAX_DAILY_LOSS=${MAX_DAILY_LOSS:-500}
+      - MAX_POSITION_RISK=${MAX_POSITION_RISK:-2500}
+
+      # Timing
+      - SCAN_INTERVAL=${SCAN_INTERVAL:-60}
+      - MONITOR_INTERVAL=${MONITOR_INTERVAL:-30}
+
+      # Notifications (Telegram)
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+
+      # Safety — set DRY_RUN=true to test without live orders
+      - DRY_RUN=${DRY_RUN:-false}
+
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - TZ=America/New_York
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    networks:
+      # Must be on the same network as ib-gateway
+      - stockalert-network
+    depends_on: []  # ib-gateway is in entryexpert stack — just needs network
+
+  options-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: options-agent-dashboard
+    ports:
+      - "8502:8501"
+    environment:
+      - DATA_DIR=/data
+      - LOG_DIR=/logs
+      - TZ=America/New_York
+    volumes:
+      - ./data:/data:ro
+      - ./logs:/logs:ro
+    restart: unless-stopped
+    networks:
+      - stockalert-network
+
+volumes: {}
+
+networks:
+  stockalert-network:
+    external: true
+    name: entryexpert_stockalert-network

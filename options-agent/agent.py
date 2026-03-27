@@ -300,22 +300,7 @@ class OptionsAgent:
         log.info(f"Underlying: {config.UNDERLYING} | Max positions: {config.MAX_CONCURRENT_POSITIONS}")
         log.info("=" * 60)
 
-        # Connect to IBKR
-        try:
-            self.broker.connect()
-        except Exception as e:
-            log.error(f"Fatal: could not connect to IBKR: {e}")
-            self.notifier.error(f"Agent failed to start: {e}")
-            sys.exit(1)
-
-        self.notifier.send(
-            f"🚀 <b>Options Agent Started</b>\n"
-            f"Strategy: {config.ACTIVE_STRATEGY}\n"
-            f"Underlying: {config.UNDERLYING}\n"
-            f"DRY RUN: {config.DRY_RUN}"
-        )
-
-        # Write initial config and empty positions to dashboard data dir
+        # Write initial config to dashboard data dir
         try:
             state_writer.write_config(
                 strategy=config.ACTIVE_STRATEGY,
@@ -332,6 +317,29 @@ class OptionsAgent:
             state_writer.write_heartbeat()
         except Exception as e:
             log.warning(f"Initial state_writer call failed: {e}")
+
+        # If outside trading hours, skip initial connect and go straight to sleep
+        if not self._is_trading_hours():
+            log.info("Starting outside trading hours — entering sleep mode")
+            state_writer.write_heartbeat(mode="sleeping")
+            self._sleep_until_morning()
+            if not self.running:
+                return
+
+        # Connect to IBKR
+        try:
+            self.broker.connect()
+        except Exception as e:
+            log.error(f"Fatal: could not connect to IBKR: {e}")
+            self.notifier.error(f"Agent failed to start: {e}")
+            sys.exit(1)
+
+        self.notifier.send(
+            f"🚀 <b>Options Agent Started</b>\n"
+            f"Strategy: {config.ACTIVE_STRATEGY}\n"
+            f"Underlying: {config.UNDERLYING}\n"
+            f"DRY RUN: {config.DRY_RUN}"
+        )
 
         while self.running:
             try:

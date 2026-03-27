@@ -285,7 +285,9 @@ class BWBStrategy:
         ]
 
         try:
-            T = dte_to_years(max(position.get("dte", 5), 1))
+            exp_date = datetime.strptime(position["expiration"], "%Y%m%d").date()
+            current_dte = (exp_date - date.today()).days
+            T = dte_to_years(max(current_dte, 1))
             iv = position.get("iv", 0.20)
             price = self.broker.get_underlying_price()
             p_h = black_scholes(price, position["strike_high"], T, iv, right="P")["price"]

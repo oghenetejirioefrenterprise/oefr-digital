@@ -1,0 +1,25 @@
+{
+  "phase": "GRIND",
+  "btc_price": 66981.0,
+  "sma_200w": 59621.46,
+  "sma_300w": 52101.61,
+  "distance_pct": 12.34,
+  "distance_300w_pct": 28.56,
+  "realized_price": 54839.91,
+  "balanced_price": 39991.38,
+  "mvrv": 1.2214,
+  "pi_cycle": {
+    "ma_111": 79353.94,
+    "ma_350x2": 196460.99,
+    "current_price": 66986.0,
+    "gap_pct": 59.61,
+    "status": "normal"
+  },
+  "last_halving": "2024-04-19",
+  "days_since_halving": 708,
+  "next_halving": "2028-03-15",
+  "days_to_next_halving": 718,
+  "reasoning": "Post-distribution bear market phase \u2014 next halving in ~718d (2028-03-15), run active trading",
+  "last_update": "2026-03-28T16:14:39.026762+00:00",
+  "last_monday_update": null
+}

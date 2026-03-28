@@ -187,6 +187,21 @@ def fetch_mvrv() -> float | None:
     return None
 
 
+def fetch_balanced_price() -> float | None:
+    """Read balanced price from cache file (scraped periodically from bitcoinmagazinepro.com)."""
+    cache_file = BASE_DIR / "balanced_price_cache.json"
+    if cache_file.exists():
+        try:
+            data = json.loads(cache_file.read_text())
+            price = float(data.get("balanced_price", 0))
+            if price > 0:
+                print(f"[*] Balanced price (cached): ${price:,.0f} (date: {data.get('date', '?')})")
+                return price
+        except Exception as e:
+            print(f"[WARN] Balanced price cache read failed: {e}", file=sys.stderr)
+    return None
+
+
 def fetch_realized_price() -> float | None:
     """
     Fetch realized price. Derived from MVRV + current price since CoinMetrics
@@ -407,6 +422,7 @@ def build_telegram_message(
     sma_300w: float | None,
     mvrv: float | None,
     realized_price: float | None,
+    balanced_price: float | None,
     pi_cycle: dict,
     reasoning: str,
     is_transition: bool,
@@ -453,6 +469,7 @@ def build_telegram_message(
         dist_300_pct = f" ({sign300}{pct300:.1f}% vs SMA)"
 
     realized_str = f"${realized_price:,.0f}" if realized_price else "N/A"
+    balanced_str = f"${balanced_price:,.0f}" if balanced_price else "N/A (cache stale)"
 
     mvrv_str = f"{mvrv:.2f}" if mvrv is not None else "N/A"
 
@@ -475,6 +492,7 @@ def build_telegram_message(
 📊 300W SMA: {sma_300w_str}{dist_300_pct}
 🧮 MVRV Ratio: {mvrv_str}
 💎 Realized Price: {realized_str}
+⚖️ Balanced Price: {balanced_str}
 🥧 Pi Cycle: {pi_str}
 ⛏️ Last halving: {last_halving} ({days_halving}d ago)
 🔮 Next halving: {NEXT_HALVING} ({days_to_next}d)
@@ -546,6 +564,9 @@ def main():
     print("[*] Fetching realized price...")
     realized_price = fetch_realized_price()
 
+    print("[*] Fetching balanced price from cache...")
+    balanced_price = fetch_balanced_price()
+
     # 2. Calculate indicators
     btc_price = weekly[-1]["close"]
     sma_200w = calculate_200w_sma(weekly)
@@ -603,7 +624,7 @@ def main():
         "distance_pct": round(sma_distance_pct, 2) if sma_distance_pct is not None else None,
         "distance_300w_pct": round(sma_300w_distance_pct, 2) if sma_300w_distance_pct is not None else None,
         "realized_price": round(realized_price, 2) if realized_price else None,
-        "balanced_price": None,  # requires premium API
+        "balanced_price": round(balanced_price, 2) if balanced_price else None,
         "mvrv": round(mvrv, 4) if mvrv is not None else None,
         "pi_cycle_status": pi_cycle.get("status"),
         "pi_cycle_ma_111": pi_cycle.get("ma_111"),
@@ -636,6 +657,7 @@ def main():
             sma_300w=sma_300w,
             mvrv=mvrv,
             realized_price=realized_price,
+            balanced_price=balanced_price,
             pi_cycle=pi_cycle,
             reasoning=reasoning,
             is_transition=is_transition,
@@ -656,7 +678,7 @@ def main():
         "distance_pct": round(sma_distance_pct, 2) if sma_distance_pct is not None else None,
         "distance_300w_pct": round(sma_300w_distance_pct, 2) if sma_300w_distance_pct is not None else None,
         "realized_price": round(realized_price, 2) if realized_price else None,
-        "balanced_price": None,  # requires premium API
+        "balanced_price": round(balanced_price, 2) if balanced_price else None,
         "mvrv": round(mvrv, 4) if mvrv is not None else None,
         "pi_cycle": pi_cycle,
         "last_halving": str(last_halving),
@@ -682,7 +704,7 @@ def main():
         "distance_pct": round(sma_distance_pct, 2) if sma_distance_pct is not None else None,
         "distance_300w_pct": round(sma_300w_distance_pct, 2) if sma_300w_distance_pct is not None else None,
         "realized_price": round(realized_price, 2) if realized_price else None,
-        "balanced_price": None,  # requires premium API
+        "balanced_price": round(balanced_price, 2) if balanced_price else None,
         "mvrv": round(mvrv, 4) if mvrv is not None else None,
         "pi_cycle_status": pi_cycle.get("status"),
         "reasoning": reasoning,
@@ -709,6 +731,8 @@ def main():
         print(f"  300W SMA:       ${sma_300w:,.2f} ({sign300}{pct300:.1f}% from SMA)")
     if realized_price:
         print(f"  Realized Price: ${realized_price:,.2f}")
+    if balanced_price:
+        print(f"  Balanced Price: ${balanced_price:,.2f}")
     if mvrv is not None:
         print(f"  MVRV:           {mvrv:.4f}")
     print(f"  Pi Cycle:       {pi_cycle.get('status', 'N/A')}")

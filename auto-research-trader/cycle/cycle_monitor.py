@@ -187,62 +187,27 @@ def fetch_mvrv() -> float | None:
     return None
 
 
-def fetch_realized_and_balance_price() -> tuple:
+def fetch_realized_price() -> float | None:
     """
-    Fetch realized price and compute balance price.
-    Primary: CoinMetrics community API (CapRealUSD / SplyCur).
-    Fallback: Derive from MVRV + price (realized_price = price / mvrv).
-    balance_price = sqrt(realized_price * avg_buy_price)
-    Returns (realized_price, balance_price) or (None, None) on failure.
+    Fetch realized price. Derived from MVRV + current price since CoinMetrics
+    community API blocks CapRealUSD.
+    realized_price = price / MVRV
+    Returns None on failure.
     """
-    url = "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics"
-    params = {
-        "assets": "btc",
-        "metrics": "CapRealUSD,SplyCur,CapMVRVCur,PriceUSD",
-        "frequency": "1d",
-        "page_size": 1,
-    }
-    try:
-        r = requests.get(url, params=params, timeout=10)
-        r.raise_for_status()
-        data = r.json()
-        series = data.get("data", [])
-        if series:
-            row = series[0]
-            cap_real = float(row.get("CapRealUSD", 0))
-            supply = float(row.get("SplyCur", 0))
-            mvrv = float(row.get("CapMVRVCur", 0))
-            price = float(row.get("PriceUSD", 0))
-
-            if cap_real > 0 and supply > 0:
-                realized_price = cap_real / supply
-                avg_buy_price = price / mvrv if mvrv > 0 else None
-                balance_price = (realized_price * avg_buy_price) ** 0.5 if avg_buy_price else None
-                print(f"[*] Realized price (CoinMetrics): ${realized_price:,.0f}")
-                print(f"[*] Balance price (CoinMetrics):  ${balance_price:,.0f}" if balance_price else "[*] Balance price: N/A")
-                return realized_price, balance_price
-    except Exception as e:
-        print(f"[WARN] CoinMetrics direct fetch failed, trying MVRV fallback: {e}", file=sys.stderr)
-
-    # Fallback: derive from MVRV + price
     try:
         mvrv = fetch_mvrv()
         if mvrv and mvrv > 0:
-            # Fetch current price from Kraken
             r = requests.get("https://api.kraken.com/0/public/Ticker?pair=XBTUSD", timeout=10)
             r.raise_for_status()
             data = r.json()
-            price = float(data["result"]["XXBTZUSD"]["c"][0])  # last trade close
+            price = float(data["result"]["XXBTZUSD"]["c"][0])
 
             realized_price = price / mvrv
-            balance_price = price / (mvrv ** 0.5)
             print(f"[*] Realized price (derived from MVRV): ${realized_price:,.0f}")
-            print(f"[*] Balance price (derived):             ${balance_price:,.0f}")
-            return realized_price, balance_price
+            return realized_price
     except Exception as e:
-        print(f"[WARN] MVRV fallback also failed: {e}", file=sys.stderr)
-
-    return None, None
+        print(f"[WARN] Realized price fetch failed: {e}", file=sys.stderr)
+    return None
 
 
 # ─── Indicator Calculations ───────────────────────────────────────────────────
@@ -442,7 +407,6 @@ def build_telegram_message(
     sma_300w: float | None,
     mvrv: float | None,
     realized_price: float | None,
-    balance_price: float | None,
     pi_cycle: dict,
     reasoning: str,
     is_transition: bool,
@@ -489,7 +453,6 @@ def build_telegram_message(
         dist_300_pct = f" ({sign300}{pct300:.1f}% vs SMA)"
 
     realized_str = f"${realized_price:,.0f}" if realized_price else "N/A"
-    balance_str = f"${balance_price:,.0f}" if balance_price else "N/A"
 
     mvrv_str = f"{mvrv:.2f}" if mvrv is not None else "N/A"
 
@@ -512,7 +475,6 @@ def build_telegram_message(
 📊 300W SMA: {sma_300w_str}{dist_300_pct}
 🧮 MVRV Ratio: {mvrv_str}
 💎 Realized Price: {realized_str}
-⚖️ Balance Price: {balance_str}
 🥧 Pi Cycle: {pi_str}
 ⛏️ Last halving: {last_halving} ({days_halving}d ago)
 🔮 Next halving: {NEXT_HALVING} ({days_to_next}d)
@@ -581,8 +543,8 @@ def main():
     print("[*] Fetching MVRV from CoinMetrics community API...")
     mvrv = fetch_mvrv()
 
-    print("[*] Fetching realized price and balance price...")
-    realized_price, balance_price = fetch_realized_and_balance_price()
+    print("[*] Fetching realized price...")
+    realized_price = fetch_realized_price()
 
     # 2. Calculate indicators
     btc_price = weekly[-1]["close"]
@@ -641,7 +603,7 @@ def main():
         "distance_pct": round(sma_distance_pct, 2) if sma_distance_pct is not None else None,
         "distance_300w_pct": round(sma_300w_distance_pct, 2) if sma_300w_distance_pct is not None else None,
         "realized_price": round(realized_price, 2) if realized_price else None,
-        "balance_price": round(balance_price, 2) if balance_price else None,
+        "balanced_price": None,  # requires premium API
         "mvrv": round(mvrv, 4) if mvrv is not None else None,
         "pi_cycle_status": pi_cycle.get("status"),
         "pi_cycle_ma_111": pi_cycle.get("ma_111"),
@@ -674,7 +636,6 @@ def main():
             sma_300w=sma_300w,
             mvrv=mvrv,
             realized_price=realized_price,
-            balance_price=balance_price,
             pi_cycle=pi_cycle,
             reasoning=reasoning,
             is_transition=is_transition,
@@ -695,7 +656,7 @@ def main():
         "distance_pct": round(sma_distance_pct, 2) if sma_distance_pct is not None else None,
         "distance_300w_pct": round(sma_300w_distance_pct, 2) if sma_300w_distance_pct is not None else None,
         "realized_price": round(realized_price, 2) if realized_price else None,
-        "balance_price": round(balance_price, 2) if balance_price else None,
+        "balanced_price": None,  # requires premium API
         "mvrv": round(mvrv, 4) if mvrv is not None else None,
         "pi_cycle": pi_cycle,
         "last_halving": str(last_halving),
@@ -721,7 +682,7 @@ def main():
         "distance_pct": round(sma_distance_pct, 2) if sma_distance_pct is not None else None,
         "distance_300w_pct": round(sma_300w_distance_pct, 2) if sma_300w_distance_pct is not None else None,
         "realized_price": round(realized_price, 2) if realized_price else None,
-        "balance_price": round(balance_price, 2) if balance_price else None,
+        "balanced_price": None,  # requires premium API
         "mvrv": round(mvrv, 4) if mvrv is not None else None,
         "pi_cycle_status": pi_cycle.get("status"),
         "reasoning": reasoning,
@@ -748,8 +709,6 @@ def main():
         print(f"  300W SMA:       ${sma_300w:,.2f} ({sign300}{pct300:.1f}% from SMA)")
     if realized_price:
         print(f"  Realized Price: ${realized_price:,.2f}")
-    if balance_price:
-        print(f"  Balance Price:  ${balance_price:,.2f}")
     if mvrv is not None:
         print(f"  MVRV:           {mvrv:.4f}")
     print(f"  Pi Cycle:       {pi_cycle.get('status', 'N/A')}")

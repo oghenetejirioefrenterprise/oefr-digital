@@ -555,8 +555,41 @@ def send_telegram_message(msg: str) -> None:
 
 
 def send_email_webhook(payload: dict) -> bool:
-    """POST phase data to the email-webhook app."""
+    """POST phase data to the email-webhook app. Adds HTML body from payload fields."""
     try:
+        # Build HTML email body from payload
+        phase = payload.get('phase', 'UNKNOWN')
+        btc = payload.get('btc_price', 0)
+        sma_200w = payload.get('sma_200w', 0)
+        sma_300w = payload.get('sma_300w', 0)
+        realized = payload.get('realized_price', 0)
+        balanced = payload.get('balanced_price', 0)
+        mvrv = payload.get('mvrv', 0)
+        mvrv_z = payload.get('mvrv_zscore', 0)
+        reasoning = payload.get('reasoning', '')
+        event = payload.get('event', 'update')
+
+        pct_200 = ((btc - sma_200w) / sma_200w * 100) if sma_200w else 0
+        pct_300 = ((btc - sma_300w) / sma_300w * 100) if sma_300w else 0
+
+        html = f"""
+<h2>BTC Cycle {event.replace('_', ' ').title()}</h2>
+<p><strong>Phase:</strong> {phase}</p>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;">
+<tr><th>Metric</th><th>Value</th><th>vs BTC Price</th></tr>
+<tr><td>BTC Price</td><td>${btc:,.0f}</td><td>—</td></tr>
+<tr><td>200W SMA</td><td>${sma_200w:,.0f}</td><td>{pct_200:+.1f}%</td></tr>
+<tr><td>300W SMA</td><td>${sma_300w:,.0f}</td><td>{pct_300:+.1f}%</td></tr>
+<tr><td>Realized Price</td><td>${realized:,.0f}</td><td>—</td></tr>
+<tr><td>Balanced Price</td><td>${balanced:,.0f}</td><td>—</td></tr>
+<tr><td>MVRV</td><td>{mvrv:.2f}</td><td>—</td></tr>
+<tr><td>MVRV-Z Score</td><td>{mvrv_z:.2f}</td><td>—</td></tr>
+</table>
+<p><strong>Reasoning:</strong> {reasoning}</p>
+"""
+        payload['html'] = html
+        payload['subject'] = f"BTC Cycle {phase} — ${btc:,.0f}"
+
         r = requests.post(
             EMAIL_WEBHOOK_URL,
             json=payload,

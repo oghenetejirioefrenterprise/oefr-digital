@@ -355,5 +355,23 @@
     "pi_cycle_status": "normal",
     "reasoning": "Post-distribution bear market phase \u2014 next halving in ~718d (2028-03-15), run active trading",
     "notified": false
+  },
+  {
+    "timestamp": "2026-03-28T18:07:06.135456+00:00",
+    "phase": "GRIND",
+    "prev_phase": "GRIND",
+    "is_transition": false,
+    "btc_price": 66863.1,
+    "sma_200w": 59620.87,
+    "sma_300w": 52101.22,
+    "distance_pct": 12.15,
+    "distance_300w_pct": 28.33,
+    "realized_price": 54743.38,
+    "balanced_price": 39991.38,
+    "mvrv": 1.2214,
+    "mvrv_zscore": 0.4058,
+    "pi_cycle_status": "normal",
+    "reasoning": "Post-distribution bear market phase \u2014 next halving in ~718d (2028-03-15), run active trading",
+    "notified": false
   }
 ]

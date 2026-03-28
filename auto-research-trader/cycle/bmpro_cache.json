@@ -1,0 +1,20 @@
+{
+  "balanced_price_BTC Price": 66321.0,
+  "balanced_price_BTC Price_date": "2026-03-27",
+  "balanced_price_Balanced Price": 39991.3827,
+  "balanced_price_Balanced Price_date": "2026-03-27",
+  "mvrv_zscore_Z-Score": 0.4058,
+  "mvrv_zscore_Z-Score_date": "2026-03-27",
+  "mvrv_zscore_MVRV": 1.2235,
+  "mvrv_zscore_MVRV_date": "2026-03-27",
+  "mvrv_zscore_Market Cap": 1326944502611.019,
+  "mvrv_zscore_Market Cap_date": "2026-03-27",
+  "mvrv_zscore_Realized Cap": 1084547657576.4904,
+  "mvrv_zscore_Realized Cap_date": "2026-03-27",
+  "realized_price_BTC Price": 66321.0,
+  "realized_price_BTC Price_date": "2026-03-27",
+  "realized_price_Realized Price": 54205.9484,
+  "realized_price_Realized Price_date": "2026-03-27",
+  "scraped_at": "2026-03-28T18:08:17.335177+00:00",
+  "source": "bitcoinmagazinepro.com"
+}

@@ -189,72 +189,47 @@ def fetch_mvrv() -> float | None:
 
 
 def fetch_balanced_price() -> float | None:
-    """
-    Fetch balanced price from bitcoinmagazinepro.com via Playwright.
-    Falls back to cache if scraping fails.
-    """
-    cache_file = BASE_DIR / "balanced_price_cache.json"
-
-    # Try scraping fresh
-    try:
-        script = """
-const { chromium } = require('playwright');
-(async () => {
-    const browser = await chromium.launch({ headless: true });
-    const page = await browser.newPage();
-    await page.goto('https://www.bitcoinmagazinepro.com/charts/balanced-price/', {
-        waitUntil: 'networkidle', timeout: 30000
-    });
-    await page.waitForSelector('.js-plotly-plot', { timeout: 15000 });
-    await page.waitForTimeout(3000);
-    const data = await page.evaluate(() => {
-        const graphs = document.querySelectorAll('.js-plotly-plot');
-        if (graphs.length === 0) return null;
-        for (const trace of graphs[0].data) {
-            if (trace.name === 'Balanced Price' && trace.y && trace.y.length > 0) {
-                const lastIdx = trace.y.length - 1;
-                return { balanced_price: trace.y[lastIdx], date: trace.x[lastIdx] };
-            }
-        }
-        return null;
-    });
-    await browser.close();
-    console.log(JSON.stringify(data));
-})();
-"""
-        result = subprocess.run(
-            ['node', '-e', script],
-            capture_output=True, text=True, timeout=60,
-            env={**os.environ},
-            cwd=str(BASE_DIR)
-        )
-        if result.returncode == 0 and result.stdout.strip():
-            data = json.loads(result.stdout.strip())
-            if data and data.get('balanced_price'):
-                price = float(data['balanced_price'])
-                cache_data = {
-                    "balanced_price": round(price, 2),
-                    "date": data.get("date", "unknown"),
-                    "scraped_at": datetime.now(tz=timezone.utc).isoformat(),
-                    "source": "bitcoinmagazinepro.com"
-                }
-                cache_file.write_text(json.dumps(cache_data, indent=2))
-                print(f"[*] Balanced price (scraped): ${price:,.0f} (date: {data.get('date', '?')})")
-                return price
-    except Exception as e:
-        print(f"[WARN] Playwright scrape failed: {e}", file=sys.stderr)
-
-    # Fallback to cache
+    """Read balanced price from BM Pro scraper cache."""
+    cache_file = BASE_DIR / "bmpro_cache.json"
     if cache_file.exists():
         try:
             data = json.loads(cache_file.read_text())
-            price = float(data.get("balanced_price", 0))
+            price = float(data.get("balanced_price_Balanced Price", 0))
             if price > 0:
-                age = (datetime.now(tz=timezone.utc) - datetime.fromisoformat(data['scraped_at'])).days
-                print(f"[*] Balanced price (cached): ${price:,.0f} (age: {age}d)")
+                print(f"[*] Balanced price (BM Pro cache): ${price:,.0f}")
                 return price
-        except Exception as e:
-            print(f"[WARN] Cache read failed: {e}", file=sys.stderr)
+        except Exception:
+            pass
+    return None
+
+
+def fetch_mvrv_zscore() -> float | None:
+    """Read MVRV-Z Score from BM Pro scraper cache."""
+    cache_file = BASE_DIR / "bmpro_cache.json"
+    if cache_file.exists():
+        try:
+            data = json.loads(cache_file.read_text())
+            z = float(data.get("mvrv_zscore_Z-Score", 0))
+            if z != 0:
+                print(f"[*] MVRV-Z Score (BM Pro cache): {z:.2f}")
+                return z
+        except Exception:
+            pass
+    return None
+
+
+def fetch_realized_price_bmpro() -> float | None:
+    """Read realized price from BM Pro scraper cache."""
+    cache_file = BASE_DIR / "bmpro_cache.json"
+    if cache_file.exists():
+        try:
+            data = json.loads(cache_file.read_text())
+            price = float(data.get("realized_price_Realized Price", 0))
+            if price > 0:
+                print(f"[*] Realized price (BM Pro cache): ${price:,.0f}")
+                return price
+        except Exception:
+            pass
     return None
 
 
@@ -479,6 +454,7 @@ def build_telegram_message(
     mvrv: float | None,
     realized_price: float | None,
     balanced_price: float | None,
+    mvrv_zscore: float | None,
     pi_cycle: dict,
     reasoning: str,
     is_transition: bool,
@@ -528,6 +504,7 @@ def build_telegram_message(
     balanced_str = f"${balanced_price:,.0f}" if balanced_price else "N/A (cache stale)"
 
     mvrv_str = f"{mvrv:.2f}" if mvrv is not None else "N/A"
+    mvrv_z_str = f"{mvrv_zscore:.2f}" if mvrv_zscore is not None else "N/A"
 
     pi_status = pi_cycle.get("status", "N/A")
     if pi_cycle.get("ma_111") and pi_cycle.get("ma_350x2"):
@@ -547,6 +524,7 @@ def build_telegram_message(
 📈 200W SMA: {sma_str}{dist_pct}
 📊 300W SMA: {sma_300w_str}{dist_300_pct}
 🧮 MVRV Ratio: {mvrv_str}
+📐 MVRV-Z Score: {mvrv_z_str}
 💎 Realized Price: {realized_str}
 ⚖️ Balanced Price: {balanced_str}
 🥧 Pi Cycle: {pi_str}
@@ -620,8 +598,20 @@ def main():
     print("[*] Fetching realized price...")
     realized_price = fetch_realized_price()
 
-    print("[*] Fetching balanced price from cache...")
+    print("[*] Refreshing BM Pro metrics (balanced price, MVRV-Z, realized price)...")
+    try:
+        subprocess.run(
+            [sys.executable, str(BASE_DIR / "scrape_bmpro.py")],
+            capture_output=True, text=True, timeout=120,
+            env=os.environ.copy(),
+            cwd=str(BASE_DIR)
+        )
+    except Exception as e:
+        print(f"[WARN] BM Pro scrape failed: {e}", file=sys.stderr)
+
     balanced_price = fetch_balanced_price()
+    mvrv_zscore = fetch_mvrv_zscore()
+    realized_price_bmpro = fetch_realized_price_bmpro()
 
     # 2. Calculate indicators
     btc_price = weekly[-1]["close"]
@@ -682,6 +672,7 @@ def main():
         "realized_price": round(realized_price, 2) if realized_price else None,
         "balanced_price": round(balanced_price, 2) if balanced_price else None,
         "mvrv": round(mvrv, 4) if mvrv is not None else None,
+        "mvrv_zscore": round(mvrv_zscore, 4) if mvrv_zscore is not None else None,
         "pi_cycle_status": pi_cycle.get("status"),
         "pi_cycle_ma_111": pi_cycle.get("ma_111"),
         "pi_cycle_ma_350x2": pi_cycle.get("ma_350x2"),
@@ -714,6 +705,7 @@ def main():
             mvrv=mvrv,
             realized_price=realized_price,
             balanced_price=balanced_price,
+            mvrv_zscore=mvrv_zscore,
             pi_cycle=pi_cycle,
             reasoning=reasoning,
             is_transition=is_transition,
@@ -736,6 +728,7 @@ def main():
         "realized_price": round(realized_price, 2) if realized_price else None,
         "balanced_price": round(balanced_price, 2) if balanced_price else None,
         "mvrv": round(mvrv, 4) if mvrv is not None else None,
+        "mvrv_zscore": round(mvrv_zscore, 4) if mvrv_zscore is not None else None,
         "pi_cycle": pi_cycle,
         "last_halving": str(last_halving),
         "days_since_halving": days_since_halving,
@@ -762,6 +755,7 @@ def main():
         "realized_price": round(realized_price, 2) if realized_price else None,
         "balanced_price": round(balanced_price, 2) if balanced_price else None,
         "mvrv": round(mvrv, 4) if mvrv is not None else None,
+        "mvrv_zscore": round(mvrv_zscore, 4) if mvrv_zscore is not None else None,
         "pi_cycle_status": pi_cycle.get("status"),
         "reasoning": reasoning,
         "notified": should_notify,
@@ -791,6 +785,8 @@ def main():
         print(f"  Balanced Price: ${balanced_price:,.2f}")
     if mvrv is not None:
         print(f"  MVRV:           {mvrv:.4f}")
+    if mvrv_zscore is not None:
+        print(f"  MVRV-Z Score:   {mvrv_zscore:.4f}")
     print(f"  Pi Cycle:       {pi_cycle.get('status', 'N/A')}")
     print(f"  Last Halving:   {last_halving} ({days_since_halving}d ago)")
     print(f"  Next Halving:   {NEXT_HALVING} ({days_to_next_halving}d)")

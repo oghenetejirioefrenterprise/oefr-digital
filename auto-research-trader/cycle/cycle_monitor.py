@@ -24,6 +24,7 @@ Usage:
 import json
 import os
 import sys
+import subprocess
 import requests
 import statistics
 from datetime import datetime, timezone, date
@@ -188,17 +189,72 @@ def fetch_mvrv() -> float | None:
 
 
 def fetch_balanced_price() -> float | None:
-    """Read balanced price from cache file (scraped periodically from bitcoinmagazinepro.com)."""
+    """
+    Fetch balanced price from bitcoinmagazinepro.com via Playwright.
+    Falls back to cache if scraping fails.
+    """
     cache_file = BASE_DIR / "balanced_price_cache.json"
+
+    # Try scraping fresh
+    try:
+        script = """
+const { chromium } = require('playwright');
+(async () => {
+    const browser = await chromium.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto('https://www.bitcoinmagazinepro.com/charts/balanced-price/', {
+        waitUntil: 'networkidle', timeout: 30000
+    });
+    await page.waitForSelector('.js-plotly-plot', { timeout: 15000 });
+    await page.waitForTimeout(3000);
+    const data = await page.evaluate(() => {
+        const graphs = document.querySelectorAll('.js-plotly-plot');
+        if (graphs.length === 0) return null;
+        for (const trace of graphs[0].data) {
+            if (trace.name === 'Balanced Price' && trace.y && trace.y.length > 0) {
+                const lastIdx = trace.y.length - 1;
+                return { balanced_price: trace.y[lastIdx], date: trace.x[lastIdx] };
+            }
+        }
+        return null;
+    });
+    await browser.close();
+    console.log(JSON.stringify(data));
+})();
+"""
+        result = subprocess.run(
+            ['node', '-e', script],
+            capture_output=True, text=True, timeout=60,
+            env={**os.environ},
+            cwd=str(BASE_DIR)
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            data = json.loads(result.stdout.strip())
+            if data and data.get('balanced_price'):
+                price = float(data['balanced_price'])
+                cache_data = {
+                    "balanced_price": round(price, 2),
+                    "date": data.get("date", "unknown"),
+                    "scraped_at": datetime.now(tz=timezone.utc).isoformat(),
+                    "source": "bitcoinmagazinepro.com"
+                }
+                cache_file.write_text(json.dumps(cache_data, indent=2))
+                print(f"[*] Balanced price (scraped): ${price:,.0f} (date: {data.get('date', '?')})")
+                return price
+    except Exception as e:
+        print(f"[WARN] Playwright scrape failed: {e}", file=sys.stderr)
+
+    # Fallback to cache
     if cache_file.exists():
         try:
             data = json.loads(cache_file.read_text())
             price = float(data.get("balanced_price", 0))
             if price > 0:
-                print(f"[*] Balanced price (cached): ${price:,.0f} (date: {data.get('date', '?')})")
+                age = (datetime.now(tz=timezone.utc) - datetime.fromisoformat(data['scraped_at'])).days
+                print(f"[*] Balanced price (cached): ${price:,.0f} (age: {age}d)")
                 return price
         except Exception as e:
-            print(f"[WARN] Balanced price cache read failed: {e}", file=sys.stderr)
+            print(f"[WARN] Cache read failed: {e}", file=sys.stderr)
     return None
 
 

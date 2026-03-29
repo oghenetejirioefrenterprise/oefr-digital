@@ -1,5 +1,5 @@
 """
-Options Agent Dashboard — Warm Terminal aesthetic.
+Options Agent Dashboard — Electric trading aesthetic.
 Reads data from JSON files written by state_writer.py.
 Never connects to IBKR directly.
 """
@@ -10,6 +10,7 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -32,59 +33,47 @@ HISTORY_FILE    = os.path.join(DATA_DIR, "trade_history.json")
 CONFIG_FILE     = os.path.join(DATA_DIR, "agent_config.json")
 PORTFOLIO_FILE  = os.path.join(DATA_DIR, "portfolio.json")
 HEARTBEAT_FILE  = os.path.join(DATA_DIR, "heartbeat.json")
+BACKTEST_FILE   = os.path.join(DATA_DIR, "backtest_results.json")
 
 # ─── Color palette ────────────────────────────────────────────────────────────
-C_BG       = "#0b0e13"
-C_SURFACE  = "#12151c"
-C_BORDER   = "#1c2030"
-C_BORDER_L = "#262d40"
-C_TEXT     = "#c5c8d4"
-C_DIM      = "#505672"
-C_MUTED    = "#3a3f54"
-C_AMBER    = "#d4a847"
-C_AMBER_DK = "#b8922e"
-C_GOLD     = "#e5c07b"
-C_GREEN    = "#4ec9b0"
-C_GREEN_DK = "#3a9e8a"
-C_RED      = "#e06c75"
-C_RED_DK   = "#c25a63"
-C_BLUE     = "#61afef"
-C_PURPLE   = "#c678dd"
-C_CYAN     = "#56b6c2"
+C_BG       = "#070b14"
+C_SURFACE  = "#0d1320"
+C_BORDER   = "#1a2236"
+C_BORDER_L = "#253352"
+C_TEXT     = "#e0e4ec"
+C_DIM      = "#586580"
+C_MUTED    = "#2a3548"
+C_AMBER    = "#ffb830"
+C_AMBER_DK = "#cc9320"
+C_GOLD     = "#ffd700"
+C_GREEN    = "#00e68a"
+C_GREEN_DK = "#00b36b"
+C_RED      = "#ff4757"
+C_RED_DK   = "#cc3344"
+C_BLUE     = "#0099ff"
+C_ORANGE   = "#ff6b35"
+C_CYAN     = "#00d4ff"
+C_CHART_BG = "#060a12"
 
 # ─── CSS ──────────────────────────────────────────────────────────────────────
-st.markdown(f"""
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  /* ── Reset & base ── */
-  .stApp {{
-    background: {C_BG} !important;
+_CSS = """<style>
+  @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&family=Azeret+Mono:wght@400;500;600;700&display=swap');
+
+  .stApp {
+    background-color: $BG !important;
     background-image:
-      radial-gradient(ellipse at 20% 50%, rgba(212,168,71,0.03) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(97,175,239,0.02) 0%, transparent 50%);
-    color: {C_TEXT};
-  }}
-  .block-container {{ padding: 0.6rem 1.5rem 2rem 1.5rem !important; max-width: 100% !important; }}
-  section[data-testid="stSidebar"] {{ display: none; }}
-  div[data-testid="stDecoration"] {{ display: none; }}
-  footer {{ display: none !important; }}
-  #MainMenu {{ display: none !important; }}
-  header[data-testid="stHeader"] {{ display: none !important; }}
+      radial-gradient(ellipse at 10% 90%, rgba(0,230,138,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 10%, rgba(0,153,255,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(255,107,53,0.03) 0%, transparent 55%);
+    color: $TEXT;
+  }
+  .block-container { padding: 0.6rem 1.5rem 2rem !important; max-width: 100% !important; }
+  section[data-testid="stSidebar"], div[data-testid="stDecoration"], footer, #MainMenu, header[data-testid="stHeader"] { display: none !important; }
 
-  /* ── Typography ── */
-  .font-data {{
-    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
-  }}
-  .font-ui {{
-    font-family: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
-  }}
-
-  /* ── Header bar ── */
-  .hbar {{
-    background: linear-gradient(135deg, {C_SURFACE} 0%, #141824 100%);
-    border: 1px solid {C_BORDER};
-    border-bottom: 1px solid {C_AMBER}33;
-    border-radius: 12px;
+  .hbar {
+    background: linear-gradient(135deg, $SURFACE 0%, #111828 100%);
+    border: 1px solid $BORDER;
+    border-radius: 14px;
     padding: 14px 24px;
     display: flex;
     align-items: center;
@@ -92,303 +81,337 @@ st.markdown(f"""
     margin-bottom: 16px;
     position: relative;
     overflow: hidden;
-  }}
-  .hbar::before {{
+  }
+  .hbar::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, {C_AMBER}44, transparent);
-  }}
-  .agent-name {{
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 15px;
-    font-weight: 700;
+    height: 2px;
+    background: linear-gradient(90deg, $GREEN, $CYAN, $BLUE, $ORANGE);
+    opacity: 0.8;
+  }
+  .agent-name {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
     letter-spacing: 3px;
-    color: {C_AMBER};
     text-transform: uppercase;
-  }}
-  .agent-sub {{
-    font-family: 'DM Sans', sans-serif;
-    color: {C_DIM};
+    color: $CYAN;
+  }
+  .agent-sub {
+    font-family: 'Urbanist', sans-serif;
+    color: $DIM;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.5px;
-  }}
-  .badge {{
+  }
+  .badge {
     display: inline-block;
     padding: 3px 10px;
-    border-radius: 6px;
+    border-radius: 20px;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Azeret Mono', monospace;
     text-transform: uppercase;
-  }}
-  .badge-dry  {{ background: {C_GOLD}18; color: {C_GOLD}; border: 1px solid {C_GOLD}40; }}
-  .badge-live {{ background: {C_RED}18; color: {C_RED}; border: 1px solid {C_RED}40; }}
-  .badge-halt {{ background: {C_RED}18; color: {C_RED}; border: 1px solid {C_RED}40; }}
-  .badge-online {{ background: {C_GREEN}18; color: {C_GREEN}; border: 1px solid {C_GREEN}40; }}
-  .badge-sleep {{ background: {C_BLUE}18; color: {C_BLUE}; border: 1px solid {C_BLUE}40; }}
-
-  .pulse-dot {{
-    display: inline-block;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: {C_AMBER};
-    box-shadow: 0 0 6px {C_AMBER}88, 0 0 12px {C_AMBER}44;
-    animation: amber-pulse 2s ease-in-out infinite;
-    margin-right: 10px;
-    vertical-align: middle;
-  }}
-  .dead-dot {{
-    display: inline-block;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: {C_RED};
-    box-shadow: 0 0 4px {C_RED}66;
-    margin-right: 10px;
-    vertical-align: middle;
-  }}
-  .sleep-dot {{
-    display: inline-block;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: {C_BLUE};
-    box-shadow: 0 0 4px {C_BLUE}66;
-    animation: sleep-fade 3s ease-in-out infinite;
-    margin-right: 10px;
-    vertical-align: middle;
-  }}
-  @keyframes amber-pulse {{
-    0%, 100% {{ box-shadow: 0 0 6px {C_AMBER}88, 0 0 12px {C_AMBER}44; }}
-    50% {{ box-shadow: 0 0 10px {C_AMBER}cc, 0 0 20px {C_AMBER}66; }}
-  }}
-  @keyframes sleep-fade {{
-    0%, 100% {{ opacity: 1; }}
-    50% {{ opacity: 0.3; }}
-  }}
-
-  .hb-time {{
+  }
+  .badge-dry { background: $GOLD18; color: $GOLD; border: 1px solid $GOLD40; }
+  .badge-live { background: $RED18; color: $RED; border: 1px solid $RED40; }
+  .badge-halt { background: $RED18; color: $RED; border: 1px solid $RED40; animation: alert-flash 1.2s ease infinite; }
+  .badge-online { background: $GREEN18; color: $GREEN; border: 1px solid $GREEN40; }
+  .badge-sleep { background: $BLUE18; color: $BLUE; border: 1px solid $BLUE40; }
+  .hb-time {
+    font-family: 'Azeret Mono', monospace;
     font-size: 11px;
-    color: {C_DIM};
+    color: $DIM;
     margin-left: auto;
-    font-family: 'JetBrains Mono', monospace;
     letter-spacing: 0.5px;
-  }}
+  }
 
-  /* ── Metric cards ── */
-  .mcard {{
-    background: {C_SURFACE};
-    border: 1px solid {C_BORDER};
-    border-radius: 10px;
+  .pulse-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: $GREEN;
+    box-shadow: 0 0 8px $GREEN88, 0 0 16px $GREEN44;
+    animation: aurora-pulse 2.5s ease-in-out infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .dead-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: $RED;
+    box-shadow: 0 0 6px $RED66;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .sleep-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: $BLUE;
+    box-shadow: 0 0 6px $BLUE66;
+    animation: breathe 3s ease-in-out infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  @keyframes aurora-pulse {
+    0%, 100% { background: $GREEN; box-shadow: 0 0 8px $GREEN88, 0 0 16px $GREEN44; }
+    33% { background: $CYAN; box-shadow: 0 0 8px $CYAN88, 0 0 16px $CYAN44; }
+    66% { background: $BLUE; box-shadow: 0 0 8px $BLUE88, 0 0 16px $BLUE44; }
+  }
+  @keyframes breathe {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+  @keyframes alert-flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .mcard {
+    background: $SURFACE;
+    border: 1px solid $BORDER;
+    border-radius: 14px;
     padding: 16px 18px;
     text-align: center;
     height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-  }}
-  .mcard:hover {{
-    border-color: {C_BORDER_L};
-    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-  }}
-  .mcard.amber  {{ border-left: 3px solid {C_AMBER}; }}
-  .mcard.green  {{ border-left: 3px solid {C_GREEN}; }}
-  .mcard.red    {{ border-left: 3px solid {C_RED}; }}
-  .mcard.blue   {{ border-left: 3px solid {C_BLUE}; }}
-  .mcard.gold   {{ border-left: 3px solid {C_GOLD}; }}
-  .mcard.muted  {{ border-left: 3px solid {C_MUTED}; }}
-  .mlabel {{
-    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .mcard::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $GREEN, $BLUE);
+  }
+  .mcard:hover {
+    border-color: $BORDER_L;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .mcard.green::before { background: linear-gradient(90deg, $GREEN, $CYAN); }
+  .mcard.red::before { background: linear-gradient(90deg, $RED, $ORANGE); }
+  .mcard.amber::before { background: linear-gradient(90deg, $AMBER, $GOLD); }
+  .mcard.blue::before { background: linear-gradient(90deg, $BLUE, $CYAN); }
+  .mcard.gold::before { background: linear-gradient(90deg, $GOLD, $AMBER); }
+  .mcard.muted::before { background: $MUTED; }
+  .mlabel {
+    font-family: 'Urbanist', sans-serif;
     font-size: 10px;
-    color: {C_DIM};
+    color: $DIM;
     text-transform: uppercase;
-    letter-spacing: 1.8px;
+    letter-spacing: 2px;
     font-weight: 600;
     margin-bottom: 6px;
-  }}
-  .mval {{
-    font-size: 24px;
+  }
+  .mval {
+    font-size: 26px;
     font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Azeret Mono', monospace;
     line-height: 1.1;
-  }}
-  .mval.amber  {{ color: {C_AMBER}; }}
-  .mval.green  {{ color: {C_GREEN}; }}
-  .mval.red    {{ color: {C_RED}; }}
-  .mval.blue   {{ color: {C_BLUE}; }}
-  .mval.gold   {{ color: {C_GOLD}; }}
-  .mval.muted  {{ color: {C_DIM}; }}
-  .msub {{
-    font-family: 'DM Sans', sans-serif;
+  }
+  .mval.green { color: $GREEN; }
+  .mval.red { color: $RED; }
+  .mval.amber { color: $AMBER; }
+  .mval.blue { color: $BLUE; }
+  .mval.gold { color: $GOLD; }
+  .mval.muted { color: $DIM; }
+  .msub {
+    font-family: 'Urbanist', sans-serif;
     font-size: 10px;
-    color: {C_MUTED};
-    margin-top: 4px;
+    color: $DIM;
+    margin-top: 5px;
     font-weight: 500;
-  }}
+  }
 
-  /* ── Section headers ── */
-  .sec-hdr {{
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    color: {C_AMBER};
+  .sec-hdr {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 2.5px;
+    letter-spacing: 3px;
     font-weight: 700;
     padding-bottom: 8px;
-    border-bottom: 1px solid {C_BORDER};
+    border-bottom: 1px solid $BORDER;
     margin-bottom: 12px;
     margin-top: 4px;
-  }}
+    color: $CYAN;
+  }
 
-  /* ── Position cards ── */
-  .pos-card {{
-    background: {C_SURFACE};
-    border: 1px solid {C_BORDER};
-    border-radius: 10px;
+  .pos-card {
+    background: $SURFACE;
+    border: 1px solid $BORDER;
+    border-radius: 12px;
     padding: 14px 18px;
     margin-bottom: 10px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Azeret Mono', monospace;
     font-size: 12px;
     position: relative;
-    transition: border-color 0.3s ease;
-  }}
-  .pos-card:hover {{ border-color: {C_BORDER_L}; }}
-  .pos-card.bwb   {{ border-left: 3px solid {C_GREEN}; }}
-  .pos-card.condor {{ border-left: 3px solid {C_BLUE}; }}
-  .strat-badge {{
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .pos-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 3px;
+  }
+  .pos-card:hover {
+    border-color: $BORDER_L;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .pos-card.bwb::before { background: linear-gradient(180deg, $GREEN, $CYAN); }
+  .pos-card.condor::before { background: linear-gradient(180deg, $BLUE, $CYAN); }
+  .strat-badge {
     display: inline-block;
     padding: 2px 8px;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.2px;
-    font-family: 'JetBrains Mono', monospace;
-  }}
-  .strat-bwb    {{ background: {C_GREEN}18; color: {C_GREEN}; border: 1px solid {C_GREEN}44; }}
-  .strat-condor {{ background: {C_BLUE}18; color: {C_BLUE}; border: 1px solid {C_BLUE}44; }}
-  .pos-label {{
-    font-family: 'DM Sans', sans-serif;
-    color: {C_DIM};
+    font-family: 'Azeret Mono', monospace;
+  }
+  .strat-bwb { background: $GREEN18; color: $GREEN; border: 1px solid $GREEN40; }
+  .strat-condor { background: $BLUE18; color: $BLUE; border: 1px solid $BLUE40; }
+  .pos-label {
+    font-family: 'Urbanist', sans-serif;
+    color: $DIM;
     font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    font-weight: 600;
-  }}
-  .pos-val   {{ color: {C_TEXT}; font-size: 12px; }}
-  .pos-credit {{ color: {C_AMBER}; font-weight: 700; }}
-  .pos-time {{
-    color: {C_MUTED};
-    font-size: 10px;
-    font-family: 'JetBrains Mono', monospace;
-  }}
-
-  /* ── Log viewer ── */
-  .logbox {{
-    background: #090b10;
-    border: 1px solid {C_BORDER};
-    border-radius: 10px;
-    padding: 12px 14px;
-    max-height: 420px;
-    overflow-y: auto;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10.5px;
-    line-height: 1.8;
-  }}
-  .logbox::-webkit-scrollbar {{ width: 4px; }}
-  .logbox::-webkit-scrollbar-track {{ background: transparent; }}
-  .logbox::-webkit-scrollbar-thumb {{ background: {C_BORDER_L}; border-radius: 2px; }}
-  .log-err  {{ color: {C_RED}; }}
-  .log-warn {{ color: {C_GOLD}; }}
-  .log-ok   {{ color: {C_GREEN}; }}
-  .log-cyan {{ color: {C_CYAN}; }}
-  .log-info {{ color: {C_DIM}; }}
-  .log-dim  {{ color: #363c52; }}
-
-  /* ── Trade history table ── */
-  .th-row {{
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid {C_BORDER};
-    padding: 7px 0;
-    font-size: 11.5px;
-    font-family: 'JetBrains Mono', monospace;
-  }}
-  .th-row:last-child {{ border-bottom: none; }}
-  .th-time {{ color: {C_DIM}; width: 140px; flex-shrink: 0; }}
-  .th-strat {{ width: 80px; flex-shrink: 0; }}
-  .th-exp  {{ color: {C_DIM}; width: 100px; flex-shrink: 0; }}
-  .th-strikes {{ color: {C_TEXT}; flex: 1; }}
-  .th-pnl  {{ width: 100px; flex-shrink: 0; text-align: right; font-weight: 600; }}
-  .th-res  {{ width: 60px; flex-shrink: 0; text-align: right; font-weight: 600; }}
-  .pnl-win  {{ color: {C_GREEN}; }}
-  .pnl-loss {{ color: {C_RED}; }}
-  .pnl-zero {{ color: {C_DIM}; }}
-
-  /* ── Risk bar ── */
-  .risk-bar-bg {{
-    background: {C_BORDER};
-    border-radius: 3px;
-    height: 5px;
-    margin-top: 6px;
-    overflow: hidden;
-  }}
-  .risk-bar-fill {{
-    height: 100%;
-    border-radius: 3px;
-    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
-  }}
-
-  /* ── Config row ── */
-  .cfg-item {{
-    background: {C_SURFACE};
-    border: 1px solid {C_BORDER};
-    border-radius: 8px;
-    padding: 10px 14px;
-    text-align: center;
-  }}
-  .cfg-label {{
-    font-family: 'DM Sans', sans-serif;
-    font-size: 9px;
-    color: {C_DIM};
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-weight: 600;
-  }}
-  .cfg-val {{
+  }
+  .pos-val { color: $TEXT; font-size: 12px; }
+  .pos-credit { color: $AMBER; font-weight: 700; }
+  .pos-time {
+    color: $DIM;
+    font-size: 10px;
+    font-family: 'Azeret Mono', monospace;
+  }
+
+  .logbox {
+    background: #060a12;
+    border: 1px solid $BORDER;
+    border-radius: 12px;
+    padding: 12px 14px;
+    max-height: 420px;
+    overflow-y: auto;
+    font-family: 'Azeret Mono', monospace;
+    font-size: 10.5px;
+    line-height: 1.8;
+  }
+  .logbox::-webkit-scrollbar { width: 4px; }
+  .logbox::-webkit-scrollbar-track { background: transparent; }
+  .logbox::-webkit-scrollbar-thumb { background: $BORDER_L; border-radius: 2px; }
+  .log-err { color: $RED; }
+  .log-warn { color: $GOLD; }
+  .log-ok { color: $GREEN; }
+  .log-cyan { color: $CYAN; }
+  .log-info { color: $DIM; }
+  .log-dim { color: #2a3548; }
+
+  .th-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .th-wrap::-webkit-scrollbar { height: 3px; }
+  .th-wrap::-webkit-scrollbar-track { background: transparent; }
+  .th-wrap::-webkit-scrollbar-thumb { background: $BORDER_L; border-radius: 2px; }
+  .th-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $BORDER;
+    padding: 7px 0;
+    font-size: 11.5px;
+    font-family: 'Azeret Mono', monospace;
+    min-width: 580px;
+  }
+  .th-row:last-child { border-bottom: none; }
+  .th-time { color: $DIM; width: 140px; flex-shrink: 0; }
+  .th-strat { width: 80px; flex-shrink: 0; }
+  .th-exp { color: $DIM; width: 100px; flex-shrink: 0; }
+  .th-strikes { color: $TEXT; flex: 1; min-width: 60px; }
+  .th-pnl { width: 100px; flex-shrink: 0; text-align: right; font-weight: 600; }
+  .th-res { width: 60px; flex-shrink: 0; text-align: right; font-weight: 600; }
+  .pnl-win { color: $GREEN; }
+  .pnl-loss { color: $RED; }
+  .pnl-zero { color: $DIM; }
+
+  .risk-bar-bg {
+    background: $BORDER;
+    border-radius: 4px;
+    height: 5px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .risk-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .cfg-item {
+    background: $SURFACE;
+    border: 1px solid $BORDER;
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-align: center;
+  }
+  .cfg-label {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 9px;
+    color: $DIM;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+  }
+  .cfg-val {
+    font-family: 'Azeret Mono', monospace;
     font-size: 13px;
-    color: {C_TEXT};
-    font-family: 'JetBrains Mono', monospace;
+    color: $TEXT;
     margin-top: 3px;
     font-weight: 500;
-  }}
+  }
 
-  /* ── Empty state ── */
-  .empty-state {{
-    color: {C_MUTED};
+  .empty-state {
+    color: $DIM;
     text-align: center;
     padding: 40px 0;
     font-size: 13px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Urbanist', sans-serif;
     font-style: italic;
-  }}
+  }
 
-  /* ── Stat mini-card ── */
-  .stat-mini {{
-    text-align: center;
-    padding: 6px 0;
-  }}
-  .stat-mini .mlabel {{ margin-bottom: 4px; }}
-  .stat-mini .stat-val {{
+  .stat-mini { text-align: center; padding: 6px 0; }
+  .stat-mini .mlabel { margin-bottom: 4px; }
+  .stat-mini .stat-val {
     font-size: 15px;
     font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
-  }}
+    font-family: 'Azeret Mono', monospace;
+  }
 </style>
-""", unsafe_allow_html=True)
+"""
+# Replace color tokens with actual values (longest tokens first to avoid partial matches)
+_token_map = {
+    "$BORDER_L": C_BORDER_L, "$BORDER": C_BORDER, "$SURFACE": C_SURFACE,
+    "$AMBER_DK": C_AMBER_DK, "$AMBER": C_AMBER,
+    "$GREEN_DK": C_GREEN_DK, "$GREEN": C_GREEN,
+    "$RED_DK": C_RED_DK, "$RED": C_RED,
+    "$ORANGE": C_ORANGE, "$MUTED": C_MUTED,
+    "$GOLD": C_GOLD, "$CYAN": C_CYAN, "$BLUE": C_BLUE,
+    "$TEXT": C_TEXT, "$BG": C_BG, "$DIM": C_DIM,
+}
+for _tok in sorted(_token_map, key=len, reverse=True):
+    _CSS = _CSS.replace(_tok, _token_map[_tok])
+st.markdown(_CSS, unsafe_allow_html=True)
 
 
 # ─── Data helpers ─────────────────────────────────────────────────────────────
@@ -492,13 +515,13 @@ def bwb_payoff_chart(pos: dict, spx_price: float = None) -> go.Figure:
 
     fig.add_trace(go.Scatter(
         x=prices, y=pos_y, fill="tozeroy",
-        fillcolor=f"rgba(78,201,176,0.10)",
+        fillcolor="rgba(0,230,138,0.12)",
         line=dict(color=C_GREEN, width=1.5), name="Profit",
         hovertemplate="$%{x:.0f}: +$%{y:.0f}<extra></extra>",
     ))
     fig.add_trace(go.Scatter(
         x=prices, y=neg_y, fill="tozeroy",
-        fillcolor=f"rgba(224,108,117,0.10)",
+        fillcolor="rgba(255,71,87,0.12)",
         line=dict(color=C_RED, width=1.5), name="Loss",
         hovertemplate="$%{x:.0f}: -$%{y:.0f}<extra></extra>",
     ))
@@ -506,7 +529,7 @@ def bwb_payoff_chart(pos: dict, spx_price: float = None) -> go.Figure:
     for strike, label, color in [
         (sh, f"H {sh:.0f}", C_CYAN),
         (sm, f"M {sm:.0f}", C_BLUE),
-        (sl, f"L {sl:.0f}", C_PURPLE),
+        (sl, f"L {sl:.0f}", C_ORANGE),
     ]:
         fig.add_vline(
             x=strike, line=dict(color=color, width=1, dash="dot"),
@@ -522,10 +545,10 @@ def bwb_payoff_chart(pos: dict, spx_price: float = None) -> go.Figure:
 
     fig.add_hline(y=0, line=dict(color=C_BORDER_L, width=1))
     fig.update_layout(
-        template="plotly_dark", paper_bgcolor="#090b10", plot_bgcolor="#090b10",
+        template="plotly_dark", paper_bgcolor=C_CHART_BG, plot_bgcolor=C_CHART_BG,
         margin=dict(l=32, r=8, t=8, b=28), height=160, showlegend=False,
-        xaxis=dict(showgrid=False, tickfont=dict(size=9, color=C_DIM, family="JetBrains Mono"), tickformat=".0f"),
-        yaxis=dict(showgrid=True, gridcolor=C_BORDER, tickfont=dict(size=9, color=C_DIM, family="JetBrains Mono"), tickformat="$.0f", zeroline=False),
+        xaxis=dict(showgrid=False, tickfont=dict(size=9, color=C_DIM, family="Azeret Mono"), tickformat=".0f"),
+        yaxis=dict(showgrid=True, gridcolor=C_BORDER, tickfont=dict(size=9, color=C_DIM, family="Azeret Mono"), tickformat="$.0f", zeroline=False),
     )
     return fig
 
@@ -563,20 +586,20 @@ def condor_payoff_chart(pos: dict, spx_price: float = None) -> go.Figure:
 
     fig.add_trace(go.Scatter(
         x=prices, y=pos_y, fill="tozeroy",
-        fillcolor="rgba(78,201,176,0.10)",
+        fillcolor="rgba(0,230,138,0.12)",
         line=dict(color=C_GREEN, width=1.5), name="Profit",
     ))
     fig.add_trace(go.Scatter(
         x=prices, y=neg_y, fill="tozeroy",
-        fillcolor="rgba(224,108,117,0.10)",
+        fillcolor="rgba(255,71,87,0.12)",
         line=dict(color=C_RED, width=1.5), name="Loss",
     ))
 
     for strike, label, color in [
-        (lp, f"{lp:.0f}", C_PURPLE),
+        (lp, f"{lp:.0f}", C_ORANGE),
         (sp, f"{sp:.0f}", C_BLUE),
         (sc, f"{sc:.0f}", C_BLUE),
-        (lc, f"{lc:.0f}", C_PURPLE),
+        (lc, f"{lc:.0f}", C_ORANGE),
     ]:
         fig.add_vline(x=strike, line=dict(color=color, width=1, dash="dot"),
                       annotation_text=label, annotation_font_size=9, annotation_font_color=color)
@@ -588,10 +611,10 @@ def condor_payoff_chart(pos: dict, spx_price: float = None) -> go.Figure:
 
     fig.add_hline(y=0, line=dict(color=C_BORDER_L, width=1))
     fig.update_layout(
-        template="plotly_dark", paper_bgcolor="#090b10", plot_bgcolor="#090b10",
+        template="plotly_dark", paper_bgcolor=C_CHART_BG, plot_bgcolor=C_CHART_BG,
         margin=dict(l=32, r=8, t=8, b=28), height=160, showlegend=False,
-        xaxis=dict(showgrid=False, tickfont=dict(size=9, color=C_DIM, family="JetBrains Mono"), tickformat=".0f"),
-        yaxis=dict(showgrid=True, gridcolor=C_BORDER, tickfont=dict(size=9, color=C_DIM, family="JetBrains Mono"),
+        xaxis=dict(showgrid=False, tickfont=dict(size=9, color=C_DIM, family="Azeret Mono"), tickformat=".0f"),
+        yaxis=dict(showgrid=True, gridcolor=C_BORDER, tickfont=dict(size=9, color=C_DIM, family="Azeret Mono"),
                    tickformat="$.0f", zeroline=False),
     )
     return fig
@@ -604,9 +627,9 @@ def pnl_chart(trade_history: list) -> go.Figure:
         fig = go.Figure()
         fig.add_annotation(text="Awaiting first trade", xref="paper", yref="paper",
                            x=0.5, y=0.5, showarrow=False,
-                           font=dict(color=C_MUTED, size=13, family="DM Sans"))
-        fig.update_layout(template="plotly_dark", paper_bgcolor="#090b10",
-                          plot_bgcolor="#090b10", height=280,
+                           font=dict(color=C_MUTED, size=13, family="Urbanist"))
+        fig.update_layout(template="plotly_dark", paper_bgcolor=C_CHART_BG,
+                          plot_bgcolor=C_CHART_BG, height=280,
                           margin=dict(l=40, r=16, t=16, b=40))
         return fig
 
@@ -628,7 +651,7 @@ def pnl_chart(trade_history: list) -> go.Figure:
 
     final = cumulative[-1] if cumulative else 0
     color = C_GREEN if final >= 0 else C_RED
-    fill  = "rgba(78,201,176,0.06)" if final >= 0 else "rgba(224,108,117,0.06)"
+    fill  = "rgba(0,230,138,0.08)" if final >= 0 else "rgba(255,71,87,0.08)"
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(
@@ -643,12 +666,12 @@ def pnl_chart(trade_history: list) -> go.Figure:
     fig.add_hline(y=0, line=dict(color=C_BORDER_L, width=1))
     fig.update_layout(
         template="plotly_dark",
-        paper_bgcolor="#090b10", plot_bgcolor="#090b10",
+        paper_bgcolor=C_CHART_BG, plot_bgcolor=C_CHART_BG,
         height=280,
         margin=dict(l=48, r=16, t=16, b=48),
         showlegend=False,
-        xaxis=dict(showgrid=False, tickfont=dict(size=10, color=C_DIM, family="JetBrains Mono"), tickangle=-30),
-        yaxis=dict(showgrid=True, gridcolor=C_BORDER, tickfont=dict(size=10, color=C_DIM, family="JetBrains Mono"), tickprefix="$", zeroline=False),
+        xaxis=dict(showgrid=False, tickfont=dict(size=10, color=C_DIM, family="Azeret Mono"), tickangle=-30),
+        yaxis=dict(showgrid=True, gridcolor=C_BORDER, tickfont=dict(size=10, color=C_DIM, family="Azeret Mono"), tickprefix="$", zeroline=False),
     )
     return fig
 
@@ -871,8 +894,8 @@ with col_left:
               <div style="display:flex;justify-content:space-between;align-items:flex-start;">
                 <div>
                   <span class="strat-badge {badge_cls}">{strat}</span>
-                  <span style="color:{C_BLUE};font-size:11px;margin-left:8px;font-family:'DM Sans',sans-serif;">{exp_fmt}</span>
-                  <span style="color:{C_DIM};font-size:10px;margin-left:6px;font-family:'JetBrains Mono',monospace;">({dte_days}d)</span>
+                  <span style="color:{C_CYAN};font-size:11px;margin-left:8px;font-family:'Urbanist',sans-serif;">{exp_fmt}</span>
+                  <span style="color:{C_DIM};font-size:10px;margin-left:6px;font-family:'Azeret Mono',monospace;">({dte_days}d)</span>
                 </div>
                 <div style="text-align:right;">
                   <span class="pos-credit">${credit:.2f} cr</span>
@@ -885,7 +908,7 @@ with col_left:
               </div>
               <div style="margin-top:4px;">
                 <span class="pos-label">max profit </span>
-                <span style="color:{C_GREEN};font-size:11px;font-family:'JetBrains Mono',monospace;">${max_profit:.2f}</span>
+                <span style="color:{C_GREEN};font-size:11px;font-family:'Azeret Mono',monospace;">${max_profit:.2f}</span>
                 <span style="margin-left:14px;" class="pos-label">entered </span>
                 <span class="pos-time">{et_fmt}</span>
               </div>
@@ -898,7 +921,7 @@ with col_left:
             elif strat == "CONDOR":
                 fig = condor_payoff_chart(pos, spx_price)
             if fig:
-                st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+                st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
 
 
 # ── CENTER: P&L Chart ─────────────────────────────────────────────────────────
@@ -906,7 +929,7 @@ with col_center:
     st.markdown('<div class="sec-hdr">Cumulative P&amp;L</div>', unsafe_allow_html=True)
 
     fig_pnl = pnl_chart(trade_history)
-    st.plotly_chart(fig_pnl, use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(fig_pnl, width="stretch", config={"displayModeBar": False})
 
     if trade_history:
         total_pnl = sum(float(t.get("realized_pnl", t.get("pnl", 0)) or 0) for t in trade_history)
@@ -919,14 +942,14 @@ with col_center:
             st.markdown(f"""
             <div class="stat-mini">
               <div class="mlabel">All-time P&amp;L</div>
-              <div class="stat-val" style="color:{'#4ec9b0' if total_pnl>=0 else '#e06c75'}">{fmt_money_signed(total_pnl)}</div>
+              <div class="stat-val" style="color:{C_GREEN if total_pnl>=0 else C_RED}">{fmt_money_signed(total_pnl)}</div>
             </div>
             """, unsafe_allow_html=True)
         with sb:
             st.markdown(f"""
             <div class="stat-mini">
               <div class="mlabel">Avg / Trade</div>
-              <div class="stat-val" style="color:{'#4ec9b0' if avg_pnl>=0 else '#e06c75'}">{fmt_money_signed(avg_pnl)}</div>
+              <div class="stat-val" style="color:{C_GREEN if avg_pnl>=0 else C_RED}">{fmt_money_signed(avg_pnl)}</div>
             </div>
             """, unsafe_allow_html=True)
         with sc_col:
@@ -952,7 +975,7 @@ with col_center:
                 color_style = f"color:{C_AMBER}"
             else:
                 disp        = fmt_money_signed(val)
-                color_style = f"color:{'#4ec9b0' if (val or 0)>=0 else '#e06c75'}"
+                color_style = f"color:{C_GREEN if (val or 0)>=0 else C_RED}"
             st.markdown(f"""
             <div class="stat-mini">
               <div class="mlabel">{label}</div>
@@ -1023,8 +1046,8 @@ display_trades = all_trades[:20]
 if not display_trades:
     st.markdown('<div class="empty-state">No trades yet</div>', unsafe_allow_html=True)
 else:
-    table_html = f'<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:10px;padding:10px 14px;">'
-    table_html += f'<div class="th-row" style="color:{C_DIM};font-size:10px;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid {C_BORDER_L};font-family:\'DM Sans\',sans-serif;font-weight:600;"><span class="th-time">Time</span><span class="th-strat">Strategy</span><span class="th-exp">Expiry</span><span class="th-strikes">Strikes</span><span class="th-pnl">P&amp;L</span><span class="th-res">Result</span></div>'
+    table_html = f'<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:10px 14px;"><div class="th-wrap">'
+    table_html += f'<div class="th-row" style="color:{C_DIM};font-size:10px;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid {C_BORDER_L};font-family:\'Urbanist\',sans-serif;font-weight:600;"><span class="th-time">Time</span><span class="th-strat">Strategy</span><span class="th-exp">Expiry</span><span class="th-strikes">Strikes</span><span class="th-pnl">P&amp;L</span><span class="th-res">Result</span></div>'
 
     for t in display_trades:
         ts_raw = t.get("exit_time", t.get("time", ""))
@@ -1056,7 +1079,7 @@ else:
 
         table_html += f'<div class="th-row"><span class="th-time">{ts_fmt}</span><span class="th-strat"><span class="strat-badge {badge_cls}">{strat}</span></span><span class="th-exp">{exp}</span><span class="th-strikes">{strikes_txt}</span><span class="th-pnl {pnl_cls}">{fmt_money_signed(pnl_val)}</span><span class="th-res" style="color:{res_color}">{res_txt}</span></div>'
 
-    table_html += '</div>'
+    table_html += '</div></div>'
     st.markdown(table_html, unsafe_allow_html=True)
 
 
@@ -1089,10 +1112,151 @@ for col_c, (label, val) in zip(cfg_cols, cfg_items):
         """, unsafe_allow_html=True)
 
 
+# ─── BACKTEST RESULTS ────────────────────────────────────────────────────────
+
+st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
+st.markdown('<div class="sec-hdr">Backtest Results</div>', unsafe_allow_html=True)
+
+bt_data = read_json(BACKTEST_FILE, None)
+if bt_data is None:
+    st.markdown(
+        f'<div class="empty-state">No backtest results yet.<br>'
+        f'<span style="font-size:11px;color:{C_DIM};">Run: python -m backtest.run_backtest --strategy both --start 2020-01-01 --end 2024-12-31</span></div>',
+        unsafe_allow_html=True,
+    )
+else:
+    # ── Summary metrics row ──
+    bt_pnl = bt_data.get("total_pnl", 0)
+    bt_wr = bt_data.get("win_rate", 0)
+    bt_sharpe = bt_data.get("sharpe_ratio", 0)
+    bt_dd = bt_data.get("max_drawdown_pct", 0)
+    bt_trades_n = bt_data.get("total_trades", 0)
+    bt_avg_m = bt_data.get("avg_monthly_return_pct", 0)
+    bt_pf = bt_data.get("profit_factor", 0)
+    bt_strats = ", ".join(bt_data.get("strategies", []))
+
+    bm1, bm2, bm3, bm4, bm5, bm6 = st.columns(6)
+    with bm1:
+        pnl_c = "green" if bt_pnl >= 0 else "red"
+        st.markdown(f'<div class="mcard {pnl_c}"><div class="mlabel">Total P&amp;L</div><div class="mval {pnl_c}">{fmt_money_signed(bt_pnl)}</div><div class="msub">{bt_data.get("start_date","")} to {bt_data.get("end_date","")}</div></div>', unsafe_allow_html=True)
+    with bm2:
+        wr_c = "green" if bt_wr >= 55 else ("gold" if bt_wr >= 45 else "red")
+        st.markdown(f'<div class="mcard {wr_c}"><div class="mlabel">Win Rate</div><div class="mval {wr_c}">{bt_wr:.1f}%</div><div class="msub">{bt_data.get("win_count",0)}W / {bt_data.get("loss_count",0)}L</div></div>', unsafe_allow_html=True)
+    with bm3:
+        sh_c = "green" if bt_sharpe >= 1 else ("gold" if bt_sharpe >= 0.5 else "red")
+        st.markdown(f'<div class="mcard {sh_c}"><div class="mlabel">Sharpe Ratio</div><div class="mval {sh_c}">{bt_sharpe:.3f}</div><div class="msub">annualized</div></div>', unsafe_allow_html=True)
+    with bm4:
+        dd_c = "green" if bt_dd < 10 else ("gold" if bt_dd < 20 else "red")
+        st.markdown(f'<div class="mcard {dd_c}"><div class="mlabel">Max Drawdown</div><div class="mval {dd_c}">{bt_dd:.1f}%</div><div class="msub">peak to trough</div></div>', unsafe_allow_html=True)
+    with bm5:
+        mr_c = "green" if bt_avg_m >= 10 else ("gold" if bt_avg_m >= 5 else "red")
+        st.markdown(f'<div class="mcard {mr_c}"><div class="mlabel">Avg Monthly</div><div class="mval {mr_c}">{bt_avg_m:+.1f}%</div><div class="msub">target: 10%</div></div>', unsafe_allow_html=True)
+    with bm6:
+        st.markdown(f'<div class="mcard blue"><div class="mlabel">Total Trades</div><div class="mval blue">{bt_trades_n}</div><div class="msub">{bt_strats}</div></div>', unsafe_allow_html=True)
+
+    st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
+
+    # ── Equity curve + monthly returns heatmap ──
+    bt_eq = bt_data.get("equity_curve", [])
+    if bt_eq:
+        step = max(1, len(bt_eq) // 1000)
+        eq_sampled = bt_eq[::step]
+        eq_dates = [p["date"] for p in eq_sampled]
+        eq_vals = [p["equity"] for p in eq_sampled]
+        final_eq = eq_vals[-1] if eq_vals else 0
+        init_eq = bt_data.get("initial_capital", 10000)
+        eq_color = C_GREEN if final_eq >= init_eq else C_RED
+        eq_fill = "rgba(0,230,138,0.08)" if final_eq >= init_eq else "rgba(255,71,87,0.08)"
+
+        fig_eq = go.Figure()
+        fig_eq.add_trace(go.Scatter(
+            x=eq_dates, y=eq_vals, mode="lines",
+            line=dict(color=eq_color, width=1.5),
+            fill="tozeroy", fillcolor=eq_fill,
+            hovertemplate="<b>%{x}</b><br>Equity: $%{y:,.2f}<extra></extra>",
+        ))
+        fig_eq.add_hline(y=init_eq, line=dict(color=C_BORDER_L, width=1, dash="dash"),
+                         annotation_text=f"Start ${init_eq:,.0f}", annotation_font_size=9,
+                         annotation_font_color=C_DIM)
+        fig_eq.update_layout(
+            template="plotly_dark", paper_bgcolor=C_CHART_BG, plot_bgcolor=C_CHART_BG,
+            height=320, margin=dict(l=56, r=16, t=20, b=40), showlegend=False,
+            xaxis=dict(showgrid=False, tickfont=dict(size=9, color=C_DIM, family="Azeret Mono")),
+            yaxis=dict(showgrid=True, gridcolor=C_BORDER,
+                       tickfont=dict(size=9, color=C_DIM, family="Azeret Mono"),
+                       tickprefix="$", zeroline=False),
+        )
+
+        bt_col_l, bt_col_r = st.columns([3, 2])
+        with bt_col_l:
+            st.markdown(
+                f'<div style="color:{C_CYAN};font-size:11px;font-weight:600;'
+                f'letter-spacing:2px;text-transform:uppercase;'
+                f'font-family:\'Urbanist\',sans-serif;margin-bottom:6px;">Equity Curve</div>',
+                unsafe_allow_html=True,
+            )
+            st.plotly_chart(fig_eq, use_container_width=True, config={"displayModeBar": False})
+
+        with bt_col_r:
+            st.markdown(
+                f'<div style="color:{C_CYAN};font-size:11px;font-weight:600;'
+                f'letter-spacing:2px;text-transform:uppercase;'
+                f'font-family:\'Urbanist\',sans-serif;margin-bottom:6px;">Monthly Returns (%)</div>',
+                unsafe_allow_html=True,
+            )
+            mrp = bt_data.get("monthly_return_pct", {})
+            if mrp:
+                years_list = sorted(set(k[:4] for k in mrp))
+                months_lbl = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+                month_nums = ["01","02","03","04","05","06","07","08","09","10","11","12"]
+                z_data = []
+                hover_data = []
+                for yr in years_list:
+                    row, h_row = [], []
+                    for mn in month_nums:
+                        key = f"{yr}-{mn}"
+                        val = mrp.get(key)
+                        row.append(val if val is not None else 0)
+                        h_row.append(f"{val:+.1f}%" if val is not None else "—")
+                    z_data.append(row)
+                    hover_data.append(h_row)
+
+                fig_heat = go.Figure(data=go.Heatmap(
+                    z=z_data, x=months_lbl, y=years_list,
+                    customdata=hover_data,
+                    hovertemplate="%{y} %{x}: %{customdata}<extra></extra>",
+                    colorscale=[[0, C_RED], [0.45, "#1a1a2e"], [0.55, "#1a1a2e"], [1, C_GREEN]],
+                    zmid=0, showscale=False,
+                    texttemplate="%{z:+.0f}", textfont=dict(size=9, family="Azeret Mono"),
+                ))
+                fig_heat.update_layout(
+                    template="plotly_dark", paper_bgcolor=C_CHART_BG, plot_bgcolor=C_CHART_BG,
+                    height=320, margin=dict(l=40, r=8, t=8, b=32),
+                    xaxis=dict(tickfont=dict(size=9, color=C_DIM, family="Azeret Mono"), side="bottom"),
+                    yaxis=dict(tickfont=dict(size=9, color=C_DIM, family="Azeret Mono"), autorange="reversed"),
+                )
+                st.plotly_chart(fig_heat, use_container_width=True, config={"displayModeBar": False})
+            else:
+                st.markdown(f'<div class="empty-state">No monthly data</div>', unsafe_allow_html=True)
+
+    # ── Additional stats row ──
+    bt_s1, bt_s2, bt_s3, bt_s4 = st.columns(4)
+    with bt_s1:
+        st.markdown(f'<div class="stat-mini"><div class="mlabel">Avg Win</div><div class="stat-val" style="color:{C_GREEN}">{fmt_money_signed(bt_data.get("avg_win",0))}</div></div>', unsafe_allow_html=True)
+    with bt_s2:
+        st.markdown(f'<div class="stat-mini"><div class="mlabel">Avg Loss</div><div class="stat-val" style="color:{C_RED}">{fmt_money_signed(bt_data.get("avg_loss",0))}</div></div>', unsafe_allow_html=True)
+    with bt_s3:
+        st.markdown(f'<div class="stat-mini"><div class="mlabel">Profit Factor</div><div class="stat-val" style="color:{C_AMBER}">{bt_pf:.2f}</div></div>', unsafe_allow_html=True)
+    with bt_s4:
+        total_ret = bt_pnl / max(bt_data.get("initial_capital", 10000), 1) * 100
+        ret_c = C_GREEN if total_ret >= 0 else C_RED
+        st.markdown(f'<div class="stat-mini"><div class="mlabel">Total Return</div><div class="stat-val" style="color:{ret_c}">{total_ret:+.1f}%</div></div>', unsafe_allow_html=True)
+
+
 # ─── FOOTER ───────────────────────────────────────────────────────────────────
 
 st.markdown(f"""
-<div style="text-align:center;color:{C_MUTED};font-size:9px;padding:24px 0 8px;letter-spacing:2px;font-family:'DM Sans',sans-serif;font-weight:500;">
+<div style="text-align:center;color:{C_MUTED};font-size:9px;padding:24px 0 8px;letter-spacing:2px;font-family:'Urbanist',sans-serif;font-weight:500;">
   OPTIONS AGENT &middot; IBKR GATEWAY &middot; AUTO-REFRESH 30s
 </div>
 """, unsafe_allow_html=True)

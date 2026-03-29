@@ -4,12 +4,14 @@ Orchestrates: market hours check → entry scan → position monitor → exit �
 Runs indefinitely. Designed to be left alone.
 """
 
+import json
 import logging
 import os
 import sys
 import time
 import signal
 from datetime import datetime, date
+from logging.handlers import RotatingFileHandler
 from typing import List, Optional
 
 import config
@@ -19,6 +21,13 @@ from risk import RiskManager
 from notifier import Notifier
 from strategies.bwb import BWBStrategy
 from strategies.condor import CondorStrategy
+from strategies.call_spread import CallSpreadStrategy
+from strategies.long_call import LongCallStrategy
+from strategies.put_credit_spread import PutCreditSpreadStrategy
+from strategies.calendar_spread import CalendarSpreadStrategy
+from strategies.jade_lizard import JadeLizardStrategy
+from strategies.smb_scorer import SMBScorer
+from holidays import is_market_holiday
 
 # ─── Logging setup ──────────────────────────────────────────────────────────
 os.makedirs(config.LOG_DIR, exist_ok=True)
@@ -29,7 +38,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),
-        logging.FileHandler(os.path.join(config.LOG_DIR, "agent.log")),
+        RotatingFileHandler(os.path.join(config.LOG_DIR, "agent.log"), maxBytes=10*1024*1024, backupCount=5),
     ],
 )
 log = logging.getLogger("agent")
@@ -46,6 +55,8 @@ class OptionsAgent:
         self.notifier = Notifier()
         self.risk = RiskManager(notifier=self.notifier)
         self.open_positions: List[dict] = []
+        # Load persisted positions from previous session
+        self._load_persisted_positions()
         self.running = True
         self.last_scan_time = None
         self.last_monitor_time = None
@@ -53,16 +64,55 @@ class OptionsAgent:
         self.start_time = datetime.now()
         self.last_portfolio_write = None
 
+        # SMB Scorer (used when ACTIVE_STRATEGY=SMB)
+        self.smb_scorer = None
+        self._last_smb_score = None
+
         # Strategy instances
         self.strategies = []
-        if config.ACTIVE_STRATEGY in ("BWB", "BOTH"):
+        if config.ACTIVE_STRATEGY in ("BWB", "BOTH", "ALL"):
             self.strategies.append(BWBStrategy(self.broker))
-        if config.ACTIVE_STRATEGY in ("CONDOR", "BOTH"):
+        if config.ACTIVE_STRATEGY in ("CONDOR", "BOTH", "ALL"):
             self.strategies.append(CondorStrategy(self.broker))
+        if config.ACTIVE_STRATEGY in ("CALL_SPREAD", "ALL"):
+            self.strategies.append(CallSpreadStrategy(self.broker))
+        if config.ACTIVE_STRATEGY in ("LONG_CALL", "ALL"):
+            self.strategies.append(LongCallStrategy(self.broker))
+        if config.ACTIVE_STRATEGY in ("PUT_CREDIT_SPREAD", "ALL"):
+            self.strategies.append(PutCreditSpreadStrategy(self.broker))
+        if config.ACTIVE_STRATEGY in ("CALENDAR_SPREAD", "ALL"):
+            self.strategies.append(CalendarSpreadStrategy(self.broker))
+        if config.ACTIVE_STRATEGY in ("JADE_LIZARD", "ALL"):
+            self.strategies.append(JadeLizardStrategy(self.broker))
+        if config.ACTIVE_STRATEGY == "SMB":
+            self.smb_scorer = SMBScorer(self.broker)
+            # SMB mode: strategies created but gated by scorer
+            self._smb_long_call = LongCallStrategy(self.broker, scorer=self.smb_scorer)
+            self._smb_call_spread = CallSpreadStrategy(self.broker, scorer=self.smb_scorer)
+            self._smb_bwb = BWBStrategy(self.broker)
+            self._smb_condor = CondorStrategy(self.broker)
+            self._smb_put_credit = PutCreditSpreadStrategy(self.broker, scorer=self.smb_scorer)
+            self._smb_calendar = CalendarSpreadStrategy(self.broker, scorer=self.smb_scorer)
+            self._smb_jade_lizard = JadeLizardStrategy(self.broker, scorer=self.smb_scorer)
+            # strategies list will be set dynamically in _update_smb_strategies()
 
         # Graceful shutdown
         signal.signal(signal.SIGTERM, self._handle_shutdown)
         signal.signal(signal.SIGINT, self._handle_shutdown)
+
+    def _load_persisted_positions(self):
+        """Load positions from previous session if agent restarted."""
+        positions_file = os.path.join(config.DATA_DIR, "positions.json")
+        try:
+            if os.path.exists(positions_file):
+                with open(positions_file) as f:
+                    saved = json.load(f)
+                if saved:
+                    self.open_positions = [p for p in saved if p.get("status") == "open"]
+                    if self.open_positions:
+                        log.warning(f"Restored {len(self.open_positions)} open position(s) from previous session")
+        except Exception as e:
+            log.warning(f"Could not load persisted positions: {e}")
 
     def _handle_shutdown(self, signum, frame):
         log.info("Shutdown signal received — exiting cleanly")
@@ -74,6 +124,9 @@ class OptionsAgent:
         now = datetime.now()
         # Skip weekends
         if now.weekday() >= 5:
+            return False
+        # Skip US market holidays
+        if is_market_holiday(now.date()):
             return False
         time_str = now.strftime("%H:%M")
         return config.MARKET_OPEN_TIME <= time_str <= config.MARKET_CLOSE_TIME
@@ -88,6 +141,9 @@ class OptionsAgent:
         now = datetime.now()
         if now.weekday() >= 5:
             return False
+        # Skip US market holidays
+        if is_market_holiday(now.date()):
+            return False
         time_str = now.strftime("%H:%M")
         return "09:20" <= time_str <= "16:15"
 
@@ -101,8 +157,8 @@ class OptionsAgent:
         log.info("Entering sleep mode until next trading day")
         while self.running:
             now = datetime.now()
-            # Wake up at 09:20 on weekdays
-            if now.weekday() < 5 and now.strftime("%H:%M") >= "09:20":
+            # Wake up at 09:20 on weekdays that are not holidays
+            if now.weekday() < 5 and not is_market_holiday(now.date()) and now.strftime("%H:%M") >= "09:20":
                 if now.strftime("%H:%M") < "16:15":
                     log.info("Morning — waking up")
                     break
@@ -113,26 +169,47 @@ class OptionsAgent:
             time.sleep(60)
 
     def _end_of_day(self):
-        """Clean shutdown at end of trading day."""
+        """
+        Clean shutdown at end of trading day.
+
+        Note: IBKR typically disconnects around 16:50 ET for maintenance.
+        If we're called after that disconnect, we can't place exit orders,
+        so we just record the positions as force-closed for next-day review.
+        """
         log.info("End of day — shutting down for the night")
 
         # Force-close any remaining positions
         if self.open_positions:
             log.warning(f"EOD: force-closing {len(self.open_positions)} open positions")
+
+            # Check if we're still connected - IBKR often disconnects ~16:50 ET
+            still_connected = self.broker.ib.isConnected()
+            if not still_connected:
+                log.warning(
+                    "IBKR already disconnected (likely ~16:50 ET maintenance). "
+                    "Cannot place exit orders — positions will be recorded as force-closed."
+                )
+                self.notifier.send(
+                    f"⚠️ <b>EOD: IBKR Disconnected</b>\n"
+                    f"{len(self.open_positions)} position(s) could not be closed via broker. "
+                    f"Recording as force-closed for next-day review."
+                )
+
             for pos in list(self.open_positions):
-                strategy = self._get_strategy(pos["strategy"])
-                if strategy:
-                    try:
-                        strategy.exit(pos)
-                    except Exception as e:
-                        log.error(f"EOD exit failed: {e}")
+                if still_connected:
+                    strategy = self._get_strategy(pos["strategy"])
+                    if strategy:
+                        try:
+                            strategy.exit(pos)
+                        except Exception as e:
+                            log.error(f"EOD exit failed: {e}")
+
                 pos["status"] = "closed"
                 pos["exit_reason"] = "eod_force_close"
                 pos["exit_time"] = datetime.now().isoformat()
                 pnl = self._estimate_pnl(pos, "force_close")
                 pos["realized_pnl"] = pnl
                 self.risk.record_exit(pos, pnl)
-                state_writer.append_closed_trade(pos, pnl, "eod_force_close")
                 self.notifier.trade_exited(pos, "eod_force_close", pnl)
             self.open_positions.clear()
             state_writer.write_positions([])
@@ -152,8 +229,42 @@ class OptionsAgent:
 
     # ─── Entry Logic ─────────────────────────────────────────────────────────
 
+    def _update_smb_strategies(self):
+        """Rescore SMB and update active strategy list based on regime."""
+        if self.smb_scorer is None:
+            return
+        if not self.smb_scorer.needs_rescore(config.SMB.rescore_interval_secs):
+            return
+
+        result = self.smb_scorer.score()
+        score = result["score"]
+        regime = result["regime"]
+
+        # Alert if score changed
+        if self._last_smb_score != score:
+            self.notifier.smb_score(score, regime, result["checks"])
+            self._last_smb_score = score
+
+        # Route to correct strategies based on regime
+        if score >= 7:
+            self.strategies = [self._smb_long_call, self._smb_call_spread]
+            log.info(f"SMB regime=BREAKOUT ({score}/10) → LONG_CALL + CALL_SPREAD")
+        elif score >= 5:
+            self.strategies = [self._smb_call_spread, self._smb_calendar]
+            log.info(f"SMB regime=MODERATE ({score}/10) → CALL_SPREAD + CALENDAR_SPREAD")
+        elif score >= 3:
+            self.strategies = [self._smb_bwb, self._smb_condor, self._smb_put_credit, self._smb_jade_lizard]
+            log.info(f"SMB regime=RANGE ({score}/10) → BWB + CONDOR + PUT_CREDIT_SPREAD + JADE_LIZARD")
+        else:
+            self.strategies = [self._smb_put_credit]
+            log.info(f"SMB regime=FLAT ({score}/10) → PUT_CREDIT_SPREAD only (income collection)")
+
     def scan_for_entries(self):
         """Try to enter new positions if conditions are met."""
+        # SMB mode: update active strategies based on current score
+        if config.ACTIVE_STRATEGY == "SMB":
+            self._update_smb_strategies()
+
         can_enter, reason = self.risk.can_enter(len(self.open_positions))
         if not can_enter:
             log.info(f"No entry: {reason}")
@@ -226,7 +337,6 @@ class OptionsAgent:
                     position["realized_pnl"] = pnl
                     self.open_positions.remove(position)
                     self.risk.record_exit(position, pnl)
-                    state_writer.append_closed_trade(position, pnl, reason)
                     state_writer.write_positions(self.open_positions)
                     self.notifier.trade_exited(position, reason, pnl)
                     log.info(f"Position closed: reason={reason} pnl=${pnl:.2f}")
@@ -246,34 +356,104 @@ class OptionsAgent:
         In DRY_RUN these are approximations; in live mode actual fills are in the trade object.
         """
         try:
-            net_credit = float(position.get("net_credit") or 0)
-            max_profit = float(position.get("max_profit") or net_credit)
+            strat = position.get("strategy", "")
             multiplier = 100  # SPX options = $100/point
+            qty = position.get("qty", 1)
 
-            if "profit_target" in reason:
-                # Closed at 50% of max profit
-                return round(max_profit * 0.50 * multiplier * position.get("qty", 1), 2)
-            elif "stop_loss" in reason:
-                # Closed at 2x credit loss
-                return round(-(net_credit * 2.0) * multiplier * position.get("qty", 1), 2)
-            elif "force_close" in reason or "market_closed" in reason:
-                # Closed at end of day — assume small profit (80% of credit)
-                return round(net_credit * 0.80 * multiplier * position.get("qty", 1), 2)
-            elif "price_below" in reason or "price_above" in reason:
-                # Breached a strike — take moderate loss
-                return round(-(net_credit * 1.5) * multiplier * position.get("qty", 1), 2)
-            elif "max_dte" in reason:
-                # Time exit — roughly 60% of credit
-                return round(net_credit * 0.60 * multiplier * position.get("qty", 1), 2)
+            # Debit strategies: CALL_SPREAD, LONG_CALL, CALENDAR_SPREAD
+            if strat == "CALL_SPREAD":
+                net_debit = float(position.get("net_debit") or 0)
+                max_profit = float(position.get("max_profit") or net_debit)
+
+                if "profit_target" in reason:
+                    return round(max_profit * config.CALL_SPREAD.profit_target_pct * multiplier * qty, 2)
+                elif "stop_loss" in reason:
+                    return round(-(net_debit * config.CALL_SPREAD.stop_loss_pct) * multiplier * qty, 2)
+                elif "max_dte" in reason or "force_close" in reason:
+                    return round(-(net_debit * 0.30) * multiplier * qty, 2)
+                else:
+                    return 0.0
+
+            elif strat == "LONG_CALL":
+                premium = float(position.get("premium") or 0)
+
+                if "profit_target" in reason:
+                    return round(premium * config.LONG_CALL.profit_target_pct * multiplier * qty, 2)
+                elif "stop_loss" in reason:
+                    return round(-(premium * config.LONG_CALL.stop_loss_pct) * multiplier * qty, 2)
+                elif "max_dte" in reason or "force_close" in reason:
+                    return round(-(premium * 0.40) * multiplier * qty, 2)
+                else:
+                    return 0.0
+
+            elif strat == "CALENDAR_SPREAD":
+                net_debit = float(position.get("net_debit") or 0)
+
+                if "profit_target" in reason:
+                    return round(net_debit * config.CALENDAR_SPREAD.profit_target_pct * multiplier * qty, 2)
+                elif "stop_loss" in reason:
+                    return round(-(net_debit * config.CALENDAR_SPREAD.stop_loss_pct) * multiplier * qty, 2)
+                elif "front_dte" in reason or "force_close" in reason:
+                    return round(-(net_debit * 0.20) * multiplier * qty, 2)
+                else:
+                    return 0.0
+
+            # Credit strategies: BWB, CONDOR, PUT_CREDIT_SPREAD, JADE_LIZARD
             else:
-                return 0.0
+                net_credit = float(position.get("net_credit") or 0)
+                max_profit = float(position.get("max_profit") or net_credit)
+
+                # Use strategy-specific target pcts for profit estimates
+                if strat == "PUT_CREDIT_SPREAD":
+                    profit_pct = config.PUT_CREDIT_SPREAD.profit_target_pct
+                    stop_pct = config.PUT_CREDIT_SPREAD.stop_loss_pct
+                elif strat == "JADE_LIZARD":
+                    profit_pct = config.JADE_LIZARD.profit_target_pct
+                    stop_pct = config.JADE_LIZARD.stop_loss_pct
+                elif strat == "BWB":
+                    profit_pct = config.BWB.profit_target_pct
+                    stop_pct = config.BWB.stop_loss_pct
+                else:  # CONDOR and others
+                    profit_pct = config.CONDOR.profit_target_pct
+                    stop_pct = config.CONDOR.stop_loss_mult
+
+                if "profit_target" in reason:
+                    # BWB profit target is % of max_profit; others are % of net_credit
+                    base = max_profit if strat == "BWB" else net_credit
+                    return round(base * profit_pct * multiplier * qty, 2)
+                elif "stop_loss" in reason:
+                    return round(-(net_credit * stop_pct) * multiplier * qty, 2)
+                elif "force_close" in reason or "market_closed" in reason:
+                    return round(net_credit * 0.80 * multiplier * qty, 2)
+                elif "price_below" in reason or "price_above" in reason:
+                    return round(-(net_credit * stop_pct) * multiplier * qty, 2)
+                elif "max_dte" in reason:
+                    return round(net_credit * 0.60 * multiplier * qty, 2)
+                else:
+                    return 0.0
         except Exception:
             return 0.0
 
     def _get_strategy(self, name: str):
+        """Find strategy by name. In SMB mode, also checks SMB strategy instances."""
         for s in self.strategies:
             if s.name == name:
                 return s
+        # In SMB mode, also check the dedicated SMB strategy instances
+        # (needed when regime changes but positions from other regimes are still open)
+        if config.ACTIVE_STRATEGY == "SMB":
+            smb_map = {
+                "LONG_CALL": "_smb_long_call",
+                "CALL_SPREAD": "_smb_call_spread",
+                "BWB": "_smb_bwb",
+                "CONDOR": "_smb_condor",
+                "PUT_CREDIT_SPREAD": "_smb_put_credit",
+                "CALENDAR_SPREAD": "_smb_calendar",
+                "JADE_LIZARD": "_smb_jade_lizard",
+            }
+            attr = smb_map.get(name)
+            if attr and hasattr(self, attr):
+                return getattr(self, attr)
         return None
 
     # ─── Daily Housekeeping ───────────────────────────────────────────────────
@@ -379,10 +559,28 @@ class OptionsAgent:
 
                 # ── Trading hours: scan + monitor ──
                 if self.is_market_open():
+                    # Proactive connection check before any trading operations
+                    # IBKR may disconnect during the day (especially near 16:50 ET)
+                    if not self.broker.ib.isConnected():
+                        log.warning("Detected IBKR disconnect during trading hours")
+                        if self.broker.ensure_connected():
+                            log.info("Successfully reconnected to IBKR during trading hours")
+                            self.notifier.send("🔌 <b>IBKR Reconnected</b>\nConnection restored during trading hours")
+                        else:
+                            # Can't reconnect - skip this tick but keep running
+                            log.error("Failed to reconnect to IBKR - skipping this trading tick")
+                            if self.open_positions:
+                                self.notifier.error(
+                                    f"IBKR disconnected with {len(self.open_positions)} open positions. "
+                                    f"Will retry reconnect on next tick."
+                                )
+                            time.sleep(30)  # Wait before retry
+                            continue
+
                     # Entry scan every SCAN_INTERVAL_SECS
                     if (
                         self.last_scan_time is None
-                        or (now - self.last_scan_time).seconds >= config.SCAN_INTERVAL_SECS
+                        or (now - self.last_scan_time).total_seconds() >= config.SCAN_INTERVAL_SECS
                     ):
                         self.scan_for_entries()
                         self.last_scan_time = now
@@ -390,7 +588,7 @@ class OptionsAgent:
                     # Monitor open positions every MONITOR_INTERVAL_SECS
                     if (
                         self.last_monitor_time is None
-                        or (now - self.last_monitor_time).seconds >= config.MONITOR_INTERVAL_SECS
+                        or (now - self.last_monitor_time).total_seconds() >= config.MONITOR_INTERVAL_SECS
                     ):
                         self.monitor_positions()
                         self.last_monitor_time = now
@@ -398,7 +596,7 @@ class OptionsAgent:
                 # Write portfolio data every 5 minutes
                 if (
                     self.last_portfolio_write is None
-                    or (now - self.last_portfolio_write).seconds >= 300
+                    or (now - self.last_portfolio_write).total_seconds() >= 300
                 ):
                     try:
                         spx_price = None

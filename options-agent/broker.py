@@ -15,6 +15,9 @@ import config
 
 log = logging.getLogger("broker")
 
+# Track whether we're using delayed or live data
+_USING_DELAYED_DATA = True  # Default to delayed (type 3)
+
 
 class IBKRBroker:
     def __init__(self):
@@ -24,6 +27,7 @@ class IBKRBroker:
     # ─── Connection ──────────────────────────────────────────────────────────
 
     def connect(self, retries: int = 10, delay: int = 15):
+        global _USING_DELAYED_DATA
         for attempt in range(1, retries + 1):
             try:
                 log.info(f"Connecting to IBKR {config.IBKR_HOST}:{config.IBKR_PORT} (attempt {attempt})")
@@ -35,10 +39,33 @@ class IBKRBroker:
                     readonly=False,
                 )
                 self._connected = True
-                # Use delayed data globally — no live subscription needed.
-                # Change to reqMarketDataType(1) if live subscriptions are added.
-                self.ib.reqMarketDataType(3)
-                log.info(f"Connected. Account: {self.ib.managedAccounts()}")
+
+                # Set market data type from config.
+                # Type 1 = Live (requires subscription), Type 3 = Delayed (free)
+                mkt_data_type = getattr(config, 'MARKET_DATA_TYPE', 3)
+                self.ib.reqMarketDataType(mkt_data_type)
+                _USING_DELAYED_DATA = (mkt_data_type == 3)
+
+                mkt_type_name = {1: "LIVE", 2: "FROZEN", 3: "DELAYED", 4: "DELAYED_FROZEN"}.get(mkt_data_type, "UNKNOWN")
+                if _USING_DELAYED_DATA:
+                    log.warning(
+                        f"Connected. Account: {self.ib.managedAccounts()} | "
+                        f"Market data: {mkt_type_name} (type {mkt_data_type}) — using theoretical pricing via Black-Scholes. "
+                        f"For live trading, set MARKET_DATA_TYPE=1 with proper subscriptions."
+                    )
+                else:
+                    log.info(
+                        f"Connected. Account: {self.ib.managedAccounts()} | "
+                        f"Market data: {mkt_type_name} (type {mkt_data_type})"
+                    )
+
+                # Remove old handler if exists (prevents accumulation on reconnect)
+                try:
+                    self.ib.errorEvent -= self._on_error
+                except:
+                    pass
+                self.ib.errorEvent += self._on_error
+
                 return True
             except Exception as e:
                 log.warning(f"Connect attempt {attempt} failed: {e}")
@@ -46,32 +73,98 @@ class IBKRBroker:
                     time.sleep(delay)
         raise ConnectionError("Could not connect to IBKR gateway after all retries")
 
+    def _on_error(self, reqId: int, errorCode: int, errorString: str, contract):
+        """Handle IBKR error events, including market data warnings."""
+        # 10167: Delayed market data (not a real error, just informational)
+        if errorCode == 10167:
+            # Only log once per session, not every request
+            if not getattr(self, '_delayed_data_logged', False):
+                log.info(f"IBKR: Using delayed market data (code 10167) — this is expected")
+                self._delayed_data_logged = True
+            return
+
+        # 2104/2106/2158: Market data farm connection status (informational)
+        if errorCode in (2104, 2106, 2158):
+            log.debug(f"IBKR market data status: {errorString}")
+            return
+
+        # 1100/1101/1102: Connection lost/restored
+        if errorCode in (1100, 1101, 1102):
+            log.warning(f"IBKR connection event: {errorCode} — {errorString}")
+            if errorCode == 1100:
+                self._connected = False
+            return
+
+        # 504: Not connected
+        if errorCode == 504:
+            log.error(f"IBKR not connected: {errorString}")
+            self._connected = False
+            return
+
+        # Log other errors
+        if errorCode >= 2000:
+            log.debug(f"IBKR warning {errorCode}: {errorString}")
+        else:
+            log.error(f"IBKR error {errorCode}: {errorString}")
+
     def ensure_connected(self) -> bool:
-        """Reconnect if disconnected — but only during market hours."""
+        """
+        Reconnect if disconnected — but only during market hours.
+
+        IBKR typically disconnects around 16:50-17:00 ET daily for maintenance.
+        This method avoids reconnect attempts outside trading hours to prevent
+        connection thrashing.
+        """
         if self.ib.isConnected():
             return True
-        # Don't reconnect outside market hours (avoids post-close thrashing)
+
         now = datetime.now()
-        if now.weekday() >= 5:  # weekend
-            log.info("Weekend — skipping reconnect")
+
+        # Don't reconnect on weekends
+        if now.weekday() >= 5:
+            log.debug("Weekend — skipping reconnect")
             return False
+
         time_str = now.strftime("%H:%M")
+
+        # Don't reconnect outside market hours (09:20 - 16:15 ET)
+        # This prevents connection thrashing after the daily IBKR disconnect (~16:50 ET)
         if not ("09:20" <= time_str <= "16:15"):
-            log.info(f"Outside market hours ({time_str}) — skipping reconnect")
+            log.debug(f"Outside market hours ({time_str} ET) — skipping reconnect")
             return False
-        log.warning("IBKR disconnected — reconnecting...")
+
+        # End-of-day window: if close to market close, skip reconnect
+        # IBKR often disconnects 16:45-17:00 for maintenance
+        if time_str >= "16:10":
+            log.info(f"Near market close ({time_str} ET) — skipping reconnect, will reconnect tomorrow")
+            return False
+
+        log.warning("IBKR disconnected — attempting reconnect...")
         self._connected = False
+        self._delayed_data_logged = False  # Reset so we log delayed data warning again
+
         try:
-            self.connect()
+            # Use shorter retry count for reconnects during trading (faster failure)
+            self.connect(retries=3, delay=10)
+            log.info("Reconnected successfully during trading hours")
             return True
-        except ConnectionError:
-            log.error("Reconnect failed")
+        except ConnectionError as e:
+            log.error(f"Reconnect failed: {e}")
             return False
 
     def disconnect(self):
         if self.ib.isConnected():
+            try:
+                self.ib.errorEvent -= self._on_error
+            except Exception:
+                pass  # Handler might not be registered
             self.ib.disconnect()
             self._connected = False
+            log.info("Disconnected from IBKR")
+
+    def is_using_delayed_data(self) -> bool:
+        """Return True if using delayed market data (type 3)."""
+        return _USING_DELAYED_DATA
 
     # ─── Market Data ─────────────────────────────────────────────────────────
 
@@ -281,30 +374,16 @@ class IBKRBroker:
         )
         order.orderComboLegs = []  # let IBKR compute leg prices
 
+        if not self.ib.isConnected():
+            log.error(f"Cannot place order — not connected to IBKR")
+            return None
+
         if config.DRY_RUN:
             log.info(f"[DRY RUN] Would place order: {tag} qty={qty} limit={limit_price}")
             return None
 
         trade = self.ib.placeOrder(combo, order)
         log.info(f"Placed order [{tag}]: orderId={trade.order.orderId} limit={limit_price}")
-        self.ib.sleep(1)
-        return trade
-
-    def place_single_order(
-        self,
-        contract: Contract,
-        action: str,
-        qty: int,
-        limit_price: float,
-        tif: str = "DAY",
-        tag: str = "",
-    ):
-        order = LimitOrder(action=action, totalQuantity=qty, lmtPrice=round(limit_price, 2), tif=tif)
-        if config.DRY_RUN:
-            log.info(f"[DRY RUN] Would place {action} order: {tag} qty={qty} limit={limit_price}")
-            return None
-        trade = self.ib.placeOrder(contract, order)
-        log.info(f"Placed {action} order [{tag}]: orderId={trade.order.orderId}")
         self.ib.sleep(1)
         return trade
 
@@ -346,3 +425,50 @@ class IBKRBroker:
     def qualify(self, contract: Contract) -> Contract:
         self.ib.qualifyContracts(contract)
         return contract
+
+    def _get_underlying_contract(self):
+        """Return qualified underlying contract (used by SMBScorer for historical data)."""
+        from ib_insync import Index, Stock
+        symbol = config.UNDERLYING
+        contract = Index(symbol, "CBOE") if symbol == "SPX" else Stock(symbol, "SMART", "USD")
+        self.ib.qualifyContracts(contract)
+        return contract
+
+    def place_single_order(
+        self,
+        con_id: int,
+        right: str,
+        strike: float,
+        expiration: str,
+        action: str,
+        qty: int = 1,
+        limit_price: float = 0.0,
+        tag: str = "",
+    ):
+        """Place a single-leg option order (used by LongCallStrategy)."""
+        opt = Option(config.UNDERLYING, expiration, strike, right, config.EXCHANGE)
+        opt.conId = con_id
+        try:
+            self.ib.qualifyContracts(opt)
+        except Exception:
+            pass  # already qualified at entry time
+
+        order = LimitOrder(
+            action=action,
+            totalQuantity=qty,
+            lmtPrice=round(limit_price, 2),
+            tif="DAY",
+        )
+
+        if not self.ib.isConnected():
+            log.error(f"Cannot place order — not connected to IBKR")
+            return None
+
+        if config.DRY_RUN:
+            log.info(f"[DRY RUN] Would place {action} {qty}x {strike}{right} @ {limit_price} [{tag}]")
+            return None
+
+        trade = self.ib.placeOrder(opt, order)
+        log.info(f"Placed single order [{tag}]: {action} {qty}x {strike}{right} @ {limit_price} orderId={trade.order.orderId}")
+        self.ib.sleep(1)
+        return trade

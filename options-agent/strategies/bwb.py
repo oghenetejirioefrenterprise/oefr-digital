@@ -134,9 +134,13 @@ class BWBStrategy:
 
         if not best:
             log.warning(
-                f"No valid BWB configuration found "
-                f"(IV={iv*100:.1f}%, mid_strike={strike_mid}, price={price:.0f})"
+                f"BWB SKIPPED: No valid configuration found "
+                f"(IV={iv*100:.1f}%, mid_strike={strike_mid}, price={price:.0f}). "
+                f"In low IV environments, BWB often cannot generate net credits. "
+                f"Consider using PUT_CREDIT_SPREAD strategy directly instead."
             )
+            # NOTE: BWB does NOT auto-fallback to PUT_CREDIT_SPREAD.
+            # If you want both strategies, set ACTIVE_STRATEGY=ALL or use SMB mode.
             return None
 
         log.info(
@@ -175,14 +179,19 @@ class BWBStrategy:
 
     def enter(self) -> Optional[dict]:
         if not self.should_enter():
+            log.info("BWB: Entry conditions not met (IV rank filter)")
             return None
 
         expiration = self.find_expiration()
         if not expiration:
+            log.info("BWB: No suitable expiration found")
             return None
 
         legs_info = self.build_legs(expiration)
         if not legs_info:
+            # build_legs already logs the specific reason (e.g., no valid credit config)
+            # BWB does NOT fallback to other strategies - returns None cleanly
+            log.info("BWB: No valid leg configuration found - no entry")
             return None
 
         # 3-leg BWB combo: buy 1x high, sell 2x mid, buy 1x low
@@ -236,10 +245,16 @@ class BWBStrategy:
 
         # Entry-day guard: never force-close on the day we entered
         entry_date = datetime.fromisoformat(position["entry_time"]).date()
+        is_entry_day = (today == entry_date)
 
-        # DTE force-close (not on entry day)
-        if today != entry_date and dte <= BWB.max_dte_hold:
+        # DTE force-close (NEVER on entry day - prevents same-day open/close bug)
+        if not is_entry_day and dte <= BWB.max_dte_hold:
+            log.info(f"BWB exit: DTE threshold reached ({dte} DTE <= {BWB.max_dte_hold})")
             return True, f"max_dte_hold ({dte} DTE)"
+
+        # On entry day, skip DTE-based exit
+        if is_entry_day and dte <= BWB.max_dte_hold:
+            log.debug(f"BWB: Entry-day guard active, skipping DTE exit check ({dte} DTE)")
 
         # Price below broken wing = at or near max loss
         if current_price <= position["strike_low"]:

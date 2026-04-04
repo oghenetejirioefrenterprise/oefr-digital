@@ -97,6 +97,9 @@ class CondorStrategy:
             opt = Option(config.UNDERLYING, expiration, strike, right, config.EXCHANGE)
             try:
                 self.broker.ib.qualifyContracts(opt)
+                if opt.conId == 0:
+                    log.error(f"qualifyContracts returned conId=0 for {strike}{right} — contract not found")
+                    return None
                 opts.append(opt)
             except Exception as e:
                 log.error(f"Could not qualify {strike}{right}: {e}")
@@ -116,9 +119,21 @@ class CondorStrategy:
             "iv": iv,
         }
 
-    def enter(self) -> Optional[dict]:
+    def should_enter(self) -> bool:
+        """Check trend day filter before entry."""
         if not self.is_entry_window():
-            log.info(f"Not in entry window ({CONDOR.entry_time_start}-{CONDOR.entry_time_end})")
+            return False
+        # Trend day check
+        if hasattr(self, 'agent') and self.agent and hasattr(self.agent, 'current_trend_score'):
+            trend = self.agent.current_trend_score
+            if trend and trend.get('is_trend_day'):
+                log.info(f"CONDOR skip: Trend day detected (score={trend['score']})")
+                return False
+        return True
+
+    def enter(self) -> Optional[dict]:
+        if not self.should_enter():
+            log.info(f"CONDOR entry blocked")
             return None
 
         expiration = self.find_0dte_expiration()
@@ -136,7 +151,7 @@ class CondorStrategy:
             (legs_info["con_lc"], 1, "BUY"),
         ]
 
-        limit_price = legs_info["net_credit"] - 0.05  # positive = credit we want to receive
+        limit_price = -(legs_info["net_credit"] - 0.05)  # negative = credit to us
 
         trade = self.broker.place_combo_order(
             legs=legs,

@@ -264,6 +264,165 @@ class IBKRBroker:
             log.warning(f"Failed to fetch daily volume history for {symbol}: {e}")
             return []
 
+    def get_market_internals(self) -> dict:
+        """Fetch NYSE market internals: TICK-NYSE, ADD, UVOL, DVOL.
+
+        Uses Index contracts for each internal.
+        Returns dict with keys: tick, add, uvol, dvol.
+        Returns empty dict on failure.
+        """
+        try:
+            contracts = {
+                'tick': Index('TICK-NYSE', 'NYSE'),
+                'add': Index('ADD', 'NYSE'),
+                'uvol': Index('UVOL', 'NYSE'),
+                'dvol': Index('DVOL', 'NYSE'),
+            }
+
+            # Qualify all contracts
+            contract_list = list(contracts.values())
+            self.ib.qualifyContracts(*contract_list)
+
+            # Request market data for each
+            tickers = {}
+            for name, contract in contracts.items():
+                ticker = self.ib.reqMktData(contract, '', False, False)
+                tickers[name] = (ticker, contract)
+
+            self.ib.sleep(3)
+
+            def _safe(v):
+                try:
+                    f = float(v)
+                    if f != f:  # NaN
+                        return 0.0
+                    return f
+                except (TypeError, ValueError):
+                    return 0.0
+
+            result = {}
+            for name, (ticker, contract) in tickers.items():
+                price = _safe(ticker.last)
+                if price == 0:
+                    price = _safe(ticker.close)
+                if price == 0:
+                    price = _safe(ticker.bid)
+                result[name] = price
+                self.ib.cancelMktData(contract)
+
+            log.info(
+                f"Market internals: TICK={result.get('tick', 0):.0f} "
+                f"ADD={result.get('add', 0):.0f} "
+                f"UVOL={result.get('uvol', 0):.0f} DVOL={result.get('dvol', 0):.0f}"
+            )
+            return result
+
+        except Exception as e:
+            log.warning(f"Failed to fetch market internals: {e}")
+            return {}
+
+    def get_etf_prices(self, symbols: list) -> dict:
+        """Fetch current price and today's open for multiple ETFs.
+
+        Uses Stock contracts with SMART exchange.
+        Returns dict mapping symbol -> {'price': float, 'open': float, 'change_pct': float}
+        Returns empty dict on failure.
+        """
+        if not symbols:
+            return {}
+
+        try:
+            # Create and qualify contracts in batch
+            contracts = [Stock(sym, 'SMART', 'USD') for sym in symbols]
+            self.ib.qualifyContracts(*contracts)
+
+            # Request market data for each
+            tickers = []
+            for contract in contracts:
+                ticker = self.ib.reqMktData(contract, '', False, False)
+                tickers.append((contract, ticker))
+                self.ib.sleep(0.3)  # Small delay to avoid overwhelming API
+
+            self.ib.sleep(3)
+
+            def _safe(v):
+                try:
+                    f = float(v)
+                    if f != f:
+                        return 0.0
+                    return f
+                except (TypeError, ValueError):
+                    return 0.0
+
+            result = {}
+            for i, (contract, ticker) in enumerate(tickers):
+                sym = symbols[i]
+                price = _safe(ticker.last)
+                if price == 0:
+                    price = _safe(ticker.close)
+                if price == 0:
+                    price = _safe(ticker.bid)
+
+                open_price = _safe(ticker.open)
+
+                change_pct = 0.0
+                if open_price > 0 and price > 0:
+                    change_pct = ((price - open_price) / open_price) * 100
+
+                result[sym] = {
+                    'price': round(price, 2),
+                    'open': round(open_price, 2),
+                    'change_pct': round(change_pct, 3),
+                }
+                self.ib.cancelMktData(contract)
+
+            log.info(f"Fetched ETF prices for {len(result)}/{len(symbols)} symbols")
+            return result
+
+        except Exception as e:
+            log.warning(f"Failed to fetch ETF prices: {e}")
+            return {}
+
+    def get_opening_range(self, symbol: str = None) -> dict:
+        """Fetch the high/low of the first 30 minutes of trading.
+
+        Uses reqHistoricalData with 1-min bars from 9:30-10:00.
+        Returns dict with 'high' and 'low'. Empty dict on failure.
+        """
+        symbol = symbol or config.UNDERLYING
+        try:
+            contract = Index(symbol, "CBOE") if symbol == "SPX" else Stock(symbol, "SMART", "USD")
+            self.ib.qualifyContracts(contract)
+
+            bars = self.ib.reqHistoricalData(
+                contract,
+                endDateTime="",
+                durationStr="1800 S",  # 30 minutes
+                barSizeSetting="1 min",
+                whatToShow="TRADES",
+                useRTH=True,
+            )
+            if not bars:
+                log.warning(f"No opening range bars returned for {symbol}")
+                return {}
+
+            highs = [b.high for b in bars if b.high > 0]
+            lows = [b.low for b in bars if b.low > 0]
+
+            if not highs or not lows:
+                return {}
+
+            result = {
+                'high': max(highs),
+                'low': min(lows),
+            }
+            log.info(f"Opening range for {symbol}: high={result['high']:.2f} low={result['low']:.2f}")
+            return result
+
+        except Exception as e:
+            log.warning(f"Failed to fetch opening range for {symbol}: {e}")
+            return {}
+
     def get_iv_rank(self, symbol: str = None) -> float:
         """
         Approximate IV rank using 52-week high/low of HV30.

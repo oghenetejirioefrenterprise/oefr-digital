@@ -20,11 +20,12 @@ def calculate_position_size(
     spread_width: float,
     credit_received: float,
     volume_sizing_multiplier: float = 1.0,
+    trend_sizing_multiplier: float = 1.0,
 ) -> int:
     """
     Calculate number of contracts based on risk budget.
     Automatically reduces sizing on high-impact economic event days (FOMC, CPI, NFP, PCE).
-    Applies volume-based sizing adjustment when provided.
+    Applies volume-based and trend-based sizing adjustments when provided.
 
     Args:
         capital: Account capital in dollars (e.g. 5000)
@@ -33,6 +34,7 @@ def calculate_position_size(
         credit_received: Credit received per share (e.g. 0.50 for $50 credit)
             For debit strategies, pass 0 and use net_debit as spread_width.
         volume_sizing_multiplier: Volume-based sizing adjustment (0.5-1.5, default 1.0)
+        trend_sizing_multiplier: Trend day sizing adjustment (0.5-1.0, default 1.0)
 
     Returns:
         Number of contracts to trade (min 1, max 5)
@@ -52,6 +54,10 @@ def calculate_position_size(
     vol_mult = max(0.5, min(volume_sizing_multiplier, 1.5))
     risk_per_trade *= vol_mult
 
+    # Apply trend day sizing multiplier (clamped to 0.5-1.0)
+    trend_mult = max(0.5, min(trend_sizing_multiplier, 1.0))
+    risk_per_trade *= trend_mult
+
     qty = math.floor(risk_per_trade / max_loss_per_contract)
     qty = max(1, min(qty, 5))  # floor 1, cap 5
 
@@ -60,6 +66,8 @@ def calculate_position_size(
         notes.append(f"econ_mult={econ_mult}")
     if vol_mult != 1.0:
         notes.append(f"vol_mult={vol_mult:.2f}")
+    if trend_mult != 1.0:
+        notes.append(f"trend_mult={trend_mult:.2f}")
     note_str = f" [{', '.join(notes)}]" if notes else ""
     log.info(
         f"Position size: capital=${capital:.0f} risk={max_risk_pct*100:.1f}% "

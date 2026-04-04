@@ -200,6 +200,44 @@ VOLUME = VolumeConfig(
     log_indicators=os.getenv("VOL_LOG_INDICATORS", "true").lower() == "true",
 )
 
+# ─── Trend Day Detection Config ─────────────────────────────────────────────
+@dataclass
+class TrendDayConfig:
+    enabled: bool = True                    # Master switch
+    # Scoring thresholds
+    trend_day_threshold: int = 65           # Score >= this = trend day detected
+    high_conviction_threshold: int = 80     # Score >= this = buy convexity
+    reduce_size_threshold: int = 50         # Score >= this = half position size
+    # Market internals
+    vol_ratio_extreme: float = 4.0          # Vol ratio above this = extreme
+    ad_extreme: int = 2000                  # A/D above this = extreme
+    tick_extreme: int = 800                 # Sustained TICK above this = extreme
+    # ETF filters
+    etf_offense: List[str] = field(default_factory=lambda: ['XLK', 'XLY', 'XLC', 'SMH'])
+    etf_defense: List[str] = field(default_factory=lambda: ['XLU', 'XLP', 'XLV', 'TLT'])
+    etf_spread_threshold: float = 0.5       # Offense-defense spread > this % = significant
+    # Opening range
+    opening_range_minutes: int = 30         # Minutes after open to set range
+    # Behavior
+    block_premium_selling: bool = True      # Block all premium sales on trend days
+    enable_convexity_buying: bool = False   # Buy OTM options on high conviction (Phase 2)
+    log_internals: bool = True              # Log internals each scan cycle
+
+TREND_DAY = TrendDayConfig(
+    enabled=os.getenv("TREND_ENABLED", "true").lower() == "true",
+    trend_day_threshold=int(os.getenv("TREND_THRESHOLD", "65")),
+    high_conviction_threshold=int(os.getenv("TREND_HIGH_CONVICTION", "80")),
+    reduce_size_threshold=int(os.getenv("TREND_REDUCE_SIZE", "50")),
+    vol_ratio_extreme=float(os.getenv("TREND_VOL_RATIO_EXTREME", "4.0")),
+    ad_extreme=int(os.getenv("TREND_AD_EXTREME", "2000")),
+    tick_extreme=int(os.getenv("TREND_TICK_EXTREME", "800")),
+    etf_spread_threshold=float(os.getenv("TREND_ETF_SPREAD", "0.5")),
+    opening_range_minutes=int(os.getenv("TREND_OR_MINUTES", "30")),
+    block_premium_selling=os.getenv("TREND_BLOCK_PREMIUM", "true").lower() == "true",
+    enable_convexity_buying=os.getenv("TREND_CONVEXITY", "false").lower() == "true",
+    log_internals=os.getenv("TREND_LOG_INTERNALS", "true").lower() == "true",
+)
+
 # ─── SMB Scorer Config ────────────────────────────────────────────────────────
 @dataclass
 class SMBConfig:

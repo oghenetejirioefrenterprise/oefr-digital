@@ -13,6 +13,7 @@ import config
 from config import BWB
 from broker import IBKRBroker
 from pricing import black_scholes, get_broker_iv, get_strike_from_delta, dte_to_years
+from sizing import calculate_position_size
 
 log = logging.getLogger("strategy.bwb")
 
@@ -201,13 +202,21 @@ class BWBStrategy:
             (legs_info["con_low"],  1, "BUY"),
         ]
 
+        # Dynamic position sizing (BWB: spread_width = lower_wing, credit = net_credit)
+        qty = calculate_position_size(
+            capital=config.ACCOUNT_CAPITAL,
+            max_risk_pct=config.MAX_RISK_PER_TRADE_PCT,
+            spread_width=legs_info["lower_wing"],
+            credit_received=legs_info["net_credit"],
+        )
+
         # Limit price: net credit we want (negative = credit to us)
         limit_price = -(legs_info["net_credit"] - 0.05)
 
         trade = self.broker.place_combo_order(
             legs=legs,
             limit_price=limit_price,
-            qty=BWB.qty,
+            qty=qty,
             tag=f"BWB-{expiration}",
         )
 
@@ -226,7 +235,7 @@ class BWBStrategy:
             "dte": legs_info["dte"],
             "entry_underlying": legs_info["underlying_price"],
             "entry_time": datetime.now().isoformat(),
-            "qty": BWB.qty,
+            "qty": qty,
             "status": "open",
             "trade": trade,
         }

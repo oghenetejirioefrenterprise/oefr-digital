@@ -1,24 +1,46 @@
-version: '3.8'
-
 services:
+  ib-gateway-paper:
+    build:
+      context: .
+      dockerfile: Dockerfile.ibgateway-paper
+    container_name: ib-gateway-paper
+    restart: unless-stopped
+    environment:
+      - TWS_USERID=${IBKR_USERNAME:?Set IBKR_USERNAME in .env}
+      - TWS_PASSWORD=${IBKR_PASSWORD:?Set IBKR_PASSWORD in .env}
+      - TRADING_MODE=paper
+      - READ_ONLY_API=no
+      - EXISTING_SESSION_DETECTED_ACTION=primaryoverride
+      - VNC_SERVER_PASSWORD=${VNC_SERVER_PASSWORD:-changeme}
+      - TWS_ACCEPT_INCOMING=accept
+    ports:
+      - "4005:4004"   # Paper API (gateway binds paper on 4004 internally)
+      - "5902:5900"   # VNC for paper gateway
+    networks:
+      - stockalert-network
+
   options-agent:
     build: .
     container_name: options-agent
     restart: unless-stopped
+    depends_on:
+      - ib-gateway-paper
     environment:
-      # IBKR — points to the existing ib-gateway container
-      - IBKR_HOST=${IBKR_HOST:-ib-gateway}
-      - IBKR_PORT=${IBKR_PORT:-4003}
-      - IBKR_CLIENT_ID=${IBKR_CLIENT_ID:-20}
+      # IBKR — points to paper gateway
+      - IBKR_HOST=${IBKR_HOST:-ib-gateway-paper}
+      - IBKR_PORT=${IBKR_PORT:-4004}
+      - IBKR_CLIENT_ID=${IBKR_CLIENT_ID:-30}
 
       # Strategy
       - UNDERLYING=${UNDERLYING:-SPX}
       - ACTIVE_STRATEGY=${ACTIVE_STRATEGY:-BWB}
 
-      # Risk
-      - MAX_CONCURRENT=${MAX_CONCURRENT:-2}
-      - MAX_DAILY_LOSS=${MAX_DAILY_LOSS:-500}
+      # Risk — backtest-optimized defaults
+      - MAX_CONCURRENT=${MAX_CONCURRENT:-6}
+      - MAX_DAILY_LOSS=${MAX_DAILY_LOSS:-1500}
       - MAX_POSITION_RISK=${MAX_POSITION_RISK:-2500}
+      - ACCOUNT_CAPITAL=${ACCOUNT_CAPITAL:-5000}
+      - MAX_RISK_PER_TRADE_PCT=${MAX_RISK_PER_TRADE_PCT:-0.03}
 
       # Timing
       - SCAN_INTERVAL=${SCAN_INTERVAL:-60}
@@ -29,17 +51,39 @@ services:
       - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
 
       # Safety — set DRY_RUN=true to test without live orders
-      - DRY_RUN=${DRY_RUN:-false}
+      - DRY_RUN=${DRY_RUN:-true}
+
+      # Market data: 1=Live (requires subscription), 3=Delayed (free)
+      - MARKET_DATA_TYPE=${MARKET_DATA_TYPE:-1}
 
       - LOG_LEVEL=${LOG_LEVEL:-INFO}
       - TZ=America/New_York
+
+      # Trend Day Detection (defaults are fine — uncomment to override)
+      # - TREND_ENABLED=true
+      # - TREND_THRESHOLD=65
+      # - TREND_HIGH_CONVICTION=80
+      # - TREND_REDUCE_SIZE=50
+      # - TREND_VOL_RATIO_EXTREME=4.0
+      # - TREND_AD_EXTREME=2000
+      # - TREND_TICK_EXTREME=800
+      # - TREND_ETF_SPREAD=0.5
+      # - TREND_OR_MINUTES=30
+      # - TREND_BLOCK_PREMIUM=true
+      # - TREND_CONVEXITY=false
+      # - TREND_LOG_INTERNALS=true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import json,sys; data=json.load(open('/app/data/heartbeat.json')); sys.exit(0)"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
     volumes:
       - ./data:/app/data
       - ./logs:/app/logs
     networks:
       # Must be on the same network as ib-gateway
       - stockalert-network
-    depends_on: []  # ib-gateway is in entryexpert stack — just needs network
 
   options-dashboard:
     build:

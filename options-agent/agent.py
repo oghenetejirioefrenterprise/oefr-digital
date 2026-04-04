@@ -38,6 +38,7 @@ from holidays import is_market_holiday
 from econ_calendar import get_todays_events, is_high_impact_day, get_sizing_multiplier
 from learnings import should_skip_entry, load_learnings
 from indicators import VolumeIndicators
+from trend_detector import TrendDayDetector
 
 # ─── Logging setup ──────────────────────────────────────────────────────────
 os.makedirs(config.LOG_DIR, exist_ok=True)
@@ -84,6 +85,12 @@ class OptionsAgent:
         self.current_volume_zscore = None
         self.current_volume_regime = None
         self.current_volume_signal = None
+
+        # Trend day detection
+        self.trend_detector = TrendDayDetector(self.broker)
+        self.current_trend_score = None
+        self.trend_sizing_multiplier = 1.0
+        self._trend_reset_date = None
 
         # Strategy instances
         # DISABLED (backtest-verified DANGEROUS/REJECT): BWB, CONDOR, CALENDAR_SPREAD, LONG_CALL, JADE_LIZARD
@@ -406,6 +413,73 @@ class OptionsAgent:
 
             except Exception as e:
                 log.warning(f"Volume indicator calculation failed: {e} — proceeding without volume filter")
+
+        # ── Trend Day Detection ──
+        self.current_trend_score = None
+        self.trend_sizing_multiplier = 1.0
+
+        if config.TREND_DAY.enabled and self.is_market_open():
+            try:
+                # Daily reset
+                today_str = date.today().isoformat()
+                if self._trend_reset_date != today_str:
+                    self.trend_detector.reset_daily()
+                    self._trend_reset_date = today_str
+
+                # Fetch internals
+                internals = self.trend_detector.get_market_internals()
+
+                # Set opening range (once, after 10:00 AM)
+                now_time = datetime.now().strftime("%H:%M")
+                if not self.trend_detector.opening_range['set'] and now_time >= "10:00":
+                    or_data = self.broker.get_opening_range()
+                    if or_data:
+                        self.trend_detector.set_opening_range(or_data['high'], or_data['low'])
+
+                # Get sector rotation
+                rotation = self.trend_detector.get_sector_rotation()
+
+                # Calculate trend score
+                trend_result = self.trend_detector.calculate_trend_score()
+                self.current_trend_score = trend_result
+
+                if config.TREND_DAY.log_internals:
+                    log.info(
+                        f"Trend Detection: score={trend_result['score']}/100 "
+                        f"dir={trend_result['direction']} "
+                        f"conf={trend_result['confidence']} "
+                        f"action={trend_result['recommended_action']}"
+                    )
+
+                # Block premium selling if trend day detected
+                if trend_result['is_trend_day'] and config.TREND_DAY.block_premium_selling:
+                    log.warning(
+                        f"TREND DAY DETECTED (score={trend_result['score']}). "
+                        f"Blocking all premium-selling entries."
+                    )
+                    # Build notification message
+                    comp = trend_result.get('components', {})
+                    trend_msg = (
+                        f"⚠️ <b>TREND DAY DETECTED</b>\n\n"
+                        f"Direction: {trend_result['direction'].upper()}\n"
+                        f"Score: {trend_result['score']}/100\n"
+                        f"Confidence: {trend_result['confidence'].upper()}\n\n"
+                        f"<b>Internals:</b> {comp.get('internals_score', 0)}/40\n"
+                        f"<b>ETF Rotation:</b> {comp.get('etf_score', 0)}/30\n"
+                        f"<b>Price Action:</b> {comp.get('price_action_score', 0)}/30\n\n"
+                        f"ACTION: Premium selling BLOCKED"
+                    )
+                    self.notifier.send(trend_msg)
+                    return  # Skip all entries this cycle
+
+                # Reduce size if elevated trend risk
+                if trend_result['score'] >= config.TREND_DAY.reduce_size_threshold:
+                    self.trend_sizing_multiplier = 0.5
+                else:
+                    self.trend_sizing_multiplier = 1.0
+
+            except Exception as e:
+                log.warning(f"Trend detection failed: {e} — proceeding without trend filter")
 
         can_enter, reason = self.risk.can_enter(len(self.open_positions), self.open_positions)
         if not can_enter:

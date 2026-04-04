@@ -47,6 +47,13 @@ class PutCreditSpreadStrategy:
                 log.info(f"PUT_CREDIT_SPREAD skip: SMB score {last['score']} > max {PUT_CREDIT_SPREAD.max_smb_score} (breakout — wrong side for selling puts)")
                 return False
 
+        # Trend day check
+        if self.agent and hasattr(self.agent, 'current_trend_score'):
+            trend = self.agent.current_trend_score
+            if trend and trend.get('is_trend_day'):
+                log.info(f"PUT_CREDIT_SPREAD skip: Trend day detected (score={trend['score']})")
+                return False
+
         # VWAP filter: price should be >= VWAP for put credit spreads (buyers in control)
         # Soft filter — if data unavailable, allow entry with warning
         if self.agent is not None and getattr(self.agent, 'current_vwap_data', None):

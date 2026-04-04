@@ -19,6 +19,11 @@ log = logging.getLogger("broker")
 _USING_DELAYED_DATA = True  # Default to delayed (type 3)
 
 
+def _snap_to_tick(price: float) -> float:
+    """Round price to nearest $0.05 tick (SPX options use nickel pricing)."""
+    return round(round(price / 0.05) * 0.05, 2)
+
+
 class IBKRBroker:
     def __init__(self):
         self.ib = IB()
@@ -41,7 +46,8 @@ class IBKRBroker:
                 self._connected = True
 
                 # Set market data type from config.
-                # Type 1 = Live (requires subscription), Type 3 = Delayed (free)
+                # Type 1 = Live (requires IBKR market data subscription, ~$4.50/month for SPX options)
+                # Type 3 = Delayed (free, 15-min delay — uses Black-Scholes theoretical pricing)
                 mkt_data_type = getattr(config, 'MARKET_DATA_TYPE', 3)
                 self.ib.reqMarketDataType(mkt_data_type)
                 _USING_DELAYED_DATA = (mkt_data_type == 3)
@@ -201,6 +207,62 @@ class IBKRBroker:
             raise ValueError(f"Could not get valid price for {symbol} (got {price})")
         log.info(f"Underlying {symbol} price: {price}")
         return float(price)
+
+    def get_intraday_bars(self, symbol: str = None, duration: str = '1 D', bar_size: str = '5 mins') -> list:
+        """Fetch intraday OHLCV bars for volume/VWAP analysis.
+
+        Uses reqHistoricalData with whatToShow='TRADES'.
+        Returns list of BarData objects with date, open, high, low, close, volume, average fields.
+        Handle errors gracefully — return empty list on failure.
+        """
+        symbol = symbol or config.UNDERLYING
+        try:
+            contract = Index(symbol, "CBOE") if symbol == "SPX" else Stock(symbol, "SMART", "USD")
+            self.ib.qualifyContracts(contract)
+            bars = self.ib.reqHistoricalData(
+                contract,
+                endDateTime="",
+                durationStr=duration,
+                barSizeSetting=bar_size,
+                whatToShow="TRADES",
+                useRTH=True,
+            )
+            if not bars:
+                log.warning(f"No intraday bars returned for {symbol}")
+                return []
+            log.info(f"Fetched {len(bars)} intraday bars for {symbol} ({bar_size}, {duration})")
+            return bars
+        except Exception as e:
+            log.warning(f"Failed to fetch intraday bars for {symbol}: {e}")
+            return []
+
+    def get_daily_volume_history(self, symbol: str = None, lookback_days: int = 25) -> list:
+        """Fetch daily volume bars for z-score calculation.
+
+        Returns list of daily volumes for the past N trading days.
+        Handle errors gracefully — return empty list on failure.
+        """
+        symbol = symbol or config.UNDERLYING
+        try:
+            contract = Index(symbol, "CBOE") if symbol == "SPX" else Stock(symbol, "SMART", "USD")
+            self.ib.qualifyContracts(contract)
+            bars = self.ib.reqHistoricalData(
+                contract,
+                endDateTime="",
+                durationStr=f"{lookback_days} D",
+                barSizeSetting="1 day",
+                whatToShow="TRADES",
+                useRTH=True,
+            )
+            if not bars:
+                log.warning(f"No daily volume history returned for {symbol}")
+                return []
+            volumes = [b.volume for b in bars if b.volume > 0]
+            log.info(f"Fetched {len(volumes)} daily volumes for {symbol} (lookback={lookback_days}D)")
+            return volumes
+        except Exception as e:
+            log.warning(f"Failed to fetch daily volume history for {symbol}: {e}")
+            return []
 
     def get_iv_rank(self, symbol: str = None) -> float:
         """
@@ -366,10 +428,11 @@ class IBKRBroker:
             combo_legs.append(leg)
         combo.comboLegs = combo_legs
 
+        snapped_price = _snap_to_tick(limit_price)
         order = LimitOrder(
             action="BUY",
             totalQuantity=qty,
-            lmtPrice=round(limit_price, 2),
+            lmtPrice=snapped_price,
             tif=tif,
         )
         order.orderComboLegs = []  # let IBKR compute leg prices
@@ -379,11 +442,11 @@ class IBKRBroker:
             return None
 
         if config.DRY_RUN:
-            log.info(f"[DRY RUN] Would place order: {tag} qty={qty} limit={limit_price}")
+            log.info(f"[DRY RUN] Would place order: {tag} qty={qty} limit={snapped_price}")
             return None
 
         trade = self.ib.placeOrder(combo, order)
-        log.info(f"Placed order [{tag}]: orderId={trade.order.orderId} limit={limit_price}")
+        log.info(f"Placed order [{tag}]: orderId={trade.order.orderId} limit={snapped_price}")
         self.ib.sleep(1)
         return trade
 
@@ -453,10 +516,11 @@ class IBKRBroker:
         except Exception:
             pass  # already qualified at entry time
 
+        snapped_price = _snap_to_tick(limit_price)
         order = LimitOrder(
             action=action,
             totalQuantity=qty,
-            lmtPrice=round(limit_price, 2),
+            lmtPrice=snapped_price,
             tif="DAY",
         )
 
@@ -465,10 +529,10 @@ class IBKRBroker:
             return None
 
         if config.DRY_RUN:
-            log.info(f"[DRY RUN] Would place {action} {qty}x {strike}{right} @ {limit_price} [{tag}]")
+            log.info(f"[DRY RUN] Would place {action} {qty}x {strike}{right} @ {snapped_price} [{tag}]")
             return None
 
         trade = self.ib.placeOrder(opt, order)
-        log.info(f"Placed single order [{tag}]: {action} {qty}x {strike}{right} @ {limit_price} orderId={trade.order.orderId}")
+        log.info(f"Placed single order [{tag}]: {action} {qty}x {strike}{right} @ {snapped_price} orderId={trade.order.orderId}")
         self.ib.sleep(1)
         return trade

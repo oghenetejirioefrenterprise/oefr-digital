@@ -22,10 +22,11 @@ UNDERLYING = os.getenv("UNDERLYING", "SPX")          # SPX or SPY
 EXCHANGE   = "CBOE" if UNDERLYING == "SPX" else "SMART"
 
 # ─── Strategy Selection ───────────────────────────────────────────────────────
-# Options: "BWB", "CONDOR", "CALL_SPREAD", "LONG_CALL", "PUT_CREDIT_SPREAD",
-#          "CALENDAR_SPREAD", "JADE_LIZARD",
-#          "BOTH" (BWB+CONDOR), "ALL" (all 7 strategies),
+# Options: "BWB", "CALL_SPREAD", "LONG_CALL", "PUT_CREDIT_SPREAD",
+#          "JADE_LIZARD", "ZERO_DTE_PCS",
+#          "BOTH" (ZERO_DTE_PCS+BWB), "ALL" (all 6 active strategies),
 #          "SMB" (score-driven auto-selection)
+# DISABLED: "CONDOR", "CALENDAR_SPREAD" (kept in codebase, removed from routing)
 ACTIVE_STRATEGY = os.getenv("ACTIVE_STRATEGY", "BWB")
 
 # ─── BWB (Broken Wing Butterfly) Config ───────────────────────────────────────
@@ -35,15 +36,15 @@ class BWBConfig:
     dte_min: int          = 5       # don't enter if DTE < this
     qty: int              = 1       # number of spreads
     # Strike selection (delta-based, hybrid with floor)
-    short_delta_target: float = 0.25   # target delta for short (middle) strikes (absolute)
+    short_delta_target: float = 0.20   # target delta for short (middle) strikes — backtest: 20d Sharpe 1.23
     min_wing_width: int       = 10     # minimum pts between short and broken wing
     min_net_credit: float     = 0.10   # minimum credit per share to enter
-    # Exit rules
-    profit_target_pct: float  = 0.50   # close at 50% of max profit
-    stop_loss_pct: float      = 2.00   # close at 2x premium received
+    # Exit rules — backtest-optimized: faster profit taking, tighter stops
+    profit_target_pct: float  = 0.40   # close at 40% of max profit (was 50% — faster exits, 75% WR validated)
+    stop_loss_pct: float      = 1.50   # close at 1.5x premium received (was 2x — cuts losers quicker)
     max_dte_hold: int         = 1      # force-close if DTE drops to this
     # Entry filters
-    min_iv_rank: float    = 20.0    # don't enter if IV rank < 20
+    min_iv_rank: float    = 15.0    # don't enter if IV rank < 15 (was 20 — more opportunities)
     max_iv_rank: float    = 85.0    # don't enter if IV rank > 85
 
 BWB = BWBConfig()
@@ -62,6 +63,23 @@ class CondorConfig:
     force_close_time: str    = "15:45"  # EOD force-close
 
 CONDOR = CondorConfig()
+
+# ─── 0DTE Put Credit Spread Config (Daily Income Engine — 60% allocation) ────
+@dataclass
+class ZeroDTEPCSConfig:
+    delta_target: float   = 0.10    # sell at ~8-10 delta puts
+    spread_width: int     = 5       # pts wide (5-10 range, start conservative)
+    entry_time_start: str = "09:45" # ET — don't enter before this
+    entry_time_end: str   = "10:30" # ET — entry window
+    # Credit targets (in dollars per contract, not per share)
+    min_credit: float     = 35      # minimum $35 credit per spread ($0.35/share) — lowered from $50, was blocking valid entries
+    max_credit: float     = 150     # maximum $150 credit per spread ($1.50/share)
+    # Exit rules
+    profit_target_pct: float = 0.50  # 50% of credit
+    stop_loss_mult: float    = 2.0   # 2x credit received
+    force_close_time: str    = "15:45"  # EOD force-close
+
+ZERO_DTE_PCS = ZeroDTEPCSConfig()
 
 # ─── Bull Call Spread Config ──────────────────────────────────────────────────
 @dataclass
@@ -161,6 +179,27 @@ class JadeLizardConfig:
 
 JADE_LIZARD = JadeLizardConfig()
 
+# ─── Volume / VWAP Indicator Config ──────────────────────────────────────────
+@dataclass
+class VolumeConfig:
+    enabled: bool = True                  # Master switch for volume/VWAP filtering
+    min_volume_zscore: float = 0.5        # Minimum z-score to allow entry (skip "quiet" markets)
+    vwap_filter_enabled: bool = True      # Require VWAP alignment for directional strategies
+    volume_lookback_days: int = 20        # Days for z-score rolling window
+    intraday_bar_size: str = '5 mins'     # Bar size for VWAP calculation
+    quiet_regime_block: bool = True       # Block all entries during "quiet" regime
+    log_indicators: bool = True           # Log indicator values each scan cycle
+
+VOLUME = VolumeConfig(
+    enabled=os.getenv("VOL_ENABLED", "true").lower() == "true",
+    min_volume_zscore=float(os.getenv("VOL_MIN_ZSCORE", "0.5")),
+    vwap_filter_enabled=os.getenv("VOL_VWAP_FILTER", "true").lower() == "true",
+    volume_lookback_days=int(os.getenv("VOL_LOOKBACK_DAYS", "20")),
+    intraday_bar_size=os.getenv("VOL_BAR_SIZE", "5 mins"),
+    quiet_regime_block=os.getenv("VOL_QUIET_BLOCK", "true").lower() == "true",
+    log_indicators=os.getenv("VOL_LOG_INDICATORS", "true").lower() == "true",
+)
+
 # ─── SMB Scorer Config ────────────────────────────────────────────────────────
 @dataclass
 class SMBConfig:
@@ -172,6 +211,8 @@ SMB = SMBConfig()
 MAX_CONCURRENT_POSITIONS = int(os.getenv("MAX_CONCURRENT", "4"))     # Phase 2: 4 concurrent (was 2)
 MAX_DAILY_LOSS_USD        = float(os.getenv("MAX_DAILY_LOSS", "1000"))  # Phase 2: $1k daily limit (was $500)
 MAX_POSITION_RISK_USD     = float(os.getenv("MAX_POSITION_RISK", "2500"))  # per-trade max loss
+ACCOUNT_CAPITAL           = float(os.getenv("ACCOUNT_CAPITAL", "5000"))  # total account capital for dynamic sizing
+MAX_RISK_PER_TRADE_PCT    = float(os.getenv("MAX_RISK_PER_TRADE_PCT", "0.02"))  # 2% max risk per trade
 
 # ─── Scheduling ───────────────────────────────────────────────────────────────
 # Times in ET (America/New_York)
@@ -201,7 +242,8 @@ def validate_config():
 
     # Validate ACTIVE_STRATEGY
     valid_strategies = {"BWB", "CONDOR", "CALL_SPREAD", "LONG_CALL", "PUT_CREDIT_SPREAD",
-                        "CALENDAR_SPREAD", "JADE_LIZARD", "BOTH", "ALL", "SMB"}
+                        "CALENDAR_SPREAD", "JADE_LIZARD", "ZERO_DTE_PCS", "BOTH", "ALL", "SMB",
+                        "VRP_FILTERED"}
     if ACTIVE_STRATEGY not in valid_strategies:
         errors.append(f"ACTIVE_STRATEGY '{ACTIVE_STRATEGY}' is not valid. Must be one of: {', '.join(sorted(valid_strategies))}")
 

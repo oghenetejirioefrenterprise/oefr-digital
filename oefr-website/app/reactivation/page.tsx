@@ -1,10 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
-
-// Note: metadata export won't work in client components, so we export it separately
-// via a server component wrapper. For now this is standalone.
 
 export default function ReactivationPage() {
   const [coldContacts, setColdContacts] = useState<string>("500");
@@ -346,14 +342,16 @@ export default function ReactivationPage() {
                 ))}
               </ul>
               <a
-                href="mailto:hello@oefrenterprise.com?subject=Reactivation%20Audit%20Request"
+                href="https://buy.stripe.com/6oU3co7P19j1dHd2mG7IY01"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block w-full rounded-xl border border-slate-600 bg-slate-800 px-6 py-3 text-center text-sm font-semibold text-white hover:border-slate-500 hover:text-white transition-colors"
               >
-                Get Your Free Audit
+                Get Started — Pay Setup Fee
               </a>
             </div>
 
-            {/* Plan B — All-in */}
+            {/* Plan B - All-in */}
             <div className="relative rounded-2xl border border-blue-500/50 bg-blue-900/10 p-8">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-4 py-1 text-xs font-semibold text-white">
                 Best Value
@@ -380,17 +378,19 @@ export default function ReactivationPage() {
                 ))}
               </ul>
               <a
-                href="mailto:hello@oefrenterprise.com?subject=Reactivation%20Audit%20Request"
+                href="https://buy.stripe.com/28E3co0mzan5cD9e5o7IY02"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block w-full rounded-xl bg-blue-600 px-6 py-3 text-center text-sm font-semibold text-white hover:bg-blue-500 transition-colors shadow-xl shadow-blue-600/25"
               >
-                Get Your Free Audit →
+                Subscribe Now - &#36;900/mo
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Final CTA ── */}
+      {/* -- Final CTA -- */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/10 to-transparent" />

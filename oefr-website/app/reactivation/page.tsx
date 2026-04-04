@@ -1,16 +1,13 @@
-"use client";
+import ROICalculator from "@/components/ROICalculator";
 
-import { useState } from "react";
+const STRIPE_SETUP_LINK =
+  process.env.NEXT_PUBLIC_STRIPE_REACTIVATION_SETUP_LINK ||
+  "https://buy.stripe.com/6oU3co7P19j1dHd2mG7IY01";
+const STRIPE_MONTHLY_LINK =
+  process.env.NEXT_PUBLIC_STRIPE_REACTIVATION_MONTHLY_LINK ||
+  "https://buy.stripe.com/28E3co0mzan5cD9e5o7IY02";
 
 export default function ReactivationPage() {
-  const [coldContacts, setColdContacts] = useState<string>("500");
-  const [avgClientValue, setAvgClientValue] = useState<string>("1200");
-
-  const contacts = parseInt(coldContacts) || 0;
-  const value = parseFloat(avgClientValue) || 0;
-  const recoveredClients = Math.round(contacts * 0.02);
-  const recoveredRevenue = recoveredClients * value;
-
   return (
     <>
       {/* ── Hero ── */}
@@ -18,8 +15,8 @@ export default function ReactivationPage() {
         {/* Background glow */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-blue-600/10 blur-3xl" />
-          <div className="absolute top-20 left-1/4 w-[300px] h-[300px] rounded-full bg-indigo-600/8 blur-3xl" />
-          <div className="absolute top-20 right-1/4 w-[300px] h-[300px] rounded-full bg-cyan-600/6 blur-3xl" />
+          <div className="absolute top-20 left-1/4 w-[300px] h-[300px] rounded-full bg-indigo-600/[0.08] blur-3xl" />
+          <div className="absolute top-20 right-1/4 w-[300px] h-[300px] rounded-full bg-cyan-600/[0.06] blur-3xl" />
         </div>
 
         <div className="relative mx-auto max-w-4xl text-center">
@@ -47,10 +44,12 @@ export default function ReactivationPage() {
           {/* CTA */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="mailto:hello@oefrenterprise.com?subject=Reactivation%20Audit%20Request"
+              href="https://cal.com/oefr-digital/reactivation-audit"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto rounded-xl bg-blue-600 px-8 py-3.5 text-base font-semibold text-white hover:bg-blue-500 transition-all duration-200 shadow-xl shadow-blue-600/25 hover:shadow-blue-500/35"
             >
-              Get Your Free Reactivation Audit →
+              Book Free Audit Call →
             </a>
           </div>
 
@@ -77,73 +76,7 @@ export default function ReactivationPage() {
       {/* ── ROI Calculator ── */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <div className="rounded-2xl border border-slate-700/60 bg-slate-900/60 p-8 sm:p-10 backdrop-blur">
-            {/* Header */}
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center rounded-full border border-emerald-500/25 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400 mb-4">
-                📊 ROI Calculator
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                How Much Revenue Are You Leaving on the Table?
-              </h2>
-              <p className="mt-2 text-slate-400">Enter your numbers to see your potential recovery</p>
-            </div>
-
-            {/* Inputs */}
-            <div className="grid sm:grid-cols-2 gap-6 mb-8">
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Number of cold contacts
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={coldContacts}
-                  onChange={(e) => setColdContacts(e.target.value)}
-                  placeholder="e.g. 500"
-                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors"
-                />
-                <p className="mt-1 text-xs text-slate-500">Contacts with 90+ days no engagement</p>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Average client value ($)
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={avgClientValue}
-                  onChange={(e) => setAvgClientValue(e.target.value)}
-                  placeholder="e.g. 1200"
-                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors"
-                />
-                <p className="mt-1 text-xs text-slate-500">Annual value per reactivated client</p>
-              </div>
-            </div>
-
-            {/* Result */}
-            <div className="rounded-xl border border-blue-500/30 bg-blue-500/10 p-6 text-center">
-              <p className="text-sm text-blue-300 mb-3">At a conservative 2% reactivation rate:</p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-                <div>
-                  <div className="text-3xl sm:text-4xl font-extrabold text-white">
-                    {recoveredClients.toLocaleString()}
-                  </div>
-                  <div className="text-sm text-slate-400 mt-1">clients reactivated</div>
-                </div>
-                <div className="text-2xl text-slate-600 hidden sm:block">=</div>
-                <div>
-                  <div className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                    ${recoveredRevenue.toLocaleString()}
-                  </div>
-                  <div className="text-sm text-slate-400 mt-1">recovered revenue</div>
-                </div>
-              </div>
-              <p className="mt-4 text-xs text-slate-500">
-                Most campaigns recover 1–5%. Your ROI at $750 setup + $300/mo is nearly instant.
-              </p>
-            </div>
-          </div>
+          <ROICalculator />
         </div>
       </section>
 
@@ -175,10 +108,7 @@ export default function ReactivationPage() {
             </div>
 
             {/* Step 2 */}
-            <div className="relative rounded-2xl border border-blue-500/30 bg-blue-900/10 p-7 backdrop-blur">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-3 py-0.5 text-xs font-semibold text-white">
-                Most Popular
-              </div>
+            <div className="relative rounded-2xl border border-slate-700/60 bg-slate-900/60 p-7 backdrop-blur">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600/20 border border-blue-500/30 text-2xl">
                 ✉️
               </div>
@@ -210,11 +140,11 @@ export default function ReactivationPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-900/30">
         <div className="mx-auto max-w-4xl text-center">
           <div className="inline-flex items-center rounded-full border border-blue-500/25 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-4">
-            🏢 Who It's For
+            🏢 Who It&apos;s For
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Built for Businesses With a Dormant List</h2>
           <p className="text-slate-400 max-w-xl mx-auto mb-10">
-            If you have 500+ cold contacts sitting in your CRM doing nothing, you're losing money every day.
+            If you have 500+ cold contacts sitting in your CRM doing nothing, you&apos;re losing money every day.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -242,7 +172,7 @@ export default function ReactivationPage() {
         <div className="mx-auto max-w-4xl">
           <div className="text-center mb-12">
             <div className="inline-flex items-center rounded-full border border-blue-500/25 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-4">
-              📦 What's Included
+              📦 What&apos;s Included
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white">Everything You Need to Win Back Clients</h2>
           </div>
@@ -279,10 +209,10 @@ export default function ReactivationPage() {
           <div className="rounded-2xl border border-slate-700/60 bg-slate-900/60 p-8 sm:p-10 backdrop-blur text-center">
             <div className="text-4xl mb-6">⭐⭐⭐⭐⭐</div>
             <blockquote className="text-lg sm:text-xl text-slate-300 leading-relaxed italic mb-6">
-              "We had 800+ former members in our CRM who hadn't visited in over a year. OEFR ran a
-              3-email sequence and we got 19 people back in the door inside two weeks. That's over
-              $22,000 in recovered revenue from contacts we'd completely written off. Genuinely shocked
-              at how well it worked."
+              &ldquo;We had 800+ former members in our CRM who hadn&apos;t visited in over a year. OEFR ran a
+              3-email sequence and we got 19 people back in the door inside two weeks. That&apos;s over
+              $22,000 in recovered revenue from contacts we&apos;d completely written off. Genuinely shocked
+              at how well it worked.&rdquo;
             </blockquote>
             <div className="flex items-center justify-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600/30 border border-blue-500/30 text-sm font-bold text-blue-400">
@@ -293,6 +223,22 @@ export default function ReactivationPage() {
                 <div className="text-xs text-slate-500">Owner, Iron Peak Fitness — Austin, TX</div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Guarantee ── */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.07] p-8 sm:p-10 text-center backdrop-blur">
+            <div className="text-4xl mb-4">🛡️</div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              Our Guarantee
+            </h2>
+            <p className="text-lg text-slate-300 leading-relaxed max-w-xl mx-auto">
+              If we run your reactivation sequence and zero people respond in the first 30 days,
+              we refund your setup fee. No paperwork, no questions asked.
+            </p>
           </div>
         </div>
       </section>
@@ -342,7 +288,7 @@ export default function ReactivationPage() {
                 ))}
               </ul>
               <a
-                href="https://buy.stripe.com/6oU3co7P19j1dHd2mG7IY01"
+                href={STRIPE_SETUP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full rounded-xl border border-slate-600 bg-slate-800 px-6 py-3 text-center text-sm font-semibold text-white hover:border-slate-500 hover:text-white transition-colors"
@@ -378,14 +324,60 @@ export default function ReactivationPage() {
                 ))}
               </ul>
               <a
-                href="https://buy.stripe.com/28E3co0mzan5cD9e5o7IY02"
+                href={STRIPE_MONTHLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full rounded-xl bg-blue-600 px-6 py-3 text-center text-sm font-semibold text-white hover:bg-blue-500 transition-colors shadow-xl shadow-blue-600/25"
               >
-                Subscribe Now - &#36;900/mo
+                Subscribe Now - $900/mo
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-900/30">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center rounded-full border border-blue-500/25 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-4">
+              ❓ FAQ
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">Frequently Asked Questions</h2>
+          </div>
+
+          <div className="space-y-8">
+            {[
+              {
+                q: "What CRM do you need?",
+                a: "We work with any list you can export. Mailchimp, HubSpot, Mindbody, spreadsheets. If you have emails, we can work with it.",
+              },
+              {
+                q: "How old can contacts be?",
+                a: "Up to 3 years. Sweet spot is 6\u201324 months.",
+              },
+              {
+                q: "What if we don\u2019t get results?",
+                a: "Zero responses in 30 days \u2014 we refund the setup fee. No questions asked.",
+              },
+              {
+                q: "How long does setup take?",
+                a: "5 business days from audit call to first email sent. You approve everything first.",
+              },
+              {
+                q: "Do you send emails or do we?",
+                a: "We handle everything. You get notified when someone responds and is ready to talk.",
+              },
+              {
+                q: "What\u2019s the cancellation policy?",
+                a: "Month to month. Cancel anytime with 7 days notice. No contracts.",
+              },
+            ].map((item) => (
+              <div key={item.q}>
+                <h3 className="text-base font-bold text-white mb-1">{item.q}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">{item.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -404,10 +396,12 @@ export default function ReactivationPage() {
             in your cold contacts — for free.
           </p>
           <a
-            href="mailto:hello@oefrenterprise.com?subject=Reactivation%20Audit%20Request"
+            href="https://cal.com/oefr-digital/reactivation-audit"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center rounded-xl bg-blue-600 px-10 py-4 text-base font-semibold text-white hover:bg-blue-500 transition-all duration-200 shadow-xl shadow-blue-600/30 hover:shadow-blue-500/40"
           >
-            Get Your Free Reactivation Audit →
+            Book Your Free Audit Call →
           </a>
           <p className="mt-4 text-sm text-slate-500">No commitment. No credit card. Just clarity.</p>
         </div>

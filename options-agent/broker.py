@@ -17,6 +17,7 @@ log = logging.getLogger("broker")
 
 # Track whether we're using delayed or live data
 _USING_DELAYED_DATA = True  # Default to delayed (type 3)
+_FALLBACK_LOGGED = False     # Prevent log spam on repeated subscription warnings
 
 
 def _snap_to_tick(price: float) -> float:
@@ -81,6 +82,24 @@ class IBKRBroker:
 
     def _on_error(self, reqId: int, errorCode: int, errorString: str, contract):
         """Handle IBKR error events, including market data warnings."""
+        global _USING_DELAYED_DATA, _FALLBACK_LOGGED
+
+        # 354/10089: Market data subscription not active — auto-fallback to delayed
+        if errorCode in (354, 10089):
+            if not _FALLBACK_LOGGED:
+                log.warning(
+                    f"IBKR market data subscription not active (code {errorCode}): {errorString}. "
+                    f"Falling back to delayed data (type 3). "
+                    f"To use live data, activate IBKR market data subscription."
+                )
+                _FALLBACK_LOGGED = True
+                try:
+                    self.ib.reqMarketDataType(3)
+                    _USING_DELAYED_DATA = True
+                except Exception as e:
+                    log.warning(f"Failed to switch to delayed data: {e}")
+            return
+
         # 10167: Delayed market data (not a real error, just informational)
         if errorCode == 10167:
             # Only log once per session, not every request
@@ -146,8 +165,10 @@ class IBKRBroker:
             return False
 
         log.warning("IBKR disconnected — attempting reconnect...")
+        global _FALLBACK_LOGGED
         self._connected = False
         self._delayed_data_logged = False  # Reset so we log delayed data warning again
+        _FALLBACK_LOGGED = False  # Reset so fallback warning logs again after reconnect
 
         try:
             # Use shorter retry count for reconnects during trading (faster failure)
@@ -176,8 +197,10 @@ class IBKRBroker:
 
     def get_underlying_price(self, symbol: str = None) -> float:
         symbol = symbol or config.UNDERLYING
-        contract = Index(symbol, "CBOE") if symbol == "SPX" else Stock(symbol, "SMART", "USD")
+        is_stock = symbol != "SPX"
+        contract = Index(symbol, "CBOE") if not is_stock else Stock(symbol, "SMART", "USD")
         self.ib.qualifyContracts(contract)
+
         ticker = self.ib.reqMktData(contract, "", False, False)
         self.ib.sleep(3)
         def _safe(v):
@@ -203,8 +226,10 @@ class IBKRBroker:
             if bars:
                 price = _safe(bars[-1].close)
         self.ib.cancelMktData(contract)
+
         if price <= 0 or price != price:  # also check NaN
             raise ValueError(f"Could not get valid price for {symbol} (got {price})")
+
         log.info(f"Underlying {symbol} price: {price}")
         return float(price)
 
@@ -454,6 +479,60 @@ class IBKRBroker:
             log.warning(f"IV rank calculation failed: {e} — using 50")
             return 50.0
 
+    # ─── Option Price ────────────────────────────────────────────────────────
+
+    def get_option_price(self, symbol: str, expiration: str, strike: float, right: str = "P") -> Optional[float]:
+        """Get current market price for a specific option contract.
+
+        Returns mid-price (avg of bid/ask), or last/close as fallback.
+        Returns None if no valid price can be obtained (caller should skip exit check).
+        """
+        exchange = "SMART"
+        opt = Option(symbol, expiration, strike, right, exchange)
+        try:
+            self.ib.qualifyContracts(opt)
+        except Exception as e:
+            log.warning(f"get_option_price: could not qualify {symbol} {expiration} {strike}{right}: {e}")
+            return None
+
+        ticker = self.ib.reqMktData(opt, "", False, False)
+        self.ib.sleep(3)
+
+        def _safe(v):
+            try:
+                f = float(v)
+                if f != f:  # NaN
+                    return 0.0
+                return f
+            except (TypeError, ValueError):
+                return 0.0
+
+        bid = _safe(ticker.bid)
+        ask = _safe(ticker.ask)
+
+        price = None
+        if bid > 0 and ask > 0:
+            price = (bid + ask) / 2.0
+        elif bid > 0:
+            price = bid
+        elif ask > 0:
+            price = ask
+
+        if price is None or price <= 0:
+            price = _safe(ticker.last) or _safe(ticker.close) or None
+
+        self.ib.cancelMktData(opt)
+
+        if price is None or price <= 0:
+            log.warning(
+                f"get_option_price: no valid price for {symbol} {expiration} {strike}{right} "
+                f"(bid={bid}, ask={ask}, last={_safe(ticker.last)}, close={_safe(ticker.close)})"
+            )
+            return None
+
+        log.info(f"Option price {symbol} {expiration} {strike}{right}: ${price:.2f} (bid={bid:.2f} ask={ask:.2f})")
+        return round(price, 2)
+
     # ─── Option Chain ─────────────────────────────────────────────────────────
 
     def get_expirations(self, symbol: str = None, dte_min: int = 3, dte_max: int = 21) -> List[str]:
@@ -569,7 +648,7 @@ class IBKRBroker:
         limit_price = net debit (positive) or credit (negative)
         """
         symbol = symbol or config.UNDERLYING
-        exchange = config.EXCHANGE
+        exchange = "CBOE" if symbol == "SPX" else "SMART"
 
         combo = Contract()
         combo.symbol = symbol
@@ -602,12 +681,37 @@ class IBKRBroker:
 
         if config.DRY_RUN:
             log.info(f"[DRY RUN] Would place order: {tag} qty={qty} limit={snapped_price}")
-            return None
+            return "DRY_RUN"
 
         trade = self.ib.placeOrder(combo, order)
         log.info(f"Placed order [{tag}]: orderId={trade.order.orderId} limit={snapped_price}")
-        self.ib.sleep(1)
-        return trade
+
+        # Wait for fill confirmation (up to 30 seconds)
+        fill_timeout = 30
+        elapsed = 0
+        while elapsed < fill_timeout:
+            self.ib.sleep(2)
+            elapsed += 2
+            if trade.orderStatus.status == "Filled":
+                avg_price = trade.orderStatus.avgFillPrice
+                log.info(f"Order FILLED [{tag}]: orderId={trade.order.orderId} avgPrice={avg_price}")
+                return trade
+            if trade.orderStatus.status in ("Cancelled", "ApiCancelled", "Inactive"):
+                log.warning(f"Order {trade.orderStatus.status} [{tag}]: orderId={trade.order.orderId}")
+                return None
+
+        # Not filled within timeout — cancel and return None
+        log.warning(
+            f"Order NOT FILLED after {fill_timeout}s [{tag}]: "
+            f"status={trade.orderStatus.status} filled={trade.orderStatus.filled} "
+            f"remaining={trade.orderStatus.remaining} — cancelling"
+        )
+        try:
+            self.ib.cancelOrder(trade.order)
+            self.ib.sleep(2)
+        except Exception as e:
+            log.warning(f"Cancel failed for [{tag}]: {e}")
+        return None
 
     def cancel_order(self, trade):
         if trade and self.ib.isConnected():
@@ -631,6 +735,19 @@ class IBKRBroker:
                 "avg_cost": p.avgCost,
             })
         return result
+
+    def get_stock_shares(self, symbol: str) -> int:
+        """Return number of shares held for a stock symbol. 0 if none."""
+        try:
+            positions = self.ib.positions()
+            for p in positions:
+                if (p.contract.symbol == symbol
+                        and p.contract.secType == "STK"
+                        and p.position != 0):
+                    return int(p.position)
+        except Exception as e:
+            log.warning(f"get_stock_shares({symbol}): failed: {e}")
+        return 0
 
     def get_pnl(self) -> dict:
         account_values = self.ib.accountValues()
@@ -666,9 +783,12 @@ class IBKRBroker:
         qty: int = 1,
         limit_price: float = 0.0,
         tag: str = "",
+        symbol: str = None,
     ):
-        """Place a single-leg option order (used by LongCallStrategy)."""
-        opt = Option(config.UNDERLYING, expiration, strike, right, config.EXCHANGE)
+        """Place a single-leg option order (used by LongCallStrategy, DiagonalStrategy)."""
+        symbol = symbol or config.UNDERLYING
+        exchange = "CBOE" if symbol == "SPX" else "SMART"
+        opt = Option(symbol, expiration, strike, right, exchange)
         opt.conId = con_id
         try:
             self.ib.qualifyContracts(opt)
@@ -689,7 +809,7 @@ class IBKRBroker:
 
         if config.DRY_RUN:
             log.info(f"[DRY RUN] Would place {action} {qty}x {strike}{right} @ {snapped_price} [{tag}]")
-            return None
+            return "DRY_RUN"
 
         trade = self.ib.placeOrder(opt, order)
         log.info(f"Placed single order [{tag}]: {action} {qty}x {strike}{right} @ {snapped_price} orderId={trade.order.orderId}")

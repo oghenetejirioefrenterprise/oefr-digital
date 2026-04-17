@@ -46,8 +46,11 @@ def test_get_tools_filters_by_name():
 
 
 def test_get_tools_none_returns_all():
+    # Pin to the known builtin count rather than the cached TOOL_DEFINITIONS
+    # constant so an ordering mishap in a sibling test surfaces as a clean
+    # count diff rather than a matching-stale-cache assertion.
     all_tools = get_tools()
-    assert len(all_tools) == len(TOOL_DEFINITIONS)
+    assert len(all_tools) == 23
 
 
 def test_get_tools_unknown_name_skipped():
@@ -109,4 +112,5 @@ def test_register_custom_tool(tmp_workspace):
         )
         assert result == "got xyz"
     finally:
-        TOOLS.unregister("test_custom_tool")
+        if "test_custom_tool" in TOOLS:
+            TOOLS.unregister("test_custom_tool")

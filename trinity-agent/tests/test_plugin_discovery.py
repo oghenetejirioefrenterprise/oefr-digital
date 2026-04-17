@@ -1,9 +1,7 @@
 """Tests for entry-point discovery on the Registry."""
 from __future__ import annotations
 
-from unittest.mock import patch, MagicMock
-
-import pytest
+from unittest.mock import MagicMock, patch
 
 from trinity.plugins.registry import Registry
 
@@ -16,7 +14,7 @@ def _fake_entry_point(name: str, load_returns):
     return ep
 
 
-def test_discover_loads_entry_points(monkeypatch):
+def test_discover_loads_entry_points():
     reg: Registry[str] = Registry("trinity.fake")
     ep_alpha = _fake_entry_point("alpha", "value-a")
 
@@ -28,9 +26,12 @@ def test_discover_loads_entry_points(monkeypatch):
     assert "alpha" in reg
     assert reg.get("alpha") == "value-a"
     assert reg.source_of("alpha") == "entry_points"
+    # Ensure the group kwarg is propagated — a regression to the
+    # deprecated no-arg form would otherwise sneak past the other checks.
+    eps.assert_called_once_with(group="trinity.fake")
 
 
-def test_discover_handles_load_failure(monkeypatch):
+def test_discover_handles_load_failure():
     reg: Registry[str] = Registry("trinity.fake")
     bad_ep = MagicMock()
     bad_ep.name = "broken"
@@ -46,7 +47,7 @@ def test_discover_handles_load_failure(monkeypatch):
     assert "broken" not in reg
 
 
-def test_discover_does_not_clobber_existing(monkeypatch):
+def test_discover_does_not_clobber_existing():
     reg: Registry[str] = Registry("trinity.fake")
     reg.register("alpha", "builtin-value", source="builtin")
     ep_alpha = _fake_entry_point("alpha", "entry-value")
@@ -63,7 +64,7 @@ def test_discover_does_not_clobber_existing(monkeypatch):
     assert reg.source_of("alpha") == "builtin"
 
 
-def test_discover_with_override_replaces(monkeypatch):
+def test_discover_with_override_replaces():
     reg: Registry[str] = Registry("trinity.fake")
     reg.register("alpha", "builtin-value", source="builtin")
     ep_alpha = _fake_entry_point("alpha", "entry-value")

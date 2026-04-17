@@ -9,6 +9,8 @@ from __future__ import annotations
 
 from typing import Generic, TypeVar
 
+from .discovery import scan
+
 T = TypeVar("T")
 
 
@@ -89,14 +91,15 @@ class Registry(Generic[T]):
         failed to load or conflicted with an existing builtin when
         ``override`` is False. An empty list means everything registered.
         """
-        from .discovery import scan
-
         errors: list[tuple[str, str]] = []
         for ep in scan(self.group):
             try:
                 item = ep.load()
             except Exception as e:
-                errors.append((ep.name, f"load failed: {type(e).__name__}: {e}"))
+                # repr(e) is a fallback for exceptions whose __str__ is empty.
+                errors.append(
+                    (ep.name, f"load failed: {type(e).__name__}: {e or repr(e)}")
+                )
                 continue
             try:
                 self.register(ep.name, item, source="entry_points", override=override)

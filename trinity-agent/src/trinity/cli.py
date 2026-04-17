@@ -125,6 +125,23 @@ def main():
     p_kb = sub.add_parser("knowledge", help="Knowledge base operations")
     p_kb.add_argument("args", nargs="*", help="Knowledge CLI arguments")
 
+    # ── plugins ──────────────────────────────────────────
+    p_plug = sub.add_parser("plugins", help="Plugin inspection")
+    plug_sub = p_plug.add_subparsers(dest="plug_cmd", required=True)
+
+    p_plug_list = plug_sub.add_parser("list", help="List registered plugins")
+    p_plug_list.add_argument(
+        "group",
+        nargs="?",
+        choices=["providers", "tools", "agents"],
+        help="Limit output to a single group",
+    )
+
+    p_plug_show = plug_sub.add_parser(
+        "show", help="Show details for a single plugin (group/name)"
+    )
+    p_plug_show.add_argument("spec", help="Plugin reference in 'group/name' form")
+
     args = parser.parse_args()
 
     # Setup logging
@@ -159,6 +176,8 @@ def main():
         cmd_memory(workspace, args)
     elif args.command == "knowledge":
         cmd_knowledge(workspace, args)
+    elif args.command == "plugins":
+        _run_plugins(args)
     else:
         parser.print_help()
 
@@ -670,6 +689,71 @@ def cmd_knowledge(workspace: Path, args):
     sys.argv = ["trinity-knowledge"] + (args.args or [])
     from trinity.knowledge.cli import main as kb_main
     kb_main()
+
+
+def _run_plugins(args):
+    """Dispatch `trinity plugins <subcommand>`."""
+    if args.plug_cmd == "list":
+        _plugins_list(args.group)
+    elif args.plug_cmd == "show":
+        _plugins_show(args.spec)
+
+
+def _plugins_list(group: str | None) -> None:
+    from trinity.agents.registry import AGENTS
+    from trinity.providers.registry import PROVIDERS
+    from trinity.tools.registry import TOOLS
+
+    groups = {"providers": PROVIDERS, "tools": TOOLS, "agents": AGENTS}
+    if group:
+        if group not in groups:
+            print(f"Unknown group: {group}. Choose from: {list(groups)}")
+            raise SystemExit(2)
+        selected = {group: groups[group]}
+    else:
+        selected = groups
+
+    for label, reg in selected.items():
+        print(f"\n{label}:")
+        if not reg.names():
+            print("  (none registered)")
+            continue
+        for name in reg.names():
+            src = reg.source_of(name)
+            desc = getattr(reg.get(name), "description", "") or ""
+            if desc:
+                print(f"  {name:<28} [{src}]  {desc}")
+            else:
+                print(f"  {name:<28} [{src}]")
+
+
+def _plugins_show(spec: str) -> None:
+    from trinity.agents.registry import AGENTS
+    from trinity.providers.registry import PROVIDERS
+    from trinity.tools.registry import TOOLS
+
+    groups = {"providers": PROVIDERS, "tools": TOOLS, "agents": AGENTS}
+    if "/" not in spec:
+        print(f"Expected 'group/name', got: {spec!r}")
+        raise SystemExit(2)
+    group, _, name = spec.partition("/")
+    if group not in groups:
+        print(f"Unknown group: {group}. Choose from: {list(groups)}")
+        raise SystemExit(2)
+    reg = groups[group]
+    if name not in reg:
+        print(f"Not registered in {group}: {name!r}")
+        print(f"Known: {reg.names()}")
+        raise SystemExit(1)
+    item = reg.get(name)
+    print(f"Group:       {group}")
+    print(f"Name:        {name}")
+    print(f"Source:      {reg.source_of(name)}")
+    for attr in ("description", "kind", "tool_subset", "requires_api_key"):
+        if hasattr(item, attr):
+            value = getattr(item, attr)
+            if value not in (None, ""):
+                print(f"{attr.replace('_', ' ').title() + ':':<12} {value}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "trinity-agent"
+version = "0.1.0"
+description = "A portable AI agent that lives in your workspace, talks through Telegram, and gets smarter every day."
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=0.40.0",
+    "openai>=1.50.0",
+    "requests>=2.28.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+trinity = "trinity.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/trinity"]

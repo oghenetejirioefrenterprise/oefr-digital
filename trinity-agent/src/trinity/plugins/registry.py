@@ -81,3 +81,25 @@ class Registry(Generic[T]):
 
     def __contains__(self, name: object) -> bool:
         return name in self._items
+
+    def discover(self, *, override: bool = False) -> list[tuple[str, str]]:
+        """Load entry points registered under ``self.group``.
+
+        Returns ``[(name, error_message), ...]`` — one per entry point that
+        failed to load or conflicted with an existing builtin when
+        ``override`` is False. An empty list means everything registered.
+        """
+        from .discovery import scan
+
+        errors: list[tuple[str, str]] = []
+        for ep in scan(self.group):
+            try:
+                item = ep.load()
+            except Exception as e:
+                errors.append((ep.name, f"load failed: {type(e).__name__}: {e}"))
+                continue
+            try:
+                self.register(ep.name, item, source="entry_points", override=override)
+            except AlreadyRegistered as e:
+                errors.append((ep.name, str(e)))
+        return errors

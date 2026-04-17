@@ -76,3 +76,28 @@ def test_items_returns_copy():
     snapshot = reg.items()
     snapshot["beta"] = "b"  # mutate the returned dict
     assert "beta" not in reg  # internal state unaffected
+
+
+def test_source_of_unknown_raises():
+    reg: Registry[str] = Registry("test.group")
+    with pytest.raises(NotRegistered):
+        reg.source_of("missing")
+
+
+def test_register_kwargs_are_keyword_only():
+    reg: Registry[str] = Registry("test.group")
+    with pytest.raises(TypeError):
+        reg.register("alpha", "v", "builtin")  # type: ignore[misc]
+
+
+def test_not_registered_str_is_unquoted():
+    # KeyError's default __str__ wraps the message in quotes; ensure our
+    # override returns the raw message for log + CLI output.
+    reg: Registry[str] = Registry("test.group")
+    try:
+        reg.get("missing")
+    except NotRegistered as e:
+        assert str(e).startswith("test.group")
+        assert not str(e).startswith("'")
+    else:
+        raise AssertionError("NotRegistered was not raised")

@@ -19,6 +19,11 @@ class AlreadyRegistered(Exception):
 class NotRegistered(KeyError):
     """Raised when looking up a name that is not registered."""
 
+    def __str__(self) -> str:
+        # KeyError.__str__ wraps the message in quotes; override so users
+        # and log lines see the message as written.
+        return self.args[0] if self.args else ""
+
 
 class Registry(Generic[T]):
     """Name→item registry with source tracking.

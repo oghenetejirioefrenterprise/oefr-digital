@@ -69,4 +69,7 @@ def test_register_custom_provider_via_registry():
         create_provider(auth, AgentConfig())
         assert calls["made"] is True
     finally:
-        PROVIDERS.unregister("custom-test")
+        # Guard protects the singleton from test-order contamination if
+        # register() raised before the entry was added.
+        if "custom-test" in PROVIDERS:
+            PROVIDERS.unregister("custom-test")

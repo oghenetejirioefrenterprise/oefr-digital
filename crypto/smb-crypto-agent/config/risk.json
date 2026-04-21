@@ -1,0 +1,14 @@
+{
+  "daily_realized_loss_cap_pct": 3.0,
+  "account_drawdown_cap_pct": 15.0,
+  "per_venue_max_exposure_pct": 60.0,
+  "per_strategy_max_exposure_pct": 25.0,
+  "per_symbol_max_position_pct": 20.0,
+  "correlation_cap": {
+    "max_long_beta_positions": 4,
+    "beta_reference": "BTC"
+  },
+  "funding_guardrail": {
+    "skip_perp_entry_if_funding_annualized_against_pct": 50.0
+  }
+}

@@ -22,7 +22,7 @@ def test_timeframe_must_be_valid():
     with pytest.raises(ValidationError):
         Setup(
             name="X", preconditions="y", entry_trigger="y", invalidation="y",
-            targets="y", timeframe="hourly", confidence="high",
+            targets="y", timeframe=12345, confidence="high",
             crypto_adaptation_notes="", quotes=[],
         )
 
@@ -53,13 +53,22 @@ def test_valid_summary_parses():
 
 
 def test_category_must_be_in_vocab():
-    with pytest.raises(ValidationError):
-        TranscriptSummary(
-            file="x.md", video_id="", title="",
-            categories=["made_up_tag"],
-            equity_only=False, crypto_translatable=True,
-            tactical_score=0, setups=[], principles=[], skip_reason=None,
-        )
+    t = TranscriptSummary(
+        file="x.md", video_id="", title="",
+        categories=["made_up_tag"],
+        equity_only=False, crypto_translatable=True,
+        tactical_score=0, setups=[], principles=[], skip_reason=None,
+    )
+    assert t.categories == ["other"]
+
+    t2 = TranscriptSummary(
+        file="x.md", video_id="", title="",
+        categories=["psychology", "risk-management"],
+        equity_only=False, crypto_translatable=True,
+        tactical_score=0, setups=[], principles=[], skip_reason=None,
+    )
+    assert "trader_development" in t2.categories
+    assert "risk_management" in t2.categories
 
 
 def test_tactical_score_bounds():

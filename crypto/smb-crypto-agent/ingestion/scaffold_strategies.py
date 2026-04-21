@@ -16,10 +16,28 @@ STRATEGIES_ROOT = Path(__file__).resolve().parent.parent / "strategies"
 
 HEADER_RE = re.compile(
     r"\*\*Category:\*\*\s*(?P<category>[\w_]+)\s+"
-    r"\*\*Timeframe:\*\*\s*(?P<timeframe>\w+)\s+"
-    r"\*\*Confidence:\*\*\s*(?P<confidence>\w+)\s+"
+    r"\*\*Timeframe:\*\*\s*(?P<timeframe>[\w/, -]+?)\s+"
+    r"\*\*Confidence:\*\*\s*(?P<confidence>[\w/, -]+?)\s+"
     r"\*\*Venues:\*\*\s*(?P<venues>.+)"
 )
+
+
+def _normalize_timeframe(raw: str) -> str:
+    lowered = raw.strip().lower()
+    if "scalp" in lowered:
+        return "scalp"
+    if "swing" in lowered:
+        return "swing"
+    return "intraday"
+
+
+def _normalize_confidence(raw: str) -> str:
+    lowered = raw.strip().lower()
+    if "high" in lowered:
+        return "high"
+    if "low" in lowered and "high" not in lowered:
+        return "low"
+    return "med"
 
 
 def slugify(path: Path) -> str:
@@ -30,7 +48,10 @@ def parse_header(text: str) -> dict[str, str] | None:
     for line in text.splitlines():
         m = HEADER_RE.search(line)
         if m:
-            return m.groupdict()
+            d = m.groupdict()
+            d["timeframe"] = _normalize_timeframe(d["timeframe"])
+            d["confidence"] = _normalize_confidence(d["confidence"])
+            return d
     return None
 
 

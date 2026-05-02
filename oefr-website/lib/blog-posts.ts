@@ -148,13 +148,13 @@ export const blogPosts: BlogPost[] = [
       },
       {
         name: "100 AI Prompts for Network Engineers",
-        href: "https://oghenetejiri.gumroad.com/l/velypm",
+        href: "https://3563705146415.gumroad.com/l/velypm",
         description:
           "Production-ready prompts for troubleshooting, design, automation, and career growth. $19.",
       },
       {
         name: "Ansible Network Automation Pack",
-        href: "https://oghenetejiri.gumroad.com/l/zhcmpl",
+        href: "https://3563705146415.gumroad.com/l/zhcmpl",
         description:
           "10 production-ready playbooks for Cisco, Juniper & Arista. The automation skill that commands a salary premium. $49.",
       },
@@ -268,25 +268,25 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Get 100 Engineered AI Prompts for Network Engineers",
-      href: "https://oghenetejiri.gumroad.com/l/velypm",
+      href: "https://3563705146415.gumroad.com/l/velypm",
       discount: "LAUNCH50",
     },
     relatedProducts: [
       {
         name: "100 AI Prompts for Network Engineers",
-        href: "https://oghenetejiri.gumroad.com/l/velypm",
+        href: "https://3563705146415.gumroad.com/l/velypm",
         description:
           "Production-ready prompts for OSPF, BGP, Ansible, security audits, and more. $9.50 with code LAUNCH50.",
       },
       {
         name: "Enterprise Network HLD Template",
-        href: "https://oghenetejiri.gumroad.com/l/cmxskl",
+        href: "https://3563705146415.gumroad.com/l/cmxskl",
         description:
           "Professional high-level design document template for enterprise networks.",
       },
       {
         name: "Network Security Audit Checklist",
-        href: "https://oghenetejiri.gumroad.com/l/ikmxir",
+        href: "https://3563705146415.gumroad.com/l/ikmxir",
         description:
           "Comprehensive security audit checklist aligned with CIS and NIST frameworks.",
       },
@@ -410,25 +410,25 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Get 150 Business Prompts — Start Saving 10+ Hours This Week",
-      href: "https://oghenetejiri.gumroad.com/l/qjrwxp",
+      href: "https://3563705146415.gumroad.com/l/qjrwxp",
       discount: "LAUNCH50",
     },
     relatedProducts: [
       {
         name: "150 AI Prompts for Entrepreneurs",
-        href: "https://oghenetejiri.gumroad.com/l/qjrwxp",
+        href: "https://3563705146415.gumroad.com/l/qjrwxp",
         description:
           "Battle-tested prompts for marketing, finance, strategy, and more. $9.50 with code LAUNCH50.",
       },
       {
         name: "BudgetWise Pro",
-        href: "https://oghenetejiri.gumroad.com/l/aedxa",
+        href: "https://3563705146415.gumroad.com/l/aedxa",
         description:
           "Smart budget tracker built for entrepreneurs and freelancers. No subscription.",
       },
       {
         name: "InvoiceFlow",
-        href: "https://oghenetejiri.gumroad.com/l/mdldkn",
+        href: "https://3563705146415.gumroad.com/l/mdldkn",
         description:
           "Professional invoice generator with PDF export and recurring billing.",
       },
@@ -448,9 +448,13 @@ export const blogPosts: BlogPost[] = [
       "best budget tracker",
       "budget app without subscription",
       "personal finance app 2026",
+      "is ynab worth it 2026",
+      "budget spreadsheet vs app",
+      "budget tracker for couples",
+      "free alternative to ynab",
     ],
-    publishedDate: "2026-03-18",
-    readingTime: "7 min read",
+    publishedDate: "2026-04-29",
+    readingTime: "9 min read",
     author: "OEFR Digital",
     excerpt:
       "You don't need a $15/month subscription to track your spending. But the free apps have a cost too — they're just not charging you in dollars.",
@@ -501,10 +505,10 @@ export const blogPosts: BlogPost[] = [
         And what they get wrong:
       </p>
       <ul class="list-disc list-inside text-slate-300 space-y-2 mb-6 pl-2">
-        <li><strong class="text-white">Price creep:</strong> YNAB launched at $5/month and has raised prices three times. Once you've committed your data to a platform, switching costs keep you hostage.</li>
-        <li><strong class="text-white">Complexity:</strong> YNAB's methodology has a learning curve that intimidates most new users. 60% of new accounts go inactive within the first 3 months according to community surveys.</li>
+        <li><strong class="text-white">Price creep:</strong> YNAB launched in 2004 as a one-time $60 desktop purchase, moved to a subscription model years later, and has raised that subscription price multiple times since. Once you've committed your data to a platform, switching costs keep you hostage.</li>
+        <li><strong class="text-white">Complexity:</strong> YNAB's zero-based methodology has a real learning curve, and a meaningful share of new accounts go quiet within the first few months while users figure out whether the workflow fits their life.</li>
         <li><strong class="text-white">Cloud dependency:</strong> Your financial data lives on someone else's servers. Data breaches happen. In January 2026, a major fintech aggregator exposed 5M+ user records.</li>
-        <li><strong class="text-white">Lifetime cost:</strong> Over 5 years, YNAB costs $900. Over 10 years, $1,800. That's a lot of money for a budgeting tool.</li>
+        <li><strong class="text-white">Lifetime cost:</strong> Over 5 years, YNAB costs about $899. Over 10 years, about $1,798. That's a lot of money for a budgeting tool.</li>
       </ul>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">The One-Time Purchase Alternative</h2>
@@ -516,7 +520,7 @@ export const blogPosts: BlogPost[] = [
       </p>
       <ul class="list-disc list-inside text-slate-300 space-y-2 mb-6 pl-2">
         <li><strong class="text-white">Local-first data:</strong> Your financial data stays on your device, not someone's cloud server</li>
-        <li><strong class="text-white">No bank linking required:</strong> Manual entry is actually more effective for building awareness of your spending habits — research shows people who manually enter expenses save 15-20% more than those who rely on automatic categorization</li>
+        <li><strong class="text-white">No bank linking required:</strong> Manual entry forces you to actually look at every transaction, which builds awareness of spending habits in a way that auto-categorized feeds can't — the friction is the feature</li>
         <li><strong class="text-white">Custom categories:</strong> Your budget categories should match your life, not some generic template</li>
         <li><strong class="text-white">Visual reports:</strong> Charts and graphs that make spending trends immediately obvious</li>
         <li><strong class="text-white">Export capability:</strong> Your data, your format — CSV, PDF, whatever you need</li>
@@ -554,27 +558,66 @@ export const blogPosts: BlogPost[] = [
       <p class="text-slate-300 leading-relaxed mb-6">
         If you're serious about budgeting, manual entry beats automatic tracking for building financial awareness. And paying once for a tool beats paying every month for the rest of your life. The best budget app is the one that costs you the least while helping you save the most.
       </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Spreadsheet vs App — Which Wins in 2026?</h2>
+      <p class="text-slate-300 leading-relaxed mb-4">
+        The honest answer: a well-built spreadsheet beats most subscription apps for households with normal-complexity finances (1–2 incomes, &lt;5 accounts, no day-trading). Spreadsheets are local-first by default, infinitely customizable, and Google Sheets / Excel are already paid for via the operating systems people own. The only thing apps do better is automatic bank-feed sync — and as Plaid outage threads on Reddit confirm, that "feature" breaks every few weeks anyway. For couples planning a specific life event with a fixed timeline (wedding, baby, home purchase, debt payoff), a purpose-built spreadsheet template is the highest-leverage tool — it surfaces tradeoffs in numbers instead of vibes. Our companion guide on <a href="/blog/wedding-budget-by-income-2026" class="text-amber-300 hover:text-amber-200 underline">setting a wedding budget by household income</a> walks through the exact spreadsheet structure for the most-Googled budget event of all.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <div class="space-y-6 mb-6">
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5">
+          <h3 class="text-lg font-semibold text-white mb-2">Is YNAB worth it in 2026?</h3>
+          <p class="text-slate-300 leading-relaxed">YNAB's zero-based budgeting methodology is genuinely effective — but at $14.99/month ($179.88/year, about $899 over five years), you're paying enterprise-software prices for a personal-finance tool. It's worth it only if (a) you actively use the methodology weekly and (b) the alternative is overspending by more than $180/year. For most households, a one-time-purchase spreadsheet template that implements the same envelope/category logic delivers ~90% of the value at ~5% of the lifetime cost.</p>
+        </div>
+
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5">
+          <h3 class="text-lg font-semibold text-white mb-2">What's the best free budget tracker app?</h3>
+          <p class="text-slate-300 leading-relaxed">If "free" is the only criterion, Empower (formerly Personal Capital) for net-worth tracking and a manual Google Sheets template for monthly cash-flow are the two genuinely free, ad-light options. Mint shut down in 2024 and Credit Karma's replacement is heavily ad-supported. Be aware: every free app monetizes either by selling ads against your spending data or by funneling you to credit-card and loan offers. If those tradeoffs matter to you, a $10–20 one-time spreadsheet template is the actual cheapest option over a 5-year horizon.</p>
+        </div>
+
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5">
+          <h3 class="text-lg font-semibold text-white mb-2">Should I use a budget spreadsheet or a budget app?</h3>
+          <p class="text-slate-300 leading-relaxed">Use a spreadsheet if you want privacy (data stays on your device), one-time pricing, and the ability to customize categories to your actual life. Use an app if automatic bank-feed sync is genuinely a dealbreaker and you'll commit to the methodology long enough to justify $120–180/year. Households that lapsed on a budget-tracking app in the past usually do better with a spreadsheet — the 30 seconds of manual entry per transaction is the awareness mechanism, not friction.</p>
+        </div>
+
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5">
+          <h3 class="text-lg font-semibold text-white mb-2">What's the best budget tracker for couples?</h3>
+          <p class="text-slate-300 leading-relaxed">Couples need a budget tool both partners can read at a glance and edit asynchronously. Most subscription apps charge per-seat or per-household — adding 50–100% to the monthly cost. A shared Google Sheets / Excel file in cloud storage (OneDrive, Google Drive) gives both partners real-time access, edit history, and zero per-seat cost. For couples planning a specific milestone (wedding, baby, first home, debt-payoff sprint), a purpose-built shared spreadsheet outperforms generic apps because the categories already match the goal.</p>
+        </div>
+
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5">
+          <h3 class="text-lg font-semibold text-white mb-2">How much does a budget app actually cost over 5 years?</h3>
+          <p class="text-slate-300 leading-relaxed">YNAB at $14.99/month: about $899 over five years. Monarch Money at $9.99/month: about $599. Copilot at $10.99/month: about $659. Average household-level subscription budget tracker lands in the $600–900 range over five years. Compare to a one-time spreadsheet template at $10–20: total five-year cost $10–20. The net difference — what stays in your pocket by going one-time-purchase instead of subscription — is roughly $580–890 over those five years, every year compounding as a permanent cost reduction.</p>
+        </div>
+
+        <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5">
+          <h3 class="text-lg font-semibold text-white mb-2">What's a free alternative to YNAB?</h3>
+          <p class="text-slate-300 leading-relaxed">For YNAB's methodology specifically (zero-based / envelope budgeting): a Google Sheets template implementing the same category-allocation logic is functionally equivalent and free to operate. The only thing you give up is the YNAB-branded onboarding and the mobile app polish. Several open-source spreadsheet templates implement the YNAB rules; if you'd rather not piece one together, a $10–20 one-time-purchase template that's already structured around the methodology is the lowest-friction path. Either way, you're saving $179/year permanently.</p>
+        </div>
+      </div>
     `,
     cta: {
       text: "Try BudgetWise Pro — One-Time Purchase, No Subscription",
-      href: "https://oghenetejiri.gumroad.com/l/aedxa",
+      href: "https://3563705146415.gumroad.com/l/aedxa",
     },
     relatedProducts: [
       {
         name: "BudgetWise Pro",
-        href: "https://oghenetejiri.gumroad.com/l/aedxa",
+        href: "https://3563705146415.gumroad.com/l/aedxa",
         description:
           "Smart budget tracker with visual reports and export. One-time purchase, no subscription ever.",
       },
       {
         name: "SubTracker",
-        href: "https://oghenetejiri.gumroad.com/l/mlvaqt",
+        href: "https://3563705146415.gumroad.com/l/mlvaqt",
         description:
           "Track and manage all your recurring subscriptions in one place. Know exactly what you're paying.",
       },
       {
         name: "InvoiceFlow",
-        href: "https://oghenetejiri.gumroad.com/l/mdldkn",
+        href: "https://3563705146415.gumroad.com/l/mdldkn",
         description:
           "Professional invoice generator for freelancers and small businesses.",
       },
@@ -690,19 +733,19 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Get 150 AI Prompts for Career, Business & Interview Prep",
-      href: "https://oghenetejiri.gumroad.com/l/qjrwxp",
+      href: "https://3563705146415.gumroad.com/l/qjrwxp",
       discount: "LAUNCH50",
     },
     relatedProducts: [
       {
         name: "150 AI Prompts for Entrepreneurs",
-        href: "https://oghenetejiri.gumroad.com/l/qjrwxp",
+        href: "https://3563705146415.gumroad.com/l/qjrwxp",
         description:
           "Includes career, interview prep, salary negotiation, and personal branding prompts. $9.50 with code LAUNCH50.",
       },
       {
         name: "ResumeForge — AI-Powered Resume Builder",
-        href: "https://oghenetejiri.gumroad.com/l/wntvm",
+        href: "https://3563705146415.gumroad.com/l/wntvm",
         description:
           "Build ATS-optimized resumes tailored to specific job descriptions.",
       },
@@ -861,18 +904,18 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Try HabitForge — Streaks, Heatmaps, No Subscription",
-      href: "https://oghenetejiri.gumroad.com/l/sghrcx",
+      href: "https://3563705146415.gumroad.com/l/sghrcx",
     },
     relatedProducts: [
       {
         name: "HabitForge",
-        href: "https://oghenetejiri.gumroad.com/l/sghrcx",
+        href: "https://3563705146415.gumroad.com/l/sghrcx",
         description:
           "Habit tracker with streaks, heatmaps, and visual analytics. One-time purchase, $19.",
       },
       {
         name: "BudgetWise Pro",
-        href: "https://oghenetejiri.gumroad.com/l/aedxa",
+        href: "https://3563705146415.gumroad.com/l/aedxa",
         description:
           "Smart budget tracker — same philosophy: pay once, own forever.",
       },
@@ -1092,24 +1135,24 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Get InvoiceFlow — Professional Invoices, One-Time Purchase",
-      href: "https://oghenetejiri.gumroad.com/l/mdldkn",
+      href: "https://3563705146415.gumroad.com/l/mdldkn",
     },
     relatedProducts: [
       {
         name: "InvoiceFlow",
-        href: "https://oghenetejiri.gumroad.com/l/mdldkn",
+        href: "https://3563705146415.gumroad.com/l/mdldkn",
         description:
           "Professional invoice generator with PDF export, recurring billing, and customizable templates. One-time purchase, $37.",
       },
       {
         name: "BudgetWise Pro",
-        href: "https://oghenetejiri.gumroad.com/l/aedxa",
+        href: "https://3563705146415.gumroad.com/l/aedxa",
         description:
           "Track freelance income and expenses with visual reports. No subscription.",
       },
       {
         name: "150 AI Prompts for Entrepreneurs",
-        href: "https://oghenetejiri.gumroad.com/l/qjrwxp",
+        href: "https://3563705146415.gumroad.com/l/qjrwxp",
         description:
           "Includes freelancer-specific prompts for proposals, client management, and business growth. $9.50 with code LAUNCH50.",
       },
@@ -1640,7 +1683,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         name: "Ansible Network Automation Pack",
-        href: "https://3563705146415.gumroad.com/l/fhvxh",
+        href: "https://3563705146415.gumroad.com/l/zhcmpl",
         description:
           "Automate security compliance checks, config backups, and audit evidence collection with ready-made Ansible playbooks. $49.",
       },
@@ -1784,15 +1827,9 @@ export const blogPosts: BlogPost[] = [
       },
       {
         name: "ResumeForge — ATS-Optimized Resume Builder",
-        href: "https://3563705146415.gumroad.com/l/rmvnsy",
+        href: "https://3563705146415.gumroad.com/l/wntvm",
         description:
           "Build ATS-friendly resumes with AI-powered keyword optimization. Pairs perfectly with the job tracker. $29 (or $14.50 with LAUNCH50).",
-      },
-      {
-        name: "150 AI Prompts for Entrepreneurs",
-        href: "https://3563705146415.gumroad.com/l/wbcxwg",
-        description:
-          "Includes interview prep prompts, salary negotiation scripts, and cover letter generators. $19 (or $9.50 with LAUNCH50).",
       },
     ],
   },
@@ -1950,35 +1987,35 @@ export const blogPosts: BlogPost[] = [
         </ul>
       </div>
 
-      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Stop Starting from Scratch</h2>
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">From Templates to Automated Operations</h2>
       <p class="text-slate-300 leading-relaxed mb-4">
-        Every template described in this article — HLD, LLD, As-Built, Migration Plan, and Runbook — is available in our Network Documentation Bundle. These aren't blank outlines. They're fully structured templates with section headers, example content, formatting guidelines, and reviewer checklists built from real enterprise deployments. Each template includes inline guidance explaining what to write in every section, so even junior engineers can produce documentation that meets architecture review board standards.
+        The section breakdowns above are the same structure we use on real enterprise networks — HLD, LLD, As-Built, Migration Plan, and Runbook. Use them to build your own templates from scratch, or grab the standalone Enterprise Network HLD Template below if you want a ready-to-fill document with executive summary, architecture diagrams, and risk assessment sections already structured in.
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
-        You can build these templates yourself using the section breakdowns above — that's exactly why we shared them. But if you want to skip the formatting work and start documenting your next project today, the bundle gives you all five templates for $59. That's less than one hour of consulting time to standardize your entire team's documentation practice.
+        Documentation is half the equation — the other half is keeping it accurate as the network changes. The n8n Network Automation Template Pack handles the "keep it current" side: 5 production-ready NOC workflows for config backups, compliance checks, change tracking, incident routing, and bulk operations, for $29. Together with the section breakdowns above, you have a documentation framework AND the automation pipeline to keep that documentation honest.
       </p>
     `,
     cta: {
-      text: "Get the Network Documentation Bundle — 5 Templates for $59",
-      href: "https://3563705146415.gumroad.com/l/tswlk",
+      text: "Get the n8n Network Automation Template Pack — 5 NOC Workflows for $29",
+      href: "https://3563705146415.gumroad.com/l/iqhlpc",
       discount: "LAUNCH50",
     },
     relatedProducts: [
       {
         name: "Ansible Network Automation Pack",
-        href: "https://3563705146415.gumroad.com/l/fvqwi",
+        href: "https://3563705146415.gumroad.com/l/zhcmpl",
         description:
           "Production-ready Ansible playbooks for network automation — config backups, compliance checks, and bulk changes. $49 (or $24.50 with LAUNCH50).",
       },
       {
         name: "Enterprise Network HLD Template",
-        href: "https://3563705146415.gumroad.com/l/rpwxr",
+        href: "https://3563705146415.gumroad.com/l/cmxskl",
         description:
           "Standalone High-Level Design template with executive summary, architecture diagrams, and risk assessment sections. $29 (or $14.50 with LAUNCH50).",
       },
       {
         name: "Network Security Audit Checklist",
-        href: "https://3563705146415.gumroad.com/l/cjfpqt",
+        href: "https://3563705146415.gumroad.com/l/ikmxir",
         description:
           "Comprehensive security audit checklist covering firewall rules, access controls, encryption, and compliance requirements. $24 (or $12 with LAUNCH50).",
       },
@@ -2080,6 +2117,501 @@ export const blogPosts: BlogPost[] = [
         name: "AI Prompt Pack for Network Engineers",
         href: "https://oefrenterprise.com/product/ai-prompt-pack",
         description: "50 tested prompts for network automation, troubleshooting, and design—save hours on documentation and problem-solving.",
+      },
+    ],
+  },
+  {
+    slug: "wedding-budget-by-income-2026",
+    title: "Wedding Budget by Income: What Couples Actually Spend in 2026",
+    description:
+      "Real wedding budgets by household income — with regional multipliers, guest-count math, a category allocation model, and answers to the questions couples actually Google. Updated April 2026.",
+    keywords: [
+      "wedding budget by income",
+      "wedding budget 2026",
+      "how much should a wedding cost",
+      "average wedding cost 2026",
+      "wedding budget spreadsheet",
+      "wedding budget tracker",
+      "realistic wedding budget",
+      "wedding budget breakdown percentages",
+      "wedding budget calculator",
+      "small wedding budget",
+    ],
+    publishedDate: "2026-04-28",
+    readingTime: "9 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Most wedding budget articles quote a $30,000 average and call it a day. That number is almost useless. Here's what couples actually spend in 2026 — broken down by income, guest count, and region.",
+    content: `
+      <p>The average U.S. wedding in 2026 costs roughly <strong>$30,000–$35,000</strong>. That's the number every bridal blog repeats. It's also close to useless if you're a couple making $70k combined and trying to figure out what a <em>realistic</em> wedding looks like for you.</p>
+      <p>Averages hide enormous variance. A $30k wedding in rural Ohio is a gorgeous 150-guest celebration. The same $30k in Manhattan barely covers a venue. And couples making $200k+ often spend <em>less</em> than couples making $80k because they've stopped equating spend with love.</p>
+      <p>This guide cuts through the noise. Below you'll find realistic wedding budgets by household income, a category-by-category allocation model, and the tradeoffs that actually matter.</p>
+
+      <h2>The Core Rule: Plan the Budget Before the Pinterest Board</h2>
+      <p>Every financial planner says the same thing couples ignore: <strong>decide the number first, then design the wedding around it.</strong> Backwards planning — pricing each Pinterest idea and hoping the total fits — is how couples end up $15,000 in credit card debt three months into a marriage.</p>
+      <p>A safer framework: spend no more than <strong>60–80% of one year's combined take-home pay</strong>, and only after a three-month emergency fund is already in place. If that number stings, it's doing its job.</p>
+
+      <h2>Wedding Budgets by Household Income (2026)</h2>
+      <p>These are realistic spend bands — what couples at each income level actually spend without going into meaningful debt. All numbers assume roughly 80–120 guests, national average cost basis.</p>
+
+      <h3>Combined income: $50,000–$75,000</h3>
+      <p>Realistic budget: <strong>$8,000–$14,000</strong>.</p>
+      <p>The practical wedding. Often held on a Friday, Sunday, or off-season weekend. Venue is frequently a family backyard, community hall, restaurant buyout, or state park pavilion. Photography and catering are the two line items that can absolutely not be cut without regret. Everything else — flowers, favors, transportation, fancy linens — is optional.</p>
+      <p>Couples at this tier who hit their numbers usually do three things: they cap the guest list hard (under 75), they DIY flowers and decor, and they negotiate a single inclusive venue+catering package instead of piecing it together.</p>
+
+      <h3>Combined income: $75,000–$120,000</h3>
+      <p>Realistic budget: <strong>$15,000–$25,000</strong>.</p>
+      <p>The sweet-spot tier. Enough budget for a proper venue, a mid-tier photographer, decent catering, and a small buffer for surprises. This is also the tier where couples overspend the most — the $18k plan becomes $28k because every upgrade "only" costs another $500.</p>
+      <p>The discipline move: itemize every "only $500" add-on against a fixed ceiling and force yourself to trade one out if you want to add another. A tracker that actually shows the rolling total saves thousands here.</p>
+
+      <h3>Combined income: $120,000–$200,000</h3>
+      <p>Realistic budget: <strong>$25,000–$45,000</strong>.</p>
+      <p>Full-service territory. You can afford a planner (which typically pays for itself through vendor discounts), premium photography, a real venue with a coordinator, and a guest list over 100. The primary risk at this tier isn't affordability — it's lifestyle creep, where small upgrades compound into a budget 30% over plan.</p>
+
+      <h3>Combined income: $200,000+</h3>
+      <p>Realistic budget: <strong>$40,000–$80,000+</strong>, but wildly variable.</p>
+      <p>Interestingly, many high-income couples spend <em>less proportionally</em> than middle-income couples. They've often been to enough weddings to know what doesn't matter. The outliers at this tier spend $150k+, but they're a minority — the median is lower than the stereotype suggests.</p>
+
+      <h2>The Category Allocation Model (Works at Every Income)</h2>
+      <p>Whatever your total number is, use these percentages as starting points. They're derived from the spend patterns of couples who reported zero wedding debt and high satisfaction post-wedding.</p>
+      <ul>
+        <li><strong>Venue:</strong> 30–40%</li>
+        <li><strong>Catering + bar:</strong> 20–30%</li>
+        <li><strong>Photography / video:</strong> 10–15%</li>
+        <li><strong>Attire (both partners, including alterations):</strong> 5–10%</li>
+        <li><strong>Flowers + decor:</strong> 5–10%</li>
+        <li><strong>Music (DJ or band):</strong> 5–10%</li>
+        <li><strong>Stationery, transport, favors:</strong> 2–5%</li>
+        <li><strong>Hair, makeup, rings (non-engagement):</strong> 3–7%</li>
+        <li><strong>Contingency buffer:</strong> <strong>8–10% minimum</strong></li>
+      </ul>
+      <p>That last line is where almost every over-budget wedding derails. Weddings <em>always</em> surprise you. Rain plans, last-minute alterations, a vendor tip you forgot to include, an extra night at the venue hotel — the contingency is there to absorb these without panic.</p>
+
+      <h2>Guest Count Is the Most Expensive Decision</h2>
+      <p>One number drives more of your wedding cost than any other: the guest count. At typical catering rates, each additional guest costs roughly <strong>$110–$220</strong> all-in once you factor catering, bar, rentals, favors, invitations, and venue minimums. That number is the same at every income level.</p>
+      <p>Run the math: trimming 20 guests from a 120-person wedding saves roughly $2,200–$4,400 with zero impact on the day itself. A tight guest list is the single highest-ROI decision you can make.</p>
+
+      <h2>Regional Multipliers (Ballpark)</h2>
+      <p>Multiply the national base figures above by your metro's cost multiplier:</p>
+      <ul>
+        <li><strong>New York, San Francisco, Boston, Los Angeles:</strong> 1.3–1.6×</li>
+        <li><strong>Chicago, Washington DC, Seattle, Miami:</strong> 1.1–1.3×</li>
+        <li><strong>Atlanta, Dallas, Denver, Phoenix:</strong> 1.0× (baseline)</li>
+        <li><strong>Most Midwest / Southern mid-size cities:</strong> 0.7–0.9×</li>
+        <li><strong>Rural / small-town:</strong> 0.5–0.7×</li>
+      </ul>
+      <p>Destination weddings look like they dodge this, but usually don't once you account for travel coordination, welcome dinners, and smaller guest counts that drive per-head venue costs up.</p>
+
+      <h2>Where Couples Consistently Regret Cutting</h2>
+      <p>Across post-wedding surveys, the three cuts couples consistently regret:</p>
+      <ol>
+        <li><strong>Photography.</strong> It is the only tangible record of the day. A $400 photographer "deal" reads like a bargain until you see the photos.</li>
+        <li><strong>Food and drink quantity.</strong> Running out of either is the single most remembered failure of any wedding.</li>
+        <li><strong>Hiring a day-of coordinator.</strong> Even at the lowest income tier, a $400–$800 coordinator is often the difference between enjoying your own wedding and running it.</li>
+      </ol>
+      <p>Everything else — favors, fancy signage, premium linens, high-end transportation — is genuinely optional. Most guests won't remember, and the couples who skipped them rarely regret it.</p>
+
+      <h2>Tracking the Budget Day-to-Day Is the Real Unlock</h2>
+      <p>The budget you plan in January and the budget you actually spend in August are two different numbers. The gap is the vendor-by-vendor deposit creep, the "small" add-ons, the tip envelopes, the bridesmaid brunch you forgot to include.</p>
+      <p>Couples who stay within 5% of their planned number almost always share one habit: they enter every wedding-related expense into a single tracker, the same day it hits their card. Not weekly. Same-day.</p>
+      <p>If you want a ready-made framework that already includes the category percentages above, vendor deposit tracking, a guest count calculator, regional multipliers, and a visual "are you on track" dashboard, our <a href="https://www.etsy.com/listing/4488674435">Wedding Budget Tracker</a> on Etsy does exactly that for $14.99 — a one-time purchase, instant Google Sheets and Excel download, and no subscriptions. For the deeper structural walkthrough of how the file is organized, see our companion guide on the <a href="/blog/wedding-budget-spreadsheet-2026">6-tab wedding budget spreadsheet system</a>.</p>
+      <p>It won't plan your wedding for you. But it will tell you the truth about where your money is actually going, which is the single most valuable thing a wedding budget can do.</p>
+
+      <h2>The Short Version</h2>
+      <ul>
+        <li>Pick the number <em>first</em>. Cap it at 60–80% of one year's combined take-home.</li>
+        <li>Venue + catering will consume 50–70% of whatever you pick. Budget accordingly.</li>
+        <li>Set aside a real 8–10% contingency. Don't touch it except for actual surprises.</li>
+        <li>Every guest costs $110–$220 all-in. Trim the list before you cut the flowers.</li>
+        <li>Track every expense the day it happens. Not weekly.</li>
+      </ul>
+      <p>A realistic wedding budget isn't about spending less. It's about knowing — before the wedding, during the wedding, and the Monday after — that every dollar was a decision, not a surprise.</p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>How much should I spend on a wedding based on my income?</h3>
+      <p>Cap the total at <strong>60–80% of one year's combined take-home pay</strong>, after you have a three-month emergency fund in place. For a couple making $90,000 combined, that points to a $14,000–$22,000 wedding. Higher than that means you're financing the day on credit, which has a measurable downstream cost on the marriage.</p>
+
+      <h3>What is the average wedding cost in 2026?</h3>
+      <p>The U.S. average sits around <strong>$30,000–$35,000</strong>, but the average is misleading — it's heavily skewed by metro and high-income outliers. The realistic range for a typical 80–120 guest wedding outside major coastal metros is <strong>$15,000–$28,000</strong>. Income, region, and guest count predict your actual cost far better than any national average.</p>
+
+      <h3>What percentage of a wedding budget goes to the venue?</h3>
+      <p>Plan on <strong>30–40% of the total budget for venue</strong>, plus another <strong>20–30% for catering and bar</strong> if those aren't bundled. Together, venue and food typically consume 50–70% of every wedding budget at every income level. The remaining 30–50% covers photography, attire, flowers, music, decor, stationery, and contingency.</p>
+
+      <h3>How much does each wedding guest actually cost?</h3>
+      <p>Roughly <strong>$110–$220 per guest, all-in</strong>, once you factor catering, bar, rentals, favors, invitations, and venue minimums. Trimming 20 guests off a 120-person guest list saves around $2,200–$4,400 with effectively zero impact on the day itself — which is why guest-list discipline is the single highest-ROI decision in any wedding budget.</p>
+
+      <h3>Do I really need a wedding budget spreadsheet, or is an app fine?</h3>
+      <p>A spreadsheet wins on three properties wedding planning needs and most apps fail at: it's <em>interconnected</em> (changes in guest count automatically ripple to catering and budget), <em>collaborative</em> (partner, parent, coordinator can all view it without per-seat fees), and <em>portable</em> (your data isn't locked behind a $10–20/month wedding-planning subscription). A well-built spreadsheet replaces several separate apps and survives every venue change, vendor swap, and date shift along the way.</p>
+
+      <h3>What is the biggest mistake couples make with wedding budgets?</h3>
+      <p>Skipping the <strong>contingency line</strong>. Couples who go over budget rarely overspend on the obvious categories — they get blindsided by tip envelopes, last-minute alterations, rain-plan rentals, an extra night at the venue hotel, or vendor gratuities they forgot to include. Reserving a true 8–10% contingency from the start is what separates couples who hit their number from couples who run a credit card balance into the marriage.</p>
+    `,
+    cta: {
+      text: "Get the Wedding Budget Tracker ($14.99)",
+      href: "https://www.etsy.com/listing/4488674435",
+    },
+    relatedProducts: [
+      {
+        name: "Couples Budget Spreadsheet",
+        href: "https://www.etsy.com/listing/4488838535",
+        description: "Monthly budget built for two incomes, shared expenses, individual fun money, and joint savings goals — same dashboard, year-round.",
+      },
+      {
+        name: "Home Renovation Budget Tracker",
+        href: "https://www.etsy.com/listing/4489000709",
+        description: "The same line-item discipline applied to renovations — track vendor deposits, contingency, and cost-per-room in one place.",
+      },
+    ],
+  },
+  {
+    slug: "wedding-budget-spreadsheet-2026",
+    title: "Wedding Budget Spreadsheet 2026: A 6-Tab System That Holds",
+    description:
+      "A wedding budget spreadsheet that tracks vendors, payments, RSVPs, and seating in one file. Built for brides who don't want 14 different planning apps.",
+    keywords: [
+      "wedding budget spreadsheet 2026",
+      "wedding budget tracker excel",
+      "wedding budget template google sheets",
+      "vendor tracker spreadsheet wedding",
+      "wedding guest list rsvp template",
+      "wedding payment tracker spreadsheet",
+      "wedding seating chart spreadsheet",
+      "how to budget for a wedding",
+      "wedding planning spreadsheet free",
+      "bride budget planner template",
+    ],
+    publishedDate: "2026-04-26",
+    readingTime: "6 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Most wedding planning tools break by month three. Here's the 6-tab spreadsheet system that tracks budget, vendors, RSVPs, payments, and seating in one file — no apps, no logins.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Most wedding planning systems break by month three. Not because the bride lost focus — because the system was never designed for the messy middle. A vendor cancels. The guest list swells. Two RSVPs come in after the seating chart was finalized. The Pinterest checklist says one thing, the Notion template says another, and the wedding app charges $10–20/month to sync them.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The actual job is one spreadsheet, six functional tabs that all link back to a single Budget Dashboard, plus a How-to-Use sheet baked into the file. Here's how the system holds.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why a Spreadsheet Beats the Apps</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Wedding planning has three properties that make it hostile to most apps:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">It's interconnected.</strong> Guest count drives catering cost drives budget drives savings rate. A change in one place needs to ripple to every other place.</li>
+          <li><strong class="text-white">It's collaborative.</strong> The bride, the partner, often a parent or two, and sometimes a coordinator all need access. Most apps make this awkward.</li>
+          <li><strong class="text-white">It's portable.</strong> You'll switch venues, vendors, dates. You don't want your data locked behind someone's subscription.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Spreadsheets handle all three natively. Excel for the formula-deep folks; Google Sheets for everyone who shares a calendar with their partner. The same .xlsx file works in both — you upload to Drive, right-click, "Open with Google Sheets," and every formula transfers.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The 6-Tab System</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 1: Budget Dashboard</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Top-level summary. Total budget in, total spent, total remaining. Auto-pulls from the Category Breakdown tab so the headline number always reflects what you've actually committed across categories. The only tab you'll check weekly. The other five feed into it.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 2: Category Breakdown</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Thirteen categories with budgeted, spent, and remaining columns: Venue & Reception, Catering & Bar, Photography & Video, Flowers & Floral Design, Wedding Attire, Music & Entertainment, Decor & Rentals, Wedding Cake & Desserts, Invitations & Stationery, Favors & Gifts, Transportation, Honeymoon, and Miscellaneous. Each row totals into the Budget Dashboard. This is where the actual budget allocation lives — most planning resources put venue plus catering as the largest share, but adjust to your priorities; the dashboard recalculates the remaining budget live.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 3: Vendor Tracker</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        One row per vendor. Contact info, quote, deposit paid, balance due, contract status, payment dates. Conditional formatting handles the payment alarms inside this tab — overdue payments highlight red, with color-coded alerts for due-within-30 and due-within-7. Catches the photographer's final payment three weeks before the wedding when everyone else is panicking about the seating chart.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 4: Guest List</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Sixty-five guest rows pre-built — name, relationship, RSVP status (Attending / Declined / Pending), plus-one, meal choice, and table number. Live counters at the top show your headcount as RSVPs come in — useful when the caterer needs final numbers and Aunt Linda still hasn't replied. Add more rows freely; the formulas extend down the column.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 5: Timeline & Checklist</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A 12-month planning countdown — pre-loaded milestone tasks at the 12, 10, 8, 6, 4, 2, and 1-month markers, plus final-week and day-of buckets. Sample tasks at the 12-month mark: set overall wedding budget, draft the guest list, research and book the venue, start dress shopping. Mark each task Done, In Progress, or Skipped, with notes alongside. The whole tab tells you what should be happening when, so nothing slips between vendor calls.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 6: Seating Chart</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Up to twenty tables. Capacity tracking. Guest assignments. Dietary restriction notes. Summary formulas show total tables and total capacity at a glance. It's not graphical — no drag-and-drop diagram — but it's auditable. Which is what you actually need at the venue when the floor plan changes the day of.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Plus: How to Use</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Instructions sheet baked into the file. No external PDF, no separate guide — open the file, read the How-to-Use tab, work the system.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">How to Set It Up in One Afternoon</h2>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+          <li>Open the file in Excel or upload to Google Sheets.</li>
+          <li>Read the How-to-Use tab first — five minutes — so you know what each tab is for before you start typing.</li>
+          <li>Move to Category Breakdown. Enter your total budget, then allocate across the thirteen categories. Adjust to your priorities; the Budget Dashboard recalculates remaining budget live.</li>
+          <li>Open the Vendor Tracker. Add every vendor you've already contacted. Pull quotes from your inbox. Don't skip "Pending" — that's how things go missing.</li>
+          <li>Open the Guest List. Drop in your A-list. Mark RSVPs as Pending until invitations go out.</li>
+          <li>Timeline & Checklist starts at the 12-month mark — work backwards from your wedding date so the milestones land in the right calendar months.</li>
+          <li>Seating Chart can wait until two months out.</li>
+        </ol>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Total setup: 60–90 minutes if you have your inbox open. After that, you maintain it 10 minutes a week.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Doesn't Belong in This System</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Mood boards. Dress shopping. Vendor research. The spreadsheet is for tracking — not deciding. If you find yourself trying to make it do those jobs too, you're going to break it. Pinterest stays on Pinterest. Vendor research stays in your inbox or Notes app. The spreadsheet only knows what's been decided.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        That separation is what keeps it intact through the engagement.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the Template</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        We built this exact system as a single .xlsx file — six functional tabs plus a How-to-Use instructions sheet, every formula, color-coded conditional formatting, dropdown menus pre-loaded. Works in Microsoft Excel and Google Sheets. Instant download, no app, no subscription, no recurring anything. One file. Yours forever.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For the upstream question of <em>how much</em> to spend before you start allocating across these tabs, see our companion guide on <a href="/blog/wedding-budget-by-income-2026" class="text-amber-300 hover:text-amber-200 underline">setting a wedding budget by income</a> — category percentages, regional multipliers, and the contingency rule that keeps couples from running a credit-card balance into the marriage.
+      </p>
+    `,
+    cta: {
+      text: "Get the Wedding Budget Spreadsheet ($14.99)",
+      href: "https://www.etsy.com/listing/4488674435",
+    },
+    relatedProducts: [
+      {
+        name: "Couples Budget Spreadsheet",
+        href: "https://www.etsy.com/listing/4488838535",
+        description: "Monthly budget built for two incomes, shared expenses, individual fun money, and joint savings goals — same dashboard, year-round.",
+      },
+      {
+        name: "Meal Planning Template",
+        href: "https://www.etsy.com/listing/4487650069",
+        description: "Weekly meal planner plus grocery list organized by category. For the Sunday-reset cadence after the honeymoon.",
+      },
+      {
+        name: "Home Renovation Budget Tracker",
+        href: "https://www.etsy.com/listing/4489000709",
+        description: "The same line-item discipline applied to renovations — track vendor deposits, contingency, and cost-per-room in one place.",
+      },
+    ],
+  },
+  {
+    slug: "airbnb-turnover-sop-damage-disputes",
+    title: "Airbnb Turnover SOP for the April 2026 ToS: 8-Tab Pack That Survives Damage Disputes",
+    description:
+      "An Airbnb turnover SOP built around the April 20, 2026 Terms of Service update — original camera files workflow, damage logging with photo timestamps, supply par-levels, and co-host handoff. For hosts whose damage claims keep failing on missing documentation.",
+    keywords: [
+      "airbnb turnover sop",
+      "airbnb april 20 2026 tos compliance",
+      "airbnb damage claim original camera files",
+      "airbnb ai photo evidence ban",
+      "airbnb damage protection program documentation",
+      "airbnb cleaning checklist template",
+      "vrbo turnover checklist",
+      "airbnb damage report template",
+      "airbnb co-host handoff template",
+      "airbnb supply inventory tracker",
+      "short term rental cleaning sop",
+      "airbnb damage claim photo evidence",
+      "airbnb cleaning supply restock template",
+      "airbnb welcome letter template",
+      "airbnb host compliance checklist 2026",
+    ],
+    publishedDate: "2026-05-02",
+    readingTime: "8 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Airbnb's April 20, 2026 Terms of Service update bans AI-generated, AI-enhanced, and upscaled photos as evidence in host damage claims. This 8-tab SOP integrates the original-camera-files workflow, damage logging with photo timestamps, supply par-levels, and a co-host handoff doc — so host claims actually hold up under the new compliance regime.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        On April 20, 2026, Airbnb's Terms of Service update changed what counts as evidence in a host damage claim. AI-generated, AI-enhanced, and upscaled photos are no longer accepted under Airbnb's damage protection program. The change was triggered by a Manhattan superhost case where a $16,000 damage claim was unmasked when a guest spotted the same coffee-table crack repositioned across photos. Hosts must now maintain original camera files without alterations, dated receipts for appliances and high-value items, and a time-stamped record of pre- and post-stay condition.
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        That changes what a turnover SOP has to produce. A pre-April-20 checklist that just said "take photos of any damage" is no longer compliant — the photos themselves now have to be defensibly original-camera-source, dated, and tied to a structured anomaly log. This is exactly the gap most widely shared Airbnb turnover checklists still leave open.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A scan of cleaner forums, host Slacks, and popular Etsy packs published before April 20 reveals the same shape: cleaning steps are covered well, but the documentation hosts now need under the new compliance regime — original-camera-files workflow, damage logging with photo timestamps, supply par-level tracking, and a structured co-host handoff — is missing.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        That gap is why turnovers fall apart at month three. Not because cleaners aren't thorough — they often are — but because the checklist they're handed wasn't designed to produce the paper trail a host needs to push back on a damage claim under the April 2026 rules, replenish toiletries before the next check-in, or onboard a new co-host without a 30-minute phone call.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Here is the 8-tab SOP structure that closes the gap, mapped to what the new ToS now requires.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What the April 20, 2026 ToS Update Actually Requires</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Three concrete operational changes hosts have to absorb:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">Original camera files only.</strong> Photos submitted as damage-claim evidence have to be straight from the device — no AI cleanup, no upscaling, no re-export through editors that strip or rewrite EXIF metadata. The point is provenance, not aesthetics.</li>
+          <li><strong class="text-white">Dated receipts and condition records.</strong> Appliances, furniture, and high-value items now need a documentation chain: when the item was purchased, what its condition was at the start of each stay, and what its condition was at the end. Without this chain, "the guest broke it" becomes a one-side-said claim.</li>
+          <li><strong class="text-white">Time-stamped, structured anomaly logs.</strong> A photo without a linked log entry is just a photo. The new rules expect the cleaner or host to record what was photographed, where, why, and when — so the resolution team can review evidence in the structure they're already used to processing.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A turnover SOP that doesn't enforce these three things on every clean isn't producing compliance-grade evidence. The 8-tab structure below is built so the cleaner can't accidentally skip them.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why Most Airbnb Cleaning SOPs Fail at Month Three</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Three failure modes show up repeatedly in the host community:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">No photo trail tied to a damage log.</strong> When a guest claims the rug stain was already there, the host has nothing dated to refute it. Airbnb damage claims often default to the guest. Most checklists don't even have a structured "photos taken" column linked to anomalies.</li>
+          <li><strong class="text-white">No supply par-level cadence.</strong> Toilet paper, coffee pods, dishwasher tabs, body wash — they get noticed when they run out, which is during the next guest's stay. The checklist treats supplies as a yes/no, not a count against a reorder trigger.</li>
+          <li><strong class="text-white">No documented co-host handoff.</strong> When the cleaner finds something the host should know — a wobbly chair leg, a low water-pressure complaint left in the welcome book — there's no structured channel for it. So it doesn't get fixed.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        An SOP that treats those three things as core tabs, not extras, changes what the cleaner produces. The deliverable shifts from "the unit is clean" to "the unit is documented, restocked, and handed off."
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The 8 Tabs at a Glance</h2>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+          <li>Room-by-room turnover checklist (kitchen / bath / linen swap timing).</li>
+          <li>Damage report form (cleaner-completed, photo-trail compatible).</li>
+          <li>Supply par-level inventory (auto-reorder thresholds).</li>
+          <li>Guest welcome template (wifi / lockbox / quiet hours).</li>
+          <li>Co-host handoff doc (the on-call rotation hosts forget to write down).</li>
+          <li>Cleaner SLA + pay-rate worksheet.</li>
+          <li>Maintenance log (preventive + reactive).</li>
+          <li>Owner-statement summary.</li>
+        </ol>
+      </div>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 1: Room-by-Room Turnover Checklist</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Separate sections for kitchen, bath, and linen swap timing — not a generic "clean the kitchen" line. The room-by-room split lets cleaners parallelize on multi-cleaner jobs and gives the host an exact view of what was covered. The kitchen and bath get the line-item tasks generic checklists leave to memory: degrease range hood, wipe inside microwave, restock dish soap, descale kettle if hard-water area, check fridge for guest leftovers, scrub grout in shower stall, replace bath mat. Linen swap timing gets its own row because that's where most turnovers slip past the next check-in window.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 2: Damage Report Form (Photo-Trail Compatible)</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        One row per anomaly. Location, description, severity (cosmetic / functional / safety), photo file references, action taken (fixed on-site, host notified, escalated). This is the document the host attaches to an Airbnb damage claim. Without it, claims tend to get rejected for "insufficient evidence." With it, the claim is structured the way Airbnb's resolution team expects to receive evidence — photos linked to anomalies, anomalies linked to a timestamped checklist, the checklist linked to a specific turnover date.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 3: Supply Par-Level Inventory</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Counted against a par level, not eyeballed. Toilet paper rolls (current count, par level, reorder trigger), paper towels, dish soap, coffee pods, tea bags, dishwasher tabs, body wash, shampoo, conditioner, hand soap, laundry pods, light bulbs, batteries. The cleaner enters counts at end-of-clean. When any item drops below the auto-reorder threshold, the host gets a flag and the supply run gets queued before the next check-in — not after the guest complains. Restock-cost-per-turnover math hosts ignore today: a typical 2-bath unit runs about $8–14 in consumables per stay; without a par-level tab, that cost gets noticed only at month-end when the credit card statement lands.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 4: Guest Welcome Template</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Pre-formatted, fill-in-the-blank — wifi name and password, lockbox or smart-lock code, quiet hours, trash day, three nearby restaurants, emergency contact. Printed and placed on the kitchen counter at end-of-clean. Hosts who standardize this template tend to report fewer "where's the wifi?" messages and shorter time-to-five-star, because the first hour after check-in is when the review tone gets set.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 5: Co-Host Handoff Doc</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The on-call rotation hosts forget to write down. When two co-hosts split coverage on a calendar, who answers a 2 a.m. lockout text? Who handles a same-day cancellation refund? Who's authorized to approve a $40 plumber call without checking with the primary host? Tab 5 is the doc that answers those questions before they happen — rotation schedule, decision-rights matrix, escalation triggers, contact priorities. Replaces the text-message tribal knowledge most multi-host listings run on today.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 6: Cleaner SLA + Pay-Rate Worksheet</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The contract row most cleaning relationships skip. Per-turnover rate, deep-clean differential, same-day-turnover surcharge, photo-set requirement, damage-report requirement, response time SLA, late-cancellation policy. When the cleaner is solo, the worksheet is the agreement. When the cleaner is a crew, it's the rate card the dispatcher works against. Settles every "I thought it was $X" argument before it happens.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 7: Maintenance Log (Preventive + Reactive)</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Two columns side-by-side. Preventive: HVAC filter every 90 days, dishwasher descale every 6 months, water heater flush annually, smoke and CO detector battery test quarterly. Reactive: every issue logged with date, vendor, cost, resolution. The log builds into a 12-month record that flags trends — recurring HVAC complaints in summer point to a sizing problem, not a maintenance one. Useful for tax substantiation, useful for Schedule E, useful when selling the property and a buyer asks for a maintenance history.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Tab 8: Owner-Statement Summary</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Monthly rollup. Gross bookings, host fees, cleaning fees, supply costs, maintenance costs, net to owner. The tab co-hosts and property managers send to absentee owners. The tab that turns "trust me, the unit is profitable" into a numbered statement. Also the tab that surfaces, on month four, that the unit is running at a 28% gross margin instead of the 42% the listing modeled — and that's the conversation the SOP forces, instead of letting drift compound.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Damage-Dispute Photo Trail Most Hosts Skip — Now Mandatory</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under the April 20, 2026 rules, damage-claim outcomes correlate even more strongly with structured, original-camera-file evidence. Hosts who submit a paper trail — pre-cleaning shots dated before the cleaner enters, post-cleaning shots dated at handoff, plus a damage report linking specific photos to specific anomalies, all preserved as original device files — are submitting the structure Airbnb's resolution team is now required to weight heavily. Hosts who submit a single after-the-fact photo, or photos that have been touched up or upscaled, are now closer to ineligible than borderline.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        That trail doesn't exist if the cleaning checklist doesn't enforce it. A cleaner who's never been told "photograph every room before you start with the device camera, do not edit or filter, log anomalies in the damage report, photograph the unit again at end-of-clean" won't think to do it. The SOP makes those steps part of the job, not extras — and that's what makes it post-April-20 compliant rather than just thorough.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">How to Use It on the Next Turnover</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Open the file before the next checkout day. Print the room-by-room checklist (Tab 1) and the damage report form (Tab 2) and leave them on the kitchen counter for the cleaner. Fill in the par-level inventory (Tab 3) once with current counts and reorder triggers — that becomes the standing reference. The guest welcome template (Tab 4) gets a fresh print every turnover with the new guest's first name and check-in window.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For multi-host or multi-property setups, fill in the co-host handoff (Tab 5) and the cleaner SLA worksheet (Tab 6) once and revisit quarterly. The maintenance log (Tab 7) is appended to every time a vendor visits or a preventive task gets done. The owner-statement summary (Tab 8) is the monthly close-out — typically run on the 1st of the month for the prior month's bookings.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Doesn't Belong in the SOP</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Pricing decisions. Guest screening. Listing copy. Marketing. The SOP is for turnover execution and the documentation that flows out of it — not the upstream business decisions about which guests to accept, what nightly rate to set, or how to position the listing in search. Those decisions belong in different documents and feed into the SOP only as parameters: cleaning fee covers X minutes; party-friendly listings need extra damage-report rigor; listings with hot tubs need a separate water-test row in Tab 7.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The tighter the SOP scope, the more reliably cleaners execute it.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the April-2026-Ready 8-Tab Pack</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        OEFR Digital is shipping this exact 8-tab structure as a single Google Sheets pack plus a printable PDF — room-by-room turnover checklist, damage report form (original-camera-files compatible), supply par-level inventory, guest welcome template, co-host handoff doc, cleaner SLA + pay-rate worksheet, maintenance log, and owner-statement summary. Built for hosts running 1–20 listings. Founder lock-in pricing: $17 for the first five buyers, then $24 list. A v2 expansion is in build — adding a 12-shot per-room photo sequence, a quarterly walkthrough audit, a receipts/appliance documentation index, and a ToS compliance acceptance log — and ships free to founder buyers.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Get the pack: <a href="https://buy.stripe.com/7sYbIU1qDeDl7iP0ey7IY04" class="text-amber-300 hover:text-amber-200 underline">Airbnb Turnover SOP Pack — $17 founder lock-in (first five buyers)</a>.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For the upstream question of how to keep household and short-term-rental finances separated when an Airbnb is part of a broader budget, see <a href="/blog/wedding-budget-spreadsheet-2026" class="text-amber-300 hover:text-amber-200 underline">the 6-tab spreadsheet system that holds</a> — same line-item discipline, different domain.
+      </p>
+    `,
+    cta: {
+      text: "Pre-order the Airbnb Turnover SOP Pack ($17)",
+      href: "https://buy.stripe.com/7sYbIU1qDeDl7iP0ey7IY04",
+    },
+    relatedProducts: [
+      {
+        name: "Wedding Budget Spreadsheet",
+        href: "https://www.etsy.com/listing/4488674435",
+        description: "Six-tab budget, vendor, RSVP, payment, timeline, and seating system. Same auditable structure applied to wedding planning.",
+      },
+      {
+        name: "Home Renovation Budget Tracker",
+        href: "https://www.etsy.com/listing/4489000709",
+        description: "Vendor deposits, contingency, and cost-per-room — the line-item discipline an Airbnb host needs for a renovation cycle between guests.",
+      },
+      {
+        name: "Couples Budget Spreadsheet",
+        href: "https://www.etsy.com/listing/4488838535",
+        description: "Monthly budget for two incomes, shared expenses, and joint savings goals. For hosts running an Airbnb as one income stream among several.",
       },
     ],
   },

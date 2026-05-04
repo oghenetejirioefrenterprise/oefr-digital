@@ -1,0 +1,50 @@
+# DataStructured — trinity-agent configuration
+
+[company]
+name = "DataStructured"
+description = "Autonomous data-as-a-product company. Public data → niche packaging → digital products."
+default_employee = "ceo"
+
+[auth]
+provider = "claude_sdk"
+api_key_env = ""
+
+[agent]
+max_turns = 30
+max_tokens = 16384
+action_timeout = 3600
+convo_timeout = 120
+default_model = "claude-sonnet-4-6"
+router_model = "claude-haiku-4-5-20251001"
+action_model = "claude-sonnet-4-6"
+judge_model = "claude-opus-4-6"
+
+[telegram]
+bot_token_env = "TELEGRAM_BOT_TOKEN"
+poll_timeout = 30
+max_response_length = 4000
+streaming_update_interval = 8
+
+[telegram.acl]
+dm_policy = "allowlist"
+allowed_users = []          # founder Telegram user ID added in Milestone 8
+group_policy = "allowlist"
+
+[memory]
+short_term_decay_hours = 48
+long_term_decay_days = 30
+max_short_term = 200
+max_long_term = 500
+chat_history_buffer = 10
+promotion_threshold = 0.8
+correction_weight = 2.0
+
+[scheduler]
+enabled = true
+# Cycles added in Milestone 7
+
+# Employees added in Milestone 3
+
+[workspace]
+products_dir = "."
+exclude_patterns = ["node_modules", ".git", "__pycache__", ".next", "dist", "build", ".trinity", "state/datasets"]

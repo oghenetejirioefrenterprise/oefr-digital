@@ -1,0 +1,26 @@
+# secrets
+.env
+.env.local
+.env.*.local
+
+# trinity runtime state (kept locally, not in git)
+.trinity/
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# build / dist
+dist/
+build/
+
+# datasets — large, regenerable, gitignored to keep repo lean
+state/datasets/*/raw-*.csv
+state/datasets/*/clean-*.csv
+
+# OS
+.DS_Store
+Thumbs.db

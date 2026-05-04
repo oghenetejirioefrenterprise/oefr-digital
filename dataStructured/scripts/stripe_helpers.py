@@ -24,3 +24,25 @@ def create_product(slug: str, name: str, description: str):
         description=description,
         metadata={"product_id": pid, "lob": "datastructured"}
     )
+
+
+def create_price(product_id: str, price_usd: int):
+    """Create a one-time Stripe Price in USD cents."""
+    _ensure_key()
+    return stripe.Price.create(
+        product=product_id,
+        unit_amount=price_usd * 100,
+        currency="usd",
+    )
+
+
+def create_payment_link(price_id: str, success_message: str):
+    """Create a Payment Link with a custom hosted confirmation message."""
+    _ensure_key()
+    return stripe.PaymentLink.create(
+        line_items=[{"price": price_id, "quantity": 1}],
+        after_completion={
+            "type": "hosted_confirmation",
+            "hosted_confirmation": {"custom_message": success_message},
+        },
+    )

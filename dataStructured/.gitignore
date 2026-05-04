@@ -5,6 +5,9 @@
 
 # trinity runtime state (kept locally, not in git)
 .trinity/
+# ... except employee identity files (intentionally versioned)
+!.trinity/employees/
+!.trinity/employees/**
 
 # python
 __pycache__/

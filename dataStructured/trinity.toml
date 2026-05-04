@@ -45,6 +45,10 @@ enabled = true
 
 # Employees added in Milestone 3
 
+[employees.ceo]
+title = "CEO"
+model = ""
+
 [workspace]
 products_dir = "."
 exclude_patterns = ["node_modules", ".git", "__pycache__", ".next", "dist", "build", ".trinity", "state/datasets"]

@@ -76,3 +76,37 @@ def test_next_step_is_done_when_launch_report_shipped(workspace):
     (pdir / "launch-report.json").write_text('{"status": "SHIPPED"}')
     step = next_pipeline_step(workspace, slug="test")
     assert step == "done"
+
+
+from scripts.ceo_orchestrator import format_daily_dm
+
+
+def test_dm_with_one_shipped():
+    dm = format_daily_dm(
+        date="2026-05-04",
+        advanced=["homeowner-permit-fl"],
+        shipped=[{"name": "FL Permits", "stripe_url": "https://buy.stripe/x", "gumroad_url": "https://gumroad.com/l/y"}],
+        blocked=[],
+        running_tomorrow="next-niche",
+        cycle_cost_tokens=12345,
+    )
+    assert "📊 DataStructured — 2026-05-04" in dm
+    assert "FL Permits" in dm
+    assert "https://buy.stripe/x" in dm
+    assert "BLOCKED (needs you):" in dm and "—" not in dm.split("BLOCKED (needs you):")[1].split("RUNNING TOMORROW")[0].strip().splitlines()[0]
+    # ^ blocked should be empty / "(none)"
+    assert "next-niche" in dm
+    assert "12345" in dm or "12,345" in dm
+
+
+def test_dm_with_blocked():
+    dm = format_daily_dm(
+        date="2026-05-04",
+        advanced=[],
+        shipped=[],
+        blocked=[{"slug": "x", "reason": "NEEDS FOUNDER REVIEW — sources contain edge-case phone numbers"}],
+        running_tomorrow="idle — research only",
+        cycle_cost_tokens=1000,
+    )
+    assert "NEEDS FOUNDER REVIEW" in dm
+    assert "edge-case phone numbers" in dm

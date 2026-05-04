@@ -67,3 +67,35 @@ def next_pipeline_step(workspace: Path, slug: str) -> str:
             return "data-steward"
 
     return "data-engineer"
+
+
+def format_daily_dm(
+    date: str,
+    advanced: list[str],
+    shipped: list[dict],
+    blocked: list[dict],
+    running_tomorrow: str,
+    cycle_cost_tokens: int,
+) -> str:
+    """Format the CEO's daily DM."""
+    advanced_lines = "\n".join(f"- {s}" for s in advanced) or "- (none)"
+    shipped_lines = (
+        "\n".join(f"- {s['name']}: {s.get('stripe_url', '')} / {s.get('gumroad_url', '')}" for s in shipped)
+        or "- (none)"
+    )
+    blocked_lines = (
+        "\n".join(f"- {b['slug']}: {b['reason']}" for b in blocked) or "- (none)"
+    )
+    return (
+        f"📊 DataStructured — {date}\n"
+        "══════════════════════════════\n"
+        "ADVANCED TODAY:\n"
+        f"{advanced_lines}\n\n"
+        "SHIPPED:\n"
+        f"{shipped_lines}\n\n"
+        "BLOCKED (needs you):\n"
+        f"{blocked_lines}\n\n"
+        "RUNNING TOMORROW:\n"
+        f"- {running_tomorrow}\n\n"
+        f"CYCLE COST: {cycle_cost_tokens:,} tokens\n"
+    )

@@ -1,4 +1,4 @@
-"""Stripe test-mode E2E smoke. Requires STRIPE_SECRET_KEY=sk_test_... in env."""
+"""Stripe test-mode E2E smoke. Requires STRIPE_SECRET=sk_test_... in env."""
 import os
 import pytest
 import requests
@@ -7,8 +7,8 @@ from scripts.stripe_helpers import create_product, create_price, create_payment_
 
 
 pytestmark = pytest.mark.skipif(
-    not os.environ.get("STRIPE_SECRET_KEY", "").startswith("sk_test_"),
-    reason="Requires STRIPE_SECRET_KEY=sk_test_... in env"
+    not os.environ.get("STRIPE_SECRET", "").startswith("sk_test_"),
+    reason="Requires STRIPE_SECRET=sk_test_... in env"
 )
 
 

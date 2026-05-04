@@ -1,6 +1,7 @@
 """Stripe helpers — product, price, Payment Link creation for DataStructured.
 
-Reads STRIPE_SECRET_KEY from environment. Always namespaces products with `dsl_` prefix.
+Reads STRIPE_SECRET from environment (matches the convention in ~/.profile).
+Always namespaces products with `dsl_` prefix.
 """
 import os
 import stripe
@@ -9,9 +10,9 @@ from scripts.lib.slug import stripe_product_id
 
 
 def _ensure_key() -> None:
-    key = os.environ.get("STRIPE_SECRET_KEY")
+    key = os.environ.get("STRIPE_SECRET")
     if not key:
-        raise RuntimeError("STRIPE_SECRET_KEY not set in environment")
+        raise RuntimeError("STRIPE_SECRET not set in environment")
     stripe.api_key = key
 
 

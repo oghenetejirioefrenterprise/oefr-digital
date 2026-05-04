@@ -72,3 +72,20 @@ model = ""
 [workspace]
 products_dir = "."
 exclude_patterns = ["node_modules", ".git", "__pycache__", ".next", "dist", "build", ".trinity", "state/datasets"]
+
+# ── Scheduler cycles ──────────────────────────────────────────────
+# Times in system local timezone (set system tz to America/New_York or adjust).
+
+[scheduler.cycles.research_scan]
+schedule = "0 13 * * *"            # 1:00 PM daily — quiet midday slot
+employee = "opportunity-researcher"
+report_to = ""                     # silent worker; CEO surfaces results in 19:00 DM
+type = "research"
+task = "Run today's wide demand-discovery scan. Output 3-5 scored opportunity briefs to state/opportunities/{YYYY-MM-DD}-{slug}.json. If no signal is strong (score >= 6), write zero briefs and log 'no signal — recommend re-scan in 24h'."
+
+[scheduler.cycles.ceo_pipeline]
+schedule = "0 19 * * *"            # 7:00 PM daily — clear evening slot
+employee = "ceo"
+report_to = ""                     # CEO sends DM directly via tools
+type = "needle"
+task = "Run today's pipeline. Read state/opportunities/ for PROPOSED briefs. Cross-reference trinity memory for recently-rejected niches. Pick ONE brief with score >= 6 to advance (or zero if none qualify). For the chosen brief: dispatch data-engineer -> data-steward -> compliance-officer in sequence. If compliance verdict is PASS, write product spec.json and dispatch engineer. After all dispatches complete, send one DM to founder using format_daily_dm template."

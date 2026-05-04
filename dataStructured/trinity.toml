@@ -61,6 +61,10 @@ model = ""
 title = "Data Steward"
 model = ""
 
+[employees.compliance-officer]
+title = "Compliance Officer"
+model = ""
+
 [workspace]
 products_dir = "."
 exclude_patterns = ["node_modules", ".git", "__pycache__", ".next", "dist", "build", ".trinity", "state/datasets"]

@@ -49,6 +49,10 @@ enabled = true
 title = "CEO"
 model = ""
 
+[employees.opportunity-researcher]
+title = "Opportunity Researcher"
+model = ""
+
 [workspace]
 products_dir = "."
 exclude_patterns = ["node_modules", ".git", "__pycache__", ".next", "dist", "build", ".trinity", "state/datasets"]

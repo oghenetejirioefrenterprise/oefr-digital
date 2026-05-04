@@ -57,6 +57,10 @@ model = ""
 title = "Data Engineer"
 model = ""
 
+[employees.data-steward]
+title = "Data Steward"
+model = ""
+
 [workspace]
 products_dir = "."
 exclude_patterns = ["node_modules", ".git", "__pycache__", ".next", "dist", "build", ".trinity", "state/datasets"]

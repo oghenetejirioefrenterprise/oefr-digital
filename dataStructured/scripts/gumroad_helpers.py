@@ -15,3 +15,21 @@ def login(page: Page, username: str, password: str) -> None:
     page.fill("input[name='user[password]']", password)
     page.click("button[type='submit']")
     page.wait_for_url("https://gumroad.com/dashboard", timeout=30000)
+
+
+def create_listing(
+    page: Page,
+    name: str,
+    description: str,
+    price_usd: int,
+    asset_path: str,
+) -> str:
+    """Create a Gumroad listing via Playwright. Returns the public listing URL."""
+    page.goto("https://gumroad.com/products/new")
+    page.fill("input[name='name']", name)
+    page.fill("textarea[name='description']", description)
+    page.fill("input[name='price']", str(price_usd))
+    page.set_input_files("input[type='file']", asset_path)
+    page.click("button[type='submit']")
+    page.wait_for_url("https://gumroad.com/l/*", timeout=60000)
+    return page.url

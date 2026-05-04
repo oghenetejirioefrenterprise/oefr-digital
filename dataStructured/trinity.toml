@@ -27,7 +27,7 @@ streaming_update_interval = 8
 
 [telegram.acl]
 dm_policy = "allowlist"
-allowed_users = []          # founder Telegram user ID added in Milestone 8
+allowed_users = [1366707521]    # founder Telegram user ID
 group_policy = "allowlist"
 
 [memory]

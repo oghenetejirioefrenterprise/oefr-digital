@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "new-fmcsa-carrier-leads-2026-05",
+  "created": "2026-05-04T19:10:00-04:00",
+  "created_by": "ceo",
+  "status": "READY_TO_SHIP",
+  "name": "New FMCSA Carriers — May 2026 — 15,770 Records, CSV",
+  "summary": "Every carrier that registered a new USDOT number in the last 30 days (Apr 4 – May 3 2026). 15,770 fresh trucking leads: legal name, full address, phone, email, fleet size, carrier type, and per-carrier SAFER source URL. Freshness advantage no $399 full-DB or $50/1,000 Fiverr gig can match.",
+  "format": "one_time",
+  "deliverable": "csv",
+  "price_usd": 39,
+  "bonus_stack": [
+    "Decoded fleet size labels (1–6 trucks, 7–20, 21–100, etc.)",
+    "Country column (US / CA / MX) for NAFTA carrier filtering",
+    "phone_valid and email_suspect quality flags on every row",
+    "Top-10 states by new formation — sorted sub-file included"
+  ],
+  "dataset_file": "state/datasets/new-fmcsa-carrier-leads-2026-05.csv",
+  "ethics_ledger": "state/datasets/new-fmcsa-carrier-leads-2026-05.compliance.json",
+  "audience": "Commercial trucking insurance agents, freight factoring companies, ELD hardware/software vendors, and owner-operator dispatch services — all need to reach newly authorized carriers in their first 60 days before competitors do.",
+  "stripe_product_prefix": "dsl_",
+  "channels": ["stripe_payment_link", "gumroad"],
+  "compliance_verdict": "PASS",
+  "compliance_audited_at": "2026-05-04T19:10:00-04:00",
+  "row_count": 15770,
+  "source": "FMCSA Company Census File — DOT Open Data Portal (data.transportation.gov/resource/az4n-8mr2) — federally mandated public disclosure, no auth required",
+  "gumroad_listing": {
+    "title": "New FMCSA Carriers — May 2026 — 15,770 Records (CSV)",
+    "description": "Every carrier that registered a new USDOT number in the last 30 days (Apr 4–May 3 2026). 15,770 fresh records sourced from the FMCSA Company Census File — the same federal dataset that powers CarrierDetails.com and USTruckingCompanies.com, at a fraction of the price.\n\n**What's included:**\n- Legal name, DBA name\n- Full physical address (street, city, state, zip, county)\n- Phone number (99.8% fill rate)\n- Email address (99.9% fill rate, from FMCSA public filings)\n- Carrier operation type\n- Fleet size (decoded: 1–6, 7–20, 21–100, 101–500, 501+)\n- Hazmat indicator\n- Date added to FMCSA system\n- Business officer name (as filed with FMCSA)\n- SAFER source URL for every row\n\n**Quality flags:**\n- phone_valid: boolean\n- email_suspect: boolean\n- country: US / CA / MX\n\n**Top states:** TX 1,817 · CA 1,646 · FL 1,284 · NY 823 · GA 749\n\n**Who buys this:** Trucking insurance agents, factoring companies, ELD vendors, freight dispatchers — anyone who needs to reach newly authorized carriers before the competition.\n\n**Data source:** FMCSA Data Dissemination Program — public federal data, no auth bypass.",
+    "price": 39,
+    "tags": ["trucking", "fmcsa", "leads", "csv", "carrier", "freight", "insurance", "b2b"]
+  },
+  "pre_ship_requirements": [
+    "Add fleetsize_label decoded column",
+    "Add country derived column",
+    "Add phone_valid boolean flag",
+    "Add email_suspect boolean flag",
+    "Gumroad listing must disclose: Includes business officer names as filed with FMCSA"
+  ]
+}

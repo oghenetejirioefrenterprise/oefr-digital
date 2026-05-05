@@ -1,6 +1,17 @@
 {
   "version": 1,
   "type": "distribution_queue",
-  "updated_at": "2026-05-04T00:00:00Z",
-  "items": []
+  "updated_at": "2026-05-05T01:19:02Z",
+  "items": [
+    {
+      "id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "name": "New FMCSA Carriers — May 2026 — 15,770 Records, CSV",
+      "stripe_payment_link_url": "https://buy.stripe.com/cNi14g4CP7aT8mT1iC7IY0c",
+      "price_usd": 39,
+      "audience": "Commercial trucking insurance agents, freight factoring companies, ELD vendors, owner-operator dispatch",
+      "added_at": "2026-05-04T21:25:00Z",
+      "status": "ready"
+    }
+  ]
 }

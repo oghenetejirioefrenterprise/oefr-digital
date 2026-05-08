@@ -1,6 +1,6 @@
 # DataStructured v1 — Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Stand up the v1 minimum viable autonomous loop for DataStructured — six trinity-agent employees executing the research → harvest → clean → compliance → ship pipeline daily, DM-only Telegram with CEO as sole comms layer.
 
@@ -54,14 +54,14 @@
 
 **Files:** none (verification only)
 
-- [ ] **Step 1: Run trinity --help to confirm CLI present**
+- [x] **Step 1: Run trinity --help to confirm CLI present**
 
 Run: `trinity --help`
 Expected: usage line listing `init,start,stop,restart,run,status,employee,auth,memory,knowledge,workspaces,plugins`
 
 If not installed: `pip install -e ~/apps/trinity-agent` from any active venv.
 
-- [ ] **Step 2: Confirm Python venv has dev tooling**
+- [x] **Step 2: Confirm Python venv has dev tooling**
 
 Run: `python3 -c "import jsonschema, pytest, stripe, playwright; print('ok')"`
 Expected: `ok`
@@ -75,7 +75,7 @@ If missing: install in step 0.2.
 **Files:**
 - Create: `~/apps/dataStructured/pyproject.toml`
 
-- [ ] **Step 1: Write pyproject.toml**
+- [x] **Step 1: Write pyproject.toml**
 
 ```toml
 [project]
@@ -105,17 +105,17 @@ python_files = ["test_*.py"]
 asyncio_mode = "auto"
 ```
 
-- [ ] **Step 2: Install in active venv**
+- [x] **Step 2: Install in active venv**
 
 Run: `pip install -e ~/apps/dataStructured[dev]`
 Expected: installs without error.
 
-- [ ] **Step 3: Install Playwright browsers**
+- [x] **Step 3: Install Playwright browsers**
 
 Run: `playwright install chromium`
 Expected: chromium downloaded.
 
-- [ ] **Step 4: Verify import**
+- [x] **Step 4: Verify import**
 
 Run: `python3 -c "import jsonschema, pytest, stripe, playwright, trinity; print('ok')"`
 Expected: `ok`
@@ -127,7 +127,7 @@ Expected: `ok`
 **Files:**
 - Create: `~/apps/dataStructured/.gitignore`
 
-- [ ] **Step 1: Write .gitignore**
+- [x] **Step 1: Write .gitignore**
 
 ```
 # secrets
@@ -158,7 +158,7 @@ state/datasets/*/clean-*.csv
 Thumbs.db
 ```
 
-- [ ] **Step 2: Verify**
+- [x] **Step 2: Verify**
 
 Run: `cat ~/apps/dataStructured/.gitignore | head -5`
 Expected: shows `# secrets` and `.env`.
@@ -170,7 +170,7 @@ Expected: shows `# secrets` and `.env`.
 **Files:**
 - Create: `~/apps/dataStructured/trinity.toml`
 
-- [ ] **Step 1: Write trinity.toml**
+- [x] **Step 1: Write trinity.toml**
 
 ```toml
 # DataStructured — trinity-agent configuration
@@ -225,7 +225,7 @@ products_dir = "."
 exclude_patterns = ["node_modules", ".git", "__pycache__", ".next", "dist", "build", ".trinity", "state/datasets"]
 ```
 
-- [ ] **Step 2: Validate TOML parses**
+- [x] **Step 2: Validate TOML parses**
 
 Run: `python3 -c "import tomllib; tomllib.loads(open('/home/oghenetejiri/apps/dataStructured/trinity.toml').read()); print('ok')"`
 Expected: `ok`
@@ -237,7 +237,7 @@ Expected: `ok`
 **Files:**
 - Create: `~/apps/dataStructured/.env.example`
 
-- [ ] **Step 1: Write .env.example**
+- [x] **Step 1: Write .env.example**
 
 ```bash
 # DataStructured secrets — copy to .env (gitignored) and fill in.
@@ -258,7 +258,7 @@ GUMROAD_PASSWORD=
 FOUNDER_TELEGRAM_USER_ID=
 ```
 
-- [ ] **Step 2: Verify**
+- [x] **Step 2: Verify**
 
 Run: `cat ~/apps/dataStructured/.env.example | head -3`
 Expected: shows `# DataStructured secrets`.
@@ -270,7 +270,7 @@ Expected: shows `# DataStructured secrets`.
 **Files:**
 - Create: `~/apps/dataStructured/CLAUDE.md`
 
-- [ ] **Step 1: Write CLAUDE.md**
+- [x] **Step 1: Write CLAUDE.md**
 
 ```markdown
 # CLAUDE.md — DataStructured
@@ -342,7 +342,7 @@ trinity stop
 - `docs/superpowers/plans/2026-05-04-datastructured-v1.md` — this implementation plan
 ```
 
-- [ ] **Step 2: Verify**
+- [x] **Step 2: Verify**
 
 Run: `head -3 ~/apps/dataStructured/CLAUDE.md`
 Expected: shows `# CLAUDE.md — DataStructured`.
@@ -355,7 +355,7 @@ Expected: shows `# CLAUDE.md — DataStructured`.
 - Create: `~/apps/dataStructured/state/{_schemas,opportunities,datasets,ethics-ledger,products}/.gitkeep`
 - Create: `~/apps/dataStructured/state/distribution-queue.json`
 
-- [ ] **Step 1: Make folders**
+- [x] **Step 1: Make folders**
 
 Run:
 ```bash
@@ -365,7 +365,7 @@ touch ~/apps/dataStructured/state/{_schemas,opportunities,datasets,ethics-ledger
 
 Expected: no error.
 
-- [ ] **Step 2: Initialize distribution queue**
+- [x] **Step 2: Initialize distribution queue**
 
 Write to `~/apps/dataStructured/state/distribution-queue.json`:
 
@@ -378,7 +378,7 @@ Write to `~/apps/dataStructured/state/distribution-queue.json`:
 }
 ```
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run: `find ~/apps/dataStructured/state -type f | sort`
 Expected: lists 5 .gitkeep files + distribution-queue.json.
@@ -392,7 +392,7 @@ Expected: lists 5 .gitkeep files + distribution-queue.json.
 **Files:**
 - Create: `~/apps/dataStructured/README.md`
 
-- [ ] **Step 1: Write README.md**
+- [x] **Step 1: Write README.md**
 
 ```markdown
 # DataStructured
@@ -436,7 +436,7 @@ See `docs/superpowers/specs/2026-05-04-datastructured-design.md` for full spec.
 Working name: **DataStructured** (matches folder). Easy to rename — brand lives in `README.md`, `trinity.toml` `[company]`, `CLAUDE.md`, and the 6 employee identity files.
 ```
 
-- [ ] **Step 2: Verify**
+- [x] **Step 2: Verify**
 
 Run: `head -3 ~/apps/dataStructured/README.md`
 Expected: `# DataStructured`.
@@ -445,7 +445,7 @@ Expected: `# DataStructured`.
 
 ### Task 0.9: Commit Milestone 0
 
-- [ ] **Step 1: Stage and verify only dataStructured files staged**
+- [x] **Step 1: Stage and verify only dataStructured files staged**
 
 Run from `~/apps/`:
 ```bash
@@ -454,7 +454,7 @@ git diff --cached --name-only | grep -v '^dataStructured/' && echo "ERROR: stray
 ```
 Expected: `OK`.
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -486,7 +486,7 @@ This milestone is pure plumbing — deterministic, no LLM. Heavy TDD.
 - Create: `~/apps/dataStructured/tests/__init__.py` (empty)
 - Create: `~/apps/dataStructured/tests/schemas/__init__.py` (empty)
 
-- [ ] **Step 1: Write the failing test first**
+- [x] **Step 1: Write the failing test first**
 
 Create `tests/schemas/test_opportunity_brief.py`:
 
@@ -555,12 +555,12 @@ def test_missing_evidence_fails(schema):
         jsonschema.validate(brief, schema)
 ```
 
-- [ ] **Step 2: Run test — expect FAIL (schema file doesn't exist yet)**
+- [x] **Step 2: Run test — expect FAIL (schema file doesn't exist yet)**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_opportunity_brief.py -v`
 Expected: errors loading schema (file not found).
 
-- [ ] **Step 3: Write the schema**
+- [x] **Step 3: Write the schema**
 
 Create `state/_schemas/opportunity_brief.schema.json`:
 
@@ -630,12 +630,12 @@ Create `state/_schemas/opportunity_brief.schema.json`:
 }
 ```
 
-- [ ] **Step 4: Run tests — expect PASS**
+- [x] **Step 4: Run tests — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_opportunity_brief.py -v`
 Expected: 5 tests pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -651,7 +651,7 @@ git commit -m "feat(dataStructured): opportunity_brief JSON schema + tests"
 - Create: `~/apps/dataStructured/state/_schemas/raw_dataset_metadata.schema.json`
 - Create: `~/apps/dataStructured/tests/schemas/test_raw_dataset_metadata.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/schemas/test_raw_dataset_metadata.py`:
 
@@ -713,12 +713,12 @@ def test_invalid_status_fails(schema):
         jsonschema.validate(obj, schema)
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_raw_dataset_metadata.py -v`
 Expected: file-not-found error.
 
-- [ ] **Step 3: Write the schema**
+- [x] **Step 3: Write the schema**
 
 Create `state/_schemas/raw_dataset_metadata.schema.json`:
 
@@ -748,12 +748,12 @@ Create `state/_schemas/raw_dataset_metadata.schema.json`:
 }
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_raw_dataset_metadata.py -v`
 Expected: 4 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -769,7 +769,7 @@ git commit -m "feat(dataStructured): raw_dataset_metadata schema + tests"
 - Create: `~/apps/dataStructured/state/_schemas/quality_report.schema.json`
 - Create: `~/apps/dataStructured/tests/schemas/test_quality_report.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/schemas/test_quality_report.py`:
 
@@ -834,12 +834,12 @@ def test_invalid_refresh_fails(schema):
         jsonschema.validate(obj, schema)
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_quality_report.py -v`
 Expected: file-not-found.
 
-- [ ] **Step 3: Write the schema**
+- [x] **Step 3: Write the schema**
 
 Create `state/_schemas/quality_report.schema.json`:
 
@@ -895,12 +895,12 @@ Create `state/_schemas/quality_report.schema.json`:
 }
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_quality_report.py -v`
 Expected: 4 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -916,7 +916,7 @@ git commit -m "feat(dataStructured): quality_report schema + conditional REJECT/
 - Create: `~/apps/dataStructured/state/_schemas/ethics_ledger_entry.schema.json`
 - Create: `~/apps/dataStructured/tests/schemas/test_ethics_ledger_entry.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/schemas/test_ethics_ledger_entry.py`:
 
@@ -991,12 +991,12 @@ def test_revocation_must_reference_original(schema):
         jsonschema.validate(obj, schema)
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_ethics_ledger_entry.py -v`
 Expected: file-not-found.
 
-- [ ] **Step 3: Write the schema**
+- [x] **Step 3: Write the schema**
 
 Create `state/_schemas/ethics_ledger_entry.schema.json`:
 
@@ -1044,12 +1044,12 @@ Create `state/_schemas/ethics_ledger_entry.schema.json`:
 }
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_ethics_ledger_entry.py -v`
 Expected: 5 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -1065,7 +1065,7 @@ git commit -m "feat(dataStructured): ethics_ledger_entry schema with conditional
 - Create: `~/apps/dataStructured/state/_schemas/product_spec.schema.json`
 - Create: `~/apps/dataStructured/tests/schemas/test_product_spec.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/schemas/test_product_spec.py`:
 
@@ -1130,12 +1130,12 @@ def test_missing_ethics_ledger_fails(schema):
         jsonschema.validate(obj, schema)
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_product_spec.py -v`
 Expected: file-not-found.
 
-- [ ] **Step 3: Write the schema**
+- [x] **Step 3: Write the schema**
 
 Create `state/_schemas/product_spec.schema.json`:
 
@@ -1171,12 +1171,12 @@ Create `state/_schemas/product_spec.schema.json`:
 }
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_product_spec.py -v`
 Expected: 4 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -1192,7 +1192,7 @@ git commit -m "feat(dataStructured): product_spec schema (v1 = one_time only, ds
 - Create: `~/apps/dataStructured/state/_schemas/launch_report.schema.json`
 - Create: `~/apps/dataStructured/tests/schemas/test_launch_report.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/schemas/test_launch_report.py`:
 
@@ -1248,12 +1248,12 @@ def test_shipped_requires_smoke_pass(schema):
         jsonschema.validate(obj, schema)
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_launch_report.py -v`
 Expected: file-not-found.
 
-- [ ] **Step 3: Write the schema**
+- [x] **Step 3: Write the schema**
 
 Create `state/_schemas/launch_report.schema.json`:
 
@@ -1300,12 +1300,12 @@ Create `state/_schemas/launch_report.schema.json`:
 }
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_launch_report.py -v`
 Expected: 3 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -1321,7 +1321,7 @@ git commit -m "feat(dataStructured): launch_report schema (SHIPPED requires smok
 - Create: `~/apps/dataStructured/state/_schemas/distribution_queue.schema.json`
 - Create: `~/apps/dataStructured/tests/schemas/test_distribution_queue.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/schemas/test_distribution_queue.py`:
 
@@ -1379,12 +1379,12 @@ def test_invalid_status_fails(schema):
         jsonschema.validate(obj, schema)
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_distribution_queue.py -v`
 Expected: file-not-found.
 
-- [ ] **Step 3: Write the schema**
+- [x] **Step 3: Write the schema**
 
 Create `state/_schemas/distribution_queue.schema.json`:
 
@@ -1420,12 +1420,12 @@ Create `state/_schemas/distribution_queue.schema.json`:
 }
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/schemas/test_distribution_queue.py -v`
 Expected: 3 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -1443,7 +1443,7 @@ git commit -m "feat(dataStructured): distribution_queue schema"
 - Create: `~/apps/dataStructured/scripts/lib/atomic_io.py`
 - Create: `~/apps/dataStructured/tests/test_atomic_io.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/test_atomic_io.py`:
 
@@ -1506,12 +1506,12 @@ def test_pretty_printed(tmp_path):
     assert '  ' in text  # 2-space indent
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_atomic_io.py -v`
 Expected: ImportError (module doesn't exist).
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 Create `scripts/lib/atomic_io.py`:
 
@@ -1545,12 +1545,12 @@ def read_json(path: Path) -> Any:
         return json.load(f)
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_atomic_io.py -v`
 Expected: 3 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -1566,7 +1566,7 @@ git commit -m "feat(dataStructured): atomic_io helpers (write-tmp-fsync-rename)"
 - Create: `~/apps/dataStructured/scripts/lib/schema_validator.py`
 - Create: `~/apps/dataStructured/tests/test_schema_validator.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/test_schema_validator.py`:
 
@@ -1607,12 +1607,12 @@ def test_unknown_schema_raises():
         validate("nonexistent_type", {})
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_schema_validator.py -v`
 Expected: ImportError.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 Create `scripts/lib/schema_validator.py`:
 
@@ -1647,12 +1647,12 @@ def validate(schema_name: str, data: dict) -> None:
         raise SchemaValidationError(f"{schema_name}: {e.message} (at {list(e.absolute_path)})") from e
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_schema_validator.py -v`
 Expected: 3 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -1668,7 +1668,7 @@ git commit -m "feat(dataStructured): schema_validator wrapper with caching + fri
 - Create: `~/apps/dataStructured/scripts/lib/slug.py`
 - Create: `~/apps/dataStructured/tests/test_slug.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/test_slug.py`:
 
@@ -1708,12 +1708,12 @@ def test_stripe_product_id_idempotent():
     assert stripe_product_id(sid.replace("dsl_", "").replace("_", "-")) == sid
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_slug.py -v`
 Expected: ImportError.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 Create `scripts/lib/slug.py`:
 
@@ -1740,12 +1740,12 @@ def stripe_product_id(slug: str) -> str:
     return f"{STRIPE_PREFIX}{s}"
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_slug.py -v`
 Expected: 7 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -1761,7 +1761,7 @@ git commit -m "feat(dataStructured): slug + stripe_product_id helpers (dsl_ pref
 - Create: `~/apps/dataStructured/scripts/lib/distribution_queue.py`
 - Create: `~/apps/dataStructured/tests/test_distribution_queue_lib.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/test_distribution_queue_lib.py`:
 
@@ -1817,12 +1817,12 @@ def test_invalid_item_raises(queue_path):
         append_item(queue_path, {"slug": "bad"})  # missing required fields
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_distribution_queue_lib.py -v`
 Expected: ImportError.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 Create `scripts/lib/distribution_queue.py`:
 
@@ -1877,12 +1877,12 @@ def append_item(path: Path, item: dict) -> None:
             fcntl.flock(lock_f.fileno(), fcntl.LOCK_UN)
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_distribution_queue_lib.py -v`
 Expected: 3 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -1894,12 +1894,12 @@ git commit -m "feat(dataStructured): distribution_queue safe append (fcntl lock 
 
 ### Task 1.12: Full Milestone 1 test sweep + commit barrier
 
-- [ ] **Step 1: Run all M1 tests together**
+- [x] **Step 1: Run all M1 tests together**
 
 Run: `cd ~/apps/dataStructured && pytest tests/ -v`
 Expected: all schema tests + helper tests PASS. ≥ 30 tests total.
 
-- [ ] **Step 2: Verify schemas dir has 7 files**
+- [x] **Step 2: Verify schemas dir has 7 files**
 
 Run: `ls ~/apps/dataStructured/state/_schemas/*.schema.json | wc -l`
 Expected: `7`.
@@ -1916,7 +1916,7 @@ The stub provider lets contract tests (M3+) drive employees with canned LLM resp
 - Create: `~/apps/dataStructured/tests/conftest.py`
 - Create: `~/apps/dataStructured/tests/_stub_provider.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/test_stub_provider.py`:
 
@@ -1946,12 +1946,12 @@ def test_stub_records_calls():
     assert p.calls[0]["messages"][0]["content"] == "first"
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_stub_provider.py -v`
 Expected: ImportError.
 
-- [ ] **Step 3: Write the stub provider**
+- [x] **Step 3: Write the stub provider**
 
 Create `tests/_stub_provider.py`:
 
@@ -1986,7 +1986,7 @@ class StubProvider:
         yield {"type": "end", "result": result}
 ```
 
-- [ ] **Step 4: Write minimal conftest.py**
+- [x] **Step 4: Write minimal conftest.py**
 
 Create `tests/conftest.py`:
 
@@ -2004,12 +2004,12 @@ def workspace(tmp_path) -> Path:
     return tmp_path
 ```
 
-- [ ] **Step 5: Run — expect PASS**
+- [x] **Step 5: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_stub_provider.py -v`
 Expected: 3 pass.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2029,11 +2029,11 @@ These are markdown files describing each employee's persona. trinity-agent loads
 - Create: `~/apps/dataStructured/.trinity/employees/ceo/identity.md`
 - Modify: `~/apps/dataStructured/trinity.toml` (add `[employees.ceo]`)
 
-- [ ] **Step 1: Make the directory**
+- [x] **Step 1: Make the directory**
 
 Run: `mkdir -p ~/apps/dataStructured/.trinity/employees/ceo`
 
-- [ ] **Step 2: Write CEO identity.md**
+- [x] **Step 2: Write CEO identity.md**
 
 Create `~/apps/dataStructured/.trinity/employees/ceo/identity.md`:
 
@@ -2114,7 +2114,7 @@ Mid-cycle DMs only fire for: compliance NEEDS FOUNDER REVIEW, engineer smoke-tes
 The founder may DM ad-hoc. Use the conversational track for status questions; spawn downstream employees only if the request is operational. Always be brief and specific.
 ```
 
-- [ ] **Step 3: Add to trinity.toml**
+- [x] **Step 3: Add to trinity.toml**
 
 Append to `~/apps/dataStructured/trinity.toml`:
 
@@ -2125,12 +2125,12 @@ title = "CEO"
 model = ""
 ```
 
-- [ ] **Step 4: Verify**
+- [x] **Step 4: Verify**
 
 Run: `cd ~/apps/dataStructured && trinity employee list`
 Expected: lists `ceo (CEO)`.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2140,7 +2140,7 @@ git commit -m "feat(dataStructured): ceo employee identity + register in trinity
 
 > Note: `.trinity/` is in `.gitignore`. Override per-employee identity tracking by force-adding: `git add -f dataStructured/.trinity/employees/ceo/identity.md`. Identity files are intentionally in the repo so the agent persona is versioned. (Update Task 0.3 .gitignore by appending `!.trinity/employees/` if needed — see Step 6 below.)
 
-- [ ] **Step 6: Add identity-file exception to .gitignore**
+- [x] **Step 6: Add identity-file exception to .gitignore**
 
 Edit `~/apps/dataStructured/.gitignore`, change:
 
@@ -2176,11 +2176,11 @@ git commit -m "chore(dataStructured): version employee identity files"
 - Create: `~/apps/dataStructured/.trinity/employees/opportunity-researcher/identity.md`
 - Modify: `~/apps/dataStructured/trinity.toml`
 
-- [ ] **Step 1: Make the directory**
+- [x] **Step 1: Make the directory**
 
 Run: `mkdir -p ~/apps/dataStructured/.trinity/employees/opportunity-researcher`
 
-- [ ] **Step 2: Write identity.md**
+- [x] **Step 2: Write identity.md**
 
 Create `~/apps/dataStructured/.trinity/employees/opportunity-researcher/identity.md`:
 
@@ -2239,7 +2239,7 @@ You do NOT talk to the founder. The CEO reads your briefs and decides. You are s
 Your final action each run: print a summary to stdout listing the briefs you wrote and your top pick. (CEO reads this if they spawn you mid-cycle.)
 ```
 
-- [ ] **Step 3: Add to trinity.toml**
+- [x] **Step 3: Add to trinity.toml**
 
 Append:
 
@@ -2250,12 +2250,12 @@ title = "Opportunity Researcher"
 model = ""
 ```
 
-- [ ] **Step 4: Verify**
+- [x] **Step 4: Verify**
 
 Run: `cd ~/apps/dataStructured && trinity employee list`
 Expected: shows ceo and opportunity-researcher.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2271,11 +2271,11 @@ git commit -m "feat(dataStructured): opportunity-researcher employee identity"
 - Create: `~/apps/dataStructured/.trinity/employees/data-engineer/identity.md`
 - Modify: `~/apps/dataStructured/trinity.toml`
 
-- [ ] **Step 1: Make the directory**
+- [x] **Step 1: Make the directory**
 
 Run: `mkdir -p ~/apps/dataStructured/.trinity/employees/data-engineer`
 
-- [ ] **Step 2: Write identity.md**
+- [x] **Step 2: Write identity.md**
 
 Create `~/apps/dataStructured/.trinity/employees/data-engineer/identity.md`:
 
@@ -2335,7 +2335,7 @@ If your harvest produces fewer than 50 rows or all sources are gated, write the 
 You do NOT talk to the founder. Your output is files. Print a summary to stdout when done.
 ```
 
-- [ ] **Step 3: Add to trinity.toml**
+- [x] **Step 3: Add to trinity.toml**
 
 Append:
 
@@ -2346,12 +2346,12 @@ title = "Data Engineer"
 model = ""
 ```
 
-- [ ] **Step 4: Verify**
+- [x] **Step 4: Verify**
 
 Run: `cd ~/apps/dataStructured && trinity employee list`
 Expected: 3 employees listed.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2367,11 +2367,11 @@ git commit -m "feat(dataStructured): data-engineer employee identity"
 - Create: `~/apps/dataStructured/.trinity/employees/data-steward/identity.md`
 - Modify: `~/apps/dataStructured/trinity.toml`
 
-- [ ] **Step 1: Make the directory**
+- [x] **Step 1: Make the directory**
 
 Run: `mkdir -p ~/apps/dataStructured/.trinity/employees/data-steward`
 
-- [ ] **Step 2: Write identity.md**
+- [x] **Step 2: Write identity.md**
 
 Create `~/apps/dataStructured/.trinity/employees/data-steward/identity.md`:
 
@@ -2413,7 +2413,7 @@ Log **every** transformation in `quality_report.transformations` with row delta.
 You do NOT talk to the founder. Your output is the clean CSV + quality report.
 ```
 
-- [ ] **Step 3: Add to trinity.toml**
+- [x] **Step 3: Add to trinity.toml**
 
 Append:
 
@@ -2424,12 +2424,12 @@ title = "Data Steward"
 model = ""
 ```
 
-- [ ] **Step 4: Verify**
+- [x] **Step 4: Verify**
 
 Run: `cd ~/apps/dataStructured && trinity employee list`
 Expected: 4 employees.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2445,11 +2445,11 @@ git commit -m "feat(dataStructured): data-steward employee identity"
 - Create: `~/apps/dataStructured/.trinity/employees/compliance-officer/identity.md`
 - Modify: `~/apps/dataStructured/trinity.toml`
 
-- [ ] **Step 1: Make the directory**
+- [x] **Step 1: Make the directory**
 
 Run: `mkdir -p ~/apps/dataStructured/.trinity/employees/compliance-officer`
 
-- [ ] **Step 2: Write identity.md**
+- [x] **Step 2: Write identity.md**
 
 Create `~/apps/dataStructured/.trinity/employees/compliance-officer/identity.md`:
 
@@ -2498,7 +2498,7 @@ Each question gets a documented answer in `audit.<question>.answer` (and support
 You do NOT talk to the founder directly. The CEO reads your verdict and surfaces FAIL/NEEDS_FOUNDER_REVIEW in the daily DM.
 ```
 
-- [ ] **Step 3: Add to trinity.toml**
+- [x] **Step 3: Add to trinity.toml**
 
 Append:
 
@@ -2509,12 +2509,12 @@ title = "Compliance Officer"
 model = ""
 ```
 
-- [ ] **Step 4: Verify**
+- [x] **Step 4: Verify**
 
 Run: `cd ~/apps/dataStructured && trinity employee list`
 Expected: 5 employees.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2530,11 +2530,11 @@ git commit -m "feat(dataStructured): compliance-officer employee identity (7-que
 - Create: `~/apps/dataStructured/.trinity/employees/engineer/identity.md`
 - Modify: `~/apps/dataStructured/trinity.toml`
 
-- [ ] **Step 1: Make the directory**
+- [x] **Step 1: Make the directory**
 
 Run: `mkdir -p ~/apps/dataStructured/.trinity/employees/engineer`
 
-- [ ] **Step 2: Write identity.md**
+- [x] **Step 2: Write identity.md**
 
 Create `~/apps/dataStructured/.trinity/employees/engineer/identity.md`:
 
@@ -2580,7 +2580,7 @@ Given `state/products/{slug}/spec.json` (status: READY_TO_SHIP), produce:
 You do NOT talk to the founder. Your output is the launch report and the live URLs. CEO reads and includes in daily DM.
 ```
 
-- [ ] **Step 3: Add to trinity.toml**
+- [x] **Step 3: Add to trinity.toml**
 
 Append:
 
@@ -2591,12 +2591,12 @@ title = "Engineer"
 model = ""
 ```
 
-- [ ] **Step 4: Verify**
+- [x] **Step 4: Verify**
 
 Run: `cd ~/apps/dataStructured && trinity employee list`
 Expected: 6 employees.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2608,12 +2608,12 @@ git commit -m "feat(dataStructured): engineer employee identity (Stripe + Gumroa
 
 ### Task 3.7: Smoke check — trinity status
 
-- [ ] **Step 1: Run trinity status**
+- [x] **Step 1: Run trinity status**
 
 Run: `cd ~/apps/dataStructured && trinity status`
 Expected: Shows workspace state including 6 employees registered.
 
-- [ ] **Step 2: Run trinity employee list**
+- [x] **Step 2: Run trinity employee list**
 
 Run: `cd ~/apps/dataStructured && trinity employee list`
 Expected:
@@ -2641,7 +2641,7 @@ If any employee is missing from the list, re-check that the corresponding `[empl
 - Create: `~/apps/dataStructured/scripts/stripe_helpers.py`
 - Create: `~/apps/dataStructured/tests/test_stripe_helpers.py`
 
-- [ ] **Step 1: Write the failing test (mocked Stripe)**
+- [x] **Step 1: Write the failing test (mocked Stripe)**
 
 Create `tests/test_stripe_helpers.py`:
 
@@ -2674,12 +2674,12 @@ def test_create_product_passes_name_and_description():
     assert kwargs["description"] == "A report on X"
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_stripe_helpers.py -v`
 Expected: ImportError.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 Create `scripts/stripe_helpers.py`:
 
@@ -2712,12 +2712,12 @@ def create_product(slug: str, name: str, description: str):
     )
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_stripe_helpers.py -v`
 Expected: 2 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2733,7 +2733,7 @@ git commit -m "feat(dataStructured): stripe create_product helper (dsl_ prefix i
 - Modify: `~/apps/dataStructured/scripts/stripe_helpers.py`
 - Modify: `~/apps/dataStructured/tests/test_stripe_helpers.py`
 
-- [ ] **Step 1: Add tests**
+- [x] **Step 1: Add tests**
 
 Append to `tests/test_stripe_helpers.py`:
 
@@ -2762,12 +2762,12 @@ def test_create_payment_link_uses_price():
     assert link.url.startswith("https://")
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_stripe_helpers.py -v`
 Expected: 2 new tests fail (functions don't exist).
 
-- [ ] **Step 3: Add implementations**
+- [x] **Step 3: Add implementations**
 
 Append to `scripts/stripe_helpers.py`:
 
@@ -2794,12 +2794,12 @@ def create_payment_link(price_id: str, success_message: str):
     )
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_stripe_helpers.py -v`
 Expected: all 4 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2815,11 +2815,11 @@ git commit -m "feat(dataStructured): stripe create_price + create_payment_link h
 - Create: `~/apps/dataStructured/tests/integration/__init__.py`
 - Create: `~/apps/dataStructured/tests/integration/test_stripe_e2e.py`
 
-- [ ] **Step 1: Make integration dir**
+- [x] **Step 1: Make integration dir**
 
 Run: `mkdir -p ~/apps/dataStructured/tests/integration && touch ~/apps/dataStructured/tests/integration/__init__.py`
 
-- [ ] **Step 2: Write the integration smoke test**
+- [x] **Step 2: Write the integration smoke test**
 
 Create `tests/integration/test_stripe_e2e.py`:
 
@@ -2854,14 +2854,14 @@ def test_full_stripe_flow_test_mode():
     assert "stripe" in response.text.lower() or "checkout" in response.text.lower()
 ```
 
-- [ ] **Step 3: Run — skipped if no test key**
+- [x] **Step 3: Run — skipped if no test key**
 
 Run: `cd ~/apps/dataStructured && pytest tests/integration/test_stripe_e2e.py -v`
 Expected: SKIPPED (if no test key set) or PASS (if key set).
 
 To run live: set `STRIPE_SECRET_KEY=sk_test_xxx` in env first.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2879,7 +2879,7 @@ git commit -m "test(dataStructured): stripe test-mode E2E smoke (skipped without
 - Create: `~/apps/dataStructured/scripts/gumroad_helpers.py`
 - Create: `~/apps/dataStructured/tests/test_gumroad_helpers.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/test_gumroad_helpers.py`:
 
@@ -2905,12 +2905,12 @@ def test_login_raises_if_blank_creds():
         login(fake_page, username="", password="x")
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_gumroad_helpers.py -v`
 Expected: ImportError.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 Create `scripts/gumroad_helpers.py`:
 
@@ -2934,12 +2934,12 @@ def login(page: Page, username: str, password: str) -> None:
     page.wait_for_url("https://gumroad.com/dashboard", timeout=30000)
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_gumroad_helpers.py -v`
 Expected: 2 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -2955,7 +2955,7 @@ git commit -m "feat(dataStructured): gumroad Playwright login helper"
 - Modify: `~/apps/dataStructured/scripts/gumroad_helpers.py`
 - Modify: `~/apps/dataStructured/tests/test_gumroad_helpers.py`
 
-- [ ] **Step 1: Append failing test**
+- [x] **Step 1: Append failing test**
 
 Append to `tests/test_gumroad_helpers.py`:
 
@@ -2981,12 +2981,12 @@ def test_create_listing_fills_form_and_publishes():
     assert url.startswith("https://gumroad.com/l/")
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_gumroad_helpers.py -v`
 Expected: 2 pass + 1 fail (function doesn't exist).
 
-- [ ] **Step 3: Append implementation**
+- [x] **Step 3: Append implementation**
 
 Append to `scripts/gumroad_helpers.py`:
 
@@ -3009,12 +3009,12 @@ def create_listing(
     return page.url
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_gumroad_helpers.py -v`
 Expected: 3 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -3034,7 +3034,7 @@ git commit -m "feat(dataStructured): gumroad create_listing Playwright helper"
 - Create: `~/apps/dataStructured/scripts/ceo_orchestrator.py`
 - Create: `~/apps/dataStructured/tests/test_ceo_orchestrator.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/test_ceo_orchestrator.py`:
 
@@ -3076,12 +3076,12 @@ def test_dispatch_passes_timeout():
     assert kwargs["timeout"] == 600
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_ceo_orchestrator.py -v`
 Expected: ImportError.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 Create `scripts/ceo_orchestrator.py`:
 
@@ -3117,12 +3117,12 @@ def dispatch_employee(employee: str, task: str, timeout_sec: int = 3600) -> str:
     return result.stdout
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_ceo_orchestrator.py -v`
 Expected: 3 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -3138,7 +3138,7 @@ git commit -m "feat(dataStructured): ceo dispatch_employee subprocess helper"
 - Modify: `~/apps/dataStructured/scripts/ceo_orchestrator.py`
 - Modify: `~/apps/dataStructured/tests/test_ceo_orchestrator.py`
 
-- [ ] **Step 1: Append failing test**
+- [x] **Step 1: Append failing test**
 
 Append to `tests/test_ceo_orchestrator.py`:
 
@@ -3186,12 +3186,12 @@ def test_next_step_is_done_when_launch_report_shipped(workspace):
     assert step == "done"
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_ceo_orchestrator.py -v`
 Expected: 3 existing pass + 5 new fail.
 
-- [ ] **Step 3: Append implementation**
+- [x] **Step 3: Append implementation**
 
 Append to `scripts/ceo_orchestrator.py`:
 
@@ -3236,12 +3236,12 @@ def next_pipeline_step(workspace: Path, slug: str) -> str:
     return "data-engineer"
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_ceo_orchestrator.py -v`
 Expected: all 8 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -3257,7 +3257,7 @@ git commit -m "feat(dataStructured): ceo next_pipeline_step idempotency check"
 - Modify: `~/apps/dataStructured/scripts/ceo_orchestrator.py`
 - Modify: `~/apps/dataStructured/tests/test_ceo_orchestrator.py`
 
-- [ ] **Step 1: Append failing test**
+- [x] **Step 1: Append failing test**
 
 Append to `tests/test_ceo_orchestrator.py`:
 
@@ -3296,12 +3296,12 @@ def test_dm_with_blocked():
     assert "edge-case phone numbers" in dm
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_ceo_orchestrator.py -v`
 Expected: prior pass + 2 new fail.
 
-- [ ] **Step 3: Append implementation**
+- [x] **Step 3: Append implementation**
 
 Append to `scripts/ceo_orchestrator.py`:
 
@@ -3338,12 +3338,12 @@ def format_daily_dm(
     )
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/test_ceo_orchestrator.py -v`
 Expected: all 10 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -3360,7 +3360,7 @@ git commit -m "feat(dataStructured): ceo format_daily_dm template"
 **Files:**
 - Modify: `~/apps/dataStructured/trinity.toml`
 
-- [ ] **Step 1: Append the cycles block**
+- [x] **Step 1: Append the cycles block**
 
 Append to `~/apps/dataStructured/trinity.toml`:
 
@@ -3384,17 +3384,17 @@ type = "needle"
 task = "Run today's pipeline. Read state/opportunities/ for PROPOSED briefs. Cross-reference trinity memory for recently-rejected niches. Pick ONE brief with score >= 6 to advance (or zero if none qualify). For the chosen brief: dispatch data-engineer -> data-steward -> compliance-officer in sequence. If compliance verdict is PASS, write product spec.json and dispatch engineer. After all dispatches complete, send one DM to founder using format_daily_dm template."
 ```
 
-- [ ] **Step 2: Validate trinity.toml parses**
+- [x] **Step 2: Validate trinity.toml parses**
 
 Run: `python3 -c "import tomllib; tomllib.loads(open('/home/oghenetejiri/apps/dataStructured/trinity.toml').read()); print('ok')"`
 Expected: `ok`.
 
-- [ ] **Step 3: Verify trinity sees the cycles**
+- [x] **Step 3: Verify trinity sees the cycles**
 
 Run: `cd ~/apps/dataStructured && trinity status`
 Expected: status output includes scheduler cycles `research_scan` and `ceo_pipeline`.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -3410,11 +3410,11 @@ git commit -m "feat(dataStructured): scheduler cycles (research 13:00 ET, ceo 19
 
 **Files:** none (external setup)
 
-- [ ] **Step 1: Open Telegram, message @BotFather**
+- [x] **Step 1: Open Telegram, message @BotFather**
 
 Run on phone or Telegram desktop: open chat with @BotFather.
 
-- [ ] **Step 2: Send /newbot**
+- [x] **Step 2: Send /newbot**
 
 Type `/newbot` and follow the prompts:
 - **Bot name:** `DataStructured` (or whatever you chose to brand)
@@ -3422,7 +3422,7 @@ Type `/newbot` and follow the prompts:
 
 @BotFather returns a token like `1234567890:AAA-bbb-ccc-ddd`.
 
-- [ ] **Step 3: Save token to .env**
+- [x] **Step 3: Save token to .env**
 
 Edit `~/apps/dataStructured/.env` (create from .env.example if missing):
 
@@ -3432,11 +3432,11 @@ cp ~/apps/dataStructured/.env.example ~/apps/dataStructured/.env
 TELEGRAM_BOT_TOKEN="1234567890:AAA-bbb-ccc-ddd"
 ```
 
-- [ ] **Step 4: Get your founder Telegram user ID**
+- [x] **Step 4: Get your founder Telegram user ID**
 
 Message `@userinfobot` on Telegram. It returns your numeric user ID (e.g. `123456789`).
 
-- [ ] **Step 5: Save founder ID to .env**
+- [x] **Step 5: Save founder ID to .env**
 
 Append to `.env`:
 
@@ -3444,7 +3444,7 @@ Append to `.env`:
 FOUNDER_TELEGRAM_USER_ID="123456789"
 ```
 
-- [ ] **Step 6: Verify .env is gitignored**
+- [x] **Step 6: Verify .env is gitignored**
 
 Run: `git check-ignore -v ~/apps/dataStructured/.env`
 Expected: confirms `.env` is gitignored.
@@ -3456,7 +3456,7 @@ Expected: confirms `.env` is gitignored.
 **Files:**
 - Modify: `~/apps/dataStructured/trinity.toml`
 
-- [ ] **Step 1: Update [telegram.acl] section**
+- [x] **Step 1: Update [telegram.acl] section**
 
 Edit `trinity.toml` `[telegram.acl]` block:
 
@@ -3469,12 +3469,12 @@ group_policy = "allowlist"
 
 (Use the numeric ID from Task 8.1 Step 4 — not as string, as integer.)
 
-- [ ] **Step 2: Validate parses**
+- [x] **Step 2: Validate parses**
 
 Run: `python3 -c "import tomllib; tomllib.loads(open('/home/oghenetejiri/apps/dataStructured/trinity.toml').read()); print('ok')"`
 Expected: `ok`.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -3490,12 +3490,12 @@ git commit -m "feat(dataStructured): telegram ACL allowlist with founder user ID
 
 **Files:** none (verification)
 
-- [ ] **Step 1: Start trinity in foreground**
+- [x] **Step 1: Start trinity in foreground**
 
 Run: `cd ~/apps/dataStructured && trinity start`
 Expected: Console output shows "Telegram bot started" + "Scheduler started".
 
-- [ ] **Step 2: From Telegram, DM your bot "ping"**
+- [x] **Step 2: From Telegram, DM your bot "ping"**
 
 Open Telegram → find your bot (search the username from Task 8.1) → send `ping`.
 
@@ -3503,11 +3503,11 @@ Expected: bot responds within 30 seconds (CEO will respond per default_employee)
 
 If no response: check console for errors. Common causes: wrong token, ACL not allowing your user ID, daemon not running.
 
-- [ ] **Step 3: Stop trinity**
+- [x] **Step 3: Stop trinity**
 
 Press Ctrl-C in the terminal running trinity.
 
-- [ ] **Step 4: Mark this task complete only when ping/pong succeeded**
+- [x] **Step 4: Mark this task complete only when ping/pong succeeded**
 
 If ping succeeded, the bot, ACL, and provider are all wired correctly.
 
@@ -3520,7 +3520,7 @@ If ping succeeded, the bot, ACL, and provider are all wired correctly.
 **Files:**
 - Modify: user crontab (`crontab -e`)
 
-- [ ] **Step 1: Edit user crontab**
+- [x] **Step 1: Edit user crontab**
 
 Run: `crontab -e`
 
@@ -3533,7 +3533,7 @@ Append at the bottom:
 
 (Adjust path to `trinity` binary if it lives elsewhere. Check with `which trinity`.)
 
-- [ ] **Step 2: Verify crontab has the line**
+- [x] **Step 2: Verify crontab has the line**
 
 Run: `crontab -l | grep dataStructured`
 Expected: shows the @reboot line.
@@ -3546,27 +3546,27 @@ Expected: shows the @reboot line.
 
 **Files:** none (verification)
 
-- [ ] **Step 1: Start daemon**
+- [x] **Step 1: Start daemon**
 
 Run: `cd ~/apps/dataStructured && trinity start --daemon`
 Expected: returns to shell, prints something like "Started in background, PID: NNNN".
 
-- [ ] **Step 2: Verify PID file exists**
+- [x] **Step 2: Verify PID file exists**
 
 Run: `cat ~/apps/dataStructured/.trinity/state/trinity.pid`
 Expected: integer (the daemon PID).
 
-- [ ] **Step 3: Verify process is alive**
+- [x] **Step 3: Verify process is alive**
 
 Run: `ps -p $(cat ~/apps/dataStructured/.trinity/state/trinity.pid)`
 Expected: shows trinity process.
 
-- [ ] **Step 4: Stop daemon**
+- [x] **Step 4: Stop daemon**
 
 Run: `cd ~/apps/dataStructured && trinity stop`
 Expected: confirms stopped.
 
-- [ ] **Step 5: Verify PID file cleaned up**
+- [x] **Step 5: Verify PID file cleaned up**
 
 Run: `ls ~/apps/dataStructured/.trinity/state/trinity.pid 2>/dev/null && echo "STILL THERE" || echo "GONE"`
 Expected: `GONE`.
@@ -3582,11 +3582,11 @@ Expected: `GONE`.
 - Create: `~/apps/dataStructured/tests/fixtures/__init__.py`
 - Create: `~/apps/dataStructured/tests/fixtures/seed_brief.json`
 
-- [ ] **Step 1: Make fixtures dir**
+- [x] **Step 1: Make fixtures dir**
 
 Run: `mkdir -p ~/apps/dataStructured/tests/fixtures && touch ~/apps/dataStructured/tests/fixtures/__init__.py`
 
-- [ ] **Step 2: Write seed brief fixture**
+- [x] **Step 2: Write seed brief fixture**
 
 Create `tests/fixtures/seed_brief.json`:
 
@@ -3609,7 +3609,7 @@ Create `tests/fixtures/seed_brief.json`:
 }
 ```
 
-- [ ] **Step 3: Write the dry-run smoke test**
+- [x] **Step 3: Write the dry-run smoke test**
 
 Create `tests/integration/test_pipeline_dryrun.py`:
 
@@ -3658,12 +3658,12 @@ def test_pipeline_state_machine_progresses(tmp_path):
     assert next_pipeline_step(tmp_path, slug="smoke-test-niche") == "done"
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 
 Run: `cd ~/apps/dataStructured && pytest tests/integration/test_pipeline_dryrun.py -v`
 Expected: 1 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run from `~/apps/`:
 ```bash
@@ -3675,12 +3675,12 @@ git commit -m "test(dataStructured): pipeline state-machine integration dry-run"
 
 ### Task 10.2: Full test sweep before live run
 
-- [ ] **Step 1: Run everything**
+- [x] **Step 1: Run everything**
 
 Run: `cd ~/apps/dataStructured && pytest -v`
 Expected: All tests pass. Should be ≥ 40 tests across schemas, helpers, and integration.
 
-- [ ] **Step 2: Confirm no test errors or warnings**
+- [x] **Step 2: Confirm no test errors or warnings**
 
 If any test fails or has warnings, fix before proceeding.
 
@@ -3690,19 +3690,19 @@ If any test fails or has warnings, fix before proceeding.
 
 **Files:** none (live invocation)
 
-- [ ] **Step 1: Source .env (if not auto-loaded)**
+- [x] **Step 1: Source .env (if not auto-loaded)**
 
 Trinity auto-loads `.env`, but verify by running:
 
 Run: `cd ~/apps/dataStructured && env | grep TELEGRAM_BOT_TOKEN || echo "Not set — trinity will load from .env"`
 
-- [ ] **Step 2: Run researcher one-shot**
+- [x] **Step 2: Run researcher one-shot**
 
 Run: `cd ~/apps/dataStructured && trinity run "Run today's wide demand-discovery scan. Write 3-5 briefs to state/opportunities/." -e opportunity-researcher`
 
 Expected: agent runs, fetches signals, writes briefs to `state/opportunities/`.
 
-- [ ] **Step 3: Verify briefs exist and validate**
+- [x] **Step 3: Verify briefs exist and validate**
 
 Run:
 ```bash
@@ -3728,7 +3728,7 @@ If briefs are malformed: review the researcher identity.md + the schema; iterate
 
 **Files:** none (live invocation)
 
-- [ ] **Step 1: Run CEO one-shot**
+- [x] **Step 1: Run CEO one-shot**
 
 Run: `cd ~/apps/dataStructured && trinity run "Run today's pipeline. Pick the highest-scored brief, dispatch downstream pipeline. Send DM with summary." -e ceo`
 
@@ -3736,11 +3736,11 @@ Expected: CEO reads opportunities, picks one, dispatches data-engineer → data-
 
 This will run for several minutes (multiple subprocess dispatches).
 
-- [ ] **Step 2: Verify Telegram DM landed**
+- [x] **Step 2: Verify Telegram DM landed**
 
 Check Telegram. Expected: bot DMed you a daily summary.
 
-- [ ] **Step 3: Inspect the produced state artifacts**
+- [x] **Step 3: Inspect the produced state artifacts**
 
 Run:
 ```bash
@@ -3749,7 +3749,7 @@ find ~/apps/dataStructured/state -type f -name "*.json" -newer ~/apps/dataStruct
 
 Expected: lists newly-created files: opportunity status updated, dataset metadata, quality report, ethics ledger entry, possibly product spec + launch report.
 
-- [ ] **Step 4: If pipeline halted at any step, read CEO's DM for the blocker**
+- [x] **Step 4: If pipeline halted at any step, read CEO's DM for the blocker**
 
 The DM should explain what happened. Common first-run issues:
 - Engineer halted because Stripe key not set → set `STRIPE_SECRET_KEY=sk_test_...` in `.env`, retry
@@ -3760,18 +3760,18 @@ The DM should explain what happened. Common first-run issues:
 
 ### Task 10.5: Enable scheduled daemon
 
-- [ ] **Step 1: Start daemon**
+- [x] **Step 1: Start daemon**
 
 Run: `cd ~/apps/dataStructured && trinity start --daemon`
 Expected: daemon backgrounded, PID printed.
 
-- [ ] **Step 2: Verify scheduler picked up cycles**
+- [x] **Step 2: Verify scheduler picked up cycles**
 
 Run: `tail -50 ~/apps/dataStructured/.trinity/logs/daemon.log 2>/dev/null || echo "(no log yet — scheduler runs on cron schedule)"`
 
 Wait for next cycle time (13:00 ET researcher OR 19:00 ET CEO) and verify a fresh DM lands at that time.
 
-- [ ] **Step 3: Document startup**
+- [x] **Step 3: Document startup**
 
 Add a one-line note to `~/apps/dataStructured/README.md` after the Quick Start section:
 
@@ -3797,15 +3797,15 @@ git commit -m "docs(dataStructured): document daemon lifecycle"
 
 **Files:** none (observation period)
 
-- [ ] **Step 1: Wait for the next 13:00 ET cycle**
+- [x] **Step 1: Wait for the next 13:00 ET cycle**
 
 Verify a fresh `state/opportunities/` file is created at 13:00 ET.
 
-- [ ] **Step 2: Wait for the next 19:00 ET cycle**
+- [x] **Step 2: Wait for the next 19:00 ET cycle**
 
 Verify a fresh DM lands in Telegram at ~19:00 ET. The DM should contain `📊 DataStructured — {today's date}`.
 
-- [ ] **Step 3: Document first day**
+- [x] **Step 3: Document first day**
 
 Append to `~/apps/dataStructured/README.md` a "First-day live notes" section with:
 - Time first DM received
@@ -3820,24 +3820,24 @@ Commit if any notes added.
 
 This section is for the implementing agent (or human) to run as a final gate before declaring v1 done.
 
-- [ ] **Spec coverage:** every section of `docs/superpowers/specs/2026-05-04-datastructured-design.md` has been implemented:
+- [x] **Spec coverage:** every section of `docs/superpowers/specs/2026-05-04-datastructured-design.md` has been implemented:
   - Section 3 (Architecture) → Milestones 0, 7, 8, 9
   - Section 4 (Components — 6 employees) → Milestone 3
   - Section 5 (Data flow — JSON artifacts) → Milestone 1
   - Section 6 (Error handling) → Milestone 6 (orchestrator) + agent identity rules
   - Section 7 (Testing) → Milestones 1, 2, 4, 5, 6, 10
 
-- [ ] **Tests passing:** `pytest -v` from workspace shows ≥ 40 tests passing.
+- [x] **Tests passing:** `pytest -v` from workspace shows ≥ 40 tests passing.
 
-- [ ] **Live system observable:** at least one daily DM has been received from CEO.
+- [x] **Live system observable:** at least one daily DM has been received from CEO.
 
-- [ ] **No placeholders in identity files:** grep employee identities for "TODO|TBD|XXX|FIXME" — all clean.
+- [x] **No placeholders in identity files:** grep employee identities for "TODO|TBD|XXX|FIXME" — all clean.
 
-- [ ] **Compliance gate enforced:** at least one ethics-ledger entry exists (PASS, FAIL, or NEEDS_FOUNDER_REVIEW). If NEEDS_FOUNDER_REVIEW, founder DMed back with a decision.
+- [x] **Compliance gate enforced:** at least one ethics-ledger entry exists (PASS, FAIL, or NEEDS_FOUNDER_REVIEW). If NEEDS_FOUNDER_REVIEW, founder DMed back with a decision.
 
-- [ ] **Idempotency proven:** re-running CEO mid-pipeline does not re-do completed steps (verify by deleting an artifact and observing CEO restarts only from that point).
+- [x] **Idempotency proven:** re-running CEO mid-pipeline does not re-do completed steps (verify by deleting an artifact and observing CEO restarts only from that point).
 
-- [ ] **Daemon resilient:** daemon survives a stop+start cycle; @reboot line is present in user crontab.
+- [x] **Daemon resilient:** daemon survives a stop+start cycle; @reboot line is present in user crontab.
 
 If all boxes checked, v1 is shipped. Move to PRD Phase 2 entry trigger when 14 consecutive daily DMs land without intervention.
 
@@ -3845,10 +3845,21 @@ If all boxes checked, v1 is shipped. Move to PRD Phase 2 entry trigger when 14 c
 
 ## Plan complete.
 
-Two execution options:
+---
 
-**1. Subagent-Driven (recommended)** — I dispatch a fresh subagent per task, review between tasks, fast iteration.
+## Closeout — 2026-05-08
 
-**2. Inline Execution** — Execute tasks in this session using executing-plans, batch execution with checkpoints.
+All 11 milestones (M0–M10) closed. 208 task checkboxes ticked.
 
-**Which approach?**
+**Live evidence:**
+- Stripe Payment Link: https://buy.stripe.com/cNi14g4CP7aT8mT1iC7IY0c (HTTP 200)
+- Gumroad listing: https://3563705146415.gumroad.com/l/bvdnbx (HTTP 200, deployed 2026-05-05T02:12:43Z)
+- First product: New FMCSA Carriers — May 2026, 15,770 records, $39
+- Daemon online: PID 3020540 (1d18h uptime as of close), workspace `/home/oghenetejiri/apps/dataStructured`
+- M9 `@reboot` crontab line installed in user crontab
+
+**M10.6 — 24-hour observation window:**
+Started 2026-05-04 with first autonomous CEO pipeline cycle. Closed administratively per founder direction. The 14-consecutive-daily-DM Phase-1 success threshold continues to accumulate organically — currently day 4. Phase 2 entry trigger remains valid: 14 consecutive daily DMs without founder intervention.
+
+**v1 → ongoing ops handoff:**
+Operational follow-ups (engineer subprocess `claude_agent_sdk` crash, watchdog cron line, future product specs, distribution sweep) are owned by Trinity/Ralph via Telegram DM (`@Ralph_the_builder_oefr_bot`), not Claude Code. Reference: feedback memory `feedback_datastructured_ops_handoff.md`.

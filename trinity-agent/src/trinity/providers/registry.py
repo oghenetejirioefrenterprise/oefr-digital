@@ -17,7 +17,12 @@ PROVIDERS: Registry[ProviderSpec] = Registry("trinity.providers")
 def _claude_sdk_factory(auth, agent_config, cwd=None):
     from .claude_sdk_provider import ClaudeSDKProvider
     max_turns = agent_config.max_turns if agent_config else 30
-    return ClaudeSDKProvider(max_turns=max_turns, cwd=cwd)
+    timeout = float(agent_config.action_timeout) if agent_config else 600.0
+    return ClaudeSDKProvider(
+        max_turns=max_turns,
+        cwd=cwd,
+        timeout_seconds=timeout,
+    )
 
 
 def _anthropic_factory(auth, agent_config, cwd=None):

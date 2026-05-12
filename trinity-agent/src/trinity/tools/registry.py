@@ -17,6 +17,7 @@ from typing import Any
 
 from trinity.plugins import Registry, ToolSpec
 from trinity.tools import (
+    delegate,
     filesystem,
     git,
     knowledge_tools,
@@ -432,7 +433,30 @@ _BUILTIN_SPECS: list[ToolSpec] = [
         handler=knowledge_tools.log_lesson,
         subsets=("builder",),
     ),
+
+    # Delegation
+    ToolSpec(
+        name="delegate_task",
+        definition=delegate.DELEGATE_SCHEMA,
+        handler=delegate.delegate_task,
+        subsets=("builder",),
+    ),
 ]
+
+
+# Kanban tools — appended via a helper so the schemas live in one module.
+def _append_kanban_specs() -> None:
+    from trinity.kanban import tools as kanban_tools
+    for schema, handler in kanban_tools.ALL_SPECS:
+        _BUILTIN_SPECS.append(ToolSpec(
+            name=schema["name"],
+            definition=schema,
+            handler=handler,
+            subsets=("builder",),
+        ))
+
+
+_append_kanban_specs()
 
 for _spec in _BUILTIN_SPECS:
     TOOLS.register(_spec.name, _spec, source="builtin")
@@ -445,13 +469,27 @@ TOOLS.discover()
 
 def build_tool_definitions() -> list[dict[str, Any]]:
     """Return the current list of Anthropic-format tool definitions."""
-    return [TOOLS.get(name).definition for name in TOOLS.names()]
+    definitions = []
+    for name in TOOLS.names():
+        spec = TOOLS.get(name)
+        # Handle both trinity.plugins.ToolSpec (has .definition) and
+        # third-party ToolSpecs (have .input_schema)
+        if hasattr(spec, 'definition'):
+            definitions.append(spec.definition)
+        elif hasattr(spec, 'input_schema'):
+            # Convert trinity_pack ToolSpec format to Anthropic format
+            definitions.append({
+                'name': spec.name,
+                'description': spec.description,
+                'input_schema': spec.input_schema,
+            })
+    return definitions
 
 
 def _subset(tag: str) -> list[str]:
     return sorted(
         name for name in TOOLS.names()
-        if tag in TOOLS.get(name).subsets
+        if hasattr(TOOLS.get(name), 'subsets') and tag in TOOLS.get(name).subsets
     )
 
 
@@ -474,7 +512,18 @@ def get_tools(names: list[str] | None = None) -> list[dict[str, Any]]:
     result = []
     for n in names:
         if n in TOOLS:
-            result.append(TOOLS.get(n).definition)
+            spec = TOOLS.get(n)
+            # Handle both trinity.plugins.ToolSpec (has .definition) and
+            # third-party ToolSpecs (have .input_schema)
+            if hasattr(spec, 'definition'):
+                result.append(spec.definition)
+            elif hasattr(spec, 'input_schema'):
+                # Convert trinity_pack ToolSpec format to Anthropic format
+                result.append({
+                    'name': spec.name,
+                    'description': spec.description,
+                    'input_schema': spec.input_schema,
+                })
     return result
 
 

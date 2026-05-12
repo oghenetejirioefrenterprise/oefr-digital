@@ -153,7 +153,7 @@ def _write_memory_file(path: Path, meta: dict[str, Any], content: str) -> None:
     for key in [
         "id", "segment", "importance", "decay_rate",
         "created", "last_accessed", "access_count", "source", "summary",
-        "kind", "status", "product", "category",
+        "kind", "status", "product", "category", "scope",
     ]:
         if key in meta and meta[key]:
             lines.append(f"{key}: {meta[key]}")
@@ -197,6 +197,7 @@ def store_memory(
     status: str = "",
     product: str = "",
     category: str = "",
+    scope: str = "global",
 ) -> str:
     """Create a new memory in short-term tier.
 
@@ -206,6 +207,7 @@ def store_memory(
     status: for issues — open, fixed, false-positive, wont-fix
     product: for issues/audits — product name
     category: for lessons — win, failure, process
+    scope: visibility — "global" (all chats) or a specific chat_id (isolated)
     """
     if segment not in SEGMENTS:
         raise ValueError(f"Invalid segment '{segment}'. Must be one of: {SEGMENTS}")
@@ -235,6 +237,7 @@ def store_memory(
         "status": status,
         "product": product,
         "category": category,
+        "scope": scope or "global",
     }
 
     with _index_lock:
@@ -257,6 +260,7 @@ def store_memory(
             "created": now,
             "access_count": 1,
             "summary": summary,
+            "scope": scope or "global",
         }
         if kind:
             index_entry["kind"] = kind
@@ -370,10 +374,20 @@ def promote_memory(trinity_dir: Path, memory_id: str, target_tier: str) -> bool:
         dst.write_text(src.read_text())
         src.unlink()
 
+        # Promotion to permanent tier broadens visibility to all chats.
+        if target_tier == "permanent":
+            data = _parse_memory_file(dst)
+            if data.get("scope") and data.get("scope") != "global":
+                content = data.pop("content", "")
+                data["scope"] = "global"
+                _write_memory_file(dst, data, content)
+
         index = _load_index(trinity_dir)
         for entry in index:
             if entry["id"] == memory_id:
                 entry["tier"] = target_tier
+                if target_tier == "permanent":
+                    entry["scope"] = "global"
                 break
         _save_index(trinity_dir, index)
 

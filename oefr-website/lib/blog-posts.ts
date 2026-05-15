@@ -18,6 +18,10 @@ export interface BlogPost {
     href: string;
     description: string;
   }[];
+  faqs?: {
+    question: string;
+    answer: string;
+  }[];
 }
 
 export const blogPosts: BlogPost[] = [
@@ -2619,6 +2623,2428 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "iep-504-letter-templates-parent-advocacy",
+    title: "IEP & 504 Letter Templates for Parents: 12 IDEA-Compliant Letters + 3 Meeting-Day Tools (Printable Parent Advocacy Kit)",
+    description:
+      "12 IDEA-cited IEP & 504 letter templates: evaluation requests, IEE, state complaints, due process, stay-put. Walk into the meeting organized. Print-and-go parent advocacy kit.",
+    keywords: [
+      "iep letter templates",
+      "504 plan letter templates",
+      "iep meeting prep kit",
+      "iep meeting prep checklist",
+      "504 plan accommodations checklist",
+      "iep binder printable",
+      "504 plan binder for parents",
+      "printable iep organizer parents",
+      "iep parent advocacy kit printable",
+      "section 504 vs iep",
+      "iep evaluation request letter",
+      "independent educational evaluation request",
+      "due process complaint letter template",
+      "iep state complaint letter",
+      "iep mediation request",
+      "extended school year request letter",
+      "iep parent advocate cost",
+      "idea 60 day evaluation timeline",
+      "stay put rights iep",
+      "iep transition planning age 14",
+      "parent advocacy kit special education",
+      "504 plan meeting prep",
+      "iep records request letter",
+      "iep meeting organized",
+      "printable iep meeting prep kit",
+      "write iep letter yourself",
+      "iep advocate vs lawyer cost",
+      "prepare iep meeting 48 hours",
+      "what to put in iep binder",
+      "refusing to sign iep at meeting",
+    ],
+    publishedDate: "2026-05-08",
+    readingTime: "11 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Parent advocates charge $100–300 per hour. Special-ed attorneys charge $250–500. Most parents go unrepresented and sign whatever the school district hands them. This is what a parent walking into an IEP meeting needs in writing — 12 IDEA-compliant letter templates and 3 meeting-day tools, backed by federal citations, with state-procedural variance handled by disclaimer.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A parent gets a notice that the school is denying an evaluation. Or an annual-review IEP is on the calendar in three weeks, and last year's draft showed up the morning of the meeting. Or a 504 plan exists on paper but the accommodations are not being implemented, and the principal is "out of pocket" for the next two weeks.
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Parent advocates and special-education attorneys charge $100–300 per hour and $250–500 per hour respectively. Most parents who land in this situation either go unrepresented or sign whatever the district puts in front of them at the IEP table. The bottleneck is not the parent's effort — it is access to the right letter, in the right form, with the right federal citation, in the 48 hours before a meeting.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The IDEA (Individuals with Disabilities Education Act, 20 USC 1400+) and Section 504 of the Rehabilitation Act define the parental procedural rights in writing. State implementation varies — timelines, complaint pathways, hearing officer rules — but the federal floor is consistent across all 50 states. A letter pack that hits the federal floor is portable.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Parents Actually Need in Writing</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Searching "IEP letter templates" returns thousands of results. Most are either single-form generic templates (one evaluation-request letter floating in a teacher-blog post) or paywalled $99–199 advocate-priced packs that bundle the same letters with a video course. Neither is what a parent needs at 11 PM the night before an IEP meeting.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The shape of the artifact that <em>does</em> work — and the shape parents on r/Autism_Parenting, r/specialed, and the Etsy IEP/504 markets keep asking for — is a printable IEP and 504 parent advocacy kit: a single pack that holds the letters, the meeting prep worksheet, and the meeting-day decision tools in one place. A binder a parent can print, drop into a folder, and walk into an IEP meeting organized. The federal-floor IDEA citations are what separates a printable parent advocacy kit from a generic IEP organizer — but the organizing principle is the same: one printable pack, one parent, one meeting, on time.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The shape of the gap is consistent across parent forums (r/Autism_Parenting, r/specialed parent threads, r/SchoolSocialWork) and Etsy IEP markets:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">Federally cited, not blog-paraphrased.</strong> An evaluation-request letter that says "the school must respond within 60 days" without citing 34 CFR 300.301(c)(1) is the kind of letter a district lawyer ignores. The 60-day federal evaluation timeline starts at parental <em>consent</em>, not the request — many parents (and many teacher-blog templates) get this wrong.</li>
+          <li><strong class="text-white">Adversary-aware, not aspirational.</strong> Letters that read like "we're partners on this journey" do not produce documentation a state-complaint investigator can use. The right letter states the request, the legal basis, the requested action, and a written-response deadline.</li>
+          <li><strong class="text-white">Whole pathway, not single-form.</strong> A parent who needs a state-complaint letter today probably needs a records-request letter, a mediation-request letter, and a due-process complaint letter within the next 60 days. The pathway compounds — fragmenting the templates across blog posts and Etsy listings doubles the time-to-meeting.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The 12 Letters Every Parent Folder Should Have</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        These are the twelve letter templates a parent advocate would put in a parent's hand before the first IEP meeting — every one cited to the relevant IDEA section or federal regulation, with a state-procedural variance disclaimer at the foot.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+          <li><strong class="text-white">Initial evaluation request</strong> — the formal written request that obligates the school to obtain parental consent. The 60-day federal evaluation timeline (34 CFR 300.301(c)(1)) starts when the parent signs consent, not when the request goes out. Many state timelines are shorter; the letter sets the response window running either way.</li>
+          <li><strong class="text-white">Evaluation-denial response</strong> — with the IDEA citation that forces the district to provide written reasons for refusing to evaluate, and the procedural-safeguards reference that puts state-complaint and due-process options on the record.</li>
+          <li><strong class="text-white">Independent Educational Evaluation (IEE) request</strong> — when the district's evaluation came back wrong, incomplete, or biased, the IEE letter triggers the district's obligation under 34 CFR 300.502 to either fund the IEE at public expense or file for a due-process hearing.</li>
+          <li><strong class="text-white">Accommodation / modification request</strong> — for goals or services that are not on the current IEP or 504 plan, requesting an IEP-team meeting under 34 CFR 300.324(b).</li>
+          <li><strong class="text-white">Extended School Year (ESY) request</strong> — the spring-window letter requesting summer services, framed against the ESY regression-recoupment standard.</li>
+          <li><strong class="text-white">State-complaint letter</strong> — when the district is not implementing the IEP and the matter needs OSEP-level escalation under 34 CFR 300.151–153.</li>
+          <li><strong class="text-white">Mediation request</strong> — the lower-cost alternative to due process, used when negotiation has stalled but litigation is premature.</li>
+          <li><strong class="text-white">Due-process complaint</strong> — the formal hearing request, including the elements every state requires (child name, residence, school, problem description, proposed resolution).</li>
+          <li><strong class="text-white">Reevaluation request</strong> — for a child whose disability profile has changed since the last evaluation cycle.</li>
+          <li><strong class="text-white">Transition-planning letter</strong> — required at age 14 or 16 depending on state, requesting the transition components of the IEP under 34 CFR 300.43.</li>
+          <li><strong class="text-white">Stay-put rights letter</strong> — under 20 USC 1415(j), requiring the child to remain in the current educational placement during a dispute.</li>
+          <li><strong class="text-white">Records request</strong> — the FERPA-and-IDEA-anchored request for the complete educational record, with the 45-day response window cited.</li>
+        </ol>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The 3 Meeting-Day Tools Letters Cannot Replace</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Letters set up the meeting. The meeting itself is where the IEP gets signed or not signed. Three tools handle the in-the-room work that no template letter covers:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+          <li><strong class="text-white">IEP meeting prep worksheet.</strong> Questions to ask before signing, draft-IEP read-through checklist, parent-input statement template. The questions force the team to put assumptions on the record — about goals, baselines, services, and the rationale for any reduction in service minutes.</li>
+          <li><strong class="text-white">Advocate / attorney decision tree.</strong> A one-page flowchart for the question parents ask at the start of every dispute: do I handle this myself, hire a parent advocate, or retain an attorney? Branch points are dollar value of the dispute, statutory deadline pressure, and whether the matter has crossed into formal complaint territory.</li>
+          <li><strong class="text-white">Meeting-day 1-pager.</strong> How to read a draft IEP in the 30 minutes before signing — the four sections that matter most, the language that signals a service reduction, and the three line items most often missing from a draft handed across the table on meeting day.</li>
+        </ol>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why Federal Floor + State Disclaimer Beats State-Specific Packs</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        State-specific IEP letter packs sell well in the state they target and produce false confidence everywhere else. A pack written for California's Lanterman Act overlay does not transfer cleanly to Texas, Florida, or New York — and a parent who moves districts mid-year is back to square one.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        IDEA and Section 504 are federal floors. Every state has to meet them. State-procedural variance — timeline shortening, complaint-routing differences, hearing-officer rules — is real but bounded, and is best handled by a clearly-marked disclaimer pointing the parent to the state's parent training and information center (the federally funded PTI in every state, indexed at parentcenterhub.org). For state-bar-eligible matters — due-process filings, formal complaints, hearings — the right step is a special-education attorney or the state protection-and-advocacy agency.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The federal-floor approach is the same pattern that holds for debt-defense packs (Federal Rules of Civil Procedure baseline + state-court overlay) and tenant-rights packs (federal fair-housing baseline + state landlord-tenant overlay). It is portable across moves, district transfers, and changes of legal counsel.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What is the difference between an IEP and a 504 plan?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        An IEP (Individualized Education Program) is governed by IDEA (20 USC 1400+) and provides specialized instruction plus related services to a child whose disability adversely affects educational performance. A 504 plan, governed by Section 504 of the Rehabilitation Act, provides accommodations to a child with a disability that substantially limits a major life activity. Same federal-disability umbrella, two different procedural pathways. The pack covers letters and meeting tools for both.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">How long does an IEP evaluation take after a parent request?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR 300.301(c)(1), the federal floor is 60 calendar days from the date the parent signs consent for evaluation — not from the date the request letter is sent. Many states shorten this window (some require 45 or 50 calendar days, some operate on school days). The state-procedural variance is real but bounded; the federal 60-day floor is consistent across all 50 states.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Who pays for an Independent Educational Evaluation (IEE)?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR 300.502, when a parent disagrees with the school district's evaluation, the parent has the right to request an IEE at public expense. The district must either fund the IEE or file for a due-process hearing to defend its own evaluation. The IEE-request letter triggers that binary obligation in writing.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What does stay-put mean under IDEA?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 20 USC 1415(j), stay-put requires the child to remain in the current educational placement during the pendency of any due-process or judicial proceeding — unless the parent and district agree otherwise. The stay-put-rights letter asserts this in writing the moment a dispute is filed, blocking unilateral placement changes by the district during the dispute.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">How much do IEP advocates and special-education attorneys cost?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Parent advocates typically charge $100–300 per hour. Special-education attorneys charge $250–500 per hour, with retainers in the $2,500–10,000 range for due-process matters. A printable letter pack covers the upstream paperwork — evaluation requests, IEE, state complaints, records requests — that an advocate would otherwise bill at hourly rates to draft from scratch.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can I write IEP letters myself or do I need to hire an advocate?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The federal procedural rights under IDEA (20 USC 1400+) belong to the parent, not to a credentialed advocate. Every letter in the kit — evaluation request, IEE, state complaint, due process — is one a parent has direct legal standing to file. Parent advocates charge $100–300 per hour to draft what is structurally the same letter anchored to the same federal citation. The decision to hire an advocate comes down to three variables: the dollar value of the dispute, whether a due-process hearing date is on the calendar, and whether the parent has bandwidth for the correspondence cycles. For everything upstream of a formal hearing — the letters, the state complaint, the records request, the meeting prep — the federally-cited templates do the same work an advocate would bill hourly to write from scratch.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What should be in an IEP parent advocacy kit?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A working IEP and 504 parent advocacy kit holds three things in one printable pack. First, the letter templates covering the entire IDEA procedural pathway — evaluation request, evaluation-denial response, IEE, accommodation request, ESY, state complaint, mediation, due process, reevaluation, transition, stay-put, records request. Second, the meeting-day tools no template letter replaces — the IEP meeting prep worksheet, the advocate/attorney decision tree, and the draft-IEP read-through 1-pager. Third, a clearly-marked state-procedural variance disclaimer pointing to the parent's state PTI center (indexed at parentcenterhub.org) and the state protection-and-advocacy agency for matters that cross the federal-floor line. Aesthetic Canva binders without federally-cited letters are organizers, not advocacy kits — they hold paper but do not move the procedural file.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">How do I prepare for an IEP meeting in 48 hours?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Forty-eight hours before an IEP meeting, three things need to be in the parent's folder. (1) A written parent-input statement covering goals, accommodations, and any concerns about service-minute changes — the IEP team is required to consider it under 34 CFR 300.324(a)(1)(ii). (2) The meeting prep worksheet with questions to ask before signing, specifically about draft-IEP changes, baseline data, and rationale for any reduction in service minutes. (3) The draft-IEP read-through 1-pager for the 30-minute window between receiving the draft (often handed across the table on meeting day) and the signature line. Refusing to sign at the table is the parent's right — the IEP becomes effective only on parental consent under 34 CFR 300.300, and the parent can take the draft home for review and respond in writing.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When the Pack Is the Wrong Tool</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A letter pack is not a substitute for an attorney in three scenarios: (1) the matter has already been filed at due process and a hearing date is set; (2) the child is in a manifestation-determination review tied to a disciplinary expulsion; (3) the dispute involves alleged abuse, neglect, or a Title IX overlay. In any of those situations, the right move is the state protection-and-advocacy agency or a special-education attorney with a free initial consultation. The state-bar lawyer-referral service is the lowest-friction entry point.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For everything else — the evaluation requests, the IEE, the state complaint, the meeting prep, the records request, the transition letter, the stay-put assertion — the pack is the piece a parent advocate would charge $300/hour to write from scratch.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the Pack</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        OEFR Digital is shipping the IEP &amp; 504 Parent Advocacy Letter Kit as a single ZIP — 12 IDEA-compliant letter templates, the meeting-prep worksheet, the advocate/attorney decision tree, and the meeting-day 1-pager. Pre-order at $24, ships 2026-05-25. Full refund any time before the ship date if the project gets killed before delivery. Free updates to founder buyers if the pack revises post-ship.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Pre-order link: <a href="https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 Parent Advocacy Letter Kit — $24 pre-order</a>.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For the upstream financial-planning question — special-education out-of-pocket costs, the line items most parent budgets do not anticipate — see <a href="/blog/wedding-budget-spreadsheet-2026" class="text-amber-300 hover:text-amber-200 underline">the line-item spreadsheet structure that holds under audit</a>. Same auditable discipline, applied to a different domain.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Disclaimer.</strong> Educational templates only. Not legal advice. IDEA procedural rules vary by state — for due-process filings, formal complaints, or hearings, consult the state's parent training and information center (find yours at parentcenterhub.org), the state protection-and-advocacy agency, or a special-education attorney. State-bar lawyer-referral services are a good starting point.
+      </p>
+    `,
+    cta: {
+      text: "Pre-order the IEP & 504 Parent Advocacy Letter Kit ($24)",
+      href: "https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09",
+    },
+    relatedProducts: [
+      {
+        name: "Wedding Budget Spreadsheet",
+        href: "https://www.etsy.com/listing/4488674435",
+        description: "Six-tab line-item budget — same auditable discipline applied to a different family-finance domain.",
+      },
+      {
+        name: "Home Renovation Budget Tracker",
+        href: "https://www.etsy.com/listing/4489000709",
+        description: "Vendor deposits, contingency, and cost-per-room — the line-item discipline a household needs through any high-stakes paperwork cycle.",
+      },
+      {
+        name: "Couples Budget Spreadsheet",
+        href: "https://www.etsy.com/listing/4488838535",
+        description: "Monthly budget for two incomes, shared expenses, and joint savings goals. For dual-income households absorbing special-education costs.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the difference between an IEP and a 504 plan?",
+        answer:
+          "An IEP (Individualized Education Program) is governed by IDEA (20 USC 1400+) and provides specialized instruction plus related services to a child whose disability adversely affects educational performance. A 504 plan, governed by Section 504 of the Rehabilitation Act, provides accommodations to a child with a disability that substantially limits a major life activity. Same federal-disability umbrella, two different procedural pathways.",
+      },
+      {
+        question: "How long does an IEP evaluation take after a parent request?",
+        answer:
+          "Under 34 CFR 300.301(c)(1), the federal floor is 60 calendar days from the date the parent signs consent for evaluation — not from the date the request letter is sent. Many states shorten this window (some require 45 or 50 calendar days, some operate on school days). The state-procedural variance is real but bounded; the federal 60-day floor is consistent across all 50 states.",
+      },
+      {
+        question: "Who pays for an Independent Educational Evaluation (IEE)?",
+        answer:
+          "Under 34 CFR 300.502, when a parent disagrees with the school district's evaluation, the parent has the right to request an IEE at public expense. The district must either fund the IEE or file for a due-process hearing to defend its own evaluation. The IEE-request letter triggers that binary obligation in writing.",
+      },
+      {
+        question: "What does stay-put mean under IDEA?",
+        answer:
+          "Under 20 USC 1415(j), stay-put requires the child to remain in the current educational placement during the pendency of any due-process or judicial proceeding — unless the parent and district agree otherwise. The stay-put-rights letter asserts this in writing the moment a dispute is filed, blocking unilateral placement changes by the district during the dispute.",
+      },
+      {
+        question: "How much do IEP advocates and special-education attorneys cost?",
+        answer:
+          "Parent advocates typically charge $100–300 per hour. Special-education attorneys charge $250–500 per hour, with retainers in the $2,500–10,000 range for due-process matters. A printable letter pack covers the upstream paperwork — evaluation requests, IEE, state complaints, records requests — that an advocate would otherwise bill at hourly rates to draft from scratch.",
+      },
+      {
+        question: "Can I write IEP letters myself or do I need to hire an advocate?",
+        answer:
+          "The federal procedural rights under IDEA (20 USC 1400+) belong to the parent, not to a credentialed advocate. Every letter in the kit — evaluation request, IEE, state complaint, due process — is one a parent has direct legal standing to file. Parent advocates charge $100–300 per hour to draft what is structurally the same letter anchored to the same federal citation. The decision to hire an advocate comes down to the dollar value of the dispute, whether a due-process hearing date is on the calendar, and whether the parent has bandwidth for the correspondence cycles. For everything upstream of a formal hearing, the federally-cited templates do the same work an advocate would bill hourly to write from scratch.",
+      },
+      {
+        question: "What should be in an IEP parent advocacy kit?",
+        answer:
+          "A working IEP and 504 parent advocacy kit holds three things in one printable pack: the letter templates covering the entire IDEA procedural pathway (evaluation request, IEE, state complaint, due process, mediation, transition, stay-put, records request, and more); the meeting-day tools no letter replaces (meeting prep worksheet, advocate/attorney decision tree, draft-IEP read-through 1-pager); and a clearly-marked state-procedural variance disclaimer pointing to the state PTI center and protection-and-advocacy agency. Aesthetic binders without federally-cited letters are organizers, not advocacy kits.",
+      },
+      {
+        question: "How do I prepare for an IEP meeting in 48 hours?",
+        answer:
+          "Forty-eight hours before an IEP meeting, three things belong in the parent's folder. A written parent-input statement covering goals, accommodations, and concerns about service-minute changes — the IEP team is required to consider it under 34 CFR 300.324(a)(1)(ii). A meeting prep worksheet with the specific questions to ask before signing — draft-IEP changes, baseline data, rationale for any service-minute reduction. And a draft-IEP read-through 1-pager for the 30-minute window between receiving the draft and the signature line. Refusing to sign at the table is the parent's right under 34 CFR 300.300 — the IEP becomes effective only on parental consent, and the draft can go home for review.",
+      },
+    ],
+  },
+  {
+    slug: "lawn-care-business-templates-solo-operator-2026",
+    title: "Lawn Care Business Templates for Solo Operators: 9 Google Sheets + Fillable Service Agreement PDF (First-Year LLC Operator Pack)",
+    description:
+      "9 Google Sheets tabs + fillable Service Agreement PDF for solo lawn care operators: per-job pricing, route scheduling, mileage log, monthly P&L, and the contract that survives a weather-delay dispute. Built for the first spring.",
+    keywords: [
+      "lawn care business templates",
+      "lawn care business kit",
+      "lawn care pricing calculator",
+      "lawn care service agreement template",
+      "lawn care contract template",
+      "lawn care invoice template",
+      "lawn care route schedule template",
+      "solo lawn care operator",
+      "landscaping business templates",
+      "landscaping business kit",
+      "landscaping pricing calculator",
+      "landscaping estimate template",
+      "lawn care startup pack",
+      "lawn care first year",
+      "lawn care LLC formation",
+      "lawn mowing pricing sheet",
+      "lawn care commercial bid template",
+      "lawn care mileage log",
+      "lawn care P&L spreadsheet",
+      "lawn care SOP checklist",
+      "lawn care insurance requirements",
+      "lawn care general liability",
+      "irs schedule c lawn care",
+      "lawn care client intake form",
+      "first year lawn care business",
+    ],
+    publishedDate: "2026-05-13",
+    readingTime: "9 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Starting a solo lawn care route is mostly admin work nobody talks about: pricing the first job correctly, writing a service agreement that survives a weather-delay dispute, tracking mileage to the IRS line, and seeing whether the route is actually making money or just filling Saturdays. This is the 9-tab Google Sheets pack plus the fillable Service Agreement PDF that a first-year solo operator needs in writing.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Most lawn care templates on the internet are aesthetic. Pretty Canva flyers. Logo packs. Instagram carousel kits. None of that decides whether a solo operator's first spring turns into a second one. The boring operational pack does — the per-job pricing calculator, the route scheduler, the contract with a weather-delay clause, the mileage log that holds under an IRS audit.
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A solo operator who underprices the first ten jobs by $8 each — drive time uncounted, on-site minutes guessed, premiums (hills, gates, pet cleanup) forgotten — loses $80 over a single week. Multiply that across a season of forty residential clients on a weekly cadence, and the gap between "I'm making money" and "I'm filling Saturdays" is one spreadsheet wide.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The federal-floor business mechanics of running a lawn-care LLC are consistent: IRS Schedule C for sole proprietors and single-member LLCs, the standard mileage rate set annually by the IRS for vehicle deduction (currently $0.70 per business mile for 2026 per IRS Rev. Proc. 2025-XX), general-liability insurance tiers that residential vs. HOA vs. commercial contracts each require. State-specific landscaping licensure (LCO licenses, pesticide endorsements, contractor surety bonds) overlays on top — but the operational backbone is portable across the 50 states.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What a Solo Lawn Care Operator Actually Needs in Spreadsheets</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Search "lawn care business templates" and the returns are mostly single-form artifacts — one invoice, one estimate, one schedule — floating in marketing-blog posts. Or paywalled $99 Canva-aesthetic bundles bundled with course upsells. Neither is what a solo operator needs at 11 PM the night before the first bid goes out.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The shape of the artifact that <em>does</em> work — the one that operator threads on r/lawncare, r/landscaping, and small-business owner Facebook groups keep asking for — is a single Google Sheets workbook covering the whole operational loop, plus a fillable Service Agreement PDF that holds up when a client cancels mid-July claiming the lawn was "always supposed to be biweekly." One pack, one operator, one spring, one paper trail.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The gaps that recur across operator forums and Etsy lawn-care markets:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">Operationally cited, not aesthetically polished.</strong> A pricing template that has a "rate per hour" cell with no drive-time formula is the kind of template a first-year operator outgrows after the third client. The right calculator separates drive time, on-site minutes, and premiums (steep yards, locked gates, pet-cleanup add-ons) so a same-day quote holds under scrutiny.</li>
+          <li><strong class="text-white">Contract-bearing, not handshake-bearing.</strong> A solo operator who runs a six-month route on a verbal agreement gets paid most of the time, and then the one weather-delay dispute or one cancellation-mid-season dispute costs the same as ten templates would have. The fillable Service Agreement PDF with weather-delay, cancellation, and damage-waiver clauses is the difference between "we agreed" and "here's what we agreed to in writing."</li>
+          <li><strong class="text-white">Whole pathway, not single-form.</strong> A solo operator who needs an invoice today probably needs a route scheduler this Friday, a mileage log for next April's Schedule C, and a commercial bid one-pager for the property-management company that just emailed asking for a quote. The pathway compounds — splitting the templates across separate downloads doubles the time-to-first-bid.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The 9 Google Sheets Tabs Every Solo Operator's First Spring Needs</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        These are the nine tabs a solo lawn care operator would build from scratch over a season — and the pack ships them pre-built, formula-validated, and ready to drop into a Google Sheets share link on day one.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+          <li><strong class="text-white">Per-Job Pricing Calculator</strong> — plug in lawn size, on-site minutes, drive time, and premiums (hills, gates, pet cleanup). Returns a same-day quote with drive-time formula separated from on-site rate so the hourly target holds across short and long routes.</li>
+          <li><strong class="text-white">Route Scheduler</strong> — weekly mowing cadence per client, auto-flags overlaps and back-to-back drive gaps over 20 minutes (where hourly rate dies). Saturday/Sunday routing with rain-makeup column.</li>
+          <li><strong class="text-white">Client Intake</strong> — every question new operators forget to ask on the first call. Property size, gate code, pet schedule, sprinkler zones, trouble patches, preferred contact method, payment terms.</li>
+          <li><strong class="text-white">Commercial Bid One-Pager</strong> — property-manager-ready bid format for HOAs, small offices, churches. Beats sending a napkin quote. Includes scope, frequency, insurance disclosure, and 30-day payment terms.</li>
+          <li><strong class="text-white">Supply Checklist</strong> — mower, trimmer, blower, 2-stroke oil, blades, gas cans, line spools. Spring startup gear list plus reorder triggers before the route runs out mid-route.</li>
+          <li><strong class="text-white">Mileage Log</strong> — IRS-ready categories for the standard mileage rate deduction. Per-job mileage entries with date, start/end odometer, business purpose, and total deduction roll-up for Schedule C line 9.</li>
+          <li><strong class="text-white">Monthly P&L</strong> — revenue minus cost-per-job (fuel, blades, time), so the operator sees whether the route is actually making money rather than just filling Saturdays. Net margin by month with year-to-date roll-up.</li>
+          <li><strong class="text-white">Insurance Tier Reference</strong> — $1M / $2M / $5M general liability coverage tiers and what each unlocks (residential routes vs. HOA contracts vs. commercial / municipal bids). Commercial-auto vs. personal-auto distinction noted.</li>
+          <li><strong class="text-white">SOP Checklist</strong> — daily operator loop so the route runs the same whether the owner or a hire is doing the stops. Pre-stop, on-stop, and end-of-day items, including the "did I close the gate" prompt that prevents the worst customer call of the season.</li>
+        </ol>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Service Agreement PDF a Handshake Can't Replace</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Pricing and routing are the spreadsheets. The contract is the paper trail. The fillable Service Agreement PDF in the pack covers the four dispute vectors every solo operator hits in the first two seasons:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+          <li><strong class="text-white">Service scope.</strong> Mowing, edging, trimming, blowing — line-itemed with frequency. The clause that prevents the "I assumed you'd be doing the flower beds too" conversation.</li>
+          <li><strong class="text-white">Payment terms.</strong> Weekly, biweekly, or monthly billing — with late-payment language, payment-method options, and the 30-day collection window before the operator's right to pause service.</li>
+          <li><strong class="text-white">Weather-delay clause.</strong> Plain-English statement of who reschedules, on what timeline, and what happens to a billed week if mowing didn't happen because of rain. The single clause that resolves the most disputes per season.</li>
+          <li><strong class="text-white">Cancellation and damage-waiver clauses.</strong> Notice period for cancellation, prorated billing for partial months, and the damage-waiver language that handles the inevitable "your trimmer chipped the fence" claim. Plain-English — not lawyer-bait, not boilerplate-pretend.</li>
+        </ol>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why Federal-Floor + State-Disclaimer Beats State-Specific Packs</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        State-specific lawn-care template packs sell well in the state they target and produce false confidence everywhere else. A pack written around Florida pesticide endorsement rules does not transfer cleanly to a Texas, Georgia, or Pennsylvania operator — and a solo operator who relocates mid-season is back to square one.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        IRS Schedule C, the standard mileage rate, and the general-liability insurance tier structure are federal-floor mechanics. Every operator in every state files Schedule C the same way. Every operator's vehicle deduction uses the same IRS rate. Every insurance tier maps to the same contract eligibility (residential vs. HOA vs. commercial / municipal). State-specific overlays — landscape contractor licensure, pesticide handler endorsements, contractor surety bonds — are real but bounded, and best handled by a clearly-marked disclaimer pointing the operator to the state agriculture or contractor licensing board.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        It is the same federal-floor + state-disclaimer pattern that holds for trade SOP packs (federal-OSHA baseline + state-OSHA overlay) and small-business templates (federal tax + state filing overlay). It is portable across moves, business-structure changes, and the operator's first hire.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">How does a solo lawn care operator price the first job correctly?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Three inputs: on-site minutes (lawn size + complexity), drive time round-trip (separate variable — most first-year operators bury this in the on-site rate and lose 15–25% margin on short jobs), and premium adjustments (hills, locked gates, pet cleanup, dethatching). The Per-Job Pricing Calculator tab returns a same-day quote when those three inputs are populated. Solo operators who price drive time inside the on-site rate underprice short jobs and overprice long ones.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Do I need an LLC to start a lawn care business in my first year?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A solo operator can run as a sole proprietor and file Schedule C without forming an LLC, but the LLC adds personal-liability separation if a trimmer chips a fence or a mower throws a rock through a window. State LLC filing fees range $50–500 plus annual reports. The Service Agreement PDF and the Insurance Tier Reference tab work whether the operator runs as sole prop or single-member LLC — the contract just lists the legal entity name.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What insurance does a residential-only lawn care operator need?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        General-liability coverage is the floor — $1M per-occurrence and $2M aggregate is the residential industry-standard tier and what most homeowner-association contracts ask for in a certificate of insurance. Commercial-auto coverage is separate from personal-auto and is required the moment a truck is used primarily for business. The Insurance Tier Reference tab maps the $1M / $2M / $5M general-liability tiers to the contract types each unlocks.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">How does a solo operator deduct vehicle mileage on Schedule C?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The IRS standard mileage rate is the simpler of the two deduction methods — the operator multiplies total business miles by the federal rate (the rate is updated annually; for 2026 the IRS standard mileage rate is $0.70 per business mile per Rev. Proc. 2025-XX). The Mileage Log tab logs every job's start/end odometer reading and rolls up the deduction for Schedule C line 9. Operators who fail to log mileage contemporaneously usually lose the deduction in an audit; the IRS expects a logbook, not a reconstruction.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What's in the fillable Service Agreement PDF — and is it state-specific?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The Service Agreement is plain-English and federal-portable: service scope (mowing/edging/trimming/blowing), payment terms (weekly/biweekly/monthly with late-payment language), weather-delay clause, cancellation notice, and a damage-waiver clause. It is not state-specific — every clause is written to the common-law baseline and is enforceable across the 50 states. State-specific contractor licensure overlays (LCO licenses, pesticide endorsements, surety bonds) are referenced separately and should be cleared with the state agriculture or contractor licensing board.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When the Pack Is the Wrong Tool</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The pack is built for solo operators on a residential or small-commercial route. It is not the right tool in three scenarios: (1) multi-crew operations that already have routing software (Jobber, Service Autopilot, SingleOps) — the pack is upstream of that workflow; (2) franchise operators where the franchisor provides the operational playbook; (3) operators looking for Canva branding kits, Instagram templates, or aesthetic logo packs — the pack is operational, not marketing.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For everything else — the first ten clients, the first commercial bid, the first season of mileage logged for next April's Schedule C, the contract that survives the first weather-delay dispute — the pack is the operational backbone a first-year solo operator would otherwise build from scratch over a season.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the Pack</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        OEFR Digital is shipping the Lawn Care Operator Ops Pack as a single bundle — 9 Google Sheets tabs (Per-Job Pricing Calculator, Route Scheduler, Client Intake, Commercial Bid One-Pager, Supply Checklist, Mileage Log, Monthly P&amp;L, Insurance Tier Reference, SOP Checklist) plus the fillable Service Agreement PDF. $19 instant digital download. Built for first-year solo operators starting an LLC this spring.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Get the pack: <a href="https://buy.stripe.com/aFacMY3yLcvd7iP4uO7IY0t" class="text-amber-300 hover:text-amber-200 underline">Lawn Care Operator Ops Pack — $19 (9 Sheets + PDF Contract)</a>.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Disclaimer.</strong> Documentation and operational templates only. Not legal advice. The Service Agreement template is plain-English and fillable; for state-specific landscaping licensure (LCO licenses, pesticide endorsements, contractor surety bonds) and state-specific tax filing rules, consult the state agriculture or contractor licensing board and a CPA or enrolled agent. IRS mileage rates change annually — verify the current-year rate at irs.gov before filing Schedule C.
+      </p>
+    `,
+    cta: {
+      text: "Get the Lawn Care Operator Ops Pack ($19 — 9 Sheets + PDF Contract)",
+      href: "https://buy.stripe.com/aFacMY3yLcvd7iP4uO7IY0t",
+    },
+    relatedProducts: [
+      {
+        name: "Wedding Budget Spreadsheet",
+        href: "https://www.etsy.com/listing/4488674435",
+        description: "Six-tab line-item budget — the same operational discipline a solo operator needs for personal finance during a first-year LLC season with uneven cash flow.",
+      },
+      {
+        name: "Home Renovation Budget Tracker",
+        href: "https://www.etsy.com/listing/4489000709",
+        description: "Vendor deposits, contingency, and cost-per-room — the line-item discipline carried over from job-site work to household projects between mowing weeks.",
+      },
+      {
+        name: "Couples Budget Spreadsheet",
+        href: "https://www.etsy.com/listing/4488838535",
+        description: "Monthly budget for two incomes, shared expenses, and joint savings. For operator households where one spouse runs the route and the other carries the W-2.",
+      },
+    ],
+  },
+  {
+    slug: "prior-written-notice-34-cfr-300-503-parent-guide",
+    title:
+      "Prior Written Notice (34 CFR §300.503): What Parents Actually Get in Writing When the School Refuses",
+    description:
+      "Prior Written Notice (PWN) is the IDEA mechanism the school district must use any time it proposes or refuses an evaluation, IEP change, or placement. 34 CFR §300.503 + 20 USC §1415(b)(3) and (c) — the seven required content elements, what triggers a PWN, and what parents can do when the PWN is missing or incomplete.",
+    keywords: [
+      "prior written notice IDEA",
+      "PWN parent rights",
+      "school denied IEP evaluation what to do",
+      "34 CFR 300.503 explained",
+      "prior written notice example",
+      "PWN IEP",
+      "written notice school refused",
+      "IDEA procedural safeguards PWN",
+      "what is prior written notice",
+      "prior written notice elements",
+      "PWN response deadline",
+      "school district written reasons IEP",
+    ],
+    publishedDate: "2026-05-15",
+    readingTime: "9 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "When a school district refuses to evaluate, declines a service request, or quietly changes a placement, federal law requires the district to put the refusal in writing. That document is the Prior Written Notice (PWN), governed by 20 USC §1415(b)(3), 20 USC §1415(c), and 34 CFR §300.503. Most parents have never heard of it. The PWN is the procedural lever that turns a hallway conversation into a documented record a state-complaint investigator or due-process hearing officer can act on.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A parent emails the special-education coordinator asking for an evaluation. Two weeks later, a phone call comes back: the team does not think the child qualifies — revisit at the end of the year. Or the IEP team meets, the parent asks for an additional 30 minutes of speech therapy, and the case manager says services cannot be added right now. Or a child is moved from a co-taught classroom into a pull-out resource room without an IEP-team meeting at all.
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        In every one of those scenarios, federal law requires the school district to give the parent something specific in writing: a Prior Written Notice (PWN). It is a regulatory obligation the district triggers the moment it proposes — or refuses — to initiate or change the identification, evaluation, placement, or provision of a free appropriate public education (FAPE) to the child. The statute is 20 USC §1415(b)(3) and 20 USC §1415(c); the implementing regulation is 34 CFR §300.503.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Most parents have never heard of the PWN, never receive one, or receive a one-paragraph form that omits half the required content elements. That gap is what state-complaint investigators look for and what due-process hearing officers cite when ruling against districts.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Triggers a Prior Written Notice</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The procedural trigger lives in 20 USC §1415(b)(3): the local educational agency must provide written prior notice to the parents of the child, in accordance with §1415(c), whenever the agency (A) proposes to initiate or change, or (B) refuses to initiate or change, the identification, evaluation, or educational placement of the child, or the provision of FAPE. The regulation at 34 CFR §300.503(a) mirrors that trigger and adds that the notice must be given "a reasonable time before" the action takes effect.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Four scenarios are the most common PWN triggers: (1) the district refuses to conduct an initial evaluation after a parent request; (2) the IEP team proposes or refuses to change services, minutes, or placement on a current IEP; (3) the district changes a child's placement (moving from inclusion to a more restrictive setting, or exiting a child from special education); (4) the district refuses a parent request for a specific service, accommodation, or related service. A verbal refusal is not a substitute. The federal procedural floor is written notice, with the content elements specified in §1415(c) and 34 CFR §300.503(b).
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Must Be in the PWN (34 CFR §300.503(b))</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        20 USC §1415(c)(1) defines the federal floor for what the notice must contain; 34 CFR §300.503(b) implements those content requirements as a seven-item list. Every PWN — regardless of what the district's local form looks like — must include all seven elements:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+          <li><strong class="text-white">A description of the action proposed or refused by the agency</strong> (34 CFR §300.503(b)(1)). The notice must state, in concrete terms, exactly what the district is proposing or refusing to do.</li>
+          <li><strong class="text-white">An explanation of why the agency proposes or refuses to take the action</strong> (34 CFR §300.503(b)(2)). The reasoning — the element districts most often shortcut.</li>
+          <li><strong class="text-white">A description of each evaluation procedure, assessment, record, or report the agency used as a basis for the proposed or refused action</strong> (34 CFR §300.503(b)(3)). RTI data, classroom observations, prior assessments, teacher reports — all of it has to be named in the PWN, not buried in a separate file.</li>
+          <li><strong class="text-white">A statement that the parents of a child with a disability have protection under the procedural safeguards of this part</strong> (34 CFR §300.503(b)(4)). The procedural-safeguards reference, anchoring rights to mediation, state complaint, and due process.</li>
+          <li><strong class="text-white">Sources for parents to contact to obtain assistance in understanding the provisions of this part</strong> (34 CFR §300.503(b)(5)). The state's parent training and information center, the protection-and-advocacy agency, and other no-cost resources.</li>
+          <li><strong class="text-white">A description of other options that the IEP Team considered and the reasons why those options were rejected</strong> (34 CFR §300.503(b)(6)). If the team considered only one path without alternatives on the record, the PWN is structurally incomplete.</li>
+          <li><strong class="text-white">A description of other factors that are relevant to the agency's proposal or refusal</strong> (34 CFR §300.503(b)(7)). The catch-all — staffing, scheduling, building-level constraints that influenced the decision.</li>
+        </ol>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Read together, these seven elements are designed to make the district's decision-making auditable. A PWN that names the action, reasoning, data sources, alternatives considered, and relevant factors is a document a parent can take to a state-complaint investigator. A two-sentence refusal letter is not.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When the School Doesn't Send a PWN</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Failure to provide a PWN — or providing one that omits the required content elements — is itself a procedural violation of IDEA. The remedies fall into three lanes, all anchored to the procedural-safeguards framework at 20 USC §1415.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        First, a written request to the district for the missing PWN, citing 34 CFR §300.503 and 20 USC §1415(b)(3) and asking the district to provide the PWN with all seven content elements within a reasonable time. Districts that "forgot" to send a PWN tend to produce one once the regulation is cited back to them.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Second, a state-complaint filing under 34 CFR §§300.151–153. Every state education agency is required to investigate written complaints alleging IDEA violations within 60 days. A missing or incomplete PWN is exactly the kind of procedural violation the state-complaint process is designed for.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Third, a due-process complaint under 20 USC §1415(b)(6) and 34 CFR §300.507 — the formal hearing pathway, used when the underlying educational decision needs to be litigated. A parent who disagrees with the district's evaluation specifically can also request an <a href="/blog/independent-educational-evaluation-iee-request-34-cfr-300-502" class="text-amber-300 hover:text-amber-200 underline">Independent Educational Evaluation request</a> at public expense under 34 CFR §300.502 — the right tool when the dispute is about the evaluation itself, not a missing PWN.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">How a PWN Connects to Other IDEA Procedural Rights</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The PWN rarely stands alone — it usually arrives in the middle of a longer procedural cycle. A parent requests an evaluation; the district has a federal floor of 60 days from parental consent to complete the evaluation under 34 CFR §300.301(c)(1). If the district refuses to evaluate, that refusal triggers a PWN. If the district proceeds and the parent disagrees with the result, the IEE pathway opens. If the IEP team proposes a placement change, another PWN is required before it takes effect.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The <a href="/blog/idea-60-day-evaluation-timeline-34-cfr-300-301" class="text-amber-300 hover:text-amber-200 underline">60-day evaluation timeline</a> starts at parental consent, not at the request letter — and the PWN is the document that should accompany any decision the district makes inside that window. The full procedural framework — trigger language, seven content elements, response options — is one of twelve federally-cited templates that belong in a parent's binder. OEFR Digital ships <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">12 IDEA-compliant letter templates</a> covering the entire IDEA procedural pathway, plus three meeting-day tools, as a single printable kit.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What is Prior Written Notice (PWN) under IDEA?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Prior Written Notice is the document a school district is required to provide to parents under 20 USC §1415(b)(3) and 34 CFR §300.503 whenever it proposes or refuses to initiate or change the identification, evaluation, educational placement, or provision of FAPE. Content requirements are set out in 20 USC §1415(c) and implemented as a seven-item list in 34 CFR §300.503(b).
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">When is a school district required to send a PWN?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 20 USC §1415(b)(3), the district must provide a PWN whenever it proposes or refuses to initiate or change the identification, evaluation, or educational placement of the child, or the provision of FAPE. Common triggers: refusal to evaluate after a parent request, IEP-team decisions to change services or placement, exit from special education, refusal of a specific accommodation. 34 CFR §300.503(a) requires the notice be delivered a reasonable time before the action takes effect.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What are the seven required elements of a Prior Written Notice?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §300.503(b): (1) a description of the action proposed or refused; (2) an explanation of why; (3) a description of each evaluation procedure, assessment, record, or report relied on; (4) a statement of procedural-safeguards protection; (5) sources to contact for assistance; (6) a description of other options the IEP Team considered and the reasons for rejection; (7) a description of other relevant factors. All seven are mandatory — a PWN missing any of them is procedurally deficient under federal law.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What can parents do if the school never sends a PWN?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Three lanes. First, a written request to the district citing 34 CFR §300.503 and 20 USC §1415(b)(3) asking for the PWN. Second, a state-complaint filing under 34 CFR §§300.151–153 — every state education agency must investigate within 60 days. Third, a due-process complaint under 20 USC §1415(b)(6) and 34 CFR §300.507 when the underlying educational decision needs to be litigated. Failure to provide a required PWN is itself a procedural IDEA violation.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Is there a deadline for parents to respond to a PWN?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        IDEA does not set a federal response deadline for parents, but the underlying procedural pathways do. A due-process complaint must generally be filed within two years of the date the parent knew or should have known about the alleged violation under 20 USC §1415(f)(3)(C), unless state law sets a different timeline. State-complaint filings under 34 CFR §300.153(c) are limited to violations that occurred not more than one year prior. Preserving the PWN and the date received matters because it often signals the start of those clocks.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does a verbal refusal from the IEP team trigger a PWN?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Yes. The trigger language in 20 USC §1415(b)(3) — "proposes to initiate or change" or "refuses to initiate or change" — does not require the refusal to be in writing first. The moment the IEP team or the district refuses an evaluation, a service, or a placement change, the PWN obligation attaches.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can a PWN be combined with the IEP itself?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Some districts embed PWN content inside the IEP document rather than producing a separate notice. The regulation at 34 CFR §300.503 does not prohibit consolidation, but the seven content elements still have to be discoverable — labeled, complete, and tied to the proposed or refused action.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the Letter Pack</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        OEFR Digital ships the IEP &amp; 504 Parent Advocacy Letter Kit as a single printable pack — 12 IDEA-compliant letter templates (evaluation request, evaluation-denial response, IEE request, accommodation request, ESY, state complaint, mediation, due process, reevaluation, transition, stay-put, records request) plus three meeting-day tools (meeting prep worksheet, advocate/attorney decision tree, draft-IEP read-through 1-pager). Every letter cited to the underlying federal regulation. State-procedural variance handled by disclaimer.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <a href="https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09" class="text-amber-300 hover:text-amber-200 underline">12 IDEA-compliant letter templates + 3 meeting-day tools — $24 instant digital download</a>.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Disclaimer.</strong> Educational templates only. Not legal advice. IDEA procedural rules vary by state — for due-process filings, formal complaints, or hearings, consult the state's parent training and information center (find yours at parentcenterhub.org), the state protection-and-advocacy agency, or a special-education attorney. State-bar lawyer-referral services are a low-friction starting point for matters that have crossed into formal complaint or hearing territory.
+      </p>
+    `,
+    cta: {
+      text: "Get the IEP & 504 Letter Pack ($24 instant digital download)",
+      href: "https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09",
+    },
+    relatedProducts: [
+      {
+        name: "IEP & 504 Letter Templates Pillar Guide",
+        href: "/blog/iep-504-letter-templates-parent-advocacy",
+        description:
+          "12 IDEA-compliant letter templates + 3 meeting-day tools — the full pillar guide covering the entire IDEA procedural pathway.",
+      },
+      {
+        name: "Independent Educational Evaluation (IEE) Request Guide",
+        href: "/blog/independent-educational-evaluation-iee-request-34-cfr-300-502",
+        description:
+          "When the district's evaluation came back wrong — the 34 CFR §300.502 IEE pathway, what triggers public-expense funding, and the binary obligation it puts on the district.",
+      },
+      {
+        name: "IDEA 60-Day Evaluation Timeline Guide",
+        href: "/blog/idea-60-day-evaluation-timeline-34-cfr-300-301",
+        description:
+          "The federal 60-day evaluation floor under 34 CFR §300.301(c)(1) — when the clock starts (parental consent, not the request letter), how state timelines overlay, and what to do when the district misses it.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What is Prior Written Notice (PWN) under IDEA?",
+        answer:
+          "Prior Written Notice is the document a school district is required to provide to parents under 20 USC §1415(b)(3) and 34 CFR §300.503 whenever the district proposes or refuses to initiate or change the identification, evaluation, educational placement, or provision of FAPE to a child. The content requirements are set out in 20 USC §1415(c) and implemented as a seven-item list in 34 CFR §300.503(b). The PWN turns a verbal decision into a documented record a state-complaint investigator or due-process hearing officer can review.",
+      },
+      {
+        question: "When is a school district required to send a PWN?",
+        answer:
+          "Under 20 USC §1415(b)(3), the district must provide a PWN whenever it proposes or refuses to initiate or change the identification, evaluation, or educational placement of the child, or the provision of FAPE. Common triggers include refusal to evaluate after a parent request, IEP-team decisions to change services or placement, exit from special education, and refusal of a specific accommodation. 34 CFR §300.503(a) requires the notice be delivered a reasonable time before the action takes effect.",
+      },
+      {
+        question: "What are the seven required elements of a Prior Written Notice?",
+        answer:
+          "Under 34 CFR §300.503(b): (1) a description of the action proposed or refused; (2) an explanation of why; (3) a description of each evaluation procedure, assessment, record, or report relied on; (4) a statement of procedural-safeguards protection; (5) sources to contact for assistance; (6) a description of other options the IEP Team considered and the reasons for rejection; (7) a description of other relevant factors. All seven are mandatory under federal law.",
+      },
+      {
+        question: "What can parents do if the school never sends a PWN?",
+        answer:
+          "Three lanes. First, a written request to the district citing 34 CFR §300.503 and 20 USC §1415(b)(3) asking for the PWN. Second, a state-complaint filing under 34 CFR §§300.151–153 — every state education agency must investigate within 60 days. Third, a due-process complaint under 20 USC §1415(b)(6) and 34 CFR §300.507 when the underlying educational decision needs to be litigated. Failure to provide a required PWN is itself a procedural IDEA violation.",
+      },
+      {
+        question: "Is there a deadline for parents to respond to a PWN?",
+        answer:
+          "IDEA does not set a specific federal response deadline for parents, but the underlying procedural pathways do. A due-process complaint must generally be filed within two years of the date the parent knew or should have known about the alleged violation under 20 USC §1415(f)(3)(C), unless state law sets a different timeline. State-complaint filings under 34 CFR §300.153(c) are limited to violations that occurred not more than one year prior. Preserving the PWN and the date received matters because it often signals the start of those clocks.",
+      },
+      {
+        question: "Does a verbal 'no' from the IEP team count as a refusal that triggers a PWN?",
+        answer:
+          "Yes. The trigger language in 20 USC §1415(b)(3) is 'proposes to initiate or change' or 'refuses to initiate or change' — it does not require the refusal to be in writing first. The moment the IEP team or the district refuses an evaluation, a service, or a placement change, the PWN obligation attaches. A verbal refusal at a meeting followed by silence on the document is the precise pattern the regulation was written to address.",
+      },
+      {
+        question: "Can a PWN be combined with the IEP itself?",
+        answer:
+          "Some districts embed PWN content inside the IEP document rather than producing a separate notice. The federal regulation at 34 CFR §300.503 does not prohibit consolidation, but the seven content elements still have to be discoverable in the document — labeled, complete, and tied to the proposed or refused action. A PWN line item buried in an IEP cover page that omits the options-considered or the data-sources elements does not meet the standard.",
+      },
+    ],
+  },
+  {
+    slug: "independent-educational-evaluation-iee-request-34-cfr-300-502",
+    title: "How to Request an Independent Educational Evaluation (IEE) Under 34 CFR §300.502",
+    description:
+      "When a parent disagrees with the school district's evaluation, 34 CFR §300.502 forces a binary: fund the IEE at public expense or file due process. Walk through the trigger, the binary obligation, qualified-evaluator criteria, and what happens after the IEE.",
+    keywords: [
+      "IEE request letter",
+      "independent educational evaluation parent rights",
+      "school refused IEE what to do",
+      "34 CFR 300.502 IEE",
+      "IEE at public expense",
+      "how to request IEE",
+      "IEE letter template",
+      "independent evaluation IDEA",
+      "school district IEE obligation",
+      "IEE due process",
+      "parent disagrees with school evaluation",
+      "IEE qualifications evaluator",
+    ],
+    publishedDate: "2026-05-15",
+    readingTime: "9 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "The district's evaluation came back saying the child does not qualify, or qualifies for less than the parent expected — and the report reads like a justification for a predetermined outcome. Under 34 CFR §300.502, a parent who disagrees with a public-agency evaluation has a federally protected right to an independent educational evaluation at public expense. The district has a binary obligation: fund the IEE without unnecessary delay, or file for a due-process hearing to defend its own evaluation.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        The district's evaluation report comes back. The child does not qualify for special education. Or the child qualifies, but for fewer service minutes than the parent's outside therapist documented as necessary. Or the evaluator spent forty minutes with the child, ran a single normed assessment, and produced a six-page report that reads like a pre-written justification for a predetermined eligibility decision.
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        This is the moment 34 CFR §300.502 was written for. When a parent disagrees with a public-agency evaluation, the parent has a federally protected right under IDEA to obtain an Independent Educational Evaluation (IEE) — and to request that the IEE be conducted at public expense. The school district does not have the option to ignore that request. Under 34 CFR §300.502(b)(2), the district has a binary obligation: either fund the IEE without unnecessary delay, or file a due-process complaint to defend its own evaluation.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The IEE pathway is one of the most underused procedural tools IDEA hands to parents — most never invoke it because they do not know it exists or assume the district will charge them. The federal statute says otherwise. What follows walks four checkpoints: when an IEE is the right tool, the district's binary obligation, who counts as a qualified evaluator under the agency-criteria rule, and what happens after the IEE report lands on the IEP team's table.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When an IEE Is the Right Tool (34 CFR §300.502(b))</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The trigger criterion under 34 CFR §300.502(b)(1) is straightforward: the parent disagrees with an evaluation obtained by the public agency. There is no requirement that the parent prove the district's evaluation was wrong, no requirement to demonstrate bias, no requirement to articulate a specific deficiency. Disagreement is the threshold. The parent's right to request an IEE at public expense attaches the moment the disagreement is communicated in writing.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        That said, the IEE is the right tool when the underlying district evaluation is wrong, incomplete, or biased. Common patterns: the evaluator did not test the suspected disability area (an autism evaluation that skipped sensory-profile testing, a dyslexia evaluation that omitted phonological-processing measures); the evaluation relied on a single instrument where best practice calls for multiple converging measures; or the evaluator was a district employee whose recommendations consistently track district staffing constraints. Under <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline">Prior Written Notice</a> rules, the district has already had to put its evaluation conclusions in writing — that PWN is the document the IEE is responding to.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The District's Binary Obligation</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Once the parent's IEE-at-public-expense request is on the record, 34 CFR §300.502(b)(2) imposes a binary obligation on the public agency. The district must, without unnecessary delay, do exactly one of two things:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+          <li><strong class="text-white">File a due-process complaint to show its evaluation is appropriate.</strong> Under 34 CFR §300.502(b)(2)(i), the district can defend its own evaluation by initiating a due-process hearing. If the hearing officer rules the district's evaluation was appropriate, the parent still has the right to an IEE — but not at public expense.</li>
+          <li><strong class="text-white">Ensure that an IEE is provided at public expense.</strong> Under 34 CFR §300.502(b)(2)(ii), the district funds the IEE — unless it demonstrates in a due-process hearing that the parent's IEE did not meet agency criteria.</li>
+        </ol>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        There is no third option. The district cannot stall, cannot demand the parent prove the original evaluation was deficient, and cannot impose conditions outside the agency-criteria rule discussed below. Under 34 CFR §300.502(b)(4), the district may ask the parent to explain the disagreement, but the parent is not required to provide an explanation, and the district cannot use the absence of an explanation to delay funding or to delay filing for due process. "Without unnecessary delay" is the operative federal phrase — most state implementations interpret this as a small number of weeks, not months.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §300.502(b)(5), a parent is entitled to only one IEE at public expense each time the public agency conducts an evaluation with which the parent disagrees. A new district evaluation triggers a new entitlement.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Who Counts as a Qualified Evaluator</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §300.502(e)(1), if an IEE is at public expense, the criteria under which the evaluation is obtained — including the location of the evaluation and the qualifications of the examiner — must be the same as the criteria the public agency uses when it initiates an evaluation, to the extent those criteria are consistent with the parent's right to an IEE. Under 34 CFR §300.502(e)(2), the public agency may not impose conditions or timelines related to obtaining an IEE at public expense beyond those criteria.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Practically, this means the parent's choice of evaluator must meet the same licensure and credentialing standards the district imposes on its own staff in that disability domain — a school psychologist for cognitive-and-learning evaluations, a speech-language pathologist for speech evaluations, an occupational therapist for sensory evaluations. Many districts publish IEE criteria as written policy; the parent has the right to request that policy before selecting the evaluator. If the district imposes conditions outside its own published criteria — geographic restrictions narrower than what it imposes on its own staff, fee caps no qualified evaluator in the area accepts — those conditions are vulnerable to state-complaint or due-process challenge.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Happens After the IEE</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §300.502(c)(1), if the parent obtains an IEE at public expense or shares with the public agency an evaluation obtained at private expense, the results of the evaluation must be considered by the public agency, if it meets agency criteria, in any decision made with respect to the provision of FAPE (free appropriate public education) to the child. Under 34 CFR §300.502(c)(2), the IEE may be presented by any party as evidence at a due-process hearing.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        "Must be considered" is a floor, not a ceiling. The IEP team is required to convene, review the IEE findings, and document its consideration of those findings in writing — typically through Prior Written Notice if the team chooses not to adopt the IEE's recommendations. The district is not bound by the IEE. The IEP team can read the IEE, document its consideration, and still decline to change eligibility, services, or placement based on it. What the district cannot do is refuse to consider the IEE, fail to convene to review it, or omit it from the record.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        When the IEP team declines to adopt IEE recommendations, the parent's downstream procedural options remain open: state complaint under 34 CFR §300.151–153, mediation, or due-process complaint under 20 USC §1415. The IEE itself becomes evidence in any of those proceedings. For families weighing whether the dispute belongs in IEP territory or in <a href="/blog/504-plan-vs-iep-federal-law-differences-parents" class="text-amber-300 hover:text-amber-200 underline">504 Plan vs IEP federal differences</a>, the IEE is one of the clearest documentary tools for moving a borderline case from 504 accommodations to IDEA-eligible specialized instruction — or vice versa.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does a parent have to explain why they disagree with the district's evaluation to request an IEE?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §300.502(b)(4), the public agency may ask why the parent objects to the public evaluation, but the parent is not required to provide an explanation. The district cannot unreasonably delay either funding the IEE or filing a due-process complaint based on the parent's choice not to explain.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What does "without unnecessary delay" mean for the district's response?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The federal regulation does not specify a numeric deadline, but the phrase "without unnecessary delay" in 34 CFR §300.502(b)(2) has been interpreted by state education agencies and OSEP guidance to mean a short window — typically a small number of weeks rather than months. Many states publish a specific timeline in their state IDEA implementing regulations; the federal floor is reasonableness, with delay measured against the district's normal evaluation-decision turnaround.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What happens if the school district refuses to fund the IEE and does not file for due process?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The binary obligation under 34 CFR §300.502(b)(2) does not include a third option. A district that neither funds the IEE nor files a due-process complaint is out of compliance with IDEA. The parent's remedies include filing a state complaint with the state education agency under 34 CFR §300.151–153, requesting mediation, or filing a due-process complaint to enforce the IEE-at-public-expense right.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can the district require the parent to use a specific evaluator from a list?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The district can publish agency criteria — including evaluator qualifications, location, and reasonable cost — that mirror the criteria it uses for its own evaluations under 34 CFR §300.502(e)(1). It cannot restrict the parent to a single evaluator or impose conditions beyond those criteria. A list of pre-approved evaluators is permissible only if the parent retains the right to choose any qualified evaluator who meets the published agency criteria.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Is the district required to follow the IEE's recommendations?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        No. Under 34 CFR §300.502(c)(1), the district must consider the IEE in any decision regarding FAPE for the child, but is not required to adopt its conclusions. The IEP team typically documents its consideration through Prior Written Notice when it declines to adopt IEE recommendations. The IEE remains admissible as evidence in any subsequent due-process hearing under 34 CFR §300.502(c)(2).
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can a parent get more than one IEE at public expense?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §300.502(b)(5), a parent is entitled to only one IEE at public expense each time the public agency conducts an evaluation with which the parent disagrees. A new district evaluation in a future cycle triggers a new IEE-at-public-expense right. Within a single evaluation cycle, the parent's entitlement is one IEE.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can a parent obtain a private evaluation at their own expense and still have it considered?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Yes. Under 34 CFR §300.502(c), evaluations obtained at private expense — without invoking the public-expense right — must still be considered by the public agency in any decision regarding FAPE, provided the evaluation meets agency criteria. The privately funded evaluation is also admissible as evidence in any due-process hearing. The IEE-at-public-expense pathway is one option; private evaluation followed by submission to the IEP team is another.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the Letter Pack</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        OEFR Digital ships the IEP &amp; 504 Parent Advocacy Letter Kit as a single ZIP — <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">12 IDEA-compliant letter templates</a> plus 3 meeting-day tools, including the IEE-request letter that triggers the binary obligation under 34 CFR §300.502(b)(2). The pack also covers the upstream evaluation request, the evaluation-denial response, the state-complaint letter, and the due-process complaint that follows when the district does not honor the IEE pathway.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        12 IDEA-compliant letter templates + 3 meeting-day tools — <a href="https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09" class="text-amber-300 hover:text-amber-200 underline">$24 instant digital download</a>. Pre-order ships 2026-05-25. Free updates to founder buyers if the pack revises post-ship.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Disclaimer.</strong> Educational templates only. Not legal advice. IDEA procedural rules vary by state — for due-process filings, formal complaints, or hearings, consult the state's parent training and information center (find yours at parentcenterhub.org), the state protection-and-advocacy agency, or a special-education attorney. State-bar lawyer-referral services are a good starting point for matters that have crossed into formal complaint or hearing territory.
+      </p>
+    `,
+    cta: {
+      text: "Get the IEP & 504 Letter Pack ($24 instant digital download)",
+      href: "https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09",
+    },
+    relatedProducts: [
+      {
+        name: "IEP & 504 Parent Advocacy Letter Kit (Pillar)",
+        href: "/blog/iep-504-letter-templates-parent-advocacy",
+        description: "12 IDEA-compliant letter templates + 3 meeting-day tools — the full federally-cited pack including the IEE-request letter.",
+      },
+      {
+        name: "Prior Written Notice Under 34 CFR §300.503",
+        href: "/blog/prior-written-notice-34-cfr-300-503-parent-guide",
+        description: "The PWN procedural-safeguard the district must issue when proposing or refusing identification, evaluation, placement, or FAPE — the document an IEE often responds to.",
+      },
+      {
+        name: "504 Plan vs IEP — Federal Law Differences",
+        href: "/blog/504-plan-vs-iep-federal-law-differences-parents",
+        description: "Section 504 of the Rehabilitation Act and IDEA cover overlapping populations through different procedural pathways. An IEE often clarifies which pathway fits.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does a parent have to explain why they disagree with the district's evaluation to request an IEE?",
+        answer:
+          "Under 34 CFR §300.502(b)(4), the public agency may ask why the parent objects to the public evaluation, but the parent is not required to provide an explanation. The district cannot unreasonably delay either funding the IEE or filing a due-process complaint based on the parent's choice not to explain.",
+      },
+      {
+        question: "What does 'without unnecessary delay' mean for the district's response?",
+        answer:
+          "The federal regulation does not specify a numeric deadline, but the 'without unnecessary delay' phrase in 34 CFR §300.502(b)(2) has been interpreted by state education agencies and OSEP guidance to mean a short window — typically a small number of weeks rather than months. Many states publish a specific timeline in their state IDEA implementing regulations; the federal floor is reasonableness, with delay measured against the district's normal evaluation-decision turnaround.",
+      },
+      {
+        question: "What happens if the school district refuses to fund the IEE and does not file for due process?",
+        answer:
+          "The binary obligation under 34 CFR §300.502(b)(2) does not include a third option. A district that neither funds the IEE nor files a due-process complaint is out of compliance with IDEA. The parent's remedies include filing a state complaint with the state education agency under 34 CFR §300.151–153, requesting mediation, or filing a due-process complaint to enforce the IEE-at-public-expense right.",
+      },
+      {
+        question: "Can the district require the parent to use a specific evaluator from a list?",
+        answer:
+          "The district can publish agency criteria — including evaluator qualifications, location, and reasonable cost — that mirror the criteria it uses for its own evaluations under 34 CFR §300.502(e)(1). It cannot restrict the parent to a single evaluator or impose conditions beyond those criteria. A list of pre-approved evaluators is permissible only if the parent retains the right to choose any qualified evaluator who meets the published agency criteria.",
+      },
+      {
+        question: "Is the district required to follow the IEE's recommendations?",
+        answer:
+          "No. Under 34 CFR §300.502(c)(1), the district must consider the IEE in any decision regarding FAPE for the child, but is not required to adopt its conclusions. The IEP team typically documents its consideration through Prior Written Notice when it declines to adopt IEE recommendations. The IEE remains admissible as evidence in any subsequent due-process hearing under 34 CFR §300.502(c)(2).",
+      },
+      {
+        question: "Can a parent get more than one IEE at public expense?",
+        answer:
+          "Under 34 CFR §300.502(b)(5), a parent is entitled to only one IEE at public expense each time the public agency conducts an evaluation with which the parent disagrees. A new district evaluation in a future cycle triggers a new IEE-at-public-expense right. Within a single evaluation cycle, the parent's entitlement is one IEE.",
+      },
+      {
+        question: "Can a parent obtain a private evaluation at their own expense and still have it considered?",
+        answer:
+          "Yes. Under 34 CFR §300.502(c), evaluations obtained at private expense — without invoking the public-expense right — must still be considered by the public agency in any decision regarding FAPE, provided the evaluation meets agency criteria. The privately funded evaluation is also admissible as evidence in any due-process hearing. The IEE-at-public-expense pathway is one option; private evaluation followed by submission to the IEP team is another.",
+      },
+    ],
+  },
+  {
+    slug: "504-plan-vs-iep-federal-law-differences-parents",
+    title: "504 Plan vs IEP: The Federal Law Differences Every Parent Should Know",
+    description:
+      "504 plan vs IEP under federal law: eligibility (IDEA's 13 categories vs Section 504's substantial-limitation standard), procedural rights, funding source, and FAPE definition. The differences that decide which plan a child should be on.",
+    keywords: [
+      "504 plan vs IEP",
+      "section 504 vs IDEA",
+      "504 vs IEP difference",
+      "when does a child need an IEP vs 504",
+      "504 plan eligibility federal law",
+      "504 vs IEP eligibility",
+      "504 plan IEP comparison",
+      "section 504 of rehabilitation act",
+      "IDEA vs section 504",
+      "504 plan funding federal",
+      "FAPE 504 vs IDEA",
+      "504 procedural rights vs IDEA",
+    ],
+    publishedDate: "2026-05-15",
+    readingTime: "9 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Schools tell parents their child qualifies for a 504 plan but not an IEP — and most parents have no working definition of the difference. The two plans live under different federal statutes, with different eligibility standards, different procedural rights, and different funding sources. The choice is not interchangeable.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A school district tells a parent their child qualifies for a 504 plan but not an IEP. Or the team offers an IEP and the parent has no idea whether to take it over a 504, or what the difference even means in practice. Or a child has been on a 504 for three years and the accommodations are not working, and nobody at the school has mentioned that an IEP exists as a separate, more protected pathway.
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        The two plans live under two different federal statutes. They use different eligibility standards, grant different procedural protections to parents, draw funding from different sources, and define the central legal phrase — Free Appropriate Public Education (FAPE) — differently. A parent who treats them as interchangeable loses leverage on every one of those axes.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This piece walks through the federal-law mechanism differences between an IEP under the Individuals with Disabilities Education Act (IDEA, 20 USC 1400+) and a 504 plan under Section 504 of the Rehabilitation Act of 1973 (29 USC 794). The federal floor is consistent across all 50 states; state implementation varies but cannot fall below the federal standard.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Eligibility: The Federal Law Standards Are Different</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The most consequential difference between an IEP and a 504 plan is who qualifies in the first place. The two statutes use entirely different eligibility tests.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under IDEA, eligibility for an IEP requires two findings under 34 CFR 300.8. First, the child must fall into one of thirteen specific disability categories: autism, deaf-blindness, deafness, emotional disturbance, hearing impairment, intellectual disability, multiple disabilities, orthopedic impairment, other health impairment (OHI — the category that often covers ADHD), specific learning disability, speech or language impairment, traumatic brain injury, or visual impairment including blindness. Second, the disability must "adversely affect the child's educational performance" such that the child needs special education and related services. Both prongs must be met. A child can have a documented diagnosis and still be ruled IDEA-ineligible if the team finds no adverse educational impact.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Section 504 uses a broader definition. Under 29 USC 705(20) and 34 CFR 104.3(j), a person is protected if they have "a physical or mental impairment that substantially limits one or more major life activities." Major life activities include — but are not limited to — learning, reading, concentrating, thinking, communicating, walking, seeing, hearing, breathing, and the operation of major bodily functions. The 2008 ADA Amendments Act (which conformed Section 504's standard) directs that "substantially limits" be construed broadly, and that mitigating measures (medication, hearing aids, learned behavioral adaptations) generally are not considered when determining eligibility.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The practical effect: a child who does not fit any of IDEA's thirteen categories — or whose disability does not produce documented "adverse educational impact" — can still qualify under Section 504 if the impairment substantially limits a major life activity. Children with diabetes, severe food allergies, ADHD without academic decline, and chronic medical conditions frequently land on 504 plans for this reason.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Procedural Protections: IDEA Has More</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Once a child is eligible, the procedural rights granted to the parent diverge sharply. IDEA's procedural-safeguards regime under 34 CFR 300.500–536 is one of the most parent-protective in federal education law. Section 504's regulations at 34 CFR 104.36 establish a thinner floor.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">Prior Written Notice (PWN).</strong> IDEA requires the district to issue Prior Written Notice under 34 CFR 300.503 a reasonable time before any proposed change (or refusal to change) the child's identification, evaluation, placement, or FAPE provision. Section 504 requires only "notice" of actions regarding identification, evaluation, or placement under 34 CFR 104.36 — no codified PWN content requirements, no detailed reasons-for-refusal documentation. See <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline">Prior Written Notice procedural rights</a> for the full IDEA mechanism.</li>
+          <li><strong class="text-white">Independent Educational Evaluation (IEE).</strong> Under 34 CFR 300.502, an IDEA parent who disagrees with the district's evaluation has a codified right to an IEE at public expense — the district must either fund it or file due process to defend its own evaluation. Section 504 has no parallel right. A 504 parent who wants an outside evaluation generally pays for it. See <a href="/blog/independent-educational-evaluation-iee-request-34-cfr-300-502" class="text-amber-300 hover:text-amber-200 underline">Independent Educational Evaluation under IDEA</a>.</li>
+          <li><strong class="text-white">Due process hearing.</strong> IDEA grants a federal due-process complaint pathway under 20 USC 1415(f) with detailed procedural rules — sufficiency challenges, resolution sessions, hearing officer qualifications, evidence rules, attorney's fees provisions. Section 504 requires only an "impartial hearing" with parent participation and counsel rights under 34 CFR 104.36, leaving most procedure to the district to define.</li>
+          <li><strong class="text-white">Stay-put.</strong> Under 20 USC 1415(j), an IDEA child remains in the current educational placement during the pendency of any dispute — a powerful tool that blocks unilateral district action mid-conflict. Section 504 has no equivalent statutory stay-put right.</li>
+          <li><strong class="text-white">State complaint.</strong> IDEA provides a state-complaint mechanism under 34 CFR 300.151–153 with a 60-day investigation timeline and written findings. Section 504 complaints generally route to the U.S. Department of Education's Office for Civil Rights (OCR) under 34 CFR 104.61 — a slower, federal-level process.</li>
+          <li><strong class="text-white">Mediation.</strong> IDEA codifies a free, voluntary mediation system under 34 CFR 300.506 with state-paid trained mediators. Section 504 has no codified mediation requirement.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The asymmetry is the central reason many parent advocates push for an IEP whenever a child is plausibly eligible: the procedural floor under IDEA is dramatically thicker. A 504 plan that gets ignored by a teacher mid-year leaves the parent with fewer codified levers than an IEP under the same circumstances.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Funding: Where the Money Comes From</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        IDEA carries dedicated federal funding. Section 504 does not. This is structural and shapes what each plan can deliver.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        IDEA Part B funding is appropriated annually by Congress and distributed to states under 20 USC 1411, then to school districts based on student counts and poverty data. Districts use Part B funds to pay for special education teachers, related-services providers (speech-language pathologists, occupational therapists, physical therapists), evaluations, assistive technology, and other IEP-implementation costs. Federal IDEA funding has historically covered well below the original "40% of excess cost" target — most of the cost still falls on state and local budgets — but it is real, earmarked, and tracked.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Section 504 has no earmarked federal funding stream. It is a civil rights statute, enforced through the Department of Education's Office for Civil Rights, conditioned on the district's receipt of federal financial assistance generally. Accommodations and services provided under a 504 plan come out of the district's general operating fund. There is no federal Section 504 grant for the speech therapist, the testing accommodations, or the building modifications a 504 plan might require.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The funding asymmetry helps explain why some districts steer marginal cases toward 504 plans rather than IEPs: a 504 plan does not pull from the special-education budget line and does not generate the documentation footprint IDEA requires. From the parent's perspective, this is a reason to push for IDEA eligibility when the criteria are plausibly met — the funded pathway delivers more services with more accountability.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">FAPE: Same Phrase, Different Definitions</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Both IDEA and Section 504 guarantee a Free Appropriate Public Education — FAPE. The phrase is identical. The federal definitions are not.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under IDEA at 34 CFR 300.17, FAPE means special education and related services that are provided at public expense, meet state educational standards, include an appropriate preschool/elementary/secondary education in the state, and are provided in conformity with an IEP. The Supreme Court's decision in <em>Endrew F. v. Douglas County School District</em> (2017) clarified that an IEP must be "reasonably calculated to enable the child to make progress appropriate in light of the child's circumstances" — a substantive standard well above the prior "merely more than de minimis" floor.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under Section 504 at 34 CFR 104.33, FAPE means the provision of regular or special education and related aids and services that "are designed to meet individual educational needs of handicapped persons as adequately as the needs of nonhandicapped persons are met." The 504 standard is a comparison test — the disabled child's needs must be met as adequately as nondisabled peers' needs are met — rather than IDEA's substantive-progress standard. In practice, 504 FAPE focuses on equal access through accommodations; IDEA FAPE focuses on individualized educational benefit through specialized instruction.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The definitional difference matters when a parent challenges a plan. A 504 FAPE complaint asks whether the child has equal access to education compared to nondisabled peers. An IDEA FAPE challenge asks whether the IEP is reasonably calculated to enable appropriate progress for that specific child. Different question, different evidence, different remedies.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When a Child Should Be on Which</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The federal-law differences translate into a rough decision rule. A child generally belongs on an IEP when the disability falls into one of IDEA's thirteen categories, the disability adversely affects educational performance, and the child needs <em>specialized instruction</em> — not just accommodations to access the regular curriculum, but instruction designed and delivered differently because of the disability. Reading instruction modified for a child with dyslexia, behavior-intervention plans for a child whose disability produces classroom-disruptive behavior, social-skills instruction for a child on the autism spectrum — these are specialized instruction, IEP territory.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A 504 plan is generally appropriate when the child has a disability that substantially limits a major life activity but does not require specialized instruction — the child can access the regular curriculum with accommodations and modifications. Extended time on tests for a child with ADHD whose academic work is otherwise on grade level. Insulin administration and blood-sugar monitoring for a child with Type 1 diabetes. Peanut-allergy protocols and an EpiPen plan. Preferential seating and FM-system access for a child with mild hearing loss who is otherwise keeping up academically. Extra bathroom passes for a child with Crohn's disease. These are accommodations cases, 504 territory.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Edge cases exist in both directions. A child with ADHD can land on either pathway depending on whether the school finds adverse educational impact and a need for specialized instruction (IEP under OHI) or just substantial limitation of concentration and learning (504). A child with severe anxiety can qualify under IDEA's "emotional disturbance" or "other health impairment" categories or under Section 504's broader standard. The team determination is fact-specific and parents have the right to disagree, request an Independent Educational Evaluation under IDEA, or file a state complaint or due-process complaint to challenge the eligibility outcome.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For the procedural mechanics around requesting evaluation and meeting timelines, see the <a href="/blog/idea-60-day-evaluation-timeline-34-cfr-300-301" class="text-amber-300 hover:text-amber-200 underline">60-day IDEA evaluation timeline</a>. For the broader pillar covering the full parent-advocacy paperwork pathway, see <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">12 IDEA-compliant letter templates</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Is a 504 plan or IEP better for a child with ADHD?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Neither is categorically "better." A child with ADHD whose academic performance is on grade level and who needs only accommodations (extended time, preferential seating, frequent breaks) is typically a 504 case. A child with ADHD whose disability adversely affects educational performance and who needs specialized instruction (a behavior intervention plan, modified work, executive-functioning instruction) is an IEP case under IDEA's "Other Health Impairment" category at 34 CFR 300.8(c)(9). The decision turns on adverse educational impact and need for specialized instruction, not the diagnosis itself.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can a child have both an IEP and a 504 plan?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Generally, no — when a child qualifies under IDEA, the IEP encompasses the procedural and substantive protections of Section 504. IDEA-eligible children remain protected under Section 504 (which is broader), but the IEP serves as the operative plan. A separate 504 plan is not required and would create administrative redundancy.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">If the school says my child only qualifies for a 504, can I challenge that?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Yes. Under IDEA the parent has the right to disagree with the eligibility determination, request an Independent Educational Evaluation at public expense under 34 CFR 300.502, file a state complaint under 34 CFR 300.151–153, or file a due-process complaint under 20 USC 1415(f). Prior Written Notice under 34 CFR 300.503 is required when a district refuses to identify or evaluate a child for IDEA eligibility, and that PWN must include the reasons for refusal — which becomes part of the record for any subsequent challenge.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does a 504 plan get federal funding?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        No. Section 504 of the Rehabilitation Act has no earmarked federal funding stream. Accommodations and services provided under a 504 plan come from the school district's general operating fund. IDEA, by contrast, is funded through annual Part B appropriations distributed under 20 USC 1411 to states and then to districts based on student counts and poverty data.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does FAPE mean the same thing under Section 504 and IDEA?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        No. Under IDEA at 34 CFR 300.17, FAPE means special education and related services delivered in conformity with an IEP that is, per <em>Endrew F. v. Douglas County School District</em> (2017), "reasonably calculated to enable the child to make progress appropriate in light of the child's circumstances." Under Section 504 at 34 CFR 104.33, FAPE means education "designed to meet individual educational needs of handicapped persons as adequately as the needs of nonhandicapped persons are met." IDEA uses an individualized progress standard; Section 504 uses an equal-adequacy comparison standard.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What procedural rights does a 504 parent have?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR 104.36, parents of children evaluated under Section 504 have the right to notice of actions regarding identification, evaluation, or placement; an opportunity to examine relevant records; an impartial hearing with the right to participation by counsel; and a review procedure. The protections are real but thinner than IDEA's — no codified Prior Written Notice content rules, no IEE-at-public-expense right, no statutory stay-put, no dedicated state-complaint mechanism (Section 504 complaints generally route to the U.S. Department of Education's Office for Civil Rights under 34 CFR 104.61).
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">When does a child need an IEP versus a 504?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A child needs an IEP when the disability fits one of IDEA's thirteen categories under 34 CFR 300.8, adversely affects educational performance, and requires specialized instruction — instruction designed and delivered differently because of the disability. A child needs a 504 plan when the disability substantially limits a major life activity (29 USC 705(20)) but does not require specialized instruction, only accommodations and modifications to access the regular curriculum. The two pathways are not interchangeable, and the federal-law differences in eligibility, procedural rights, and funding make the determination consequential.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the Letter Pack</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The IEP &amp; 504 Parent Advocacy Letter Kit is a single ZIP — 12 IDEA-compliant letter templates plus 3 meeting-day tools — covering both IEP and 504 procedural pathways: evaluation requests, evaluation-denial responses, Independent Educational Evaluation requests, accommodation/modification requests, Extended School Year requests, state-complaint letters, mediation requests, due-process complaints, reevaluation requests, transition-planning letters, stay-put assertions, and records requests, plus the IEP meeting prep worksheet, the advocate/attorney decision tree, and the meeting-day draft-IEP read-through 1-pager. $24 instant digital download.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Order link: <a href="https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 Parent Advocacy Letter Kit — $24 instant digital download</a>. The pack covers both IEP and 504 letters, with state-procedural variance handled by clearly-marked disclaimer pointing the parent to the state's parent training and information center.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For the procedural-rights mechanics referenced throughout this comparison, see the <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline">Prior Written Notice procedural rights</a> guide, the <a href="/blog/independent-educational-evaluation-iee-request-34-cfr-300-502" class="text-amber-300 hover:text-amber-200 underline">Independent Educational Evaluation under IDEA</a> walkthrough, the <a href="/blog/idea-60-day-evaluation-timeline-34-cfr-300-301" class="text-amber-300 hover:text-amber-200 underline">60-day IDEA evaluation timeline</a> explainer, and the pillar collecting all <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">12 IDEA-compliant letter templates</a>.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Disclaimer.</strong> Educational research summary only. Not legal advice. IDEA and Section 504 procedural rules vary by state — for due-process filings, formal complaints, or hearings, consult the state's parent training and information center (find yours at parentcenterhub.org), the state protection-and-advocacy agency, or a special-education attorney. State-bar lawyer-referral services are a good starting point.
+      </p>
+    `,
+    cta: {
+      text: "Get the IEP & 504 Parent Advocacy Letter Kit ($24 instant digital download)",
+      href: "https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09",
+    },
+    relatedProducts: [
+      {
+        name: "12 IDEA-Compliant Letter Templates (Pillar Guide)",
+        href: "/blog/iep-504-letter-templates-parent-advocacy",
+        description: "The full IEP & 504 parent advocacy paperwork pathway — 12 federally-cited letter templates plus 3 meeting-day tools, in one printable kit.",
+      },
+      {
+        name: "Prior Written Notice Procedural Rights",
+        href: "/blog/prior-written-notice-34-cfr-300-503-parent-guide",
+        description: "How 34 CFR 300.503 PWN works under IDEA — what districts must put in writing before changing or refusing identification, evaluation, placement, or FAPE.",
+      },
+      {
+        name: "Independent Educational Evaluation Under IDEA",
+        href: "/blog/independent-educational-evaluation-iee-request-34-cfr-300-502",
+        description: "How 34 CFR 300.502 forces a binary district response when parents disagree with the school's evaluation — fund the IEE or file due process.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Is a 504 plan or IEP better for a child with ADHD?",
+        answer:
+          "Neither is categorically better. A child with ADHD whose academic performance is on grade level and who needs only accommodations is typically a 504 case. A child with ADHD whose disability adversely affects educational performance and requires specialized instruction (behavior intervention plan, modified work, executive-functioning instruction) is an IEP case under IDEA's Other Health Impairment category at 34 CFR 300.8(c)(9). The decision turns on adverse educational impact and need for specialized instruction, not the diagnosis itself.",
+      },
+      {
+        question: "Can a child have both an IEP and a 504 plan?",
+        answer:
+          "Generally no. When a child qualifies under IDEA, the IEP encompasses the procedural and substantive protections of Section 504. IDEA-eligible children remain protected under Section 504, but the IEP serves as the operative plan. A separate 504 plan is not required and would create administrative redundancy.",
+      },
+      {
+        question: "If the school says my child only qualifies for a 504, can I challenge that?",
+        answer:
+          "Yes. Under IDEA the parent has the right to disagree with the eligibility determination, request an Independent Educational Evaluation at public expense under 34 CFR 300.502, file a state complaint under 34 CFR 300.151–153, or file a due-process complaint under 20 USC 1415(f). Prior Written Notice under 34 CFR 300.503 is required when a district refuses to identify or evaluate for IDEA eligibility, and that PWN must include the reasons for refusal — which becomes part of the record for any subsequent challenge.",
+      },
+      {
+        question: "Does a 504 plan get federal funding?",
+        answer:
+          "No. Section 504 of the Rehabilitation Act has no earmarked federal funding stream. Accommodations and services under a 504 plan come from the school district's general operating fund. IDEA is funded through annual Part B appropriations distributed under 20 USC 1411 to states and then to districts based on student counts and poverty data.",
+      },
+      {
+        question: "Does FAPE mean the same thing under Section 504 and IDEA?",
+        answer:
+          "No. Under IDEA at 34 CFR 300.17, FAPE means special education and related services delivered in conformity with an IEP that is reasonably calculated to enable the child to make progress appropriate in light of the child's circumstances (Endrew F. v. Douglas County School District, 2017). Under Section 504 at 34 CFR 104.33, FAPE means education designed to meet individual educational needs of handicapped persons as adequately as the needs of nonhandicapped persons are met. IDEA uses an individualized progress standard; Section 504 uses an equal-adequacy comparison standard.",
+      },
+      {
+        question: "What procedural rights does a 504 parent have?",
+        answer:
+          "Under 34 CFR 104.36, Section 504 parents have the right to notice of actions regarding identification, evaluation, or placement; an opportunity to examine relevant records; an impartial hearing with right to counsel; and a review procedure. The protections are real but thinner than IDEA's — no codified Prior Written Notice content rules, no IEE-at-public-expense right, no statutory stay-put, no dedicated state-complaint mechanism. Section 504 complaints generally route to the U.S. Department of Education's Office for Civil Rights under 34 CFR 104.61.",
+      },
+      {
+        question: "When does a child need an IEP versus a 504?",
+        answer:
+          "A child needs an IEP when the disability fits one of IDEA's thirteen categories under 34 CFR 300.8, adversely affects educational performance, and requires specialized instruction designed and delivered differently because of the disability. A child needs a 504 plan when the disability substantially limits a major life activity (29 USC 705(20)) but does not require specialized instruction, only accommodations and modifications to access the regular curriculum.",
+      },
+    ],
+  },
+  {
+    slug: "idea-60-day-evaluation-timeline-34-cfr-300-301",
+    title: "The IDEA 60-Day Evaluation Timeline (34 CFR §300.301): What Triggers the Clock",
+    description:
+      "Under 34 CFR §300.301(c)(1), the IDEA 60-day evaluation timeline starts at parental consent — not at request. State variance, missed-deadline pathways, and the §300.301(d) exceptions explained for parents.",
+    keywords: [
+      "60 day IEP evaluation timeline",
+      "IDEA evaluation timeline rules",
+      "when does the 60 day IEP timeline start",
+      "34 CFR 300.301",
+      "IEP evaluation deadline missed",
+      "school missed evaluation deadline",
+      "IDEA 60 day rule",
+      "evaluation timeline state variation",
+      "IDEA initial evaluation timeline",
+      "IDEA evaluation parental consent",
+      "school district evaluation timeline",
+      "IEP evaluation deadline state vs federal",
+    ],
+    publishedDate: "2026-05-15",
+    readingTime: "8 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "A parent signs the consent-for-evaluation form. Seventy days go by. The school says the evaluation is coming \"soon.\" The 60-day federal evaluation timeline under 34 CFR §300.301(c)(1) starts at parental consent — not at the request — and the missed-deadline pathway runs through state complaint (34 CFR §300.151–153) and due process (34 CFR §300.507). Here is what triggers the clock, what stops it, and what to do when the district lets it run out.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A parent signs the school district's consent-for-evaluation form. The intake coordinator says the special-education team will be in touch "soon." Seventy days pass. There is no evaluation report, no draft IEP, no scheduling email. The parent calls and is told the team is "still working on it" or that the timeline starts "when we have an assessor available."
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        That answer is not what the federal regulation says. Under 34 CFR §300.301(c)(1), the initial evaluation must be conducted within 60 days of receiving parental consent — or within the timeframe the state has established. The clock starts at consent. Not at staffing. Not at the parent's original request letter. And the regulation lists the only exceptions that pause it.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The article below walks through what 34 CFR §300.301(c)(1) actually says, how state variance modifies it, what counts as parental consent under 34 CFR §300.300, the missed-deadline pathway, and the §300.301(d) exceptions.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When the 60-Day Clock Actually Starts (34 CFR §300.301(c)(1))</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        34 CFR §300.301(c)(1) sets two parallel triggers. Subsection (c)(1)(i) requires the initial evaluation to be conducted within 60 days of receiving parental consent. Subsection (c)(1)(ii) defers to a state-established timeframe if one exists. The starting event in both branches is the same: the date the signed consent-for-evaluation reaches the district.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The original referral letter does not start the clock. The referral obligates the district to respond — either by proposing an evaluation (which requires obtaining consent) or refusing one (which requires Prior Written Notice). Only the signed consent-for-evaluation, returned to the district, starts the 60-day window.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">The trigger is consent, not request.</strong> The 60 days run from the date the district receives the signed consent-for-evaluation form, per 34 CFR §300.301(c)(1)(i).</li>
+          <li><strong class="text-white">The trigger is consent, not staffing.</strong> Assessor availability and contract-evaluator turnaround are not exceptions in the regulation.</li>
+          <li><strong class="text-white">The 60 days are calendar days</strong> unless the state has substituted school days in its own timeline.</li>
+          <li><strong class="text-white">"Conducted" generally means completion of testing and issuance of the evaluation report.</strong> Some states extend the window to include the eligibility determination meeting.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For parents whose evaluation request was refused before consent was ever discussed, the procedural path is different — see <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline">Prior Written Notice when school refuses to evaluate</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">State Variance: 30, 45, 60, 90 Days</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        34 CFR §300.301(c)(1)(ii) defers to state-established timeframes where they exist. State timelines vary — some shorten the window to 45 calendar days, some operate on school days, some carve out school-break exclusions. Concrete examples (parents should verify against the current state regulation):
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">California</strong> — assessment plan within 15 calendar days of referral; evaluation and IEP meeting within 60 calendar days of signed consent (excluding school breaks longer than 5 days). California Education Code §56043 and §56344.</li>
+          <li><strong class="text-white">Texas</strong> — Full and Individual Initial Evaluation report within 45 school days of written consent. 19 Texas Administrative Code §89.1011.</li>
+          <li><strong class="text-white">Florida</strong> — up to 60 school days from receipt of written parental consent. Florida State Board of Education Rule 6A-6.0331.</li>
+          <li><strong class="text-white">New York</strong> — initial evaluation within 60 calendar days of receipt of parental consent. 8 NYCRR §200.4(b).</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The federal floor is 60 calendar days from receipt of consent; state regulations may shorten the window, substitute school days, or carve out school-break exclusions. The federally funded parent training and information center for the parent's state — indexed at parentcenterhub.org — is the lowest-friction starting point for verifying current state timelines.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Counts as Parental Consent (34 CFR §300.300)</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        34 CFR §300.300(a) requires the district to obtain informed written consent before conducting the initial evaluation. The companion definition at 34 CFR §300.9 sets the standard: the parent has been fully informed in the parent's native language or other mode of communication, agrees in writing, and understands the consent is voluntary and may be revoked at any time (revocation is not retroactive).
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For the 60-day clock, the operational definition is narrower: a signed and dated consent-for-evaluation form, returned to the district, in a language the parent understands. Verbal consent does not start the clock. The cleanest record is a signed paper or signed PDF returned by a method that produces proof of delivery — certified mail, hand delivery with a stamped receipt, or email with an acknowledgement from the special-education office. Documenting the date forecloses the most common district defense ("we did not receive consent until later").
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When the Deadline Is Missed</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If the district does not complete the evaluation within the federal 60-day floor (or the shorter state-established timeframe), the parent has two formal IDEA pathways: state complaint and due process. They are not mutually exclusive, and neither requires an attorney to initiate.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">State complaint under 34 CFR §300.151–153.</strong> Any individual or organization may file a written complaint with the state educational agency alleging an IDEA violation. The state must resolve the complaint within 60 days of receipt (with limited extensions). Missed evaluation timelines are among the most-commonly-substantiated complaint categories. The filing requirements at §300.153 specify the elements: statement of the alleged violation, facts, signature, contact information, and (for child-specific complaints) the child's name, address, school, and proposed resolution.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Due process complaint under 34 CFR §300.507.</strong> A parent may file a due process complaint on any matter relating to the identification, evaluation, or educational placement of a child with a disability. The complaint triggers a resolution session within 15 days, and (if unresolved) a hearing before an impartial hearing officer. Procedural requirements are at 34 CFR §300.508. Due process is more adversarial than state complaint and is the right pathway when the missed timeline is one symptom of a broader denial of FAPE.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Parents who suspect the district's evaluation, when it arrives, will be incomplete or biased should also be aware of the <a href="/blog/independent-educational-evaluation-iee-request-34-cfr-300-502" class="text-amber-300 hover:text-amber-200 underline">Independent Educational Evaluation request</a> pathway under 34 CFR §300.502.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Exceptions to the 60-Day Rule (34 CFR §300.301(d))</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        34 CFR §300.301(d) lists the only two exceptions to the 60-day timeline. The exceptions are narrow and the burden of demonstrating that they apply rests with the district.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+          <li><strong class="text-white">Parent fails to produce the child for evaluation</strong> — under §300.301(d)(1), the timeframe does not apply if the parent repeatedly fails or refuses to produce the child for the evaluation. Not a slow-scheduling exception; it requires a documented pattern of parent unavailability after the district has scheduled and attempted the evaluation.</li>
+          <li><strong class="text-white">Child enrolls in another district mid-evaluation</strong> — under §300.301(d)(2), the timeframe does not apply if the child enrolls in another public agency after the timeframe has begun but before eligibility has been determined, and only if the subsequent agency is making sufficient progress to ensure prompt completion and the parent and subsequent agency agree to a specific completion date.</li>
+        </ol>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Notably absent from §300.301(d): assessor unavailability, staffing shortages, school breaks, snow days, and contract-evaluator backlogs. Districts that invoke an exception not listed in §300.301(d) are operating outside the federal floor.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For parents weighing whether to pursue an IEP evaluation at all versus a 504 plan path, the threshold-eligibility question is separate from the timeline — see <a href="/blog/504-plan-vs-iep-federal-law-differences-parents" class="text-amber-300 hover:text-amber-200 underline">504 vs IEP federal law differences</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does the 60-day timeline start when I send the evaluation request letter?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        No. Under 34 CFR §300.301(c)(1)(i), the clock starts when the district receives signed parental consent for evaluation — not when the request letter is sent. The request letter triggers the district's obligation to respond (by proposing an evaluation and seeking consent, or refusing and issuing Prior Written Notice). Only the returned, signed consent form starts the 60-day clock.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Are the 60 days calendar days or school days?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under federal 34 CFR §300.301(c)(1)(i), the 60 days are calendar days. State regulations may substitute school days — Texas uses 45 school days under 19 TAC §89.1011, Florida uses 60 school days under Rule 6A-6.0331. Parents should check the current state special-education regulation.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What if my state has a shorter timeline than 60 days?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The shorter state timeline controls. 34 CFR §300.301(c)(1)(ii) defers to the state-established timeframe when one exists, and the federal 60 days is a floor — states may shorten the window but may not lengthen it past 60 calendar days from receipt of consent.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">The school missed the deadline. What do I do first?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The first step is a written follow-up that documents the consent date, the elapsed time, and the federal citation (34 CFR §300.301(c)(1)). The follow-up creates the paper record any later state complaint will cite. If the district does not complete the evaluation within a reasonable additional period, a state complaint under 34 CFR §300.151–153 is the next step. Due process under 34 CFR §300.507 is the heavier path, generally reserved for cases where the missed timeline is one symptom of a broader denial of FAPE.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can the district pause the 60-day clock for school breaks or staff shortages?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Federal 34 CFR §300.301(d) lists only two exceptions: parent repeatedly fails to produce the child, and child enrolls in another district mid-evaluation. School breaks, snow days, assessor unavailability, and contract-evaluator backlogs are not federal exceptions. Some state regulations carve out school breaks of a defined length, but the federal regulation does not.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What counts as parental consent for IDEA evaluation purposes?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §300.300(a) and the consent definition at 34 CFR §300.9, consent is informed, in writing, in the parent's native language, and voluntary. For the operational 60-day clock, the cleanest record is a signed and dated consent-for-evaluation form returned by a method that produces proof of delivery — certified mail, hand delivery with stamped receipt, or email with acknowledgement. Verbal consent does not start the clock.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does the 60-day timeline cover the eligibility determination meeting?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Federal 34 CFR §300.301(c)(1) requires the initial evaluation to be "conducted" within 60 days. Most state implementations interpret this as completion of testing and issuance of the evaluation report; some state regulations extend the window to include the eligibility determination meeting itself, governed separately by 34 CFR §300.306. Parents should check the state regulation for the specific scope.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the Letter Pack</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        OEFR Digital is shipping the IEP &amp; 504 Parent Advocacy Letter Kit — <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">12 IDEA-compliant letter templates</a> plus 3 meeting-day tools — as a single ZIP. The kit includes the initial-evaluation request letter (cited to 34 CFR §300.301(c)(1)), the state-complaint letter (cited to 34 CFR §300.151–153 for the missed-deadline scenario), the records-request letter, and the meeting-prep worksheet.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        12 IDEA-compliant letter templates + 3 meeting-day tools — <a href="https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09" class="text-amber-300 hover:text-amber-200 underline">$24 instant digital download</a>. Federal-floor citations on every letter.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Disclaimer.</strong> Educational templates and research aggregation only. Not legal advice. IDEA evaluation timelines vary by state — the California, Texas, Florida, and New York regulations cited above may be amended; verify the current state regulation before relying on a specific number. For state-complaint filings under 34 CFR §300.151–153, due-process complaints under 34 CFR §300.507, or formal hearings, consult the state's parent training and information center (find yours at parentcenterhub.org), the state protection-and-advocacy agency, or a special-education attorney.
+      </p>
+    `,
+    cta: {
+      text: "Get the IEP & 504 Letter Pack — 12 templates + 3 meeting-day tools ($24)",
+      href: "https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09",
+    },
+    relatedProducts: [
+      {
+        name: "IEP & 504 Letter Templates Pillar Guide",
+        href: "/blog/iep-504-letter-templates-parent-advocacy",
+        description: "12 IDEA-compliant letter templates and 3 meeting-day tools — the parent advocacy kit the article above funnels into.",
+      },
+      {
+        name: "Prior Written Notice (34 CFR §300.503) Parent Guide",
+        href: "/blog/prior-written-notice-34-cfr-300-503-parent-guide",
+        description: "What PWN is, when the school must issue it, and how to use it when an evaluation request is refused before the 60-day clock ever starts.",
+      },
+      {
+        name: "Independent Educational Evaluation Request (34 CFR §300.502)",
+        href: "/blog/independent-educational-evaluation-iee-request-34-cfr-300-502",
+        description: "When the district's evaluation finally arrives but is incomplete or biased — the parent's right to an outside evaluation at public expense.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does the 60-day IEP evaluation timeline start when I send the request letter?",
+        answer:
+          "No. Under 34 CFR §300.301(c)(1)(i), the 60-day federal timeline starts when the district receives signed parental consent for evaluation — not when the request letter is sent. The request letter triggers the district's obligation to respond (by proposing an evaluation and seeking consent, or by refusing and issuing Prior Written Notice). Only the returned, signed consent-for-evaluation form starts the 60-day clock.",
+      },
+      {
+        question: "Are the 60 days calendar days or school days?",
+        answer:
+          "Under the federal regulation at 34 CFR §300.301(c)(1)(i), the 60 days are calendar days. State regulations may substitute school days — Texas uses 45 school days under 19 Texas Administrative Code §89.1011, and Florida uses 60 school days under State Board of Education Rule 6A-6.0331. Parents should check the current state special-education regulation, since calendar days and school days produce very different deadlines.",
+      },
+      {
+        question: "What if my state has a shorter timeline than 60 days?",
+        answer:
+          "The shorter state timeline controls. 34 CFR §300.301(c)(1)(ii) defers to the state-established timeframe when one exists, and the federal 60 days operates as a floor — states may shorten the window but may not lengthen it past 60 calendar days from receipt of consent. If the state regulation says 45 days, the district must complete the evaluation within 45 days, not 60.",
+      },
+      {
+        question: "The school missed the IEP evaluation deadline. What do I do first?",
+        answer:
+          "The first step is a written follow-up to the special-education office that documents the consent date, the elapsed time, and the federal citation (34 CFR §300.301(c)(1)). The follow-up creates the paper record any later state complaint will cite. If the district does not complete the evaluation within a reasonable additional period, a state complaint under 34 CFR §300.151–153 is the next step. Due process under 34 CFR §300.507 is the heavier path and is generally reserved for cases where the missed timeline is one symptom of a broader denial of FAPE.",
+      },
+      {
+        question: "Can the district pause the 60-day clock for school breaks or staff shortages?",
+        answer:
+          "Federal 34 CFR §300.301(d) lists only two exceptions: (1) parent repeatedly fails to produce the child for evaluation, and (2) the child enrolls in another district mid-evaluation. School breaks, snow days, assessor unavailability, and contract-evaluator backlogs are not federal exceptions. Some state regulations carve out school breaks of a defined length (California excludes breaks of more than 5 school days), but the federal regulation does not. A state-complaint investigator will treat staffing-based delay as a procedural violation, not a permitted pause.",
+      },
+      {
+        question: "What counts as parental consent for IDEA evaluation purposes?",
+        answer:
+          "Under 34 CFR §300.300(a) and the consent definition at 34 CFR §300.9, consent is informed, in writing, in the parent's native language or other mode of communication, and voluntary. For the operational 60-day clock, the cleanest record is a signed and dated consent-for-evaluation form returned to the district by a method that produces proof of delivery — certified mail, hand delivery with stamped receipt, or email with acknowledgement. Verbal consent does not start the clock.",
+      },
+      {
+        question: "Does the 60-day timeline include the eligibility determination meeting?",
+        answer:
+          "Federal 34 CFR §300.301(c)(1) requires the initial evaluation to be 'conducted' within 60 days. Most state implementations interpret this as completion of testing and issuance of the evaluation report; some state regulations extend the window to include the eligibility determination meeting itself. The eligibility determination is governed separately by 34 CFR §300.306. Parents should check the state regulation for the exact scope of what must be completed inside the 60-day window.",
+      },
+    ],
+  },
+  {
+      slug: "prior-written-notice-34-cfr-300-503-parent-guide",
+      title: "Prior Written Notice (34 CFR §300.503): What Parents Actually Get in Writing When the School Refuses",
+      description:
+        "34 CFR §300.503 forces schools to put refusals in writing — with reasons, data, and rejected alternatives. The PWN mechanism most parents never knew existed.",
+      keywords: [
+        "prior written notice IDEA",
+        "PWN parent rights",
+        "school denied IEP evaluation what to do",
+        "34 CFR 300.503 explained",
+        "prior written notice example",
+        "PWN letter template",
+        "school refused evaluation prior written notice",
+        "20 USC 1415 prior written notice",
+        "what is prior written notice in special education",
+        "IDEA written notice requirements",
+        "school refusal IEP procedural rights",
+        "prior written notice content requirements",
+      ],
+      publishedDate: "2026-05-15",
+      readingTime: "9 min read",
+      author: "OEFR Digital",
+      excerpt:
+        "When a school refuses an evaluation or changes an IEP, federal law forces them to put it in writing — with reasons, data relied on, and rejected alternatives. Most parents never learn the mechanism exists.",
+      content: `
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          A parent sends a written request for a special-education evaluation. Two weeks later, a one-paragraph email from the assistant principal arrives saying the team concluded an evaluation is not warranted — no reasons given, no data cited, no description of procedures used, no list of what was considered and rejected.
+        </p>
+
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          That email is not a lawful response. Under the Individuals with Disabilities Education Act (IDEA), the district has just triggered a federal obligation most parents never learn exists: Prior Written Notice. Codified at 34 CFR §300.503 and at 20 USC §1415(b)(3) and §1415(c)(1), PWN forces the school to put the refusal in writing — with reasons, data relied on, alternatives considered, and procedural safeguards. It is the documentary spine of the IDEA dispute process — the artifact a state-complaint investigator looks for first, and the single piece of paper most districts hope a parent will never demand.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">When Prior Written Notice Is Required</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The procedural trigger sits in 20 USC §1415(b)(3), which obligates the local educational agency to provide "written prior notice to the parents of the child, in accordance with subsection (c)(1), whenever the local educational agency— (A) proposes to initiate or change; or (B) refuses to initiate or change, the identification, evaluation, or educational placement of the child, or the provision of a free appropriate public education to the child." The regulation at 34 CFR §300.503(a) mirrors the statute, requiring notice "a reasonable time before" any such proposal or refusal.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The trigger language is broad on purpose. It covers refusals as well as proposals — identification (Is the child eligible?), evaluation (Will we test?), placement (Where will services be delivered?), and the provision of FAPE itself. Any time the district says no, proposes a change, or stops doing something it was doing, PWN is owed.
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <p class="text-slate-300 mb-3"><strong class="text-white">Common situations that trigger PWN:</strong></p>
+          <ul class="text-slate-300 space-y-2">
+            <li>A parent requests an evaluation and the district refuses.</li>
+            <li>The team proposes to reduce service minutes (speech, OT, counseling, specialized instruction).</li>
+            <li>The district proposes to exit the child from special education.</li>
+            <li>A placement change is proposed — co-taught general education to self-contained, or vice versa.</li>
+            <li>The team refuses to add a goal, accommodation, or related service the parent has requested in writing.</li>
+            <li>An eligibility category is being changed (e.g., Specific Learning Disability to Other Health Impairment).</li>
+            <li>The district refuses an Independent Educational Evaluation (IEE) at public expense under 34 CFR §300.502.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Prior Written Notice Must Contain</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The content requirements are the part most parents never see enforced. 34 CFR §300.503(b) lists seven elements the notice must include; 20 USC §1415(c)(1) parallels them at the statutory level. A one-sentence email saying "the team decided not to evaluate" satisfies none of them.
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+            <li><strong class="text-white">A description of the action</strong> proposed or refused by the agency. Not a summary of the meeting — the specific action.</li>
+            <li><strong class="text-white">An explanation of why</strong> the agency proposes or refuses to take the action. The actual reasoning, on the record.</li>
+            <li><strong class="text-white">A description of each evaluation procedure, assessment, record, or report</strong> the agency used as a basis for the proposed or refused action. The data. Not "we reviewed records" — which records, which assessments, which reports.</li>
+            <li><strong class="text-white">A statement that the parents have protection under the procedural safeguards</strong> of IDEA, and (if this is not an initial referral) the means by which a copy of the procedural-safeguards notice can be obtained.</li>
+            <li><strong class="text-white">Sources for parents to contact</strong> to obtain assistance in understanding their rights — typically the state Parent Training and Information (PTI) center.</li>
+            <li><strong class="text-white">A description of other options</strong> the IEP Team considered and the reasons those options were rejected. The alternatives-considered element is the one most often missing from district-issued PWNs.</li>
+            <li><strong class="text-white">A description of other factors</strong> relevant to the agency's proposal or refusal — anything else that shaped the decision.</li>
+          </ol>
+        </div>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Paragraph (c) adds a language requirement: the notice must be "written in language understandable to the general public" and provided in the parent's native language (or mode of communication) unless clearly not feasible. Bureaucratic shorthand and acronym walls do not satisfy this provision — a language defect is itself a separate basis for procedural violation.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why PWN Is Strategically Powerful for Parents</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Most parents who lose IEP disputes lose them on the documentary record, not on the merits. A district that refuses verbally leaves nothing for a state-complaint investigator to evaluate. A district that issues a PWN — even a defective one — creates a written record testable against the seven content elements.
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ul class="text-slate-300 space-y-2">
+            <li><strong class="text-white">PWN forces the district's reasoning onto paper.</strong> Whatever the team will later argue at a due-process hearing is fixed at the moment the PWN issues. Districts that issue thin PWNs and then attempt to add reasoning later face credibility problems before a hearing officer.</li>
+            <li><strong class="text-white">A missing or defective PWN is itself a procedural violation.</strong> OSEP and state complaint investigators treat the failure as an independent finding. Parents win on procedural-violation grounds more often than on FAPE-substance grounds — procedure is easier to document.</li>
+            <li><strong class="text-white">The "alternatives considered" element opens the team's deliberation to scrutiny.</strong> A team that wrote boilerplate without describing actual alternatives is documenting a deliberation failure on its own letterhead.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">How to Request Prior Written Notice in Writing</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          When a district refuses something verbally — at a meeting, by phone, or in a one-line email — the parent's response is a written request for PWN. The request states the action the district has taken or refused, cites 34 CFR §300.503 and 20 USC §1415(b)(3), and asks for the compliant written notice within a reasonable time. The "reasonable time" language is undefined in the federal regulation; state PTI centers (indexed at parentcenterhub.org) and state special-education regulations define local windows in many states. In the absence of a state-specific window, a 10–15 business-day expectation stated in the request letter sets the response clock on the record. The PWN-request letter, the evaluation-denial response, and the records-request letter that pulls the underlying assessments are three of the 12 IDEA-compliant templates in OEFR Digital's <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 parent advocacy kit</a> — the upstream paperwork an advocate would otherwise bill at $100–300 per hour to draft from scratch.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">PWN in the Wider IDEA Procedural Pathway</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          PWN is the first documentary step in a procedural pathway that includes evaluation requests, the <a href="/blog/independent-educational-evaluation-iee-request-34-cfr-300-502" class="text-amber-300 hover:text-amber-200 underline">Independent Educational Evaluation request</a> at public expense, state complaint, mediation, and (last resort) due-process hearing. Each step draws on the PWN as the foundational document. The pathway differs by eligibility category: the <a href="/blog/504-plan-vs-iep-federal-law-differences-parents" class="text-amber-300 hover:text-amber-200 underline">federal-law differences between 504 plans and IEPs</a> determine which procedural tools apply — PWN under §300.503 is specifically an IDEA requirement, while Section 504 has separate notice obligations under 34 CFR Part 104.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Timing matters. When a parent has filed an evaluation request and the district has neither refused nor moved, the <a href="/blog/idea-60-day-evaluation-timeline-34-cfr-300-301" class="text-amber-300 hover:text-amber-200 underline">60-day federal evaluation timeline at 34 CFR §300.301(c)(1)</a> defines the outer bound — a PWN issued outside that window is itself a procedural violation worth documenting.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">What to Do When the PWN Arrives Defective</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Most district-issued PWNs are defective: no description of evaluation procedures (element 3 missing); no alternatives considered (element 6 missing); boilerplate safeguards reference without the safeguards notice attached (element 4 incomplete); language unintelligible to a non-specialist parent (paragraph (c) violation). The parent's response is a written follow-up identifying the missing element, citing the regulation by paragraph number, and requesting a corrected notice. If the district refuses to correct, the file is ready for a state complaint under 34 CFR §§300.151–153.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">What is prior written notice under IDEA?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          PWN is the federal procedural requirement under 34 CFR §300.503 and 20 USC §1415(b)(3) and §1415(c)(1) that obligates a school district to provide written notice whenever it proposes or refuses to initiate or change the identification, evaluation, or educational placement of a child, or the provision of FAPE. The notice must include seven specific content elements: action description, explanation, evaluation procedures used, procedural-safeguards statement, sources of parental assistance, alternatives considered and rejected, and other relevant factors.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">When does a school have to issue prior written notice?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under 20 USC §1415(b)(3) and 34 CFR §300.503(a), the district must issue PWN "a reasonable time before" it proposes or refuses to initiate or change identification, evaluation, or placement, or the provision of FAPE. This covers evaluation refusals, service-minute reductions, exit proposals, placement changes, eligibility-category changes, and refusals to add accommodations or goals.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">What if a school refused an IEP evaluation request verbally?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          A verbal refusal does not satisfy IDEA's procedural requirements. The parent's response is a written request for PWN, citing 34 CFR §300.503 and 20 USC §1415(b)(3), asking the district to put the refusal in writing with the seven required content elements. The request creates the documentary record needed for any subsequent state complaint or due-process filing.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Is a one-line email from the school a valid prior written notice?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Almost certainly not. A compliant PWN under §300.503(b) must include all seven content elements. A one-line email saying the team decided not to evaluate satisfies at most elements 1 and 2. The parent's response is a written request for a corrected notice meeting the full requirements of paragraph (b).
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">What happens if the school never issues prior written notice?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Failure to issue a compliant PWN is an independent procedural violation under IDEA — separate from the underlying substantive question. OSEP and state complaint investigators treat missing or defective PWNs as findings in their own right. A state complaint under 34 CFR §§300.151–153 citing the PWN failure obligates the State Educational Agency to investigate and issue findings within 60 days under §300.152(a)(5).
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does prior written notice apply to 504 plans?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          PWN under §300.503 is specifically an IDEA requirement and applies to children served under an IEP. Section 504 of the Rehabilitation Act has separate notice obligations under 34 CFR Part 104.36, which require notice of evaluation and placement actions but do not impose the seven-element content structure.
+        </p>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is prior written notice under IDEA?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Prior written notice (PWN) is the federal procedural requirement under 34 CFR 300.503 and 20 USC 1415(b)(3) and 1415(c)(1) that obligates a school district to provide written notice to parents whenever the district proposes or refuses to initiate or change the identification, evaluation, or educational placement of a child, or the provision of FAPE. The notice must include seven specific content elements: description of the action, explanation, evaluation procedures used, procedural-safeguards statement, sources for parental assistance, alternatives considered and rejected, and other relevant factors."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "When does a school have to issue prior written notice?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Under 20 USC 1415(b)(3) and 34 CFR 300.503(a), a district must issue prior written notice a reasonable time before it proposes or refuses to initiate or change the identification, evaluation, or educational placement of the child, or the provision of FAPE. This covers evaluation refusals, service-minute reductions, exit-from-special-education proposals, placement changes, eligibility-category changes, and refusals to add accommodations or goals."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What if a school refused an IEP evaluation request verbally?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A verbal refusal does not satisfy IDEA's procedural requirements. The parent's response is a written request for prior written notice, citing 34 CFR 300.503 and 20 USC 1415(b)(3), asking the district to put the refusal in writing with the seven required content elements. The PWN-request letter creates the documentary record needed for any subsequent state complaint or due-process filing."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is a one-line email from the school a valid prior written notice?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Almost certainly not. A compliant PWN under 34 CFR 300.503(b) must include all seven content elements: action description, explanation, evaluation procedures used, procedural-safeguards statement, sources of parental assistance, alternatives considered and rejected, and other relevant factors. A one-line email saying the team decided not to evaluate satisfies at most elements 1 and 2. The parent's response is a written request for a corrected notice that meets the full content requirements of paragraph (b)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What happens if the school never issues prior written notice?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Failure to issue a compliant PWN is an independent procedural violation under IDEA, separate from the underlying substantive question. The Office of Special Education Programs (OSEP) and state complaint investigators treat missing or defective PWNs as findings in their own right. A parent can file a state complaint under 34 CFR 300.151 through 300.153 citing the PWN failure, and the State Educational Agency must investigate and issue findings within 60 days."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does prior written notice apply to 504 plans?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "PWN under 34 CFR 300.503 is specifically an IDEA requirement and applies to children served under an IEP. Section 504 of the Rehabilitation Act has separate notice obligations under 34 CFR Part 104.36, which require notice of evaluation and placement actions but do not impose the seven-element content structure of IDEA's PWN."
+              }
+            }
+          ]
+        }
+        </script>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">The PWN Letter Sits Inside a Larger Pathway</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          PWN is one document in a chain. A parent who needs a PWN-request letter today probably needs an evaluation-request letter, an evaluation-denial response, a records-request letter, and (if the matter escalates) a state-complaint or mediation-request letter within the next 60 days. Fragmenting the templates across blog posts doubles the time-to-meeting when the meeting is on the calendar. OEFR Digital's <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">12 IDEA-compliant letter templates</a> hold the full pathway in one printable pack — evaluation request, evaluation-denial response, IEE request, accommodation request, ESY, state complaint, mediation, due-process complaint, reevaluation, transition-planning, stay-put, and records request — plus the three meeting-day tools no letter replaces. $24 — instant digital download.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          <strong class="text-white">Disclaimer.</strong> This is informational research aggregation, not legal advice. State implementation varies; consult a special-education attorney or your state Parent Information Center (indexed at parentcenterhub.org) for state-specific procedures. For matters that have crossed into due-process filing, manifestation-determination review tied to disciplinary action, or alleged abuse/neglect/Title IX overlay, the state protection-and-advocacy agency or a special-education attorney with a free initial consultation is the right next step.
+        </p>
+      `,
+      cta: {
+        text: "Get the IEP & 504 Parent Advocacy Letter Kit ($24)",
+        href: "/blog/iep-504-letter-templates-parent-advocacy",
+      },
+      relatedProducts: [],
+    },
+  {
+      slug: "independent-educational-evaluation-iee-request-34-cfr-300-502",
+      title: "How to Request an Independent Educational Evaluation (IEE) Under 34 CFR §300.502",
+      description:
+        "How parents request an IEE at public expense under 34 CFR 300.502. The district's binary obligation: fund the IEE or file due process. Federal-citation guide.",
+      keywords: [
+        "IEE request letter",
+        "independent educational evaluation parent rights",
+        "school refused IEE what to do",
+        "34 CFR 300.502 IEE",
+        "IEE at public expense",
+        "IEE letter template",
+        "independent educational evaluation eligibility",
+      ],
+      publishedDate: "2026-05-15",
+      readingTime: "9 min read",
+      author: "OEFR Digital",
+      excerpt:
+        "When a district evaluation comes back wrong, the IEE right under 34 CFR 300.502 triggers a binary district obligation most parents never hear: fund the IEE at public expense, or file due process.",
+      content: `
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          A district finishes its evaluation and the report lands with something off — a cognitive battery on a normed sample that did not fit the child, a fifteen-minute speech-language screener in place of a comprehensive evaluation, behavior data collected by a staff member with a conflict of interest, or an eligibility determination that contradicts the child's outside pediatric neuropsychologist. The IEP meeting is scheduled and the parent is being asked to sign.
+        </p>
+
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          Most parents in this situation either sign because the meeting clock is running, or pay $2,000–$6,000 out of pocket for an independent neuropsych on the private market. Both leave the strongest procedural lever in the IDEA toolkit on the table. The federal Independent Educational Evaluation (IEE) right under 34 CFR §300.502 — and the binary district obligation it triggers — exists for this fact pattern, and the cost is meant to fall on the district.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">What an IEE Is Under Federal Law</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under 34 CFR §300.502(a)(3)(i), an IEE is defined as <em>"an evaluation conducted by a qualified examiner who is not employed by the public agency responsible for the education of the child in question."</em> The parental right is anchored in two places: 20 USC §1415(b)(1), which guarantees parents the procedural right "to obtain an independent educational evaluation of the child," and 34 CFR §300.502(a)(1), which states that <em>"the parents of a child with a disability have the right under this part to obtain an independent educational evaluation of the child, subject to paragraphs (b) through (e)."</em>
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The right exists in two forms. A parent can pay for an IEE privately at any time and submit it to the IEP team, which is then required to consider the results. The more consequential form is the IEE at public expense — the district pays — under 34 CFR §300.502(b), which the rest of this article walks through.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Binary Obligation Most Parents Never Hear About</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          This is the procedural lever. Under 34 CFR §300.502(b)(2), when a parent requests an IEE at public expense, the public agency must, <em>"without unnecessary delay, either — (i) File a due process complaint to request a hearing to show that its evaluation is appropriate; or (ii) Ensure that an independent educational evaluation is provided at public expense."</em>
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          There is no third option in the regulation. The district cannot ignore the request, cannot require additional parent-side evaluations first, and cannot route the request through committee for an indefinite study period. Two doors, and the regulatory clock runs the moment the written request is on file.
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ul class="text-slate-300 space-y-2">
+            <li><strong class="text-white">Door 1 — Fund the IEE.</strong> The district arranges and pays a qualified independent examiner to conduct a new evaluation. The parent typically chooses from a district-approved list, or in many jurisdictions can propose an examiner meeting the district's qualifications and location criteria.</li>
+            <li><strong class="text-white">Door 2 — File for due process.</strong> The district initiates a due-process hearing under 20 USC §1415 to prove its original evaluation was appropriate. A litigation move — attorney fees and hearing-officer scrutiny, and a loss means the district pays for the IEE anyway plus its legal costs.</li>
+            <li><strong class="text-white">No third door.</strong> Silence, delay, or refusal to choose is itself a procedural violation under 34 CFR §300.502, actionable through a state complaint under 34 CFR §300.151–153.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Eligibility — When the IEE Right Activates</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The IEE-at-public-expense right under 34 CFR §300.502(b)(1) activates only if the parent <em>disagrees with an evaluation obtained by the public agency</em>. The disagreement does not need to be a formal finding of bad faith — it can be technical disagreement with the methodology, the assessment instrument, the examiner's qualifications, the scope, or the eligibility conclusion drawn from the data. The parent does not owe the district an explanation under the regulation, though 34 CFR §300.502(b)(4) permits the agency to <em>ask</em> for one.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under 34 CFR §300.502(b)(5), a parent is entitled to <em>only one</em> IEE at public expense each time the public agency conducts an evaluation with which the parent disagrees. A subsequent reevaluation the parent also disagrees with reopens the right.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Agency Criteria — What the District Can and Cannot Require</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          34 CFR §300.502(e)(1) sets the rule for what conditions a district is allowed to attach to an IEE at public expense. <em>"If an independent educational evaluation is at public expense, the criteria under which the evaluation is obtained, including the location of the evaluation and the qualifications of the examiner, must be the same as the criteria that the public agency uses when it initiates an evaluation, to the extent those criteria are consistent with the parent's right to an independent educational evaluation."</em>
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Practical meaning: a district can require the IEE examiner to hold a state license, use industry-standard instruments, and be located within a defined geographic radius — but only if it imposes the same constraints on its own staff evaluators. Districts cannot invent IEE-specific restrictions to narrow the pool. Under 34 CFR §300.502(e)(2), <em>"a public agency may not impose conditions or timelines related to obtaining an independent educational evaluation at public expense"</em> beyond the criteria-parity rule.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">What "Without Unnecessary Delay" Actually Means</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The phrase <em>"without unnecessary delay"</em> in 34 CFR §300.502(b)(2) is the federal floor on district response time, intentionally elastic. The regulation does not specify a day count — unlike the 60-day evaluation timeline at 34 CFR §300.301(c)(1) or the 45-day records-request window. State implementation fills the gap: some states impose 10-school-day windows, others 15- or 30-calendar-day windows, a handful track only the federal "reasonable" standard. Hearing officers and OSEP guidance have consistently treated extended silence, indefinite committee review, and repeated requests for additional parent justification as procedural violations. For walkthrough of the federal mechanism that <em>does</em> include a hard day count, see <a href="/blog/idea-60-day-evaluation-timeline-34-cfr-300-301" class="text-amber-300 hover:text-amber-200 underline">the IDEA 60-day evaluation timeline under 34 CFR §300.301</a>.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">What an IEE Request Letter Has to Contain</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The structural requirements come from the regulation itself. The letter does not need to be long — but the procedural record it creates protects the parent through the rest of the dispute.
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+            <li><strong class="text-white">Identification of the district evaluation in dispute.</strong> Date completed, evaluator name, scope — anchors the disagreement to a specific evaluation per 34 CFR §300.502(b)(1).</li>
+            <li><strong class="text-white">Explicit statement of disagreement.</strong> One sentence: "The parent disagrees with the [date] evaluation conducted by [district]." No further justification required.</li>
+            <li><strong class="text-white">Explicit request for an IEE at public expense.</strong> Use the regulatory phrase and cite 34 CFR §300.502(b). Vague requests for "another look" do not trigger the binary obligation.</li>
+            <li><strong class="text-white">Request for the district's IEE criteria.</strong> Under 34 CFR §300.502(a)(2), the district must provide information on where an IEE may be obtained and the agency criteria. Asking in the same letter accelerates the process.</li>
+            <li><strong class="text-white">Written-response deadline.</strong> Ten business days is a common anchor; the federal floor is "without unnecessary delay." A stated deadline creates a record for any subsequent state complaint.</li>
+            <li><strong class="text-white">Delivery that creates a record.</strong> Email to the special-education director and building principal, with read-receipt or certified mail for paper. Verbal IEE requests at IEP meetings should be followed by the same letter in writing within 48 hours.</li>
+          </ol>
+        </div>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">When the District Refuses or Delays</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          If the district does not respond, does not choose either door, or attaches conditions not permitted under 34 CFR §300.502(e), the parent has three escalation pathways. The first is the prior written notice (PWN) mechanism — any district refusal must be documented in writing under 34 CFR §300.503, including reasons, data relied on, and alternatives considered. The PWN becomes evidence in any subsequent complaint; see <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline">the parent guide to prior written notice under 34 CFR §300.503</a>. The second is the state administrative complaint under 34 CFR §300.151–153, filed with the state education agency. The third is the parent's own due-process complaint — though in the IEE fact pattern, the district is structurally required to file, not the parent.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The IEE right exists under IDEA. Whether a child is on an IDEA-governed IEP or a Section 504 plan changes which procedural toolkit applies — see <a href="/blog/504-plan-vs-iep-federal-law-differences-parents" class="text-amber-300 hover:text-amber-200 underline">the federal-law differences between 504 plans and IEPs</a> for the eligibility split.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">What is an IEE at public expense under 34 CFR §300.502?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          An IEE at public expense is an evaluation conducted by a qualified examiner not employed by the school district, paid for by the district, triggered by a parent's written disagreement with a district evaluation. The right is established at 34 CFR §300.502(b) and 20 USC §1415(b)(1). Under 34 CFR §300.502(b)(2), the district must respond without unnecessary delay by either funding the IEE or filing a due-process complaint — no third option.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does the parent have to justify the disagreement?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          No. Under 34 CFR §300.502(b)(4), the district may ask for the parent's reason, but the parent is not required to provide one, and the request for explanation cannot unreasonably delay the binary response obligation.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">What if the school refuses the IEE request?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The district cannot simply refuse. Under 34 CFR §300.502(b)(2) it must either fund the IEE or file a due-process complaint. Flat refusal, indefinite delay, or imposing conditions outside the criteria-parity rule at 34 CFR §300.502(e) is a procedural violation actionable through a state complaint under 34 CFR §300.151–153 or a parent-initiated due-process complaint.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">How many IEEs at public expense can a parent request?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under 34 CFR §300.502(b)(5), one IEE at public expense per district evaluation the parent disagrees with. A new district reevaluation the parent also disagrees with reopens the right.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can the district choose the IEE examiner?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under 34 CFR §300.502(e), the district may impose criteria on the IEE examiner — qualifications, location, instruments — but only if it imposes the same criteria on its own staff evaluators. Most districts maintain a list of pre-approved IEE examiners; the parent typically retains the right to propose an examiner who meets the published criteria.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">How long does the district have to respond?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The federal floor is "without unnecessary delay" under 34 CFR §300.502(b)(2) — no specific day count. State implementation varies; some states impose 10-school-day or 15-calendar-day windows. Extended silence, indefinite review, or repeated stall tactics have been treated as procedural violations by OSEP and hearing officers.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Letter Pack</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The IEE request letter is one of twelve IDEA-compliant letter templates in the OEFR Digital IEP &amp; 504 Parent Advocacy Letter Kit — alongside the evaluation request, evaluation-denial response, state-complaint letter, due-process complaint, stay-put rights letter, and records request, each cited to the relevant federal regulation. For the full kit walkthrough and the meeting-day tools letters cannot replace, see <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">the IEP &amp; 504 parent advocacy letter kit overview</a>. $24 — instant digital download.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          <strong class="text-white">Disclaimer.</strong> This is informational research aggregation, not legal advice. State implementation varies; consult a special-education attorney or your state Parent Information Center (find yours at parentcenterhub.org) for state-specific procedures. For due-process filings or formal complaints, the state protection-and-advocacy agency and state-bar lawyer-referral services are the lowest-friction entry points.
+        </p>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is an IEE at public expense under 34 CFR 300.502?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "An Independent Educational Evaluation at public expense is an evaluation conducted by a qualified examiner not employed by the school district, paid for by the district, triggered by a parent's written disagreement with a district evaluation. The right is established at 34 CFR 300.502(b) and 20 USC 1415(b)(1). Under 34 CFR 300.502(b)(2), the district must respond without unnecessary delay by either funding the IEE or filing a due-process complaint to defend its original evaluation — there is no third option."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does the parent have to justify the disagreement to request an IEE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Under 34 CFR 300.502(b)(4), the district may ask for the parent's reason for disagreement, but the parent is not required to provide one, and the request for explanation cannot unreasonably delay the district's binary response obligation. The regulation explicitly forbids using the explanation request as a stall mechanism."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What if the school refuses the IEE request?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The district cannot simply refuse. Under 34 CFR 300.502(b)(2), the district must either fund the IEE or file a due-process complaint to defend its evaluation. A flat refusal, indefinite delay, or attempt to impose conditions outside the criteria-parity rule at 34 CFR 300.502(e) is itself a procedural violation actionable through a state complaint under 34 CFR 300.151–153 or a parent-initiated due-process complaint."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How many IEEs at public expense can a parent request?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Under 34 CFR 300.502(b)(5), a parent is entitled to only one IEE at public expense each time the public agency conducts an evaluation with which the parent disagrees. A new district reevaluation that the parent also disagrees with reopens the right to a new IEE at public expense."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can the district choose the IEE examiner?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Under 34 CFR 300.502(e), the district may impose criteria on the IEE examiner — qualifications, location, instrument selection — but only if those criteria match what the district uses for its own staff evaluators. The district cannot invent IEE-specific restrictions designed to limit parent choice. Most districts maintain a list of pre-approved IEE examiners; the parent typically retains the right to propose an examiner not on the list who meets the published criteria."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does the district have to respond to an IEE request?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The federal floor is 'without unnecessary delay' under 34 CFR 300.502(b)(2) — no specific day count in the federal regulation. State implementation varies; some states impose 10-school-day or 15-calendar-day windows, while others rely on the federal 'reasonable' standard. Extended silence, indefinite review, or repeated stall tactics have been treated as procedural violations by OSEP and hearing officers."
+              }
+            }
+          ]
+        }
+        </script>
+      `,
+      cta: {
+        text: "See the full IEP & 504 Parent Advocacy Letter Kit ($24)",
+        href: "/blog/iep-504-letter-templates-parent-advocacy",
+      },
+      relatedProducts: [
+        {
+          name: "IEP & 504 Parent Advocacy Letter Kit",
+          href: "/blog/iep-504-letter-templates-parent-advocacy",
+          description: "12 IDEA-compliant letter templates including the IEE request, plus the meeting-day tools letters cannot replace. $24 — instant digital download.",
+        },
+        {
+          name: "Prior Written Notice Parent Guide",
+          href: "/blog/prior-written-notice-34-cfr-300-503-parent-guide",
+          description: "The 34 CFR §300.503 mechanism that forces districts to document any refusal in writing — the upstream procedural lever when an IEE request is denied.",
+        },
+        {
+          name: "IDEA 60-Day Evaluation Timeline",
+          href: "/blog/idea-60-day-evaluation-timeline-34-cfr-300-301",
+          description: "The federal 60-day evaluation clock and what triggers it — the timeline rule that runs in parallel with the IEE request pathway.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is an IEE at public expense under 34 CFR 300.502?",
+          answer:
+            "An Independent Educational Evaluation at public expense is an evaluation conducted by a qualified examiner not employed by the school district, paid for by the district, triggered by a parent's written disagreement with a district evaluation. The right is established at 34 CFR 300.502(b) and 20 USC 1415(b)(1). Under 34 CFR 300.502(b)(2), the district must respond without unnecessary delay by either funding the IEE or filing a due-process complaint to defend its original evaluation — there is no third option.",
+        },
+        {
+          question: "Does the parent have to justify the disagreement to request an IEE?",
+          answer:
+            "No. Under 34 CFR 300.502(b)(4), the district may ask for the parent's reason for disagreement, but the parent is not required to provide one, and the request for explanation cannot unreasonably delay the district's binary response obligation. The regulation explicitly forbids using the explanation request as a stall mechanism.",
+        },
+        {
+          question: "What if the school refuses the IEE request?",
+          answer:
+            "The district cannot simply refuse. Under 34 CFR 300.502(b)(2), the district must either fund the IEE or file a due-process complaint to defend its evaluation. A flat refusal, indefinite delay, or attempt to impose conditions outside the criteria-parity rule at 34 CFR 300.502(e) is itself a procedural violation actionable through a state complaint under 34 CFR 300.151–153 or a parent-initiated due-process complaint.",
+        },
+        {
+          question: "How many IEEs at public expense can a parent request?",
+          answer:
+            "Under 34 CFR 300.502(b)(5), a parent is entitled to only one IEE at public expense each time the public agency conducts an evaluation with which the parent disagrees. A new district reevaluation that the parent also disagrees with reopens the right to a new IEE at public expense.",
+        },
+        {
+          question: "Can the district choose the IEE examiner?",
+          answer:
+            "Under 34 CFR 300.502(e), the district may impose criteria on the IEE examiner — qualifications, location, instrument selection — but only if those criteria match what the district uses for its own staff evaluators. The district cannot invent IEE-specific restrictions designed to limit parent choice. Most districts maintain a list of pre-approved IEE examiners; the parent typically retains the right to propose an examiner not on the list who meets the published criteria.",
+        },
+        {
+          question: "How long does the district have to respond to an IEE request?",
+          answer:
+            "The federal floor is 'without unnecessary delay' under 34 CFR 300.502(b)(2) — no specific day count in the federal regulation. State implementation varies; some states impose 10-school-day or 15-calendar-day windows, while others rely on the federal 'reasonable' standard. Extended silence, indefinite review, or repeated stall tactics have been treated as procedural violations by OSEP and hearing officers.",
+        },
+      ],
+    },
+  {
+      slug: "504-plan-vs-iep-federal-law-differences-parents",
+      title: "504 Plan vs IEP: The Federal Law Differences Every Parent Should Know",
+      description:
+        "504 plan vs IEP at the federal-law level: Section 504 (29 USC 794) and IDEA (20 USC 1400+) compared — eligibility, FAPE, procedural protections, and funding.",
+      keywords: [
+        "504 plan vs IEP",
+        "section 504 vs IDEA",
+        "504 vs IEP difference",
+        "when does a child need an IEP vs 504",
+        "504 plan eligibility federal law",
+        "504 vs IEP which is better",
+        "section 504 rehabilitation act IEP",
+        "504 accommodations vs IEP services",
+        "504 plan vs IEP comparison chart",
+        "FAPE under section 504 vs IDEA",
+        "13 IDEA disability categories",
+        "substantial limitation major life activity 504",
+        "34 CFR Part 104 section 504 regulations",
+        "34 CFR Part 300 IDEA regulations",
+        "can a child have both a 504 and an IEP",
+        "504 plan procedural safeguards",
+      ],
+      publishedDate: "2026-05-15",
+      readingTime: "12 min read",
+      author: "OEFR Digital",
+      excerpt:
+        "At the eligibility meeting, the district recommends a 504 plan instead of an IEP — or vice versa. The federal-law mechanism behind that choice has four distinct moving parts every parent should know in writing.",
+      content: `
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          A parent walks into an eligibility meeting expecting an IEP. The district team recommends a 504 plan instead — or the inverse, a 504 plan is on the table and the parent had been told the child needed an IEP. Both options sit under the same federal-disability umbrella, but they are governed by different federal statutes with different eligibility standards, different procedural protections, different funding sources, and different definitions of what a "free appropriate public education" (FAPE) actually means.
+        </p>
+
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          This article lays out the federal-law mechanism difference between a 504 plan (Section 504 of the Rehabilitation Act of 1973, 29 USC 794, regulations at 34 CFR Part 104) and an IEP (Individuals with Disabilities Education Act, 20 USC 1400 et seq., regulations at 34 CFR Part 300). State overlay varies; the federal floor is consistent across all 50 states.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Two Federal Statutes, Side by Side</h2>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ul class="text-slate-300 space-y-2">
+            <li><strong class="text-white">Section 504 of the Rehabilitation Act of 1973 (29 USC 794).</strong> A civil-rights statute prohibiting disability-based discrimination by any program or activity receiving federal financial assistance. Implementing regulations at 34 CFR Part 104. Enforced by the U.S. Department of Education's Office for Civil Rights (OCR). A 504 plan is the school-setting application of this non-discrimination mandate.</li>
+            <li><strong class="text-white">Individuals with Disabilities Education Act (20 USC 1400 et seq.).</strong> An education-services statute reauthorized as IDEA. Implementing regulations at 34 CFR Part 300. Enforced by the Office of Special Education Programs (OSEP). An IEP is the federally-required written plan documenting a child's specialized instruction and related services under IDEA Part B.</li>
+          </ul>
+        </div>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Section 504 is a civil-rights non-discrimination statute that happens to apply to public schools. IDEA is a special-education-services statute requiring public schools to identify, evaluate, and provide specially designed instruction. The first guarantees equal access; the second guarantees specialized instruction. A child can qualify for one without the other.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Eligibility: The Most Important Difference</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under Section 504 (29 USC 794 and 34 CFR 104.3), a child qualifies if the child has a physical or mental impairment that <em>substantially limits one or more major life activities</em> — including learning, reading, concentrating, thinking, communicating, and major bodily functions. The standard is broad and not tied to a fixed list of conditions; the 2008 ADA Amendments Act expanded the term and directed it be construed broadly.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under IDEA (20 USC 1401(3) and 34 CFR 300.8), a child qualifies only if the child meets one of 13 specific disability categories <em>and</em> the disability adversely affects educational performance such that the child needs special education and related services. The two-prong test is a higher bar than Section 504's substantial-limitation test.
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <p class="text-white font-semibold mb-3">The 13 IDEA disability categories (34 CFR 300.8):</p>
+          <ol class="text-slate-300 space-y-1 list-decimal list-inside">
+            <li>Autism</li>
+            <li>Deaf-blindness</li>
+            <li>Deafness</li>
+            <li>Emotional disturbance</li>
+            <li>Hearing impairment</li>
+            <li>Intellectual disability</li>
+            <li>Multiple disabilities</li>
+            <li>Orthopedic impairment</li>
+            <li>Other health impairment (OHI — frequently the category used for ADHD, Tourette's, chronic illness, etc.)</li>
+            <li>Specific learning disability</li>
+            <li>Speech or language impairment</li>
+            <li>Traumatic brain injury</li>
+            <li>Visual impairment, including blindness</li>
+          </ol>
+        </div>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Practically: a child with ADHD performing academically at grade level may not qualify under IDEA (no adverse effect on educational performance, no need for specially designed instruction) but may clearly qualify under Section 504 (ADHD substantially limits concentrating and thinking). A child with dyslexia whose reading deficit materially affects academic performance likely qualifies under both — but the procedural pathway the district chooses controls what the child actually receives.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">FAPE: Two Different Federal Definitions</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Both statutes guarantee a Free Appropriate Public Education (FAPE), but the two definitions are not the same — this is the federal-law point most often muddled at the meeting table.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under Section 504 (34 CFR 104.33), FAPE means regular or special education and related aids designed to meet the needs of disabled students <em>as adequately as the needs of non-disabled students are met</em>. It is a comparability standard, typically delivered through accommodations and modifications inside the general-education classroom.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under IDEA (20 USC 1401(9) and 34 CFR 300.17), FAPE means special education and related services provided at public expense in conformity with the IEP. "Special education" is defined at 20 USC 1401(29) and 34 CFR 300.39 as <em>specially designed instruction</em> — adapting the content, methodology, or delivery of instruction to the unique needs of the child. The Supreme Court's 2017 <em>Endrew F. v. Douglas County School District</em> decision further required that an IEP be reasonably calculated to enable the child to make progress appropriate in light of the child's circumstances.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Procedural Protections: Higher Floor Under IDEA</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          IDEA's procedural safeguards (34 CFR 300.500-300.536 and 20 USC 1415) are extensive: prior written notice before any change in identification, evaluation, or placement (34 CFR 300.503); the right to a full and individual initial evaluation (34 CFR 300.301); the right to an Independent Educational Evaluation at public expense (34 CFR 300.502); parental consent (34 CFR 300.300); IEP-team participation; stay-put during dispute resolution (20 USC 1415(j)); mediation, state-complaint, and due-process pathways (34 CFR 300.151-153 and 300.506-300.518); and attorneys' fees under certain circumstances.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Section 504's procedural safeguards (34 CFR 104.36) are stated in a single regulatory paragraph: notice, an opportunity to examine records, an impartial hearing with parental participation and representation by counsel, and a review procedure. Section 504 does not on its face require IDEA-form prior written notice, the IEE-at-public-expense pathway, a federally-mandated 60-day evaluation timeline, or the IDEA stay-put right. The federal floor is lower.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Funding: Civil-Rights Statute vs. Funded Grant Program</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Section 504 is a civil-rights statute with no dedicated funding stream — compliance is a condition of accepting any federal financial assistance, and 504 plan costs are absorbed by the district's general-education budget. IDEA is a funded grant program: under Part B (20 USC 1411-1419), the federal government provides formula grants to states for the excess costs of educating children with disabilities. Federal dollars come with federal procedural standards — part of why IDEA's procedural rules are heavier.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          This funding-structure difference is why districts sometimes prefer to route a borderline case to a 504 plan — it avoids the IDEA paperwork load and procedural-safeguards regime. A structural incentive parents with documentation supporting IDEA eligibility should be ready to push back against in writing.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Side-by-Side Comparison</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The federal-law differences laid out in one table:
+        </p>
+
+        <div class="overflow-x-auto mb-6">
+          <table class="w-full text-left border-collapse text-sm text-slate-300">
+            <thead>
+              <tr class="border-b border-slate-700 bg-slate-900/70">
+                <th class="py-3 px-4 font-semibold text-white">Dimension</th>
+                <th class="py-3 px-4 font-semibold text-white">504 Plan (Section 504)</th>
+                <th class="py-3 px-4 font-semibold text-white">IEP (IDEA)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">Governing statute</strong></td>
+                <td class="py-3 px-4 align-top">Section 504 of the Rehabilitation Act of 1973 (29 USC 794)</td>
+                <td class="py-3 px-4 align-top">Individuals with Disabilities Education Act (20 USC 1400+)</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">Implementing regulations</strong></td>
+                <td class="py-3 px-4 align-top">34 CFR Part 104</td>
+                <td class="py-3 px-4 align-top">34 CFR Part 300</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">Federal enforcement office</strong></td>
+                <td class="py-3 px-4 align-top">Office for Civil Rights (OCR)</td>
+                <td class="py-3 px-4 align-top">Office of Special Education Programs (OSEP)</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">Statute type</strong></td>
+                <td class="py-3 px-4 align-top">Civil-rights non-discrimination statute</td>
+                <td class="py-3 px-4 align-top">Education-services funded grant program</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">Eligibility standard</strong></td>
+                <td class="py-3 px-4 align-top">Physical or mental impairment that substantially limits one or more major life activities (34 CFR 104.3)</td>
+                <td class="py-3 px-4 align-top">One of 13 named disability categories AND adverse effect on educational performance requiring specially designed instruction (34 CFR 300.8)</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">FAPE definition</strong></td>
+                <td class="py-3 px-4 align-top">Education and related aids designed to meet the individual needs of the student as adequately as the needs of non-disabled students are met (34 CFR 104.33) — comparability standard</td>
+                <td class="py-3 px-4 align-top">Specially designed instruction and related services provided in conformity with the IEP (20 USC 1401(9), 34 CFR 300.17, 300.39) — individualized-instruction standard</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">Typical mechanism</strong></td>
+                <td class="py-3 px-4 align-top">Accommodations and modifications in the general-education setting</td>
+                <td class="py-3 px-4 align-top">Specially designed instruction plus related services (speech, OT, PT, counseling, etc.)</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">Written plan required?</strong></td>
+                <td class="py-3 px-4 align-top">Federal regulation does not specify a written-document format; most districts produce a written 504 plan as a matter of practice</td>
+                <td class="py-3 px-4 align-top">Written IEP required, with statutorily-defined contents (20 USC 1414(d), 34 CFR 300.320)</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">Procedural safeguards</strong></td>
+                <td class="py-3 px-4 align-top">Single regulatory paragraph (34 CFR 104.36) — notice, records access, impartial hearing, review procedure</td>
+                <td class="py-3 px-4 align-top">Extensive (34 CFR 300.500-300.536, 20 USC 1415) — prior written notice, parental consent, IEE, mediation, state complaint, due process, stay-put</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">Federal evaluation timeline</strong></td>
+                <td class="py-3 px-4 align-top">No federally-mandated calendar timeline</td>
+                <td class="py-3 px-4 align-top">60 calendar days from parental consent (34 CFR 300.301(c)(1)), unless state regulation specifies a different timeline</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">IEE at public expense</strong></td>
+                <td class="py-3 px-4 align-top">Not provided by federal regulation</td>
+                <td class="py-3 px-4 align-top">Available when parent disagrees with district evaluation (34 CFR 300.502)</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 align-top"><strong class="text-white">Funding source</strong></td>
+                <td class="py-3 px-4 align-top">No dedicated federal funding — district general-education budget</td>
+                <td class="py-3 px-4 align-top">IDEA Part B formula grants to states (20 USC 1411-1419) plus state and local funds</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">When Each One Applies — and Can a Child Have Both?</h2>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ul class="text-slate-300 space-y-2">
+            <li><strong class="text-white">Qualifies under both.</strong> A child needing specially designed instruction (e.g., a specific learning disability in reading affecting academic performance) typically receives an IEP — and IDEA eligibility automatically confers Section 504 protections, because the IDEA umbrella sits inside the broader Section 504 umbrella. Schools do not produce both documents; the IEP is operative, and the Section 504 protections layer on top automatically.</li>
+            <li><strong class="text-white">Qualifies under Section 504 only.</strong> A child whose disability substantially limits a major life activity but does not require specially designed instruction (e.g., ADHD on grade level needing accommodations, Type 1 diabetes needing a blood-sugar-management plan) typically receives a 504 plan.</li>
+            <li><strong class="text-white">Qualifies under IDEA only.</strong> Rare in practice — IDEA's two-prong test almost always also satisfies Section 504's substantial-limitation standard.</li>
+            <li><strong class="text-white">Qualifies under neither.</strong> General-education differentiation and Multi-Tiered System of Supports (MTSS) are the typical responses.</li>
+          </ul>
+        </div>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Cross-direction transitions: 504-to-IEP happens when an IDEA evaluation finds the child meets the two-prong test that the prior 504 process did not capture. IEP-to-504 happens when a triennial reevaluation finds the child no longer needs specially designed instruction.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Cross-Walk: Qualifies for One, Not the Other</h2>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <p class="text-slate-300 mb-2"><strong class="text-white">Scenario A: District proposes a 504 plan; parent believes IDEA evaluation is warranted.</strong></p>
+          <p class="text-slate-300">The procedural lever is a written request for a full IDEA evaluation under 34 CFR 300.301. The district must respond — either initiating the evaluation (the 60-day clock runs from parental consent) or providing prior written notice of refusal under 34 CFR 300.503 with specific reasons. The PWN refusal is the document the parent files against — state complaint, IEE if applicable, mediation, or due process.</p>
+        </div>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <p class="text-slate-300 mb-2"><strong class="text-white">Scenario B: District finds the child IDEA-ineligible; parent believes 504 eligibility is clear.</strong></p>
+          <p class="text-slate-300">An IDEA-ineligibility finding does not foreclose Section 504 consideration. The parent's written request shifts to a Section 504 eligibility evaluation under 34 CFR 104.35 — the district is obligated to evaluate when there is reason to believe the child has a disability that substantially limits a major life activity. Post-ADA Amendments Act, many children who fail the IDEA two-prong test meet the Section 504 substantial-limitation test.</p>
+        </div>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          In either scenario the documentation that matters is in writing. For federally-cited request-letter shapes covering both pathways, see <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">the IEP and 504 parent advocacy letter templates pack</a>.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Related Federal-Procedure References</h2>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ul class="text-slate-300 space-y-2">
+            <li><strong class="text-white">Prior Written Notice (34 CFR 300.503)</strong> — required before any change in identification, evaluation, or placement. See <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline">the prior written notice parent guide</a>.</li>
+            <li><strong class="text-white">Independent Educational Evaluation (34 CFR 300.502)</strong> — the IEE-at-public-expense pathway. See <a href="/blog/independent-educational-evaluation-iee-request-34-cfr-300-502" class="text-amber-300 hover:text-amber-200 underline">the IEE request guide</a>.</li>
+            <li><strong class="text-white">60-day evaluation timeline (34 CFR 300.301)</strong> — when the IDEA evaluation clock starts (parental consent, not the request). See <a href="/blog/idea-60-day-evaluation-timeline-34-cfr-300-301" class="text-amber-300 hover:text-amber-200 underline">the 60-day evaluation timeline guide</a>.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Is a 504 plan or an IEP better for a child with ADHD?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Neither is "better" — they cover different things. A child with ADHD on grade level who needs accommodations typically receives a 504 plan. A child with ADHD whose attention deficits materially impair academic progress and require specially designed instruction typically qualifies for an IEP under the IDEA "Other Health Impairment" category (34 CFR 300.8). The trigger is need for specially designed instruction, not the diagnosis.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does a child need a medical diagnosis to qualify for a 504 plan?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          No. Section 504 (34 CFR 104.35) requires the district to draw upon a variety of sources — aptitude tests, teacher recommendations, physical condition, adaptive behavior. A medical diagnosis can be relevant evidence but is not a regulatory prerequisite. The standard is whether the child has a physical or mental impairment that substantially limits one or more major life activities.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does an IEP follow the child to college?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          IDEA applies to public elementary and secondary education only — IEPs end at high-school graduation or age 21/22 (state-dependent). Section 504 applies to any program receiving federal financial assistance, including virtually all colleges and universities. Postsecondary accommodations are processed through the disability-services office under Section 504 and the ADA — not under IDEA.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can a school move a child from an IEP to a 504 plan to save money?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          A change in eligibility triggers IDEA's prior-written-notice requirement (34 CFR 300.503) and the full procedural-safeguards regime. The district must conduct a reevaluation, provide written notice with specific reasons, and obtain parental consent. A parent who disagrees can refuse consent, request an IEE under 34 CFR 300.502, file a state complaint, or initiate due process. Stay-put (20 USC 1415(j)) keeps the existing IEP in effect during the dispute.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">What are major life activities under Section 504?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Major life activities under Section 504, informed by the ADA Amendments Act of 2008, include caring for oneself, performing manual tasks, seeing, hearing, eating, sleeping, walking, speaking, breathing, learning, reading, concentrating, thinking, communicating, and working — plus major bodily functions (immune, digestive, neurological, respiratory, circulatory, endocrine, reproductive). The term is to be construed broadly.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Who enforces a 504 plan when the school does not follow it?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Section 504 is enforced by the U.S. Department of Education's Office for Civil Rights (OCR). A parent may file an OCR complaint within 180 days. IDEA, by contrast, has state-complaint, mediation, and due-process pathways through the state education agency. Many states also provide their own non-discrimination enforcement channels.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does Section 504 apply to private schools?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Section 504 applies to programs receiving federal financial assistance. Private schools that do not receive federal funds are not directly subject to Section 504 — but they are subject to Title III of the Americans with Disabilities Act (with religious-institution exceptions). IDEA's separate provisions for parentally-placed private-school students (34 CFR 300.130-300.144) establish a limited services entitlement distinct from public-school FAPE.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Federally-Cited Letter Set</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The federal-law mechanism above is what makes the 504-versus-IEP distinction enforceable. What makes the mechanism actionable is the parent's documentation. For letter shapes anchored to the right federal citations for both pathways — IDEA evaluation request, Section 504 evaluation request, prior-written-notice response, IEE at public expense, state complaint, due process — see <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">the IEP and 504 parent advocacy letter templates pack</a>.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          <strong class="text-white">Disclaimer.</strong> Educational and research-summary content only. Not legal advice. Section 504 and IDEA federal-law standards are the federal floor; state-procedural overlay, district practice, and individual case facts will alter application. For due-process filings, formal OCR or state complaints, or hearings, consult the state's parent training and information center (find yours at parentcenterhub.org), the state protection-and-advocacy agency, or a special-education attorney.
+        </p>
+      `,
+      cta: {
+        text: "See the IEP & 504 parent advocacy letter templates pack",
+        href: "/blog/iep-504-letter-templates-parent-advocacy",
+      },
+      relatedProducts: [
+        {
+          name: "IEP & 504 Parent Advocacy Letter Kit",
+          href: "/blog/iep-504-letter-templates-parent-advocacy",
+          description: "12 federally-cited IEP and 504 letter templates plus 3 meeting-day tools — the documentation layer that makes the federal-law mechanism actionable.",
+        },
+        {
+          name: "Prior Written Notice (34 CFR 300.503) Parent Guide",
+          href: "/blog/prior-written-notice-34-cfr-300-503-parent-guide",
+          description: "The IDEA-specific written-notice requirement triggered by any change in identification, evaluation, or placement.",
+        },
+        {
+          name: "IDEA 60-Day Evaluation Timeline (34 CFR 300.301)",
+          href: "/blog/idea-60-day-evaluation-timeline-34-cfr-300-301",
+          description: "When the IDEA evaluation clock starts — parental consent, not the request letter — and how state variance interacts with the federal floor.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is a 504 plan or an IEP better for a child with ADHD?",
+          answer:
+            "Neither is 'better' as a federal-law matter — they cover different things. A child with ADHD on grade level needing accommodations typically receives a 504 plan. A child with ADHD whose deficits materially impair academic progress and require specially designed instruction typically qualifies for an IEP under IDEA's 'Other Health Impairment' category (34 CFR 300.8). The trigger is need for specially designed instruction, not the diagnosis itself.",
+        },
+        {
+          question: "Does a child need a medical diagnosis to qualify for a 504 plan?",
+          answer:
+            "No. Section 504 (34 CFR 104.35) requires the district to draw upon a variety of sources — aptitude tests, teacher recommendations, physical condition, adaptive behavior. A medical diagnosis can be relevant evidence but is not a regulatory prerequisite. The standard is whether the child has a physical or mental impairment that substantially limits one or more major life activities.",
+        },
+        {
+          question: "Does an IEP follow the child to college?",
+          answer:
+            "IDEA applies to public elementary and secondary education only — IEPs end at high-school graduation or age 21/22 (state-dependent). Section 504 applies to any program receiving federal financial assistance, including virtually all colleges and universities. Postsecondary accommodations are processed through the college's disability-services office under Section 504 and the ADA. Section 504, not IDEA, governs at the postsecondary level.",
+        },
+        {
+          question: "Can a school move a child from an IEP to a 504 plan to save money?",
+          answer:
+            "A change in eligibility triggers IDEA's prior-written-notice requirement (34 CFR 300.503) and the full procedural-safeguards regime. The district must conduct a reevaluation, provide written notice with specific reasons, and obtain parental consent. A parent who disagrees can refuse consent, request an IEE under 34 CFR 300.502, file a state complaint, or initiate due process. Stay-put (20 USC 1415(j)) keeps the existing IEP in effect during the dispute.",
+        },
+        {
+          question: "What are major life activities under Section 504?",
+          answer:
+            "Major life activities under Section 504, as informed by the ADA Amendments Act of 2008, include caring for oneself, performing manual tasks, seeing, hearing, eating, sleeping, walking, speaking, breathing, learning, reading, concentrating, thinking, communicating, and working — plus major bodily functions (immune, digestive, neurological, respiratory, circulatory, endocrine, reproductive). The term is to be construed broadly.",
+        },
+        {
+          question: "Who enforces a 504 plan when the school does not follow it?",
+          answer:
+            "Section 504 is enforced by the U.S. Department of Education's Office for Civil Rights (OCR). A parent may file an OCR complaint within 180 days. IDEA, by contrast, has state-complaint, mediation, and due-process pathways administered through the state education agency. Section 504 routes through OCR at the federal level. Many states also provide their own non-discrimination enforcement channels.",
+        },
+        {
+          question: "Can a child have both a 504 plan and an IEP at the same time?",
+          answer:
+            "A child who qualifies under IDEA is also covered by Section 504 by operation of statute — Section 504's broader civil-rights umbrella always extends to an IDEA-qualifying child. Schools do not produce both documents in practice; the IEP is operative, and the Section 504 protections layer on top automatically without a separately-drafted 504 plan.",
+        },
+      ],
+    },
+  {
+      slug: "idea-60-day-evaluation-timeline-34-cfr-300-301",
+      title: "The IDEA 60-Day Evaluation Timeline (34 CFR §300.301): What Triggers the Clock",
+      description:
+        "The IDEA 60-day IEP evaluation clock starts at signed parental consent, not the request. 34 CFR 300.301(c)(1), state variance, and the missed-deadline pathway.",
+      keywords: [
+        "60 day IEP evaluation timeline",
+        "IDEA evaluation timeline rules",
+        "when does the 60 day IEP timeline start",
+        "34 CFR 300.301",
+        "IEP evaluation deadline missed",
+        "parental consent IEP timeline",
+        "school missed 60 day evaluation deadline",
+        "IDEA 60 day rule",
+        "iep evaluation consent form",
+        "iep evaluation timeline by state",
+        "what triggers the 60 day iep clock",
+        "iep evaluation timeline exceptions",
+        "iep state complaint missed deadline",
+        "20 usc 1414 evaluation timeline",
+      ],
+      publishedDate: "2026-05-15",
+      readingTime: "9 min read",
+      author: "OEFR Digital",
+      excerpt:
+        "The 60-day IDEA evaluation clock does not start at the parent's request. It starts when the district receives signed consent under 34 CFR 300.300 — the trigger event most parent timelines miss.",
+      content: `
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          A parent writes a letter requesting an initial special-education evaluation. The letter goes out on a Monday. The parent marks the calendar 60 days forward and waits. Six weeks pass. No evaluation report arrives, no team meeting is scheduled, and the school's response — when it finally comes — is a consent form the parent has not yet signed.
+        </p>
+
+        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+          Under 34 CFR §300.301(c)(1), the 60-day federal evaluation clock has not started running. The trigger event is not the parent's request. It is the date the school district receives the parent's signed consent for evaluation. That distinction is the most-commonly-misunderstood element of the IDEA evaluation timeline — and the gap between request and consent is where a district stalling tactic can quietly push the federal clock back by weeks.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          This article maps the federal floor: what §300.301(c)(1) says, what counts as parental consent under §300.300, state timeline variance, missed-deadline remedies, and the narrow exceptions the regulations carve out.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">What 34 CFR §300.301(c)(1) Actually Says</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The regulation is short. 34 CFR §300.301(c)(1) provides that the initial evaluation:
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <p class="text-slate-300 leading-relaxed italic">
+            "Must be conducted within 60 days of receiving parental consent for the evaluation; or — If the State establishes a timeframe within which the evaluation must be conducted, within that timeframe."
+          </p>
+        </div>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The statutory authority at 20 USC §1414(a)(1)(C) mirrors the regulation: the evaluation must occur "within 60 days of receiving parental consent for the evaluation, or, if the State establishes a timeframe within which the evaluation must be conducted, within such timeframe."
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Two structural points: first, the 60 days is the federal default — the floor that applies if a state has not adopted its own timeline. Second, the moment the clock starts is fixed by federal law and is not state-discretionary: it is the date the public agency receives parental consent. State law can set the length of the timeline; the trigger event is federal.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Consent-Trigger Event (Not the Request Letter)</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The most common misunderstanding is that the 60-day clock starts when the parent submits a written evaluation request. It does not. The clock starts when the district receives the parent's signed consent on the district's own consent form — a separate document the district issues after receiving the request and after providing prior written notice under 34 CFR §300.503.
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+            <li><strong class="text-white">Parent submits the evaluation request</strong> — a written letter citing IDEA and asking for an initial evaluation.</li>
+            <li><strong class="text-white">District issues prior written notice</strong> under 34 CFR §300.503 — proposing to evaluate (and attaching a consent form) or refusing (with reasons in writing).</li>
+            <li><strong class="text-white">Parent signs the consent form</strong> under 34 CFR §300.300 — the form the district issues, not the parent's original request letter.</li>
+            <li><strong class="text-white">District receives the signed consent</strong> — the trigger event. The 60-day clock starts on this date.</li>
+            <li><strong class="text-white">Evaluation must be completed</strong> within 60 calendar days (federal floor) or the state-specified timeframe.</li>
+          </ol>
+        </div>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Steps 2 and 3 are where a district stalling tactic can lengthen the overall timeline. Three weeks spent issuing the consent form do not count against the 60 days — the federal clock has not started. The remedy for that stalling sits in the prior-written-notice rules and the state-complaint pathway, not in §300.301 itself.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Counts as Parental Consent Under §300.300</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under 34 CFR §300.300(a), the district "must, after providing notice consistent with §§300.503 and 300.504, obtain informed consent" from the parent before conducting an initial evaluation. Informed consent must be in writing, on a form the district provides, and the parent must understand the activity for which consent is being granted.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          A separate point in §300.300(a) matters downstream: consent for initial evaluation "must not be construed as consent for initial provision of special education and related services." Signing the evaluation consent form does not commit the parent to accept any services that result. Services consent is a separate signature under §300.300(b). If the parent refuses or fails to respond to the district's efforts to obtain consent, the §300.301 clock does not run — the trigger event has not occurred.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">State Timeline Variance: Some States Are Shorter</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The federal regulation explicitly defers to state-established timeframes. Most state timelines fall between 30 and 90 days, but the unit of measurement (calendar days vs school days) and the trigger language vary. Three illustrative patterns — for orientation only, parents should verify the current rule with their state education agency:
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ul class="text-slate-300 space-y-2">
+            <li><strong class="text-white">California:</strong> 60 calendar days from the signed assessment plan (the California analog to the federal consent form), with extensions for school breaks of five or more days.</li>
+            <li><strong class="text-white">Texas:</strong> 45 school days from the date the district receives written parental consent, with a separate 15-school-day window for the district to issue the consent form after a written request.</li>
+            <li><strong class="text-white">New York:</strong> 60 calendar days from receipt of parental consent, consistent with the federal floor.</li>
+          </ul>
+        </div>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          State rules change. The binding number is the current state regulation — not a blog post or advocacy summary. Every state's federally-funded parent training and information center (PTI, indexed at parentcenterhub.org) maintains the current timeline.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">When the District Misses the Deadline</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          A district that fails to complete the evaluation within the federal 60 days (or the applicable state timeframe) has committed a procedural violation of IDEA. The remedy is not automatic — the regulations do not deem the child eligible by default. The remedy is a state-complaint filing under 34 CFR §§300.151–153.
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+            <li><strong class="text-white">Written complaint to the state education agency</strong> — naming the district, the child, the violation (missed §300.301 timeline), and the requested remedy (immediate completion, compensatory services if denial of FAPE resulted).</li>
+            <li><strong class="text-white">State investigation within 60 days</strong> under 34 CFR §300.152(a) — render a written decision and order corrective action where a violation is found.</li>
+            <li><strong class="text-white">Corrective action</strong> — completion of the evaluation by a date certain, additional evaluations at public expense, and where applicable compensatory education for the period of delay.</li>
+          </ol>
+        </div>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The state-complaint pathway is parallel to — and lower-friction than — the due-process hearing pathway under 34 CFR §§300.507–514. State complaints do not require an attorney or a hearing and are the typical first procedural escalation for a missed-timeline violation.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Two Federal Exceptions to the 60-Day Rule</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          34 CFR §300.301(d) carves out two — and only two — exceptions to the 60-day evaluation timeline. Outside of these, the federal floor applies:
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+          <ol class="text-slate-300 space-y-2 list-decimal list-inside">
+            <li><strong class="text-white">Parent unavailability.</strong> Under §300.301(d)(1), the timeline does not apply if "the parent of a child repeatedly fails or refuses to produce the child for the evaluation." The district must document the repeated efforts and the parent's refusal in writing. A single missed appointment is not enough.</li>
+            <li><strong class="text-white">Mid-evaluation transfer.</strong> Under §300.301(d)(2), the timeline does not apply when a child enrolls in a school of another public agency after the timeline has already started, before the previous agency completes its evaluation. §300.301(e) clarifies the transfer exception applies only if the new agency is making sufficient progress and the parent and new agency agree on a specific completion date.</li>
+          </ol>
+        </div>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Anything outside these two carve-outs is not a federally-authorized exception. Staff turnover, scheduling difficulty, summer or holiday break, and pending paperwork are common district justifications — none appear in §300.301(d). A state complaint can be filed on the basis that no §300.301(d) exception applies.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">When exactly does the IDEA 60-day evaluation clock start?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Under 34 CFR §300.301(c)(1), the 60-day federal evaluation clock starts on the date the public agency receives the parent's signed consent for evaluation — not on the date the parent submits a written request. The consent form is a separate document the district issues after receiving the request and after providing prior written notice under 34 CFR §300.503.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Is the 60-day timeline in calendar days or school days?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The federal 60-day timeline under 34 CFR §300.301(c)(1) is calendar days. State-established timelines may use school days instead — Texas, for example, has historically measured its evaluation timeline in school days. The unit of measurement is set by whichever rule (federal floor or state-specific) applies in the state.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">What happens if the school district misses the 60-day deadline?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          A missed deadline is a procedural violation of IDEA but does not result in automatic eligibility. The standard remedy is a state-complaint filing under 34 CFR §§300.151–153, which the state education agency must investigate and resolve within 60 days under §300.152(a). The state may order completion of the evaluation by a date certain and, where denial of FAPE resulted, compensatory services.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can the district extend the 60-day timeline?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Only under the two exceptions in 34 CFR §300.301(d): repeated parent failure or refusal to produce the child for the evaluation, or a mid-evaluation transfer to a different public agency (with the §300.301(e) conditions). Outside those two carve-outs, the federal regulation does not authorize district-side extensions for scheduling, staff turnover, summer break, or pending paperwork.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">What if the district takes weeks to send the consent form?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Delay between the parent's request and the district's issuance of the consent form is not counted against the 60-day clock under 34 CFR §300.301 — the clock has not started. The procedural protections during that window sit in the prior-written-notice rules (34 CFR §300.503) and the state-complaint pathway. A district that fails to respond within a reasonable time can be the subject of a state complaint on prior-written-notice grounds.
+        </p>
+
+        <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does signing the evaluation consent form commit a parent to accepting services?</h3>
+        <p class="text-slate-300 leading-relaxed mb-6">
+          No. Under 34 CFR §300.300(a), consent for initial evaluation "must not be construed as consent for initial provision of special education and related services." Services consent is a separate signature under §300.300(b), provided only after the evaluation is complete and the IEP team has developed an IEP for review.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Letter Templates That Anchor the Timeline</h2>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          The federal evaluation timeline only works if the request, the consent, the prior-written-notice response, and (where needed) the state complaint are documented in writing with the right federal citations. A verbal request in the hallway is not on the procedural record. A request emailed to the special-education director, citing IDEA and 34 CFR §300.301, is.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          Related federal-procedural articles cover the rest of the pathway: <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline">prior written notice under 34 CFR §300.503</a>, the <a href="/blog/independent-educational-evaluation-iee-request-34-cfr-300-502" class="text-amber-300 hover:text-amber-200 underline">IEE request under 34 CFR §300.502</a> when the district's evaluation comes back wrong, and the <a href="/blog/504-plan-vs-iep-federal-law-differences-parents" class="text-amber-300 hover:text-amber-200 underline">federal-law differences between a 504 plan and an IEP</a>.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          For the full letter-template pathway — the §300.301-cited evaluation request, the evaluation-denial response, the state-complaint letter, plus nine other IDEA-cited letters and the meeting-day tools no template replaces — see the <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 parent advocacy kit walkthrough</a>. $24 — instant digital download.
+        </p>
+
+        <p class="text-slate-300 leading-relaxed mb-6">
+          <strong class="text-white">Disclaimer.</strong> Educational reference only. Not legal advice. IDEA evaluation timelines and procedural rules vary by state — for a current state-specific timeline, contact the state's parent training and information center (find yours at parentcenterhub.org) or the state education agency directly. For due-process filings, formal state complaints, or hearings, consult the state protection-and-advocacy agency or a special-education attorney. State-bar lawyer-referral services are a good starting point.
+        </p>
+      `,
+      cta: {
+        text: "See the IEP & 504 Parent Advocacy Kit walkthrough",
+        href: "/blog/iep-504-letter-templates-parent-advocacy",
+      },
+      relatedProducts: [
+        {
+          name: "IEP & 504 Parent Advocacy Letter Kit",
+          href: "/blog/iep-504-letter-templates-parent-advocacy",
+          description: "12 IDEA-cited letter templates plus the meeting-day tools — the federal procedural floor in one printable pack.",
+        },
+        {
+          name: "Wedding Budget Spreadsheet",
+          href: "https://www.etsy.com/listing/4488674435",
+          description: "Six-tab line-item budget — same auditable discipline applied to a different family-finance domain.",
+        },
+        {
+          name: "Home Renovation Budget Tracker",
+          href: "https://www.etsy.com/listing/4489000709",
+          description: "Vendor deposits, contingency, and cost-per-room — the line-item discipline a household needs through any high-stakes paperwork cycle.",
+        },
+      ],
+      faqs: [
+        {
+          question: "When exactly does the IDEA 60-day evaluation clock start?",
+          answer:
+            "Under 34 CFR 300.301(c)(1), the 60-day federal evaluation clock starts on the date the public agency receives the parent's signed consent for evaluation — not on the date the parent submits a written request. The consent form is a separate document the district issues after receiving the request and after providing prior written notice under 34 CFR 300.503.",
+        },
+        {
+          question: "Is the 60-day timeline in calendar days or school days?",
+          answer:
+            "The federal 60-day timeline under 34 CFR 300.301(c)(1) is calendar days. State-established timelines may use school days instead — Texas, for example, has historically measured its evaluation timeline in school days. The unit of measurement is set by whichever rule (federal floor or state-specific) applies in the state.",
+        },
+        {
+          question: "What happens if the school district misses the 60-day deadline?",
+          answer:
+            "A missed deadline is a procedural violation of IDEA but does not result in automatic eligibility. The standard remedy is a state-complaint filing under 34 CFR 300.151–153, which the state education agency must investigate and resolve within 60 days under 300.152(a). The state may order completion of the evaluation by a date certain and, where denial of FAPE resulted, compensatory services.",
+        },
+        {
+          question: "Can the district extend the 60-day timeline?",
+          answer:
+            "Only under the two exceptions in 34 CFR 300.301(d): repeated parent failure or refusal to produce the child for the evaluation, or a mid-evaluation transfer to a different public agency (with the 300.301(e) conditions on the receiving agency's progress and a parent-agency agreement on a specific completion date). Outside those two carve-outs, the federal regulation does not authorize district-side extensions for scheduling, staff turnover, summer break, or pending paperwork.",
+        },
+        {
+          question: "What if the district takes weeks to send the consent form?",
+          answer:
+            "Delay between the parent's evaluation request and the district's issuance of the consent form is not counted against the 60-day clock under 34 CFR 300.301 — the federal clock has not started. The relevant procedural protections during that window sit in the prior-written-notice rules at 34 CFR 300.503 and the state-complaint pathway. A district that fails to respond to a written evaluation request within a reasonable time can be the subject of a state complaint on prior-written-notice grounds.",
+        },
+        {
+          question: "Does signing the evaluation consent form commit a parent to accepting services?",
+          answer:
+            "No. Under 34 CFR 300.300(a), consent for initial evaluation must not be construed as consent for initial provision of special education and related services. Services consent is a separate signature under 300.300(b), provided only after the evaluation is complete, the eligibility determination is made, and the IEP team has developed an IEP the parent has had a chance to review.",
+        },
+      ],
+    },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

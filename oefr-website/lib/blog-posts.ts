@@ -5045,6 +5045,1035 @@ export const blogPosts: BlogPost[] = [
         },
       ],
     },
+  {
+    slug: "section-504-evaluation-process-parents-guide",
+    title: "Section 504 Evaluation Process (34 CFR §104.35): What Parents Need to Know",
+    description:
+      "The Section 504 evaluation process under 34 CFR §104.35: what triggers a request, who sits on the 504 team, the substantially-limits major-life-activity standard, how it differs from IDEA evaluations, parent participation rights, and what to do when the district denies an evaluation.",
+    keywords: [
+      "section 504 evaluation school",
+      "504 evaluation process",
+      "504 vs IDEA evaluation",
+      "504 evaluation timeline",
+      "504 plan medical condition",
+      "section 504 nondiscrimination",
+      "504 evaluation team",
+      "substantially limits major life activity",
+      "504 evaluation denied",
+      "504 parent participation rights",
+      "34 CFR 104.35",
+      "29 USC 794",
+      "34 CFR 104.33",
+      "504 plan ADHD",
+      "504 plan anxiety",
+      "504 plan diabetes",
+      "504 plan food allergy",
+      "504 evaluation request letter",
+      "rehabilitation act section 504 schools",
+      "504 reevaluation",
+    ],
+    publishedDate: "2026-05-15",
+    readingTime: "10 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "A child has ADHD, anxiety, diabetes, or a documented food allergy — and the school says the child does not qualify for an IEP. That does not end the federal-disability conversation. Section 504 of the Rehabilitation Act (29 USC §794) and its evaluation regulation at 34 CFR §104.35 cover children whose conditions substantially limit a major life activity but who do not fit IDEA's thirteen categories. The 504 evaluation is a separate process with its own team, its own eligibility standard, and its own parent-participation rights.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A child has ADHD, anxiety, type 1 diabetes, a severe food allergy, or a chronic medical condition that does not fit any of IDEA's thirteen disability categories. The school district says the child is not eligible for an IEP. Many parents read that as the end of the conversation. It is not.
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Section 504 of the Rehabilitation Act of 1973 (29 USC §794) is a separate federal statute with a broader eligibility standard than IDEA. The evaluation regulation at 34 CFR §104.35 governs how a district must evaluate a child for a 504 plan, and 34 CFR §104.33 defines the free appropriate public education (FAPE) once the child is eligible. A child ruled IDEA-ineligible can still be 504-eligible — and the process is a federal entitlement. The federal floor is consistent across all 50 states; state-procedural variance exists but cannot fall below 34 CFR §104.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Triggers a Section 504 Evaluation Request</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §104.35(a), a school district receiving federal financial assistance "shall conduct an evaluation" of any person who "needs or is believed to need special education or related services" before initial placement and before any subsequent significant change in placement. The trigger is reason to suspect a disability — not a confirmed diagnosis, not a failing report card.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Common scenarios that obligate a district to evaluate include a child newly diagnosed with ADHD, anxiety, or depression affecting school functioning; a chronic medical condition (type 1 diabetes, epilepsy, severe asthma, post-concussion syndrome) requiring accommodations during the school day; a severe food allergy requiring an EpiPen plan; a child returning from hospitalization with a new medical or psychiatric profile; and a child whose IEP eligibility evaluation came back negative but who still needs accommodations to access the general curriculum. A written, dated request specifying the suspected condition, the observed school-day impact, and the request for a 504 evaluation under 34 CFR §104.35 creates the documentation trail — oral requests at parent-teacher conferences vanish into anecdote. The <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 Letter Templates parent advocacy kit</a> includes a 504 evaluation request template with the 34 CFR §104.35 citation pre-loaded.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 leading-relaxed mb-2"><strong class="text-white">Common district pushback:</strong> "We don't evaluate for ADHD" — or "the child needs a private diagnosis first" — or "504 is only for physical disabilities."</p>
+        <p class="text-slate-300 leading-relaxed">None of these statements track the federal regulation. Under 34 CFR §104.35(a), the obligation to evaluate is triggered by reason to suspect a disability that may require services. The district cannot require a private medical evaluation as a precondition (though parents may provide one), and Section 504's eligibility umbrella covers any impairment substantially limiting a major life activity — not only physical disability.</p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Who's on the 504 Team (Distinct from the IEP Team)</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §104.35(c)(3), the placement decision following a Section 504 evaluation must be made by "a group of persons, including persons knowledgeable about the child, the meaning of the evaluation data, and the placement options." That language is intentionally less prescriptive than IDEA's IEP team rule at 34 CFR §300.321.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A typical 504 team includes the building principal or 504 coordinator, a general-education teacher familiar with the child, the school nurse (especially when the suspected disability is medical), and at least one parent or guardian. School psychologists, social workers, and counselors participate when behavioral or mental-health conditions are involved. The federal regulation does not require parent presence (unlike IDEA's mandate at 34 CFR §300.322), but Office for Civil Rights guidance treats parent participation as best practice. Parents who are not invited should request inclusion in writing.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For a side-by-side mechanism comparison covering eligibility, procedural rights, funding, and FAPE definitions, see <a href="/blog/504-plan-vs-iep-federal-law-differences-parents" class="text-amber-300 hover:text-amber-200 underline">504 Plan vs IEP: federal law differences</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The "Substantially Limits Major Life Activity" Standard</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The eligibility test under Section 504 is whether the child has "a physical or mental impairment that substantially limits one or more major life activities" — the same standard used across the Americans with Disabilities Act and deliberately broadened by Congress in the ADA Amendments Act of 2008 (ADAAA), which directs "substantially limits" be construed broadly.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Major life activities under 29 USC §705(20) and the ADAAA framework include caring for oneself, seeing, hearing, eating, sleeping, breathing, learning, reading, concentrating, thinking, communicating, and working — plus "the operation of a major bodily function" (immune, digestive, neurological, respiratory, circulatory, endocrine). Two ADAAA doctrinal points carry the most weight: mitigating measures (medication, hearing aids, learned adaptations) generally must not be considered — a child whose ADHD is well-managed on medication remains 504-eligible based on the unmedicated baseline; and episodic conditions (epilepsy, asthma, cyclical mental-health conditions) qualify if substantially limiting when active.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 leading-relaxed mb-2"><strong class="text-white">Examples that qualify under Section 504 in OCR guidance:</strong></p>
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">ADHD</strong> — substantial limitation of concentration, learning, thinking, even when grades are passing.</li>
+          <li><strong class="text-white">Anxiety / depression</strong> — substantial limitation of learning, concentrating, neurological function.</li>
+          <li><strong class="text-white">Type 1 diabetes</strong> — substantial limitation of endocrine function; eligible regardless of academic performance.</li>
+          <li><strong class="text-white">Severe food allergies / EpiPen</strong> — substantial limitation of respiratory, immune, eating, breathing during a reaction.</li>
+          <li><strong class="text-white">Epilepsy</strong> — substantial limitation of neurological function, even when seizures are controlled.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">How 504 Evaluations Differ from IDEA Evaluations</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Both statutes obligate the district to evaluate, but the mechanics diverge. The Section 504 regulation at 34 CFR §104.35 is shorter and less prescriptive than IDEA's evaluation regime at 34 CFR §300.301–311.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">Federal timeline.</strong> IDEA imposes a 60-day federal floor from parental consent under 34 CFR §300.301(c)(1). Section 504 has no federal evaluation timeline; most states impose one (commonly 30 to 60 days) by state regulation.</li>
+          <li><strong class="text-white">Consent.</strong> IDEA requires written parental consent before evaluation under 34 CFR §300.300. Section 504 regulations do not codify a consent requirement, though OCR guidance and most state regulations require it.</li>
+          <li><strong class="text-white">Evaluation procedures.</strong> Under 34 CFR §104.35(b), evaluation materials must be validated for their specific purpose, administered by trained personnel, and tailored to specific areas of educational need — not only a general IQ score.</li>
+          <li><strong class="text-white">Multiple sources.</strong> Under 34 CFR §104.35(c)(1), placement decisions must draw on aptitude and achievement tests, teacher recommendations, physical condition, social and cultural background, and adaptive behavior.</li>
+          <li><strong class="text-white">Independent Educational Evaluation (IEE).</strong> IDEA grants a codified right to an IEE at public expense under 34 CFR §300.502 when parents disagree with the district evaluation. Section 504 has no parallel right. See <a href="/blog/independent-educational-evaluation-iee-request-34-cfr-300-502" class="text-amber-300 hover:text-amber-200 underline">Independent Educational Evaluation request under 34 CFR §300.502</a>.</li>
+          <li><strong class="text-white">Reevaluation cycle.</strong> Under 34 CFR §104.35(d), districts must establish periodic reevaluation procedures — generally interpreted as triennial — and any time before a significant change in placement.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Parent Participation Rights During a 504 Evaluation</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §104.36, school districts must establish procedural safeguards including notice, opportunity to examine relevant records, an impartial hearing with parent participation and right to counsel, and a review procedure. Most practical participation rights flow from district policy, OCR guidance, and state regulation rather than the four corners of the federal regulation.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Parents have the right to submit information from outside providers — pediatricians, psychiatrists, psychologists, occupational therapists, allergists — for consideration in the 504 evaluation. Outside reports are not binding, but under 34 CFR §104.35(c)(1) the team must consider information from a variety of sources. Parents who submit outside reports should do so in writing with a transmittal letter referencing the 504 evaluation. Parents are also entitled to review the district's evaluation report and may file an OCR complaint if procedural rights under 34 CFR §104.36 have been violated.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What to Do If the School Denies a 504 Evaluation</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Districts deny evaluation requests for various stated reasons — "the child's grades are too good," "we don't have evidence of a disability," "the child needs a private diagnosis first." Several of those rationales do not survive scrutiny under 34 CFR §104.35.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Step one: request the denial in writing. Under 34 CFR §104.36, parents have the right to notice of district decisions regarding identification, evaluation, or placement. A district refusing to issue written denial reasons is already in procedural-safeguard territory. For the parallel IDEA Prior Written Notice mechanism, see <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline">Prior Written Notice when school refuses to evaluate</a>.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Step two: respond in writing with the federal citation and the specific impairment-and-life-activity claim — suspected impairment, the major life activity substantially limited, outside diagnostic documentation, and 34 CFR §104.35(a) as the evaluation-obligation anchor. Parents who suspect the denial reflects a misunderstanding of the ADAAA standard should cite the construction directly: "substantially limits" is to be construed broadly, mitigating measures are not considered, and episodic conditions qualify when substantially limiting if active.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Step three: escalate. Parents can request an impartial hearing under 34 CFR §104.36, file an OCR complaint with the U.S. Department of Education's Office for Civil Rights (federal Section 504 enforcement — 180-day filing window from the alleged discriminatory action), or contact their state's parent training and information center (parentcenterhub.org). For matters that may also implicate IDEA eligibility, a parallel IDEA evaluation request creates a second procedural-safeguards pathway with stronger codified protections — including the IEE right and the 60-day federal evaluation timeline.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Federally-cited letter templates for evaluation requests, denial responses, and OCR escalation live in the <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 parent advocacy kit</a> — every letter anchored to the relevant federal citation.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">After the 504 Evaluation: Building the 504 Plan</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        When the evaluation concludes the child is eligible, the team builds a 504 plan specifying accommodations, services, and supports under 34 CFR §104.33. Section 504's FAPE definition at 34 CFR §104.33(b)(1) is "the provision of regular or special education and related aids and services that are designed to meet individual educational needs of handicapped persons as adequately as the needs of nonhandicapped persons are met."
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Common components include classroom accommodations (preferential seating, extended time on tests, breaks for medication, modified homework loads), medical management plans (insulin administration, glucose monitoring, EpiPen access and staff training, seizure response protocols), behavioral and mental-health supports (counseling check-ins, sensory breaks, modified discipline procedures), and physical-access accommodations. Under 34 CFR §104.33(c)(1), the plan must be provided at no cost to the parent — Section 504 FAPE is free, with the narrow exception of fees imposed equally on all students. Transportation required by the plan is also free under 34 CFR §104.33(c)(2). Reevaluation under 34 CFR §104.35(d) is typically triennial or before any significant placement change.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Implementation failure — accommodations on paper that are not actually delivered in the classroom — is the most common post-504-plan dispute. Parents document implementation gaps in writing, request a 504 team meeting, and escalate to OCR complaint when meetings do not produce remediation.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">How long does a Section 504 evaluation take after a parent request?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        34 CFR §104.35 imposes no federal evaluation timeline — unlike IDEA's 60-day floor at 34 CFR §300.301(c)(1). Most states have layered a state timeline (commonly 30 to 60 calendar days from request or consent), binding within that state. Parents can check their state department of education or state parent training and information center (parentcenterhub.org) for the applicable window. Districts that stretch beyond it are exposed on procedural-safeguards grounds and can be escalated to OCR.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Does a child need a medical diagnosis before the school will conduct a 504 evaluation?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        No. Under 34 CFR §104.35(a), the trigger is reason to suspect a disability that may require services — not a confirmed outside diagnosis. Districts that require a private medical evaluation as a precondition are imposing a barrier the federal regulation does not authorize. Parents are free to provide outside diagnostic information (and it strengthens the file), but it cannot be a procedural prerequisite. OCR has addressed this in guidance documents.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">My child has ADHD but is getting passing grades — does the child still qualify for a 504 plan?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Generally yes. The Section 504 standard under 29 USC §794 is whether the impairment "substantially limits one or more major life activities" — not academic failure. Concentration, thinking, and learning are explicitly listed major life activities. The ADAAA directs that mitigating measures (including learned behavioral adaptations) generally must not be considered in the eligibility analysis — a child whose ADHD is substantially limiting at baseline qualifies even if medication or accommodations have stabilized grades. Districts that condition 504 eligibility on academic failure are applying a standard the ADAAA explicitly rejects.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What is the difference between a 504 evaluation and an IDEA evaluation?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        IDEA evaluations under 34 CFR §300.301–311 test for one of thirteen specific disability categories plus adverse educational impact requiring special education — narrower eligibility, thicker procedural safeguards (60-day federal timeline, codified consent, IEE right at public expense, due-process pathway). Section 504 evaluations under 34 CFR §104.35 test for any physical or mental impairment that substantially limits a major life activity — broader eligibility, thinner federal safeguards. Many children qualify under both; the IEP is generally the better-protected pathway when criteria are plausibly met. See <a href="/blog/504-plan-vs-iep-federal-law-differences-parents" class="text-amber-300 hover:text-amber-200 underline">504 Plan vs IEP federal law differences</a>.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can a school deny a 504 evaluation request?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A school can decline only if it lacks reason to suspect a disability under 34 CFR §104.35(a). When a parent has put forward specific evidence of a suspected impairment and observed school-day impact, the bar for refusal is high. Under 34 CFR §104.36, the district must provide notice of any refusal. Parents should request written denial reasons, respond with the federal citation and the substantially-limits-major-life-activity argument, and escalate to an impartial hearing under 34 CFR §104.36 or an OCR complaint (180-day filing window from the alleged discriminatory action).
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Who pays for a Section 504 evaluation and the resulting accommodations?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The school district. Under 34 CFR §104.33(c), Section 504 FAPE must be provided at no cost to the parent (except for fees imposed equally on all students). The initial district evaluation is district-funded; accommodations, related services, transportation when required, and medical-management staffing (school nurse training, EpiPen access, glucose monitoring) come from the district's general operating fund. Section 504 does not carry an earmarked federal funding stream (unlike IDEA Part B), but the FAPE obligation flows from the district's acceptance of federal financial assistance generally.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the Letter Pack</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 Letter Templates parent advocacy kit ($24)</a> includes the 504 evaluation request, the 504 evaluation-denial response, the OCR complaint outline, and the records-request letter — every template anchored to the relevant federal citation. The pack covers both the Section 504 and the IDEA procedural pathways, since most parents need access to both when district response is uncertain. See the <a href="/iep-504-pack" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 Pack overview</a> for what ships in the ZIP, or route through the <a href="/iep-504-pack" class="text-amber-300 hover:text-amber-200 underline">pack page</a> directly.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Disclaimer.</strong> Educational templates and federal-citation reference only. Not legal advice. Section 504 procedural rules and state evaluation timelines vary by state — for impartial-hearing filings, OCR complaints, or matters that have crossed into formal complaint territory, consult the state's parent training and information center (find yours at parentcenterhub.org), the state protection-and-advocacy agency, the U.S. Department of Education's Office for Civil Rights, or a special-education attorney. State-bar lawyer-referral services are a good starting point.
+      </p>
+    `,
+    cta: {
+      text: "Get the IEP & 504 Letter Kit ($24)",
+      href: "/blog/iep-504-letter-templates-parent-advocacy",
+    },
+    relatedProducts: [],
+  },
+  {
+    slug: "extended-school-year-services-eligibility-34-cfr-300-106",
+    title: "Extended School Year (ESY) Services Under 34 CFR §300.106: Eligibility, Regression-Recoupment, and the Summer Plan Parents Need Before July",
+    description:
+      "ESY is not summer school. Federal eligibility under 34 CFR §300.106 turns on regression-recoupment, emerging critical skills, and behavioral progress — not district budget. The spring-window playbook for parents who need summer IEP services.",
+    keywords: [
+      "esy summer services",
+      "extended school year eligibility",
+      "regression recoupment esy",
+      "summer iep services",
+      "esy denied appeal",
+      "what is esy in special education",
+      "esy criteria",
+      "summer school vs esy",
+      "esy meeting",
+      "esy in least restrictive environment",
+      "34 cfr 300.106",
+      "extended school year request",
+      "esy iep",
+      "esy regression",
+      "esy emerging skills",
+      "esy behavioral progress",
+      "esy denial letter",
+      "esy lre",
+      "esy transition periods",
+      "esy summer plan parents",
+    ],
+    publishedDate: "2026-05-15",
+    readingTime: "10 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Districts often tell parents in April or May that 'we don't do summer services' or that ESY is reserved for the most severe profiles. Neither is a legal response. Under 34 CFR §300.106, Extended School Year services are required whenever the IEP team determines they are necessary for FAPE — on an individual basis, with no categorical limits by disability, duration, or service type. This is the federal-floor walkthrough of what ESY actually is, how regression-recoupment is supposed to be measured, and the spring-window steps a parent takes when a denial letter shows up.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A parent gets an email from the school case manager in late April: "We've discussed your son at the team meeting, and he doesn't qualify for ESY this summer. We can recommend a community summer-camp program if you're interested." The IEP annual review is three weeks away. Summer starts in seven.
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Or the team holds the ESY discussion at the IEP meeting, checks the "ESY not required" box on the draft, and a parent is told "we don't do summer services for kids at this level" — a statement that sounds like district policy and is, on its face, contrary to federal regulation. Under 34 CFR §300.106, public agencies may not unilaterally limit ESY by disability category, service type, amount, or duration. The decision is individualized to the child's IEP, every year.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        ESY denials cluster in April and May, the appeal window is short, and the families who push back successfully are the ones who walk in already understanding what the federal regulation requires and what a properly cited ESY-request letter looks like. The full federally-anchored letter set lives in the <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 parent advocacy letter kit</a>. This article is the regulation-and-procedure layer underneath it.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What ESY Actually Is — and Is Not</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        ESY is defined at 34 CFR §300.106(b) as <strong class="text-white">special education and related services provided to a child with a disability beyond the normal school year of the public agency, in accordance with the child's IEP, and at no cost to the parents</strong>. Three pieces of that definition do the work, and parents who confuse ESY with one of the adjacent programs end up arguing the wrong case at the table.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">ESY is not summer school.</strong> Summer school is a general-education program open to all students — credit recovery, remediation, or enrichment — and is often fee-based. ESY is special-education service delivery, individualized to the child's IEP goals, and free when the team determines it is necessary for FAPE.</li>
+          <li><strong class="text-white">ESY is not camp or enrichment.</strong> A community recreation program or social-skills camp can be a useful supplement but is not ESY. ESY services must map to IEP goals and be delivered by qualified personnel under the public agency's standards.</li>
+          <li><strong class="text-white">ESY is not a fixed block.</strong> 34 CFR §300.106(a)(3) explicitly prohibits public agencies from unilaterally limiting "the type, amount, or duration" of ESY. A district offering every eligible child the same four-week, two-mornings-a-week block is not following the regulation.</li>
+          <li><strong class="text-white">ESY is not category-restricted.</strong> The same paragraph bars limiting ESY "to particular categories of disability." Statements like "we only do ESY for kids in the self-contained program" are categorical limits the regulation forbids.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Cleanest way to hold the distinction: <strong class="text-white">summer school is a building-level program; ESY is an IEP-level service</strong>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Regression-Recoupment Standard</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The federal regulation does not define a single eligibility test; it requires the IEP team to determine, on an individual basis, whether ESY is necessary for FAPE — and leaves the operational standard to state-education-agency rules and case law. The dominant operational standard is <strong class="text-white">regression-recoupment</strong>:
+      </p>
+
+      <ol class="list-decimal pl-6 text-slate-300 space-y-1.5 mb-6">
+        <li><strong class="text-white">Regression.</strong> Will the child lose previously acquired skills during the extended break?</li>
+        <li><strong class="text-white">Recoupment.</strong> Will the child recover those skills within a reasonable period after returning — or will recovery take so long that the year's progress is materially impaired?</li>
+      </ol>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The threshold is not "any regression at all." Every child shows some summer regression. The federal-floor question is whether regression plus recoupment time materially harms progress toward IEP goals. What this means at the meeting: <strong class="text-white">the team needs data</strong> — probe-based skill performance before and after winter break, IEP-goal progress monitoring across the year, and recovery trajectory after previous breaks. A team that says "we just don't see regression" without producing the data is making an assertion, not a determination.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 leading-relaxed mb-0">
+          <strong class="text-white">Parent move at the meeting:</strong> ask the team to produce the regression-recoupment data the determination is based on. "What is the team's data on [child]'s skill retention after the December break?" puts the burden of evidence back where it belongs. If the team has no data, the determination is procedurally suspect — and that gap is what a state-complaint or due-process filing later attaches to.
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Other ESY Eligibility Factors: Emerging Critical Skills, Behavioral Progress, Transition Periods</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Many state-education-agency ESY guidance documents — and a substantial body of hearing-officer decisions — recognize that regression-recoupment alone is too narrow:
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Emerging critical skills</h3>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        When a child is on the verge of mastering a critical skill — reading decoding, a self-care routine, a communication-system milestone — a summer interruption can erase the emergence window. The skill does not just regress; it never crystallizes. Hearing officers have repeatedly found that emerging critical skills can independently support ESY eligibility even where classical regression data is thin.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Behavioral progress</h3>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For children whose IEPs include behavior goals or a Behavior Intervention Plan, the regression-recoupment logic still applies but the data is different: behavior-baseline data, incident-rate trends, and BIP progress. A child who needed three months of school-year structure to bring incident rates down is the profile where a summer of unstructured time undoes the progress.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Transition periods</h3>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Transitions — preschool to kindergarten, elementary to middle, self-contained to less-restrictive, or out of high school — can independently support ESY when continuity of services across the transition is necessary for FAPE. This is also where 34 CFR §300.323(e) becomes operationally relevant for families moving districts mid-year: a child with an IEP transferring within the same state is entitled to comparable services from the new public agency, including any ESY commitments, until a new IEP is adopted.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">How to Request ESY in an IEP Meeting</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        ESY belongs on the IEP-meeting agenda no later than the annual review preceding the summer break. The procedural sequence:
+      </p>
+
+      <ol class="list-decimal pl-6 text-slate-300 space-y-1.5 mb-6">
+        <li><strong class="text-white">Send a written ESY request before the annual review.</strong> A short letter referencing 34 CFR §300.106 and asking the team to consider ESY puts the agenda item on the record. Templates and federal citations sit in the <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">parent advocacy letter kit</a>.</li>
+        <li><strong class="text-white">Ask for the regression-recoupment data in advance.</strong> Under 34 CFR §300.613, parents have the right to inspect educational records — including the progress-monitoring data the team will use. Requesting it 10–14 days before the meeting prevents the "we'll review live in the room" maneuver.</li>
+        <li><strong class="text-white">Bring parent-side data the team did not bring.</strong> Work samples from before and after December break, summer-break observations, home-side BIP data. The team must consider parent input under 34 CFR §300.324(a)(1)(ii).</li>
+        <li><strong class="text-white">If ESY is approved, the IEP must specify the services.</strong> Under 34 CFR §300.320(a)(7), the IEP must include the projected beginning date and the anticipated frequency, location, and duration of services. ESY is no exception — "ESY approved" as a checkbox without service detail is not compliant.</li>
+        <li><strong class="text-white">If ESY is denied, request Prior Written Notice.</strong> The district must issue PWN explaining the refusal; the walkthrough is at <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline">prior written notice under 34 CFR §300.503</a>.</li>
+      </ol>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Procedural rights at the meeting itself — required team composition, parent-input engagement, what to do when the meeting is being run improperly — are covered at <a href="/blog/iep-meeting-procedural-rights-34-cfr-300-321-322" class="text-amber-300 hover:text-amber-200 underline">IEP meeting procedural rights under 34 CFR §§300.321–322</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What to Do When the School Says "We Don't Do Summer Services" (Not a Legal Response)</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Hypothetical district statements that show up regularly in spring ESY discussions, and what each one is actually saying underneath:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li>The school stated "we don't do summer services" — a categorical refusal that violates 34 CFR §300.106(a)(3) on its face.</li>
+          <li>The team stated "ESY is only for kids in the self-contained program" — a categorical limit by disability profile, barred by §300.106(a)(3)(i).</li>
+          <li>The case manager stated "ESY is two weeks, two mornings a week, period" — a unilateral limit on amount and duration, barred by §300.106(a)(3)(ii).</li>
+          <li>The principal stated "enroll in district summer school instead" — conflating summer school (general-ed, often fee-based) with ESY (special-ed, free, IEP-individualized).</li>
+          <li>The team stated "we'll see if regression occurs and revisit in fall" — a wait-and-see deferral incompatible with the regulation's prospective framing.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        When any of these lands in writing — draft IEP, email, meeting summary — the next step is a written response citing the regulation, requesting reconsideration, and requesting PWN under 34 CFR §300.503. The PWN is the artifact a state-complaint investigator or hearing officer attaches to.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For families on a compressed evaluation timeline — where an initial evaluation has not yet completed before the summer window closes — the 60-day federal evaluation clock controls; see <a href="/blog/idea-60-day-evaluation-timeline-34-cfr-300-301" class="text-amber-300 hover:text-amber-200 underline">the IDEA 60-day evaluation timeline under 34 CFR §300.301</a>. ESY for a child without an established IEP is a procedurally different ask.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">ESY in the Least Restrictive Environment (LRE)</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        LRE — the federal requirement that children with disabilities be educated with nondisabled peers to the maximum extent appropriate (34 CFR §300.114(a)) — applies to ESY just as it applies to the school-year program. A district offering ESY only in a centralized, segregated setting, with no individualized placement consideration, is in tension with the LRE framework even when the underlying eligibility decision is correct.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The practical question: <strong class="text-white">where will ESY services be delivered, and what is the LRE rationale?</strong> If the district's default ESY site is a single self-contained classroom and the child's school-year program is general-education with push-in supports, ask the team to document why the more-restrictive ESY placement is the LRE. State-complaint investigators have repeatedly found LRE violations in districts operating one centralized ESY program with no individualized placement consideration.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For families relocating mid-summer, 34 CFR §300.323(e) directly applies: a child transferring to a new public agency in the same state, with an IEP in effect, is entitled to comparable services — including ESY commitments — until the new agency adopts the existing IEP or develops a new one.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Documenting ESY Need: What the Team Should Be Tracking</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The strongest ESY determinations are built on documentation gathered across the entire year, not the week before the annual review. The categories of data the team should be tracking — and which parents should be asking about no later than the winter check-in:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">Pre- and post-break probe data.</strong> Skill performance immediately before and after winter break on the same IEP-goal skills. This is the classic regression-recoupment dataset.</li>
+          <li><strong class="text-white">Year-over-year progress comparison.</strong> A pattern of summer-loss-and-fall-recovery taking 6–10 weeks every fall is itself a regression-recoupment pattern.</li>
+          <li><strong class="text-white">IEP-goal progress monitoring.</strong> 34 CFR §300.320(a)(3) requires progress reports at report-card frequency; read across a full year, they show the trajectory.</li>
+          <li><strong class="text-white">Behavioral incident data.</strong> Incident rate, intensity, and antecedent patterns across the year are the analogue to academic regression data for children with BIPs.</li>
+          <li><strong class="text-white">Related-services data.</strong> Speech-language, OT, PT — each related service generates its own data stream and can independently support ESY for that service area.</li>
+          <li><strong class="text-white">Parent-side observations.</strong> Skill performance at home during long weekends, holidays, or breaks. The team is required to consider parent input.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Same pattern as the rest of IDEA: <strong class="text-white">data drives the determination, the parent has the right to the data, and the team's failure to base the determination on data is a procedural defect</strong>. The procedural defect is what a state complaint or due-process filing attaches to when an ESY denial needs to be unwound — pathways spelled out at <a href="/iep-504-pack" class="text-amber-300 hover:text-amber-200 underline">the IEP &amp; 504 pack</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What is ESY in special education?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        ESY (Extended School Year) is defined at 34 CFR §300.106(b) as special education and related services provided beyond the normal school year of the public agency, in accordance with the child's IEP, at no cost to the parents. ESY is required whenever the IEP team determines, on an individual basis, that the services are necessary for FAPE. It is not summer school (a general-education program) and it is not summer camp or enrichment — it is IEP-driven service delivery during the extended break.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What are the ESY eligibility criteria under federal law?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        34 CFR §300.106 requires the IEP team to determine ESY eligibility on an individual basis and prohibits public agencies from limiting ESY by disability category, type, amount, or duration. The dominant operational standard is regression-recoupment (will the child lose skills over the break and fail to recover them in a reasonable time?), with many states also recognizing emerging critical skills, behavioral progress, and transition periods as independently sufficient bases.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">What is the difference between summer school and ESY?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Summer school is a general-education program — credit recovery, enrichment, or remediation — open to all students and often fee-based. ESY is special-education service delivery, individualized to the child's IEP goals, free to the parents, and required when the IEP team determines it is necessary for FAPE. A district recommending summer school as a substitute for ESY is conflating two different programs.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">How does a parent appeal an ESY denial?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The first step is to request Prior Written Notice under 34 CFR §300.503 — the district's written explanation of the refusal, the data the determination was based on, and the procedural-safeguards options available. With PWN in hand, the pathways are reconvening the IEP team with additional data, filing a state complaint under 34 CFR §§300.151–153, requesting mediation, or filing a due-process complaint. State PTI centers (parentcenterhub.org) and the state protection-and-advocacy agency are the right next-step resources.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Is ESY required to be in the Least Restrictive Environment?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Yes. The LRE requirement at 34 CFR §300.114 applies to ESY just as it applies to the school-year program. ESY placement should be determined by the IEP team based on the child's needs, with LRE rationale documented in writing. A district operating a single centralized ESY site with no individualized placement consideration is in tension with the LRE framework.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">When should a parent request ESY for the summer?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        ESY belongs on the IEP-meeting agenda no later than the annual-review meeting preceding the summer break — ideally during the winter check-in when mid-year regression-recoupment data is fresh. A written ESY request sent 4–6 weeks before the annual review puts the agenda item on the record. For families who receive an ESY denial in April or May, moving in the first week after the denial letter — with PWN requested in writing — is the procedural posture the regulation contemplates.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Spring-Window Playbook in One Page</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        ESY denials cluster in April and May. The procedural window to respond is short. The artifacts that move the file — written ESY request, regression-recoupment data request, ESY-denial response letter, state-complaint letter, PWN request — are federally-anchored letters in the same pathway as the rest of IDEA procedure. The full pack of 12 IDEA-compliant letter templates plus the meeting-day tools is the <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 parent advocacy letter kit at $24</a>, with the ESY request and ESY-denial response letters included.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For the broader procedural framework — meeting rights, the 60-day evaluation clock, what PWN obligates the district to deliver — see the <a href="/iep-504-pack" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 pack</a> and the sister walkthroughs on <a href="/blog/idea-60-day-evaluation-timeline-34-cfr-300-301" class="text-amber-300 hover:text-amber-200 underline">the 60-day evaluation timeline</a>, <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline">Prior Written Notice under §300.503</a>, and <a href="/blog/iep-meeting-procedural-rights-34-cfr-300-321-322" class="text-amber-300 hover:text-amber-200 underline">IEP meeting procedural rights under §§300.321–322</a>.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Disclaimer.</strong> Educational templates only. Not legal advice. IDEA procedural rules and ESY operational standards vary by state — for due-process filings, formal complaints, or hearings, consult the state's parent training and information center (find yours at parentcenterhub.org), the state protection-and-advocacy agency, or a special-education attorney. State-bar lawyer-referral services are a good starting point.
+      </p>
+
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is ESY in special education?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ESY (Extended School Year) is defined at 34 CFR 300.106(b) as special education and related services provided beyond the normal school year of the public agency, in accordance with the child's IEP, at no cost to the parents. ESY is required whenever the IEP team determines, on an individual basis, that the services are necessary for FAPE. It is not summer school and it is not enrichment or camp."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What are the ESY eligibility criteria under federal law?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "34 CFR 300.106 requires the IEP team to determine ESY eligibility on an individual basis and prohibits public agencies from limiting ESY by disability category, type, amount, or duration. The dominant national operational standard is regression-recoupment, with many states also recognizing emerging critical skills, behavioral progress, and transition periods."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the difference between summer school and ESY?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Summer school is a general-education program (credit recovery, enrichment, or remediation) open to all students and often fee-based. ESY is special-education service delivery, individualized to the child's IEP goals, free to the parents, and required when the IEP team determines it is necessary for FAPE."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does a parent appeal an ESY denial?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The first step is to request Prior Written Notice under 34 CFR 300.503. With PWN in hand, pathways are reconvening the IEP team with additional data, filing a state complaint under 34 CFR 300.151-153, requesting mediation, or filing a due-process complaint. State PTI centers (parentcenterhub.org) and the state protection-and-advocacy agency are the right next-step resources."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is ESY required to be in the Least Restrictive Environment?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The LRE requirement at 34 CFR 300.114 applies to ESY just as it applies to the school-year program. ESY placement should be determined by the IEP team based on the child's needs, with LRE rationale documented in writing."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "When should a parent request ESY for the summer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ESY belongs on the IEP-meeting agenda no later than the annual-review meeting preceding the summer break — ideally during the winter check-in when mid-year regression-recoupment data is fresh. A written ESY request sent 4–6 weeks before the annual review puts the agenda item on the record."
+              }
+            }
+          ]
+        }
+      </script>
+    `,
+    cta: {
+      text: "Get the IEP & 504 Letter Kit ($24)",
+      href: "/blog/iep-504-letter-templates-parent-advocacy",
+    },
+    relatedProducts: [],
+  },
+  {
+    slug: "fape-endrew-f-standard-meaningful-progress",
+    title: "The FAPE Standard After Endrew F. (2017): What 'Meaningful Progress' Actually Means in an IEP",
+    description:
+      "Legal-doctrine deep-dive on FAPE under IDEA: 20 USC 1401(9), 34 CFR 300.17, Board of Education v. Rowley (1982), and Endrew F. v. Douglas County (2017, 137 S. Ct. 988). What 'appropriate progress in light of the child's circumstances' actually requires — and how to challenge a stagnant IEP.",
+    keywords: [
+      "FAPE standard",
+      "meaningful educational progress",
+      "Endrew F IEP",
+      "appropriate progress in light of child's circumstances",
+      "Rowley some educational benefit",
+      "FAPE definition special education",
+      "Endrew F. 2017 ruling",
+      "what is FAPE in IDEA",
+      "stagnant IEP challenge",
+      "merely more than de minimis IEP",
+      "20 USC 1401 9 FAPE",
+      "34 CFR 300.17",
+      "Endrew F. v. Douglas County",
+      "Board of Education v. Rowley",
+      "FAPE legal standard",
+      "IDEA FAPE definition",
+      "challenging an IEP",
+      "Endrew F. unanimous decision",
+      "Justice Roberts Endrew F",
+      "Supreme Court IEP standard 2017",
+      "reasonably calculated IEP",
+      "FAPE denial",
+      "FAPE failure signals",
+      "IEP progress monitoring legal",
+      "Endrew F. case number",
+    ],
+    publishedDate: "2026-05-15",
+    readingTime: "12 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "FAPE — Free Appropriate Public Education — is the federal floor every IEP must clear. For 35 years after Rowley (1982), districts argued that any 'some educational benefit' was enough. Then in 2017, a unanimous Supreme Court in Endrew F. v. Douglas County said the IDEA 'demands more': an IEP must be 'reasonably calculated to enable a child to make progress appropriate in light of the child's circumstances.' This is the legal-doctrine deep-dive parents and advocates cite when an IEP has gone stagnant.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        FAPE — Free Appropriate Public Education — is the four-letter phrase that decides whether an IEP is legally adequate or legally vulnerable. Every state-complaint investigation, due-process hearing, and federal-court IDEA case turns on it.
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        For 35 years, that question was answered under <em>Board of Education v. Rowley</em>, 458 U.S. 176 (1982), which set the floor at "some educational benefit." Several federal circuits read that floor as "merely more than de minimis." On March 22, 2017, a unanimous Supreme Court in <em>Endrew F. v. Douglas County School District</em>, 137 S. Ct. 988 (2017), opinion by Chief Justice Roberts, reset the floor: the IDEA "demands more." An IEP must be "reasonably calculated to enable a child to make progress appropriate in light of the child's circumstances."
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This is the citation anchor parents and advocates use when a district offers goals identical to last year's. The procedural letter pack that operationalizes the doctrine — the <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-cyan-400 hover:text-cyan-300 underline">IEP & 504 Letter Templates parent advocacy kit</a>, product page at <a href="/iep-504-pack" class="text-cyan-400 hover:text-cyan-300 underline">/iep-504-pack</a> — bundles the federally-cited letters.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What FAPE Actually Means (20 USC §1401(9) + 34 CFR §300.17 Definition)</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The statutory FAPE definition is in 20 USC §1401(9), with parallel regulation at 34 CFR §300.17. The definition is procedural — four boxes a district must check. The <em>substantive</em> content is what Rowley and Endrew F. address. Under both citations, FAPE means special education and related services that:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">(A) Are provided at public expense, under public supervision and direction, and without charge.</strong></li>
+          <li><strong class="text-white">(B) Meet the standards of the State educational agency (SEA),</strong> including the requirements of 34 CFR Part 300.</li>
+          <li><strong class="text-white">(C) Include an appropriate preschool, elementary school, or secondary school education</strong> in the State involved.</li>
+          <li><strong class="text-white">(D) Are provided in conformity with an IEP</strong> that meets the requirements of 20 USC §1414(d)(1)(A) and 34 CFR §§300.320–300.324.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Prong (D) is the operative one. FAPE under IDEA is delivered <em>through the IEP</em>. If the IEP is inadequate — goals not reasonably calculated for appropriate progress, services unspecified, present-levels generic — FAPE has not been offered. This is also why a 504 plan is not a substitute when a student qualifies under IDEA; the two statutes operate on different floors, which the <a href="/blog/504-plan-vs-iep-federal-law-differences-parents" class="text-cyan-400 hover:text-cyan-300 underline">Section 504 vs IEP federal-law comparison</a> covers. The statutory definition says nothing about <em>how much</em> progress the IEP must produce — that is what the Supreme Court has interpreted twice in 35 years.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Board of Education v. Rowley (1982): The "Some Educational Benefit" Floor</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <em>Board of Education of Hendrick Hudson Central School District v. Rowley</em>, 458 U.S. 176 (1982), was the first Supreme Court case interpreting the IDEA's predecessor statute. Amy Rowley was a deaf student whose parents requested a sign-language interpreter; the district refused, noting she was passing grade to grade with other accommodations. The Court, opinion by Justice Rehnquist, held the statute did not require schools to maximize potential. It required only that the IEP be:
+      </p>
+
+      <blockquote class="border-l-4 border-slate-500 pl-4 italic text-slate-300 my-6">
+        "reasonably calculated to enable the child to receive educational benefits."
+      </blockquote>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Rowley also articulated a two-part judicial inquiry: (1) did the State comply with procedural requirements, and (2) is the IEP reasonably calculated to enable the child to receive educational benefits? The implied floor was the problem. Several circuits — notably the Tenth — read Rowley as requiring only "merely more than de minimis" progress: any non-trivial improvement sufficed. Under that reading, an IEP producing a quarter grade level of reading growth per year for a student with autism could be defended as adequate. For 35 years, that was the leverage districts held.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Endrew F. v. Douglas County School District (2017): The "Appropriate Progress" Upgrade</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Endrew F. was a student with autism in Douglas County, Colorado. By fourth grade his parents observed annual IEP goals repeated year over year and behavior deteriorating. They enrolled him in a private school for children with autism, where progress accelerated, and sought reimbursement under IDEA. The district court and the Tenth Circuit applied "merely more than de minimis." On March 22, 2017, a unanimous Supreme Court — opinion by Chief Justice Roberts — reversed.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The core passage:
+      </p>
+
+      <blockquote class="border-l-4 border-slate-500 pl-4 italic text-slate-300 my-6">
+        "When all is said and done, a student offered an educational program providing 'merely more than de minimis' progress from year to year can hardly be said to have been offered an education at all. The IDEA demands more. It requires an educational program reasonably calculated to enable a child to make progress appropriate in light of the child's circumstances."
+      </blockquote>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">"Merely more than de minimis" rejected.</strong> The Court explicitly named and rejected the Tenth Circuit's floor.</li>
+          <li><strong class="text-white">"Appropriate progress" is the new operative phrase.</strong> Not <em>some</em> progress — <em>appropriate</em> progress.</li>
+          <li><strong class="text-white">"In light of the child's circumstances" is the calibration rule.</strong> A child capable of grade-level work should have grade-level goals; a child with more significant disabilities should still have challenging goals calibrated to their circumstances.</li>
+          <li><strong class="text-white">Unanimous 8-0 decision.</strong> Justice Gorsuch had not yet been confirmed. Every sitting Justice signed Chief Justice Roberts's opinion. No minority view survives.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Endrew F. did not overrule Rowley — the "reasonably calculated" framework survives. What changed is the floor.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What "Meaningful Progress" Looks Like in IEP Goals (Concrete Examples)</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        "Appropriate progress in light of the child's circumstances" is a standard, not a formula. Hearing officers assess it through the present-levels statement, the goals, the services, and the progress data over time.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Goals That Reflect Endrew F. Compliance</h3>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">Reading (dyslexia, grade-level):</strong> "By the end of the IEP year, the student will read grade-level passages with 95% accuracy and answer comprehension questions at 80% accuracy, advancing at least one full grade level on the district benchmark."</li>
+          <li><strong class="text-white">Reading (significant cognitive disability):</strong> "By the end of the IEP year, the student will identify 50 new sight words from the current 12-word baseline."</li>
+          <li><strong class="text-white">Behavior (autism):</strong> "By the end of the IEP year, the student will use a coping strategy to remain in the general-education classroom for 30 consecutive minutes during 4 of 5 sessions, advancing from the 8-minute baseline."</li>
+          <li><strong class="text-white">Written expression (SLD):</strong> "By the end of the IEP year, the student will compose a 5-paragraph essay scoring 3 of 4 on the district rubric — a measurable advancement from the 2-paragraph baseline."</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Each is measurable, individualized to the baseline, and calibrated to advance the student in light of circumstances. Failure signals: "Student will improve reading skills" (no baseline); "Student will demonstrate appropriate classroom behavior" (vague); carbon-copy goals identical to the prior year; goals ignoring present-levels data.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Using Endrew F. to Challenge a Stagnant IEP</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The procedural pathway for an Endrew F.-based challenge:
+      </p>
+
+      <ol class="list-decimal pl-6 text-slate-300 space-y-1.5 mb-6">
+        <li><strong class="text-white">Gather progress data.</strong> Request progress reports, benchmark assessments, and IEP-goal data from the prior 2–3 years. The pattern of trivial progress is the factual record.</li>
+        <li><strong class="text-white">Request an Independent Educational Evaluation (IEE)</strong> under 34 CFR §300.502 when the district's data is stale or contested. An IEE documenting actual present levels and capacity for growth is direct evidence the prior IEP was miscalibrated. See the <a href="/blog/independent-educational-evaluation-iee-request-34-cfr-300-502" class="text-cyan-400 hover:text-cyan-300 underline">IEE request guide under 34 CFR 300.502</a>.</li>
+        <li><strong class="text-white">Issue a written request</strong> for an IEP meeting to revise goals, citing Endrew F. and the prior progress data.</li>
+        <li><strong class="text-white">Demand Prior Written Notice (PWN)</strong> under 34 CFR §300.503 if the district refuses to revise. PWN forces the district to state, in writing, the refusal, rationale, and data relied on. The <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-cyan-400 hover:text-cyan-300 underline">Prior Written Notice parent guide under 34 CFR 300.503</a> covers the request language.</li>
+        <li><strong class="text-white">Escalate to state complaint or due process.</strong> Investigators and hearing officers apply Endrew F. directly.</li>
+      </ol>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Where the underlying issue is whether the district is evaluating in all areas of suspected disability, the federal 60-day clock starts at parental consent — the <a href="/blog/idea-60-day-evaluation-timeline-34-cfr-300-301" class="text-cyan-400 hover:text-cyan-300 underline">IDEA 60-day evaluation timeline guide under 34 CFR 300.301</a> covers that mechanic. Letter templates for each step are bundled in the <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-cyan-400 hover:text-cyan-300 underline">IEP & 504 Letter Templates parent advocacy kit</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">How Federal Courts Apply Endrew F. Post-2017</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Since 2017, every federal circuit has applied Endrew F. as the operative FAPE standard. "Merely more than de minimis" appears in post-2017 decisions only when the court is explaining why a district's IEP failed. Recurring patterns:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">Progress monitoring carries evidentiary weight.</strong> Districts producing data-driven progress reports generally prevail; vague narrative reports without baselines do not.</li>
+          <li><strong class="text-white">Present-levels statements matter.</strong> An IEP without a specific present-levels statement cannot show goals were calibrated to the child's circumstances.</li>
+          <li><strong class="text-white">Carbon-copy goals are red flags.</strong> Goals duplicated year over year, with little baseline change, are evidence of a stagnant IEP.</li>
+          <li><strong class="text-white">Procedural compliance still matters.</strong> Endrew F. did not overrule Rowley's procedural prong. Missed evaluation timelines, denied IEEs, and absent PWN still risk FAPE-denial findings.</li>
+          <li><strong class="text-white">Private-placement reimbursement is available.</strong> When a district fails to offer FAPE and a parent unilaterally places the child in an appropriate private program, reimbursement is the remedy — the posture that produced Endrew F. itself.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Red Flags: "Merely More Than De Minimis" IEP Failure Signals</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Signals that an IEP is operating at the pre-Endrew F. floor — and is legally vulnerable — show up in the documents:
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">Identical goals year over year</strong> with present-levels baselines that have barely moved.</li>
+          <li><strong class="text-white">Vague, immeasurable goal language</strong> — "improve," "demonstrate appropriate behavior," "show understanding" — without baselines, mastery criteria, or measurement methods.</li>
+          <li><strong class="text-white">Progress reports stating "making progress" without data.</strong> Numbers, percentages, frequency counts, and rubric scores are progress data. "Making progress" is not.</li>
+          <li><strong class="text-white">Services minutes that do not match the goals.</strong> A goal requiring intensive intervention paired with 30 minutes per week of pull-out is not reasonably calculated for appropriate progress.</li>
+          <li><strong class="text-white">Refusal to revise goals after parent objection</strong> without Prior Written Notice. A district that will not document its refusal in writing is signaling the refusal will not survive scrutiny.</li>
+          <li><strong class="text-white">Generic present-levels statements</strong> cut-and-pasted across multiple students or prior IEPs.</li>
+          <li><strong class="text-white">No data on regression and recoupment</strong> when declining extended school year services.</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Any single signal is not a guaranteed FAPE-denial finding. The pattern matters. Two or three signals year over year with no district response is the fact pattern Endrew F. was decided on. The letter pack that converts these signals into a documented record is the <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-cyan-400 hover:text-cyan-300 underline">IEP & 504 Letter Templates parent advocacy kit ($24)</a>, with product details at <a href="/iep-504-pack" class="text-cyan-400 hover:text-cyan-300 underline">/iep-504-pack</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">1. What is FAPE in special education?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        FAPE is defined in 20 USC §1401(9) and 34 CFR §300.17 as special education and related services that (A) are provided at public expense, (B) meet State educational agency standards, (C) include an appropriate preschool/elementary/secondary education, and (D) are provided in conformity with an IEP meeting 20 USC §1414(d). The substantive content of "appropriate" was defined in Rowley (1982) and refined in Endrew F. (2017).
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">2. What did Endrew F. v. Douglas County actually change?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Endrew F., 137 S. Ct. 988 (2017), explicitly rejected the "merely more than de minimis" reading of Rowley. The unanimous Court, opinion by Chief Justice Roberts, held that the IDEA requires "an educational program reasonably calculated to enable a child to make progress appropriate in light of the child's circumstances."
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">3. Did Endrew F. overrule Rowley?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        No. The Endrew F. Court preserved Rowley's "reasonably calculated" framework. Rowley supplies the two-part judicial inquiry (procedural compliance plus the reasonably-calculated substantive standard); Endrew F. supplies the calibration — appropriate progress in light of the child's circumstances.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">4. Does Endrew F. apply to 504 plans?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        No. Endrew F. interpreted the IDEA, not Section 504 of the Rehabilitation Act. Section 504 plans are governed by 29 USC §794 and 34 CFR Part 104. The FAPE concept under Section 504 addresses non-discrimination and accommodations, not the IDEA's individualized progress standard. The structural distinction is covered in the <a href="/blog/504-plan-vs-iep-federal-law-differences-parents" class="text-cyan-400 hover:text-cyan-300 underline">504 vs IEP federal-law guide</a>.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">5. How does a parent prove an IEP fails the Endrew F. standard?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Evidence typically includes progress-report data showing trivial or no progress over consecutive IEP years; carbon-copy goals or present-levels statements; absent measurable baselines; refusal to revise after parent objection without Prior Written Notice under 34 CFR §300.503; and an IEE under 34 CFR §300.502 documenting capacity for growth.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">6. Who wrote the Endrew F. decision, and was it unanimous?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Chief Justice John Roberts authored Endrew F. v. Douglas County School District, decided March 22, 2017. The decision was unanimous, 8-0 (Justice Gorsuch had not yet been confirmed). No minority view survives that "merely more than de minimis" is legally adequate.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">7. What is the citation for Endrew F. and Rowley?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Endrew F. v. Douglas County School District RE-1, 137 S. Ct. 988 (2017). Board of Education of Hendrick Hudson Central School District v. Rowley, 458 U.S. 176 (1982). The statutory FAPE definition is at 20 USC §1401(9); parallel regulation at 34 CFR §300.17. IEP-content requirements are at 20 USC §1414(d)(1)(A) and 34 CFR §§300.320–300.324.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 leading-relaxed mb-0">
+          <strong class="text-white">Legal disclaimer.</strong> This article is a general educational explanation of FAPE under the IDEA, Rowley (1982), and Endrew F. (2017). It is not legal advice and does not create an attorney-client relationship. Federal law is the floor; state procedural rules vary, and federal-court application of Endrew F. continues to develop. Parents facing a specific IEP dispute should consult a qualified special-education attorney or trained parent advocate licensed in their state. Citations (20 USC §1401(9), 20 USC §1414(d), 34 CFR §300.17, 34 CFR §§300.320–300.324, 34 CFR §300.502, 34 CFR §300.503, Rowley, 458 U.S. 176 (1982), and Endrew F., 137 S. Ct. 988 (2017)) are accurate as of the publication date; readers should verify against current federal sources.
+        </p>
+      </div>
+
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is FAPE in special education?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "FAPE — Free Appropriate Public Education — is defined in 20 USC 1401(9) and 34 CFR 300.17 as special education and related services that are provided at public expense, meet State educational agency standards, include an appropriate preschool/elementary/secondary education, and are provided in conformity with an IEP under 20 USC 1414(d). The substantive content of 'appropriate' was defined in Board of Education v. Rowley (1982) and refined in Endrew F. v. Douglas County (2017)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What did Endrew F. v. Douglas County actually change?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Endrew F., 137 S. Ct. 988 (2017), explicitly rejected the 'merely more than de minimis' reading of Rowley. The unanimous Court, opinion by Chief Justice Roberts, held that the IDEA requires an educational program reasonably calculated to enable a child to make progress appropriate in light of the child's circumstances. Trivial year-over-year progress is no longer legally sufficient."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Did Endrew F. overrule Rowley?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Endrew F. preserved Rowley's 'reasonably calculated' framework. Rowley supplies the two-part judicial inquiry (procedural compliance plus the reasonably-calculated substantive standard). Endrew F. supplies the calibration: appropriate progress in light of the child's circumstances."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Endrew F. apply to 504 plans?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Endrew F. interpreted the IDEA, not Section 504 of the Rehabilitation Act. Section 504 plans are governed by 29 USC 794 and 34 CFR Part 104. The FAPE concept under Section 504 addresses non-discrimination and accommodations, not the IDEA's individualized progress standard."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does a parent prove an IEP fails the Endrew F. standard?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evidence typically includes progress-report data showing trivial or no progress over consecutive IEP years, carbon-copy goals or present-levels statements, absence of measurable baselines, refusal to revise goals after parent objection without Prior Written Notice under 34 CFR 300.503, and an Independent Educational Evaluation under 34 CFR 300.502 documenting capacity for growth."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who wrote the Endrew F. decision, and was it unanimous?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Chief Justice John Roberts authored Endrew F. v. Douglas County School District, decided March 22, 2017. The decision was unanimous, 8-0 (Justice Gorsuch had not yet been confirmed). No minority view survives that the 'merely more than de minimis' floor is legally adequate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the citation for Endrew F. and Rowley?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Endrew F. v. Douglas County School District RE-1, 137 S. Ct. 988 (2017). Board of Education of Hendrick Hudson Central School District v. Rowley, 458 U.S. 176 (1982). The statutory FAPE definition is at 20 USC 1401(9), parallel regulation at 34 CFR 300.17. IEP-content requirements are at 20 USC 1414(d)(1)(A) and 34 CFR 300.320 through 300.324."
+            }
+          }
+        ]
+      }
+      </script>
+    `,
+    cta: {
+      text: "Get the IEP & 504 Letter Kit ($24)",
+      href: "/blog/iep-504-letter-templates-parent-advocacy",
+    },
+    relatedProducts: [],
+  },
+{
+    slug: "iep-meeting-procedural-rights-34-cfr-300-321-322",
+    title:
+      "IEP Meeting Parent Rights Under 34 CFR §§300.321–322: Team Membership, Participation, and What to Do When the School Violates the Process",
+    description:
+      "Federal-floor IEP meeting parent rights under 34 CFR 300.321 (team composition), 300.322 (parent participation), 300.328 (alternative attendance), and 20 USC 1414(d). Who must attend, what schools cannot do, and how to document violations when the district excludes the parent or changes the IEP without a meeting.",
+    keywords: [
+      "iep meeting parent rights",
+      "school changed iep without parent",
+      "iep team membership requirements",
+      "who must be at iep meeting",
+      "school excluded me from iep meeting",
+      "iep meeting recording laws",
+      "iep amendment without meeting",
+      "parent excused from iep meeting",
+      "iep meeting lea representative",
+      "iep meeting interpreter rights",
+      "34 cfr 300.321",
+      "34 cfr 300.322",
+      "34 cfr 300.328",
+      "20 usc 1414 d 1 b",
+      "iep team composition",
+      "parent participation iep",
+      "iep meeting notice requirements",
+      "iep meeting documentation",
+      "iep procedural violation",
+      "iep state complaint procedural",
+    ],
+    publishedDate: "2026-05-15",
+    readingTime: "10 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Schools convene IEP meetings under a federal procedural script — who must be at the table, how the parent must be notified, what cannot be decided without parental consent. When the LEA representative is missing, when the meeting notice arrives with 48 hours' warning, when the IEP comes back amended after the meeting without a follow-up convening: those are federally defined procedural violations under 34 CFR 300.321, 300.322, 300.328 and 20 USC 1414(d). This is the parent-side reference: required team membership, participation rights, alternative-attendance rules, the recording-law variance, and how to document violations into a state-complaint or due-process record.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A meeting notice lands in the backpack Tuesday for a Thursday morning IEP. The general-education teacher is listed as "excused." The LEA representative is the same special-education coordinator who signed the evaluation. Two weeks later, an amended IEP shows up in the parent portal with service minutes reduced and no follow-up meeting. The parent never signed anything.
+      </p>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Every one of those moves is governed by a specific federal regulation. The IEP meeting runs on a procedural script set by <strong class="text-white">34 CFR §300.321</strong> (team composition), <strong class="text-white">34 CFR §300.322</strong> (parent participation), <strong class="text-white">34 CFR §300.328</strong> (alternative attendance), and <strong class="text-white">20 USC §1414(d)(1)(B)</strong>. When it is violated, the IDEA provides remedies — but only if documented in writing while the trail is fresh. For the broader letter pathway, see <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-blue-400 hover:text-blue-300 underline">IEP & 504 Letter Templates for Parents</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Required IEP Team Members Under 34 CFR §300.321</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">34 CFR §300.321(a)</strong> and <strong class="text-white">20 USC §1414(d)(1)(B)</strong> require seven categories of participant. A meeting that proceeds without one — outside the narrow §300.321(e) excusal pathway — is a procedural violation for the record.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="list-decimal pl-6 text-slate-300 space-y-1.5 mb-6">
+          <li><strong class="text-white">The parents of the child.</strong> §300.321(a)(1). Parents are full team members, not observers.</li>
+          <li><strong class="text-white">At least one regular-education teacher</strong> of the child, if the child is or may be participating in the regular-education environment. §300.321(a)(2). A school that routinely lists the regular-ed teacher as excused is making a procedural choice the parent gets to challenge.</li>
+          <li><strong class="text-white">At least one special-education teacher</strong> — or, where appropriate, special-education provider. §300.321(a)(3). The team member responsible for specially designed instruction.</li>
+          <li><strong class="text-white">A representative of the public agency (LEA representative)</strong> qualified to provide or supervise specially designed instruction, knowledgeable about the general-education curriculum, and knowledgeable about agency resources. §300.321(a)(4). The LEA rep has authority to commit district resources — without that authority at the table, no service-minute or placement decision is binding.</li>
+          <li><strong class="text-white">An individual who can interpret the instructional implications of evaluation results.</strong> §300.321(a)(5). May be one of the other members.</li>
+          <li><strong class="text-white">Other individuals, at the discretion of the parent or the agency,</strong> who have knowledge or special expertise regarding the child. §300.321(a)(6). The parent has the right to bring an advocate, outside evaluator, or family member. The district may not gatekeep guests at the door.</li>
+          <li><strong class="text-white">Whenever appropriate, the child.</strong> §300.321(a)(7). Mandatorily invited under §300.321(b) for transition planning beginning at age 16 (earlier if the team determines appropriate).</li>
+        </ol>
+      </div>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">When Team Members Can Be Excused — §300.321(e)</h3>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under <strong class="text-white">§300.321(e)(1)</strong>, a required member is not required to attend when the parent and the LEA <em>agree in writing</em> that the member's area is not being modified or discussed. Under <strong class="text-white">§300.321(e)(2)</strong>, when the member's area <em>is</em> being modified or discussed, the member may be excused only if (i) the parent and LEA consent in writing <em>and</em> (ii) the member submits written input into the IEP development to the parent and team <em>before</em> the meeting. Verbal consent at the door does not satisfy the regulation. Written input submitted after the meeting does not satisfy the regulation either. A district that excuses the general-education teacher without both elements has a §300.321(e) defect on every excused meeting.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Parent Participation Rights Under 34 CFR §300.322</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">34 CFR §300.322(a)</strong> requires the agency to "take steps to ensure that one or both of the parents of a child with a disability are present at each IEP team meeting or are afforded the opportunity to participate." Those steps are itemized in (b)–(f).
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Notice — §300.322(b)</h3>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The meeting notice must (i) be sent early enough to ensure the parent can attend, (ii) be scheduled at a mutually agreed-on time and place, (iii) indicate purpose, time, and location, (iv) identify who will attend, and (v) inform the parent of the right to invite others with knowledge or special expertise. A 48-hour notice for an annual-review IEP with no attempt at a mutually agreed time is a §300.322(b) defect for the procedural record.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">When the Parent Cannot Attend — §300.322(c)–(d)</h3>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under <strong class="text-white">§300.322(c)</strong>, when neither parent can attend, the agency must use other methods to ensure parent participation, including individual or conference telephone calls. Under <strong class="text-white">§300.322(d)</strong>, a meeting may proceed without a parent only if the agency is "unable to convince the parents that they should attend" and has kept a record of attempts to arrange a mutually agreed-on time and place (phone logs, correspondence, returned mail, home or workplace visits).
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Interpreter and IEP Copy — §300.322(e)–(f)</h3>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">§300.322(e)</strong> requires the agency to take whatever action is necessary to ensure the parent understands the proceedings, including arranging an interpreter for parents with deafness or whose native language is other than English — at district cost. Casual translation by a bilingual sibling or paraprofessional pulled from the hallway does not satisfy the rule when qualified interpretation is required. <strong class="text-white">§300.322(f)</strong> requires the agency to give the parent a copy of the IEP at no cost; conditioning the copy on a records-request fee or delay window is operating outside the regulation.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Schools Cannot Do During an IEP Meeting</h2>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">Predetermine the IEP outcome.</strong> Walking in with a finalized IEP and presenting it for signature treats parent participation as ceremonial. Predetermination violates §300.322's participation guarantee and has been a recurring finding in OSEP letters and due-process decisions across multiple circuits.</li>
+          <li><strong class="text-white">Refuse the parent's right to bring an advocate, evaluator, or support person.</strong> §300.321(a)(6) places that decision with the parent.</li>
+          <li><strong class="text-white">Proceed without an LEA representative.</strong> Without §300.321(a)(4) authority at the table, no service-minute or placement decision is binding.</li>
+          <li><strong class="text-white">Pressure the parent to sign at the table.</strong> The IEP becomes effective on parental consent under §300.300. Taking the draft home is a procedural right, not a refusal of services.</li>
+          <li><strong class="text-white">Refuse to consider parent input.</strong> §300.324(a)(1)(ii) requires the team to consider the parents' concerns for enhancing the child's education. A district that refuses to consider input must issue a Prior Written Notice explaining the refusal — see <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-blue-400 hover:text-blue-300 underline">Prior Written Notice Under 34 CFR §300.503</a>.</li>
+          <li><strong class="text-white">Use non-qualified interpretation.</strong> §300.322(e) is an interpreter-quality regulation.</li>
+          <li><strong class="text-white">Charge for the IEP copy.</strong> §300.322(f) — at no cost.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What to Do If the School Changes an IEP Without You</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        IEP amendments outside a meeting are governed by <strong class="text-white">20 USC §1414(d)(3)(D)</strong> and <strong class="text-white">34 CFR §300.324(a)(4)</strong>. The parent and the LEA <em>may agree</em> not to convene a meeting and instead develop a written document to amend the current IEP. The operative phrase is <em>may agree</em> — the pathway is consensual, and a unilateral district amendment is not authorized. Under §300.324(a)(6), changes are made either by the entire team at a meeting or as provided in (a)(4). There is no third pathway.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        When a unilateral amendment shows up, the parent has three moves: (1) request the written amendment-agreement record under §300.501(a) records-access rights; (2) demand a Prior Written Notice for the change under §300.503 — see <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-blue-400 hover:text-blue-300 underline">Prior Written Notice 34 CFR §300.503</a>; and (3) file the procedural violation into the state-complaint or due-process record. For inadequate IEP outcomes downstream, the substantive standard is set by Endrew F. — see <a href="/blog/fape-endrew-f-standard-meaningful-progress" class="text-blue-400 hover:text-blue-300 underline">FAPE & the Endrew F. Standard</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Alternative Meeting Attendance Under 34 CFR §300.328</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under <strong class="text-white">34 CFR §300.328</strong>, the parent and the agency <em>may agree to use alternative means of meeting participation, such as video conferences and conference calls</em>. The provision is mutual. A parent who cannot take time off work has the right to propose phone or video attendance in writing — a district that refuses without justification undermines the §300.322(a) participation guarantee, and the refusal enters the procedural-violation record. The §300.328 pathway also covers administrative matters under IDEA section 615 (scheduling, witness-list exchange, status conferences for due-process hearings). A third pathway is written input submitted in advance, which the team must consider under §300.324(a)(1)(ii). For initial IEP meetings after an evaluation, the federal 60-day timeline matters — see <a href="/blog/idea-60-day-evaluation-timeline-34-cfr-300-301" class="text-blue-400 hover:text-blue-300 underline">IDEA 60-Day Evaluation Timeline</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Recording the IEP Meeting (State-by-State Variance)</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The IDEA does not directly regulate parental audio recording. U.S. Department of Education policy guidance permits it where the LEA's policy permits it — and where the policy prohibits recording, the policy must yield where recording is necessary to ensure the parent understands the IEP or to implement IDEA rights. Recording rights are a layered analysis: (1) the district's recording policy, (2) state wiretapping and consent-to-record statutes, and (3) FERPA implications when other students' information is captured.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        In <strong class="text-white">one-party consent states</strong> (the majority), only one party needs to consent — the parent recording suffices. In <strong class="text-white">two-party (all-party) consent states</strong> — including California, Florida, Illinois, Massachusetts, Pennsylvania, Washington, and others — every participant must consent. Recording in a two-party state without notifying every participant may be a state-law violation independent of any IDEA analysis. Safe practice: check district policy, notify the district in writing when the meeting is scheduled, verify the state's consent rule, and state on the record at meeting start that recording is occurring with explicit participant confirmation.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Documenting Procedural Violations: Building the State-Complaint or Due-Process Record</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Procedural violations matter only to the extent they are documented in writing. The §300.151–153 state-complaint pathway and the §300.507 due-process pathway both require a written record of the violation, the regulatory provision violated, and the proposed resolution. Verbal protests at the meeting do not produce that record.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">The meeting notice.</strong> Date sent, purpose stated, attendees listed, mutually-agreed-on-time language present or absent. §300.322(b) check.</li>
+          <li><strong class="text-white">The attendance sign-in sheet.</strong> Which §300.321(a) members were present, which excused, whether written parental consent under §300.321(e) was obtained in advance.</li>
+          <li><strong class="text-white">Written input from excused members.</strong> §300.321(e)(2) requires it in advance when the member's area is discussed.</li>
+          <li><strong class="text-white">The draft IEP, if any.</strong> Date provided to the parent, opportunity to review, indications of predetermination.</li>
+          <li><strong class="text-white">Any post-meeting amendment.</strong> Whether a §300.324(a)(4) written agreement exists, whether a Prior Written Notice was issued, whether the revised IEP was provided.</li>
+          <li><strong class="text-white">Interpreter quality, where §300.322(e) applies.</strong></li>
+          <li><strong class="text-white">Recording or contemporaneous handwritten notes.</strong></li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 20 USC §1415(f)(3)(E)(ii) and 34 CFR §300.513(a)(2), a hearing officer may find a denial of FAPE on procedural grounds only if the inadequacies (i) impeded the child's right to FAPE, (ii) significantly impeded parent participation in decision-making, or (iii) caused a deprivation of educational benefit. Predetermination, parent exclusion, denial of required team members, and unilateral amendment all map onto prong (ii). When the resulting IEP also fails the Endrew F. substantive standard, the case crosses into substantive FAPE territory — see <a href="/blog/fape-endrew-f-standard-meaningful-progress" class="text-blue-400 hover:text-blue-300 underline">FAPE & Endrew F.</a> For evidence-quality challenges to the district evaluation anchoring an inadequate IEP, see <a href="/blog/independent-educational-evaluation-iee-request-34-cfr-300-502" class="text-blue-400 hover:text-blue-300 underline">Independent Educational Evaluation Under 34 CFR §300.502</a>.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Each step is anchored by a specific letter — meeting-notice objection, records request for the amendment file, Prior Written Notice demand, state-complaint letter, due-process complaint. The full IDEA letter pathway lives in the pillar reference: <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-blue-400 hover:text-blue-300 underline">IEP & 504 Letter Templates for Parents</a> — twelve letters plus three meeting-day tools, packaged as the <a href="/iep-504-pack" class="text-blue-400 hover:text-blue-300 underline">IEP & 504 Parent Advocacy Letter Kit</a> at $24 in the <a href="/iep-504-pack" class="text-blue-400 hover:text-blue-300 underline">storefront</a>. For meeting-day preparation alongside the letters, see the same <a href="/blog/iep-504-letter-templates-parent-advocacy" class="text-blue-400 hover:text-blue-300 underline">pillar reference</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Frequently Asked Questions</h2>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Who is required to attend an IEP meeting under federal law?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §300.321(a) and 20 USC §1414(d)(1)(B), seven categories of participant make up the IEP team: parent; at least one regular-education teacher (if the child is or may be in the regular-education environment); at least one special-education teacher or provider; an LEA representative with authority to commit district resources; an individual who can interpret evaluation results; optional members invited by parent or agency; and the child whenever appropriate (mandatorily for transition planning under §300.321(b)). Excusal under §300.321(e) requires written parental consent — and where the excused member's area is discussed, written input submitted in advance.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Can the school change my child's IEP without holding a meeting?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Only by mutual written agreement of the parent and the LEA under 20 USC §1414(d)(3)(D) and 34 CFR §300.324(a)(4). The amendment-without-meeting pathway is consensual. A parent who never signed an amendment-agreement document, never returned a consent form, and never received a Prior Written Notice under §300.503 has not authorized the change. The remedy is to demand the written-agreement record, request a Prior Written Notice for the change, and file the procedural violation into a state-complaint or due-process record.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">What if the school excluded me from the IEP meeting?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 34 CFR §300.322(d), the agency may conduct a meeting without a parent only if it is unable to convince the parents to attend, and only after keeping a record of attempts to arrange a mutually agreed-on time and place (phone logs, correspondence copies, returned-mail records, home or workplace visits). A meeting held without that record is a §300.322 procedural violation. The remedy: request the §300.322(d) attempt-to-convince record under §300.501(a) records-access rights and file the violation into the procedural record.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Can I attend an IEP meeting by phone or video?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Yes — under 34 CFR §300.328, the parent and the agency may agree to use alternative means of meeting participation including video conferences and conference calls. The provision is mutual. Proposing phone or video attendance in writing puts the §300.322(a) participation guarantee on the record. If the district refuses without justification, the refusal itself enters the procedural-violation record. A third pathway: written input submitted in advance, which the team must consider under §300.324(a)(1)(ii).
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Am I allowed to record the IEP meeting?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The IDEA does not directly regulate parental recording — federal guidance permits it where necessary to ensure the parent understands the proceedings or to implement IDEA rights. State wiretapping and consent-to-record statutes control. One-party consent states (the majority) require only the parent's consent. Two-party (all-party) consent states — California, Florida, Illinois, Massachusetts, Pennsylvania, Washington, and others — require every participant. The district's written recording policy is the third layer. Safe practice: check district policy, notify the district in writing in advance, verify the state rule, and state on the record at meeting start that recording is occurring. State-specific verification required — not legal advice.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Does the school have to provide an interpreter for an IEP meeting?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Yes. Under 34 CFR §300.322(e), the agency must take whatever action is necessary to ensure the parent understands the proceedings, including arranging for an interpreter for parents with deafness or whose native language is other than English. The district bears the cost. Casual translation by a bilingual sibling or paraprofessional pulled from the hallway does not satisfy the regulation when qualified interpretation is required. Refusal is a §300.322(e) violation that goes into the procedural-record file.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Disclaimer.</strong> Educational reference only. Not legal advice. IDEA federal regulations set a procedural floor — state implementation varies in timelines, complaint pathways, and hearing-officer practice. State recording laws vary materially: one-party consent states permit recording with only the parent's consent, while two-party (all-party) consent states — including California, Florida, Illinois, Maryland, Massachusetts, Montana, New Hampshire, Pennsylvania, and Washington, among others — require every participant to consent, and unauthorized recording may be a state-law violation independent of any IDEA analysis. Always verify the current state-specific recording rule, the district's written recording policy, and FERPA implications before recording an IEP meeting. For due-process filings, formal state complaints, or hearings, consult the state's Parent Training and Information (PTI) center (parentcenterhub.org), the state Protection and Advocacy (P&A) agency, or a special-education attorney. State-bar lawyer-referral services are a starting point.
+      </p>
+    `,
+    cta: {
+      text: "Get the IEP & 504 Letter Kit ($24)",
+      href: "/blog/iep-504-letter-templates-parent-advocacy",
+    },
+    relatedProducts: [],
+    faqs: [
+      {
+        question: "Who is required to attend an IEP meeting under federal law?",
+        answer:
+          "Under 34 CFR 300.321(a) and 20 USC 1414(d)(1)(B), seven categories of participant make up the IEP team: the parent, at least one regular-education teacher (if the child is or may be in the regular-education environment), at least one special-education teacher or provider, an LEA representative with authority to commit district resources, an individual who can interpret evaluation results, optional members invited by parent or agency, and the child whenever appropriate (mandatorily invited for transition planning under 300.321(b)). Team members can be excused only under the narrow 300.321(e) pathway with written parental consent — and where the excused member's area is being discussed, only with written input submitted in advance.",
+      },
+      {
+        question: "Can the school change my child's IEP without holding a meeting?",
+        answer:
+          "Only by mutual written agreement of the parent and the LEA under 20 USC 1414(d)(3)(D) and 34 CFR 300.324(a)(4). The amendment-without-meeting pathway is consensual — a parent who never signed an amendment-agreement document, never returned a consent form, and never received a Prior Written Notice under 300.503 has not authorized the change. The remedy is to demand the written-agreement record, request a Prior Written Notice for the change, and document the procedural violation into a state-complaint or due-process record.",
+      },
+      {
+        question: "What if the school excluded me from the IEP meeting?",
+        answer:
+          "Under 34 CFR 300.322(d), the public agency may conduct an IEP meeting without a parent in attendance only if it is unable to convince the parents that they should attend — and only after keeping a detailed record of attempts to arrange a mutually agreed-on time and place (phone logs, correspondence copies, returned mail records, visits to the home or workplace). A meeting held without the parent absent that record is a 300.322 procedural violation. The remedy is to request the 300.322(d) attempt-to-convince record under 300.501(a) parental records-access rights, and to file the violation into the procedural-record file.",
+      },
+      {
+        question: "Can I attend an IEP meeting by phone or video?",
+        answer:
+          "Yes — under 34 CFR 300.328, the parent and the public agency may agree to use alternative means of meeting participation, including video conferences and conference calls. The provision is mutual: the district must agree. When a parent cannot take time off work to attend in person, proposing phone or video attendance in writing puts the 300.322(a) participation guarantee on the record. If the district refuses without justification, the refusal itself is documented into the procedural-violation record. A third pathway: written input submitted in advance, which the IEP team is required to consider under 300.324(a)(1)(ii).",
+      },
+      {
+        question: "Am I allowed to record the IEP meeting?",
+        answer:
+          "The IDEA does not directly regulate parental recording — federal guidance permits recording where it is necessary to ensure the parent understands the proceedings or to implement IDEA rights. But state wiretapping and consent-to-record statutes control. In one-party consent states (the majority), only the parent's consent is needed. In two-party (all-party) consent states — including California, Florida, Illinois, Massachusetts, Pennsylvania, Washington, and others — every participant must consent. The district's written recording policy is the third layer. Safe practice: check the district policy, notify the district in writing in advance of intent to record, verify the state rule, and state on the record at the start of the meeting that recording is occurring. State-specific verification is required — this is not legal advice.",
+      },
+      {
+        question: "Does the school have to provide an interpreter for an IEP meeting?",
+        answer:
+          "Yes. Under 34 CFR 300.322(e), the public agency must take whatever action is necessary to ensure that the parent understands the proceedings of the IEP team meeting — including arranging for an interpreter for parents with deafness or whose native language is other than English. The district bears the cost. Casual translation by a bilingual sibling or a paraprofessional pulled from the hallway does not satisfy the regulation when qualified interpretation is required. Refusal to provide qualified interpretation is a 300.322(e) violation that goes into the procedural-record file.",
+      },
+    ],
+  },
+
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

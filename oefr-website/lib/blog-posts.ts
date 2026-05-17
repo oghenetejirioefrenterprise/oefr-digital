@@ -2684,6 +2684,13 @@ export const blogPosts: BlogPost[] = [
         The IDEA (Individuals with Disabilities Education Act, 20 USC 1400+) and Section 504 of the Rehabilitation Act define the parental procedural rights in writing. State implementation varies — timelines, complaint pathways, hearing officer rules — but the federal floor is consistent across all 50 states. A letter pack that hits the federal floor is portable.
       </p>
 
+      <div class="my-8 p-6 bg-slate-900/60 border-l-4 border-amber-400 rounded-r">
+        <p class="text-sm uppercase tracking-wide text-amber-300 font-semibold mb-2">Looking for Prior Written Notice (PWN) procedural rights?</p>
+        <p class="text-slate-200 leading-relaxed">
+          If the district said "no" to evaluation, placement, or accommodation without a written explanation, federal law requires <a href="/blog/prior-written-notice-34-cfr-300-503-parent-guide" class="text-amber-300 hover:text-amber-200 underline font-semibold">Prior Written Notice (34 CFR §300.503)</a> — with seven specific content elements — every time the district proposes or refuses a change. The dedicated PWN guide walks through the seven required elements, what to do when the district response is verbal, and which letter templates in the pack trigger PWN obligations.
+        </p>
+      </div>
+
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Parents Actually Need in Writing</h2>
 
       <p class="text-slate-300 leading-relaxed mb-6">

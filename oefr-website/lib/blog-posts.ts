@@ -2659,6 +2659,12 @@ export const blogPosts: BlogPost[] = [
       "prepare iep meeting 48 hours",
       "what to put in iep binder",
       "refusing to sign iep at meeting",
+      "free iep letter generator",
+      "iep letter generator online",
+      "504 plan letter request template free",
+      "idea evaluation request tool",
+      "parent iep letter wizard",
+      "iep request letter generator free",
     ],
     publishedDate: "2026-05-08",
     readingTime: "11 min read",
@@ -2793,6 +2799,11 @@ export const blogPosts: BlogPost[] = [
         Forty-eight hours before an IEP meeting, three things need to be in the parent's folder. (1) A written parent-input statement covering goals, accommodations, and any concerns about service-minute changes — the IEP team is required to consider it under 34 CFR 300.324(a)(1)(ii). (2) The meeting prep worksheet with questions to ask before signing, specifically about draft-IEP changes, baseline data, and rationale for any reduction in service minutes. (3) The draft-IEP read-through 1-pager for the 30-minute window between receiving the draft (often handed across the table on meeting day) and the signature line. Refusing to sign at the table is the parent's right — the IEP becomes effective only on parental consent under 34 CFR 300.300, and the parent can take the draft home for review and respond in writing.
       </p>
 
+      <h3 class="text-xl font-semibold text-white mt-8 mb-3">Is there a free IEP letter generator I can use online?</h3>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Parents searching for a "free IEP letter generator" or "504 plan letter request template" online land in one of two failure modes. The first is the teacher-side AI tool surface — VC-backed SaaS platforms (Playground IEP CoPilot, Brisk Teaching, Monsha, Easy-Peasy.AI, LogicBalls, Galaxy.ai, IEP WriteMate) that generate IEP <em>documents</em> or <em>goals</em> for educators, not request <em>letters</em> for parents. The second is the static-PDF aggregator surface (A Day in Our Shoes, Special Mom Advocate, DREDF, Wrightslaw, FAAMS, Michigan Alliance, pdfFiller, parentcenterhub.org) — solid free templates that require manual customization in a word processor and most omit the federal-citation anchor that forces a district legal response within statutory deadlines. As of mid-2026, no open-web tool ships an interactive parent-side letter generator with IDEA-citation anchoring and a 50-state-portable disclaimer. The closest substitute today is a fill-in-blank federally-cited template pack: the OEFR IEP &amp; 504 Parent Advocacy Letter Kit holds twelve IDEA-cited letter templates plus three meeting-day tools, each anchored to the matching 34 CFR or 20 USC section, designed to be customized once and reused across the entire procedural pathway (evaluation request, IEE, state complaint, due process, mediation, transition, stay-put, records request).
+      </p>
+
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">When the Pack Is the Wrong Tool</h2>
 
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -2882,6 +2893,11 @@ export const blogPosts: BlogPost[] = [
         question: "How do I prepare for an IEP meeting in 48 hours?",
         answer:
           "Forty-eight hours before an IEP meeting, three things belong in the parent's folder. A written parent-input statement covering goals, accommodations, and concerns about service-minute changes — the IEP team is required to consider it under 34 CFR 300.324(a)(1)(ii). A meeting prep worksheet with the specific questions to ask before signing — draft-IEP changes, baseline data, rationale for any service-minute reduction. And a draft-IEP read-through 1-pager for the 30-minute window between receiving the draft and the signature line. Refusing to sign at the table is the parent's right under 34 CFR 300.300 — the IEP becomes effective only on parental consent, and the draft can go home for review.",
+      },
+      {
+        question: "Is there a free IEP letter generator I can use online?",
+        answer:
+          "Parents searching for a free IEP letter generator land in one of two surfaces. The first is the teacher-side AI tool ecosystem — VC-backed SaaS platforms (Playground IEP CoPilot, Brisk Teaching, Monsha, Easy-Peasy.AI, LogicBalls, IEP WriteMate) that generate IEP documents or goals for educators, not request letters for parents. The second is the static-PDF aggregator surface (A Day in Our Shoes, Special Mom Advocate, DREDF, Wrightslaw, FAAMS) — solid free templates that require manual customization in a word processor and often omit the federal-citation anchor that forces a district legal response. As of mid-2026, no open-web tool ships an interactive parent-side letter generator with IDEA-citation anchoring and a 50-state-portable disclaimer. The closest substitute is a fill-in-blank federally-cited template pack — twelve IDEA-cited letter templates plus three meeting-day tools, each anchored to the matching 34 CFR or 20 USC section.",
       },
     ],
   },
@@ -3417,6 +3433,37 @@ export const blogPosts: BlogPost[] = [
       <h3 class="text-xl font-semibold text-white mt-8 mb-3">Can a parent obtain a private evaluation at their own expense and still have it considered?</h3>
       <p class="text-slate-300 leading-relaxed mb-6">
         Yes. Under 34 CFR §300.502(c), evaluations obtained at private expense — without invoking the public-expense right — must still be considered by the public agency in any decision regarding FAPE, provided the evaluation meets agency criteria. The privately funded evaluation is also admissible as evidence in any due-process hearing. The IEE-at-public-expense pathway is one option; private evaluation followed by submission to the IEP team is another.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Static Letter Pack vs Monthly AI Letter Generator</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A 2026 cohort of monthly-subscription AI letter generators has launched targeting the same procedural moment — chatbot-generated IEE requests behind a $9.99/month subscription (or roughly $197 lifetime), account required, internet connection required, output regenerated on demand by a large language model. The trade-off is structurally different from a static federally-cited PDF kit. Parents weighing the two pathways should know what each one is.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6 overflow-x-auto">
+        <table class="text-slate-300 w-full text-sm">
+          <thead class="text-white">
+            <tr class="border-b border-slate-700">
+              <th class="text-left py-2 pr-3 align-bottom">What you get</th>
+              <th class="text-left py-2 pr-3 align-bottom">Static Letter Pack ($24 one-time)</th>
+              <th class="text-left py-2 align-bottom">AI Letter Generator ($9.99/mo)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-800"><td class="py-2 pr-3">Cost over 12 months</td><td class="py-2 pr-3">$24, paid once</td><td class="py-2">$119.88, recurring</td></tr>
+            <tr class="border-b border-slate-800"><td class="py-2 pr-3">Federal citations</td><td class="py-2 pr-3">34 CFR §300.502 + 20 USC §1415 locked in by editors</td><td class="py-2">Generated by an LLM at request time — varies run to run</td></tr>
+            <tr class="border-b border-slate-800"><td class="py-2 pr-3">AI hallucination risk</td><td class="py-2 pr-3">None — the document is pre-written</td><td class="py-2">Present — LLM outputs drift, citations can be wrong</td></tr>
+            <tr class="border-b border-slate-800"><td class="py-2 pr-3">Account required</td><td class="py-2 pr-3">No</td><td class="py-2">Yes — login, email, often credit card</td></tr>
+            <tr class="border-b border-slate-800"><td class="py-2 pr-3">Works offline</td><td class="py-2 pr-3">Yes — PDF download, owned forever</td><td class="py-2">No — requires internet and the service staying live</td></tr>
+            <tr class="border-b border-slate-800"><td class="py-2 pr-3">Coverage</td><td class="py-2 pr-3">12 IDEA-compliant letter templates + 3 meeting-day tools in one ZIP</td><td class="py-2">One letter at a time, regenerated per request</td></tr>
+            <tr><td class="py-2 pr-3">Cancellation risk</td><td class="py-2">None — the files are yours after download</td><td class="py-2">Service shutdown or price change ends access</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The AI-generator pattern fits a parent who wants one off-the-cuff letter and is comfortable trusting an LLM's citations. The static pack fits a parent who expects to move across multiple procedural tools in a single evaluation cycle — evaluation request, evaluation-denial response, IEE request under 34 CFR §300.502, accommodation/modification request, state complaint, due-process complaint, stay-put assertion, records request — and wants the federal citations locked in, the same on every read, downloadable once, no subscription, no AI variance, no platform dependency.
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the Letter Pack</h2>

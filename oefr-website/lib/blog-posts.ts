@@ -3445,7 +3445,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Static Letter Pack vs Monthly AI Letter Generator</h2>
 
       <p class="text-slate-300 leading-relaxed mb-6">
-        A 2026 cohort of monthly-subscription AI letter generators has launched targeting the same procedural moment — chatbot-generated IEE requests behind a $9.99/month subscription (or roughly $197 lifetime), account required, internet connection required, output regenerated on demand by a large language model. The trade-off is structurally different from a static federally-cited PDF kit. Parents weighing the two pathways should know what each one is.
+        A 2026 cohort of monthly-subscription AI letter generators has launched targeting the same procedural moment — chatbot-generated IEE requests behind a $9.99/month subscription, account required, internet connection required, output regenerated on demand by a large language model. The trade-off is structurally different from a static federally-cited PDF kit. Parents weighing the two pathways should know what each one is.
       </p>
 
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6 overflow-x-auto">

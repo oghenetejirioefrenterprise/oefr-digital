@@ -2,55 +2,73 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-800/60 bg-[#080d1a] mt-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Brand */}
-          <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-blue-500 to-indigo-600 text-white font-bold text-xs">
-              OD
-            </div>
-            <span className="font-bold text-white">
-              OEFR <span className="text-blue-400">Digital</span>
-            </span>
+    <footer className="bg-[#f4efe6] border-t border-[#d8cdb8]">
+      <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16 pt-24 pb-12 grid gap-16 md:grid-cols-[2fr_1fr_1fr_1fr]">
+        <div>
+          <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#1a1713] text-[#f4efe6] italic font-[family-name:var(--font-fraunces)] text-lg mb-5">
+            od
           </div>
-
-          {/* Links */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
-            <Link href="/about" className="hover:text-slate-300 transition-colors">
-              About
-            </Link>
-            <Link href="/terms" className="hover:text-slate-300 transition-colors">
-              Terms
-            </Link>
-            <Link href="/privacy" className="hover:text-slate-300 transition-colors">
-              Privacy
-            </Link>
-            <a
-              href="mailto:oghenetejiri@oefrenterprise.com"
-              className="hover:text-slate-300 transition-colors"
-            >
-              Contact
-            </a>
-          </div>
-
-          {/* Badges & Copyright */}
-          <div className="flex items-center gap-4">
-            <a href="https://fazier.com" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity">
-              <img
-                src="https://fazier.com/api/v1/badges/embed/default?url=https://oefrenterprise.com"
-                alt="Featured on Fazier"
-                width="150"
-                height="54"
-                style={{ height: '28px', width: 'auto' }}
-              />
-            </a>
-            <p className="text-sm text-slate-600">
-              © 2026 OEFR Digital. All rights reserved.
-            </p>
-          </div>
+          <p className="font-[family-name:var(--font-fraunces)] text-xl leading-snug max-w-[380px] text-[#1a1713]">
+            Smart digital tools, built by engineers, priced for everyone. One-time purchase, forever yours.
+          </p>
         </div>
+
+        <FooterColumn
+          title="Catalog"
+          links={[
+            ["/#products", "Finance & Productivity"],
+            ["/#products", "Career & Business"],
+            ["/#products", "IT & Engineering"],
+            ["/#products", "Coming Soon"],
+          ]}
+        />
+        <FooterColumn
+          title="Studio"
+          links={[
+            ["/about", "About"],
+            ["/blog", "Journal"],
+            ["/tools", "Calculators"],
+            ["/contact", "Contact"],
+          ]}
+        />
+        <FooterColumn
+          title="Terms"
+          links={[
+            ["/refund", "Refund policy"],
+            ["/privacy", "Privacy"],
+            ["/terms", "Terms of use"],
+            ["/reactivation", "DB Reactivation"],
+          ]}
+        />
+      </div>
+
+      <div className="mx-6 sm:mx-10 lg:mx-16 border-t border-[#d8cdb8] pt-6 pb-10 flex flex-col sm:flex-row justify-between gap-3 font-[family-name:var(--font-mono)] text-[11px] tracking-[0.14em] uppercase text-[#7a6f5c]">
+        <span>© 2026 OEFR Digital · All rights reserved</span>
+        <span>
+          <a href="mailto:info@oefrenterprise.com" className="hover:text-[#a66a2c] transition-colors">
+            info@oefrenterprise.com
+          </a>
+        </span>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({ title, links }: { title: string; links: [string, string][] }) {
+  return (
+    <div>
+      <h4 className="font-[family-name:var(--font-mono)] text-[11px] tracking-[0.22em] uppercase text-[#7a6f5c] mb-5 font-normal">
+        {title}
+      </h4>
+      <ul className="space-y-3">
+        {links.map(([href, label]) => (
+          <li key={label}>
+            <Link href={href} className="text-[15px] text-[#1a1713] hover:text-[#a66a2c] transition-colors">
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

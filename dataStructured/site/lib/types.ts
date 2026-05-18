@@ -2,9 +2,23 @@ export type ComplianceVerdict = "PASS" | "FAIL" | "NEEDS_FOUNDER_REVIEW";
 
 export type LaunchStatus =
   | "FULLY_SHIPPED"
+  | "SHIPPED"
+  | "SHIPPED_STRIPE_ONLY"
+  | "STRIPE_ONLY"
   | "PARTIAL_SHIPPED"
   | "DRAFT"
   | "FAILED";
+
+const SHIPPED_STATUSES = new Set<LaunchStatus>([
+  "FULLY_SHIPPED",
+  "SHIPPED",
+  "SHIPPED_STRIPE_ONLY",
+  "STRIPE_ONLY",
+]);
+
+export function isShipped(status: LaunchStatus): boolean {
+  return SHIPPED_STATUSES.has(status);
+}
 
 export interface ProductSpec {
   version: number;
@@ -18,16 +32,16 @@ export interface ProductSpec {
   format: string;
   deliverable: string;
   price_usd: number;
-  bonus_stack: string[];
+  bonus_stack?: string[];
   dataset_file: string;
   ethics_ledger: string;
-  audience: string;
+  audience?: string;
   stripe_product_prefix: string;
   channels: string[];
   compliance_verdict: ComplianceVerdict;
   compliance_audited_at: string;
-  row_count: number;
-  source: string;
+  row_count?: number;
+  source?: string;
   gumroad_listing?: {
     title: string;
     description: string;

@@ -38,7 +38,9 @@ export default async function ProductPage({
     <article className="space-y-10">
       <header className="space-y-3">
         <p className="text-sm uppercase tracking-wide text-neutral-500">
-          {product.spec.row_count.toLocaleString()} rows · {product.spec.format.replace(/_/g, " ")}
+          {typeof product.spec.row_count === "number"
+            ? `${product.spec.row_count.toLocaleString()} rows · ${product.spec.format.replace(/_/g, " ")}`
+            : product.spec.format.replace(/_/g, " ")}
         </p>
         <h1 className="text-4xl font-bold tracking-tight">
           {product.spec.name}
@@ -50,21 +52,25 @@ export default async function ProductPage({
 
       <CheckoutCTAs product={product} />
 
-      <BonusStack items={product.spec.bonus_stack} />
+      <BonusStack items={product.spec.bonus_stack ?? []} />
 
-      <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-          Who buys this
-        </h2>
-        <p className="text-base text-neutral-700">{product.spec.audience}</p>
-      </section>
+      {product.spec.audience && (
+        <section>
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+            Who buys this
+          </h2>
+          <p className="text-base text-neutral-700">{product.spec.audience}</p>
+        </section>
+      )}
 
-      <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-          Data source
-        </h2>
-        <p className="text-sm text-neutral-700">{product.spec.source}</p>
-      </section>
+      {product.spec.source && (
+        <section>
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+            Data source
+          </h2>
+          <p className="text-sm text-neutral-700">{product.spec.source}</p>
+        </section>
+      )}
     </article>
   );
 }

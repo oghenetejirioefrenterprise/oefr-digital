@@ -16,7 +16,9 @@ export function ProductCard({ product }: { product: Product }) {
         {product.spec.summary}
       </p>
       <div className="flex items-center gap-4 text-xs text-neutral-500">
-        <span>{product.spec.row_count.toLocaleString()} rows</span>
+        {typeof product.spec.row_count === "number" && (
+          <span>{product.spec.row_count.toLocaleString()} rows</span>
+        )}
         <span>{product.spec.format.replace(/_/g, " ")}</span>
       </div>
     </a>

@@ -1,6 +1,6 @@
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
-import type { Product, ProductSpec, LaunchReport } from "./types";
+import { isShipped, type Product, type ProductSpec, type LaunchReport } from "./types";
 
 const DEFAULT_STATE_DIR = path.join(
   process.cwd(),
@@ -51,8 +51,11 @@ async function loadProduct(
     return null;
   }
 
-  if (launch.status !== "FULLY_SHIPPED") return null;
+  if (!isShipped(launch.status)) return null;
   if (spec.compliance_verdict !== "PASS") return null;
+  if (!spec.name || !spec.summary || typeof spec.price_usd !== "number") {
+    return null;
+  }
 
   return { slug, spec, launch };
 }

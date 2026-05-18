@@ -5,9 +5,9 @@ import { listProducts, getProduct } from "./products";
 const FIXTURES = path.join(__dirname, "__fixtures__");
 
 describe("listProducts", () => {
-  it("returns only FULLY_SHIPPED + compliance_verdict=PASS products", async () => {
+  it("returns only shipped + compliance_verdict=PASS products", async () => {
     const products = await listProducts(FIXTURES);
-    expect(products.map((p) => p.slug)).toEqual(["passing"]);
+    expect(products.map((p) => p.slug)).toEqual(["passing", "shipped-stripe-only"]);
   });
 
   it("sorts by spec.created descending", async () => {
@@ -41,5 +41,12 @@ describe("getProduct", () => {
   it("returns null for a nonexistent slug", async () => {
     const product = await getProduct("does-not-exist", FIXTURES);
     expect(product).toBeNull();
+  });
+
+  it("returns a STRIPE_ONLY product without gumroad URL", async () => {
+    const product = await getProduct("shipped-stripe-only", FIXTURES);
+    expect(product).not.toBeNull();
+    expect(product!.launch.status).toBe("STRIPE_ONLY");
+    expect(product!.launch.gumroad_listing_url).toBeUndefined();
   });
 });

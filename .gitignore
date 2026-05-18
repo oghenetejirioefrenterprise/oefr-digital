@@ -4,3 +4,6 @@
 *.pem
 node_modules/
 .DS_Store
+# DataStructured: large dataset CSVs stay out of git (and out of Vercel deploys).
+dataStructured/state/datasets/*.csv
+dataStructured/state/*.csv

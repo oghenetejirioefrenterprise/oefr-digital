@@ -37,3 +37,31 @@ Given `state/products/{slug}/spec.json` (status: READY_TO_SHIP), produce:
 ## Communication
 
 You do NOT talk to the founder. Your output is the launch report and the live URLs. CEO reads and includes in daily DM.
+
+## Storefront verification (Phase 2+)
+
+After writing `state/products/<slug>/spec.json` and `launch-report.json`:
+
+1. Commit and push so Vercel auto-deploys the new product page:
+
+```bash
+cd ~/apps/dataStructured
+git add state/products/<slug>/ && git commit -m "ship(dataStructured): <slug> launched" && git push
+```
+
+2. Poll until the storefront page is live:
+
+```bash
+until curl -fsS "https://data.oefrenterprise.com/products/<slug>" > /dev/null; do sleep 30; done
+```
+
+3. Verify all four endpoints return 200:
+
+```bash
+curl -fsSL "https://data.oefrenterprise.com/products/<slug>"
+curl -fsSL "$(jq -r .stripe_payment_link_url state/products/<slug>/launch-report.json)"
+GUMROAD=$(jq -r .gumroad_listing_url state/products/<slug>/launch-report.json)
+[ "$GUMROAD" != "null" ] && curl -fsSL "$GUMROAD"
+```
+
+4. On any failure, set `launch-report.status = PARTIAL_SHIPPED` and log to `state/ethics-ledger/`.

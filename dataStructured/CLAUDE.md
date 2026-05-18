@@ -60,6 +60,23 @@ pytest
 trinity stop
 ```
 
+## Storefront (Phase 2 sub-project 1)
+
+Public site at https://data.oefrenterprise.com — Next.js 14 App Router at `~/apps/dataStructured/site/`. Reads `state/products/*/spec.json` + `launch-report.json` at build time. Filters on `compliance_verdict === "PASS"` AND `status === "FULLY_SHIPPED"`. Engineer agent's shipping flow now includes a `git push` step to trigger Vercel auto-deploy of new product pages.
+
+```bash
+# Local dev
+cd ~/apps/dataStructured/site
+npm install
+npm run dev  # → http://localhost:3501
+
+# Tests
+npm test
+
+# Deploy (usually auto on git push; manual override available)
+vercel --prod
+```
+
 ## Reference docs
 
 - `docs/superpowers/specs/2026-05-04-datastructured-design.md` — v1 design spec

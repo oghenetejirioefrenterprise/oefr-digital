@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "draft",
+  "created": "2026-05-04T21:25:00Z",
+  "created_by": "engineer",
+  "status": "DRAFT",
+  "summary": "not live",
+  "stripe_product_id": "prod_DRAFT",
+  "stripe_price_id": "price_DRAFT",
+  "stripe_payment_link_url": "https://example.com/buy/draft",
+  "smoke_test": { "passed": false, "checked_at": "2026-05-04T21:24:00Z" },
+  "spec_file": "ignored"
+}

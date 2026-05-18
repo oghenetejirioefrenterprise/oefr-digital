@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "passing",
+  "created": "2026-05-04T21:25:00Z",
+  "created_by": "engineer",
+  "status": "FULLY_SHIPPED",
+  "summary": "live",
+  "stripe_product_id": "prod_PASS",
+  "stripe_price_id": "price_PASS",
+  "stripe_payment_link_url": "https://example.com/buy/passing",
+  "smoke_test": { "passed": true, "checked_at": "2026-05-04T21:24:00Z" },
+  "spec_file": "ignored",
+  "gumroad_listing_url": "https://example.com/gumroad/passing"
+}

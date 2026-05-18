@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "passing",
+  "created": "2026-05-04T19:10:00-04:00",
+  "created_by": "ceo",
+  "status": "READY_TO_SHIP",
+  "name": "Passing Product",
+  "summary": "Should appear",
+  "format": "one_time",
+  "deliverable": "csv",
+  "price_usd": 39,
+  "bonus_stack": ["bonus a"],
+  "dataset_file": "n/a",
+  "ethics_ledger": "n/a",
+  "audience": "test buyers",
+  "stripe_product_prefix": "test_",
+  "channels": ["stripe_payment_link"],
+  "compliance_verdict": "PASS",
+  "compliance_audited_at": "2026-05-04T19:10:00-04:00",
+  "row_count": 100,
+  "source": "test source"
+}

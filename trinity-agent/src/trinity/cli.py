@@ -7,6 +7,7 @@ import logging
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 
@@ -73,9 +74,9 @@ def main():
                         help="Migrate from OpenClaw")
 
     # ── start ─────────────────────────────────────────────
-    p_start = sub.add_parser("start", help="Start Telegram bot + scheduler")
+    p_start = sub.add_parser("start", help="Start Telegram bot + scheduler (add --daemon to run in background)")
     p_start.add_argument("--daemon", action="store_true",
-                         help="Run in background")
+                         help="Run in background (detach from terminal)")
 
     # ── stop ──────────────────────────────────────────────
     sub.add_parser("stop", help="Stop a running daemon")
@@ -120,10 +121,32 @@ def main():
     p_mem_search = mem_sub.add_parser("search", help="Search memories")
     p_mem_search.add_argument("query", help="Search term")
     mem_sub.add_parser("stats", help="Memory statistics")
+    p_mem_cleanup = mem_sub.add_parser(
+        "cleanup",
+        help="Find and optionally delete stale/superseded/duplicate memories",
+    )
+    p_mem_cleanup.add_argument(
+        "--dry-run", action="store_true",
+        help="Don't delete; just report what would be deleted",
+    )
+    p_mem_cleanup.add_argument(
+        "--stale-days", type=int, default=30,
+        help="Threshold for considering a memory stale (default: 30)",
+    )
 
     # ── knowledge ─────────────────────────────────────────
     p_kb = sub.add_parser("knowledge", help="Knowledge base operations")
     p_kb.add_argument("args", nargs="*", help="Knowledge CLI arguments")
+
+    # ── workspaces ───────────────────────────────────────
+    p_ws = sub.add_parser("workspaces", help="Cross-workspace registry for the memory agent")
+    ws_sub = p_ws.add_subparsers(dest="workspaces_cmd")
+    ws_sub.add_parser("list", help="List registered workspaces")
+    ws_sub.add_parser("rescan", help="Rescan ~/apps for workspaces and refresh the registry")
+
+    # ── board (kanban) ───────────────────────────────────
+    from trinity.kanban.cli import add_subparser as _add_board
+    _add_board(sub)
 
     # ── plugins ──────────────────────────────────────────
     p_plug = sub.add_parser("plugins", help="Plugin inspection")
@@ -176,8 +199,13 @@ def main():
         cmd_memory(workspace, args)
     elif args.command == "knowledge":
         cmd_knowledge(workspace, args)
+    elif args.command == "workspaces":
+        cmd_workspaces(workspace, args)
     elif args.command == "plugins":
         _run_plugins(args)
+    elif args.command == "board":
+        from trinity.kanban.cli import dispatch as _board_dispatch
+        _board_dispatch(workspace, args)
     else:
         parser.print_help()
 
@@ -444,9 +472,43 @@ def cmd_start(workspace: Path, daemon: bool = False):
     scheduler = Scheduler(config, run_cycle)
     scheduler.start()
 
+    # Start commitments runtime if Telegram is configured.
+    commitments_runtime = None
+    token = config.telegram.get_bot_token()
+    if token:
+        from trinity.commitments.runtime import CommitmentsRuntime
+        from trinity.telegram.api import TelegramAPI
+        commitments_runtime = CommitmentsRuntime(
+            trinity_dir=config.trinity_dir,
+            api=TelegramAPI(token),
+            poll_interval_seconds=60,
+        )
+        commitments_runtime.start()
+
     if config.telegram.get_bot_token():
         print(f"Starting Trinity in {workspace}")
-        run_bot(config, handle_message)
+        # Supervisor loop: restart run_bot on unhandled exceptions with
+        # exponential backoff. SIGTERM/SIGINT exit cleanly via the signal
+        # handler inside run_bot (sets running=False, returns normally).
+        import logging as _logging
+        _log = _logging.getLogger("trinity.cli")
+        restart_count = 0
+        while True:
+            try:
+                run_bot(config, handle_message)
+                _log.info("run_bot returned cleanly — exiting supervisor")
+                break
+            except KeyboardInterrupt:
+                _log.info("Supervisor: KeyboardInterrupt — exiting")
+                break
+            except Exception:
+                restart_count += 1
+                wait = min(5 * (2 ** (restart_count - 1)), 120)
+                _log.exception(
+                    "Supervisor: run_bot crashed (restart %d) — retrying in %ds",
+                    restart_count, wait,
+                )
+                time.sleep(wait)
     else:
         print("No Telegram bot token configured.")
         if config.scheduler.enabled:
@@ -544,6 +606,7 @@ def cmd_run(workspace: Path, task: str, employee: str | None):
 
 def cmd_status(workspace: Path):
     """Show current state."""
+    _load_dotenv(workspace)
     from trinity.config import load_config
     config = load_config(workspace)
 
@@ -678,8 +741,19 @@ def cmd_memory(workspace: Path, args):
         print(f"Total: {len(memories)}")
         print(f"By tier: {tiers}")
         print(f"By segment: {segments}")
+
+    elif args.memory_cmd == "cleanup":
+        from trinity.memory.cleanup import run_cleanup
+        summary = run_cleanup(
+            config.trinity_dir / "memory",
+            dry_run=args.dry_run,
+            stale_days=args.stale_days,
+        )
+        print("Memory cleanup summary:")
+        for k, v in summary.items():
+            print(f"  {k}: {v}")
     else:
-        print("Usage: trinity memory [search|stats]")
+        print("Usage: trinity memory [search|stats|cleanup]")
 
 
 def cmd_knowledge(workspace: Path, args):
@@ -689,6 +763,33 @@ def cmd_knowledge(workspace: Path, args):
     sys.argv = ["trinity-knowledge"] + (args.args or [])
     from trinity.knowledge.cli import main as kb_main
     kb_main()
+
+
+def cmd_workspaces(workspace: Path, args):
+    """Show or refresh the cross-workspace registry."""
+    from trinity.workspaces import list_workspaces, rescan
+
+    sub = getattr(args, "workspaces_cmd", None) or "list"
+
+    if sub == "rescan":
+        reg = rescan(current=workspace)
+        print(f"Rescanned ~/apps — {len(reg)} workspace(s) registered (excluding current).")
+        sub = "list"
+
+    if sub == "list":
+        reg = list_workspaces(current=workspace)
+        if not reg:
+            print("No other workspaces registered. Run `trinity workspaces rescan` to discover them.")
+            return
+        print(f"Registered workspaces (excluding current: {workspace.name}):\n")
+        for name, info in reg.items():
+            company = info.get("company", "(no company)")
+            path = info.get("path", "?")
+            last = info.get("last_seen", "?")
+            print(f"  • {name}")
+            print(f"      company:   {company}")
+            print(f"      path:      {path}")
+            print(f"      last seen: {last}\n")
 
 
 def _run_plugins(args):

@@ -182,3 +182,10 @@ employee = "ceo"
 report_to = ""                     # silent; writes snapshot files for next-day agents
 type = "system"
 task = "Run nightly reputation snapshot generation. Execute: source ~/.profile && /home/oghenetejiri/venvs/oefr/bin/python scripts/reputation_snapshot.py. Then exit. This regenerates state/reputations/{researcher,product-manager,compliance-officer}.json from production sales + compliance data so those agents can self-improve on the next cycle."
+
+[scheduler.cycles.memory_cleanup]
+schedule = "0 2 * * 0"             # Sundays at 2:00 AM — quiet time
+employee = "ceo"
+report_to = ""
+type = "system"
+task = "Weekly memory cleanup. Execute: /home/oghenetejiri/venvs/oefr/bin/trinity memory cleanup --stale-days 60. Report summary counts (scanned, stale, superseded, duplicates_to_merge, deleted)."

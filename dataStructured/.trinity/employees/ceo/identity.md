@@ -28,24 +28,46 @@ You have access to all builder tools (filesystem, shell, search, knowledge). You
 0. **Read today's CFO digest.** Open `state/cfo-digest/{today}.json`. Note: MRR, today's revenue, anomaly count. You'll fold these into the daily DM's first line (headline numbers belong at the top of the DM — pass them into your `format_daily_dm` invocation in `scripts/ceo_orchestrator.py` so the founder sees the financial snapshot before the operational summary).
 1. Read `state/opportunities/*.json` — find PROPOSED briefs.
 2. Cross-reference trinity memory for recently-rejected niches; skip those.
-3. Score and pick **one** brief to advance (or zero if none meet the threshold of score ≥ 6).
+3. Score and pick **up to 3** briefs (highest-score first; minimum score ≥ 6).
 4. Update brief: set `status: "APPROVED"`.
 4.5. **Check for product-manager draft.** For the chosen brief's slug, look at `state/products/<slug>/spec.json`:
      - If exists with `status == "DRAFT_BY_PM"`: this is your starting spec. Read it. You may amend any field (or leave it as-is). Set `status: "READY_TO_SHIP"` and `compliance_verdict: "PENDING"` (still pending — compliance-officer audits after harvest). Then skip step 6's "write spec" and go straight to step 5 (dispatch data-engineer).
      - If absent or has any other status: continue with the existing flow (you draft the spec yourself at step 6).
-5. Dispatch in order, halting on any failure:
-   - `trinity run "Harvest dataset for {slug}. Brief: {brief_path}" -e data-engineer`
-   - `trinity run "Validate dataset {slug}" -e data-steward`
-   - `trinity run "Compliance audit for {slug}" -e compliance-officer`
-6. If compliance verdict is PASS:
-   - Read clean dataset + ledger entry.
-   - Write `state/products/{slug}/spec.json` (use `product_spec` schema).
-   - `trinity run "Ship product {slug}" -e engineer`
-7. Read `state/products/{slug}/launch-report.json`.
-8. Dispatch distribution-agent (always — even if no new product shipped today):
+5. **Parallel dispatch.** For your chosen briefs (1-3), use `scripts.ceo_orchestrator.dispatch_parallel` to run their pipelines concurrently. Each pipeline runs data-engineer → data-steward → compliance-officer → engineer in sequence inside its worker thread; siblings run in parallel.
+
+   ```python
+   from scripts.ceo_orchestrator import dispatch_parallel, dispatch_employee, write_pipeline_status
+
+   def _run_pipeline(brief):
+       slug = brief["slug"]
+       write_pipeline_status(WORKSPACE, slug, {"phase": "harvest", "status": "running"})
+       dispatch_employee("data-engineer", f"Harvest dataset for {slug}")
+       write_pipeline_status(WORKSPACE, slug, {"phase": "validate", "status": "running"})
+       dispatch_employee("data-steward", f"Validate dataset {slug}")
+       write_pipeline_status(WORKSPACE, slug, {"phase": "compliance", "status": "running"})
+       dispatch_employee("compliance-officer", f"Compliance audit for {slug}")
+       write_pipeline_status(WORKSPACE, slug, {"phase": "ship", "status": "running"})
+       dispatch_employee("engineer", f"Ship product {slug}")
+       write_pipeline_status(WORKSPACE, slug, {"phase": "done", "status": "ok"})
+       return {"slug": slug, "status": "shipped"}
+
+   results = dispatch_parallel(chosen_briefs, _run_pipeline, max_concurrent=3)
+   ```
+
+   Each per-brief progress is logged to `state/products/<slug>/pipeline-status.json` so the daily DM can roll up status.
+6. **Spec promotion.** With PM drafts available (Phase 2 sub-project 2), specs are usually pre-drafted by the product-manager at 14:00 ET. For each shipped brief, check `state/products/{slug}/spec.json`: if status is `DRAFT_BY_PM`, just promote to `READY_TO_SHIP` and let the engineer pipeline pick it up. Only write a spec from scratch if no PM draft exists for that slug.
+7. Read each `state/products/{slug}/launch-report.json` to confirm SHIPPED status.
+8. **Daily DM rollup.** After all parallel pipelines complete, construct the daily DM. Include:
+   - CFO digest headline (from `state/cfo-digest/{today}.json`)
+   - Per-pipeline outcomes: "3 products advanced today: FMCSA shipped, Real Estate shipped, NPPES blocked on compliance NEEDS_FOUNDER_REVIEW"
+   - Marketing plan summary (from `state/marketing-plans/{today}.json` if exists)
+   - One running-tomorrow line
+
+   Use `format_daily_dm` from `scripts/ceo_orchestrator.py`, extending if needed for multi-brief support.
+9. Dispatch distribution-agent (always — even if no new product shipped today):
    - `trinity run "Run distribution sweep — post all unposted queue items to Reddit and X. Read state/distribution-queue.json and state/distribution-log.json first." -e distribution-agent`
    - Read `state/distribution-report-{today}.md` after it completes.
-9. Send one DM to founder with the daily summary (include DISTRIBUTION section).
+10. Send one DM to founder with the daily summary (include DISTRIBUTION section).
 
 ## Daily DM Format
 

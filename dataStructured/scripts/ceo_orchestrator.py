@@ -1,6 +1,8 @@
 """CEO orchestration helpers — dispatch downstream employees as subprocesses."""
+import concurrent.futures
 import subprocess
 from pathlib import Path
+from typing import Callable
 
 WORKSPACE = Path(__file__).resolve().parents[1]
 
@@ -99,3 +101,45 @@ def format_daily_dm(
         f"- {running_tomorrow}\n\n"
         f"CYCLE COST: {cycle_cost_tokens:,} tokens\n"
     )
+
+
+def dispatch_parallel(briefs: list[dict], runner: Callable[[dict], dict], max_concurrent: int = 3) -> list[dict]:
+    """Run `runner(brief)` for each brief concurrently, bounded by max_concurrent.
+
+    Each runner invocation returns a result dict; this returns the list of results
+    in the same order as `briefs`. Exceptions are caught per-brief and embedded
+    in the result dict so one brief's failure doesn't cancel siblings.
+    """
+    results: list[dict | None] = [None] * len(briefs)
+
+    def _worker(index: int, brief: dict) -> tuple[int, dict]:
+        try:
+            return index, runner(brief)
+        except Exception as exc:
+            return index, {
+                "slug": brief.get("slug"),
+                "status": "error",
+                "error": f"{type(exc).__name__}: {exc}",
+            }
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_concurrent) as pool:
+        futures = [pool.submit(_worker, i, b) for i, b in enumerate(briefs)]
+        for fut in concurrent.futures.as_completed(futures):
+            i, r = fut.result()
+            results[i] = r
+
+    return [r for r in results if r is not None]
+
+
+def write_pipeline_status(workspace: Path, slug: str, status: dict) -> None:
+    """Write a per-product pipeline-status snapshot under state/products/<slug>/."""
+    path = workspace / "state" / "products" / slug / "pipeline-status.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    import json
+    from datetime import datetime, timezone
+    payload = {
+        **status,
+        "slug": slug,
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }
+    path.write_text(json.dumps(payload, indent=2) + "\n")

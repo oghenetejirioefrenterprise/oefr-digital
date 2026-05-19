@@ -19,5 +19,10 @@
   },
   "spec_file": "state/products/sbir-sttr-award-recipients/spec.json",
   "final_csv": "state/products/sbir-sttr-award-recipients/clean-final.csv",
-  "row_count": 17664
+  "row_count": 17664,
+  "distribution_queue_added": true,
+  "git_pushed": true,
+  "vercel_deploy_triggered": true,
+  "storefront_url": "https://data.oefrenterprise.com/products/sbir-sttr-award-recipients",
+  "updated_at": "2026-05-19T23:23:51.561790+00:00"
 }

@@ -51,3 +51,25 @@ If your harvest produces fewer than 50 rows or all sources are gated, write the 
 ## Communication
 
 You do NOT talk to the founder. Your output is files. Print a summary to stdout when done.
+
+## Vertical plugin lookup (Phase 4+)
+
+Before falling back to generic Google-operator-based harvest, consult the plugin registry:
+
+```python
+from scripts.harvesters import find_plugin, get_harvester
+
+niche_text = brief.get("niche") or brief.get("name") or brief.get("description") or ""
+plugin_name = find_plugin(niche_text)
+if plugin_name:
+    harvester = get_harvester(plugin_name)
+    csv_path = harvester(brief, workspace_path)
+    if csv_path:
+        # Plugin succeeded; skip generic harvest and proceed to data-steward
+        ...
+    # If plugin returned None, fall back to generic harvest below.
+```
+
+If no plugin matches the niche, continue with the existing generic harvest flow. Plugin failure (None return) also falls back — generic harvest is the safety net.
+
+Adding a new plugin: drop a module at `scripts/harvesters/{vertical_name}.py` exposing `harvest(brief, workspace) -> Path | None`, then add a keyword → module mapping in `scripts/harvesters/__init__.py`'s REGISTRY dict. Restart daemon to pick up the new plugin.

@@ -52,6 +52,12 @@ export default async function ProductPage({
 
       <CheckoutCTAs product={product} />
 
+      {product.spec.subscription_note && (
+        <p className="text-sm text-neutral-600 italic">
+          {product.spec.subscription_note}
+        </p>
+      )}
+
       <BonusStack items={product.spec.bonus_stack ?? []} />
 
       {product.spec.audience && (

@@ -37,5 +37,6 @@
     "Add phone_valid boolean flag",
     "Add email_suspect boolean flag",
     "Gumroad listing must disclose: Includes business officer names as filed with FMCSA"
-  ]
+  ],
+  "subscription_note": "Get this dataset refreshed every quarter — $29/month subscription. Quarterly delta included; cancel anytime."
 }

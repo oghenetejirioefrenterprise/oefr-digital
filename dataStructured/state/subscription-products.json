@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "products": {
+    "new-fmcsa-carrier-leads-2026-05": {
+      "stripe_subscription_product_id": "prod_UXiC96yE3q2eFA",
+      "stripe_subscription_price_id": "price_1TYclp3H4Cmk8ulCP5zh8fev",
+      "stripe_subscription_payment_link_url": "https://buy.stripe.com/dRmcMY9X91Qz7iP2mG7IY0x",
+      "monthly_price_usd": 29,
+      "refresh_cadence_days": 90,
+      "next_refresh_due": "2026-08-17"
+    }
+  }
+}

@@ -17,6 +17,14 @@ export function CheckoutCTAs({ product }: { product: Product }) {
           Or buy on Gumroad
         </a>
       )}
+      {product.launch.stripe_subscription_payment_link_url && (
+        <a
+          href={product.launch.stripe_subscription_payment_link_url}
+          className="inline-flex items-center justify-center rounded-md border border-dashed border-neutral-400 px-6 py-3 text-sm font-medium text-neutral-600 hover:border-neutral-900 hover:text-neutral-900"
+        >
+          Or subscribe for quarterly refresh
+        </a>
+      )}
     </div>
   );
 }

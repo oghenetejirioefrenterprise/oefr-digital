@@ -48,6 +48,7 @@ export interface ProductSpec {
     price: number;
     [k: string]: unknown;
   };
+  subscription_note?: string;
 }
 
 export interface LaunchReport {
@@ -69,6 +70,9 @@ export interface LaunchReport {
   gumroad_listing_url?: string;
   gumroad_product_id?: string;
   gumroad_deployed_at?: string;
+  stripe_subscription_product_id?: string;
+  stripe_subscription_price_id?: string;
+  stripe_subscription_payment_link_url?: string;
 }
 
 export interface Product {

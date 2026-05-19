@@ -4,8 +4,8 @@
   "slug": "new-fmcsa-carrier-leads-2026-05",
   "created": "2026-05-04T21:25:00Z",
   "created_by": "engineer",
-  "status": "SHIPPED",
-  "summary": "Live on Stripe. Asset hosted on GitHub Gist. Smoke test green (HTTP 200, Stripe Checkout). Gumroad mirror deferred — engineer subprocess crashed in claude_agent_sdk bundled CLI after Stripe steps completed; Stripe + asset upload were already done at the crash point.",
+  "status": "FULLY_SHIPPED",
+  "summary": "Live on Stripe. Asset hosted on GitHub Gist. Smoke test green (HTTP 200, Stripe Checkout). Gumroad mirror deferred \u2014 engineer subprocess crashed in claude_agent_sdk bundled CLI after Stripe steps completed; Stripe + asset upload were already done at the crash point.",
   "stripe_product_id": "prod_USSVCrAN5alZvt",
   "stripe_price_id": "price_1TTXaX3H4Cmk8ulCiFIww482",
   "stripe_payment_link_url": "https://buy.stripe.com/cNi14g4CP7aT8mT1iC7IY0c",
@@ -13,5 +13,11 @@
     "passed": true,
     "checked_at": "2026-05-04T21:24:00Z"
   },
-  "spec_file": "state/products/new-fmcsa-carrier-leads-2026-05/spec.json"
+  "spec_file": "state/products/new-fmcsa-carrier-leads-2026-05/spec.json",
+  "gumroad_listing_url": "https://3563705146415.gumroad.com/l/bvdnbx",
+  "gumroad_product_id": "YVdLqRyZvesLozI1y7vuog==",
+  "gumroad_deployed_at": "2026-05-05T02:12:43Z",
+  "stripe_subscription_product_id": "prod_UXiC96yE3q2eFA",
+  "stripe_subscription_price_id": "price_1TYclp3H4Cmk8ulCP5zh8fev",
+  "stripe_subscription_payment_link_url": "https://buy.stripe.com/dRmcMY9X91Qz7iP2mG7IY0x"
 }

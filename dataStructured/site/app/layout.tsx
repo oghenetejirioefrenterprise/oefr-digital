@@ -33,12 +33,20 @@ export default function RootLayout({
             <a href="/" className="text-lg font-semibold tracking-tight">
               DataStructured
             </a>
-            <a
-              href="/about"
-              className="text-sm text-neutral-600 hover:text-neutral-900"
-            >
-              About
-            </a>
+            <div className="flex items-center gap-6">
+              <a
+                href="/blog"
+                className="text-sm text-neutral-600 hover:text-neutral-900"
+              >
+                Blog
+              </a>
+              <a
+                href="/about"
+                className="text-sm text-neutral-600 hover:text-neutral-900"
+              >
+                About
+              </a>
+            </div>
           </nav>
         </header>
         <main className="mx-auto max-w-5xl px-6 py-12">{children}</main>

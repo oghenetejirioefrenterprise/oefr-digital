@@ -94,6 +94,10 @@ model = ""
 title = "Marketing Lead"
 model = ""
 
+[employees.seo-operator]
+title = "SEO Operator"
+model = ""
+
 [employees.distribution-agent]
 title = "Distribution Agent"
 model = ""
@@ -153,3 +157,10 @@ employee = "marketing-lead"
 report_to = ""                     # routes to marketing_reports channel
 type = "research"
 task = "Draft today's marketing plan. Invoke scripts/marketing_plan.py to read distribution-queue + distribution-log, pick top 3 unposted items, select best channel per item (niche-match override or round-robin), draft channel-specific content via distribution_draft, write to state/marketing-plans/{today}.json, route summary to marketing_reports Telegram channel."
+
+[scheduler.cycles.seo_publish]
+schedule = "0 8 * * 2,5"           # 8:00 AM Tue + Fri — twice weekly cadence
+employee = "seo-operator"
+report_to = ""                     # routes to marketing_reports channel
+type = "research"
+task = "Publish today's SEO post. Invoke scripts/seo_publish.py to pick an uncovered (product, content_type) pair, draft a 1000-1200-word post, write to state/blog/posts/{today}-{slug}.md, route summary to marketing_reports Telegram channel."

@@ -11,9 +11,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "next": "14.2.15",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-markdown": "^10.1.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@types/node": "20.14.10",

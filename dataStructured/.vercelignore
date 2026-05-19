@@ -36,3 +36,8 @@ trinity.toml
 pyproject.toml
 validate_dataset.py
 *.sh
+
+# Allowlist: blog post markdown is required by site/lib/blog.ts at build time.
+!state/blog/
+!state/blog/posts/
+!state/blog/posts/*.md

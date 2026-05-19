@@ -5,23 +5,23 @@
   "created": "2026-05-19T14:30:00-04:00",
   "created_by": "product-manager",
   "status": "READY_TO_SHIP",
-  "name": "SBIR/STTR Federal R&D Award Database FY2023-2025 — 17,664 Awards ($13.71B Funding) — CSV",
-  "summary": "Every Small Business Innovation Research and Small Business Technology Transfer award from all 11 federal agencies (DoD, NIH, NSF, DOE, NASA, USDA, DHS, ED, EPA, HHS, USDT) covering fiscal years 2023-2025. 17,664 awards totaling $13.71 billion in federal R&D funding, with complete company details, award amounts, program phase (I/II/IIB), technology areas, project abstracts, and contract numbers. The same dataset that GovWin IQ charges $10,000+/year to access, packaged as a one-time $59 CSV download — direct from SBIR.gov public data portal.",
+  "name": "SBIR/STTR Federal R&D Award Database FY2023-2025 \u2014 17,664 Awards ($13.71B Funding) \u2014 CSV",
+  "summary": "Every Small Business Innovation Research and Small Business Technology Transfer award from all 11 federal agencies (DoD, NIH, NSF, DOE, NASA, USDA, DHS, ED, EPA, HHS, USDT) covering fiscal years 2023-2025. 17,664 awards totaling $13.71 billion in federal R&D funding, with complete company details, award amounts, program phase (I/II/IIB), technology areas, project abstracts, and contract numbers. The same dataset that GovWin IQ charges $10,000+/year to access, packaged as a one-time $59 CSV download \u2014 direct from SBIR.gov public data portal.",
   "format": "one_time",
   "deliverable": "csv",
   "price_usd": 59,
   "row_count": 17664,
   "source": "SBIR.gov / data.sbir.gov bulk data portal",
   "bonus_stack": [
-    "Award abstracts (100-500 words) for every project — understand the technology and R&D focus before outreach",
-    "Phase I/II/IIB classification — target Phase I companies for consulting, Phase II winners for teaming/M&A",
-    "Agency component breakdown (DARPA, NCI, Army, Air Force, etc.) — filter beyond top-level agency to specific program offices",
-    "Technology topic codes + topic titles — machine learning, quantum computing, advanced materials, biotech by SBIR topic taxonomy",
-    "FY2023-2025 recency — the most recent 3 fiscal years, not a decade-old archive",
-    "Solicitation numbers cross-referenced — trace awards back to original SBIR/STTR solicitation topics for context"
+    "Award abstracts (100-500 words) for every project \u2014 understand the technology and R&D focus before outreach",
+    "Phase I/II/IIB classification \u2014 target Phase I companies for consulting, Phase II winners for teaming/M&A",
+    "Agency component breakdown (DARPA, NCI, Army, Air Force, etc.) \u2014 filter beyond top-level agency to specific program offices",
+    "Technology topic codes + topic titles \u2014 machine learning, quantum computing, advanced materials, biotech by SBIR topic taxonomy",
+    "FY2023-2025 recency \u2014 the most recent 3 fiscal years, not a decade-old archive",
+    "Solicitation numbers cross-referenced \u2014 trace awards back to original SBIR/STTR solicitation topics for context"
   ],
   "audience": "Defense prime contractors and mid-tier integrators sourcing SBIR Phase II awardees as teaming partners for large program bids (Lockheed, Raytheon, Leidos tier-2 BD teams need SBIR pipelines for small business subcontracting goals). Early-stage deep-tech venture capital firms tracking DoD, NIH, DARPA, and DOE SBIR awardees as pre-revenue deal flow (federally validated startups with non-dilutive capital reduce seed-stage risk). SBIR/STTR proposal consultants prospecting for Phase II preparation engagements (companies that just won Phase I awards in Q4 2024 or Q1 2025 will need Phase II proposal help in 2025-2026, generating $15K-$50K consulting contracts per client).",
-  "format_rationale": "One-time purchase makes sense because this is a point-in-time snapshot of FY2023-2025 awards — the dataset doesn't change after fiscal year close, unlike license databases that renew quarterly. Buyers need the full 36K award history for pipeline building and backfill analysis, not real-time award alerts (which SBIR.gov already provides for free via RSS). A subscription model would only make sense for monthly award refreshes, but federal SBIR award cycles operate on annual fiscal year boundaries, not monthly.",
+  "format_rationale": "One-time purchase makes sense because this is a point-in-time snapshot of FY2023-2025 awards \u2014 the dataset doesn't change after fiscal year close, unlike license databases that renew quarterly. Buyers need the full 36K award history for pipeline building and backfill analysis, not real-time award alerts (which SBIR.gov already provides for free via RSS). A subscription model would only make sense for monthly award refreshes, but federal SBIR award cycles operate on annual fiscal year boundaries, not monthly.",
   "pricing_rationale": "GovWin IQ charges $10,000+/year for SBIR intelligence (per evidence in brief). Bloomberg Government bundles SBIR tracking into $15,000+/year subscriptions. Solo SBIR consultants and mid-tier defense BD teams cannot access enterprise pricing but desperately need awardee lists for prospecting. At $59 one-time, this delivers 169x-254x cost savings vs. annual enterprise subscriptions, while targeting the exact same public dataset. Price anchors to 36K rows (falling between the $39 tier for 10K rows and $79 tier for 50K+ rows per pricing guidance), with a premium for high-value B2B audience (defense primes, VCs, consultants with $10K-$100K+ deal sizes).",
   "stripe_product_prefix": "dsl_",
   "channels": [
@@ -31,5 +31,8 @@
   "compliance_verdict": "PASS_WITH_REDACTION",
   "compliance_audited_at": "2026-05-19T19:45:00-04:00",
   "compliance_notes": "PASS_WITH_REDACTION: Remove 1 row (14917) containing personal Gmail. All other flagged contacts are business/institutional emails (acceptable as professional contact info per B2B data standards). Final dataset: 17,664 awards. Redaction documented in COMPLIANCE_VERDICT.md.",
-  "row_count_final": 17664
+  "row_count_final": 17664,
+  "stripe_product_id": "prod_UY36fWtmsgBOIY",
+  "stripe_price_id": "price_1TYx0T3H4Cmk8ulCixipJbKV",
+  "stripe_payment_link": "https://buy.stripe.com/eVq14g0mz0Mv46Df9s7IY0z"
 }

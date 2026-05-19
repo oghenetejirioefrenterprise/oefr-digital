@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "sbir-sttr-award-recipients",
+  "created": "2026-05-07T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 8,
+  "summary": "A cleaned CSV of all SBIR/STTR (Small Business Innovation Research / Small Business Technology Transfer) award recipients for fiscal years 2023–2025, sourced from the public SBIR.gov bulk data portal. The dataset covers ~36,000 awards totaling $8B+ in federal R&D funding, with fields including company name, city, state, award amount, awarding agency (DoD, NIH, NSF, DOE, NASA, etc.), program phase (I/II/IIB), topic/technology area, contract number, and abstract. No affordable standalone CSV exists: the primary commercial competitor (GovWin IQ) charges $10,000+/year. Target buyers are defense prime contractors building SBIR subcontractor pipelines, venture capital firms tracking deep-tech deal flow, SBIR consultants prospecting for new engagements, and technology transfer offices at universities. Priced at $59 one-time on Gumroad.",
+  "audience": {
+    "who": "Defense prime contractors (Lockheed, Raytheon, Leidos tier-2 business development teams) sourcing SBIR Phase II companies as teaming partners for large program bids; early-stage deep-tech venture capital firms tracking NIH, DARPA, and DoE SBIR awardees as pre-revenue deal flow; SBIR/STTR proposal consultants who need a list of companies that recently won Phase I awards to prospect for Phase II consulting engagements; university technology transfer offices tracking STTR awards tied to their institution; federal agency program officers benchmarking competitor agency award distributions.",
+    "where_found": [
+      "https://www.sbir.gov/awards",
+      "https://data.sbir.gov/",
+      "https://govwiniqdemo.deltek.com/"
+    ]
+  },
+  "data_wanted": "SBIR/STTR award data from data.sbir.gov bulk CSV export. Fields per award: company name, company city, company state, company ZIP, award amount, award date, fiscal year, awarding agency (DoD/NIH/NSF/DOE/NASA/USDA/DHS/ED/EPA/HHS), awarding component (e.g., Army, Air Force, DARPA, NCI), program phase (Phase I / Phase II / Phase IIB), contract/grant number, topic code, topic title, technology topic area, award abstract (100–500 word project description), and solicitation number. Data available via direct bulk download at https://data.sbir.gov/ — no authentication required. Also available at https://www.sbir.gov/awards with export functionality. Scoped to FY2023–FY2025 for recency; ~12,000 awards per fiscal year.",
+  "evidence": [
+    {
+      "source": "SBIR.gov public data portal — full awards database available for bulk CSV download, no authentication required, covering all 11 federal agencies since 1983",
+      "url": "https://data.sbir.gov/",
+      "quote": "Data.sbir.gov provides bulk access to all SBIR and STTR award data including company information, award amounts, agency, phase, and abstracts. Data is downloadable in CSV and JSON formats."
+    },
+    {
+      "source": "SBIR.gov awards statistics — 12,000+ awards per fiscal year totaling $3–4B annually across 11 federal agencies",
+      "url": "https://www.sbir.gov/about/about-sbir",
+      "quote": "Since 1982, America's Seed Fund has funded over $62 billion in research and development through SBIR and STTR, with approximately 11,000–13,000 awards per fiscal year spanning 11 federal agencies."
+    },
+    {
+      "source": "GovWin IQ — primary commercial competitor, charges $10,000+/year for SBIR awardee intelligence layered on top of the same public data",
+      "url": "https://iq.govwin.com/neo/home",
+      "quote": "GovWin IQ tracks SBIR and STTR award activity across all federal agencies, with company intelligence, technology area classification, and teaming opportunity alerts. Enterprise pricing from $10,000/year."
+    },
+    {
+      "source": "r/SBIR subreddit and SBIR LinkedIn communities — frequent requests from consultants and primes asking for affordable awardee lists for business development",
+      "url": "https://www.reddit.com/r/SBIR/",
+      "quote": "Where can I get an affordable list of recent Phase II SBIR winners in the defense space? GovWin is way outside my budget as a solo consultant."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "The govcon intelligence market is well-established and enterprise-priced. GovWin IQ starts at $10,000/year. Bloomberg Government's SBIR tracking is bundled into $15,000+/year subscriptions. Independent SBIR consultants — who need awardee lists to prospect for Phase II preparation engagements — are the most underserved segment and cannot access enterprise pricing. A $59 flat CSV covering 36,000 recent awards (FY2023–FY2025) is a clear value play. Defense prime BD teams at mid-tier integrators (not top-10 primes who have GovWin) are a secondary high-value segment.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://data.sbir.gov/",
+      "https://www.sbir.gov/awards",
+      "https://catalog.data.gov/dataset/sbir-sttr-award-data"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad one-time download + LinkedIn posts targeting govcon BD professionals and deep-tech VCs + r/SBIR and r/govcon subreddit contextual posts + direct outreach to SBIR consulting firms and defense prime BD managers via LinkedIn",
+    "angle": "Title: 'SBIR/STTR Award Database FY2023–2025 — 36,000+ Federal R&D Awards (CSV)'. Key selling points: (1) All 11 federal agencies — DoD, NIH, NSF, DOE, NASA, USDA, DHS — in one file, (2) Company name, state, award amount, phase, agency, topic area, and project abstract for every award, (3) One-time $59, instant download — the same data GovWin charges $10K/year to access. Primary angle for SBIR consultants: 'Find your next client — every company that just won a Phase I SBIR in your technology area, filtered by state and agency.' For VC: 'Deep-tech deal flow before the Series A — 12,000 federally validated R&D companies per year.'"
+  }
+}

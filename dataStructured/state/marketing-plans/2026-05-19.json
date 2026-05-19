@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "date": "2026-05-19",
+  "generated_at": "2026-05-19T02:29:17+00:00",
+  "plans": [
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "reddit",
+      "subreddit_or_handle": "r/datasets",
+      "draft": {
+        "subreddit_suggestions": [
+          "r/datasets",
+          "r/sales",
+          "r/entrepreneur"
+        ],
+        "title": "I compiled all 82,500+ federally licensed US wineries and distilleries from TTB records into a prospecting-ready CSV",
+        "body": "I've been helping a few equipment suppliers find leads in the craft beverage space and kept running into the same problem: the TTB's public registry is searchable but not exportable, and existing lists are either outdated or missing half the distilleries.\n\nSo I pulled the entire federal permit database (Alcohol and Tobacco Tax and Trade Bureau), cleaned it, and structured it for prospecting. The final dataset has 82,500+ active producers with business names, addresses, license types, and TTB permit numbers.\n\nSome things I learned building this:\n\n- There are ~11,000 wineries but over 71,000 distillery permits (craft distilling exploded post-2010)\n- Texas, California, and Florida have the highest concentration of new permits in 2025-2026\n- About 15% of records had duplicate or malformed addresses that required manual cleanup\n\nThis has been useful for:\n- Barrel brokers and cooperage suppliers prospecting wineries\n- Bottling line and packaging companies targeting small distilleries\n- POS platforms (Toast, Square, Arryved) building craft beverage verticals\n- Ingredient vendors (yeast labs, hop suppliers, grape brokers) expanding their prospect lists\n\nFull transparency: I'm selling this as a $79 CSV because it took a few weeks to compile and clean. Not trying to spam, just sharing in case it's useful for anyone doing B2B prospecting or market research in this space.\n\nLink: https://buy.stripe.com/4gM4gsd9l9j19qXf9s7IY0w\n\nHappy to answer questions about the data structure or coverage."
+      },
+      "rationale": "Reddit -> r/datasets | round-robin assignment",
+      "scheduled_for": "2026-05-19T21:00:00+00:00",
+      "requires_founder_review": false
+    },
+    {
+      "item_id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05",
+      "channel": "linkedin",
+      "subreddit_or_handle": null,
+      "draft": {
+        "text": "Bank branch consolidation has accelerated over the past decade, with over 10,000 U.S. branches closing since 2021 alone. Yet for fintech partnership teams, site-selection consultants, and municipal planners, the challenge isn't just tracking closures\u2014it's having a clean, current baseline of what's still standing.\n\nWhether you're mapping coverage gaps for a new ATM network, building a bank partnership pipeline, or analyzing branch density for commercial real estate plays, fragmented FDIC data means hours of manual work before the real analysis begins.\n\nWe just published a cleaned, geocoded directory of all 77,542 FDIC-insured U.S. bank branches as of 2026\u2014one CSV, ready to import. $49, instant download.\n\nhttps://buy.stripe.com/9B63co7P1an58mT4uO7IY0v\n\n#Fintech #BankingData #SiteSelection"
+      },
+      "rationale": "LinkedIn professional post | round-robin assignment",
+      "scheduled_for": "2026-05-19T21:00:00+00:00",
+      "requires_founder_review": false
+    }
+  ]
+}

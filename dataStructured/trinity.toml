@@ -90,6 +90,10 @@ model = ""
 title = "CFO"
 model = ""
 
+[employees.marketing-lead]
+title = "Marketing Lead"
+model = ""
+
 [employees.distribution-agent]
 title = "Distribution Agent"
 model = ""
@@ -142,3 +146,10 @@ employee = "cfo"
 report_to = ""                     # routes to financial_alerts channel directly
 type = "needle"
 task = "Run the daily CFO digest. Invoke scripts/cfo_digest.py to pull Stripe data, compute MRR / today's revenue / refunds / churn, run anomaly checks, propose pricing experiments if data warrants. Write to state/cfo-digest/{today}.json. Route anomalies + headline to financial_alerts Telegram channel."
+
+[scheduler.cycles.marketing_plan]
+schedule = "0 11 * * *"            # 11:00 AM daily — top of day, before research at 13:00
+employee = "marketing-lead"
+report_to = ""                     # routes to marketing_reports channel
+type = "research"
+task = "Draft today's marketing plan. Invoke scripts/marketing_plan.py to read distribution-queue + distribution-log, pick top 3 unposted items, select best channel per item (niche-match override or round-robin), draft channel-specific content via distribution_draft, write to state/marketing-plans/{today}.json, route summary to marketing_reports Telegram channel."

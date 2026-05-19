@@ -133,6 +133,25 @@ def main():
         "--stale-days", type=int, default=30,
         help="Threshold for considering a memory stale (default: 30)",
     )
+    # publish / pull — cross-workspace memory sharing (Phase 4 sub-project 5)
+    p_mem_publish = mem_sub.add_parser(
+        "publish",
+        help="Publish memories with matching categories to shared storage",
+    )
+    p_mem_publish.add_argument(
+        "--category", action="append",
+        help="Override config; publish only this category. Repeatable.",
+    )
+    p_mem_publish.add_argument("--dry-run", action="store_true")
+    p_mem_pull = mem_sub.add_parser(
+        "pull",
+        help="Pull shared memories from another workspace into local long-term memory",
+    )
+    p_mem_pull.add_argument(
+        "--from-workspace", required=True,
+        help="Source workspace name (must be in subscribe_to_workspaces)",
+    )
+    p_mem_pull.add_argument("--dry-run", action="store_true")
 
     # ── knowledge ─────────────────────────────────────────
     p_kb = sub.add_parser("knowledge", help="Knowledge base operations")
@@ -752,8 +771,124 @@ def cmd_memory(workspace: Path, args):
         print("Memory cleanup summary:")
         for k, v in summary.items():
             print(f"  {k}: {v}")
+
+    elif args.memory_cmd == "publish":
+        return cmd_memory_publish(workspace, args)
+
+    elif args.memory_cmd == "pull":
+        return cmd_memory_pull(workspace, args)
+
     else:
-        print("Usage: trinity memory [search|stats|cleanup]")
+        print("Usage: trinity memory [search|stats|cleanup|publish|pull]")
+
+
+def cmd_memory_publish(workspace: Path, args) -> int:
+    """Write selected memories from local memory/ to shared storage path."""
+    from trinity.config import load_config
+    import shutil
+
+    config = load_config(workspace)
+    shared_storage_raw = config.memory.shared.shared_storage_path
+    if not shared_storage_raw:
+        print("ERROR: memory.shared.shared_storage_path not configured")
+        return 1
+
+    shared_path = Path(shared_storage_raw).expanduser()
+    categories = args.category or config.memory.shared.publish_categories
+    if not categories:
+        print("ERROR: no publish categories configured or specified")
+        return 1
+
+    workspace_name = config.workspace_root.name
+    out_dir = shared_path / workspace_name
+    if not args.dry_run:
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+    memory_dir = config.trinity_dir / "memory" / "long-term"
+    count = 0
+    if memory_dir.exists():
+        for md in memory_dir.rglob("*.md"):
+            try:
+                text = md.read_text()
+            except OSError:
+                continue
+            head = text[:500]
+            matched = False
+            for category in categories:
+                if (
+                    f"type: {category}" in head
+                    or f"- {category}" in head
+                    or f"categories: [{category}" in head
+                ):
+                    matched = True
+                    break
+            if matched:
+                if not args.dry_run:
+                    dest = out_dir / md.name
+                    shutil.copy(md, dest)
+                count += 1
+
+    verb = "(dry-run) would publish" if args.dry_run else "published"
+    print(f"{verb} {count} memories to {out_dir}")
+    return 0
+
+
+def cmd_memory_pull(workspace: Path, args) -> int:
+    """Pull shared memories from another workspace into local long-term memory."""
+    from trinity.config import load_config
+
+    config = load_config(workspace)
+    shared_storage_raw = config.memory.shared.shared_storage_path
+    if not shared_storage_raw:
+        print("ERROR: memory.shared.shared_storage_path not configured")
+        return 1
+
+    src_workspace_name = args.from_workspace
+    if src_workspace_name not in config.memory.shared.subscribe_to_workspaces:
+        print(f"ERROR: {src_workspace_name} not in subscribe_to_workspaces config")
+        return 1
+
+    shared_path = Path(shared_storage_raw).expanduser()
+    src_dir = shared_path / src_workspace_name
+    if not src_dir.exists():
+        print(f"ERROR: no published memories at {src_dir}")
+        return 1
+
+    out_dir = config.trinity_dir / "memory" / "long-term"
+    if not args.dry_run:
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+    count = 0
+    for md in src_dir.glob("*.md"):
+        if not args.dry_run:
+            dest = out_dir / f"shared_{src_workspace_name}_{md.name}"
+            try:
+                text = md.read_text()
+            except OSError:
+                continue
+            if text.startswith("---\n"):
+                # Append source_workspace to existing frontmatter, before its closing ---.
+                try:
+                    end = text.index("\n---", 4)
+                    new_text = (
+                        text[:end]
+                        + f"\nsource_workspace: {src_workspace_name}"
+                        + text[end:]
+                    )
+                except ValueError:
+                    new_text = (
+                        f"---\nsource_workspace: {src_workspace_name}\n---\n\n" + text
+                    )
+            else:
+                new_text = (
+                    f"---\nsource_workspace: {src_workspace_name}\n---\n\n" + text
+                )
+            dest.write_text(new_text)
+        count += 1
+
+    verb = "(dry-run) would pull" if args.dry_run else "pulled"
+    print(f"{verb} {count} memories from {src_workspace_name}")
+    return 0
 
 
 def cmd_knowledge(workspace: Path, args):

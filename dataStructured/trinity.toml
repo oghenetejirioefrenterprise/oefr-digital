@@ -48,6 +48,13 @@ chat_history_buffer = 10
 promotion_threshold = 0.8
 correction_weight = 2.0
 
+[memory.shared]
+# Phase 4 sub-project 5 — cross-workspace memory sharing.
+# Categories THIS workspace publishes for sister LoBs to optionally subscribe to.
+publish_categories = ["compliance_patterns", "buyer_segments"]
+subscribe_to_workspaces = []                                       # no sister workspace yet
+shared_storage_path = "~/.trinity/shared/"
+
 [scheduler]
 enabled = true
 # Cycles added in Milestone 7

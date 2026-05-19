@@ -73,6 +73,10 @@ model = ""
 title = "Product Manager"
 model = ""
 
+[employees.customer-success]
+title = "Customer Success"
+model = ""
+
 [employees.distribution-agent]
 title = "Distribution Agent"
 model = ""
@@ -111,3 +115,10 @@ employee = "distribution-agent"
 report_to = ""                     # writes cycle report to state/; CEO surfaces in next DM
 type = "needle"
 task = "Run the distribution sweep. Read state/distribution-queue.json and state/distribution-log.json. Identify all (item, channel) pairs not yet posted. For each unposted item: select appropriate channels, generate content, and post via scripts/social_helpers.py. Write cycle report to state/distribution-report-{today}.md."
+
+[scheduler.cycles.customer_sweep]
+schedule = "0 */2 * * *"           # every 2 hours
+employee = "customer-success"
+report_to = ""                     # silent worker
+type = "needle"
+task = "Run the customer sweep. Invoke scripts/customer_sweep.py to poll Stripe for new purchases/subscriptions since the cursor, send welcome emails to new customers, send day-3 check-ins to customers eligible, and send subscription refresh emails to subscribers when refresh logs are present. Report counts of new customers, emails sent, errors."

@@ -65,3 +65,14 @@ GUMROAD=$(jq -r .gumroad_listing_url state/products/<slug>/launch-report.json)
 ```
 
 4. On any failure, set `launch-report.status = PARTIAL_SHIPPED` and log to `state/ethics-ledger/`.
+
+## Subscription refresh delivery (Phase 2+)
+
+When you generate a refreshed dataset for a subscription product (manually or via trigger):
+1. Upload the new CSV to a new GitHub Gist.
+2. Write `state/subscription-refresh-log/<slug>-<YYYY>-Q<n>.json` with the slug, quarter, refresh timestamp, gist URL, and short delta notes.
+3. customer-success agent will pick this up within 2 hours and email all active subscribers.
+
+### TODO — backfill `gist_url` to existing launch-reports
+
+The current FMCSA `launch-report.json` (and other shipped launch-reports) do not include a `gist_url` field. customer-success welcome emails currently fall back to the storefront product page URL (`https://data.oefrenterprise.com/products/<slug>`) when `gist_url` is absent. Backfill `gist_url` on every shipped launch-report so welcome emails deliver the dataset directly. Going forward, always write `gist_url` into `launch-report.json` at ship time.

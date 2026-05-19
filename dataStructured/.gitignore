@@ -24,6 +24,11 @@ build/
 state/datasets/*/raw-*.csv
 state/datasets/*/clean-*.csv
 
+# customer-success operational state (per-customer files + refresh log)
+state/customers/
+state/subscription-refresh-log/
+
 # OS
 .DS_Store
 Thumbs.db
+.vercel

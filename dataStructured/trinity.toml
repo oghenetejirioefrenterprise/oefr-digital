@@ -7,17 +7,16 @@ default_employee = "ceo"
 
 [auth]
 provider = "claude_sdk"
-api_key_env = ""
 
 [agent]
 max_turns = 30
 max_tokens = 16384
 action_timeout = 3600
 convo_timeout = 120
-default_model = "claude-sonnet-4-6"
-router_model = "claude-haiku-4-5-20251001"
-action_model = "claude-sonnet-4-6"
-judge_model = "claude-opus-4-6"
+default_model = "claude-sonnet-4-5"
+router_model = "claude-haiku-4-5"
+action_model = "claude-sonnet-4-5"
+judge_model = "claude-opus-4-5"
 
 [telegram]
 bot_token_env = "TELEGRAM_BOT_TOKEN"
@@ -31,6 +30,7 @@ allowed_users = [1366707521]    # founder Telegram user ID
 group_policy = "allowlist"
 
 [memory]
+share_global = false
 short_term_decay_hours = 48
 long_term_decay_days = 30
 max_short_term = 200
@@ -69,6 +69,14 @@ model = ""
 title = "Engineer"
 model = ""
 
+[employees.product-manager]
+title = "Product Manager"
+model = ""
+
+[employees.distribution-agent]
+title = "Distribution Agent"
+model = ""
+
 [workspace]
 products_dir = "."
 exclude_patterns = ["node_modules", ".git", "__pycache__", ".next", "dist", "build", ".trinity", "state/datasets"]
@@ -83,9 +91,23 @@ report_to = ""                     # silent worker; CEO surfaces results in 19:0
 type = "research"
 task = "Run today's wide demand-discovery scan. Output 3-5 scored opportunity briefs to state/opportunities/{YYYY-MM-DD}-{slug}.json. If no signal is strong (score >= 6), write zero briefs and log 'no signal — recommend re-scan in 24h'."
 
+[scheduler.cycles.product_design]
+schedule = "0 14 * * *"            # 2:00 PM daily — between research scan and CEO pipeline
+employee = "product-manager"
+report_to = ""                     # silent worker; CEO consumes draft at 19:00
+type = "research"
+task = "Draft one rich product spec from today's highest-scored opportunity brief. Read state/opportunities/ for PROPOSED briefs scored >=6. Pick one slug that has no existing state/products/<slug>/spec.json. Write a DRAFT_BY_PM spec with bonus_stack (4-6 items), 3-sentence audience, format_rationale, pricing_rationale, and the standard product_spec fields. If no brief qualifies, exit cleanly without writing."
+
 [scheduler.cycles.ceo_pipeline]
 schedule = "0 19 * * *"            # 7:00 PM daily — clear evening slot
 employee = "ceo"
 report_to = ""                     # CEO sends DM directly via tools
 type = "needle"
-task = "Run today's pipeline. Read state/opportunities/ for PROPOSED briefs. Cross-reference trinity memory for recently-rejected niches. Pick ONE brief with score >= 6 to advance (or zero if none qualify). For the chosen brief: dispatch data-engineer -> data-steward -> compliance-officer in sequence. If compliance verdict is PASS, write product spec.json and dispatch engineer. After all dispatches complete, send one DM to founder using format_daily_dm template."
+task = "Run today's pipeline. Read state/opportunities/ for PROPOSED briefs. Cross-reference trinity memory for recently-rejected niches. Pick ONE brief with score >= 6 to advance (or zero if none qualify). For the chosen brief: dispatch data-engineer -> data-steward -> compliance-officer in sequence. If compliance verdict is PASS, write product spec.json and dispatch engineer. After all dispatches complete, dispatch distribution-agent to post any unposted queue items. Then send one DM to founder using format_daily_dm template."
+
+[scheduler.cycles.distribution]
+schedule = "0 21 * * *"            # 9:00 PM daily — fallback sweep after CEO pipeline
+employee = "distribution-agent"
+report_to = ""                     # writes cycle report to state/; CEO surfaces in next DM
+type = "needle"
+task = "Run the distribution sweep. Read state/distribution-queue.json and state/distribution-log.json. Identify all (item, channel) pairs not yet posted. For each unposted item: select appropriate channels, generate content, and post via scripts/social_helpers.py. Write cycle report to state/distribution-report-{today}.md."

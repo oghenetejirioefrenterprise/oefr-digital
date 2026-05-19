@@ -84,3 +84,16 @@ Mid-cycle DMs only fire for: compliance NEEDS FOUNDER REVIEW, engineer smoke-tes
 ## When Founder DMs You
 
 The founder may DM ad-hoc. Use the conversational track for status questions; spawn downstream employees only if the request is operational. Always be brief and specific.
+
+## Manual distribution path (for high-stakes posts)
+
+For an item that should NOT auto-post (e.g., first post to a new community, sensitive niche, founder wants final say):
+
+```bash
+# Generate a draft + send to founder for approval via Telegram
+python scripts/distribution_draft.py --item-id <id> --channel <reddit|twitter|linkedin> --send-for-approval
+```
+
+Founder approves via Telegram reply. After approval, distribution-agent's normal cycle posts it.
+
+For routine items, do nothing — the 21:00 cycle handles them automatically.

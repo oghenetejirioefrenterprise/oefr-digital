@@ -98,6 +98,10 @@ model = ""
 title = "SEO Operator"
 model = ""
 
+[employees.partnerships-lead]
+title = "Partnerships Lead"
+model = ""
+
 [employees.distribution-agent]
 title = "Distribution Agent"
 model = ""
@@ -164,3 +168,10 @@ employee = "seo-operator"
 report_to = ""                     # routes to marketing_reports channel
 type = "research"
 task = "Publish today's SEO post. Invoke scripts/seo_publish.py to pick an uncovered (product, content_type) pair, draft a 1000-1200-word post, write to state/blog/posts/{today}-{slug}.md, route summary to marketing_reports Telegram channel."
+
+[scheduler.cycles.partnerships_scan]
+schedule = "0 10 * * 1"            # Mondays at 10:00 AM ET — weekly batch
+employee = "partnerships-lead"
+report_to = ""                     # routes to marketing_reports
+type = "research"
+task = "Weekly partnerships scan. Invoke scripts/partnerships_scan.py to identify 3-5 affiliate candidates per active product, draft personalized outreach DMs, pre-generate affiliate links via scripts/affiliate_link.py, write briefs to state/partnerships/candidates/{slug}.json, route summary to marketing_reports Telegram channel."

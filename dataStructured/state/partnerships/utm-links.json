@@ -1,4 +1,125 @@
 {
   "version": 1,
-  "links": []
+  "links": [
+    {
+      "partner": "the_close",
+      "product_slug": "fl-real-estate-agent-licenses-2026-05",
+      "client_reference_id": "the_close_fl_ff86cc",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/cNi8wIb1dfHpeLhe5o7IY0k?client_reference_id=the_close_fl_ff86cc",
+      "commission_pct": 30,
+      "created_at": "2026-05-19T02:52:37.065560+00:00"
+    },
+    {
+      "partner": "inman_select",
+      "product_slug": "fl-real-estate-agent-licenses-2026-05",
+      "client_reference_id": "inman_select_fl_283a9f",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/cNi8wIb1dfHpeLhe5o7IY0k?client_reference_id=inman_select_fl_283a9f",
+      "commission_pct": 35,
+      "created_at": "2026-05-19T02:53:49.866709+00:00"
+    },
+    {
+      "partner": "lab_coat_agents",
+      "product_slug": "fl-real-estate-agent-licenses-2026-05",
+      "client_reference_id": "lab_coat_agents_fl_5c814a",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/cNi8wIb1dfHpeLhe5o7IY0k?client_reference_id=lab_coat_agents_fl_5c814a",
+      "commission_pct": 30,
+      "created_at": "2026-05-19T02:54:10.205897+00:00"
+    },
+    {
+      "partner": "housingwire",
+      "product_slug": "fl-real-estate-agent-licenses-2026-05",
+      "client_reference_id": "housingwire_fl_521b1f",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/cNi8wIb1dfHpeLhe5o7IY0k?client_reference_id=housingwire_fl_521b1f",
+      "commission_pct": 35,
+      "created_at": "2026-05-19T02:54:31.173144+00:00"
+    },
+    {
+      "partner": "re_tech_review",
+      "product_slug": "fl-real-estate-agent-licenses-2026-05",
+      "client_reference_id": "re_tech_review_fl_149732",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/cNi8wIb1dfHpeLhe5o7IY0k?client_reference_id=re_tech_review_fl_149732",
+      "commission_pct": 30,
+      "created_at": "2026-05-19T02:54:53.559171+00:00"
+    },
+    {
+      "partner": "pt_entrepreneur",
+      "product_slug": "nppes-physical-therapist-clinics-2026-05",
+      "client_reference_id": "pt_entrepreneur_nppes_eff87d",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/6oU3co9X9br9dHd2mG7IY0n?client_reference_id=pt_entrepreneur_nppes_eff87d",
+      "commission_pct": 35,
+      "created_at": "2026-05-19T02:55:52.273562+00:00"
+    },
+    {
+      "partner": "private_practice_skills",
+      "product_slug": "nppes-physical-therapist-clinics-2026-05",
+      "client_reference_id": "private_practice_skills_nppes_15d290",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/6oU3co9X9br9dHd2mG7IY0n?client_reference_id=private_practice_skills_nppes_15d290",
+      "commission_pct": 35,
+      "created_at": "2026-05-19T02:56:07.113779+00:00"
+    },
+    {
+      "partner": "reddit_physicaltherapy",
+      "product_slug": "nppes-physical-therapist-clinics-2026-05",
+      "client_reference_id": "reddit_physicaltherapy_nppes_65e6b6",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/6oU3co9X9br9dHd2mG7IY0n?client_reference_id=reddit_physicaltherapy_nppes_65e6b6",
+      "commission_pct": 30,
+      "created_at": "2026-05-19T02:56:39.748348+00:00"
+    },
+    {
+      "partner": "healthcare_it_today",
+      "product_slug": "nppes-physical-therapist-clinics-2026-05",
+      "client_reference_id": "healthcare_it_today_nppes_7b0485",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/6oU3co9X9br9dHd2mG7IY0n?client_reference_id=healthcare_it_today_nppes_7b0485",
+      "commission_pct": 30,
+      "created_at": "2026-05-19T02:57:10.195531+00:00"
+    },
+    {
+      "partner": "pt_pintcast",
+      "product_slug": "nppes-physical-therapist-clinics-2026-05",
+      "client_reference_id": "pt_pintcast_nppes_4ca236",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/6oU3co9X9br9dHd2mG7IY0n?client_reference_id=pt_pintcast_nppes_4ca236",
+      "commission_pct": 30,
+      "created_at": "2026-05-19T02:57:38.907968+00:00"
+    },
+    {
+      "partner": "dental_marketer_podcast",
+      "product_slug": "nppes-dentists-dental-practices-2026-05",
+      "client_reference_id": "dental_marketer_podcast_nppes_0ab5b8",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/cNi9AM3yL0MvfPl0ey7IY0r?client_reference_id=dental_marketer_podcast_nppes_0ab5b8",
+      "commission_pct": 35,
+      "created_at": "2026-05-19T02:58:57.181376+00:00"
+    },
+    {
+      "partner": "howard_speaks",
+      "product_slug": "nppes-dentists-dental-practices-2026-05",
+      "client_reference_id": "howard_speaks_nppes_53a0ee",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/cNi9AM3yL0MvfPl0ey7IY0r?client_reference_id=howard_speaks_nppes_53a0ee",
+      "commission_pct": 40,
+      "created_at": "2026-05-19T02:59:15.427373+00:00"
+    },
+    {
+      "partner": "r_dentistry",
+      "product_slug": "nppes-dentists-dental-practices-2026-05",
+      "client_reference_id": "r_dentistry_nppes_1577da",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/cNi9AM3yL0MvfPl0ey7IY0r?client_reference_id=r_dentistry_nppes_1577da",
+      "commission_pct": 30,
+      "created_at": "2026-05-19T02:59:48.983508+00:00"
+    },
+    {
+      "partner": "dunn_practice_growth",
+      "product_slug": "nppes-dentists-dental-practices-2026-05",
+      "client_reference_id": "dunn_practice_growth_nppes_b8e0e3",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/cNi9AM3yL0MvfPl0ey7IY0r?client_reference_id=dunn_practice_growth_nppes_b8e0e3",
+      "commission_pct": 35,
+      "created_at": "2026-05-19T03:00:06.607469+00:00"
+    },
+    {
+      "partner": "ekwa_arulrajah",
+      "product_slug": "nppes-dentists-dental-practices-2026-05",
+      "client_reference_id": "ekwa_arulrajah_nppes_c9c020",
+      "stripe_payment_link_with_ref": "https://buy.stripe.com/cNi9AM3yL0MvfPl0ey7IY0r?client_reference_id=ekwa_arulrajah_nppes_c9c020",
+      "commission_pct": 35,
+      "created_at": "2026-05-19T03:00:34.259833+00:00"
+    }
+  ]
 }

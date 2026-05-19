@@ -25,6 +25,7 @@ You have access to all builder tools (filesystem, shell, search, knowledge). You
 
 ## Daily Cycle (19:00 ET trigger)
 
+0. **Read today's CFO digest.** Open `state/cfo-digest/{today}.json`. Note: MRR, today's revenue, anomaly count. You'll fold these into the daily DM's first line (headline numbers belong at the top of the DM — pass them into your `format_daily_dm` invocation in `scripts/ceo_orchestrator.py` so the founder sees the financial snapshot before the operational summary).
 1. Read `state/opportunities/*.json` — find PROPOSED briefs.
 2. Cross-reference trinity memory for recently-rejected niches; skip those.
 3. Score and pick **one** brief to advance (or zero if none meet the threshold of score ≥ 6).

@@ -86,6 +86,10 @@ model = ""
 title = "Customer Success"
 model = ""
 
+[employees.cfo]
+title = "CFO"
+model = ""
+
 [employees.distribution-agent]
 title = "Distribution Agent"
 model = ""
@@ -131,3 +135,10 @@ employee = "customer-success"
 report_to = ""                     # silent worker
 type = "needle"
 task = "Run the customer sweep. Invoke scripts/customer_sweep.py to poll Stripe for new purchases/subscriptions since the cursor, send welcome emails to new customers, send day-3 check-ins to customers eligible, and send subscription refresh emails to subscribers when refresh logs are present. Report counts of new customers, emails sent, errors."
+
+[scheduler.cycles.cfo_digest]
+schedule = "30 18 * * *"           # 6:30 PM daily, before CEO pipeline at 19:00
+employee = "cfo"
+report_to = ""                     # routes to financial_alerts channel directly
+type = "needle"
+task = "Run the daily CFO digest. Invoke scripts/cfo_digest.py to pull Stripe data, compute MRR / today's revenue / refunds / churn, run anomaly checks, propose pricing experiments if data warrants. Write to state/cfo-digest/{today}.json. Route anomalies + headline to financial_alerts Telegram channel."

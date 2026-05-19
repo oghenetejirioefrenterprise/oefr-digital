@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "agent": "product-manager",
+  "generated_at": "2026-05-19T03:10:26.232078+00:00",
+  "window_days": 30,
+  "summary": "Product-manager reputation (last 30d): 17 spec(s) drafted in window, $0.00 revenue. 0 winning pattern(s), 4 losing pattern(s).",
+  "patterns": {
+    "winning_spec_patterns": [],
+    "losing_spec_patterns": [
+      {
+        "pattern": "price=40_to_79|bonus=none|format=one_time",
+        "price_tier": "40_to_79",
+        "bonus_bucket": "none",
+        "format": "one_time",
+        "specs": 8,
+        "shipped": 8,
+        "revenue_usd": 0.0,
+        "evidence": "8 spec(s), 8 shipped, $0.00 revenue. Examples: ca-cslb-licensed-contractors-2026-05, faa-civil-aircraft-registration-2026-05, fl-alcoholic-beverage-licensees-2026-05"
+      },
+      {
+        "pattern": "price=40_to_79|bonus=rich_5_plus|format=one_time",
+        "price_tier": "40_to_79",
+        "bonus_bucket": "rich_5_plus",
+        "format": "one_time",
+        "specs": 4,
+        "shipped": 3,
+        "revenue_usd": 0.0,
+        "evidence": "4 spec(s), 3 shipped, $0.00 revenue. Examples: cms-medicare-home-health-agencies-2026-05, fdic-bank-branch-directory-2026-05, fl-real-estate-agent-licenses-2026-05"
+      },
+      {
+        "pattern": "price=40_to_79|bonus=none|format=unknown",
+        "price_tier": "40_to_79",
+        "bonus_bucket": "none",
+        "format": "unknown",
+        "specs": 2,
+        "shipped": 2,
+        "revenue_usd": 0.0,
+        "evidence": "2 spec(s), 2 shipped, $0.00 revenue. Examples: epa-tri-toxic-release-reporting-facilities-2026-05, ttb-brewery-winery-distillery-directory-2026-05"
+      },
+      {
+        "pattern": "price=40_to_79|bonus=medium_3_4|format=one_time",
+        "price_tier": "40_to_79",
+        "bonus_bucket": "medium_3_4",
+        "format": "one_time",
+        "specs": 2,
+        "shipped": 2,
+        "revenue_usd": 0.0,
+        "evidence": "2 spec(s), 2 shipped, $0.00 revenue. Examples: new-business-formations-csv-2026-05, samgov-small-biz-contractor-leads-2026-05"
+      }
+    ]
+  },
+  "raw_counts": {
+    "total_specs_in_window": 17,
+    "total_revenue_from_specs": 0.0
+  }
+}

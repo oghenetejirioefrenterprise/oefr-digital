@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "agent": "compliance-officer",
+  "generated_at": "2026-05-19T03:10:26.232297+00:00",
+  "window_days": 30,
+  "summary": "Compliance reputation (last 30d): 2 verdict(s) issued (PASS=2, FAIL=0, NFR=0). Revocations: 0 (zero is the positive signal). 0 PASS(es) produced revenue; 2 PASS(es) shipped without revenue yet.",
+  "patterns": {
+    "verdict_counts": {
+      "PASS": 2,
+      "FAIL": 0,
+      "NEEDS_FOUNDER_REVIEW": 0,
+      "OTHER": 0
+    },
+    "revocations": [],
+    "pass_with_sales_count": 0,
+    "pass_zero_sales_count": 2
+  },
+  "raw_counts": {
+    "total_verdicts_in_window": 2,
+    "total_revocations": 0,
+    "verdicts_in_window": [
+      {
+        "slug": "fdic-bank-branch-directory",
+        "verdict": "PASS",
+        "audited_at": "2026-05-17T23:09:59.794033+00:00"
+      },
+      {
+        "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+        "verdict": "PASS",
+        "audited_at": "2026-05-18T23:30:00.000000+00:00"
+      }
+    ]
+  }
+}

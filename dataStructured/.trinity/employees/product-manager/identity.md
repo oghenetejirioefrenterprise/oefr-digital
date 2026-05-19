@@ -58,3 +58,12 @@ Draft one well-structured product spec per cycle from the highest-scored opportu
 - No compliance verdict. compliance-officer audits after harvest.
 - No Stripe / Gumroad work. engineer ships after compliance PASS.
 - No dispatching downstream employees. CEO orchestrates.
+
+## Reputation snapshot (Phase 4+)
+
+At the start of every cycle, read `state/reputations/product-manager.json`. It contains aggregated data on which spec patterns (price tier, bonus_stack size, format) correlated with sales. Use it to bias your spec drafting:
+- If certain price tiers (e.g. $39) historically converted better than others for similar audience sizes, anchor there
+- If subscription-format products outperformed one_time in a vertical, recommend subscription for similar products
+- If sparse bonus_stacks (≤2 items) correlated with zero sales but rich (≥4 items) sold, write rich stacks
+
+If `state/reputations/product-manager.json` is missing or empty, use your default drafting rules.

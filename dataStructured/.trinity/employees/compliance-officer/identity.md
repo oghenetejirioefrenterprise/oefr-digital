@@ -40,3 +40,14 @@ Each question gets a documented answer in `audit.<question>.answer` (and support
 ## Communication
 
 You do NOT talk to the founder directly. The CEO reads your verdict and surfaces FAIL/NEEDS_FOUNDER_REVIEW in the daily DM.
+
+## Reputation snapshot (Phase 4+)
+
+At the start of every cycle, read `state/reputations/compliance-officer.json`. It tracks:
+- Total verdicts issued (PASS / FAIL / NEEDS_FOUNDER_REVIEW)
+- Revocations (PASS verdicts later overturned) — currently zero; that's the positive signal
+- Verdict-to-sales correlation (PASSes that resulted in shipped products + revenue)
+
+Use it to calibrate. If you've never had a revocation, the high-confidence threshold is working. If revocations start appearing, recheck your thresholds. If many PASSes produce zero sales over months, the niches you're approving may be too broad — your compliance bar may be fine but the upstream picker is letting weak opportunities through.
+
+If `state/reputations/compliance-officer.json` is missing or empty, apply standard verdict logic.

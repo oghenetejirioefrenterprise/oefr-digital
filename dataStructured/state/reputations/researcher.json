@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "agent": "researcher",
+  "generated_at": "2026-05-19T03:10:26.231894+00:00",
+  "window_days": 30,
+  "summary": "Researcher reputation (last 30d): 58 briefs scored, 13 shipped, $0.00 revenue. 0 high-signal niche(s), 6 low-signal niche(s).",
+  "patterns": {
+    "high_signal_niches": [],
+    "low_signal_niches": [
+      {
+        "niche": "b2b",
+        "products_shipped": 3,
+        "revenue_usd": 0.0,
+        "evidence": "3 product(s) shipped from 6 brief(s); $0.00 revenue. Slugs: new-business-formations-csv-2026-05, sec-registered-investment-advisers-2026-05, ttb-brewery-winery-distillery-directory-2026-05"
+      },
+      {
+        "niche": "vendors",
+        "products_shipped": 3,
+        "revenue_usd": 0.0,
+        "evidence": "3 product(s) shipped from 18 brief(s); $0.00 revenue. Slugs: cms-medicare-home-health-agencies-2026-05, fl-real-estate-agent-licenses-2026-05, ttb-brewery-winery-distillery-directory-2026-05"
+      },
+      {
+        "niche": "who",
+        "products_shipped": 2,
+        "revenue_usd": 0.0,
+        "evidence": "2 product(s) shipped from 5 brief(s); $0.00 revenue. Slugs: new-business-formations-csv-2026-05, irs-990-nonprofit-organization-directory-2026-05"
+      },
+      {
+        "niche": "insurance",
+        "products_shipped": 2,
+        "revenue_usd": 0.0,
+        "evidence": "2 product(s) shipped from 4 brief(s); $0.00 revenue. Slugs: new-fmcsa-carrier-leads-2026-05, faa-civil-aircraft-registration-2026-05"
+      },
+      {
+        "niche": "saas",
+        "products_shipped": 2,
+        "revenue_usd": 0.0,
+        "evidence": "2 product(s) shipped from 4 brief(s); $0.00 revenue. Slugs: cms-medicare-home-health-agencies-2026-05, fl-real-estate-agent-licenses-2026-05"
+      },
+      {
+        "niche": "writing",
+        "products_shipped": 2,
+        "revenue_usd": 0.0,
+        "evidence": "2 product(s) shipped from 2 brief(s); $0.00 revenue. Slugs: faa-civil-aircraft-registration-2026-05, irs-990-nonprofit-organization-directory-2026-05"
+      }
+    ]
+  },
+  "raw_counts": {
+    "total_opportunities_briefed": 58,
+    "total_products_shipped_from_briefs": 13,
+    "total_revenue_from_briefs": 0.0
+  }
+}

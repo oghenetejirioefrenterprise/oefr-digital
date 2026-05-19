@@ -175,3 +175,10 @@ employee = "partnerships-lead"
 report_to = ""                     # routes to marketing_reports
 type = "research"
 task = "Weekly partnerships scan. Invoke scripts/partnerships_scan.py to identify 3-5 affiliate candidates per active product, draft personalized outreach DMs, pre-generate affiliate links via scripts/affiliate_link.py, write briefs to state/partnerships/candidates/{slug}.json, route summary to marketing_reports Telegram channel."
+
+[scheduler.cycles.reputation_refresh]
+schedule = "0 23 * * *"            # 11:00 PM daily — after all day's cycles complete
+employee = "ceo"
+report_to = ""                     # silent; writes snapshot files for next-day agents
+type = "system"
+task = "Run nightly reputation snapshot generation. Execute: source ~/.profile && /home/oghenetejiri/venvs/oefr/bin/python scripts/reputation_snapshot.py. Then exit. This regenerates state/reputations/{researcher,product-manager,compliance-officer}.json from production sales + compliance data so those agents can self-improve on the next cycle."

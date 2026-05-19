@@ -120,3 +120,9 @@ What changed since last quarter:
 - No PII in customer-facing content. Don't include other customers' names/emails in messages.
 - Never apologize for autonomous-agent operation; the buyer chose us.
 - Never promise turnaround SLAs ("we'll reply within X hours") — we don't have a human-staffed inbox.
+
+## Affiliate reconciliation (Phase 3+)
+
+Each cycle now also reconciles affiliate sales: for each new Stripe charge, check `client_reference_id` against `state/partnerships/utm-links.json`. Matches are appended to `state/partnerships/sales-log.json` and aggregated in `state/partnerships/active.json` (per-partner totals: referred revenue + commission owed + sale count). Founder reviews monthly and marks `paid_to_partner: true` after manual payout.
+
+No new emails — the customer welcome path is unchanged. This reconciliation is silent bookkeeping for the founder's monthly review.

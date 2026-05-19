@@ -22,7 +22,7 @@ Standalone usage:
     source ~/.profile && python scripts/customer_sweep.py
 
 Output (last line, stdout):
-    new_customers=N welcome_sent=N day3_sent=N refresh_sent=N errors=N
+    new_customers=N welcome_sent=N day3_sent=N refresh_sent=N affiliate_matches=N errors=N
 """
 from __future__ import annotations
 
@@ -391,9 +391,15 @@ def send_refresh(customer: dict, product_name: str, quarter: str,
 
 # ── Main sweep ──────────────────────────────────────────────────────
 def process_charges(product_map: dict[str, tuple[str, str, str | None]],
-                    since: datetime, counters: dict[str, int]) -> None:
-    """Pull charges since `since` and dispatch welcome emails."""
+                    since: datetime, counters: dict[str, int]) -> list[Any]:
+    """Pull charges since `since` and dispatch welcome emails.
+
+    Returns the list of charges pulled this cycle so downstream steps
+    (e.g. affiliate reconciliation) can re-use them without a second API call.
+    """
+    pulled: list[Any] = []
     for ch in iter_charges(since):
+        pulled.append(ch)
         if getattr(ch, "paid", False) is not True:
             continue
         email = charge_email(ch)
@@ -420,6 +426,118 @@ def process_charges(product_map: dict[str, tuple[str, str, str | None]],
                 counters["errors"] += 1
                 print(f"[error] welcome one_time send to {email}: {e}",
                       file=sys.stderr)
+    return pulled
+
+
+def reconcile_affiliates(charges: list, workspace: Path) -> int:
+    """For each new charge, check client_reference_id against utm-links registry.
+
+    Append matches to state/partnerships/sales-log.json and rebuild per-partner
+    aggregates in state/partnerships/active.json. Returns count of matches
+    newly added this cycle.
+
+    Idempotent: charges already present in sales-log (by stripe_charge_id) are
+    skipped. active.json aggregates are rebuilt from sales-log on every call so
+    they remain correct under re-runs.
+    """
+    links_file = workspace / "state" / "partnerships" / "utm-links.json"
+    sales_log = workspace / "state" / "partnerships" / "sales-log.json"
+    active_file = workspace / "state" / "partnerships" / "active.json"
+
+    if not links_file.exists():
+        return 0
+    registry = json.loads(links_file.read_text())
+    ref_to_link = {l["client_reference_id"]: l for l in registry.get("links", [])}
+    if not ref_to_link:
+        return 0
+
+    log_data: dict = {"version": 1, "sales": []}
+    if sales_log.exists():
+        log_data = json.loads(sales_log.read_text())
+    existing_charge_ids = {s["stripe_charge_id"] for s in log_data["sales"]}
+
+    matched = 0
+    for charge in charges:
+        # Stripe may surface the client_reference_id in several places depending
+        # on whether the charge originated from a Payment Link, Checkout
+        # Session, or PaymentIntent. Try each.
+        ref = None
+        # 1. Top-level attribute (Checkout Session-derived charges)
+        ref = (getattr(charge, "client_reference_id", None)
+               if not isinstance(charge, dict)
+               else charge.get("client_reference_id"))
+        # 2. Payment intent dict (when expanded)
+        if not ref:
+            pi = (getattr(charge, "payment_intent", None)
+                  if not isinstance(charge, dict)
+                  else charge.get("payment_intent"))
+            if isinstance(pi, dict):
+                ref = pi.get("client_reference_id")
+        # 3. Metadata (manual tagging fallback)
+        if not ref:
+            md = (getattr(charge, "metadata", None)
+                  if not isinstance(charge, dict)
+                  else charge.get("metadata"))
+            if md:
+                ref = md.get("client_reference_id") if hasattr(md, "get") else None
+        if not ref or ref not in ref_to_link:
+            continue
+        charge_id = (getattr(charge, "id", None)
+                     if not isinstance(charge, dict)
+                     else charge.get("id"))
+        if charge_id in existing_charge_ids:
+            continue
+        amount = (getattr(charge, "amount", 0)
+                  if not isinstance(charge, dict)
+                  else charge.get("amount", 0)) or 0
+        created = (getattr(charge, "created", None)
+                   if not isinstance(charge, dict)
+                   else charge.get("created"))
+        link = ref_to_link[ref]
+        commission = round(amount * link["commission_pct"] / 100 / 100, 2)
+        log_data["sales"].append({
+            "stripe_charge_id": charge_id,
+            "amount_usd": amount / 100,
+            "client_reference_id": ref,
+            "partner": link["partner"],
+            "product_slug": link["product_slug"],
+            "commission_pct": link["commission_pct"],
+            "commission_owed_usd": commission,
+            "charged_at": created,
+            "reconciled_at": datetime.now(timezone.utc).isoformat(),
+            "paid_to_partner": False,
+        })
+        existing_charge_ids.add(charge_id)
+        matched += 1
+
+    sales_log.parent.mkdir(parents=True, exist_ok=True)
+    sales_log.write_text(json.dumps(log_data, indent=2) + "\n")
+
+    # Rebuild per-partner aggregates fresh from the full log so re-runs and
+    # manual edits (e.g. flipping paid_to_partner) stay consistent.
+    fresh_aggregates: dict[str, dict] = {}
+    for sale in log_data["sales"]:
+        p = sale["partner"]
+        fresh_aggregates.setdefault(p, {
+            "total_referred_usd": 0,
+            "total_commission_owed_usd": 0,
+            "total_commission_paid_usd": 0,
+            "sale_count": 0,
+        })
+        fresh_aggregates[p]["total_referred_usd"] += sale["amount_usd"]
+        fresh_aggregates[p]["total_commission_owed_usd"] += sale["commission_owed_usd"]
+        if sale.get("paid_to_partner"):
+            fresh_aggregates[p]["total_commission_paid_usd"] += sale["commission_owed_usd"]
+        fresh_aggregates[p]["sale_count"] += 1
+    # Round float sums to cents to keep file readable
+    for p, agg in fresh_aggregates.items():
+        agg["total_referred_usd"] = round(agg["total_referred_usd"], 2)
+        agg["total_commission_owed_usd"] = round(agg["total_commission_owed_usd"], 2)
+        agg["total_commission_paid_usd"] = round(agg["total_commission_paid_usd"], 2)
+    active = {"version": 1, "partners": fresh_aggregates}
+    active_file.write_text(json.dumps(active, indent=2) + "\n")
+
+    return matched
 
 
 def process_subscriptions(product_map: dict[str, tuple[str, str, str | None]],
@@ -557,6 +675,7 @@ def main() -> int:
         "welcome_sent": 0,
         "day3_sent": 0,
         "refresh_sent": 0,
+        "affiliate_matches": 0,
         "errors": 0,
     }
 
@@ -569,8 +688,9 @@ def main() -> int:
     sweep_started_at = utcnow()
 
     stripe_pull_ok = True
+    charges_pulled: list[Any] = []
     try:
-        process_charges(product_map, cursor, counters)
+        charges_pulled = process_charges(product_map, cursor, counters)
         process_subscriptions(product_map, cursor, counters)
     except Exception:
         stripe_pull_ok = False
@@ -582,12 +702,25 @@ def main() -> int:
     process_day3(product_map, counters)
     process_refresh(product_map, counters)
 
+    # Affiliate reconciliation: silent bookkeeping for the founder's monthly
+    # review. Matches incoming Stripe charges back to a partner via
+    # client_reference_id (set when partner shared their UTM-tagged link).
+    try:
+        counters["affiliate_matches"] = reconcile_affiliates(
+            charges_pulled, _REPO_ROOT
+        )
+    except Exception as e:
+        counters["errors"] += 1
+        print(f"[error] affiliate reconciliation failed: {e}", file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
+
     if stripe_pull_ok:
         write_cursor(sweep_started_at)
 
     print(
         "new_customers={new_customers} welcome_sent={welcome_sent} "
         "day3_sent={day3_sent} refresh_sent={refresh_sent} "
+        "affiliate_matches={affiliate_matches} "
         "errors={errors}".format(**counters)
     )
     return 0 if counters["errors"] == 0 and stripe_pull_ok else 1

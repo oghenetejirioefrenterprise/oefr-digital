@@ -103,6 +103,18 @@ from scripts.telegram_dispatch import send_to_channel
 send_to_channel("financial_alerts", "MRR snapshot: $29")
 ```
 
+## Affiliate tracking (Phase 3 sub-project 6)
+
+Generate an affiliate link for a partner:
+
+```bash
+python scripts/affiliate_link.py --partner <partner_handle> --product-slug <slug> [--commission-pct 30]
+```
+
+Outputs a Stripe Payment Link with `?client_reference_id=...` appended. The customer-success agent's 2-hourly sweep auto-reconciles charges with that reference back to the partner via `state/partnerships/sales-log.json`. Per-partner totals roll up to `state/partnerships/active.json`.
+
+Founder reviews `active.json` monthly, pays partners manually (no auto-payouts), and edits `sales-log.json` entries to set `paid_to_partner: true` after each payout.
+
 ## Reference docs
 
 - `docs/superpowers/specs/2026-05-04-datastructured-design.md` — v1 design spec

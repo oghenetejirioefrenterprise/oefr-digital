@@ -29,6 +29,15 @@ dm_policy = "allowlist"
 allowed_users = [1366707521]    # founder Telegram user ID
 group_policy = "allowlist"
 
+[telegram.channels]
+# Multi-channel routing for specialized agent output (Phase 3 sub-project 5).
+# Empty strings = not configured yet → helper falls back to founder_dm.
+# Founder creates groups manually, then sets the chat_id strings below.
+founder_dm = "1366707521"          # CEO daily DM target (unchanged from v1)
+compliance_flags = ""              # group for compliance NEEDS_FOUNDER_REVIEW + REVOCATION events
+financial_alerts = ""              # group for CFO anomalies + daily digest
+marketing_reports = ""             # group for marketing-lead plans + partnerships-lead candidate briefs
+
 [memory]
 share_global = false
 short_term_decay_hours = 48

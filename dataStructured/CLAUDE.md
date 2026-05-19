@@ -77,6 +77,32 @@ npm test
 vercel --prod
 ```
 
+## Multi-channel Telegram routing (Phase 3)
+
+Specialized agents route their output to topic-specific groups instead of all DMing the founder:
+
+| Channel | Used by |
+|---|---|
+| `founder_dm` | CEO daily DM (always populated; chat_id 1366707521) |
+| `compliance_flags` | compliance-officer NEEDS_FOUNDER_REVIEW + REVOCATION events |
+| `financial_alerts` | cfo daily digest + anomalies |
+| `marketing_reports` | marketing-lead plans + partnerships-lead candidate briefs |
+
+Channel chat_ids live in `trinity.toml` under `[telegram.channels]`. Empty string = unset → `scripts/telegram_dispatch.py` falls back to `founder_dm` so messages aren't lost.
+
+**One-time founder setup:**
+1. Create Telegram groups manually (one per non-DM channel).
+2. Add `@Ralph_the_builder_oefr_bot` to each group as admin.
+3. Get the group chat_id via `https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/getUpdates` after sending one message in the group.
+4. Set the chat_id strings in `trinity.toml`'s `[telegram.channels]` block.
+5. Reload trinity daemon: `trinity stop && trinity start --daemon`.
+
+Use from any agent or script:
+```python
+from scripts.telegram_dispatch import send_to_channel
+send_to_channel("financial_alerts", "MRR snapshot: $29")
+```
+
 ## Reference docs
 
 - `docs/superpowers/specs/2026-05-04-datastructured-design.md` — v1 design spec

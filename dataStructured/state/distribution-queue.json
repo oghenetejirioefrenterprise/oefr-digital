@@ -1,16 +1,182 @@
 {
   "version": 1,
   "type": "distribution_queue",
-  "updated_at": "2026-05-05T01:19:02Z",
+  "updated_at": "2026-05-19T23:23:10Z",
   "items": [
     {
       "id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
       "slug": "new-fmcsa-carrier-leads-2026-05",
-      "name": "New FMCSA Carriers — May 2026 — 15,770 Records, CSV",
+      "name": "New FMCSA Carriers \u2014 May 2026 \u2014 15,770 Records, CSV",
       "stripe_payment_link_url": "https://buy.stripe.com/cNi14g4CP7aT8mT1iC7IY0c",
+      "gumroad_listing_url": "https://3563705146415.gumroad.com/l/bvdnbx",
       "price_usd": 39,
       "audience": "Commercial trucking insurance agents, freight factoring companies, ELD vendors, owner-operator dispatch",
       "added_at": "2026-05-04T21:25:00Z",
+      "status": "ready"
+    },
+    {
+      "id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "name": "New Florida LLCs & Corps \u2014 May 2026 \u2014 15,997 Records (CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/aFaaEQc5h66Pbz5f9s7IY0f",
+      "gumroad_listing_url": "https://3563705146415.gumroad.com/l/pzbfkf",
+      "price_usd": 49,
+      "audience": "Insurance agents, bookkeepers, CPAs, web designers, registered agent firms, payroll processors, business banking reps targeting new Florida businesses",
+      "added_at": "2026-05-05T13:00:00Z",
+      "status": "ready"
+    },
+    {
+      "id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "name": "SAM.gov Small Biz Contractor Leads \u2014 DMV IT Corridor \u2014 4,731 Records (CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/dRm5kwb1dfHp7iPe5o7IY0g",
+      "gumroad_listing_url": "https://3563705146415.gumroad.com/l/madhdb",
+      "price_usd": 49,
+      "audience": "Government contracting subcontractors seeking 8(a)/HUBZone/WOSB/SDVOSB teaming partners, IT staffing agencies targeting federal-contractor clients, management consultants pursuing government market entry, and SaaS vendors (proposal software, compliance tools, timekeeping) selling to federal IT contractors.",
+      "added_at": "2026-05-05T21:22:28Z",
+      "status": "ready"
+    },
+    {
+      "id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "name": "Florida Licensed Real Estate Agents & Brokers \u2014 2026 Database \u2014 319,247 Records (CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/cNi8wIb1dfHpeLhe5o7IY0k",
+      "gumroad_listing_url": "https://3563705146415.gumroad.com/l/gbkrqm",
+      "price_usd": 49,
+      "audience": "Real estate SaaS SDRs (Follow Up Boss, Lofty, kvCORE, Sierra Interactive), mortgage lenders sourcing agent referral partners, title insurance companies, E&O insurance brokers, continuing education providers selling real estate CE credits, and proptech companies selling transaction management or showing software to agents.",
+      "added_at": "2026-05-06T23:30:28Z",
+      "status": "ready"
+    },
+    {
+      "id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "name": "Medicare-Certified Home Health Agencies \u2014 US Database 2026 \u2014 12,392 Records (CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/5kQcMYfhtgLtdHdgdw7IY0h",
+      "gumroad_listing_url": "https://3563705146415.gumroad.com/l/jddyts",
+      "price_usd": 49,
+      "audience": "Medical SaaS vendors (EVV, billing, scheduling, CRM for home health operators); durable medical equipment and wound-care supply reps; healthcare staffing agencies; insurance brokers selling liability and workers comp to home health operators.",
+      "added_at": "2026-05-06T23:15:00Z",
+      "status": "ready"
+    },
+    {
+      "id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "name": "US Civil Aircraft Registration Database \u2014 2026 \u2014 302,810 Records (CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/5kQdR20mz0Mvbz5f9s7IY0l",
+      "gumroad_listing_url": "https://3563705146415.gumroad.com/l/knszdz",
+      "price_usd": 69,
+      "audience": "Aviation insurance brokers, avionics shops, MRO facilities, aircraft parts vendors, flight training schools, aviation SaaS vendors",
+      "added_at": "2026-05-07T04:00:00Z",
+      "status": "ready"
+    },
+    {
+      "id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "name": "Florida Active Alcohol Licensees \u2014 Bars, Restaurants & Package Stores \u2014 2026 \u2014 52,152 Records (CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/cNi5kwglx9j10Ur0ey7IY0m",
+      "gumroad_listing_url": "https://3563705146415.gumroad.com/l/xqymyk",
+      "price_usd": 49,
+      "audience": "Liquor distributors, POS vendors (Toast/Square/SpotOn), payment processors, linen/supply companies, music licensing reps, insurance brokers selling liquor liability",
+      "added_at": "2026-05-07T04:30:00Z",
+      "status": "ready"
+    },
+    {
+      "id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "name": "US Physical Therapists & PT Clinics \u2014 NPI Database 2026 \u2014 377,805 Records (CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/6oU3co9X9br9dHd2mG7IY0n",
+      "gumroad_listing_url": "https://3563705146415.gumroad.com/l/fpxgm",
+      "price_usd": 79,
+      "audience": "Medical SaaS vendors, medical equipment reps, healthcare staffing agencies, liability insurance brokers, PT-focused CE providers",
+      "added_at": "2026-05-07T04:25:20Z",
+      "status": "ready"
+    },
+    {
+      "id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "name": "Texas Licensed Electricians & Electrical Contractors \u2014 TDLR Database 2026",
+      "stripe_payment_link_url": "https://buy.stripe.com/00w28k3yLbr946D5yS7IY0o",
+      "gumroad_listing_url": "https://3563705146415.gumroad.com/l/ehxax",
+      "price_usd": 59,
+      "audience": "Electrical supply distributors (Graybar, Anixter, Rexel), electrical SaaS vendors (ServiceTitan, Jobber, Procore), OSHA/safety training providers, electrical CE education companies, liability insurance brokers, electrical equipment manufacturers.",
+      "added_at": "2026-05-07T16:14:44Z",
+      "status": "ready"
+    },
+    {
+      "id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "name": "Texas HVAC Contractors & AC Technicians \u2014 TDLR Database 2026",
+      "stripe_payment_link_url": "https://buy.stripe.com/8x27sEglx3YHdHd8L47IY0p",
+      "gumroad_listing_url": "https://3563705146415.gumroad.com/l/cciox",
+      "price_usd": 49,
+      "audience": "HVAC equipment distributors (Carrier, Trane, Lennox dealers), HVAC software vendors (ServiceTitan, FieldEdge, Jobber), refrigerant suppliers, HVAC CE education providers, insurance brokers selling liability/workers comp to HVAC companies, HVAC parts suppliers.",
+      "added_at": "2026-05-07T16:14:50Z",
+      "status": "ready"
+    },
+    {
+      "id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "name": "California Licensed Contractors \u2014 CSLB Database 2026 \u2014 232,617 Records (CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/4gMaEQb1deDlcD91iC7IY0q",
+      "gumroad_listing_url": "https://gumroad.com/l/rvzovl",
+      "price_usd": 79,
+      "audience": "Building material distributors, construction SaaS vendors (Procore, Buildertrend, CoConstruct SDRs), subcontractor insurance brokers, bonding companies, construction equipment rental companies, safety training providers, lien management software vendors, specialty trade CE providers.",
+      "added_at": "2026-05-07T16:16:09Z",
+      "status": "ready"
+    },
+    {
+      "id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "name": "US Dentists & Dental Practices \u2014 NPI Database 2026 \u2014 371,786 Records (CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/cNi9AM3yL0MvfPl0ey7IY0r",
+      "gumroad_listing_url": null,
+      "price_usd": 79,
+      "audience": "Dental supply companies (Patterson, Henry Schein, Benco), dental SaaS vendors (Dentrix, Eaglesoft, Carestream SDRs), dental equipment manufacturers/reps, dental lab companies, dental CE education providers, practice management consultants, dental insurance brokers, dental staffing agencies.",
+      "added_at": "2026-05-07T16:28:35Z",
+      "status": "ready"
+    },
+    {
+      "id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "name": "SEC RIA Database 2026 \u2014 16,551 Registered Investment Adviser Firms (CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/bJe00c1qD7aT8mT0ey7IY0s",
+      "gumroad_url": "https://gumroad.com/l/ibhcj",
+      "price_usd": 79,
+      "audience": "B2B sales and distribution teams at asset managers, ETF sponsors, and fund companies prospecting RIA gatekeepers; wealthtech SaaS companies (portfolio management, CRM, compliance tools) reaching new firm clients; third-party investment recruiters targeting breakaway adviser talent; boutique M&A advisers tracking RIA consolidation; teams currently paying four-to-five figures per year for enterprise platforms that wrap the same free SEC public data.",
+      "added_at": "2026-05-07T23:25:27Z",
+      "status": "ready"
+    },
+    {
+      "id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05",
+      "name": "US Bank Branch Directory 2026 \u2014 77,542 FDIC-Insured Branches, CSV",
+      "stripe_payment_link_url": "https://buy.stripe.com/9B63co7P1an58mT4uO7IY0v",
+      "gumroad_listing_url": null,
+      "price_usd": 49,
+      "audience": "Fintech BD teams building bank partnership pipelines; commercial real estate brokers and site-selection consultants mapping bank density; insurance companies and ATM operators prospecting branch locations; municipal planners tracking branch deserts; data scientists needing labeled financial POI ground truth.",
+      "added_at": "2026-05-17T19:10:00Z",
+      "status": "ready"
+    },
+    {
+      "id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "name": "US Winery & Distillery Directory 2026 \u2014 82,500+ Licensed Producers (TTB Federal Data, CSV)",
+      "stripe_payment_link_url": "https://buy.stripe.com/4gM4gsd9l9j19qXf9s7IY0w",
+      "gumroad_listing_url": null,
+      "price_usd": 79,
+      "audience": "Equipment suppliers (barrel brokers, bottling lines, tanks) prospecting new wineries & distilleries, POS platforms (Toast, Arryved) targeting craft beverage producers, ingredient vendors (hops, grapes, grains, yeasts) building craft beverage prospect lists, packaging companies, compliance consultants, insurance brokers, marketing agencies",
+      "added_at": "2026-05-18T23:19:21.058075Z",
+      "status": "ready"
+    },
+    {
+      "id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "name": "SBIR/STTR Federal R&D Award Database FY2023-2025 \u2014 17,664 Awards ($13.71B Funding) \u2014 CSV",
+      "stripe_payment_link_url": "https://buy.stripe.com/00w6oAfht0Mv46D4uO7IY0y",
+      "gumroad_listing_url": null,
+      "price_usd": 59,
+      "audience": "Defense prime contractors, deep-tech VC firms, SBIR/STTR proposal consultants",
+      "added_at": "2026-05-19T23:23:10.594429+00:00",
       "status": "ready"
     }
   ]

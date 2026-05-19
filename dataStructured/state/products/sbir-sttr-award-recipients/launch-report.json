@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "sbir-sttr-award-recipients",
+  "created": "2026-05-19T23:21:35.752047+00:00",
+  "created_by": "engineer",
+  "status": "SHIPPED_STRIPE_ONLY",
+  "summary": "\u2713 Shipped to Stripe at $59. Gumroad listing skipped. CSV (17,664 rows) delivered via GitHub Gist.",
+  "stripe_product_id": "prod_UY32fSduxg5VLS",
+  "stripe_price_id": "price_1TYwwR3H4Cmk8ulCOcAmYtEK",
+  "stripe_payment_link_url": "https://buy.stripe.com/00w6oAfht0Mv46D4uO7IY0y",
+  "gumroad_listing_url": null,
+  "gist_url": "https://gist.github.com/oghenetejirioefrenterprise/c8726ee626311ed70a11002197ea7f15",
+  "asset_raw_url": "https://gist.githubusercontent.com/oghenetejirioefrenterprise/c8726ee626311ed70a11002197ea7f15/raw/clean-final.csv",
+  "smoke_test": {
+    "passed": true,
+    "checked_at": "2026-05-19T23:21:35.752067+00:00",
+    "notes": "Stripe Payment Link: OK | Gist download: OK"
+  },
+  "spec_file": "state/products/sbir-sttr-award-recipients/spec.json",
+  "final_csv": "state/products/sbir-sttr-award-recipients/clean-final.csv",
+  "row_count": 17664
+}

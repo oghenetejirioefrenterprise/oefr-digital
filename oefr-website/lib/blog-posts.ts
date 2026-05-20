@@ -3138,7 +3138,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "Prior Written Notice (34 CFR §300.503): What Parents Actually Get in Writing When the School Refuses",
     description:
-      "Prior Written Notice (PWN) is the IDEA mechanism the school district must use any time it proposes or refuses an evaluation, IEP change, or placement. 34 CFR §300.503 + 20 USC §1415(b)(3) and (c) — the seven required content elements, what triggers a PWN, and what parents can do when the PWN is missing or incomplete.",
+      "Prior Written Notice under 34 CFR §300.503: the 7 required content elements, what triggers a PWN, and what parents can do when it's missing or incomplete.",
     keywords: [
       "prior written notice IDEA",
       "PWN parent rights",
@@ -3379,7 +3379,7 @@ export const blogPosts: BlogPost[] = [
     slug: "independent-educational-evaluation-iee-request-34-cfr-300-502",
     title: "How to Request an Independent Educational Evaluation (IEE) Under 34 CFR §300.502",
     description:
-      "When a parent disagrees with the school district's evaluation, 34 CFR §300.502 forces a binary: fund the IEE at public expense or file due process. Walk through the trigger, the binary obligation, qualified-evaluator criteria, and what happens after the IEE.",
+      "34 CFR §300.502: parent disagrees with the school evaluation, district must fund IEE at public expense or file due process. Trigger, criteria, outcome.",
     keywords: [
       "IEE request letter",
       "independent educational evaluation parent rights",
@@ -3612,7 +3612,7 @@ export const blogPosts: BlogPost[] = [
     slug: "504-plan-vs-iep-federal-law-differences-parents",
     title: "504 Plan vs IEP: The Federal Law Differences Every Parent Should Know",
     description:
-      "504 plan vs IEP under federal law: eligibility (IDEA's 13 categories vs Section 504's substantial-limitation standard), procedural rights, funding source, and FAPE definition. The differences that decide which plan a child should be on.",
+      "504 plan vs IEP under federal law: eligibility, procedural rights, funding, and FAPE definition. The differences that decide which plan a child should be on.",
     keywords: [
       "504 plan vs IEP",
       "section 504 vs IDEA",
@@ -3856,7 +3856,7 @@ export const blogPosts: BlogPost[] = [
     slug: "idea-60-day-evaluation-timeline-34-cfr-300-301",
     title: "The IDEA 60-Day Evaluation Timeline (34 CFR §300.301): What Triggers the Clock",
     description:
-      "Under 34 CFR §300.301(c)(1), the IDEA 60-day evaluation timeline starts at parental consent — not at request. State variance, missed-deadline pathways, and the §300.301(d) exceptions explained for parents.",
+      "34 CFR §300.301(c)(1): the IDEA 60-day evaluation clock starts at parental consent, not request. State variance, missed-deadline pathways, and the exceptions.",
     keywords: [
       "60 day IEP evaluation timeline",
       "IDEA evaluation timeline rules",
@@ -5995,7 +5995,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "IEP Meeting Parent Rights Under 34 CFR §§300.321–322: Team Membership, Participation, and What to Do When the School Violates the Process",
     description:
-      "Federal-floor IEP meeting parent rights under 34 CFR 300.321 (team composition), 300.322 (parent participation), 300.328 (alternative attendance), and 20 USC 1414(d). Who must attend, what schools cannot do, and how to document violations when the district excludes the parent or changes the IEP without a meeting.",
+      "IEP meeting parent rights under 34 CFR §300.321 / §300.322 / §300.328 + 20 USC §1414(d). Who must attend, what schools can't do, how to document violations.",
     keywords: [
       "iep meeting parent rights",
       "school changed iep without parent",

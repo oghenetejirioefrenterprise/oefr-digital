@@ -5730,7 +5730,7 @@ export const blogPosts: BlogPost[] = [
     slug: "fape-endrew-f-standard-meaningful-progress",
     title: "The FAPE Standard After Endrew F. (2017): What 'Meaningful Progress' Actually Means in an IEP",
     description:
-      "Legal-doctrine deep-dive on FAPE under IDEA: 20 USC 1401(9), 34 CFR 300.17, Board of Education v. Rowley (1982), and Endrew F. v. Douglas County (2017, 137 S. Ct. 988). What 'appropriate progress in light of the child's circumstances' actually requires — and how to challenge a stagnant IEP.",
+      "FAPE under IDEA after Endrew F. (2017): what 'meaningful progress in light of the child's circumstances' requires — and how to challenge a stagnant IEP.",
     keywords: [
       "FAPE standard",
       "meaningful educational progress",

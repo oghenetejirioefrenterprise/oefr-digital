@@ -3033,6 +3033,12 @@ export const blogPosts: BlogPost[] = [
         </ol>
       </div>
 
+      <div class="bg-amber-950/40 border border-amber-700/60 rounded-xl p-6 mb-8">
+        <p class="text-amber-100 font-semibold text-lg mb-2">Lawn Care Operator Ops Pack — $19</p>
+        <p class="text-slate-300 leading-relaxed mb-4">All 9 Google Sheets tabs above, formula-validated and ready to drop into a Google Sheets share link on day one. Plus the fillable Service Agreement PDF below. One-time purchase, instant download — no subscription, no upsell course.</p>
+        <a href="https://buy.stripe.com/aFacMY3yLcvd7iP4uO7IY0t" class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold px-6 py-3 rounded-lg transition-colors">Get the Pack — $19 instant download →</a>
+      </div>
+
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Service Agreement PDF a Handshake Can't Replace</h2>
 
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -3046,6 +3052,12 @@ export const blogPosts: BlogPost[] = [
           <li><strong class="text-white">Weather-delay clause.</strong> Plain-English statement of who reschedules, on what timeline, and what happens to a billed week if mowing didn't happen because of rain. The single clause that resolves the most disputes per season.</li>
           <li><strong class="text-white">Cancellation and damage-waiver clauses.</strong> Notice period for cancellation, prorated billing for partial months, and the damage-waiver language that handles the inevitable "your trimmer chipped the fence" claim. Plain-English — not lawyer-bait, not boilerplate-pretend.</li>
         </ol>
+      </div>
+
+      <div class="bg-amber-950/40 border border-amber-700/60 rounded-xl p-6 mb-8">
+        <p class="text-amber-100 font-semibold text-lg mb-2">Skip building the contract from scratch.</p>
+        <p class="text-slate-300 leading-relaxed mb-4">The fillable Service Agreement PDF is plain-English, federal-portable across the 50 states, and ships inside the $19 Lawn Care Operator Ops Pack alongside the 9 Google Sheets tabs. One weather-delay dispute costs more than the pack does.</p>
+        <a href="https://buy.stripe.com/aFacMY3yLcvd7iP4uO7IY0t" class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold px-6 py-3 rounded-lg transition-colors">Get the Pack — $19 (9 Sheets + PDF Contract) →</a>
       </div>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why Federal-Floor + State-Disclaimer Beats State-Specific Packs</h2>
@@ -3118,11 +3130,6 @@ export const blogPosts: BlogPost[] = [
       href: "https://buy.stripe.com/aFacMY3yLcvd7iP4uO7IY0t",
     },
     relatedProducts: [
-      {
-        name: "Wedding Budget Spreadsheet",
-        href: "https://www.etsy.com/listing/4488674435",
-        description: "Six-tab line-item budget — the same operational discipline a solo operator needs for personal finance during a first-year LLC season with uneven cash flow.",
-      },
       {
         name: "Home Renovation Budget Tracker",
         href: "https://www.etsy.com/listing/4489000709",

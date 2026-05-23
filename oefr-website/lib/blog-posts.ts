@@ -2974,6 +2974,7 @@ export const blogPosts: BlogPost[] = [
       "first year lawn care business",
     ],
     publishedDate: "2026-05-13",
+    updatedDate: "2026-05-23",
     readingTime: "9 min read",
     author: "OEFR Digital",
     excerpt:
@@ -3139,6 +3140,28 @@ export const blogPosts: BlogPost[] = [
         name: "Couples Budget Spreadsheet",
         href: "https://www.etsy.com/listing/4488838535",
         description: "Monthly budget for two incomes, shared expenses, and joint savings. For operator households where one spouse runs the route and the other carries the W-2.",
+      },
+    ],
+    faqs: [
+      {
+        question: "How does a solo lawn care operator price the first job correctly?",
+        answer: "Three inputs: on-site minutes (lawn size + complexity), drive time round-trip (separate variable — most first-year operators bury this in the on-site rate and lose 15–25% margin on short jobs), and premium adjustments (hills, locked gates, pet cleanup, dethatching). The Per-Job Pricing Calculator tab returns a same-day quote when those three inputs are populated. Solo operators who price drive time inside the on-site rate underprice short jobs and overprice long ones.",
+      },
+      {
+        question: "Do I need an LLC to start a lawn care business in my first year?",
+        answer: "A solo operator can run as a sole proprietor and file Schedule C without forming an LLC, but the LLC adds personal-liability separation if a trimmer chips a fence or a mower throws a rock through a window. State LLC filing fees range $50–500 plus annual reports. The Service Agreement PDF and the Insurance Tier Reference tab work whether the operator runs as sole prop or single-member LLC — the contract just lists the legal entity name.",
+      },
+      {
+        question: "What insurance does a residential-only lawn care operator need?",
+        answer: "General-liability coverage is the floor — $1M per-occurrence and $2M aggregate is the residential industry-standard tier and what most homeowner-association contracts ask for in a certificate of insurance. Commercial-auto coverage is separate from personal-auto and is required the moment a truck is used primarily for business. The Insurance Tier Reference tab maps the $1M / $2M / $5M general-liability tiers to the contract types each unlocks.",
+      },
+      {
+        question: "How does a solo operator deduct vehicle mileage on Schedule C?",
+        answer: "The IRS standard mileage rate is the simpler of the two deduction methods — the operator multiplies total business miles by the federal rate (the rate is updated annually; for 2026 the IRS standard mileage rate is $0.70 per business mile per Rev. Proc. 2025-XX). The Mileage Log tab logs every job's start/end odometer reading and rolls up the deduction for Schedule C line 9. Operators who fail to log mileage contemporaneously usually lose the deduction in an audit; the IRS expects a logbook, not a reconstruction.",
+      },
+      {
+        question: "What's in the fillable Service Agreement PDF — and is it state-specific?",
+        answer: "The Service Agreement is plain-English and federal-portable: service scope (mowing/edging/trimming/blowing), payment terms (weekly/biweekly/monthly with late-payment language), weather-delay clause, cancellation notice, and a damage-waiver clause. It is not state-specific — every clause is written to the common-law baseline and is enforceable across the 50 states. State-specific contractor licensure overlays (LCO licenses, pesticide endorsements, surety bonds) are referenced separately and should be cleared with the state agriculture or contractor licensing board.",
       },
     ],
   },

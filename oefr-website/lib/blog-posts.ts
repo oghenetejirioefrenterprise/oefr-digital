@@ -6289,6 +6289,241 @@ export const blogPosts: BlogPost[] = [
     ],
   },
 
+  {
+    slug: "ssdi-5-day-inform-rule-hearing-evidence",
+    title: "The SSDI 5-Day Evidence Rule Most Disability Guides Skip: INFORM vs. SUBMIT",
+    description:
+      "20 CFR 404.935(a) requires you to inform the hearing office about evidence 5 business days before your ALJ hearing. Most guides only cover submitting evidence. The INFORM path triggers mandatory consideration under HALLEX I-2-5-13 — even if your records haven't arrived yet.",
+    keywords: [
+      "SSDI 5 day rule",
+      "SSDI ALJ hearing evidence",
+      "20 CFR 404.935",
+      "HALLEX I-2-5-13",
+      "SSDI hearing evidence deadline",
+      "SSDI inform vs submit evidence",
+      "disability hearing evidence rule",
+      "ALJ hearing medical records late",
+      "SSDI appeal hearing preparation",
+      "social security disability hearing tips",
+      "SSDI evidence submission deadline",
+      "disability ALJ hearing letter",
+    ],
+    publishedDate: "2026-05-23",
+    readingTime: "8 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "If your SSDI hearing is coming up and your medical records still haven't arrived from the provider, there's a procedural distinction in the federal regulations that most disability guides don't explain — and it can determine whether the ALJ must consider your evidence or can simply decline it.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        If your SSDI hearing is coming up and your medical records still haven't arrived from the provider, there's a procedural distinction in the federal regulations that most disability guides don't explain — and it can determine whether the ALJ <strong>must</strong> consider your evidence or can simply <strong>decline</strong> it.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The 5-Day Evidence Rule</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Under <strong>20 CFR &sect; 404.935(a)</strong>, you must <em>inform</em> the hearing office about or <em>submit</em> any written evidence no later than <strong>5 business days before the date of the scheduled hearing</strong>.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Most disability resources — including well-known guides from Disability Secrets, Atticus, and Cannon Disability Law — describe this rule only in terms of <strong>submitting</strong> evidence on time. They tell you to get your records in 5 days before the hearing. Good advice, as far as it goes.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        But the regulation says two things, not one: <strong>"inform us about <em>or</em> submit."</strong> These are two distinct procedural actions with different consequences when evidence arrives late.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">INFORM vs. SUBMIT: Two Words, Two Outcomes</h2>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <h3 class="text-lg font-semibold text-white mb-3">If you INFORM before the deadline</h3>
+        <p class="text-slate-300 leading-relaxed mb-2">
+          You notify the hearing office that evidence exists at a specific provider, even though you don't have it in hand yet. Per <strong>HALLEX I-2-6-58</strong>: when a claimant informs the ALJ about evidence at least 5 business days before the hearing but does not submit it, <em>"the ALJ will follow the procedures in HALLEX I-2-5-13."</em>
+        </p>
+        <p class="text-slate-300 leading-relaxed">
+          HALLEX I-2-5-13 directs the ALJ to consider the late-arriving evidence in the decision — <strong>mandatory</strong> consideration, not discretionary.
+        </p>
+      </div>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <h3 class="text-lg font-semibold text-white mb-3">If you only SUBMIT after the deadline</h3>
+        <p class="text-slate-300 leading-relaxed">
+          Per HALLEX I-2-6-58: when evidence is submitted less than 5 business days before the hearing without prior notice, <em>"the ALJ may decline to consider that evidence unless the circumstances in 20 CFR 404.935(b) and 416.1435(b) apply."</em> That means you'd need to demonstrate <strong>good cause</strong> for the late submission — a higher burden and a discretionary outcome.
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why This Matters Practically</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Here's the real-world scenario: you requested medical records from your doctor three weeks ago. Your hearing is in 10 days. The records haven't arrived. You know they exist — you just don't have them.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-4">
+        <strong>Without the INFORM letter:</strong> If the records arrive after your 5-day deadline, the ALJ can decline to consider them. You'd need to argue good cause.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong>With the INFORM letter:</strong> You send a one-page notification to the hearing office — "I have outstanding medical records at [provider], for treatment on [dates], which I requested on [date]. These records have not yet been received." You've preserved the mandatory-consideration track. When the records do arrive, the ALJ is directed by HALLEX I-2-5-13 to consider them.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Regulation, Verbatim</h2>
+
+      <blockquote class="border-l-4 border-amber-500 pl-5 py-3 mb-6 bg-slate-900/50 rounded-r-lg">
+        <p class="text-slate-300 italic leading-relaxed mb-2">
+          "At each level of the administrative review process, you must inform us about or submit any written evidence [...] no later than 5 business days before the date of the scheduled hearing."
+        </p>
+        <p class="text-slate-400 text-sm">
+          — 20 CFR &sect; 404.935(a)
+        </p>
+      </blockquote>
+
+      <blockquote class="border-l-4 border-amber-500 pl-5 py-3 mb-6 bg-slate-900/50 rounded-r-lg">
+        <p class="text-slate-300 italic leading-relaxed mb-2">
+          "If a claimant or appointed representative informs an ALJ about evidence at least five business days before the date of the scheduled hearing, but does not submit the evidence [...] the ALJ will follow the procedures in HALLEX I-2-5-13."
+        </p>
+        <p class="text-slate-400 text-sm">
+          — HALLEX I-2-6-58, Social Security Administration
+        </p>
+      </blockquote>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What an INFORM Letter Looks Like</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-4">
+        The letter is straightforward, but it must be <strong>specific</strong>. Per 20 CFR &sect; 404.935 implementation guidance: if you do not provide information specific enough for SSA to identify the evidence and understand how it relates to your disability claim, you have <strong>not</strong> legally "informed" the hearing office. A vague letter doesn't trigger HALLEX I-2-5-13 protection.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Your letter needs two parts: claimant identification and the 5 specificity elements.
+      </p>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-4">
+        <h3 class="text-lg font-semibold text-white mb-3">Claimant Identification</h3>
+        <ul class="text-slate-300 space-y-2">
+          <li>&bull; Your full name and SSN (last 4 digits)</li>
+          <li>&bull; Your hearing date and ALJ name (from Form HA-501)</li>
+          <li>&bull; Citation: 20 CFR &sect; 404.935(a) and HALLEX I-2-5-13</li>
+        </ul>
+      </div>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <h3 class="text-lg font-semibold text-white mb-3">The 5 Specificity Elements (All Required)</h3>
+        <p class="text-slate-300 leading-relaxed mb-3">
+          Each outstanding evidence source in your letter must include all 5 elements. Missing any one can mean your letter doesn't qualify as "informing" under the regulation:
+        </p>
+        <ul class="text-slate-300 space-y-2">
+          <li><strong class="text-white">1. Provider name and address</strong> &mdash; the specific medical provider, hospital, or facility holding the records</li>
+          <li><strong class="text-white">2. Date range of treatment</strong> &mdash; the period during which you received care (e.g., "January 2025 through October 2025")</li>
+          <li><strong class="text-white">3. Type of evidence</strong> &mdash; what kind of records: medical records, imaging results, lab work, therapy notes, psychological testing, or functional capacity evaluations</li>
+          <li><strong class="text-white">4. Relevance statement</strong> &mdash; how the evidence relates to your disability claim (e.g., "documents the functional limitations caused by my lumbar degenerative disc disease")</li>
+          <li><strong class="text-white">5. Status statement</strong> &mdash; that the records were requested on a specific date and have not yet been received</li>
+        </ul>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-4">
+        This specificity requirement is the detail that most guides and even some law firm articles skip. They'll tell you to "notify the ALJ about outstanding evidence" &mdash; but they won't tell you what makes the notification legally sufficient. Without all 5 elements, the hearing office can treat your letter as if you never sent it.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Fax or mail it to your local hearing office. Keep a copy with the date sent noted.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When to Use This (and When Not To)</h2>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <h3 class="text-lg font-semibold text-white mb-3">Use it when:</h3>
+        <ul class="text-slate-300 space-y-2">
+          <li>&bull; You have an ALJ hearing scheduled (Stage 3 of the appeals process)</li>
+          <li>&bull; You've requested medical records from one or more providers</li>
+          <li>&bull; Those records have <strong>not yet arrived</strong></li>
+          <li>&bull; Your hearing is <strong>more than 5 business days away</strong></li>
+        </ul>
+      </div>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <h3 class="text-lg font-semibold text-white mb-3">Don't use it when:</h3>
+        <ul class="text-slate-300 space-y-2">
+          <li>&bull; You already have all your evidence in hand (just submit it directly)</li>
+          <li>&bull; Your hearing is less than 5 business days away (the good-cause exception under &sect; 404.935(b) applies instead — consult a representative)</li>
+          <li>&bull; You're at the initial application or reconsideration stage (this applies specifically to ALJ hearings)</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The SSDI Appeals Timeline</h2>
+
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-3">
+          <li><strong class="text-white">Stage 1: Initial Application</strong> — Most claims are denied (roughly 2 in 3).</li>
+          <li><strong class="text-white">Stage 2: Reconsideration</strong> — Request within 60 days of initial denial using Form SSA-561. A different examiner reviews.</li>
+          <li><strong class="text-white">Stage 3: ALJ Hearing</strong> — Request within 60 days of reconsideration denial using Form HA-501. This is where the 5-day evidence rule applies. You testify before an Administrative Law Judge.</li>
+          <li><strong class="text-white">Stage 4: Appeals Council Review</strong> — Request within 60 days using Form HA-520. The Appeals Council reviews the ALJ decision for legal error.</li>
+          <li><strong class="text-white">Stage 5: Federal Court</strong> — File in U.S. District Court within 60 days of Appeals Council decision.</li>
+        </ol>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Important Disclaimers</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-4">
+        This article aggregates publicly available federal regulations (20 CFR &sect; 404.935) and SSA procedural guidance (HALLEX). It is <strong>not legal advice</strong>. Every case is different. For case-specific guidance:
+      </p>
+
+      <ul class="text-slate-300 space-y-2 mb-6">
+        <li>&bull; Contact a disability attorney — most work on contingency (no fee unless you win)</li>
+        <li>&bull; Find your state's <a href="https://www.ssa.gov/disability/disability_starter_kits_adult_eng.htm" class="text-blue-400 underline hover:text-blue-300">Disability Rights organization</a></li>
+        <li>&bull; Appoint a representative using Form SSA-1696</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Source Verification</h2>
+
+      <p class="text-slate-300 leading-relaxed mb-4">
+        Every procedural claim in this article can be verified against the primary source:
+      </p>
+
+      <ul class="text-slate-300 space-y-2 mb-6">
+        <li>&bull; <a href="https://www.law.cornell.edu/cfr/text/20/section-404.935" class="text-blue-400 underline hover:text-blue-300">20 CFR &sect; 404.935</a> — Cornell LII (primary source)</li>
+        <li>&bull; <a href="https://www.ssa.gov/OP_Home/hallex/I-02/I-2-6-58.html" class="text-blue-400 underline hover:text-blue-300">HALLEX I-2-6-58</a> — SSA.gov</li>
+        <li>&bull; <a href="https://www.ssa.gov/OP_Home/hallex/I-02/I-2-5-13.html" class="text-blue-400 underline hover:text-blue-300">HALLEX I-2-5-13</a> — SSA.gov</li>
+      </ul>
+    `,
+    cta: {
+      text: "Get the SSDI 5-Day INFORM Letter Kit — $14",
+      href: "https://buy.stripe.com/28E4gs4CPbr9cD9aTc7IY0A",
+    },
+    relatedProducts: [
+      {
+        name: "SSDI Hearing Evidence Letter Kit",
+        href: "/ssdi-hearing-evidence-letter",
+        description:
+          "Fill-in-the-blank INFORM letter template + procedural explainer + 60-day deadline calendar. 8 pages, instant PDF. $14.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the 5-day INFORM rule for SSDI hearings?",
+        answer:
+          "Under 20 CFR 404.935(a), you must inform the hearing office about or submit evidence at least 5 business days before your SSDI ALJ hearing. Informing the ALJ about outstanding records — even if you don't have them yet — triggers mandatory consideration under HALLEX I-2-5-13. Submitting evidence late without prior notice puts you in discretionary territory where the ALJ may decline to consider it.",
+      },
+      {
+        question: "What is HALLEX I-2-5-13?",
+        answer:
+          "HALLEX I-2-5-13 is a Social Security Administration procedural instruction titled 'Claimant Informs the Hearing Office About...' It directs the ALJ to consider evidence that the claimant informed the hearing office about before the 5-day deadline, even when the evidence itself arrives after the deadline. It is the procedural mechanism that makes the INFORM path result in mandatory consideration rather than discretionary.",
+      },
+      {
+        question: "Does this rule apply to SSI (Title XVI) claims?",
+        answer:
+          "Yes. The equivalent regulation for SSI claims is 20 CFR 416.1435, which contains the same 5-day inform-or-submit requirement. The HALLEX procedures (I-2-6-58 and I-2-5-13) apply to both SSDI (Title II) and SSI (Title XVI) ALJ hearings.",
+      },
+      {
+        question: "What if my hearing is less than 5 business days away?",
+        answer:
+          "If you're past the 5-day deadline, the good-cause exception under 20 CFR 404.935(b) applies. You would need to demonstrate a qualifying reason why the evidence was not submitted or the ALJ informed sooner. Common grounds include new and material evidence that was not available, or circumstances beyond your control. A disability attorney or representative can help make the good-cause argument.",
+      },
+      {
+        question: "Is this legal advice?",
+        answer:
+          "No. This article aggregates publicly available federal regulations (20 CFR 404.935) and SSA procedural guidance (HALLEX). It is not a substitute for legal counsel. For case-specific guidance, consult a disability attorney or your state's Disability Rights organization. Most disability attorneys work on contingency — no fee unless you win.",
+      },
+    ],
+  },
+
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

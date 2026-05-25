@@ -2584,18 +2584,8 @@ export const blogPosts: BlogPost[] = [
         The tighter the SOP scope, the more reliably cleaners execute it.
       </p>
 
-      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the April-2026-Ready 8-Tab Pack</h2>
-
       <p class="text-slate-300 leading-relaxed mb-6">
-        OEFR Digital is shipping this exact 8-tab structure as a single Google Sheets pack plus a printable PDF — room-by-room turnover checklist, damage report form (original-camera-files compatible), supply par-level inventory, guest welcome template, co-host handoff doc, cleaner SLA + pay-rate worksheet, maintenance log, and owner-statement summary. Built for hosts running 1–20 listings. Founder lock-in pricing: $17 for the first five buyers, then $24 list. A v2 expansion is in build — adding a 12-shot per-room photo sequence, a quarterly walkthrough audit, a receipts/appliance documentation index, and a ToS compliance acceptance log — and ships free to founder buyers.
-      </p>
-
-      <p class="text-slate-300 leading-relaxed mb-6">
-        Get the pack: <a href="https://buy.stripe.com/7sYbIU1qDeDl7iP0ey7IY04" class="text-amber-300 hover:text-amber-200 underline">Airbnb Turnover SOP Pack — $17 founder lock-in (first five buyers)</a>.
-      </p>
-
-      <p class="text-slate-300 leading-relaxed mb-6">
-        Prefer Etsy? The same 8-tab pack is also live on the Etsy storefront with instant digital download: <a href="https://www.etsy.com/listing/4498258509/airbnb-damage-claim-sop-toolkit-april" class="text-amber-300 hover:text-amber-200 underline">Airbnb Damage Claim SOP Toolkit on Etsy</a> — same $17 founder lock-in price, same PDF + HTML + Markdown delivery.
+        <em>The procedures above apply to any Airbnb listing — whether you run one unit or twenty. Build them into your turnover workflow and enforce them consistently.</em>
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -2603,8 +2593,8 @@ export const blogPosts: BlogPost[] = [
       </p>
     `,
     cta: {
-      text: "Pre-order the Airbnb Turnover SOP Pack ($17)",
-      href: "https://buy.stripe.com/7sYbIU1qDeDl7iP0ey7IY04",
+      text: "Explore OEFR Digital resources",
+      href: "/",
     },
     relatedProducts: [
       {
@@ -2861,7 +2851,7 @@ export const blogPosts: BlogPost[] = [
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
-        Pre-order link: <a href="https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 Parent Advocacy Letter Kit — $24 pre-order</a>.
+        Pre-order link: <a href="/free-iep-504-evaluation-request-letter" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 Parent Advocacy Letter Kit — $24 pre-order</a>.
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -2874,7 +2864,7 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Pre-order the IEP & 504 Parent Advocacy Letter Kit ($24)",
-      href: "https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09",
+      href: "/free-iep-504-evaluation-request-letter",
     },
     relatedProducts: [
       {
@@ -3339,7 +3329,7 @@ export const blogPosts: BlogPost[] = [
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
-        <a href="https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09" class="text-amber-300 hover:text-amber-200 underline">12 IDEA-compliant letter templates + 3 meeting-day tools — $24 instant digital download</a>.
+        <a href="/free-iep-504-evaluation-request-letter" class="text-amber-300 hover:text-amber-200 underline">12 IDEA-compliant letter templates + 3 meeting-day tools — $24 instant digital download</a>.
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -3348,7 +3338,7 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Get the IEP & 504 Letter Pack ($24 instant digital download)",
-      href: "https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09",
+      href: "/free-iep-504-evaluation-request-letter",
     },
     relatedProducts: [
       {
@@ -3576,7 +3566,7 @@ export const blogPosts: BlogPost[] = [
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
-        12 IDEA-compliant letter templates + 3 meeting-day tools — <a href="https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09" class="text-amber-300 hover:text-amber-200 underline">$24 instant digital download</a>. Pre-order ships 2026-05-25. Free updates to founder buyers if the pack revises post-ship.
+        12 IDEA-compliant letter templates + 3 meeting-day tools — <a href="/free-iep-504-evaluation-request-letter" class="text-amber-300 hover:text-amber-200 underline">$24 instant digital download</a>. Pre-order ships 2026-05-25. Free updates to founder buyers if the pack revises post-ship.
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -3585,7 +3575,7 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Get the IEP & 504 Letter Pack ($24 instant digital download)",
-      href: "https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09",
+      href: "/free-iep-504-evaluation-request-letter",
     },
     relatedProducts: [
       {
@@ -3848,7 +3838,7 @@ export const blogPosts: BlogPost[] = [
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
-        Order link: <a href="https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 Parent Advocacy Letter Kit — $24 instant digital download</a>. The pack covers both IEP and 504 letters, with state-procedural variance handled by clearly-marked disclaimer pointing the parent to the state's parent training and information center.
+        Order link: <a href="/free-iep-504-evaluation-request-letter" class="text-amber-300 hover:text-amber-200 underline">IEP &amp; 504 Parent Advocacy Letter Kit — $24 instant digital download</a>. The pack covers both IEP and 504 letters, with state-procedural variance handled by clearly-marked disclaimer pointing the parent to the state's parent training and information center.
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -3861,7 +3851,7 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Get the IEP & 504 Parent Advocacy Letter Kit ($24 instant digital download)",
-      href: "https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09",
+      href: "/free-iep-504-evaluation-request-letter",
     },
     relatedProducts: [
       {
@@ -4122,7 +4112,7 @@ export const blogPosts: BlogPost[] = [
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
-        12 IDEA-compliant letter templates + 3 meeting-day tools — <a href="https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09" class="text-amber-300 hover:text-amber-200 underline">$24 instant digital download</a>. Federal-floor citations on every letter.
+        12 IDEA-compliant letter templates + 3 meeting-day tools — <a href="/free-iep-504-evaluation-request-letter" class="text-amber-300 hover:text-amber-200 underline">$24 instant digital download</a>. Federal-floor citations on every letter.
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -4131,7 +4121,7 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Get the IEP & 504 Letter Pack — 12 templates + 3 meeting-day tools ($24)",
-      href: "https://buy.stripe.com/fZubIU8T53YHeLh5yS7IY09",
+      href: "/free-iep-504-evaluation-request-letter",
     },
     relatedProducts: [
       {
@@ -6478,7 +6468,7 @@ export const blogPosts: BlogPost[] = [
       </p>
 
       <ul class="text-slate-300 space-y-2 mb-6">
-        <li>&bull; <a href="https://www.law.cornell.edu/cfr/text/20/section-404.935" class="text-blue-400 underline hover:text-blue-300">20 CFR &sect; 404.935</a> — Cornell LII (primary source)</li>
+        <li>&bull; <a href="https://www.law.cornell.edu/cfr/text/20/404.935" class="text-blue-400 underline hover:text-blue-300">20 CFR &sect; 404.935</a> — Cornell LII (primary source)</li>
         <li>&bull; <a href="https://www.ssa.gov/OP_Home/hallex/I-02/I-2-6-58.html" class="text-blue-400 underline hover:text-blue-300">HALLEX I-2-6-58</a> — SSA.gov</li>
         <li>&bull; <a href="https://www.ssa.gov/OP_Home/hallex/I-02/I-2-5-13.html" class="text-blue-400 underline hover:text-blue-300">HALLEX I-2-5-13</a> — SSA.gov</li>
       </ul>
@@ -6492,7 +6482,7 @@ export const blogPosts: BlogPost[] = [
         name: "SSDI Hearing Evidence Letter Kit",
         href: "/ssdi-hearing-evidence-letter",
         description:
-          "Fill-in-the-blank INFORM letter template + procedural explainer + 60-day deadline calendar. 8 pages, instant PDF. $14.",
+          "Fill-in-the-blank INFORM letter template with SSR 17-4p relevance categories + procedural explainer + 60-day deadline calendar. 9 pages, instant PDF. $14.",
       },
     ],
     faqs: [

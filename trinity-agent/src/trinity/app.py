@@ -43,6 +43,8 @@ def init(config: TrinityConfig) -> Provider:
     knowledge_tools.set_trinity_dir(config.trinity_dir)
     kanban_tools.set_trinity_dir(config.trinity_dir)
     kanban_db.init(config.trinity_dir)
+    from trinity.x_platform import tools as x_tools
+    x_tools.set_trinity_dir(config.trinity_dir)
 
     # Create provider
     _provider = create_provider(config.auth, config.agent, cwd=str(config.workspace_root))

@@ -28,6 +28,13 @@ log = logging.getLogger(__name__)
 HandleMessageFn = Callable[[TelegramAPI, dict, TrinityConfig], None]
 
 
+# Self-healing watchdog: if no successful poll has completed in
+# WATCHDOG_TIMEOUT_S, the bot is wedged (DNS outage, half-open socket,
+# Telegram side issue, etc.). run_bot raises so the supervisor in
+# cli.py:cmd_start catches it and restarts with exponential backoff.
+WATCHDOG_TIMEOUT_S = 600  # 10 minutes
+
+
 # ── Offset persistence ──────────────────────────────────────────────
 
 def _offset_path(config: TrinityConfig) -> Path:
@@ -202,20 +209,20 @@ def run_bot(config: TrinityConfig, handle_message: HandleMessageFn) -> None:
     connect_retries = 0
     last_successful_poll = time.monotonic()
 
-    # Self-healing watchdog: if we haven't completed a successful poll in
-    # WATCHDOG_TIMEOUT_S, something is wedged — raise to exit the loop and
-    # let the supervisor in cmd_start restart us cleanly.
-    WATCHDOG_TIMEOUT_S = 600  # 10 minutes
-
     # 8. Main polling loop.
     while running:
-        # Self-healing check.
+        # Self-healing check: a clean return from run_bot is treated by the
+        # supervisor as "the user shut us down" — so a wedged-bot scenario
+        # must raise to trigger restart.
         if time.monotonic() - last_successful_poll > WATCHDOG_TIMEOUT_S:
             log.error(
-                "Watchdog: no successful poll for %ds — forcing loop exit for restart",
+                "Watchdog: no successful poll for %ds — raising for supervisor restart",
                 WATCHDOG_TIMEOUT_S,
             )
-            break
+            pool.shutdown()
+            raise RuntimeError(
+                f"Watchdog timeout: no successful poll in {WATCHDOG_TIMEOUT_S}s"
+            )
 
         try:
             updates = api.get_updates(offset=offset + 1, timeout=poll_timeout)

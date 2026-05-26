@@ -65,6 +65,11 @@ DEFAULTS: dict[str, Any] = {
         "memory_agent_enabled": True,
         "memory_agent_model": "",
         "share_global": True,
+        "shared": {
+            "publish_categories": [],
+            "subscribe_to_workspaces": [],
+            "shared_storage_path": "",
+        },
     },
     "scheduler": {
         "enabled": True,
@@ -76,6 +81,16 @@ DEFAULTS: dict[str, Any] = {
         "exclude_patterns": [
             "node_modules", ".git", "__pycache__", ".next", "dist", "build",
         ],
+    },
+    "x_platform": {
+        "x_username_env": "X_USERNAME",
+        "x_password_env": "X_PASS",
+        "nim_api_key_env": "NVIDIA_API_KEY",
+        "nim_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+        "nim_base_url": "https://integrate.api.nvidia.com/v1",
+        "headless": True,
+        "max_steps": 40,
+        "max_failures": 3,
     },
 }
 
@@ -136,6 +151,14 @@ class TelegramConfig:
 
 
 @dataclass
+class SharedMemoryConfig:
+    """Config for cross-workspace memory sharing (Phase 4 sub-project 5)."""
+    publish_categories: list[str] = field(default_factory=list)
+    subscribe_to_workspaces: list[str] = field(default_factory=list)
+    shared_storage_path: str = ""  # e.g. ~/.trinity/shared/
+
+
+@dataclass
 class MemoryConfig:
     short_term_decay_hours: int = 48
     long_term_decay_days: int = 30
@@ -156,6 +179,7 @@ class MemoryConfig:
     memory_agent_enabled: bool = True
     memory_agent_model: str = ""  # Falls back to agent.router_model if empty
     share_global: bool = True  # When False, this workspace neither reads nor writes ~/.trinity/ memories
+    shared: SharedMemoryConfig = field(default_factory=SharedMemoryConfig)
 
 
 @dataclass
@@ -195,6 +219,18 @@ class WorkspaceConfig:
 
 
 @dataclass
+class XPlatformConfig:
+    x_username_env: str = "X_USERNAME"
+    x_password_env: str = "X_PASS"
+    nim_api_key_env: str = "NVIDIA_API_KEY"
+    nim_model: str = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
+    nim_base_url: str = "https://integrate.api.nvidia.com/v1"
+    headless: bool = True
+    max_steps: int = 40
+    max_failures: int = 3
+
+
+@dataclass
 class TrinityConfig:
     """Top-level configuration object."""
     company: CompanyConfig = field(default_factory=CompanyConfig)
@@ -205,6 +241,7 @@ class TrinityConfig:
     scheduler: SchedulerConfig = field(default_factory=SchedulerConfig)
     employees: dict[str, EmployeeConfig] = field(default_factory=dict)
     workspace: WorkspaceConfig = field(default_factory=WorkspaceConfig)
+    x_platform: XPlatformConfig = field(default_factory=XPlatformConfig)
 
     # Runtime paths (set after loading)
     workspace_root: Path = field(default_factory=lambda: Path.cwd())
@@ -326,7 +363,18 @@ def load_config(workspace_root: Path | None = None) -> TrinityConfig:
 
     # Build memory config
     mem = merged.get("memory", {})
-    memory = MemoryConfig(**{k: mem[k] for k in MemoryConfig.__dataclass_fields__ if k in mem})
+    shared_raw = mem.get("shared", {}) if isinstance(mem.get("shared", {}), dict) else {}
+    shared_cfg = SharedMemoryConfig(
+        publish_categories=list(shared_raw.get("publish_categories", []) or []),
+        subscribe_to_workspaces=list(shared_raw.get("subscribe_to_workspaces", []) or []),
+        shared_storage_path=str(shared_raw.get("shared_storage_path", "") or ""),
+    )
+    memory_kwargs = {
+        k: mem[k]
+        for k in MemoryConfig.__dataclass_fields__
+        if k in mem and k != "shared"
+    }
+    memory = MemoryConfig(shared=shared_cfg, **memory_kwargs)
 
     # Build workspace config
     ws = merged.get("workspace", {})
@@ -334,6 +382,10 @@ def load_config(workspace_root: Path | None = None) -> TrinityConfig:
         products_dir=ws.get("products_dir", "."),
         exclude_patterns=ws.get("exclude_patterns", DEFAULTS["workspace"]["exclude_patterns"]),
     )
+
+    # Build x_platform config
+    xp = merged.get("x_platform", {})
+    x_platform = XPlatformConfig(**{k: xp[k] for k in XPlatformConfig.__dataclass_fields__ if k in xp})
 
     trinity_dir = root / ".trinity"
 
@@ -355,6 +407,7 @@ def load_config(workspace_root: Path | None = None) -> TrinityConfig:
         scheduler=scheduler,
         employees=_parse_employees(merged.get("employees", {})),
         workspace=workspace_cfg,
+        x_platform=x_platform,
         workspace_root=root,
         trinity_dir=trinity_dir,
         global_trinity_dir=global_trinity_dir,

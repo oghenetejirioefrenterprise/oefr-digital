@@ -50,7 +50,7 @@ def test_get_tools_none_returns_all():
     # constant so an ordering mishap in a sibling test surfaces as a clean
     # count diff rather than a matching-stale-cache assertion.
     all_tools = get_tools()
-    assert len(all_tools) == 23
+    assert len(all_tools) == 39
 
 
 def test_get_tools_unknown_name_skipped():

@@ -458,6 +458,20 @@ def _append_kanban_specs() -> None:
 
 _append_kanban_specs()
 
+
+def _append_x_platform_specs() -> None:
+    from trinity.x_platform import tools as x_tools
+    for schema, handler in x_tools.ALL_SPECS:
+        _BUILTIN_SPECS.append(ToolSpec(
+            name=schema["name"],
+            definition=schema,
+            handler=handler,
+            subsets=("builder",),
+        ))
+
+
+_append_x_platform_specs()
+
 for _spec in _BUILTIN_SPECS:
     TOOLS.register(_spec.name, _spec, source="builtin")
 

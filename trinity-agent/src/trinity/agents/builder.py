@@ -21,6 +21,7 @@ def run(
     model: str | None = None,
     on_text: Callable[[str], None] | None = None,
     on_tool: Callable[[str, str], None] | None = None,
+    chat_history: list | None = None,
 ) -> str:
     """Run a builder agent with full tool access.
 
@@ -41,4 +42,5 @@ def run(
         tool_executor=tool_executor,
         on_text=on_text,
         on_tool=on_tool,
+        chat_history=chat_history,
     )

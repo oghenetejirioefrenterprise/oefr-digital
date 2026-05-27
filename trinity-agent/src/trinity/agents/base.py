@@ -73,6 +73,7 @@ def run_agent(
     tool_executor: Callable | None = None,
     on_text: Callable[[str], None] | None = None,
     on_tool: Callable[[str, str], None] | None = None,
+    chat_history: list[Message] | None = None,
 ) -> str:
     """Run a full agentic loop and return the final text response.
 
@@ -103,7 +104,7 @@ def run_agent(
             for t in tools
         ]
 
-    messages: list[Message] = [Message(role="user", content=task)]
+    messages: list[Message] = list(chat_history or []) + [Message(role="user", content=task)]
     total_input_tokens = 0
     total_output_tokens = 0
 

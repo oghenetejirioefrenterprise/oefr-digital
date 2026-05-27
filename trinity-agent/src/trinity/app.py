@@ -228,6 +228,7 @@ def handle_message(api, msg: dict, config: TrinityConfig):
                     config, employee_name, briefing, group_cfg,
                     attempt_text, stream,
                     recall_context=recall_context,
+                    history_messages=history_messages,
                 )
             else:
                 response = _run_conversational(
@@ -422,7 +423,7 @@ def _run_conversational(config, employee_name, briefing, group_cfg,
 
 
 def _run_action(config, employee_name, briefing, group_cfg, text, stream,
-                recall_context=""):
+                recall_context="", history_messages=None):
     from trinity.agents.builder import run as builder_run
     from trinity.employees.loader import load_full_identity
     from trinity.tools.registry import TOOL_DEFINITIONS, execute_tool
@@ -457,6 +458,7 @@ def _run_action(config, employee_name, briefing, group_cfg, text, stream,
         model=model,
         on_text=stream.on_text if stream else None,
         on_tool=stream.on_tool if stream else None,
+        chat_history=history_messages,
     )
 
 

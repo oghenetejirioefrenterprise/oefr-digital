@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+
+# Trinity runtime state (per-workspace; never committed)
+.trinity/**/*.db
+.trinity/**/*.db-wal
+.trinity/**/*.db-shm
+.trinity/memory/index.json
+.trinity/memory/index.json.migrated
+
+# Local secrets
+.env

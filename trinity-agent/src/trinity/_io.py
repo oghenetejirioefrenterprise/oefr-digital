@@ -14,18 +14,23 @@ from pathlib import Path
 from typing import Any
 
 
-def atomic_write_text(path: Path, content: str) -> None:
+def atomic_write_text(path: Path, content: str, *, fsync: bool = True) -> None:
     """Write ``content`` to ``path`` atomically.
 
-    Writes to ``{path}.tmp``, fsyncs the contents, then renames onto the
-    target. Readers either see the old file or the new file — never a
+    Writes to ``{path}.tmp``, optionally fsyncs the contents, then renames onto
+    the target. Readers either see the old file or the new file — never a
     partially-written one.
+
+    ``fsync=False`` skips the durability sync — appropriate for derived,
+    regenerable artifacts (e.g. the Markdown export of a SQLite-backed memory)
+    where the rename's crash-atomicity is wanted but a per-write fsync is not.
     """
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(content, encoding="utf-8")
-    with open(tmp, "rb") as fh:
-        os.fsync(fh.fileno())
+    if fsync:
+        with open(tmp, "rb") as fh:
+            os.fsync(fh.fileno())
     os.replace(tmp, path)
 
 

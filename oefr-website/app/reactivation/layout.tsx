@@ -44,7 +44,7 @@ const jsonLd = {
   provider: {
     "@type": "Organization",
     name: "OEFR Digital",
-    url: "https://oefrenterprise.com",
+    url: "https://www.oefrenterprise.com",
   },
   description:
     "Done-for-you email reactivation service for gyms, dental clinics, and service businesses. We recover revenue from cold contacts with no new ad spend.",
@@ -55,7 +55,7 @@ const jsonLd = {
     description: "Setup fee plus 300 per month management",
   },
   areaServed: "United States",
-  url: "https://oefrenterprise.com/reactivation",
+  url: "https://www.oefrenterprise.com/reactivation",
 };
 
 export default function ReactivationLayout({

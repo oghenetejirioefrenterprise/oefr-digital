@@ -1,0 +1,30 @@
+{
+  "title": "Affordable SaaS Stack Intelligence Database",
+  "slug": "saas-stack-intelligence",
+  "score": 7,
+  "demand_signal": "Validated demand: 47% of companies lack adequate resources for effective SaaS management, and 76.5% express concern about productivity impact of mismanaged tools. Security risks increasingly stem from visibility gaps. Existing tools (BuiltWith, ZoomInfo, TechnologyChecker) are priced at $100-250/month, creating opportunity for affordable niche solution.",
+  "target_audience": "Security teams at mid-size companies, SaaS sales reps prospecting accounts, competitive intelligence analysts, investors evaluating tech companies, and product managers researching market positioning",
+  "public_data_sources": [
+    "Company job postings (mention required tech skills/tools)",
+    "Engineering blog posts describing tech stacks",
+    "Open source repositories with dependency files (package.json, requirements.txt)",
+    "LinkedIn employee profiles listing tool experience",
+    "Company websites (JavaScript libraries, analytics pixels, chat widgets visible in HTML)",
+    "Tech conference speaker lists and presentation topics",
+    "Product integration marketplace listings (Zapier, Make.com)"
+  ],
+  "competitive_landscape": "BuiltWith ($295-495/mo), TechnologyChecker.io ($100+/mo), Wappalyzer (browser extension, limited dataset), ZoomInfo ($250+/mo with contact data bundled), and Apollo.io (tech + contacts). All are expensive and target enterprise buyers. Opportunity exists for affordable, niche-focused solution targeting smaller teams and specific verticals.",
+  "monetization_model": "Niche vertical reports: One-time purchases ($29-79) for pre-packaged reports like 'Top 500 E-commerce Companies' SaaS Stacks' or 'Fintech Company Tech Stack Analysis'. Subscription tier ($29/mo) for custom searches and monthly updates. API access for sales teams ($99/mo).",
+  "estimated_market_size": "SaaS management market growing rapidly. Security teams (50K+ companies), sales teams (200K+ B2B SaaS reps), and competitive analysts (10K+ professionals) all need this data. TAM for affordable tier: $20-30M annually.",
+  "data_freshness_requirement": "Quarterly refreshes for most companies. Monthly updates for high-growth tech companies. Job posting monitoring should be continuous (tools change when companies hire for new skills).",
+  "compliance_notes": "PASS potential: All data derived from publicly available sources (job postings, websites, blogs). No scraping behind authentication. No employee PII. Similar to BuiltWith's business model. Include source URLs for each technology detection.",
+  "next_steps": [
+    "Pilot with single vertical (e.g., 'E-commerce Tech Stacks')",
+    "Build tech detection script using multiple public signals",
+    "Create sample report for 100 companies to validate data quality",
+    "Test pricing with $49 one-time vertical report",
+    "Gather feedback on most valuable data points (integrations, spend estimates, adoption dates)"
+  ],
+  "research_date": "2026-05-25",
+  "researcher_notes": "Solid opportunity but crowded market at the high end. Key differentiator must be PRICE and NICHE FOCUS. Don't compete with BuiltWith on breadth. Instead, go deep on specific verticals (e.g., 'SaaS Stacks of YC Companies' or 'Tech Stacks of Remote-First Companies'). Bundle with other data (funding, headcount, growth stage) to increase value."
+}

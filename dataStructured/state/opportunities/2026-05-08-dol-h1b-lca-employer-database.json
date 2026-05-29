@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "dol-h1b-lca-employer-database",
+  "created": "2026-05-08T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 8,
+  "summary": "A cleaned CSV of 100,000+ certified H-1B Labor Condition Application (LCA) filings from DOL OFLC quarterly disclosure data \u2014 publicly downloadable with no authentication required. Each record includes employer name, city, state, NAICS code, job title, SOC occupation code, wage offered, prevailing wage, visa type (H-1B/H-1B1/E-3), case status, and number of workers requested. H1BGrader.com, MyVisaJobs.com, and H1Base.com all charge $19\u2013$49/month to search this exact data. A one-time $49 flat file on Gumroad targets immigration attorneys prospecting for new corporate clients, staffing agencies identifying active H-1B sponsors, and HR teams benchmarking visa wages \u2014 all segments that currently pay recurring fees for search access to the same DOL public records.",
+  "audience": {
+    "who": "Immigration attorneys who need a list of companies that filed H-1B petitions in the past 12 months \u2014 each certified employer is a potential law firm client for renewals, amendments, and green card sponsorship; staffing agencies and recruiting firms specializing in visa-eligible candidates (tech, engineering, finance) who need to identify companies actively sponsoring H-1Bs; corporate HR and talent acquisition benchmarking visa wage levels against competitors in the same occupation and metro; B2B SaaS companies selling to HR and legal teams (ATS vendors, immigration workflow platforms) who need a prospect list of active H-1B sponsors.",
+    "where_found": [
+      "https://h1bgrader.com/",
+      "https://www.myvisajobs.com/",
+      "https://h1base.com/"
+    ]
+  },
+  "data_wanted": "DOL OFLC H-1B LCA Performance Disclosure Data \u2014 quarterly flat files published at https://www.dol.gov/agencies/eta/foreign-labor/performance. Most recent: FY2026 Q1 at https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/LCA_Disclosure_Data_FY2026_Q1.xlsx. Key fields per case: employer name, employer address (street, city, state, ZIP), employer NAICS code, SOC code (occupation), job title, total workers requested, begin date, end date, visa class (H-1B/H-1B1/E-3), wage rate offered (annual), wage unit of pay, prevailing wage, prevailing wage source, case status (certified/denied/withdrawn), case number. Downloadable as XLSX with no login or API key required. Combine FY2024 Q1\u2013Q4 and FY2025 Q1\u2013Q4 for a full 2-year picture (~200,000 certified cases).",
+  "evidence": [
+    {
+      "source": "H1BGrader \u2014 paid search platform built entirely on DOL LCA data, charges $14.99\u2013$29.99/month for premium search access with employer history and wage analytics",
+      "url": "https://h1bgrader.com/",
+      "quote": "H1BGrader provides detailed H-1B sponsor reports, including approval rates, wage data, and attorney information \u2014 all sourced from Department of Labor LCA and USCIS public records. Premium plans start at $14.99/month."
+    },
+    {
+      "source": "MyVisaJobs \u2014 charges $19.99/month for H-1B employer search and LCA data access, proves recurring willingness-to-pay for searchable LCA records",
+      "url": "https://www.myvisajobs.com/",
+      "quote": "MyVisaJobs Premium: $19.99/month \u2014 access H-1B employer sponsorship history, LCA wage data, and approval statistics for 300,000+ sponsoring companies."
+    },
+    {
+      "source": "DOL OFLC Performance Data \u2014 official source for all LCA disclosure data, quarterly XLSX files, no authentication required",
+      "url": "https://www.dol.gov/agencies/eta/foreign-labor/performance",
+      "quote": "The Office of Foreign Labor Certification (OFLC) generates program data that provides public disclosure information for H-1B, H-2A, H-2B, and PERM cases. LCA Disclosure Data is published quarterly."
+    },
+    {
+      "source": "AILA (American Immigration Lawyers Association) \u2014 notes the OFLC Q1 FY2026 data was released publicly, confirming the quarterly cadence and attorney usage of this data for prospecting and benchmarking",
+      "url": "https://www.aila.org/library/oflc-releases-public-disclosure-data-and-selected-program-statistics-for-q1-of-fy26",
+      "quote": "OFLC Releases Public Disclosure Data and Selected Program Statistics for Q1 of FY26. Immigration practitioners regularly use this data to analyze sponsorship trends and employer activity."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "Three active paid products (H1BGrader, MyVisaJobs, H1Base) charge $15\u2013$49/month for search access to the identical DOL data. Buyers are immigration attorneys (who bill $300\u2013$500/hour and happily pay $30/month for prospecting lists), staffing firms (whose H-1B placement fees are $15K\u2013$30K per hire), and HR teams benchmarking wages. A $49 flat CSV of all certified H-1B LCA cases from FY2024\u20132025 (~200,000 records) destroys the recurring fee model: same data, one payment, instant download. The pitch is obvious: 'same data as H1BGrader, $49 once vs. $30/month forever.'",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://www.dol.gov/agencies/eta/foreign-labor/performance",
+      "https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/LCA_Disclosure_Data_FY2026_Q1.xlsx"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad one-time download + LinkedIn posts targeting immigration attorneys and HR/talent leaders at tech companies + r/immigration and r/h1b subreddit contextual posts + direct outreach to solo immigration attorney practices via LinkedIn",
+    "angle": "Title: 'H-1B LCA Employer Database FY2024\u20132025 \u2014 200,000+ Certified Cases, Wages & NAICS Codes (CSV)'. Key selling points: (1) Every employer that filed a certified H-1B LCA in FY2024 and FY2025 \u2014 company name, city, state, job title, SOC code, wage offered, and number of workers, (2) Same source as H1BGrader and MyVisaJobs \u2014 the DOL OFLC quarterly disclosure files, (3) One-time $49 instant CSV download \u2014 not $30/month forever. Immigration attorney angle: 'Build your prospect list \u2014 every company in your state that sponsored H-1Bs last year, filtered by occupation code.' Staffing agency angle: 'Find every active H-1B sponsor in tech, engineering, and finance \u2014 200,000+ companies, one file.'"
+  },
+  "ceo_decision": {
+    "decided_at": "2026-05-08T14:00:00-04:00",
+    "decided_by": "ceo",
+    "verdict": "APPROVED",
+    "priority": 4,
+    "notes": "Score 8, DOL XLSX download, immigration attorney buyers are high-value, destroys recurring fee model of H1BGrader"
+  }
+}

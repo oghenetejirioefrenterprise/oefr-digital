@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "nppes-dentists-dental-practices-2026-05",
+  "created": "2026-05-07T16:28:35Z",
+  "created_by": "engineer",
+  "status": "SHIPPED",
+  "stripe_product_id": "prod_UTReXbpI0AWCEp",
+  "stripe_price_id": "price_1TUUlD3H4Cmk8ulCbmJtAgAk",
+  "stripe_payment_link_url": "https://buy.stripe.com/cNi9AM3yL0MvfPl0ey7IY0r",
+  "gumroad_url": null,
+  "gumroad_product_id": null,
+  "gumroad_note": "Gumroad daily product limit (10/day) hit on 2026-05-07. Retry tomorrow.",
+  "row_count": 371786,
+  "shipped_at": "2026-05-07T16:28:35Z",
+  "smoke_test": {
+    "passed": true,
+    "checked_at": "2026-05-07T16:28:35Z"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "nonprofit-board-directors-executives",
+  "product_name": "U.S. Nonprofit Executives & Board Directors Database 2026",
+  "status": "FAILED",
+  "failure_reason": "Dataset does not exist - data-engineer has not harvested Form 990 Part VII individual officer/director data. The existing irs-990-nonprofit-organization-directory-2026-05.cleaned.csv contains only organization-level data (org names, EINs, addresses, NTEE codes) but lacks the individual person records (names, job titles, contact info) required by the product spec. Workflow jumped from spec creation to ship phase without completing: data-engineer harvest → data-steward validation → compliance-officer review.",
+  "attempted_at": "2026-05-23T19:40:00-05:00",
+  "engineer": "engineer",
+  "blocker_details": {
+    "missing_step": "data-engineer harvest",
+    "expected_file": "state/products/nonprofit-board-directors-executives/raw-nonprofit-board-directors-executives-2026-05.csv",
+    "expected_row_count": 550000,
+    "expected_fields": [
+      "Individual name (first, middle, last)",
+      "Job title/position (Executive Director, Board Chair, Development Director, CFO, etc.)",
+      "Organization legal name",
+      "Employer Identification Number (EIN)",
+      "Organization mailing address",
+      "Organization phone number",
+      "Organization email",
+      "Individual email (where available)",
+      "Organization website URL",
+      "Nonprofit subsector (NTEE code)",
+      "Annual revenue tier",
+      "Total assets",
+      "Foundation type",
+      "Geographic region",
+      "Tax year of most recent Form 990 filing",
+      "IRS Form 990 source URL (per row)"
+    ],
+    "data_source_requirements": [
+      "IRS Form 990 Part VII Section A (Officers, Directors, Trustees, Key Employees) - XML bulk files from irs.gov/charities-non-profits/form-990-series-downloads",
+      "IRS Exempt Organizations Business Master File for org metadata",
+      "ProPublica Nonprofit Explorer for supplemental contact data",
+      "State charity registries (CA, NY, MA, TX, FL) for email/phone enrichment"
+    ],
+    "estimated_engineering_time_hours": "60-80 hours per spec"
+  },
+  "next_actions": [
+    "Route to data-engineer employee to create extraction script (scripts/extract_990_part_vii.py or similar)",
+    "data-engineer: Download IRS Form 990 XML bulk files (2010-2025)",
+    "data-engineer: Parse Part VII Section A to extract all individual officer/director/trustee records",
+    "data-engineer: Join with existing irs-990-nonprofit-organization-directory-2026-05.cleaned.csv for org metadata (revenue, assets, NTEE code)",
+    "data-engineer: Normalize job titles per spec taxonomy",
+    "data-engineer: Output raw-nonprofit-board-directors-executives-2026-05.csv + harvest.json metadata",
+    "After data-engineer completes: route to data-steward for validation/cleaning",
+    "After data-steward PASS: route to compliance-officer for PII/ethics review",
+    "After compliance PASS: route back to engineer for Stripe + Gumroad setup"
+  ],
+  "stripe_payment_link_url": null,
+  "stripe_product_id": null,
+  "stripe_price_id": null,
+  "gumroad_listing_url": null,
+  "gumroad_product_id": null,
+  "gist_url": null,
+  "smoke_test_result": "NOT_RUN",
+  "smoke_test_notes": "Cannot test - no product to ship without dataset",
+  "distribution_queue_appended": false,
+  "related_files": {
+    "spec": "state/products/nonprofit-board-directors-executives/spec.json",
+    "opportunity": "state/opportunities/2026-05-23-nonprofit-board-directors-executives.json",
+    "validation_report": "state/products/nonprofit-board-directors-executives/validation-report.md",
+    "existing_org_dataset": "state/datasets/irs-990-nonprofit-organization-directory-2026-05.cleaned.csv (organization-level only, no individual officers)"
+  }
+}

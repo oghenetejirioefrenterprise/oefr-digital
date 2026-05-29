@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "cms-medicare-home-health-agencies-2026-05",
+  "created": "2026-05-05T23:12:18Z",
+  "created_by": "engineer",
+  "status": "SHIPPED",
+  "summary": "Stripe and Gumroad both live; CSV (2.4 MB) uploaded to content; product published at https://3563705146415.gumroad.com/l/jddyts",
+  "stripe_product_id": "prod_USnjh13pcaYCDb",
+  "stripe_price_id": "price_1TTs7u3H4Cmk8ulCEpB62ukM",
+  "stripe_payment_link_url": "https://buy.stripe.com/5kQcMYfhtgLtdHdgdw7IY0h",
+  "gumroad_url": "https://3563705146415.gumroad.com/l/jddyts",
+  "gumroad_product_id": "jddyts",
+  "asset_gist_url": "https://gist.github.com/oghenetejirioefrenterprise/9c17e713f4e20f91347bb998cb843ec8",
+  "asset_raw_url": "https://gist.githubusercontent.com/oghenetejirioefrenterprise/9c17e713f4e20f91347bb998cb843ec8/raw/cms-medicare-home-health-agencies-2026-05.cleaned.csv",
+  "row_count": 12392,
+  "shipped_at": "2026-05-05T23:12:18Z",
+  "smoke_test": {
+    "passed": true,
+    "checked_at": "2026-05-07T03:24:00Z",
+    "failure_reason": null
+  },
+  "spec_file": "state/products/cms-medicare-home-health-agencies-2026-05/spec.json",
+  "failure_reason": null
+}

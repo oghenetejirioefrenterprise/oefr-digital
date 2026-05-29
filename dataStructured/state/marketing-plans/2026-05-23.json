@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "date": "2026-05-23",
+  "generated_at": "2026-05-23T15:01:16+00:00",
+  "plans": [
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "reddit",
+      "subreddit_or_handle": "r/b2bsales",
+      "draft": {
+        "subreddit_suggestions": [
+          "r/b2bsales",
+          "r/datasets",
+          "r/sales"
+        ],
+        "title": "Federal TTB data shows 82,500+ licensed wineries and distilleries in the US \u2013 here's what I learned building a prospecting directory from it",
+        "body": "I recently pulled the complete Alcohol and Tobacco Tax and Trade Bureau (TTB) permit database to build a prospecting tool for B2B suppliers in the craft beverage space. A few things surprised me:\n\n1. The industry is way more fragmented than I expected. Over 82,500 active federal permits across breweries, wineries, and distilleries. The long tail is enormous \u2013 most are small craft producers that traditional databases miss.\n\n2. The TTB data is public and free, but it's a mess. Multiple permit types per business, outdated addresses, no standardization. Cleaning and deduping it took longer than the actual scrape.\n\n3. Geographic clustering is wild. Napa has obvious density, but I found unexpected hotspots in places like North Carolina (distilleries) and Michigan (wineries) that don't show up in consumer-facing lists.\n\n4. New permits are issued weekly. Any static list goes stale fast, which is why most commercial databases are either incomplete or expensive.\n\nFull disclosure: I packaged the cleaned dataset as a product (CSV format, $79 one-time, no subscription). It's at https://buy.stripe.com/4gM4gsd9l9j19qXf9s7IY0w if you're prospecting wineries/distilleries for equipment, POS systems, ingredients, packaging, etc.\n\nBut even if you're not in that niche, the TTB's public permit data is worth knowing about if you do any kind of industry research or B2B prospecting. It's one of the few federal datasets that's this granular and current.\n\nHappy to answer questions about the data structure or what I found."
+      },
+      "rationale": "Reddit -> r/b2bsales | round-robin assignment",
+      "scheduled_for": "2026-05-23T21:00:00+00:00",
+      "requires_founder_review": false
+    }
+  ]
+}

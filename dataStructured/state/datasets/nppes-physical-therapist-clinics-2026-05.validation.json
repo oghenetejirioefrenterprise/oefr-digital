@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "type": "validation_report",
+  "slug": "nppes-physical-therapist-clinics-2026-05",
+  "validated_at": "2026-05-07T04:04:02.889533+00:00",
+  "row_count_input": 377883,
+  "row_count_cleaned": 377805,
+  "rows_dropped": {
+    "duplicates": 0,
+    "deactivated": 0,
+    "invalid_state": 78,
+    "total": 78
+  },
+  "null_rates": {
+    "npi": "0.00%",
+    "provider_name": "0.00%",
+    "street1": "0.00%",
+    "city": "0.00%",
+    "state": "0.00%",
+    "zip_code": "0.00%",
+    "phone": "0.02%",
+    "source_url": "0.00%"
+  },
+  "entity_type_split": {
+    "Individual": 334818,
+    "Organization": 42987
+  },
+  "top_states": {
+    "CA": 30472,
+    "NY": 29379,
+    "FL": 24600,
+    "TX": 24170,
+    "PA": 17713,
+    "IL": 16997,
+    "MI": 13287,
+    "NJ": 13257,
+    "NC": 12072,
+    "OH": 11639
+  },
+  "taxonomy_distribution": {
+    "225100000X": 284287,
+    "225200000X": 60856,
+    "2251P0200X": 7488,
+    "225X00000X": 5055,
+    "2251G0304X": 2449,
+    "2251X0800X": 1785,
+    "2251S0007X": 1584,
+    "2251N0400X": 1276,
+    "2255A2300X": 1155,
+    "111N00000X": 1010
+  },
+  "pass_criteria_detail": {
+    "cleaned_rows_gt_300k": true,
+    "npi_null_rate_zero": true,
+    "source_url_null_rate_zero": true,
+    "provider_name_null_rate_lt_5pct": true,
+    "no_duplicate_npi": true
+  },
+  "duplicate_npi_in_cleaned": 0,
+  "notes": {
+    "missing_columns": [
+      "taxonomy_desc",
+      "enumeration_date"
+    ],
+    "extra_columns_present": [
+      "license_number",
+      "reactivation_date"
+    ]
+  },
+  "sample_rows": [
+    {
+      "npi": "1013910066",
+      "entity_type": "Individual",
+      "provider_name": "JOHN FIORE",
+      "provider_first_name": "JOHN",
+      "provider_last_name": "FIORE",
+      "provider_credential_text": "PT",
+      "provider_organization_name": "",
+      "npi_taxonomy_code_primary": "225100000X",
+      "street1": "2207 S 3RD ST W",
+      "street2": "",
+      "city": "MISSOULA",
+      "state": "MT",
+      "zip_code": "59801",
+      "phone": "4065495283",
+      "last_update_date": "09/09/2014",
+      "source_url": "https://npiregistry.cms.hhs.gov/",
+      "license_number": "809",
+      "reactivation_date": ""
+    },
+    {
+      "npi": "1568465508",
+      "entity_type": "Individual",
+      "provider_name": "JENNIFER ROST",
+      "provider_first_name": "JENNIFER",
+      "provider_last_name": "ROST",
+      "provider_credential_text": "PT",
+      "provider_organization_name": "",
+      "npi_taxonomy_code_primary": "225100000X",
+      "street1": "2200 NE NEFF RD",
+      "street2": "STE. 202",
+      "city": "BEND",
+      "state": "OR",
+      "zip_code": "97701",
+      "phone": "5413887738",
+      "last_update_date": "11/15/2012",
+      "source_url": "https://npiregistry.cms.hhs.gov/",
+      "license_number": "1430",
+      "reactivation_date": ""
+    },
+    {
+      "npi": "1033112073",
+      "entity_type": "Individual",
+      "provider_name": "DESIREE VAN BLARICOM",
+      "provider_first_name": "DESIREE",
+      "provider_last_name": "VAN BLARICOM",
+      "provider_credential_text": "PT",
+      "provider_organization_name": "",
+      "npi_taxonomy_code_primary": "225100000X",
+      "street1": "435 S CRYSTAL ST",
+      "street2": "STE 400",
+      "city": "BUTTE",
+      "state": "MT",
+      "zip_code": "59701",
+      "phone": "4064963456",
+      "last_update_date": "09/19/2007",
+      "source_url": "https://npiregistry.cms.hhs.gov/",
+      "license_number": "1821",
+      "reactivation_date": ""
+    }
+  ],
+  "status": "PASS"
+}

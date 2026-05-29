@@ -1,0 +1,19 @@
+{
+  "slug": "osha-employer-inspection-violation-records-2026-05",
+  "status": "MANUAL_DOWNLOAD_NEEDED",
+  "harvested_at": "2026-05-10T19:10:00-04:00",
+  "harvested_by": "data-engineer",
+  "source": "DOL OSHA Enforcement Data",
+  "source_urls": [
+    "https://www.osha.gov/data",
+    "https://data.dol.gov/datasets",
+    "https://www.osha.gov/pls/imis/establishment.html"
+  ],
+  "target_scope": {
+    "years": "2022-2025 (FY2022-FY2025)",
+    "filter": "Closed inspections with at least one citation",
+    "expected_records": "400,000-600,000"
+  },
+  "blocker": "OSHA bulk files return 403 Forbidden on direct download. Browser-based download required.",
+  "next_action": "Manual download from DOL portal, then run process script"
+}

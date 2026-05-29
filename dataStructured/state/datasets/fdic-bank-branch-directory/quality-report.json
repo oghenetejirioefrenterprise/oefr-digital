@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "slug": "fdic-bank-branch-directory",
+  "status": "APPROVED",
+  "initial_row_count": 78344,
+  "final_row_count": 77542,
+  "signal_noise_ratio": 0.99,
+  "transformations": [
+    {
+      "step": "schema_integrity",
+      "stats": {
+        "dropped_malformed": 802
+      }
+    },
+    {
+      "step": "deduplication",
+      "stats": {
+        "duplicates_removed": 0
+      }
+    },
+    {
+      "step": "null_garbage_scrub",
+      "stats": {
+        "garbage_values_cleaned": 172688
+      }
+    },
+    {
+      "step": "source_url_liveness",
+      "stats": {
+        "sample_size": 7754,
+        "dead_links": 24,
+        "dead_rate": 0.003,
+        "status": "PASS"
+      }
+    },
+    {
+      "step": "format_normalization",
+      "stats": {
+        "date_formats_normalized": 77542
+      }
+    }
+  ],
+  "refresh_cadence": "monthly",
+  "notes": "High-quality government API data. Minimal cleaning required. Monthly refresh recommended."
+}

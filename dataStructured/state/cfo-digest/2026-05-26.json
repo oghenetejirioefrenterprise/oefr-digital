@@ -1,0 +1,14 @@
+{
+  "date": "2026-05-26",
+  "generated_at": "2026-05-26T22:30:49+00:00",
+  "mrr": 0,
+  "active_subscriptions": 0,
+  "one_time_revenue_today": 0,
+  "one_time_revenue_30d": 0,
+  "refunds_today": 0,
+  "refunds_30d": 0,
+  "refund_rate_30d": 0.0,
+  "churn_rate_7d": 0.0,
+  "anomalies": [],
+  "pricing_experiments_proposed": []
+}

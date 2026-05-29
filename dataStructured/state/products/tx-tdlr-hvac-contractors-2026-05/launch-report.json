@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "tx-tdlr-hvac-contractors-2026-05",
+  "created": "2026-05-07T16:14:50Z",
+  "created_by": "engineer",
+  "status": "SHIPPED",
+  "summary": "Live on Stripe + Gumroad. CSV (56,001 rows) hosted on GitHub Release. Smoke tests green. Distribution queue updated.",
+  "stripe_product_id": "prod_UTRQNdSQY2YRHt",
+  "stripe_price_id": "price_1TUUXv3H4Cmk8ulCxYX4BOa4",
+  "stripe_payment_link_url": "https://buy.stripe.com/8x27sEglx3YHdHd8L47IY0p",
+  "gumroad_url": "https://3563705146415.gumroad.com/l/cciox",
+  "gumroad_product_id": "cciox",
+  "asset_release_url": "https://github.com/oghenetejirioefrenterprise/oefr-digital/releases/tag/ds-tx-tdlr-hvac-2026-05-v1",
+  "asset_raw_url": "https://github.com/oghenetejirioefrenterprise/oefr-digital/releases/download/ds-tx-tdlr-hvac-2026-05-v1/tx-tdlr-hvac-contractors-2026-05.csv",
+  "csv_path": "state/tx-tdlr-hvac-contractors-2026-05.csv",
+  "row_count": 56001,
+  "smoke_test": {
+    "passed": true,
+    "checked_at": "2026-05-07T16:14:50Z"
+  },
+  "spec_file": "state/products/tx-tdlr-hvac-contractors-2026-05/spec.json",
+  "pre_ship_requirements_verified": true
+}

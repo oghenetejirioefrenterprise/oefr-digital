@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "epa-tri-toxic-release-reporting-facilities-2026-05",
+  "created": "2026-05-11T01:54:49Z",
+  "created_by": "engineer",
+  "status": "STRIPE_ONLY",
+  "summary": "Stripe Payment Link live and verified (https://buy.stripe.com/14A00cd9l7aT7iP1iC7IY0u). Gumroad product created (sgmxqk), ZIP uploaded (4 copies — clean up duplicates), files attached but NOT published. Gumroad wizard blocked: cover image upload fails headlessly and API publish returns false without cover. TJ: log into gumroad.com/products/sgmxqk/edit, add a cover image, then click Publish. Stripe smoke test verified HTTP 200.",
+  "stripe_product_id": "prod_UUiSFa5kTHpczq",
+  "stripe_price_id": "price_1TVj1o3H4Cmk8ulC69ecBfup",
+  "stripe_payment_link_url": "https://buy.stripe.com/14A00cd9l7aT7iP1iC7IY0u",
+  "gumroad_url": "https://3563705146415.gumroad.com/l/sgmxqk",
+  "gumroad_product_id": "XiQMtLkgJ2uWt6ECAT4RSw==",
+  "asset_release_url": "https://github.com/oghenetejirioefrenterprise/oefr-digital/releases/tag/ds-epa-tri-2023-v1",
+  "asset_raw_url": "https://github.com/oghenetejirioefrenterprise/oefr-digital/releases/download/ds-epa-tri-2023-v1/epa-tri-toxic-release-reporting-facilities-2026-05.csv",
+  "smoke_test": {
+    "passed": true,
+    "checked_at": "2026-05-11T01:54:47Z"
+  },
+  "spec_file": "state/products/epa-tri-toxic-release-reporting-facilities-2026-05/spec.json",
+  "gumroad_pending": true,
+  "gumroad_automation_failure": "Product type selection workflow changed - automation stuck on /products/new"
+}

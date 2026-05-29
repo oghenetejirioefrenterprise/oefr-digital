@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "us-solar-installer-database",
+  "created": "2026-05-04T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "PROPOSED",
+  "score": 7,
+  "summary": "A cleaned, downloadable CSV of US solar installation companies sourced from public directories: Solar Power World's annual Top Contractors list, ENF Solar's public installer directory, and NABCEP's certified contractor search. The paid lead market for solar companies charges $0.25-$100 per lead; B2B vendors (solar panel hardware reps, SaaS targeting solar, commercial insurance) need bulk company-level data, not per-homeowner leads. A one-time affordable company directory is the gap.",
+  "audience": {
+    "who": "B2B vendors selling to solar installation companies: solar equipment and panel wholesale reps, SaaS tools (CRM, proposal software, permitting tools) targeting solar contractors, commercial insurance brokers, and solar financing companies looking for installer partners.",
+    "where_found": [
+      "https://www.solarpowerworldonline.com/top-solar-contractors/",
+      "https://www.enfsolar.com/directory/installer/United%20States",
+      "https://us.solarbusinesshub.com/"
+    ]
+  },
+  "data_wanted": "Company name, state, city, website, phone, email (where publicly listed), market segment (residential/commercial/utility), service type (installer/EPC/developer), NABCEP certification status (where public), solar capacity installed (from SPW rankings where available) — sourced from ENF Solar directory, Solar Power World list, NABCEP directory.",
+  "evidence": [
+    {
+      "source": "Solar Power World 2025 Top Solar Contractors list — public annual ranking of hundreds of US solar contractors by state and market",
+      "url": "https://www.solarpowerworldonline.com/2025/07/2025-top-solar-contractors-launches-spw/",
+      "quote": "The most recognized annual listing of solar contractors in the United States, companies grouped by specific service, market, and states."
+    },
+    {
+      "source": "ENF Solar US Installer Directory — public searchable directory of solar installation companies across all 50 states",
+      "url": "https://www.enfsolar.com/directory/installer/United%20States",
+      "quote": "Solar System Installers in United States | PV Companies List"
+    },
+    {
+      "source": "LeadsPlease — charges $124.95 per 1,000 solar contractor records, proving buyers pay for bulk solar company data",
+      "url": "https://www.leadsplease.com/mailing-lists/solar-leads",
+      "quote": "Targeted solar leads as downloadable mailing lists for residential and commercial solar installers"
+    },
+    {
+      "source": "Biscred — data-driven solar prospecting product for B2B, proving commercial demand for solar company directories",
+      "url": "https://www.biscred.com/post/how-smart-solar-companies-use-data-to-generate-solar-leads",
+      "quote": "Solar Leads in CRE: Data-Driven Prospecting in 2025"
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "LeadsPlease charges $124.95 per 1,000 records. Aged Lead Store prices solar leads at $0.17-$1.50 per record. A one-time download of 2,000-5,000 US solar installer companies priced at $49-99 is 60-80% cheaper per record than incumbent sources and targets the B2B vendor audience (not homeowner leads) that existing providers underserve.",
+    "confidence": "moderate"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://www.enfsolar.com/directory/installer",
+      "https://www.solarpowerworldonline.com/top-solar-contractors/",
+      "https://us.solarbusinesshub.com/"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + targeted outreach in r/solar, r/SaaS (for SaaS vendors targeting solar), LinkedIn solar industry groups",
+    "angle": "\"5,000 US Solar Installation Companies — B2B Database 2026, CSV\" — company-level data for vendors who need to sell TO installers, not sell solar TO homeowners. Explicitly positioned against per-homeowner lead providers: 'Not homeowner leads. Company contacts. For people who sell to the solar industry.'"
+  }
+}

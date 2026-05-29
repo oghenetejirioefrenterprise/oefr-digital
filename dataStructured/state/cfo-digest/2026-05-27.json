@@ -1,0 +1,30 @@
+{
+  "date": "2026-05-27",
+  "generated_at": "2026-05-27T22:33:37.355015+00:00",
+  "mrr": 0.0,
+  "active_subscriptions": 0,
+  "one_time_revenue_today": 0.0,
+  "one_time_revenue_30d": 0.0,
+  "refunds_today": 0.0,
+  "refunds_30d": 0.0,
+  "refund_rate_30d": 0.0,
+  "churn_rate_7d": 0.0,
+  "churned_7d": 0,
+  "total_charges_today": 0,
+  "total_charges_30d": 0,
+  "total_refunds_today": 0,
+  "total_refunds_30d": 0,
+  "anomalies": [],
+  "pricing_experiments_proposed": [
+    {
+      "experiment": "bundle_discount_test",
+      "rationale": "7+ consecutive days of $0 revenue across 26 products. Consider: (a) 3-product bundle at 20% savings, (b) free sample rows on landing page, (c) limited-time 'launch week' pricing on newest 3 products.",
+      "priority": "high"
+    },
+    {
+      "experiment": "distribution_channel_audit",
+      "rationale": "7+ days at $0. Verify distribution channels are actually driving traffic \u2014 check Stripe payment link click-through, Reddit/X post impressions, and whether links are reachable.",
+      "priority": "high"
+    }
+  ]
+}

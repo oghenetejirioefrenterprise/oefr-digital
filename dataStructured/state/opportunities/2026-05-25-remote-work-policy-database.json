@@ -1,0 +1,30 @@
+{
+  "title": "Remote Work Policy Database",
+  "slug": "remote-work-policy-database",
+  "score": 8,
+  "demand_signal": "Strong and validated. 91% of job seekers ask about remote work options during interviews, and 84% are willing to reject offers without flexible arrangements. Remote hiring delivers 340% larger candidate pools. Scoop Technologies tracks 9,000+ company policies but data is not publicly accessible/searchable for individual job seekers.",
+  "target_audience": "Job seekers, recruiters, HR professionals, remote work advocates, career coaches, salary negotiation consultants, and talent acquisition teams",
+  "public_data_sources": [
+    "Company career pages (remote work policy sections)",
+    "LinkedIn company pages and job postings",
+    "Press releases announcing policy changes",
+    "News articles covering major policy shifts (Microsoft, Amazon, Google, etc.)",
+    "Glassdoor company reviews mentioning WFH policies",
+    "Twitter/X announcements from company leadership",
+    "Indeed and other job board postings with remote/hybrid tags"
+  ],
+  "competitive_landscape": "Scoop Technologies' Flex Index tracks 9,000+ companies but is not a public-facing search tool for consumers. FlexJobs, We Work Remotely, and Remote.co focus on job listings, not policy databases. No affordable, searchable, consumer-facing database exists. This is a clear market gap with strong demand.",
+  "monetization_model": "Freemium: Free basic search by company name or industry. Premium tier ($9.99-19.99/mo) includes advanced filters (days required in office, full remote vs hybrid, location flexibility), CSV exports, email alerts for policy changes, and API access for recruiters.",
+  "estimated_market_size": "65% of US companies offer hybrid work, 18% are fully remote. Target audience: 160M+ US workers, 20M+ active job seekers. TAM for premium subscriptions: $50-100M annually (assuming 0.1% conversion of active job seekers at $120/year).",
+  "data_freshness_requirement": "Monthly updates minimum. Quarterly deep refreshes. Real-time updates for major companies (Fortune 500) via news monitoring.",
+  "compliance_notes": "PASS potential: All data is publicly disclosed corporate policy information. No PII. No employee-level data. Companies publicly announce these policies for recruitment purposes. Source attribution via company career page URLs.",
+  "next_steps": [
+    "Build initial dataset: Top 500 companies with verified policies",
+    "Create simple search interface (company name, industry, HQ location)",
+    "Pilot with free tier to validate demand",
+    "Add premium filters based on user feedback",
+    "Build automated scraper for career page policy sections"
+  ],
+  "research_date": "2026-05-25",
+  "researcher_notes": "This is the strongest signal from today's scan. The gap is crystal clear: job seekers desperately need this information, existing trackers (Scoop) don't serve consumers, and all data is public. The 3-day office week (76% of hybrid companies use 3-2 model) has become standard, making this data highly structured and comparable. Strike while policy changes are still frequent and newsworthy."
+}

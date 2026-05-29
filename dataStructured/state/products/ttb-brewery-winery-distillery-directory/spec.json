@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+  "created": "2026-05-18T19:15:00-04:00",
+  "created_by": "ceo",
+  "name": "US Winery & Distillery Directory 2026 \u2014 82,500+ Licensed Producers (TTB Federal Data, CSV)",
+  "tagline": "Every federally-licensed winery, distillery, importer, and wholesaler. Direct from TTB. Filter by state, permit type, or new openers.",
+  "price_usd": 79,
+  "currency": "usd",
+  "dataset": {
+    "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+    "csv_path": "state/ttb-brewery-winery-distillery-directory-2026-05.cleaned.csv",
+    "row_count": 82521,
+    "columns": 10,
+    "source": "TTB Federal Register Lists (FRL) \u2014 Wine Producers/Blenders, Distilled Spirits Plants, Basic Permit Importers, Basic Permit Wholesalers",
+    "source_url": "https://www.ttb.gov/public-information/foia/list-of-permittees",
+    "year": "2026"
+  },
+  "stripe": {
+    "product_name": "US Winery & Distillery Directory 2026 \u2014 82,500+ Licensed Producers (CSV)",
+    "description": "Every federally-licensed winery, distillery, alcohol importer, and wholesaler in the United States \u2014 82,521 records covering all 50 states + territories. Includes permit number, owner name, operating name (DBA), full address (street, city, state, ZIP, county), permit type (wine producer, distilled spirits, importer, wholesaler), new permit flag (69 new openers identified), and TTB source URL per row. Direct from TTB Federal Register public data \u2014 the same source WIN Data charges $2,400/year to access. Includes NEW PERMIT FLAG to identify recently licensed openers (high-value segment for equipment vendors, POS platforms, and ingredient suppliers). One-time $79 instant CSV download.",
+    "price_usd": 79,
+    "payment_link": "https://buy.stripe.com/4gM4gsd9l9j19qXf9s7IY0w"
+  },
+  "gumroad": {
+    "title": "US Winery & Distillery Directory 2026 \u2014 82,500+ Producers (CSV)",
+    "description": "**Every federally-licensed winery, distillery, importer & wholesaler in the United States.**\n\n82,521 records. All 50 states + territories. Direct from TTB Federal Register.\n\n**What's included per record:**\n- Permit number (unique federal ID)\n- Owner name + Operating name (DBA/trade name)\n- Full address: street, city, state, ZIP, county\n- Permit type: Wine Producer/Blender | Distilled Spirits Plant (DSP) | Alcohol Importer | Alcohol Wholesaler\n- **NEW PERMIT FLAG** \u2014 69 recently licensed openers (high-value segment for vendors)\n- TTB source URL for every row (full traceability)\n\n**Direct from TTB Federal Register** \u2014 the same dataset WIN Data charges $2,400/year to access. Vinaty charges \u20ac395 for international wine contacts. Apify scraper charges $2.50\u2013$3.50 per 1,000 records.\n\n**Who buys this:**\n- Equipment suppliers (barrel brokers, bottling lines, tanks) prospecting new wineries & distilleries\n- POS platforms (Toast, Arryved) targeting craft beverage producers\n- Ingredient vendors (hops, grapes, grains, yeasts) building craft beverage prospect lists\n- Packaging companies (bottles, labels, corks, boxes) targeting new openers\n- Compliance consultants (TTB permitting, label approval) identifying new licensees\n- Insurance brokers (craft beverage liability, property) targeting producers\n- Marketing agencies specializing in craft beverage branding\n\n**Important:** Brewery registrations are NOT included \u2014 IRC \u00a7 6103 classifies brewery data as tax return information and is not publicly available from TTB. This dataset covers wineries, distilleries, importers, and wholesalers only.\n\n**One-time $79 \u2014 instant CSV download. No subscription.**",
+    "price_usd": 79,
+    "tags": [
+      "ttb",
+      "winery",
+      "distillery",
+      "craft-beverage",
+      "alcohol",
+      "permits",
+      "b2b",
+      "csv",
+      "data"
+    ],
+    "listing_url": null
+  },
+  "distribution_queue": {
+    "reddit_targets": [
+      {
+        "sub": "r/winemaking",
+        "angle": "Equipment suppliers, POS platforms, ingredient vendors targeting wineries"
+      },
+      {
+        "sub": "r/firewater",
+        "angle": "Distillery equipment suppliers + compliance consultants"
+      },
+      {
+        "sub": "r/smallbusiness",
+        "angle": "B2B vendors targeting craft beverage industry"
+      }
+    ],
+    "x_angle": "Every federally-licensed winery & distillery in the US \u2014 82K records. Includes NEW PERMIT FLAG (69 new openers). Same data as $2,400/yr WIN Data. $79 once. Direct from TTB Federal Register."
+  }
+}

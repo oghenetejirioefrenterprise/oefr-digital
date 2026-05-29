@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "type": "compliance_report",
+  "slug": "irs-990-nonprofit-organization-directory-2026-05",
+  "reviewed_at": "2026-05-09T23:10:00Z",
+  "verdict": "PASS",
+  "checks": {
+    "public_source_confirmed": true,
+    "no_auth_bypass": true,
+    "no_email_column": true,
+    "no_phone_column": true,
+    "no_ssn_or_financial": true,
+    "no_health_data": true,
+    "source_permits_commercial_redistribution": true,
+    "address_pii_assessment": "ACCEPTABLE — All addresses in this dataset are registered organizational (business) addresses of IRS-recognized tax-exempt organizations, not personal home addresses of individuals. Nonprofit organizations register a principal office address with the IRS as a regulatory requirement for tax-exempt status under 26 U.S.C. § 501. The IRS explicitly publishes these organizational addresses in the Exempt Organization Business Master File (BMF) as a public transparency mechanism. A church, hospital, or foundation address is an institutional address equivalent to a business street address — not private residential PII. No individual person's home address is included in any record. Established commercial services including Candid (GuideStar), Foundation Directory Online, DonorSearch, and iWave all commercially redistribute this same IRS BMF address data. Redistribution is an established market practice consistent with the public-domain nature of federal government data."
+  },
+  "false_positive_findings": {
+    "revenue_and_asset_amounts": "Revenue, income, and asset amounts present in revenue_amount, income_amount, and asset_amount columns are aggregate financial figures from IRS Form 990 public tax filings, not personal financial account data. These are organizational financial disclosures required by 26 U.S.C. § 6104, which mandates public inspection of 990 returns for all tax-exempt organizations. Zero is the most common value (71% of records) as many small nonprofits file 990-N (e-Postcard) and no dollar amounts are recorded in the BMF. All values represent organizational totals, not individual financial accounts.",
+    "ntee_code_scan": "NTEE_CD field contains 3-character National Taxonomy of Exempt Entities mission classification codes (e.g., 'E20' = Hospitals, 'B24' = Elementary School). These are institutional mission codes assigned to the organization's charitable purpose — they are not health records, patient data, or individual health information. Health-related NTEE codes (E-series: hospitals, clinics) describe organizational type, not individuals.",
+    "ein_column": "EIN (Employer Identification Number) is a 9-digit federal tax ID assigned to the organization, equivalent to a business's tax identification number. This is the nonprofit organization's EIN, not an individual's Social Security Number. EINs for tax-exempt organizations are public record under 26 U.S.C. § 6104."
+  },
+  "column_inventory": [
+    "ein", "organization_name", "ico", "street_address", "city", "state",
+    "zip_code", "group_exemption", "subsection_code", "affiliation_code",
+    "classification_code", "ruling_year", "deductibility_code", "foundation_code",
+    "activity_1", "activity_2", "activity_3", "organization_code", "status_code",
+    "tax_period", "asset_code", "income_code", "filing_req_code",
+    "pf_filing_req_code", "accounting_period", "asset_amount", "income_amount",
+    "revenue_amount", "ntee_code", "sort_name", "source_url"
+  ],
+  "source_url_coverage": "100% — source_url null rate is 0.00% across all 1,944,049 rows",
+  "legal_basis": "Federal government data released under the principle of public domain / open government data (17 U.S.C. § 105 — works of the federal government are not subject to copyright). The IRS BMF is published monthly at https://www.irs.gov/pub/irs-soi/ with no terms of service restricting commercial redistribution. Public inspection of tax-exempt organization information is mandated by 26 U.S.C. § 6104. Multiple established commercial businesses (Candid/GuideStar $2K-$9.5K/year, Foundation Directory Online $1.2K+/year, DonorSearch $500-$3K/month) resell and add value to this same underlying IRS data — establishing this as an accepted, legal commercial practice.",
+  "notes": "Dataset contains 1,944,049 active IRS-recognized tax-exempt organizations (status_code=01) across all 50 US states, DC, Puerto Rico, and military APO/FPO addresses. Inactive (terminated, merged, revoked) organizations were excluded from the cleaned file. All 31 columns are institutional/organizational attributes — no dedicated column for individual email, phone, SSN, credit card, bank account, health record, or biometric data exists. The EIN, organization name, address, NTEE mission code, subsection type, and financial aggregate figures all originate from public IRS regulatory filings. Sourced from six IRS BMF regional files (eo1.csv through eo_xx.csv), freely downloadable at https://www.irs.gov/pub/irs-soi/ with no authentication.",
+  "reviewer": "compliance-officer"
+}

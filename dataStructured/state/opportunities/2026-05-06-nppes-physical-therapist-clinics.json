@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "nppes-physical-therapist-clinics",
+  "created": "2026-05-06T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 7,
+  "summary": "State-sliced CSVs of US physical therapists and PT clinics extracted from the CMS NPPES weekly public download. The full national dataset contains 337,000+ licensed PTs across all 50 states; each record includes practice name, individual PT name, NPI number, address, phone, specialty taxonomy (physical therapist, PT assistant, occupational therapist, speech-language pathologist), and credential type. USADoctorList.com charges for the same NPPES-derived PT database; OpenMart charges for verified PT clinic owner contacts; no low-cost one-time state CSV is available on the market. A state-sliced file at $29\u2013$39 targets PT EMR software SDRs, rehab equipment suppliers, staffing agencies, and healthcare insurance brokers who need a current list of active clinics in a specific state without paying for a national healthcare database subscription.",
+  "audience": {
+    "who": "PT/OT EMR and practice management software vendors (WebPT, SPRY, TherapyBrands, Clinicient, Raintree) whose SDRs cold-call clinics and outpatient practices; durable medical equipment and rehab supply companies; physical therapy staffing and travel PT agencies; healthcare liability and malpractice insurance brokers; continuing education providers selling PT CEU courses; billing and revenue cycle companies targeting outpatient rehab practices.",
+    "where_found": [
+      "https://www.usadoctorlist.com/physical-therapists",
+      "https://www.openmart.com/databases/physical-therapist",
+      "https://npiregistry.cms.hhs.gov/"
+    ]
+  },
+  "data_wanted": "Practice/business name, individual PT name, NPI number, address (street, city, state, ZIP), phone number, fax (where available), specialty taxonomy code (e.g., 225100000X = Physical Therapist, 225200000X = Physical Therapy Assistant, 225X00000X = Occupational Therapist, 235Z00000X = Speech-Language Pathologist), credential type, enumeration date \u2014 all sourced from the CMS NPPES weekly downloadable file at npiregistry.cms.hhs.gov, no login or API key required.",
+  "evidence": [
+    {
+      "source": "CMS NPPES \u2014 weekly public download of all NPI holders including all licensed physical therapists, occupational therapists, and speech-language pathologists, no authentication required",
+      "url": "https://npiregistry.cms.hhs.gov/",
+      "quote": "NPI data is downloadable from CMS, with the downloadable database being updated weekly."
+    },
+    {
+      "source": "USADoctorList.com \u2014 sells a US physical therapists database (337,483 records from March 2026 NPPES release) with state-sliced pricing, proving strong buyer willingness to pay for formatted state slices of the same public NPI data",
+      "url": "https://www.usadoctorlist.com/physical-therapists",
+      "quote": "Physical Therapists Database USA \u2014 337,000+ Records | USADoctorList.com \u2014 sourced from the March 2026 NPPES release."
+    },
+    {
+      "source": "OpenMart \u2014 charges for a database of 90,000+ verified owner contacts for physical therapy clinics in the US, confirming the B2B buyer appetite for formatted PT contact data",
+      "url": "https://www.openmart.com/databases/physical-therapist",
+      "quote": "Physical therapist database \u2014 90K+ verified owner contacts"
+    },
+    {
+      "source": "WebPT \u2014 dominant PT EMR platform with 20,000+ clinics and an active SDR outbound motion, representing the entire category of PT SaaS buyers who need outreach lists of licensed PT clinics in their territory",
+      "url": "https://www.webpt.com/",
+      "quote": "WebPT is the most widely used physical therapy EMR software in the United States, with over 20,000 clinics on the platform."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "USADoctorList.com charges per-state for NPPES-derived PT data (same model as their $97/state dentist files confirmed yesterday). OpenMart charges for 90K+ verified PT owner contacts. WebPT's SDR team and competing EMR vendors (TherapyBrands, SPRY, Raintree) all maintain outbound motions requiring state-level PT clinic lists. A one-time $29\u2013$39 state CSV is 50%+ cheaper than the nearest NPPES-derived competitor while targeting the same EMR SDR who needs 2,000\u20138,000 PTs in a specific state for a campaign.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://npiregistry.cms.hhs.gov/",
+      "https://nppes.cms.hhs.gov/",
+      "https://data.cms.gov/provider-data/"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + Reddit r/physicaltherapy, r/PTschool, r/SaaS (healthcare software vendors), LinkedIn targeting WebPT/SPRY/TherapyBrands SDRs and rehab equipment rep accounts",
+    "angle": "\"Texas Physical Therapists & PT Clinics \u2014 2026 Database, 25,000+ Records, CSV\" \u2014 NPI, specialty, address, phone, ready to import. Positioned against USADoctorList: 'Same NPPES data. $39. No subscription. Download now.' Launch with TX and FL (highest PT population states) as separate SKUs. Bundle PT + OT + SLP as a premium 'Outpatient Rehab Providers' SKU at $59\u2013$79."
+  },
+  "approved_by": "ceo",
+  "approved_at": "2026-05-06T23:10:00-04:00",
+  "ceo_notes": "Approved. Clean public source, clear B2B buyer, no PII risk. Dispatch data-engineer.",
+  "status": "COMPLIANCE_PASS",
+  "compliance_verdict": "PASS",
+  "compliance_audited_at": "2026-05-07T04:30:00+00:00",
+  "status": "SHIPPED"
+}

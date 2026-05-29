@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "usda-organic-certified-operations",
+  "created": "2026-05-06T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "PROPOSED",
+  "score": 6,
+  "summary": "A cleaned, downloadable CSV of all USDA-certified organic operations sourced from the USDA Agricultural Marketing Service Organic INTEGRITY Database — a fully public dataset with monthly snapshots available for free download from USDA Ag Data Commons. The database contains 27,000+ certified operations worldwide (~17,000+ US-based) including farms, ranches, handlers, processors, importers, and distributors, with operation name, city, state, country, certification status, certifying agent, and certified product scopes (crops, livestock, handling, wild crops). No commercial vendor is currently selling this as a standalone affordable CSV. A one-time $39–$49 US-only CSV targets natural food brand sourcing teams, organic ingredient buyers, food distributors, retail category managers, and food safety consultants who need a current list of certified organic suppliers without manually searching the USDA web interface.",
+  "audience": {
+    "who": "Ingredient sourcing managers at natural and organic food brands (Thrive Market suppliers, Whole Foods vendor development) looking to vet or discover certified organic suppliers; specialty food distributors (KeHE, UNFI) building supplier lists; retail category buyers at natural grocery chains evaluating new organic SKUs; food safety and regulatory consultants doing supply chain due diligence; organic certification consultants helping operations navigate NOP compliance.",
+    "where_found": [
+      "https://organic.ams.usda.gov/",
+      "https://agdatacommons.nal.usda.gov/articles/dataset/The_Organic_INTEGRITY_Database/24661722",
+      "https://www.ccof.org/resources/member-directory/"
+    ]
+  },
+  "data_wanted": "Operation name, operation type (farm, handler, processor, importer, distributor, retailer), city, state, country, certification status (Certified, Surrendered, Revoked, Suspended), certifying agent name, certified scopes (Crops, Livestock, Wild Crops, Handling), certificate effective date, certificate expiration date — all sourced from the USDA Organic INTEGRITY Database monthly snapshot download at agdatacommons.nal.usda.gov, no authentication required.",
+  "evidence": [
+    {
+      "source": "USDA Ag Data Commons — hosts monthly snapshots of the full USDA Organic INTEGRITY Database as downloadable dataset, free public access, no login required",
+      "url": "https://agdatacommons.nal.usda.gov/articles/dataset/The_Organic_INTEGRITY_Database/24661722",
+      "quote": "Historical Annual Lists of Certified Organic Operations and monthly snapshots of the full data set are available for download on the Data History page."
+    },
+    {
+      "source": "USDA Organic INTEGRITY Database — primary source, 27,000+ certified organic operations worldwide, searchable but no bulk CSV export for end users, creating a clear packaging gap",
+      "url": "https://organic.ams.usda.gov/",
+      "quote": "Organic Growth — 27,000+ Certified Organic Operations around the World. The database contains up-to-date and accurate information about operations that may and may not sell as organic."
+    },
+    {
+      "source": "CCOF Organic Member Directory — partial search-only directory of certified organic operations, no downloadable CSV available, confirming the gap for a simple bulk file product",
+      "url": "https://www.ccof.org/resources/member-directory/",
+      "quote": "CCOF Organic Member Directory helps you find certified organic farmers, producers, and businesses committed to organic standards."
+    },
+    {
+      "source": "UNFI — largest US natural and organic distributor, actively sources new certified organic suppliers; represents the distributor category that would use a certified operations CSV for supplier discovery and vetting",
+      "url": "https://www.unfi.com/",
+      "quote": "UNFI brings retailers and suppliers innovative products, programs and services to profitably grow their businesses in the natural and organic food sector."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "Ingredient sourcing managers at natural food brands routinely pay for supplier discovery tools (RangeMe, Podfoods, Faire) to find and vet suppliers. A $39–$49 CSV of all USDA-certified organic operations — filterable by state, scope (crops vs. handling), and certification status — is a cheaper, faster alternative to manually navigating the USDA web search interface for supply chain due diligence. The buyer saves 4–8 hours of manual research per use case.",
+    "confidence": "moderate"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://agdatacommons.nal.usda.gov/articles/dataset/The_Organic_INTEGRITY_Database/24661722",
+      "https://organic.ams.usda.gov/",
+      "https://www.ams.usda.gov/services/organic-certification"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + Reddit r/organic, r/foodscience, r/FoodTech, LinkedIn targeting natural food brand sourcing managers, food distributor category buyers, and organic certification consultants",
+    "angle": "\"US Certified Organic Operations — 2026 USDA Database, 17,000+ Operations, CSV\" — farm/handler name, state, certifying agent, product scopes (crops/livestock/handling), status, expiration. Positioned as: 'The full USDA organic certified supplier list — downloadable in 30 seconds. Verify suppliers, discover new sources, or audit your supply chain. $39, one-time.' Distinct from RangeMe or Faire: this is the authoritative government source, not a vendor-curated marketplace."
+  }
+}

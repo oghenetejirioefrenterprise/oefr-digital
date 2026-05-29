@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "ca-cslb-licensed-contractors-2026-05",
+  "created": "2026-05-07T16:16:09Z",
+  "created_by": "engineer",
+  "status": "SHIPPED",
+  "summary": "Live on Stripe + Gumroad. 232,617-row CSLB contractor CSV. Smoke tests green. Distribution queue updated.",
+  "stripe_product_id": "prod_UTRS66xVc0lgR7",
+  "stripe_price_id": "price_1TUUZB3H4Cmk8ulCK7llm01K",
+  "stripe_payment_link_url": "https://buy.stripe.com/4gMaEQb1deDlcD91iC7IY0q",
+  "gumroad_url": "https://gumroad.com/l/rvzovl",
+  "gumroad_product_id": "rvzovl",
+  "asset_gist_url": "https://github.com/oghenetejirioefrenterprise/oefr-digital/releases/tag/ds-ca-cslb-contractors-2026-05-v1",
+  "asset_raw_url": "https://github.com/oghenetejirioefrenterprise/oefr-digital/releases/download/ds-ca-cslb-contractors-2026-05-v1/ca-cslb-licensed-contractors-2026-05.cleaned.csv",
+  "asset_csv_path": "state/ca-cslb-licensed-contractors-2026-05.cleaned.csv",
+  "row_count": 232617,
+  "smoke_test": {
+    "passed": true,
+    "checked_at": "2026-05-07T16:16:08Z"
+  }
+}

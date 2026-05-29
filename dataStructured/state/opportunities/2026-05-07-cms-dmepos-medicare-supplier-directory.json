@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "cms-dmepos-medicare-supplier-directory",
+  "created": "2026-05-07T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 8,
+  "summary": "A cleaned, analysis-ready CSV of all 57,552 Medicare-enrolled DMEPOS (Durable Medical Equipment, Prosthetics, Orthotics & Supplies) suppliers sourced from CMS data.cms.gov dataset ct36-nrcq \u2014 a public, no-auth bulk download updated monthly. Target buyers are sales reps at medical equipment manufacturers (Invacare, Sunrise Medical, Ottobock) and distributors (Medline, Cardinal Health) who need to prospect into DME supplier accounts, plus billing software companies (Brightree, NikoHealth) doing outbound to DMEPOS operators; existing data vendors charge $200-$400+/month for similar lists, making a clean $49-$79 one-time file an easy impulse buy.",
+  "audience": {
+    "who": "Three primary buyer types: (1) Field sales reps and sales managers at medical equipment manufacturers (wheelchair makers, oxygen equipment suppliers, prosthetics/orthotics manufacturers) who need territory-based lists of every enrolled DME supplier to prospect and call on; (2) Healthcare distributors and wholesalers (Medline, Cardinal Health, Bound Tree Medical) whose reps sell consumables and supplies to DMEPOS locations and need current, geo-filtered supplier lists; (3) HME/DME billing software vendors (Brightree, NikoHealth, DME Works) doing outbound sales campaigns to the ~57K enrolled suppliers. All three groups currently cobble together lists manually from Medicare.gov's consumer-facing search tool \u2014 a time-consuming, non-bulk process.",
+    "where_found": [
+      "https://www.linkedin.com/search/results/people/?keywords=DME%20medical%20equipment%20sales%20rep",
+      "https://medreps.com/medical-sales-jobs/durable-medical-equipment",
+      "https://nikohealth.com/hme-dme-billing-software/",
+      "https://www.infoglobaldata.com/healthcare/durable-medical-equipment-email-list",
+      "https://www.infodepots.com/dme-supplier-mailing-list/"
+    ]
+  },
+  "data_wanted": "CMS Provider Data Catalog dataset 'Medical Equipment Suppliers' (ID: ct36-nrcq). Fields confirmed via data dictionary (updated 2024-01-02): provider_id, businessname, practicename, practiceaddress1, practiceaddress2, practicecity, practicestate, practicezip9code (9-digit), telephonenumber, latitude, longitude, acceptsassignment, participationbegindate, specialitieslist (e.g., Pharmacy, Medical Supply Company, Podiatry, Orthotics), providertypelist, supplieslist, is_contracted_for_cba (Competitive Bidding Area contract status). 57,552 records confirmed via public API at https://data.cms.gov/provider-data/api/1/datastore/query/ct36-nrcq/0. No authentication required. Dataset page: https://data.cms.gov/provider-data/dataset/ct36-nrcq. Data dictionary: https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/supplier/Supplier_Directory_Data_Dictionary.pdf",
+  "evidence": [
+    {
+      "source": "CMS Fast Facts April 2025 \u2014 official CMS provider enrollment statistics confirming 73,279 total DMEPOS providers by specialty for CY2023 (suppliers actively billing Medicare Part B)",
+      "url": "https://data.cms.gov/sites/default/files/2025-04/CMSFastFacts2025_508.pdf",
+      "quote": "Total DMEPOS Providers: 73,279. Specialty breakdown: Pharmacy 44,791; Medical Supply Company 8,442; Podiatry 4,324; Optometry 3,344; Individual Certified Prosthetist/Orthotist 2,583; All Other DMEPOS Providers 4,941."
+    },
+    {
+      "source": "InfoGlobalData \u2014 commercial data vendor actively selling a DME email list of 23,461 contacts, confirming market demand; pricing available only on quote, implying premium pricing tier",
+      "url": "https://www.infoglobaldata.com/healthcare/durable-medical-equipment-email-list",
+      "quote": "23,461 Email Contacts. Hospitals, Clinics, Nursing Homes, Rehabilitation Centers. Target CEOs, CFOs, Purchasing Manager, Operations Director. 90% data accuracy for trustworthy leads. Be faster than your competitors to grab these opportunities."
+    },
+    {
+      "source": "InfoDepots \u2014 second commercial vendor selling a DME Supplier Mailing List targeting healthcare product manufacturers, medical equipment distributors, and B2B marketers \u2014 confirming commercial appetite for this exact data type",
+      "url": "https://www.infodepots.com/dme-supplier-mailing-list/",
+      "quote": "Healthcare Product Manufacturers targeting distributors, Medical Equipment Distributors identifying suppliers for sourcing, B2B Marketers executing campaigns. Filter by role/job title, segment by region, industry specific segmentation."
+    },
+    {
+      "source": "NikoHealth \u2014 HME/DME billing software company with dedicated sales pages targeting DMEPOS suppliers as prospects, confirming the B2B SaaS sales motion into this supplier base",
+      "url": "https://nikohealth.com/hme-dme-billing-software/",
+      "quote": "All-in-one DME/HME billing software for medical equipment providers. Mid-to-large HME/DME providers who want to simplify operations and keep good control over their revenue cycle."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "Commercial vendors (InfoGlobalData, InfoDepots) sell curated DME contact lists at quote-only pricing (implying $200-$500+ for segmented exports), confirming strong B2B willingness to pay. The CMS dataset has 57,552 records vs. InfoGlobalData's 23,461 \u2014 our product would be 2.4x larger, with the added credibility of being CMS-sourced (official enrollment data, not scraped/compiled). Sales reps at manufacturers like Invacare and Sunrise Medical currently cannot bulk-download this data from Medicare.gov's consumer search tool, forcing manual lookups. A $49-$79 one-time CSV with state filtering and specialty breakdown saves hours of prospecting work and undercuts monthly subscription data vendors by 10-20x on cost.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://data.cms.gov/provider-data/dataset/ct36-nrcq",
+      "https://data.cms.gov/provider-data/topics/supplier-directory",
+      "https://data.cms.gov/provider-data/archived-data/supplier-directory"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + LinkedIn outreach to medical device/equipment sales reps (search: 'DME sales rep', 'HME account manager', 'medical equipment territory manager') + r/medicalsales subreddit + MedReps.com community forums + posting in LinkedIn groups: 'HME/DME Industry Professionals', 'Medical Device Sales Network'",
+    "angle": "Title: 'CMS Medicare DMEPOS Supplier Directory 2026 \u2014 57,000+ Enrolled Suppliers (CSV)'. Selling points: (1) Official CMS enrollment data \u2014 not scraped, not compiled from yellow pages; (2) 57,552 suppliers with name, address, phone, specialty, NPI-linked, lat/long, accepts-assignment flag; (3) Filter by state, city, or specialty (Pharmacy, Prosthetics, Medical Supply, Orthotics, etc.); (4) Competitive bidding area (CBA) contract flag included \u2014 critical for territory reps; (5) One-time $49 download, updated quarterly. Positioned against: ZoomInfo/Apollo at $1,000+/year, InfoGlobalData quote-only lists, and manual Medicare.gov lookup. Target buyer hook: 'Skip the 6-hour manual Medicare lookup \u2014 get every enrolled DME supplier in your territory in 30 seconds.'"
+  }
+}

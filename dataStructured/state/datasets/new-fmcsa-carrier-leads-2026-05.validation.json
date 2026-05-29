@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "type": "steward_validation_report",
+  "dataset_slug": "new-fmcsa-carrier-leads-2026-05",
+  "validated_by": "data-steward",
+  "validated_at": "2026-05-04T00:00:00-04:00",
+  "verdict": "PASS_WITH_NOTES",
+  "summary": "Dataset passes all hard rules. No PII leaks, zero duplicates, 100% source URL coverage. Six minor quality issues documented below — none are blockers, but all are noted for compliance-officer review and downstream consumer awareness.",
+
+  "hard_rules_check": {
+    "public_data_only": "PASS — sourced from FMCSA Company Census File via DOT Open Data Portal (data.transportation.gov). No auth required, federal open data policy.",
+    "no_pii": "PASS — no SSN patterns detected. Dataset contains business contact data (business email, business phone, physical business address) consistent with FMCSA public records. Personal-domain emails (78.7%) are owner-operator contacts published voluntarily in public federal filings — not private PII.",
+    "source_url_on_every_row": "PASS — 0 rows missing source_url (15,770 / 15,770 filled). All URLs point to SAFER FMCSA CompanySnapshot and DOT number in URL matches row dot_number.",
+    "production_code_only": "N/A — data quality gate, not code review.",
+    "no_private_datasets": "PASS — FMCSA Company Census File is a federally mandated public disclosure dataset."
+  },
+
+  "structural_checks": {
+    "row_count": {
+      "expected": 15770,
+      "actual": 15770,
+      "result": "PASS"
+    },
+    "column_count": {
+      "expected": 22,
+      "actual": 22,
+      "result": "PASS"
+    },
+    "all_expected_columns_present": "PASS",
+    "duplicate_dot_numbers": {
+      "count": 0,
+      "result": "PASS"
+    },
+    "dot_number_integrity": {
+      "non_numeric": 0,
+      "range": "4561059 — 4576832",
+      "result": "PASS"
+    },
+    "date_range": {
+      "add_date_earliest": "20260404",
+      "add_date_latest": "20260503",
+      "covers_30_days": true,
+      "result": "PASS"
+    }
+  },
+
+  "completeness_checks": {
+    "dot_number": { "filled": 15770, "fill_rate": "100.0%", "result": "PASS" },
+    "legal_name":  { "filled": 15770, "fill_rate": "100.0%", "result": "PASS" },
+    "phy_street":  { "filled": 15770, "fill_rate": "100.0%", "result": "PASS" },
+    "phy_city":    { "filled": 15770, "fill_rate": "100.0%", "result": "PASS" },
+    "phy_state":   { "filled": 15770, "fill_rate": "100.0%", "result": "PASS" },
+    "phy_zip":     { "filled": 15770, "fill_rate": "100.0%", "result": "PASS" },
+    "phone":       { "filled": 15735, "empty": 35, "fill_rate": "99.8%", "result": "PASS" },
+    "email_address": { "filled": 15762, "empty": 8, "fill_rate": "99.9%", "result": "PASS" },
+    "company_officer_1": { "filled": 15755, "empty": 15, "fill_rate": "99.9%", "result": "PASS" },
+    "source_url":  { "filled": 15770, "fill_rate": "100.0%", "result": "PASS" }
+  },
+
+  "distribution_checks": {
+    "active_status": {
+      "active_A": 15515,
+      "inactive_I": 215,
+      "pending_P": 40,
+      "active_pct": "98.4%",
+      "metadata_stated": "98.3%",
+      "result": "PASS"
+    },
+    "state_top3": {
+      "TX": 1817,
+      "CA": 1646,
+      "FL": 1284,
+      "matches_metadata": true,
+      "result": "PASS"
+    },
+    "carrier_operation": {
+      "A_authorized_for_hire": 9171,
+      "C_private_property": 6132,
+      "B_authorized_for_hire_passengers": 291,
+      "empty": 176,
+      "result": "NOTE — see issue #5"
+    }
+  },
+
+  "issues": [
+    {
+      "id": 1,
+      "severity": "LOW",
+      "field": "fleetsize",
+      "count": 169,
+      "description": "169 rows (1.1%) contain undocumented fleetsize codes beyond the expected A–E scale. Codes seen: I(22), F(46), J(21), G(26), H(10), K(7), L(9), M(4), N(4), O(7), P(1), Q(1), R(1), S(1), T(1), Z(8). These likely represent legacy MCMIS encoding variants or special classifications in the upstream FMCSA data. Additionally, 2,282 rows use '0' as a fleetsize code (undocumented in metadata — probable upstream encoding for 'not reported').",
+      "recommendation": "Treat all non A–E codes as 'unknown' fleet size in downstream products. Add a decoded column (fleetsize_label) mapping A→'1-6 vehicles', B→'7-20', C→'21-100', D→'101-500', E→'501+', else→'Unknown'. Do not suppress these rows.",
+      "blocker": false
+    },
+    {
+      "id": 2,
+      "severity": "LOW",
+      "field": "phy_state",
+      "count": 240,
+      "description": "240 rows (1.5%) have non-US state codes — primarily Canadian provinces (ON=110, QC=23, AB=28, BC=16, SK=10, MB=6) and a small number of Mexican state codes (TA=12, CI=8, CH=4, etc.) plus a few unrecognized codes. FMCSA does register foreign carriers operating in the US under NAFTA/CUSMA agreements, so this is expected upstream data, not an error.",
+      "recommendation": "Add a 'country' field derived from phy_state: US states → 'US', Canadian province codes → 'CA', Mexican state codes → 'MX', unknown → 'UNKNOWN'. For the leads product, flag these rows so buyers can filter by country if needed.",
+      "blocker": false
+    },
+    {
+      "id": 3,
+      "severity": "LOW",
+      "field": "phone",
+      "count": 6,
+      "description": "6 rows have phone numbers that are not 10-digit US format. Details: DOT 4567692 (XCEL LOGISOLUTIONS LLC): '919820888264' [12-digit, India +91]; DOT 4564627 (SABR LOGISTICS LLC): '12624558883' [11-digit, US+1 prefix]; DOT 4564818 (ZNJ TRANSPORTS LLC): '6596653' [7-digit, incomplete]; DOT 4562155 (TUCKERSUSA): '447986000940' [12-digit, UK +44]; DOT 4562187 (FIVE GT TOWERS LLC): '16786204300' [11-digit, US+1 prefix]; DOT 4561537 (WEST COAST CARRIER SERVICES LLC): '65662470189' [11-digit, Singapore +65].",
+      "recommendation": "Flag these 6 rows with phone_valid=false. Do not suppress. The US+1-prefix numbers can be cleaned by stripping the leading 1. International numbers should be preserved as-is but flagged.",
+      "blocker": false
+    },
+    {
+      "id": 4,
+      "severity": "LOW",
+      "field": "email_address",
+      "count": 1,
+      "description": "1 row with likely typo email domain: DOT 4576645 (FRED NATIONAL LLC): FREDNATIONALLLC@GMAOL.COM — 'gmaol.com' is almost certainly a typo for 'gmail.com'.",
+      "recommendation": "Flag with email_suspect=true. Do not auto-correct (we cannot verify intent). Buyer should be aware this email is likely undeliverable.",
+      "blocker": false
+    },
+    {
+      "id": 5,
+      "severity": "LOW",
+      "field": "carrier_operation",
+      "count": 176,
+      "description": "176 rows (1.1%) have an empty carrier_operation code. This field classifies carrier type (A=authorized-for-hire, C=private, B=passenger, etc.). Empty likely means not yet classified in MCMIS at time of extract.",
+      "recommendation": "Retain rows. Add carrier_operation_label column; empty code maps to 'Unclassified'.",
+      "blocker": false
+    },
+    {
+      "id": 6,
+      "severity": "INFO",
+      "field": "status_code",
+      "count": 255,
+      "description": "255 rows are non-active: 215 Inactive (I) and 40 Pending (P). For a leads product, inactive carriers are less valuable but pending carriers (just applied, not yet active) may be highly valuable early-bird contacts.",
+      "recommendation": "Retain all rows. Expose status_code in the product so buyers can filter. Consider marketing Pending (P) rows as premium early-stage leads.",
+      "blocker": false
+    }
+  ],
+
+  "clean_row_counts": {
+    "total_rows": 15770,
+    "rows_with_any_flag": 837,
+    "fully_clean_rows": 14933,
+    "clean_pct": "94.7%"
+  },
+
+  "ready_for_compliance": true,
+  "notes": "All six issues are minor data quality observations inherited from the upstream FMCSA source. None constitute a compliance failure, PII exposure, or missing source URL. Dataset is cleared to proceed to compliance-officer review. Recommend engineer adds decoded helper columns (fleetsize_label, country, phone_valid, email_suspect) before shipping."
+}

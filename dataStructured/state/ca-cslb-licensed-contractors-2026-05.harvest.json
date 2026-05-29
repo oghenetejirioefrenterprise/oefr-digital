@@ -1,0 +1,69 @@
+{
+  "source_url": "https://www.cslb.ca.gov/OnlineServices/DataPortal/DownLoadFile.ashx?fName=MasterLicenseData&type=C",
+  "portal_url": "https://www.cslb.ca.gov/onlineservices/Dataportal/ContractorList",
+  "download_date": "2026-05-07",
+  "data_as_of": "2026-05-07",
+  "raw_count": 242969,
+  "active_count": 232617,
+  "filter_applied": "PrimaryStatus == CLEAR (fully active, no suspensions)",
+  "note_on_raw": "Raw file includes all renewed/expired-but-renewable licenses (active, suspended variants). CLEAR = fully active with no pending suspensions.",
+  "columns": [
+    "license_number",
+    "business_name",
+    "dba",
+    "full_business_name",
+    "license_classifications",
+    "license_status",
+    "secondary_status",
+    "expiration_date",
+    "entity_type",
+    "mailing_address",
+    "city",
+    "state",
+    "zip_code",
+    "county",
+    "country",
+    "business_phone",
+    "issue_date",
+    "reissue_date",
+    "last_update",
+    "asbestos_registration",
+    "source_url"
+  ],
+  "output_csv": "/home/oghenetejiri/apps/dataStructured/state/ca-cslb-licensed-contractors-2026-05.csv",
+  "output_size_bytes": 60970408,
+  "class_breakdown": {
+    "C (Specialty)": 107615,
+    "B (General Building)": 98111,
+    "A (General Engineering)": 15253,
+    "Other": 11637,
+    "Unknown": 1
+  },
+  "entity_type_breakdown": {
+    "Sole Owner": 110210,
+    "Corporation": 106522,
+    "Limited Liability": 11952,
+    "Partnership": 3498,
+    "JointVenture": 432
+  },
+  "top_counties": {
+    "Los Angeles": 47337,
+    "San Diego": 20597,
+    "Orange": 19296,
+    "Riverside": 15702,
+    "San Bernardino": 10621,
+    "Sacramento": 9430,
+    "Santa Clara": 9369,
+    "Contra Costa": 7243,
+    "Alameda": 7232,
+    "Ventura": 6297
+  },
+  "notes": [
+    "CSLB Master License file includes all active and suspended-but-renewable licenses.",
+    "PrimaryStatus=CLEAR means fully active with no suspensions \u2014 232,617 records.",
+    "File is updated as of 2026-05-07 per CSLB portal header.",
+    "Source URL requires prior session postback to generate but download endpoint is stable.",
+    "No PII included: no personal email, no SSN, no financial accounts.",
+    "License classifications field contains all classifications per license (comma/space separated)."
+  ]
+}

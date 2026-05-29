@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "irs-990-nonprofit-organization-directory-2026-05",
+  "created": "2026-05-10T19:00:00-04:00",
+  "created_by": "ceo",
+  "status": "READY_TO_SHIP",
+  "name": "US Nonprofit Database 2026 — 1.94M IRS Tax-Exempt Organizations (CSV)",
+  "summary": "Every active IRS-recognized tax-exempt organization in the US — 1,944,049 records sourced directly from the IRS Exempt Organization Business Master File (BMF). Includes EIN, name, full address, NTEE mission code, 501(c) subsection type, ruling year, asset amount, income amount, and 31 total fields. Candid/GuideStar charges $2,000–$9,500/year for this same data. $59 one-time.",
+  "format": "one_time",
+  "deliverable": "csv",
+  "price_usd": 59,
+  "bonus_stack": [
+    "NTEE mission code included — filter by education, health, arts, environment, religion in seconds",
+    "501(c) subsection type column — isolate 501(c)(3) charitable vs 501(c)(6) trade orgs",
+    "Revenue & asset tiers decoded — target mid-size $500K–$5M nonprofits for SaaS prospecting or audit targeting",
+    "Ruling year column — identify newly formed nonprofits (2020–2026) for early-stage outreach",
+    "State-level sub-files for all 50 states included as bonus ZIP"
+  ],
+  "dataset_file": "state/datasets/irs-990-nonprofit-organization-directory-2026-05.cleaned.csv",
+  "ethics_ledger": "state/datasets/irs-990-nonprofit-organization-directory-2026-05.compliance.json",
+  "audience": "Grant writing consultants needing prospect lists of foundations and peer orgs; nonprofit SaaS vendors (Bloomerang, Blackbaud, Salesforce NPSP) whose SDRs need bulk mid-size nonprofit lists; corporate CSR/sponsorship teams filtering by mission type and geography; accounting firms targeting nonprofit audit clients by size; healthcare consultants analyzing the 990-filing nonprofit health-system market.",
+  "stripe_product_prefix": "dsl_",
+  "channels": ["stripe_payment_link", "gumroad"],
+  "compliance_verdict": "PASS",
+  "compliance_audited_at": "2026-05-08T23:03:11Z",
+  "row_count": 1944049,
+  "source": "IRS Exempt Organization Business Master File (BMF) — https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf — federally mandated public disclosure, no auth required",
+  "columns": [
+    "ein", "organization_name", "ico", "street_address", "city", "state", "zip_code",
+    "group_exemption", "subsection_code", "affiliation_code", "classification_code",
+    "ruling_year", "deductibility_code", "foundation_code", "activity_1", "activity_2",
+    "activity_3", "organization_code", "exempt_status_code", "tax_period",
+    "asset_code", "income_code", "filing_requirement_code", "pf_filing_requirement",
+    "accounting_period", "asset_amount", "income_amount", "form_990_revenue",
+    "ntee_code", "sort_name", "status_code"
+  ],
+  "gumroad_listing": {
+    "title": "US Nonprofit Database 2026 — 1.94M IRS Tax-Exempt Organizations (CSV)",
+    "description": "Every active IRS-recognized tax-exempt organization in the United States — 1,944,049 records sourced directly from the IRS Exempt Organization Business Master File (BMF), the same data that powers Candid/GuideStar ($2,000–$9,500/year). One-time $59 download.\n\n**What's included:**\n- EIN (Employer Identification Number)\n- Organization name\n- Full address (street, city, state, ZIP)\n- NTEE code — 3-character mission classification (education, health, arts, environment, religion, etc.)\n- 501(c) subsection type — isolate charitable 501(c)(3) vs trade 501(c)(6) orgs instantly\n- Ruling year — identify newly formed nonprofits 2020–2026\n- Asset amount and income amount (from IRS filing)\n- Form 990 revenue\n- Deductibility code — confirm tax-deductible donation status\n- 31 total columns\n\n**Bonus: State-level sub-files for all 50 states (included as bonus ZIP)**\n\n**Who buys this:**\n- Grant writers who need a list of every 501(c)(3) in their state by mission type\n- Nonprofit SaaS SDRs (Bloomerang, Blackbaud, Virtuous) prospecting mid-size orgs\n- Corporate sponsorship teams filtering by geography and NTEE mission\n- Accounting firms identifying nonprofit audit targets by revenue tier\n- Healthcare consultants mapping 990-filing nonprofit health systems\n\n**vs. the competition:**\n- Candid/GuideStar: $2,000–$9,500/year\n- Foundation Directory Online: $1,200+/year\n- DonorSearch/iWave: $500–$3,000/month\n- DataStructured: $59 one-time\n\n**Data source:** IRS Exempt Organization Business Master File — federally mandated public disclosure, updated monthly, no authentication required.",
+    "price": 59,
+    "tags": ["nonprofit", "irs", "990", "tax-exempt", "grants", "csv", "b2b", "directory", "grantwriting", "fundraising"]
+  },
+  "pre_ship_requirements": [
+    "Cleaned CSV must use irs-990-nonprofit-organization-directory-2026-05.cleaned.csv (active orgs only, status_code=01)",
+    "Gumroad listing must state: Data sourced from IRS Exempt Organization Business Master File — public federal data",
+    "Bonus state sub-files ZIP must be generated and attached",
+    "Stripe description must match Gumroad title exactly"
+  ]
+}

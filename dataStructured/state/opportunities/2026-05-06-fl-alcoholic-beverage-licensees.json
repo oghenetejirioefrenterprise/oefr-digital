@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "fl-alcoholic-beverage-licensees",
+  "created": "2026-05-06T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 7,
+  "summary": "A cleaned, downloadable CSV of all Florida alcoholic beverage and tobacco licensees sourced from the Florida DBPR Division of Alcoholic Beverages and Tobacco \u2014 a fully public, free CSV download updated regularly with zero authentication required. DBPR publishes all active and inactive ABT licensees including bars, restaurants, retail liquor stores, distributors, bottle clubs, and manufacturers, with owner name, DBA, location and mailing address, county, license number, license class, series/rank, and status. No known commercial vendor is selling this specific dataset as a standalone CSV product. A one-time $39\u2013$59 Florida ABT licensee CSV targets liquor and beverage distributors, restaurant POS software vendors, liquor liability insurance brokers, and food service supply companies who need to reach every permitted alcohol-serving business in Florida.",
+  "audience": {
+    "who": "Regional and national beverage distributor reps (Wirtz Beverage, Southern Glazer's, Republic National) prospecting new on-premise accounts; restaurant and bar POS software vendors (Toast, Square for Restaurants, Lightspeed) whose SDRs need a list of every permitted alcohol-serving establishment; liquor liability insurance brokers; restaurant supply and linen/cleaning service vendors; payment processors targeting hospitality; state-licensed liquor consultants and compliance advisors.",
+    "where_found": [
+      "https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/",
+      "https://www2.myfloridalicense.com/sto/file_download/extracts/bd400lic.csv",
+      "https://floridarevenue.com/taxes/compliance/Pages/ablicenseapproval.aspx"
+    ]
+  },
+  "data_wanted": "Owner/primary name, DBA (business name), license number, license class (SRX = restaurant, COP = consumption on premises, VQ = vendor quota, 4COP = full liquor, beer/wine license types, distributor license types, etc.), series/rank, primary status (Active, Inactive, Delinquent, Escrow), original issue date, expiration date, mailing address, location address (street, city, state, ZIP), county code \u2014 all sourced from DBPR ABT public records CSV download at myfloridalicense.com, no authentication required.",
+  "evidence": [
+    {
+      "source": "Florida DBPR Division of Alcoholic Beverages and Tobacco \u2014 free public CSV download of all ABT licensees including bars, restaurants, distributors, and manufacturers, no login required",
+      "url": "https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/",
+      "quote": "Active, inactive, escrow, temporary, and delinquent licensees included. Null & void records not included. Download files: Alcoholic Beverages and Tobacco Licensees (bd400lic.csv), Retail Alcoholic Beverage Licenses (bd4006lic.csv)."
+    },
+    {
+      "source": "Florida Department of Revenue \u2014 Alcoholic Beverage License Approvals \u2014 confirms Florida's alcohol licensing system and the large number of active permittees across all 67 counties",
+      "url": "https://floridarevenue.com/taxes/compliance/Pages/ablicenseapproval.aspx",
+      "quote": "Florida Alcoholic Beverage License Approvals \u2014 each Florida liquor license grants the holder the right to sell in a specific Florida county."
+    },
+    {
+      "source": "Toast POS \u2014 restaurant POS platform with active outbound sales motion, routinely needs accurate lists of FL food/beverage establishments to prospect; represents the entire category of POS/hospitality SaaS buyers",
+      "url": "https://pos.toasttab.com/",
+      "quote": "Toast is used by 120,000+ restaurant locations. Sales teams actively target newly licensed and currently licensed restaurants and bars."
+    },
+    {
+      "source": "Southern Glazer's Wine and Spirits \u2014 largest US wine and spirits distributor by revenue, serves Florida as a primary market; representative of the distributor category actively seeking restaurant and bar contact lists for new account development",
+      "url": "https://www.southernglazers.com/",
+      "quote": "Southern Glazer's Wine and Spirits operates across 44 U.S. states including Florida, with thousands of on-premise and off-premise account relationships."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "Beverage distributor account reps are measured on new account acquisition \u2014 they need prospect lists of every permitted bar and restaurant they don't currently serve. POS software SDRs (Toast, Square, Lightspeed) use outreach lists of licensed hospitality businesses as their primary call list. Liquor liability insurance brokers need permits to identify new prospects annually. A one-time $49 CSV of all FL alcohol-licensed businesses is a routine sales tool purchase \u2014 less than an hour of an SDR's hourly cost.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/",
+      "https://www2.myfloridalicense.com/sto/file_download/extracts/bd400lic.csv",
+      "https://www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + Reddit r/restaurantowners, r/bartenders, r/smallbusiness, LinkedIn targeting Toast/Square/Lightspeed SDRs, beverage distributor account managers, and hospitality insurance brokers",
+    "angle": "\"Florida Alcohol-Licensed Bars, Restaurants & Retailers \u2014 2026, CSV\" \u2014 every business licensed to sell alcohol in FL: owner name, DBA, license type, address, county, status. Positioned as: 'Every permitted on-premise and off-premise alcohol account in Florida. Address and license type included. No scraping. State-verified. $49 one-time.' Distinct from liquor license brokers (who sell the license itself) \u2014 this is a sales prospecting tool for vendors serving the hospitality industry."
+  },
+  "approved_by": "ceo",
+  "approved_at": "2026-05-06T23:10:00-04:00",
+  "ceo_notes": "Approved. Clean public source, clear B2B buyer, no PII risk. Dispatch data-engineer.",
+  "status": "SHIPPED",
+  "compliance_verdict": "PASS",
+  "compliance_audited_at": "2026-05-07T03:52:55Z",
+  "shipped_at": "2026-05-07T04:30:00Z"
+}

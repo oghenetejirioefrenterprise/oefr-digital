@@ -1,0 +1,111 @@
+{
+  "product_name": "Auto Dealership License Database - Texas",
+  "source_url": "https://texasdmv.my.salesforce-sites.com/dealers",
+  "source_agency": "Texas Department of Motor Vehicles (TxDMV)",
+  "harvest_date": "2026-05-27",
+  "harvest_timestamp": "2026-05-27T23:09:01.596891Z",
+  "row_count": 22133,
+  "active_records": 21695,
+  "fields_collected": [
+    "dealer_name",
+    "dba_name",
+    "license_type",
+    "license_number",
+    "owner_principal",
+    "address",
+    "city",
+    "state",
+    "zip",
+    "phone",
+    "license_status",
+    "issue_date",
+    "expiration_date",
+    "county",
+    "email",
+    "dealer_type",
+    "mailing_address",
+    "mailing_city",
+    "mailing_state",
+    "mailing_zip",
+    "bond_company",
+    "source_file"
+  ],
+  "license_type_breakdown": {
+    "Independent (GDN) Motor Vehicle Dealer": 15942,
+    "Franchised Motor Vehicle Dealer": 5052,
+    "Salvage Dealer": 734,
+    "Motor Vehicle Manufacturer": 223,
+    "Motor Vehicle Distributor": 104,
+    "RV Manufacturer": 78
+  },
+  "license_status_breakdown": {
+    "Active": 20097,
+    "Active - Pending Renewal": 1598,
+    "Expired": 438
+  },
+  "source_files": [
+    {
+      "name": "Motor Vehicle Dealer-2026-May-27-05-30-02.xls",
+      "url": "https://texasdmv.my.salesforce-sites.com/dealers/servlet/servlet.FileDownload?retURL=%2Fdealers%2Fapex%2Fmotorvehicledealerliststaging&file=00Pcs00001e4XxBEAU",
+      "page": "https://texasdmv.my.salesforce-sites.com/dealers/motorvehicledealerliststaging",
+      "description": "Independent (GDN) and Franchised Motor Vehicle Dealers",
+      "records": 20995,
+      "size_bytes": 9608192
+    },
+    {
+      "name": "Salvage Dealer-2026-May-27-05-30-03.xls",
+      "url": "https://texasdmv.my.salesforce-sites.com/dealers/servlet/servlet.FileDownload?retURL=%2Fdealers%2Fapex%2Fsalvagedealerstaging&file=00Pcs00001e4XxDEAU",
+      "page": "https://texasdmv.my.salesforce-sites.com/dealers/salvagedealerstaging",
+      "description": "Salvage Vehicle Dealers",
+      "records": 735,
+      "size_bytes": 312832
+    },
+    {
+      "name": "Motor Vehicle Manufacturer-2026-May-27-05-30-00.xls",
+      "url": "https://texasdmv.my.salesforce-sites.com/dealers/servlet/servlet.FileDownload?retURL=%2Fdealers%2Fapex%2Fmotorvehiclemanufacturerstaging&file=00Pcs00001e4XxAEAU",
+      "page": "https://texasdmv.my.salesforce-sites.com/dealers/motorvehiclemanufacturerstaging",
+      "description": "Motor Vehicle Manufacturers and Distributors",
+      "records": 328,
+      "size_bytes": 184832
+    },
+    {
+      "name": "RV Manufacturer-2026-May-27-05-30-03.xls",
+      "url": "https://texasdmv.my.salesforce-sites.com/dealers/servlet/servlet.FileDownload?retURL=%2Fdealers%2Fapex%2Frvmanufacturerstaging&file=00Pcs00001e4XxCEAU",
+      "page": "https://texasdmv.my.salesforce-sites.com/dealers/rvmanufacturerstaging",
+      "description": "RV Manufacturers (deduplicated from product-level listing)",
+      "records_raw": 1044,
+      "records_deduplicated": 79,
+      "size_bytes": 162816
+    }
+  ],
+  "output_file": "tx-auto-dealers-raw.csv",
+  "output_size_bytes": 6512779,
+  "notes": [
+    "Data sourced from TxDMV LACE (Licensing and Consumer Affairs) Salesforce portal.",
+    "TxDMV publishes downloadable XLS spreadsheets for each dealer category, updated daily.",
+    "Data is current as of 05/27/2026 per the portal timestamp.",
+    "GDN (General Distinguishing Number) file contains both Franchised and Independent dealers, distinguished by DealerType column.",
+    "RV Manufacturers file is product-level (1,044 rows for product lines); deduplicated to 79 unique entities by license number.",
+    "4 empty/header rows were removed during cleaning.",
+    "Manufacturers and Distributors may be located out-of-state (e.g., Indiana, Michigan, California) since they register to sell into Texas.",
+    "owner_principal field is only populated for Manufacturers & Distributors (from FirstName/LastName columns); not available for GDN or Salvage dealers.",
+    "No bulk API endpoint exists; data obtained via direct file download links from the Salesforce portal.",
+    "Bond company data is available only for GDN dealers (independent dealers require surety bonds)."
+  ],
+  "data_quality": {
+    "completeness": {
+      "dealer_name": "99.9% populated",
+      "license_number": "100% populated",
+      "license_status": "100% populated",
+      "address": "~98% populated (RV Manufacturers lack address data)",
+      "phone": "~98% populated (RV Manufacturers lack phone data)",
+      "email": "~95% populated for GDN dealers, sparse for others",
+      "owner_principal": "Only populated for Manufacturers & Distributors (~14% of total)"
+    },
+    "known_limitations": [
+      "RV Manufacturer records lack physical address, phone, email, and county data",
+      "Issue date not available for Salvage Dealers or RV Manufacturers",
+      "owner_principal not available for GDN or Salvage dealers (would require individual license lookups)"
+    ]
+  }
+}

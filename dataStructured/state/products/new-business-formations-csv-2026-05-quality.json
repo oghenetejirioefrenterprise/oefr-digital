@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "type": "quality_report",
+  "slug": "new-business-formations-csv-2026-05",
+  "created": "2026-05-05T00:00:00-04:00",
+  "created_by": "data-steward",
+  "status": "APPROVED",
+  "summary": "16,253 raw Florida SOS filings ingested; 15,997 clean records delivered after removing 256 out-of-window rows (1 century-typo date, 255 pre-April or post-May 2026 filings) and normalizing 2,193 raw entity-type codes to human-readable labels. Core fields — entity_name, entity_type, state, filing_date, registered_agent_name/address, principal_address, source_url — are 99.99% complete. organizer_officer_name was present but entirely garbled (truncated SOS parsing artifacts e.g. 'NDERS JANE D 700 C'); all values cleared and field marked empty pending data-engineer re-extraction. No PII (emails/phones) detected. All 15,997 source URLs present and sourced from sunbiz.org.",
+  "source_metadata": "state/opportunities/2026-05-04-new-business-formations-csv.json",
+  "data_file": "state/datasets/new-business-formations-csv-2026-05.csv",
+  "rows_in": 16253,
+  "rows_out": 15997,
+  "transformations": [
+    {
+      "step": "Normalize entity_type codes to human-readable labels",
+      "rows_before": 16253,
+      "rows_after": 16253,
+      "notes": "2,193 rows carried raw SOS codes (DOMP→'Florida Domestic For-Profit Corporation', FORL→'Florida Foreign Limited Liability Company', DOMNP→'Florida Domestic Non-Profit Corporation', FORP→'Florida Foreign For-Profit Corporation', DOMLP→'Florida Domestic Limited Partnership', TRUST→'Florida Business Trust'). All normalized. No rows removed."
+    },
+    {
+      "step": "Remove century-typo filing date (2102-07-06)",
+      "rows_before": 16253,
+      "rows_after": 16252,
+      "notes": "1 row — MURCHIE MEDICINE INC — had filing_date=2102-07-06, a clear century-offset typo. Removed rather than guessed correction."
+    },
+    {
+      "step": "Remove out-of-window filing dates (keep 2026-04-01 to 2026-05-31)",
+      "rows_before": 16252,
+      "rows_after": 15997,
+      "notes": "255 rows had filing dates outside the April-May 2026 product window: 191 historic (as far back as 1956-01-03) and 64 future (June-July 2026). Product is sold as 'newly registered' filings; stale records dilute buyer value and would constitute misleading product description."
+    },
+    {
+      "step": "Clear garbled organizer_officer_name values",
+      "rows_before": 15997,
+      "rows_after": 15997,
+      "notes": "15,058 non-empty values in organizer_officer_name were parsing artifacts (e.g. 'NO BETZAIDA 13194', 'NDERS JANE D 700 C') — truncated fragments of SOS HTML, not real officer names. All cleared to empty string. Field preserved in schema for future data-engineer re-extraction. 943 rows were already empty. No rows removed."
+    },
+    {
+      "step": "Fix ST,PETERSBURG address split in registered_agent_address",
+      "rows_before": 15997,
+      "rows_after": 15997,
+      "notes": "1 row had 'ST,PETERSBURG' (bare comma) in registered_agent_address due to CSV parsing artifact. Corrected to 'ST. PETERSBURG'."
+    }
+  ],
+  "source_liveness_sample": {
+    "sampled": 0,
+    "dead": 0,
+    "action": "All 15,997 source_url values present and point to sunbiz.org (Florida SOS public search). Live URL verification not run at steward stage; recommend engineer spot-check 10 records before listing."
+  },
+  "refresh_recommendation": "monthly",
+  "issues": [
+    {
+      "field": "organizer_officer_name",
+      "severity": "medium",
+      "description": "Data-engineer parsing produced truncated HTML fragments instead of real officer names. Field is empty in delivered CSV. Data-engineer should re-extract from SOS detail pages using a targeted officer/organizer selector before this field can be included in product.",
+      "action_required": "data-engineer"
+    },
+    {
+      "field": "principal_address",
+      "severity": "low",
+      "description": "99.4% of principal addresses omit the state code (e.g. '13194 STANTHORNE AVE, ORLANDO, 32832' instead of ', FL, 32832'). This is consistent with how the SOS source formats principal addresses. Since dataset is FL-only, buyers can infer state. No fix applied.",
+      "action_required": "none"
+    },
+    {
+      "field": "entity_name",
+      "severity": "low",
+      "description": "6 duplicate entity names found across different IDs (e.g. HAMMERHEAD PERFORMANCE LAB LLC x2). These are distinct legal entities with separate IDs and source URLs — not data duplication. No action required.",
+      "action_required": "none"
+    }
+  ]
+}

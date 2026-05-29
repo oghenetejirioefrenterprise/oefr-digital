@@ -1,0 +1,159 @@
+{
+  "slug": "independent-retail-pharmacy-directory",
+  "harvest_date": "2026-05-28T23:14:04.285689+00:00",
+  "elapsed_seconds": 659.6,
+  "harvested_by": "data-engineer",
+  "row_count": 110507,
+  "independent_count": 76031,
+  "chain_count": 34476,
+  "sources": {
+    "nppes": {
+      "url": "https://download.cms.gov/nppes/NPPES_Data_Dissemination_April_2026_V2.zip",
+      "zip_member": "npidata_pfile_20050523-20260412.csv",
+      "raw_row_count": 9494438,
+      "description": "CMS NPPES Full Replacement Monthly File \u2014 Type 2 (organizational) pharmacy NPIs"
+    },
+    "dea": {
+      "url": "NOT_AVAILABLE",
+      "description": "DEA Controlled Substance Registrant public file. All dispensing pharmacies must hold active DEA registration (21 CFR \u00a7 1301.11). Verify individual registrations: https://www.deadiversion.usdoj.gov/registration/index.html",
+      "status": "not_available_as_bulk"
+    },
+    "state_boards": {
+      "TX": {
+        "status": "unavailable",
+        "url": "https://www.pharmacy.texas.gov/files/fac_licenses.xlsx"
+      },
+      "CA": {
+        "status": "unavailable",
+        "url": "https://data.dca.ca.gov/api/views/64cg-jy5t/rows.csv?accessType=DOWNLOAD"
+      },
+      "FL": {
+        "status": "no_bulk_download",
+        "lookup_url": "https://mqa-internet.doh.state.fl.us/MQASearchServices/HealthCareProviders"
+      },
+      "NY": {
+        "status": "no_bulk_download",
+        "lookup_url": "https://eservices.op.nysed.gov/pls/apex/f?p=145:1"
+      },
+      "PA": {
+        "status": "no_bulk_download",
+        "lookup_url": "https://www.pals.pa.gov/"
+      }
+    },
+    "state_boards_enrichment": {
+      "method": "NPPES bulk Provider License Number_1 (CMS-reported at NPI enrollment)",
+      "note": "License numbers are self-reported by pharmacies to CMS at NPI enrollment. They represent state board pharmacy facility license numbers but may be stale. Live state board lookups: TX https://www.pharmacy.texas.gov/general/fac-lic.asp | CA https://search.dca.ca.gov/ | FL https://mqa-internet.doh.state.fl.us/ | NY https://eservices.op.nysed.gov/pls/apex/f?p=145:1 | PA https://www.pals.pa.gov/",
+      "by_state": {
+        "TX": {
+          "total_in_state": 9054,
+          "license_enriched": 1937,
+          "coverage_pct": 21.4,
+          "source": "NPPES bulk \u2014 Provider License Number_1 (CMS-reported by pharmacy at NPI enrollment)"
+        },
+        "CA": {
+          "total_in_state": 9802,
+          "license_enriched": 2524,
+          "coverage_pct": 25.7,
+          "source": "NPPES bulk \u2014 Provider License Number_1 (CMS-reported by pharmacy at NPI enrollment)"
+        },
+        "FL": {
+          "total_in_state": 8520,
+          "license_enriched": 2130,
+          "coverage_pct": 25.0,
+          "source": "NPPES bulk \u2014 Provider License Number_1 (CMS-reported by pharmacy at NPI enrollment)"
+        },
+        "NY": {
+          "total_in_state": 9460,
+          "license_enriched": 2260,
+          "coverage_pct": 23.9,
+          "source": "NPPES bulk \u2014 Provider License Number_1 (CMS-reported by pharmacy at NPI enrollment)"
+        },
+        "PA": {
+          "total_in_state": 4531,
+          "license_enriched": 1375,
+          "coverage_pct": 30.3,
+          "source": "NPPES bulk \u2014 Provider License Number_1 (CMS-reported by pharmacy at NPI enrollment)"
+        }
+      }
+    }
+  },
+  "taxonomy_codes": [
+    "333600000X",
+    "3336C0002X",
+    "3336C0003X",
+    "3336C0004X",
+    "3336H0001X",
+    "3336I0012X",
+    "3336L0003X",
+    "3336M0002X",
+    "3336M0003X",
+    "3336N0007X",
+    "3336S0011X"
+  ],
+  "taxonomy_labels": {
+    "333600000X": "Community/Retail Pharmacy",
+    "3336C0002X": "Clinic Pharmacy",
+    "3336C0003X": "Community/Retail Pharmacy",
+    "3336C0004X": "Compounding Pharmacy",
+    "3336H0001X": "Home Infusion Therapy Pharmacy",
+    "3336I0012X": "Institutional Pharmacy",
+    "3336L0003X": "Long-term Care Pharmacy",
+    "3336M0002X": "Mail Order Pharmacy",
+    "3336M0003X": "Managed Care Organization Pharmacy",
+    "3336N0007X": "Nuclear Pharmacy",
+    "3336S0011X": "Specialty Pharmacy"
+  },
+  "chain_filter": {
+    "dba_pattern_count": 56,
+    "corporate_pattern_count": 32,
+    "flagged_as_chain": 34476,
+    "flagged_as_independent": 76031,
+    "reclassified_to_chain_in_refinement": 188
+  },
+  "field_coverage": {
+    "phone_pct": 100.0,
+    "dea_number_pct": 0.0,
+    "sb_license_pct": 9.3
+  },
+  "top_states": {
+    "CA": 9802,
+    "NY": 9460,
+    "TX": 9054,
+    "FL": 8520,
+    "PA": 4531,
+    "MI": 4230,
+    "NC": 4069,
+    "NJ": 3603,
+    "GA": 3524,
+    "OH": 3431,
+    "IL": 3341,
+    "TN": 2448,
+    "VA": 2287,
+    "MD": 2114,
+    "MO": 2111
+  },
+  "top_taxonomy_codes": {
+    "3336C0003X": 33843,
+    "332B00000X": 32946,
+    "333600000X": 24592,
+    "3336L0003X": 7145,
+    "3336C0004X": 2582,
+    "3336C0002X": 1795,
+    "3336S0011X": 1515,
+    "291U00000X": 944,
+    "3336I0012X": 752,
+    "3336M0002X": 689,
+    "3336H0001X": 683,
+    "183500000X": 479,
+    "332BP3500X": 315,
+    "251F00000X": 249,
+    "3336M0003X": 174
+  },
+  "chain_flag_breakdown": {
+    "independent": 76031,
+    "chain": 34476
+  },
+  "output_file": "/home/oghenetejiri/apps/dataStructured/state/datasets/independent-retail-pharmacy-directory/raw-pharmacies.csv",
+  "status": "COMPLETE",
+  "enrichment_run": "2026-05-28T23:28:39.396676+00:00"
+}

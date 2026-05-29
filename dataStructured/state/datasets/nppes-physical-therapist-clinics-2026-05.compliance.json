@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "type": "compliance_report",
+  "slug": "nppes-physical-therapist-clinics-2026-05",
+  "reviewed_at": "2026-05-07T04:30:00+00:00",
+  "verdict": "PASS",
+  "checks": {
+    "public_source_confirmed": true,
+    "no_auth_bypass": true,
+    "no_email_column": true,
+    "no_ssn_or_financial": true,
+    "no_patient_health_data": true,
+    "phone_pii_assessment": "BUSINESS CONTACT — PASS. All phone numbers are NPPES-required practice location telephone numbers. Under 45 CFR § 162.406, NPI applicants must submit a practice location phone number; this is a mandatory business contact field, not a personal mobile number. Manual review of 20 sampled rows confirms all addresses are commercial/clinical locations (suite numbers, professional parks, hospital addresses). The 0.02% null rate (77 missing phones) further confirms these are optional-in-practice business contact numbers, not universally held personal numbers. No personal mobile numbers detected.",
+    "address_pii_assessment": "BUSINESS PRACTICE LOCATION — PASS. NPPES requires a practice location address (not a home address) for NPI registration per 45 CFR § 162.408. Manual review of 20 sampled rows confirms all street1 addresses are commercial/clinical locations. The FAA dataset (prior DataStructured PASS precedent) and CMS Medicare Home Health dataset (prior PASS) both accepted mandatory-regulatory public addresses under the same rationale.",
+    "source_permits_commercial_redistribution": true,
+    "email_artifacts_in_street2": "2 rows (0.0005% of dataset) contain email addresses incidentally entered by providers in the street2 free-text field — a known NPPES data-quality artifact where providers misuse the secondary address line. Row 18036: KIMRK@COMPORIUM.NET (business domain, listed as 'FAX AND EMAIL'). Row 365228: CANISHA.MYERS@GMAIL.COM (personal Gmail). These are publicly disclosed by the providers themselves on the NPI registry verbatim. No dedicated email column exists. Recommendation: data-steward must blank the street2 field on these 2 rows before shipping (regex strip any email-matching value from street2). Dataset PASSES subject to this pre-ship scrub.",
+    "ssn_pattern_in_license_number": "2 rows contain license numbers matching \\d{3}-\\d{2}-\\d{4} regex in the license_number field: Row 45500 (ORTHODYNE LLC, license 109-14-4092) and Row 178983 (ARISTEDE DUKES, license 070-00-9394). These are state physical therapy professional license numbers that coincidentally match SSN format. Confirmed not SSNs: (1) The values are in the license_number field, not any identity field. (2) NPI registration does not collect SSNs — EIN or SSN was historically used as a tax identifier during NPI application but is NOT included in the public bulk download (CMS explicitly strips it). (3) These format-matching license numbers are published on the public NPI registry. No actual SSNs are present in the dataset.",
+    "columns_confirmed_clean": ["npi", "entity_type", "provider_name", "provider_first_name", "provider_last_name", "provider_credential_text", "provider_organization_name", "npi_taxonomy_code_primary", "street1", "street2", "city", "state", "zip_code", "phone", "last_update_date", "source_url", "license_number", "reactivation_date"]
+  },
+  "pre_ship_requirement": "data-steward must blank street2 on the 2 rows where street2 contains an email address pattern before slicing state files for distribution. SQL or pandas: df.loc[df['street2'].str.contains(r'[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}', na=False, regex=True), 'street2'] = ''",
+  "notes": "Dataset sourced from CMS NPPES April 2026 V2 monthly bulk download at https://download.cms.gov/nppes/NPI_Files.html — a free, no-auth-required federal public data release. NPPES data is mandated for public disclosure under HIPAA § 162.410 which requires CMS to make the NPI registry publicly available. This is provider business information (NPI, practice address, practice phone, credentials, taxonomy) — not patient health data. All 377,805 records are active US Physical Therapists and PT organizations. The same CMS data infrastructure was already ruled compliant for the DataStructured Medicare Home Health dataset. No personal emails, home addresses, SSNs, financial accounts, or patient health data are present. The 2 incidental email artifacts in street2 are publicly disclosed NPPES data; scrubbing them before ship is a best-practice data hygiene step, not a blocking compliance failure.",
+  "reviewer": "compliance-officer"
+}

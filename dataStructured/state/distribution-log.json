@@ -1,0 +1,2201 @@
+{
+  "version": 1,
+  "type": "distribution_log",
+  "updated_at": "2026-05-29T01:05:18Z",
+  "entries": [
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T02:04:48Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://x.com/home\", waiting until \"networkidle\"\n"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T02:05:25Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://x.com/home\", waiting until \"networkidle\"\n"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/Truckers",
+      "posted_at": "2026-05-07T02:06:52Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.fill: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"#user_login\")\n"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/Truckers",
+      "posted_at": "2026-05-07T02:07:41Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.fill: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"#user_login\")\n"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/FreightBrokers",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "bot-detection: old.reddit.com returning 403 (IP-level block); login form unreachable; systemic failure confirmed on this run"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/Entrepreneur",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "bot-detection: old.reddit.com returning 403 (IP-level block); login form unreachable; systemic failure confirmed on this run"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "networkidle-timeout: x.com never reaches networkidle state; systemic IP-level bot detection confirmed on this run"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "reddit:r/smallbusiness",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "bot-detection: old.reddit.com returning 403 (IP-level block); login form unreachable; systemic failure confirmed on this run"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "reddit:r/Entrepreneur",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "bot-detection: old.reddit.com returning 403 (IP-level block); login form unreachable; systemic failure confirmed on this run"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "networkidle-timeout: x.com never reaches networkidle state; systemic IP-level bot detection confirmed on this run"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "reddit:r/govcontracting",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "bot-detection: old.reddit.com returning 403 (IP-level block); login form unreachable; systemic failure confirmed on this run"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "reddit:r/consulting",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "bot-detection: old.reddit.com returning 403 (IP-level block); login form unreachable; systemic failure confirmed on this run"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "reddit:r/Entrepreneur",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "bot-detection: old.reddit.com returning 403 (IP-level block); login form unreachable; systemic failure confirmed on this run"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "networkidle-timeout: x.com never reaches networkidle state; systemic IP-level bot detection confirmed on this run"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "reddit:r/realtors",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "bot-detection: old.reddit.com returning 403 (IP-level block); login form unreachable; systemic failure confirmed on this run"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "reddit:r/RealEstate",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "bot-detection: old.reddit.com returning 403 (IP-level block); login form unreachable; systemic failure confirmed on this run"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "reddit:r/Entrepreneur",
+      "posted_at": "2026-05-07T02:08:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "bot-detection: old.reddit.com returning 403 (IP-level block); login form unreachable; systemic failure confirmed on this run"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T03:29:29Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T03:38:50Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"button.share-actions__primary-action, button[aria-label='Post'], button:has-text('Post'):not(:has-text('Start'))\").first to be visible\n    21 × locator resolved to hidden <button type=\"button\" class=\"a37ba6ab be009a74 acc2b607 f8b3e4f0 _8ae12320 _6fc9ee90 _4d01b37c _5f7794b7 _2b9c3576 f8142a65 cb8918f7 _3b352da4 d9981ad5 f40e615c _58e03272\">…</button>\n"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T03:41:24Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "🚚 15,770 new FMCSA carrier registrations from DOT public data.\n\nUseful for trucking insurance agents, ELD vendors, and freight factoring reps prospecting new operators.\n\nCSV. $39 → https://buy.stripe.com/cNi14g4CP7aT8mT1iC7IY0c\n\n#Trucking #Logistics #DataProducts"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T03:41:51Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "📋 15,997 new Florida LLCs & corps from state filings.\n\nTarget new businesses before your competitors find them — ideal for insurance agents, CPAs, registered agent firms.\n\nCSV. $49 → https://buy.stripe.com/aFaaEQc5h66Pbz5f9s7IY0f\n\n#SmallBusiness #Florida #DataProducts"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T03:42:15Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "🏛️ 4,731 SAM.gov small-biz IT contractors in the DC/MD/VA corridor.\n\nFor gov contracting teaming partners, IT staffing agencies, and SaaS vendors targeting federal contractors.\n\nCSV. $49 → https://buy.stripe.com/dRm5kwb1dfHp7iPe5o7IY0g\n\n#GovCon #B2B #DataProducts"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T03:42:39Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "🏡 319,247 FL licensed real estate agents & brokers from DBPR public records.\n\nFor proptech SDRs, mortgage lenders, E&O insurance brokers, and CE providers prospecting agents.\n\nCSV. $49 → https://buy.stripe.com/cNi8wIb1dfHpeLhe5o7IY0k\n\n#RealEstate #PropTech #DataProducts"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T03:43:05Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "🏥 12,392 Medicare-certified home health agencies across 55 US states and territories.\n\nFor medical SaaS SDRs (EVV, scheduling, billing), DME supply reps, and healthcare staffing agencies.\n\nCSV. $49 → https://buy.stripe.com/5kQcMYfhtgLtdHdgdw7IY0h\n\n#HomeHealth #HealthIT #DataProducts"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T03:44:23Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: x.com page load timing out (30s); login API dropping username submission with no response; confirmed datacenter IP-level block on both page navigation and api.x.com/1.1/onboarding/task.json"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T03:44:23Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: x.com page load timing out (30s); login API dropping username submission with no response; confirmed datacenter IP-level block on both page navigation and api.x.com/1.1/onboarding/task.json"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T03:44:23Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: x.com page load timing out (30s); login API dropping username submission with no response; confirmed datacenter IP-level block on both page navigation and api.x.com/1.1/onboarding/task.json"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T03:44:23Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: x.com page load timing out (30s); login API dropping username submission with no response; confirmed datacenter IP-level block on both page navigation and api.x.com/1.1/onboarding/task.json"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T03:44:23Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: x.com page load timing out (30s); login API dropping username submission with no response; confirmed datacenter IP-level block on both page navigation and api.x.com/1.1/onboarding/task.json"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/Truckers",
+      "posted_at": "2026-05-07T03:44:58Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/Truckers",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/FreightBrokers",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/Entrepreneur",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "reddit:r/smallbusiness",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "reddit:r/Entrepreneur",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "reddit:r/govcontracting",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "reddit:r/consulting",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "reddit:r/Entrepreneur",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "reddit:r/realtors",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "reddit:r/RealEstate",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "reddit:r/Entrepreneur",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "reddit:r/homehealth",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "reddit:r/HealthIT",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "reddit:r/SaaS",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "reddit:r/Entrepreneur",
+      "posted_at": "2026-05-07T03:47:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ip-block: Reddit network security (Cloudflare) blocking submit page with 403/redirect; login succeeds but post submission returns \"You have been blocked by network security\"; systemic datacenter IP-level block confirmed"
+    },
+    {
+      "item_id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T04:08:58Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "✈️ 302,810 active US-registered civil aircraft from the FAA Releasable Aircraft Database.\n\nFor aviation insurance brokers, avionics shops prospecting ADS-B upgrade clients, MRO facilities, aircraft parts vendors, and flight training schools.\n\nIncludes N-number, make, model, aircraft type, engine type, year manufactured, registrant name, address, and registrant type (Individual, LLC, Corporation).\n\nCSV. $69 → https://buy.stripe.com/5kQdR20mz0Mvbz5f9s7IY0l\n\n#Aviation #AviationInsurance #DataProducts"
+    },
+    {
+      "item_id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T04:09:29Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "🍺 52,152 active Florida alcohol licensees — bars, restaurants, nightclubs, and package stores — from DBPR public records.\n\nFor liquor distributors prospecting on-premise accounts, POS vendors (Toast, Square, SpotOn) targeting FL hospitality, payment processors, linen/supply companies, and insurance brokers selling liquor liability.\n\nIncludes license type, business name, address, county, and license dates.\n\nCSV. $49 → https://buy.stripe.com/cNi5kwglx9j10Ur0ey7IY0m\n\n#Hospitality #Florida #DataProducts"
+    },
+    {
+      "item_id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T04:27:07Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "🏥 377,805 active US Physical Therapists and PT clinics from the CMS NPPES registry — with practice phone numbers on 99.98% of records.\n\nFor medical SaaS vendors (EMR, scheduling, billing for PT practices), medical equipment reps, healthcare staffing agencies recruiting PTs, and liability insurance brokers.\n\nIncludes NPI, name, credentials (DPT/PT/MPT), specialty, practice address, phone, and state license number. All 50 states.\n\nCSV. $79 → https://buy.stripe.com/6oU3co9X9br9dHd2mG7IY0n\n\n#PhysicalTherapy #HealthIT #DataProducts"
+    },
+    {
+      "item_id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T16:21:31Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "❄️ New Dataset: Texas HVAC Contractors & AC Technicians — TDLR 2026\n\n56,001 active licensed HVAC contractors and AC technicians in Texas — directly from TDLR.\n\nTypes included:\n✅ A/C Contractors\n✅ A/C Technicians\n✅ Service Technicians\n\nEach record: name, license type, license #, business address, city, ZIP, phone, expiration date.\n\nWho buys this:\n→ Carrier / Trane / Lennox dealer territory reps\n→ ServiceTitan & FieldEdge SDRs targeting HVAC companies\n→ Refrigerant & parts suppliers\n→ HVAC CE education companies\n→ Insurance brokers (liability/workers comp for HVAC)\n\n$49 one-time. Instant CSV download."
+    },
+    {
+      "item_id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T16:22:51Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "⚡ New Dataset: Texas Licensed Electricians & Electrical Contractors — TDLR 2026\n\n204,535 records. Every active licensed electrician in Texas — sourced directly from TDLR (Texas Dept. of Licensing and Regulation).\n\nIncludes:\n✅ Master Electricians\n✅ Journeyman Electricians\n✅ Electrical Contractors\n✅ Apprentice Electricians\n✅ Residential Wiremen & Sign Electricians\n\nEach record: name, license class, license #, business address, city, ZIP, phone, expiration date.\n\nWho buys this:\n→ Electrical supply distributors (Graybar, Rexel, Anixter)\n→ ServiceTitan / Jobber / Procore SDRs targeting electrical contractors\n→ OSHA & safety training providers\n→ Electrical CE education companies\n→ Liability insurance brokers\n\n$59 one-time. Instant CSV download."
+    },
+    {
+      "item_id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T16:27:03Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "🏗️ New Dataset: California Licensed Contractors — CSLB Database 2026\n\n232,617 active licensed contractors in California — sourced directly from CSLB (California Contractors State License Board).\n\nLargest state contractor database in the US. Includes:\n✅ General Building Contractors (Class B) — 75,100\n✅ General Engineering (Class A) — 15,000+\n✅ Electrical (C10) — 18,000+\n✅ Plumbing (C36) — 11,000+\n✅ HVAC/Heating & Ventilation (C20) — 7,000+\n✅ Roofing (C39), Painting (C33), Landscaping (C27) + 30 more trades\n\nEach record: name, license class, address, city, county, ZIP, phone, expiration date.\n99.9% phone coverage.\n\nWho buys this:\n→ Procore / Buildertrend / CoConstruct SDRs\n→ Construction insurance & bonding brokers\n→ Building material & equipment distributors\n→ Safety/OSHA training companies\n→ Subcontractor-focused SaaS vendors\n\n$79 one-time. Instant CSV download."
+    },
+    {
+      "item_id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T16:33:20Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "🦷 New Dataset: US Dentists & Dental Practices — NPI Database 2026\n\n371,786 active dentists and dental practices across the US — sourced directly from CMS NPPES (the federal NPI registry).\n\nIncludes every specialty:\n✅ General Dentists — 173,000+\n✅ Orthodontists — 15,000+\n✅ Oral & Maxillofacial Surgeons — 12,000+\n✅ Endodontists — 9,100+\n✅ Periodontists — 4,300+\n✅ Pediatric Dentists — 8,300+\n✅ Prosthodontists, Pathologists, Radiologists\n\nEach record: NPI, name, specialty, address, city, state, ZIP, phone.\n100% phone coverage. All 50 states.\n\nWho buys this:\n→ Patterson / Henry Schein / Benco territory reps\n→ Dentrix, Eaglesoft, Carestream SDRs\n→ Dental lab companies targeting practices\n→ Dental CE education providers\n→ Dental insurance brokers & staffing agencies\n\n$79 one-time. Instant CSV download."
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T23:46:50Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.wait_for_function: Timeout 20000ms exceeded."
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-07T23:47:37Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "💼 SEC Registered Investment Advisers — 2026 RIA Database\n\n16,551 SEC-registered investment adviser firms from the IAPD/SEC public database.\n\nWho buys this:\n→ Wealthtech SaaS (portfolio mgmt, CRM, compliance) targeting new firm clients\n→ Asset manager & ETF sponsor BD teams prospecting RIA gatekeepers\n→ Recruiters targeting breakaway adviser talent\n→ M&A advisers tracking RIA consolidation\n→ Teams paying $5K–20K/yr for platforms wrapping this same free SEC data\n\nEach record: firm name, CRD #, SEC #, registration date, status, address, state.\n\n$79 one-time. Instant CSV.\nhttps://buy.stripe.com/bJe00c1qD7aT8mT0ey7IY0s\n\n#RIA #WealthTech #InvestmentAdvisers #DataProducts"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-07T23:48:05Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-08T01:06:54Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-08T01:08:50Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-08T01:08:50Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-08T01:08:50Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-08T01:08:50Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-08T01:09:02Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-08T01:09:02Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-08T01:09:02Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-08T01:09:03Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-testid='tweetTextarea_0']\") to be visible\n"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T01:08:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/Truckers",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "reddit:r/smallbusiness",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "reddit:r/govcontracting",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "reddit:r/RealEstate",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "reddit:r/homehealth",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "channel": "reddit:r/aviation",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "channel": "reddit:r/bartenders",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "channel": "reddit:r/physicaltherapy",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "channel": "reddit:r/electricians",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "channel": "reddit:r/HVAC",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "channel": "reddit:r/Construction",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "channel": "reddit:r/Dentistry",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "reddit:r/FinancialPlanning",
+      "posted_at": "2026-05-10T01:10:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:26:05Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:27:07Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:28:14Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:29:16Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:30:19Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:31:22Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:32:26Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:33:27Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:34:33Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:34:48Z",
+      "status": "failed",
+      "url": "",
+      "content": "15,770 trucking companies just got their DOT authority in 2026. These carriers need insurance, ELD devices, factoring, dispatch, tires — everything. The data is public. Most sales teams haven't touched it yet. 🚚",
+      "error": "No tweet URL in agent result"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:34:57Z",
+      "status": "failed",
+      "url": "",
+      "content": "15,997 new Florida LLCs and corps filed in May 2026. Every one of them needs a bank account, insurance, bookkeeper, website, payroll. They're on record before most salespeople even know they exist. 📋",
+      "error": "No tweet URL in agent result"
+    },
+    {
+      "item_id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:35:33Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:36:07Z",
+      "status": "failed",
+      "url": "",
+      "content": "15,770 trucking companies just got their DOT authority in 2026. These carriers need insurance, ELD devices, factoring, dispatch, tires — everything. The data is public. Most sales teams haven't touched it yet. 🚚",
+      "error": "No tweet URL in agent result"
+    },
+    {
+      "item_id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:36:36Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:37:39Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:38:42Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-10T23:41:42Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-11T01:07:26Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-17T01:03:04Z",
+      "status": "failed",
+      "url": "",
+      "content": "🚚 15,770 trucking companies just got their DOT authority in 2026. These carriers need insurance, ELD devices, factoring, dispatch, tires — everything. The data is public. Most sales teams haven't touched it yet.",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-17T01:08:04Z",
+      "status": "failed",
+      "url": "",
+      "content": "🚚 15,770 trucking companies just got their DOT authority in 2026. These carriers need insurance, ELD devices, factoring, dispatch, tires — everything. The data is public. Most sales teams haven't touched it yet.",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "channel": "linkedin",
+      "posted_at": "2026-05-18T01:02:39Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.wait_for_function: Timeout 20000ms exceeded."
+    },
+    {
+      "item_id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "channel": "linkedin",
+      "posted_at": "2026-05-18T01:03:36Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.wait_for_function: Timeout 20000ms exceeded."
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-18T23:24:52Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/Truckers",
+      "posted_at": "2026-05-18T23:24:56Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/FreightBrokers",
+      "posted_at": "2026-05-18T23:25:01Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-18T23:25:06Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "channel": "linkedin",
+      "posted_at": "2026-05-19T01:02:57Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.wait_for_function: Timeout 20000ms exceeded."
+    },
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "channel": "linkedin",
+      "posted_at": "2026-05-19T01:03:41Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "🍷 US Winery & Distillery Directory 2026 — 82,500+ Licensed Producers\n\nComplete TTB federal registry of every licensed winery, brewery, and distillery in the United States.\n\nIncludes:\n✅ Wineries — 13,000+\n✅ Distilleries — 3,500+\n✅ Breweries — 65,000+\n\nEach record: business name, permit type, permit status, address, city, state, ZIP, TTB ID.\n\nWho buys this:\n→ Equipment suppliers (barrel brokers, bottling lines, tanks) prospecting new producers\n→ POS platforms (Toast, Arryved) targeting craft beverage producers\n→ Ingredient vendors (hops, grapes, grains, yeasts) building prospect lists\n→ Packaging companies, compliance consultants, insurance brokers\n→ Marketing agencies targeting craft beverage brands\n\nCSV format. $79 one-time.\nhttps://buy.stripe.com/4gM4gsd9l9j19qXf9s7IY0w\n\n#CraftBeer #Wine #Spirits #DataProducts"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T01:07:59Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T01:11:15Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T01:14:35Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T01:17:56Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:30:18Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/Truckers",
+      "posted_at": "2026-05-19T23:30:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/FreightBrokers",
+      "posted_at": "2026-05-19T23:30:23Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:30:28Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "reddit:r/smallbusiness",
+      "posted_at": "2026-05-19T23:30:31Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:30:33Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "reddit:r/govcontracting",
+      "posted_at": "2026-05-19T23:30:35Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:30:39Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "reddit:r/RealEstate",
+      "posted_at": "2026-05-19T23:30:42Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:30:45Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "reddit:r/homehealth",
+      "posted_at": "2026-05-19T23:30:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:30:50Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "channel": "reddit:r/aviation",
+      "posted_at": "2026-05-19T23:30:52Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:30:54Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "channel": "reddit:r/bartenders",
+      "posted_at": "2026-05-19T23:30:56Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:30:58Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "channel": "reddit:r/physicaltherapy",
+      "posted_at": "2026-05-19T23:31:01Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:31:03Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "channel": "reddit:r/electricians",
+      "posted_at": "2026-05-19T23:31:06Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:31:08Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "channel": "reddit:r/HVAC",
+      "posted_at": "2026-05-19T23:31:10Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:31:12Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "channel": "reddit:r/Construction",
+      "posted_at": "2026-05-19T23:31:15Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:31:18Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "channel": "reddit:r/Dentistry",
+      "posted_at": "2026-05-19T23:31:20Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:31:22Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "reddit:r/FinancialPlanning",
+      "posted_at": "2026-05-19T23:31:24Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:31:26Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05",
+      "channel": "reddit:r/fintech",
+      "posted_at": "2026-05-19T23:31:28Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:31:30Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "reddit:r/TheBrewery",
+      "posted_at": "2026-05-19T23:31:33Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "reddit:r/winemaking",
+      "posted_at": "2026-05-19T23:31:35Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:31:37Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "channel": "reddit:r/govcontracting",
+      "posted_at": "2026-05-19T23:31:39Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "channel": "reddit:r/startups",
+      "posted_at": "2026-05-19T23:31:41Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:31:57Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/Truckers",
+      "posted_at": "2026-05-19T23:31:59Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/FreightBrokers",
+      "posted_at": "2026-05-19T23:32:01Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:03Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "reddit:r/smallbusiness",
+      "posted_at": "2026-05-19T23:32:05Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:07Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "reddit:r/govcontracting",
+      "posted_at": "2026-05-19T23:32:09Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:11Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "reddit:r/RealEstate",
+      "posted_at": "2026-05-19T23:32:13Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:15Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "reddit:r/homehealth",
+      "posted_at": "2026-05-19T23:32:17Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:19Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "channel": "reddit:r/aviation",
+      "posted_at": "2026-05-19T23:32:21Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:23Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "channel": "reddit:r/bartenders",
+      "posted_at": "2026-05-19T23:32:25Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:27Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "channel": "reddit:r/physicaltherapy",
+      "posted_at": "2026-05-19T23:32:29Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:31Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "channel": "reddit:r/electricians",
+      "posted_at": "2026-05-19T23:32:34Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:36Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "channel": "reddit:r/HVAC",
+      "posted_at": "2026-05-19T23:32:38Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:39Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "channel": "reddit:r/Construction",
+      "posted_at": "2026-05-19T23:32:41Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:43Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "channel": "reddit:r/Dentistry",
+      "posted_at": "2026-05-19T23:32:45Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "reddit:r/FinancialPlanning",
+      "posted_at": "2026-05-19T23:32:49Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:51Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05",
+      "channel": "reddit:r/fintech",
+      "posted_at": "2026-05-19T23:32:53Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:32:55Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "reddit:r/TheBrewery",
+      "posted_at": "2026-05-19T23:32:57Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "reddit:r/winemaking",
+      "posted_at": "2026-05-19T23:32:59Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "channel": "twitter",
+      "posted_at": "2026-05-19T23:33:01Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "channel": "reddit:r/govcontracting",
+      "posted_at": "2026-05-19T23:33:03Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "channel": "reddit:r/startups",
+      "posted_at": "2026-05-19T23:33:05Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no result — post may have failed"
+    },
+    {
+      "item_id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-20T01:01:51Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "🏦 77,542 FDIC-insured bank branches across all 50 US states — sourced from the FDIC Summary of Deposits.\n\nFor fintech BD teams building bank partnership pipelines, commercial real estate brokers mapping bank density for site selection, insurance companies prospecting branch locations, ATM operators identifying gaps, and municipal planners tracking branch deserts.\n\nIncludes branch name, street address, city, state, ZIP, FDIC cert number, total deposits, institution name, and more.\n\nCSV. $49 → https://buy.stripe.com/9B63co7P1an58mT4uO7IY0v\n\n#Fintech #Banking #DataProducts"
+    },
+    {
+      "item_id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "channel": "linkedin",
+      "posted_at": "2026-05-20T01:02:47Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.wait_for_function: Timeout 20000ms exceeded."
+    },
+    {
+      "item_id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "channel": "linkedin",
+      "posted_at": "2026-05-20T01:03:52Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.wait_for_function: Timeout 20000ms exceeded."
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-21T01:05:48Z",
+      "status": "failed",
+      "url": "",
+      "content": "🚚 15,770 trucking companies just got their DOT authority in 2026. These carriers need insurance, ELD devices, factoring, dispatch, tires — everything. The data is public. Most sales teams haven't touched it yet.",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "channel": "linkedin",
+      "posted_at": "2026-05-21T01:06:22Z",
+      "status": "posted",
+      "url": "https://www.linkedin.com",
+      "content": "📊 New public dataset: SBIR/STTR Federal R&D Award Database FY2023-2025 — 17,664 Awards ($13.71B Funding) — CSV\n\n$59 • CSV • 100% public domain data\n\nBuilt for: Defense prime contractors, deep-tech VC firms, SBIR/STTR proposal consultants\n\nStructured, cleaned, and ready to use. No PII, no private data—just government records packaged for B2B use.\n\nDetails: https://buy.stripe.com/00w6oAfht0Mv46D4uO7IY0y"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "new-business-formations-csv-2026-05-2026-05-05",
+      "slug": "new-business-formations-csv-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "samgov-small-biz-contractor-leads-2026-05-2026-05-05",
+      "slug": "samgov-small-biz-contractor-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "fl-real-estate-agent-licenses-2026-05-2026-05-06",
+      "slug": "fl-real-estate-agent-licenses-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "cms-medicare-home-health-agencies-2026-05-2026-05-05",
+      "slug": "cms-medicare-home-health-agencies-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "faa-civil-aircraft-registration-2026-05-2026-05-06",
+      "slug": "faa-civil-aircraft-registration-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "fl-alcoholic-beverage-licensees-2026-05-2026-05-07",
+      "slug": "fl-alcoholic-beverage-licensees-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "nppes-physical-therapist-clinics-2026-05-2026-05-07",
+      "slug": "nppes-physical-therapist-clinics-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "tx-tdlr-electricians-2026-05-2026-05-07",
+      "slug": "tx-tdlr-electricians-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "tx-tdlr-hvac-contractors-2026-05-2026-05-07",
+      "slug": "tx-tdlr-hvac-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "ca-cslb-licensed-contractors-2026-05-2026-05-07",
+      "slug": "ca-cslb-licensed-contractors-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "nppes-dentists-dental-practices-2026-05-2026-05-07",
+      "slug": "nppes-dentists-dental-practices-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "sec-registered-investment-advisers-2026-05-2026-05-07",
+      "slug": "sec-registered-investment-advisers-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "fdic-bank-branch-directory-2026-05-2026-05-17",
+      "slug": "fdic-bank-branch-directory-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "sbir-sttr-award-recipients-2026-05-19",
+      "slug": "sbir-sttr-award-recipients",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:01:40Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "No module named 'browser_use'"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-22T01:05:16Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "browser-use agent returned no tweet permalink — post likely failed. Agent result: (empty)"
+    },
+    {
+      "item_id": "new-fmcsa-carrier-leads-2026-05-2026-05-04",
+      "slug": "new-fmcsa-carrier-leads-2026-05",
+      "channel": "reddit:r/FreightBrokers",
+      "posted_at": "2026-05-23T23:37:17Z",
+      "status": "failed",
+      "url": "",
+      "content": "New FMCSA Carrier Database — May 2026 — 15,770 Records",
+      "error": "Agent could not confirm submission. Result: "
+    },
+    {
+      "item_id": "auto-dealership-license-database-2026-05-2026-05-27",
+      "slug": "auto-dealership-license-database-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-28T01:06:03Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.wait_for_function: Timeout 20000ms exceeded."
+    },
+    {
+      "item_id": "auto-dealership-license-database-2026-05-2026-05-27",
+      "slug": "auto-dealership-license-database-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-28T01:07:13Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.wait_for_function: Timeout 20000ms exceeded."
+    },
+    {
+      "item_id": "auto-dealership-license-database-2026-05-2026-05-27",
+      "slug": "auto-dealership-license-database-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-28T01:07:50Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"input[name='session_key']\") to be visible\n"
+    },
+    {
+      "item_id": "auto-dealership-license-database-2026-05-2026-05-27",
+      "slug": "auto-dealership-license-database-2026-05",
+      "channel": "linkedin",
+      "posted_at": "2026-05-29T01:05:02Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"input[name='session_key']\") to be visible\n"
+    },
+    {
+      "item_id": "auto-dealership-license-database-2026-05-2026-05-27",
+      "slug": "auto-dealership-license-database-2026-05",
+      "channel": "twitter",
+      "posted_at": "2026-05-29T01:05:17Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    },
+    {
+      "item_id": "auto-dealership-license-database-2026-05-2026-05-27",
+      "slug": "auto-dealership-license-database-2026-05",
+      "channel": "reddit:r/Entrepreneur",
+      "posted_at": "2026-05-29T01:05:18Z",
+      "status": "failed",
+      "url": "",
+      "content": "",
+      "error": "ANTHROPIC_API_KEY not set — source ~/.profile first"
+    }
+  ]
+}

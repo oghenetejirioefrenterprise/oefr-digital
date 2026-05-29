@@ -1,0 +1,59 @@
+# Demand-Discovery Scan Summary
+Date: 2026-05-16
+Researcher: opportunity-researcher
+Scan Type: Wide demand-discovery (daily scan)
+
+## Research Methodology
+- Web search for commercial B2B data vendors selling professional license databases
+- Validated pricing signals and buyer segments
+- Confirmed public data availability via state regulatory boards
+- Scored opportunities based on willingness-to-pay, data availability, audience size, and competitive landscape
+
+## Opportunities Identified: 4
+All scored >= 6 (threshold for brief creation)
+
+### 1. Licensed Insurance Agent Registry (Score: 9)
+- **Market size:** 1.2M licensed agents nationwide
+- **Commercial validation:** 5+ vendors (InfoGlobalData 181K-245K, InsuranceAgentLists.com 1.2M+, pricing $0.15/record baseline)
+- **Data source:** NIPR + all 50 state Departments of Insurance
+- **Key buyers:** Insurance carriers, InsurTech vendors, CE providers, recruiting firms
+- **Price point:** $99-$149 one-time CSV
+
+### 2. Licensed Veterinarian Registry (Score: 8)
+- **Market size:** 120K licensed veterinarians nationwide
+- **Commercial validation:** 6+ vendors (Scrap.io 61K, LakeB2B 50K+, pricing $0.10-$0.50/contact)
+- **Data source:** All 50 state Veterinary Medical Boards (FL offers downloads, LA charges $0.02/record)
+- **Key buyers:** Veterinary pharma, equipment vendors, practice management software, pet food companies
+- **Price point:** $79-$99 one-time CSV
+
+### 3. Licensed Pharmacist Registry (Score: 8)
+- **Market size:** 340K licensed pharmacists nationwide
+- **Commercial validation:** 7+ vendors (BookYourData 40K+, Scrap.io 171K+, pricing $200+ baseline)
+- **Data source:** All 50 state Boards of Pharmacy (TX updates M-F by noon)
+- **Key buyers:** Pharmaceutical manufacturers, pharmacy software vendors, equipment suppliers, CE providers
+- **Price point:** $79-$99 one-time CSV
+
+### 4. Licensed Chiropractor Registry (Score: 7)
+- **Market size:** 75K-90K licensed chiropractors nationwide
+- **Commercial validation:** 5+ vendors (LeadsPlease 87K, pricing $42-$997 wide range, IBLead aggressive at $42 for 10K)
+- **Data source:** All 50 state Chiropractic Boards
+- **Key buyers:** Chiropractic equipment vendors, practice management software, supplement companies, CE providers
+- **Price point:** $59-$79 one-time CSV (competitive pricing vs. IBLead)
+
+## Opportunities Below Threshold (Researched but not briefed)
+- **Professional Engineers (PE licenses):** Privacy legislation (TX SB 510, 2023) removed contact info from public rosters; may affect other states. Score: 4
+- **Notary Public:** Public databases found (NY, CA downloadable) but no commercial vendor demand signals. Score: 5
+- **Architects:** Public license lookups via NCARB and state boards, but no commercial list vendors found. Score: 5
+- **Food establishment inspections:** Public databases in many cities/states but weak B2B buyer signals (inspection data, not business contact info). Score: 5
+
+## Key Insights
+1. **Healthcare/professional license databases have exceptionally strong willingness-to-pay** - validated by 5-7 commercial vendors per vertical with premium pricing ($0.10-$0.50/contact baseline)
+2. **Insurance vertical is highest-scoring** (score 9) due to massive TAM (1.2M agents), premium baseline pricing ($0.15/record = $15K for 100K records), and NIPR national aggregation
+3. **All top opportunities have zero affordable flat-file competitors** on Gumroad/similar marketplaces - vendors sell annual subscriptions ($800-$10,000/year) or per-record pricing, not one-time CSVs
+4. **Public data is confirmed available** across all 50 states for all 4 opportunities, with some states offering downloadable databases (FL veterinarians, multiple states for various professions)
+5. **Engineering lift is moderate** for all opportunities - 51-state scrape/download, deduplication, normalization
+
+## Recommendation
+All 4 opportunities scored >= 6 and merit CEO review for prioritization and data-engineer assignment. Insurance agents (score 9) should be prioritized given highest willingness-to-pay validation and largest TAM.
+
+Next scan recommended: 2026-05-17 13:00 ET

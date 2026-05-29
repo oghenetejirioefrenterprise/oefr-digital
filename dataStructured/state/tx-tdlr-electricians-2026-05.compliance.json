@@ -1,0 +1,29 @@
+{
+  "slug": "tx-tdlr-electricians-2026-05",
+  "reviewed_at": "2026-05-07T12:10:00Z",
+  "reviewed_by": "compliance-officer",
+  "verdict": "PASS",
+  "verdict_rationale": "TX TDLR (Texas Department of Licensing and Regulation) is a Texas state government agency. All license records are mandatory public disclosures under Texas Government Code §552 (Public Information Act). TDLR explicitly publishes its license database as a public bulk download on data.texas.gov with no access restrictions. The data contains: license holder name, license type, license number, business address, business phone, expiration date — all standard public regulatory fields. No SSNs, DOB, financial accounts, or home addresses (business address only). Precedent: NPPES (CMS federal licensing), FAA aircraft registration, FL DBPR all approved on same grounds. Commercially, InfoUSA/ZoomInfo/DataAxle resell equivalent data from this source. PASS.",
+  "pii_check": {
+    "ssn": false,
+    "dob": false,
+    "financial_accounts": false,
+    "home_address": false,
+    "personal_email": false,
+    "notes": "Business address and phone from government license record. Individual electricians are license holders — their info is regulatory public disclosure, same as doctor NPI records."
+  },
+  "source_rights": {
+    "public": true,
+    "source": "Texas Department of Licensing and Regulation via data.texas.gov",
+    "url": "https://data.texas.gov/dataset/TDLR-All-Licenses/7358-krk7",
+    "license": "Public domain — Texas Open Data Portal, no commercial use restrictions",
+    "login_required": false
+  },
+  "commercial_precedents": [
+    "InfoUSA sells equivalent contractor lists at $0.10-$2.00/record",
+    "Scrap.io sells TX roofing/electrical contractor lists from same source",
+    "DataAxle resells TDLR-derived contractor data commercially"
+  ],
+  "row_count": 204535,
+  "has_source_url_on_every_row": true
+}

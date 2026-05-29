@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "sec-registered-investment-advisers-2026-05",
+  "created": "2026-05-07T23:16:39Z",
+  "created_by": "engineer",
+  "status": "SHIPPED",
+  "summary": "16,551 SEC-registered investment adviser (RIA) firms from SEC IAPD Form ADV bulk data, May 2026. 61 fields per firm including AUM, employee count, client categories, fee structure, private fund flags, and disclosure history. One-time purchase at $79.",
+  "spec_file": "state/products/sec-registered-investment-advisers-2026-05/spec.json",
+  "stripe_product_id": "prod_UTYEsZOHSeIwRO",
+  "stripe_price_id": "price_1TUb7n3H4Cmk8ulCtjAzeu2o",
+  "stripe_payment_link_url": "https://buy.stripe.com/bJe00c1qD7aT8mT0ey7IY0s",
+  "gumroad_url": "https://gumroad.com/l/ibhcj",
+  "gumroad_product_id": "ibhcj",
+  "row_count": 16551,
+  "shipped_at": "2026-05-07T23:25:27Z",
+  "smoke_test": {
+    "passed": true,
+    "checked_at": "2026-05-07T23:25:26Z"
+  }
+}

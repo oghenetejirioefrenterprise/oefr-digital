@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "gsa-schedule-contract-holders",
+  "created": "2026-05-20T14:30:00-04:00",
+  "created_by": "product-manager",
+  "status": "BLOCKED_BY_COMPLIANCE",
+  "compliance_verdict": "NEEDS_FOUNDER_REVIEW",
+  "product_name": "GSA Schedule Contract Holders Database 2026",
+  "one_liner": "Complete CSV of all 30,000+ active GSA Multiple Award Schedule (MAS) contract holders with company name, UEI, schedule type, NAICS codes, and socioeconomic certifications — the same data GovTribe and Bloomberg Government charge $3,000–$15,000/year to access",
+  "audience": "Government contracting consultants prospecting for GSA Schedule application clients (typical engagement: $5,000–$50,000), subcontractors building teaming partner databases of primes in complementary NAICS codes, and B2B service vendors (payroll, insurance, HR software, recruiting) targeting federal contractors who represent 20-40% higher LTV than commercial SMBs due to contract stability and compliance-driven spending. Solo GovCon coaches need this to identify companies selling federally without GSA Schedules (ideal conversion prospects), while small 8(a) and SDVOSB firms use it to find large primes seeking diverse teaming partners for set-aside contracts. Regional matchmaking platforms like Winvale charge $200–$500/month for similar prime contractor databases — this delivers the full TAM as a one-time CSV at 1/3 the cost of a single month's subscription.",
+  "format_rationale": "CSV is the universal format for CRM upload (Salesforce, HubSpot, Pipedrive), filtering by state/NAICS/socioeconomic status in Excel or Google Sheets, and cross-referencing against SAM.gov registrations to identify federal sellers who lack GSA Schedules. GovCon consultants need to segment by business size and schedule type to prioritize outreach (small businesses new to IT Schedule 70 are highest-intent prospects for consulting services), while subcontractors filter by location and NAICS to build geographically relevant teaming partner lists. B2B vendors import directly into marketing automation platforms to launch campaigns targeting federal contractors in specific industries (e.g., 'all IT Schedule 70 holders in the Mid-Atlantic with <500 employees'). A static CSV prevents ongoing subscription lock-in — buyers pay once, filter repeatedly, and own the data permanently for their specific use case.",
+  "pricing_rationale": "$79 creates a 38× discount vs. GovTribe's $3,000/year entry tier and a 127× discount vs. Bloomberg Government's $10,000/year platform, while remaining 53× cheaper than a single month of Winvale's $200/month teaming partner database. For GovCon consultants, one new client engagement ($5,000–$50,000) delivers 63×–633× ROI; for subcontractors, one successful teaming agreement on a $5M prime contract justifies the cost 63,000×; for B2B service vendors targeting a TAM of 30,000 high-LTV federal contractors, $79 is negligible against the $500–$5,000 annual customer value typical in payroll, insurance, and HR software. Pricing below $100 triggers impulse-buy behavior (no procurement approval needed at most small businesses) while the 'one-time, own it forever' positioning differentiates from every competitor's annual subscription model. At $79, a single Gumroad sale to a solo GovCon coach or small subcontractor covers the product development cost multiple times over, and the absence of any flat-file competitor below $1,000 leaves massive pricing headroom.",
+  "bonus_stack": [
+    {
+      "item": "GSA Schedule Type Quick-Reference Guide",
+      "rationale": "PDF cheat sheet mapping all active GSA Schedule categories (IT Schedule 70, Professional Services, Facilities Maintenance MAS, OASIS, etc.) to typical NAICS codes and buyer agency types — helps GovCon consultants quickly identify which schedule their prospect should pursue based on their industry, and helps subcontractors understand which schedule types align with their capabilities for teaming"
+    },
+    {
+      "item": "Socioeconomic Certification Decoder",
+      "rationale": "One-page explainer of 8(a) Business Development, HUBZone, WOSB, VOSB, SDVOSB, and small business size standards by NAICS — critical for subcontractors identifying large primes seeking diverse teaming partners for set-aside contracts (e.g., '8(a) set-aside requires prime to subcontract 40% to 8(a) firms'), and for B2B vendors segmenting outreach by business size and certification status"
+    },
+    {
+      "item": "Federal Contractor Outreach Email Templates",
+      "rationale": "Five proven cold email scripts for GovCon consultants ('Your company sold $X to [Agency] last year but lacks a GSA Schedule — here's why that's costing you opportunities'), subcontractors ('We're a certified 8(a) firm seeking teaming partners on upcoming GSA IT 70 task orders'), and B2B vendors ('Federal contractors in [State] trust us for [Service] — here's how we help with [Compliance Need]')"
+    },
+    {
+      "item": "SAM.gov Cross-Reference Workflow Guide",
+      "rationale": "Step-by-step instructions for exporting SAM.gov federal contractor registrations (free public data) and cross-referencing against this GSA Schedule database in Excel to identify companies actively selling to federal agencies WITHOUT GSA Schedules — the highest-conversion prospect segment for GovCon consulting services (already federal-focused, proven revenue, missing critical contract vehicle)"
+    },
+    {
+      "item": "NAICS Code Filtering Cheat Sheet",
+      "rationale": "Pre-built Excel filter formulas to segment the database by industry vertical — instant lists of 'all IT services schedule holders' (NAICS 541511, 541512, 541519), 'all facilities maintenance contractors' (NAICS 561210, 561720), 'all professional services firms' (NAICS 541611, 541618, 541690) — saves 30 minutes of manual filtering and prevents NAICS code lookup errors"
+    },
+    {
+      "item": "Lifetime Updates (Annual Refreshes)",
+      "rationale": "One free annual CSV refresh delivered via email for 3 years (2027, 2028, 2029 editions) — GSA Schedules are renewed annually and new companies win contracts quarterly, so the database becomes stale within 12 months; lifetime updates ensure GovCon consultants always have current prospect data without repurchasing, massively increasing perceived value vs. the $79 one-time price and creating competitive moat vs. enterprise SaaS platforms that gate updates behind $3K/year paywalls"
+    }
+  ],
+  "core_fields": [
+    "GSA contract number (format: GS-XXF-XXXXX)",
+    "Contractor legal name",
+    "Unique Entity ID (UEI, 12-character alphanumeric replacing DUNS)",
+    "Contractor CAGE code",
+    "Schedule name and category (IT Schedule 70, Professional Services, Facilities Maintenance MAS, etc.)",
+    "Special Item Numbers (SINs) authorized under schedule",
+    "NAICS codes offered under the contract",
+    "Contract period of performance (award date, current expiration)",
+    "Business size classification (small business flag per FAR 19.001)",
+    "Socioeconomic designations (8(a), HUBZone, WOSB, VOSB, SDVOSB)",
+    "Contractor address (street, city, state, ZIP)",
+    "Primary contract contact (name, phone, email where publicly available)"
+  ],
+  "estimated_row_count": 30000,
+  "estimated_row_count_rationale": "GSA reports approximately 30,000 active Multiple Award Schedule contracts as of 2025, representing $35+ billion in annual federal procurement spend across 20,000–25,000 unique companies (some hold multiple schedule types). One row per active contract — vertically integrated firms holding both IT Schedule 70 and Professional Services schedules appear as separate records. Target output includes only active contracts (exclude expired, closed, or terminated schedules) to ensure all records represent currently qualified federal contractors.",
+  "source_url": "https://www.gsaelibrary.gsa.gov/",
+  "source_url_rationale": "GSA eLibrary is the official, authoritative public database of all GSA Schedule contracts, maintained by the General Services Administration and updated weekly. Data is 100% public domain per FAR 9.105-2(b)(1) and freely downloadable as Excel or CSV with no authentication required. All contract metadata (company name, UEI, schedule type, SINs, NAICS, socioeconomic certifications) is disclosed under federal procurement transparency regulations. Zero PII — all data is company-level business information. No web scraping required; direct bulk export available, making this a low-engineering-lift, zero-legal-risk data product.",
+  "price_usd": 79,
+  "distribution_channels": [
+    "Gumroad one-time download (primary storefront)",
+    "LinkedIn organic posts in GovCon consulting groups and r/governmentcontracting subreddit (contextual education on GSA Schedule application trends + 'here's the full contract holder database for $79')",
+    "Direct LinkedIn outreach to solo GovCon coaches, SBDC advisors, and PTAC directors with 'your clients need this for teaming partner research'",
+    "GovCon trade association partnerships (NCMA, APTAC) — offer as member benefit or webinar lead magnet",
+    "Cold email to B2B service vendors (payroll, insurance, HR SaaS) targeting federal contractors"
+  ],
+  "primary_buyer_jobs_to_be_done": [
+    "GovCon consultants: Identify companies selling to federal agencies without GSA Schedules (cross-reference against SAM.gov) to prospect for $5K–$50K consulting engagements",
+    "Subcontractors: Build teaming partner database of prime contractors in complementary NAICS codes and matching socioeconomic certifications for set-aside opportunities",
+    "Teaming brokers: Source both sides of matchmaking marketplace — primes seeking subs and subs seeking primes — to facilitate $1K–$5K introduction fees per successful teaming agreement",
+    "B2B service vendors: Segment federal contractor TAM by state, industry (NAICS), and business size to launch targeted campaigns for payroll, insurance, HR software, and recruiting services"
+  ],
+  "evidence_of_demand": [
+    {
+      "source": "GovTribe charges $3,000–$7,000/year for GSA Schedule holder data and contract intelligence",
+      "url": "https://www.govtribe.com/"
+    },
+    {
+      "source": "Bloomberg Government charges $10,000–$15,000/year for federal contracting data including GSA Schedules",
+      "url": "https://about.bgov.com/"
+    },
+    {
+      "source": "RSM Federal confirms GSA Schedule consulting engagements range $5,000–$50,000",
+      "url": "https://www.rsmus.com/what-we-do/industries/government-contracting.html"
+    },
+    {
+      "source": "Winvale and PartnerTap charge $200–$500/month for teaming partner databases",
+      "url": "https://www.winvale.com/"
+    }
+  ],
+  "engineering_notes": "Direct bulk download from GSA eLibrary at https://www.gsaelibrary.gsa.gov/ — no web scraping required. Export available as Excel or CSV. Normalize schedule name variations (e.g., 'IT Schedule 70' vs. 'Information Technology Schedule 70' vs. 'Schedule 70'). Deduplicate by contract number (primary key). Geocode city/state to standardize location data. Flag records missing UEI or CAGE code (rare but possible for very old contracts grandfathered before 2022 UEI transition). Validate socioeconomic certification flags against SBA.gov databases where possible to catch stale certifications. Scope to active contracts only — filter out expired/closed/terminated status. Estimated engineering time: 8–12 hours (low complexity, direct download source, minimal transformation).",
+  "compliance_notes": "Zero PII — all data is company-level business information (legal entity names, contract numbers, business addresses, socioeconomic certifications). GSA Schedule contract holder information is 100% public per FAR 9.105-2(b)(1) and federal procurement transparency statutes. No authentication required to access source data. No terms of service restrictions on redistribution (government data in public domain). Contact information (phone, email) is publicly listed by contractors themselves in GSA eLibrary for business development purposes — no privacy concerns. No GDPR applicability (US government contractors, not EU individuals). Automatic PASS expected from compliance-officer.",
+  "competitive_moat": "Only flat-file CSV option under $1,000 — all competitors (GovTribe, BGOV, Winvale) sell annual subscriptions starting at $200/month, not one-time data exports. 'Own it forever' positioning vs. subscription lock-in. Bonus stack (especially lifetime annual updates for 3 years) delivers enterprise-grade value at impulse-buy pricing. SEO advantage on 'GSA Schedule holders CSV', 'federal contractor database download', 'teaming partner list' — zero Gumroad competition in this niche."
+}

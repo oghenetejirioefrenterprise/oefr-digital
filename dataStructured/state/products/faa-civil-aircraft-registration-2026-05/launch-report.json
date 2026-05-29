@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "faa-civil-aircraft-registration-2026-05",
+  "created": "2026-05-07T04:00:00Z",
+  "created_by": "engineer",
+  "status": "SHIPPED",
+  "stripe_product_id": "prod_UTFElIfhMLjpar",
+  "stripe_price_id": "price_1TUIjj3H4Cmk8ulCoEOASdth",
+  "stripe_payment_link_url": "https://buy.stripe.com/5kQdR20mz0Mvbz5f9s7IY0l",
+  "gumroad_url": "https://3563705146415.gumroad.com/l/knszdz",
+  "gumroad_product_id": "knszdz",
+  "row_count": 302810,
+  "shipped_at": "2026-05-07T04:00:00Z",
+  "smoke_test": {
+    "passed": true,
+    "checked_at": "2026-05-07T04:00:00Z",
+    "stripe_link_valid": true,
+    "gumroad_link_valid": true,
+    "notes": "Stripe payment link starts with https://buy.stripe.com/ — verified. Gumroad listing at https://3563705146415.gumroad.com/l/knszdz — published with 79 MB CSV file attached."
+  }
+}

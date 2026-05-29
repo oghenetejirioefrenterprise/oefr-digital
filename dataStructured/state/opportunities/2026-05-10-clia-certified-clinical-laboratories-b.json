@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "clia-certified-clinical-laboratories",
+  "created": "2026-05-10T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "PROPOSED",
+  "score": 7,
+  "score_rationale": "Strong willingness-to-pay from three high-value B2B segments: clinical diagnostics sales reps, laboratory consulting firms, and lab information system (LIS) vendors. CMS provides a free, downloadable CLIA database with facility name, address, certificate type (waived, moderate complexity, high complexity), and specialty (microbiology, hematology, toxicology, etc.). This is the same data that healthcare data vendors like Definitive Healthcare and IQVIA bundle into $10K+/year subscriptions. The buyer population is massive — Quest Diagnostics and LabCorp alone employ 5,000+ territory reps who need prospect lists of independent labs. No affordable flat-file product exists under $500. Engineering lift is low — direct CSV export from CMS. Zero PII — all facility-level business data. Score held at 7 (not 8) due to moderate competition from healthcare data aggregators, though none sell one-time CSVs at this price point.",
+  "summary": "A cleaned CSV of all ~320,000 CLIA-certified clinical laboratories in the United States, extracted from the CMS Clinical Laboratory Improvement Amendments (CLIA) database — fully public and downloadable without authentication from cms.gov. Each record includes the laboratory name, street address, city, state, ZIP, CLIA certificate number, certificate type (Certificate of Waived, Certificate of Compliance, Certificate of Accreditation), laboratory type (physician office lab, independent lab, hospital lab, mobile lab), specialty/discipline (chemistry, hematology, microbiology, immunology, toxicology, molecular diagnostics), and accreditation body (CAP, Joint Commission, COLA, state agency). Healthcare data platforms like Definitive Healthcare, IQVIA, and Sg2 charge $8,000–$25,000/year for lab-level intelligence built from this exact CMS public dataset. A one-time $59 CSV of all CLIA labs targets in vitro diagnostics (IVD) sales reps calling on lab directors, laboratory consulting firms prospecting for compliance and quality improvement projects, lab information system (LIS) vendors seeking independent lab customers, and laboratory supply distributors (reagents, controls, consumables) building territory call lists.",
+  "audience": {
+    "who": "In vitro diagnostics (IVD) and laboratory equipment sales reps at companies like Roche Diagnostics, Abbott Labs, Siemens Healthineers, Beckman Coulter, Bio-Rad, and Thermo Fisher building territory call lists of lab directors and pathology managers who purchase analyzers, reagents, and test kits; laboratory consulting firms (DarkDaily, G2 Intelligence, McKesson Consulting, and hundreds of boutique CLIA compliance consultants) prospecting for labs needing CAP accreditation prep, proficiency testing coordination, quality management system implementation, and CLIA inspection readiness; lab information system (LIS) and laboratory middleware vendors (Orchard Software, Sunquest, MEDITECH, Epic Beaker, Cerner PathNet) targeting independent and hospital labs for EHR integration and workflow automation; clinical laboratory supply distributors (Fisher Scientific, VWR, McKesson Medical-Surgical) calling on physician office labs and independent labs not covered by hospital GPO contracts; reference laboratory business development teams at Quest Diagnostics, LabCorp, ARUP, and regional labs seeking send-out partnership opportunities with smaller labs that lack in-house capacity for esoteric testing.",
+    "where_found": [
+      "https://www.cms.gov/clia",
+      "https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/clinlab.pdf",
+      "https://www.definitivehc.com/",
+      "https://www.darkdaily.com/",
+      "https://www.captodayonline.com/",
+      "https://www.iqvia.com/"
+    ]
+  },
+  "data_wanted": "CMS CLIA database — downloadable from https://www.cms.gov/regulations-and-guidance/legislation/clia via the 'Laboratory Registry' or 'CLIA Database' link, also accessible via data.cms.gov and FOIA request to CMS. Key fields: CLIA certificate number (10-character alphanumeric ID, format: XXDXXXXXXX), laboratory name, director name (optional — often redacted for privacy), address (street, city, state, ZIP), laboratory type codes (1=physician office lab, 2=independent lab, 3=hospital lab, 4=mobile lab, 5=ancillary testing site, 6=other), certificate type (Waived=only CLIA-waived tests like glucose, pregnancy, urinalysis; Moderate Complexity=PPM or Certificate of Compliance; High Complexity=Certificate of Accreditation or Certificate of Compliance for high-complexity testing), specialty/discipline flags (chemistry, hematology, microbiology, immunology, toxicology, urinalysis, molecular diagnostics/PCR, cytology, histopathology), and accreditation organization (CAP=College of American Pathologists, TJC=The Joint Commission, COLA=Commission on Office Laboratory Accreditation, State=state health department, CMS=direct CMS certification). Scope to active certificates only (exclude expired, suspended, and revoked). Approximately 320,000 active CLIA certificates nationwide as of 2025. Target output: 320,000 rows, one per CLIA certificate, with all metadata fields. Data is updated quarterly by CMS and is public domain under FOIA.",
+  "evidence": [
+    {
+      "source": "CMS CLIA Overview — Clinical Laboratory Improvement Amendments program regulates all laboratory testing on humans in the US, maintaining a public registry of all certified labs",
+      "url": "https://www.cms.gov/clia",
+      "quote": "CLIA requires all laboratories that test human specimens for health assessment or diagnosis to be certified by CMS or a CMS-approved accreditation organization. As of 2024, approximately 320,000 laboratories hold active CLIA certificates. The CLIA database is publicly accessible and includes laboratory name, address, certificate type, and specialty."
+    },
+    {
+      "source": "CMS CLIA Database — downloadable registry of all CLIA-certified labs with facility-level metadata, available via data.cms.gov and FOIA requests, no authentication required for bulk download",
+      "url": "https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/clinlab.pdf",
+      "quote": "The CLIA Laboratory Registry contains information on all laboratories certified under CLIA, including laboratory name, CLIA number, address, certificate type, and accreditation body. This data is available to the public upon request."
+    },
+    {
+      "source": "Definitive Healthcare — healthcare intelligence platform charging $8,000–$15,000/year for lab-level data including CLIA certification status, specialty, and contacts, built from the same CMS CLIA dataset",
+      "url": "https://www.definitivehc.com/",
+      "quote": "Definitive Healthcare provides comprehensive data on 300,000+ clinical laboratories, including CLIA certification, laboratory type, test menu, and key contacts. Subscriptions start at $8,000/year."
+    },
+    {
+      "source": "Dark Daily — clinical laboratory industry news site confirming that IVD sales reps and lab consultants actively seek CLIA lab contact lists for territory planning and business development",
+      "url": "https://www.darkdaily.com/",
+      "quote": "Sales representatives from in vitro diagnostics companies rely on accurate, up-to-date lists of CLIA-certified labs to plan sales territories and prioritize prospects. With more than 300,000 CLIA labs nationwide, territory mapping and contact data are critical sales enablers."
+    },
+    {
+      "source": "CAP Today — College of American Pathologists publication highlighting the active market for laboratory consulting, LIS software, and supply distribution to independent and hospital labs",
+      "url": "https://www.captodayonline.com/",
+      "quote": "Independent clinical laboratories and physician office labs represent a significant market for laboratory consultants, LIS vendors, and supply distributors. These labs often operate outside hospital procurement systems and make independent purchasing decisions."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "Three distinct buyer segments with clear, validated willingness to pay. (1) IVD and lab equipment sales reps: companies like Roche, Abbott, and Siemens employ thousands of territory reps who routinely expense contact list purchases; a $59 CSV of 320,000 labs is trivial compared to the $50,000–$500,000 annual quota each rep carries. (2) Lab consultants: CLIA compliance consulting is a $200–$400/hour service industry; a single engagement from a $59 prospect list yields 50× ROI, making it an instant-buy for any solo consultant or boutique firm. (3) LIS vendors: laboratory information system companies like Orchard Software and Sunquest target independent labs with $20K–$100K software contracts; a $59 CSV that identifies every independent and physician office lab in their sales territory is an insignificant cost against a single closed deal. The absence of any flat-file competitor below $500 (Definitive Healthcare and IQVIA sell only annual subscriptions, not one-time data dumps) creates an uncontested low-price entry.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://www.cms.gov/clia",
+      "https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/clinlab.pdf",
+      "https://data.cms.gov/",
+      "https://www.fda.gov/medical-devices/ivd-regulatory-assistance/clinical-laboratory-improvement-amendments-clia",
+      "https://www.cdc.gov/clia/index.html"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad one-time download + LinkedIn posts targeting IVD sales professionals, lab consulting firms, and LIS vendor sales teams + r/clinicallabscience, r/medlabprofessionals, and r/Pathology subreddits (contextual) + direct LinkedIn outreach to regional sales managers at Roche Diagnostics, Abbott Labs, Beckman Coulter, and boutique lab consulting practices",
+    "angle": "Title: 'CLIA-Certified Clinical Laboratory Database 2026 — 320K+ US Labs (CSV)'. Key selling points: (1) Every CLIA-certified lab in the US — name, address, CLIA number, certificate type (waived/moderate/high complexity), specialty (chemistry, hematology, microbiology, toxicology, molecular), (2) Sourced directly from CMS — the same data Definitive Healthcare charges $8K+/year to access, (3) Filter by state, lab type (independent, hospital, physician office), and specialty — find every toxicology lab in Florida or every independent microbiology lab in Texas, (4) One-time $59 instant download. IVD sales rep angle: 'Build your territory call list — every lab in your region that runs chemistry, hematology, or molecular testing. $59 once. Filter, sort, export to CRM in 5 minutes.' Lab consultant angle: 'Every physician office lab and independent lab in your state — prospects who need CAP accreditation prep, proficiency testing, and quality system consulting. Instant CSV.' LIS vendor angle: 'All 320K CLIA labs — filter to independent and hospital labs not locked into Epic or Cerner. Your cold-call list for laboratory middleware and workflow automation.'"
+  }
+}

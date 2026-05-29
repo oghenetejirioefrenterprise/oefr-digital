@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "hvac-contractor-license-database",
+  "created": "2026-05-24T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 8,
+  "summary": "A cleaned, downloadable CSV of state-licensed HVAC contractors sourced from public state contractor licensing boards. Multiple commercial vendors (Prospects Influential, Averick Media, InfoGlobalData, BBDirect) sell HVAC contractor email lists for $2,000-$5,000+ or as part of $99/month subscriptions, proving strong sustained buyer demand. State contractor licensing boards (California CSLB, Texas TDLR, Florida DBPR) publish searchable public records of all licensed HVAC contractors with no authentication required. A one-time state-specific CSV ($39-$49) targeting HVAC equipment manufacturers (Carrier, Trane, Lennox), field service software vendors (ServiceTitan, Jobber, Housecall Pro), and HVAC liability insurance brokers undercuts the subscription model entirely while providing the same public data.",
+  "audience": {
+    "who": "HVAC equipment manufacturers and distributors (Carrier, Trane, Lennox, Rheem, Goodman) whose regional sales reps need licensed contractor lists for partnership outreach; HVAC field service management software vendors (ServiceTitan, Jobber, Housecall Pro, FieldEdge) running contractor acquisition campaigns; HVAC-specific liability and workers comp insurance brokers; wholesale HVAC supply houses targeting new contractor accounts; and HVAC trade association membership recruiters (ACCA, SMACNA, RSES).",
+    "where_found": [
+      "https://www.prospectsinfluential.com/hvac-contractors-email-list/",
+      "https://www.averickmedia.com/database/hvac-contractors-database",
+      "https://www.bbdirect.com/consumer-database/professional-database/licensed-hvac-contractors-mailing-list-v2.html",
+      "https://www.bizinforusa.com/professional-database/hvac-contractors-email-list/"
+    ]
+  },
+  "data_wanted": "Business name, owner name, license number, license type/classification (HVAC, mechanical, refrigeration), license status (active/inactive/expired), license issue and expiration dates, business address (street, city, state, ZIP), phone number, email (where publicly available), years in business — sourced from state contractor licensing portals (CA CSLB, TX TDLR, FL DBPR as initial targets), all no-auth public record access.",
+  "evidence": [
+    {
+      "source": "Prospects Influential — sells HVAC contractors email list as commercial product, proving direct buyer demand for this vertical",
+      "url": "https://www.prospectsinfluential.com/hvac-contractors-email-list/",
+      "quote": "HVAC Contractors Email List For Your Next Direct Marketing Campaign"
+    },
+    {
+      "source": "Averick Media — offers 95,519 HVAC contractor contacts database, demonstrating market size and commercial viability",
+      "url": "https://www.averickmedia.com/database/hvac-contractors-database",
+      "quote": "HVAC Contractors Email List | 95,519 Contact List of HVAC Contractors"
+    },
+    {
+      "source": "BBDirect — sells licensed HVAC contractors mailing list sourced from state contractor licensing boards with quarterly updates",
+      "url": "https://www.bbdirect.com/consumer-database/professional-database/licensed-hvac-contractors-mailing-list-v2.html",
+      "quote": "Licensed HVAC Contractors Mailing List — HVAC contractor records are sourced from state contractor licensing boards, which are updated on license renewal cycles"
+    },
+    {
+      "source": "BizInfoUSA — offers 320K+ HVAC contractor contacts emphasizing state licensing board sources and verification",
+      "url": "https://www.bizinforusa.com/professional-database/hvac-contractors-email-list/",
+      "quote": "HVAC Contractors Email List | 320K+ Owner Contacts — Database compiled from state contractor license registries, ACCA member rolls, MSCA member rolls, NATE certification records"
+    },
+    {
+      "source": "California Contractors State License Board — public license search portal with downloadable PDF lists (extractable to CSV)",
+      "url": "https://www.cslb.ca.gov/Consumers/Data.aspx",
+      "quote": "The data from the PDF files can be extracted for use in a program of your choosing"
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "Multiple vendors charge $2,000-$5,000 for national HVAC contractor lists or $99/month subscriptions that include HVAC among other trades. A ServiceTitan SDR running a Texas HVAC contractor outbound campaign would pay $199 for one state's worth of LimeLeads credits, but a one-time $49 Texas-only CSV (approximately 45,000 licensed HVAC contractors) delivers exactly what they need for a single campaign at 75% cost savings. Equipment manufacturers like Carrier running regional partnership programs have similar one-campaign budgets.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://www.cslb.ca.gov/Consumers/Data.aspx",
+      "https://www.tdlr.texas.gov/LicenseSearch/",
+      "https://www2.myfloridalicense.com/"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + Reddit r/HVAC (for contractor angle), r/SaaS (for ServiceTitan/Jobber SDR angle), LinkedIn targeting ServiceTitan, Jobber, and Housecall Pro sales teams + HVAC equipment manufacturer regional sales managers, Facebook HVAC business owner groups",
+    "angle": "\"Texas Licensed HVAC Contractors 2026 — 45,000+ Active Licenses, CSV\" — business name, owner, license #, classification, address, phone, license dates. Angle for software vendors: 'Every contractor on this list holds an active state license. No scraping. No guessing. One payment beats a monthly subscription.' Launch TX first (strong HVAC market, clear license classifications), then CA and FL as follow-up SKUs. Emphasize public data, compliance-safe, and cost advantage vs. subscription lists."
+  }
+}

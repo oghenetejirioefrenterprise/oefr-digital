@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "nyc-restaurant-health-inspections",
+  "created": "2026-05-24T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "PROPOSED",
+  "score": 7,
+  "summary": "A cleaned, downloadable CSV of NYC restaurant health inspection results sourced from the NYC Department of Health and Mental Hygiene's public dataset. NYC publishes every sustained or adjudicated violation citation from every inspection (full and special program) conducted up to three years prior to the most recent inspection for all restaurants and college cafeterias. The dataset is updated regularly and freely downloadable in JSON, CSV, XML, and RDF formats (last updated May 15, 2026). Food safety consulting firms, restaurant insurance underwriters, and commercial kitchen equipment vendors use inspection data to target non-compliant facilities for remediation services, insurance quotes, and equipment upgrades. A one-time NYC-specific CSV ($29-$39) with violation history, grades, and closure records targets food safety consultants, restaurant liability insurance brokers, commercial kitchen equipment suppliers, and pest control companies prospecting for high-violation facilities.",
+  "audience": {
+    "who": "Food safety consulting firms helping restaurants achieve compliance and improve grades; restaurant liability and workers comp insurance brokers targeting facilities with violation histories; commercial kitchen equipment vendors (refrigeration, ventilation, food prep) prospecting facilities cited for equipment-related violations; pest control companies targeting restaurants with vermin/sanitation violations; and restaurant POS/management software vendors (Toast, Square, Clover) using health grade data to identify high-performing establishments for partnership outreach.",
+    "where_found": [
+      "https://catalog.data.gov/dataset/dohmh-new-york-city-restaurant-inspection-results",
+      "https://www2.myfloridalicense.com/hotels-restaurants/public-records/",
+      "https://floridafoodsafety.org/inspections/",
+      "https://www.afdo.org/resources/online-inspection-reports/"
+    ]
+  },
+  "data_wanted": "Restaurant name, DBA (doing business as), establishment ID, facility address (street, city, borough, ZIP), cuisine type, inspection date, inspection type (initial/re-inspection/special program), violation code, violation description, critical/non-critical flag, grade (A/B/C/Not Yet Graded/Pending), grade date, score, action taken (no action/warning/closure), phone number — sourced from NYC DOHMH public dataset, updated regularly, freely downloadable in multiple formats.",
+  "evidence": [
+    {
+      "source": "NYC DOHMH Restaurant Inspection Results — comprehensive public dataset with every violation citation from inspections up to three years prior",
+      "url": "https://catalog.data.gov/dataset/dohmh-new-york-city-restaurant-inspection-results",
+      "quote": "The NYC Department of Health and Mental Hygiene publishes a dataset containing every sustained or not yet adjudicated violation citation from every full or special program inspection conducted up to three years prior to the most recent inspection for restaurants and college cafeterias — Last Updated May 15, 2026"
+    },
+    {
+      "source": "Florida Food Safety inspection records — similar state-level dataset demonstrating nationwide availability of restaurant inspection data",
+      "url": "https://floridafoodsafety.org/inspections/",
+      "quote": "Florida health inspectors conducted 33,192 DBPR restaurant inspections in 2026 — every food service establishment has a full inspection history page showing every inspection since 2016, all violations cited, and any emergency closures"
+    },
+    {
+      "source": "Association of Food and Drug Officials — national aggregator linking to state health department inspection portals, confirming multi-state scalability",
+      "url": "https://www.afdo.org/resources/online-inspection-reports/",
+      "quote": "Food Establishment Inspection Reports by State — enables public access to information on food safety compliance and sanitation ratings for restaurants and food facilities across the United States"
+    },
+    {
+      "source": "Florida DBPR restaurant public records — state-level searchable database with license verification by name or license number",
+      "url": "https://www2.myfloridalicense.com/hotels-restaurants/public-records/",
+      "quote": "Restaurants/Food Service – Public Records – MyFloridaLicense.com allows public search and verification of food service establishments"
+    }
+  },
+  "willingness_to_pay": {
+    "signal": "Food safety consulting is a pain-point-driven service — restaurants cited for critical violations face potential closure, fines, and reputation damage, making them highly motivated buyers for compliance remediation. A food safety consultant targeting NYC restaurants with 10+ critical violations in the past year would pay $29-$39 for a filtered CSV to run a 90-day outreach campaign offering grade improvement services. Commercial kitchen equipment vendors targeting facilities cited for refrigeration or ventilation violations have similar campaign budgets. Insurance brokers prospecting restaurants with poor safety records are another clear buyer segment.",
+    "confidence": "moderate"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://catalog.data.gov/dataset/dohmh-new-york-city-restaurant-inspection-results",
+      "https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + LinkedIn targeting food safety consultants and restaurant insurance brokers, Reddit r/restaurateur and r/KitchenConfidential (for restaurant owner angle emphasizing competitive intelligence), Facebook restaurant owner groups (NYC Restaurant Owners, NYC Hospitality Network), direct outreach to commercial kitchen equipment suppliers and pest control companies with restaurant divisions",
+    "angle": "\"NYC Restaurant Health Inspections 2024-2026 — Complete Violation History, CSV\" — restaurant name, address, cuisine, inspection dates, violation codes & descriptions, grades, scores, closures. Angle for food safety consultants: 'Every restaurant on this list has a full 3-year inspection history with violation details. Filter by critical violations, low grades, or closure orders to find facilities that need compliance help.' Angle for equipment vendors: 'Target restaurants cited for refrigeration, ventilation, or equipment violations with your upgrade solutions.' Launch NYC first (largest dataset, clear public access), then expand to FL (strong inspection data via FloridaFoodSafety.org) and PA (robust data dashboard per search results) as follow-up SKUs."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "date": "2026-05-26",
+  "cycle": "social_media",
+  "status": "QUEUED_BLOCKED",
+  "blocker": "ANTHROPIC_API_KEY not set — $0 API credit balance. browser-use cannot pilot Chrome without it.",
+  "prepared_at": "2026-05-26T15:00:00-04:00",
+  "strategy": "hook_tweet_plus_reply_link",
+  "posts": [
+    {
+      "id": "post-1-fmcsa-carriers",
+      "product_slug": "new-fmcsa-carrier-leads-2026-05",
+      "hook_tweet": "FMCSA just launched the Motus registration system.\n\n285 new trucking companies are getting authority EVERY WEEK.\n\nInsurance agents and ELD vendors who reach them in the first 60 days win. After that, they've already signed with someone else.\n\nThe window is small. The data is public.",
+      "reply_link": "We pulled the May 2026 FMCSA new carrier list — 15,770 records, CSV, $39.\n\nhttps://data.oefrenterprise.com/products/new-fmcsa-carrier-leads-2026-05",
+      "char_count_hook": 271,
+      "rationale": "Ties into FMCSA's own tweets about Motus registration system launch and Craig Fuller's viral thread about 60% more carriers with 40% less oversight. Urgency angle (60-day window) drives action.",
+      "target_audience": "Trucking insurance agents, ELD vendors, freight factoring companies"
+    },
+    {
+      "id": "post-2-electrician-shortage",
+      "product_slug": "tx-tdlr-electricians-2026-05",
+      "hook_tweet": "300,000 new electricians needed for AI data centers.\n\n200,000 retiring this decade.\n\nIf you sell to electrical contractors — supply, safety training, insurance, SaaS — Texas alone has thousands of licensed shops most vendors haven't contacted yet.\n\nThe shortage is your TAM.",
+      "reply_link": "Texas TDLR licensed electricians & electrical contractors — full 2026 database, CSV, $59.\n\nhttps://data.oefrenterprise.com/products/tx-tdlr-electricians-2026-05",
+      "char_count_hook": 270,
+      "rationale": "Directly piggybacks on @HedgieMarkets viral post about IBEW electrician shortage being a 'life-or-death' problem for AI infrastructure. Reframes shortage as sales opportunity for vendors.",
+      "target_audience": "Electrical supply distributors, SaaS vendors (ServiceTitan, Jobber), safety training providers"
+    },
+    {
+      "id": "post-3-home-health",
+      "product_slug": "cms-medicare-home-health-agencies-2026-05",
+      "hook_tweet": "There are 12,392 Medicare-certified home health agencies in the US.\n\nEvery one of them needs:\n- EVV software\n- Billing/scheduling tools\n- Staffing agencies\n- Liability insurance\n- Medical supply vendors\n\nMost B2B sales teams are still cold-calling hospitals. The real buyers are in home health.",
+      "reply_link": "Full CMS Medicare-certified home health agency database — 12,392 records with addresses, phone, certification status. CSV, $49.\n\nhttps://data.oefrenterprise.com/products/cms-medicare-home-health-agencies-2026-05",
+      "char_count_hook": 279,
+      "rationale": "Healthcare SaaS is a massive market that over-indexes on hospital sales. Home health is underpenetrated and growing fast (aging population + hospital-at-home trend). Educational hook positions data as the unlock.",
+      "target_audience": "Medical SaaS vendors, DME reps, healthcare staffing agencies, insurance brokers"
+    }
+  ],
+  "engagement_targets": [
+    {
+      "id": "engage-1-fmcsa-oversight",
+      "target_url": "https://x.com/FreightAlley/status/2043491251136168333",
+      "target_author": "@FreightAlley (Craig Fuller)",
+      "target_topic": "FMCSA underfunded — 60% more carriers, 40% less oversight funding, only 350 investigators for 700K companies",
+      "draft_reply": "This data gap is wild. We pulled the May 2026 FMCSA new authority list — 15,770 new carriers in a single month. Insurance agents and compliance SaaS vendors trying to reach these carriers before an incident have a tiny window. Public data, just poorly distributed.",
+      "char_count": 262,
+      "rationale": "Craig Fuller has 200K+ followers in freight/logistics. Adds a concrete data point (15,770 new carriers/month) to his narrative without being salesy. Positions DataStructured as a data source organically."
+    },
+    {
+      "id": "engage-2-electrician-shortage",
+      "target_url": "https://x.com/HedgieMarkets/status/2028657642256650576",
+      "target_author": "@HedgieMarkets",
+      "target_topic": "Electrician shortage is 'life-or-death' for AI data center construction — 300K new electricians needed, 200K retiring",
+      "draft_reply": "The supply side is a crisis. The demand side is an opportunity — if you sell equipment, training, or insurance to electricians, the addressable market just exploded. Texas alone has thousands of TDLR-licensed shops that most B2B vendors haven't even mapped yet.",
+      "char_count": 254,
+      "rationale": "Adds a vendor-angle perspective to a viral infrastructure post. No direct link — builds credibility first. People who click through to profile will see pinned content or bio with storefront link."
+    }
+  ],
+  "notes": "All content drafted and validated under 280 chars. Ready for immediate execution once ANTHROPIC_API_KEY is restored. No posts published — zero Twitter/X distribution entries exist for DataStructured to date."
+}

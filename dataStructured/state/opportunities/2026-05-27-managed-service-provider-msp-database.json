@@ -1,0 +1,30 @@
+{
+  "title": "Managed Service Provider (MSP) IT Company Database",
+  "slug": "managed-service-provider-msp-database",
+  "score": 7,
+  "demand_signal": "Strong and validated. 8+ commercial vendors selling MSP databases: MSPCompanies.us (100,000+ MSPs with 1M+ decision-maker contacts, 98% accuracy), LakeB2B (US/UK/Canada/Australia coverage), SpanGlobal Services (curated MSP list, international), DataCaptive (30,000+ contacts, triple verified), CampaignLake (global MSP contacts), EmailDataGroup, TechnologyUserLists, IndustrySelect, DatalenseServices. The US managed services market is $106.8B in 2026, and cybersecurity (the fastest-growing MSP segment) is growing at 18% annually.",
+  "target_audience": "Cybersecurity vendors building MSP channel partner programs (Acronis, Bitdefender, ESET, SentinelOne, Sophos, WatchGuard — all requiring $75M+ annual cybersecurity revenue via channel); RMM/PSA software vendors (ConnectWise, Datto/Kaseya, NinjaRMM, Atera) running MSP acquisition campaigns; cloud distributors (Pax8, Ingram Micro Cloud, TD SYNNEX) recruiting MSP partners; backup and disaster recovery vendors (Veeam, Acronis, Datto); VoIP/UCaaS providers targeting MSP reseller programs; cyber insurance brokers selling MSP-specific E&O policies; MSP peer groups and industry associations (CompTIA, ASCII Group, The 20) for membership drives",
+  "public_data_sources": [
+    "CompTIA partner directories (publicly listed MSPs with certifications)",
+    "Microsoft Partner Center directory (Solution Partner designations are public)",
+    "Google My Business / Google Maps (IT services, managed IT category)",
+    "State Secretary of State business registries (IT services LLCs)",
+    "LinkedIn company search (managed service provider, IT services industry filter)",
+    "Better Business Bureau listings (IT services category)",
+    "ConnectWise/Datto partner locators (public-facing partner finders)"
+  ],
+  "competitive_landscape": "MSPCompanies.us is the dominant niche player with 100K+ records and dedicated MSP focus. General B2B providers (LakeB2B, DataCaptive, SpanGlobal) include MSPs as a technology segment. No vendor offers affordable, flat-file state-level MSP directories. DataStructured challenge: no federal or state licensing registry for MSPs (unlike contractors, healthcare, or pest control). Data must be assembled from business registries + partner directories + web scraping. DataStructured wedge: $49-$79 per state or vertical slice (e.g., 'MSPs in Texas' or 'MSPs with Cybersecurity Specialization') vs. subscription-based competitor pricing.",
+  "monetization_model": "Regional/vertical CSVs at $49-$79 each: company name, address, phone, website, employee count estimate, specializations (cybersecurity, cloud, compliance), vendor partnerships (Microsoft, Cisco, etc.). Vertical slices: 'Cybersecurity-Focused MSPs' ($79), 'Healthcare IT MSPs' ($79). National directory at $199. Target buyers: cybersecurity vendors allocating 50%+ of revenue through channel partners — a single MSP partner relationship worth $50K-$500K/year in product sales.",
+  "estimated_market_size": "Estimated 40,000-100,000+ MSPs in the US (market highly fragmented, top players hold <10% combined share). $106.8B US managed services market. Buyer LTV: cybersecurity vendor channel revenue averages $75M+ annually for top 6 vendors alone. A single MSP partner generating $50K-$500K/year in product resale means a $49 lead list delivers extraordinary ROI. Cybersecurity product sales through MSPs growing 15% in 2026.",
+  "data_freshness_requirement": "Quarterly updates. MSP market is dynamic with frequent M&A activity (consolidation accelerating), new entrants, and specialization shifts. Technology partnership certifications change annually.",
+  "compliance_notes": "PASS potential with caveats: Data assembled from publicly available business information (business registries, public partner directories, Google listings, BBB). No consumer PII. Business contact information is commercial data. However, unlike licensed professions, there is no authoritative public registry — data quality depends on multi-source cross-referencing. Source attribution via public directory URLs.",
+  "next_steps": [
+    "Pilot with Microsoft Partner Center directory scraping for MSPs with Solution Partner designations",
+    "Enrich with Google Maps IT services listings for address/phone/website",
+    "Cross-reference with CompTIA partner directory for certification data",
+    "Build Texas pilot dataset (~5,000-8,000 estimated MSPs) to validate schema and quality",
+    "Launch as 'Texas MSP & IT Services Directory' at $49 on Gumroad, target r/msp and LinkedIn cybersecurity channel partner groups"
+  ],
+  "research_date": "2026-05-27",
+  "researcher_notes": "The MSP opportunity has the highest buyer LTV of today's scan — cybersecurity vendors spending $75M+ each through MSP channels means every MSP contact is worth serious money to the buyer. The $107B market and 18% cybersecurity growth rate are exceptional. However, the score stays at 7 (not 8) because public data access is the weakest of today's opportunities: there's no state licensing, no federal registry, no authoritative public database. Engineering complexity is HIGH — data must be assembled from multiple sources (partner directories, business registries, Google Maps, LinkedIn) and cross-referenced for quality. This is a high-reward, high-effort opportunity. If engineering capacity allows, pursue after auto dealerships and self-storage which have cleaner public data pipelines."
+}

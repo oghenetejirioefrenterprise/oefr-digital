@@ -1,0 +1,209 @@
+# DataStructured — trinity-agent configuration
+
+[company]
+name = "DataStructured"
+description = "Autonomous data-as-a-product company. Public data → niche packaging → digital products."
+default_employee = "ceo"
+
+[auth]
+provider = "claude_sdk"
+
+[agent]
+max_turns = 30
+max_tokens = 16384
+action_timeout = 3600
+convo_timeout = 120
+default_model = ""
+router_model = ""
+action_model = ""
+judge_model = ""
+
+[telegram]
+bot_token_env = "TELEGRAM_BOT_TOKEN"
+poll_timeout = 30
+max_response_length = 4000
+streaming_update_interval = 8
+
+[telegram.acl]
+dm_policy = "allowlist"
+allowed_users = [1366707521]    # founder Telegram user ID
+group_policy = "allowlist"
+
+[telegram.channels]
+# Multi-channel routing for specialized agent output (Phase 3 sub-project 5).
+# Empty strings = not configured yet → helper falls back to founder_dm.
+# Founder creates groups manually, then sets the chat_id strings below.
+founder_dm = "1366707521"          # CEO daily DM target (unchanged from v1)
+compliance_flags = ""              # group for compliance NEEDS_FOUNDER_REVIEW + REVOCATION events
+financial_alerts = ""              # group for CFO anomalies + daily digest
+marketing_reports = ""             # group for marketing-lead plans + partnerships-lead candidate briefs
+
+[memory]
+share_global = false
+short_term_decay_hours = 48
+long_term_decay_days = 30
+max_short_term = 200
+max_long_term = 500
+chat_history_buffer = 10
+promotion_threshold = 0.8
+correction_weight = 2.0
+
+[memory.shared]
+# Phase 4 sub-project 5 — cross-workspace memory sharing.
+# Categories THIS workspace publishes for sister LoBs to optionally subscribe to.
+publish_categories = ["compliance_patterns", "buyer_segments"]
+subscribe_to_workspaces = []                                       # no sister workspace yet
+shared_storage_path = "~/.trinity/shared/"
+
+[scheduler]
+enabled = true
+# Cycles added in Milestone 7
+
+# Employees added in Milestone 3
+
+[employees.ceo]
+title = "CEO"
+model = ""
+
+[employees.opportunity-researcher]
+title = "Opportunity Researcher"
+model = ""
+
+[employees.data-engineer]
+title = "Data Engineer"
+model = ""
+
+[employees.data-steward]
+title = "Data Steward"
+model = ""
+
+[employees.compliance-officer]
+title = "Compliance Officer"
+model = ""
+
+[employees.engineer]
+title = "Engineer"
+model = ""
+
+[employees.product-manager]
+title = "Product Manager"
+model = ""
+
+[employees.customer-success]
+title = "Customer Success"
+model = ""
+
+[employees.cfo]
+title = "CFO"
+model = ""
+
+[employees.marketing-lead]
+title = "Marketing Lead"
+model = ""
+
+[employees.seo-operator]
+title = "SEO Operator"
+model = ""
+
+[employees.partnerships-lead]
+title = "Partnerships Lead"
+model = ""
+
+[employees.distribution-agent]
+title = "Distribution Agent"
+model = ""
+
+[employees.social-media]
+title = "Social Media Specialist"
+model = ""
+
+[workspace]
+products_dir = "."
+exclude_patterns = ["node_modules", ".git", "__pycache__", ".next", "dist", "build", ".trinity", "state/datasets"]
+
+# ── Scheduler cycles ──────────────────────────────────────────────
+# Times in system local timezone (set system tz to America/New_York or adjust).
+
+[scheduler.cycles.research_scan]
+schedule = "0 13 * * *"            # 1:00 PM daily — quiet midday slot
+employee = "opportunity-researcher"
+report_to = ""                     # silent worker; CEO surfaces results in 19:00 DM
+type = "research"
+task = "Run today's wide demand-discovery scan. Output 3-5 scored opportunity briefs to state/opportunities/{YYYY-MM-DD}-{slug}.json. If no signal is strong (score >= 6), write zero briefs and log 'no signal — recommend re-scan in 24h'."
+
+[scheduler.cycles.product_design]
+schedule = "0 14 * * *"            # 2:00 PM daily — between research scan and CEO pipeline
+employee = "product-manager"
+report_to = ""                     # silent worker; CEO consumes draft at 19:00
+type = "research"
+task = "Draft one rich product spec from today's highest-scored opportunity brief. Read state/opportunities/ for PROPOSED briefs scored >=6. Pick one slug that has no existing state/products/<slug>/spec.json. Write a DRAFT_BY_PM spec with bonus_stack (4-6 items), 3-sentence audience, format_rationale, pricing_rationale, and the standard product_spec fields. If no brief qualifies, exit cleanly without writing."
+
+[scheduler.cycles.ceo_pipeline]
+schedule = "0 19 * * *"            # 7:00 PM daily — clear evening slot
+employee = "ceo"
+report_to = ""                     # CEO sends DM directly via tools
+type = "needle"
+task = "Run today's pipeline. Read state/opportunities/ for PROPOSED briefs. Cross-reference trinity memory for recently-rejected niches. Pick ONE brief with score >= 6 to advance (or zero if none qualify). For the chosen brief: dispatch data-engineer -> data-steward -> compliance-officer in sequence. If compliance verdict is PASS, write product spec.json and dispatch engineer. After all dispatches complete, dispatch distribution-agent to post any unposted queue items. Then send one DM to founder using format_daily_dm template."
+
+[scheduler.cycles.distribution]
+schedule = "0 21 * * *"            # 9:00 PM daily — fallback sweep after CEO pipeline
+employee = "distribution-agent"
+report_to = ""                     # writes cycle report to state/; CEO surfaces in next DM
+type = "needle"
+task = "Run the distribution sweep. Read state/distribution-queue.json and state/distribution-log.json. Identify all (item, channel) pairs not yet posted. For each unposted item: select appropriate channels, generate content, and post via scripts/social_helpers.py. Write cycle report to state/distribution-report-{today}.md."
+
+[scheduler.cycles.customer_sweep]
+schedule = "0 */2 * * *"           # every 2 hours
+employee = "customer-success"
+report_to = ""                     # silent worker
+type = "needle"
+task = "Run the customer sweep. Invoke scripts/customer_sweep.py to poll Stripe for new purchases/subscriptions since the cursor, send welcome emails to new customers, send day-3 check-ins to customers eligible, and send subscription refresh emails to subscribers when refresh logs are present. Report counts of new customers, emails sent, errors."
+
+[scheduler.cycles.cfo_digest]
+schedule = "30 18 * * *"           # 6:30 PM daily, before CEO pipeline at 19:00
+employee = "cfo"
+report_to = ""                     # routes to financial_alerts channel directly
+type = "needle"
+task = "Run the daily CFO digest. Invoke scripts/cfo_digest.py to pull Stripe data, compute MRR / today's revenue / refunds / churn, run anomaly checks, propose pricing experiments if data warrants. Write to state/cfo-digest/{today}.json. Route anomalies + headline to financial_alerts Telegram channel."
+
+[scheduler.cycles.marketing_plan]
+schedule = "0 11 * * *"            # 11:00 AM daily — top of day, before research at 13:00
+employee = "marketing-lead"
+report_to = ""                     # routes to marketing_reports channel
+type = "research"
+task = "Draft today's marketing plan. Invoke scripts/marketing_plan.py to read distribution-queue + distribution-log, pick top 3 unposted items, select best channel per item (niche-match override or round-robin), draft channel-specific content via distribution_draft, write to state/marketing-plans/{today}.json, route summary to marketing_reports Telegram channel."
+
+[scheduler.cycles.seo_publish]
+schedule = "0 8 * * 2,5"           # 8:00 AM Tue + Fri — twice weekly cadence
+employee = "seo-operator"
+report_to = ""                     # routes to marketing_reports channel
+type = "research"
+task = "Publish today's SEO post. Invoke scripts/seo_publish.py to pick an uncovered (product, content_type) pair, draft a 1000-1200-word post, write to state/blog/posts/{today}-{slug}.md, route summary to marketing_reports Telegram channel."
+
+[scheduler.cycles.partnerships_scan]
+schedule = "0 10 * * 1"            # Mondays at 10:00 AM ET — weekly batch
+employee = "partnerships-lead"
+report_to = ""                     # routes to marketing_reports
+type = "research"
+task = "Weekly partnerships scan. Invoke scripts/partnerships_scan.py to identify 3-5 affiliate candidates per active product, draft personalized outreach DMs, pre-generate affiliate links via scripts/affiliate_link.py, write briefs to state/partnerships/candidates/{slug}.json, route summary to marketing_reports Telegram channel."
+
+[scheduler.cycles.social_media]
+schedule = "0 15 * * 1-5"           # 3:00 PM weekdays — peak X engagement window
+employee = "social-media"
+report_to = ""                     # routes to marketing_reports channel
+type = "needle"
+task = "Run today's social media cycle. Search X for conversations relevant to DataStructured's products (trucking, real estate, healthcare providers, contractors, nonprofits). Draft and publish up to 3 posts using hook + reply-link strategy. Engage with 1-2 existing conversations where our data adds value. Report all posts and engagement via marketing_reports Telegram channel."
+
+[scheduler.cycles.reputation_refresh]
+schedule = "0 23 * * *"            # 11:00 PM daily — after all day's cycles complete
+employee = "ceo"
+report_to = ""                     # silent; writes snapshot files for next-day agents
+type = "system"
+task = "Run nightly reputation snapshot generation. Execute: source ~/.profile && /home/oghenetejiri/venvs/oefr/bin/python scripts/reputation_snapshot.py. Then exit. This regenerates state/reputations/{researcher,product-manager,compliance-officer}.json from production sales + compliance data so those agents can self-improve on the next cycle."
+
+[scheduler.cycles.memory_cleanup]
+schedule = "0 2 * * 0"             # Sundays at 2:00 AM — quiet time
+employee = "ceo"
+report_to = ""
+type = "system"
+task = "Weekly memory cleanup. Execute: /home/oghenetejiri/venvs/oefr/bin/trinity memory cleanup --stale-days 60. Report summary counts (scanned, stale, superseded, duplicates_to_merge, deleted)."

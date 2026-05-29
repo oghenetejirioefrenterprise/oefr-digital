@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+  "audited_at": "2026-05-18T23:30:00.000000+00:00",
+  "audited_by": "compliance-officer",
+  "verdict": "PASS",
+  "audit": {
+    "q1_public_access": {
+      "question": "Is every data point publicly accessible without auth?",
+      "answer": "PASS",
+      "evidence": [
+        {
+          "url": "https://www.ttb.gov/system/files/2025-04/FRL_Wine_Producer_and_Blender_Permit_List.csv",
+          "is_public": true,
+          "auth_required": false,
+          "row_count": 17985
+        },
+        {
+          "url": "https://www.ttb.gov/system/files/2025-04/FRL_Spirits_Producers_and_Bottlers_List.csv",
+          "is_public": true,
+          "auth_required": false,
+          "row_count": 5456
+        },
+        {
+          "url": "https://www.ttb.gov/system/files/2025-04/FRL_Alcohol_Importer_Permit_List.csv",
+          "is_public": true,
+          "auth_required": false,
+          "row_count": 21004
+        },
+        {
+          "url": "https://www.ttb.gov/system/files/2025-04/FRL_Alcohol_Wholesaler_Permit_List.csv",
+          "is_public": true,
+          "auth_required": false,
+          "row_count": 38079
+        }
+      ],
+      "notes": "TTB Federal Register Lists are public government records, no authentication required."
+    },
+    "q2_pii": {
+      "question": "Does it contain PII (personal email, phone, home address, SSN, financial account)?",
+      "answer": "PASS",
+      "evidence": {
+        "pii_violations_detected": 3,
+        "pii_violations_removed": 3,
+        "remaining_pii_count": 0,
+        "columns_checked": [
+          "permit_number",
+          "permit_type",
+          "owner_name",
+          "operating_name",
+          "street_address",
+          "city",
+          "state",
+          "zip_code",
+          "county",
+          "new_permit_flag",
+          "source_url",
+          "source_fetched_at"
+        ]
+      },
+      "notes": "3 PII violations removed by data-steward. Cleaned dataset contains business entity info only. All addresses are commercial facilities."
+    },
+    "q3_robots_tos": {
+      "question": "Is any source's robots.txt or ToS violated by our harvest method?",
+      "answer": "PASS",
+      "evidence": [
+        {
+          "domain": "ttb.gov",
+          "is_government_site": true,
+          "harvest_method": "direct_csv_download"
+        }
+      ],
+      "notes": "Government public records. Direct CSV download from publicly posted files. No robots.txt restrictions apply."
+    },
+    "q4_copyright": {
+      "question": "Are we reproducing copyrighted content verbatim?",
+      "answer": "PASS",
+      "evidence": {
+        "content_type": "factual_data",
+        "us_government_work": true,
+        "max_field_length": 150
+      },
+      "notes": "Factual permit data. U.S. government works not subject to copyright (17 USC § 105)."
+    },
+    "q5_dual_use": {
+      "question": "Is any field dual-use or sensitive (security vulns, weapon specs, medical advice)?",
+      "answer": "PASS",
+      "evidence": {
+        "fields": [
+          "permit_number",
+          "permit_type",
+          "owner_name",
+          "operating_name",
+          "street_address",
+          "city",
+          "state",
+          "zip_code",
+          "county",
+          "new_permit_flag",
+          "source_url",
+          "source_fetched_at"
+        ],
+        "content_type": "alcohol_beverage_permits"
+      },
+      "notes": "Business regulatory information. No security-sensitive or dual-use fields."
+    },
+    "q6_putnam_test": {
+      "question": "Could a reasonable person whose data appears here object (Putnam test)?",
+      "answer": "PASS",
+      "evidence": {
+        "data_subject": "corporate_entities_and_sole_proprietors",
+        "data_type": "federal_alcohol_permits",
+        "expectation_of_privacy": "none"
+      },
+      "notes": "Federal permit holders have no expectation of privacy. TTB publishes this data for regulatory transparency. No reasonable objection possible."
+    },
+    "q7_gdpr_ccpa": {
+      "question": "GDPR/CCPA clean? Any EU/CA persons → ensure no PII, ensure right-to-erasure pathway.",
+      "answer": "PASS",
+      "evidence": {
+        "data_subject_type": "corporate_and_business_entities",
+        "pii_present": false,
+        "state_coverage": "US_only",
+        "erasure_pathway": "N/A"
+      },
+      "notes": "Business entities with U.S. federal licenses. Not personal data under GDPR/CCPA. U.S. government public records."
+    }
+  },
+  "row_count": 82521,
+  "clean_csv": "/home/oghenetejiri/apps/dataStructured/state/ttb-brewery-winery-distillery-directory-2026-05.cleaned.csv",
+  "notes": "TTB Federal Register Lists (wine, spirits, importers, wholesalers) are public U.S. government records. Data-steward removed 3 PII violations. 100% source URL coverage. All 7 questions PASS. APPROVED for product packaging and distribution."
+}

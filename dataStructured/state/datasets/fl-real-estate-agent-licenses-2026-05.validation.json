@@ -1,0 +1,215 @@
+{
+  "dataset": "fl-real-estate-agent-licenses-2026-05",
+  "validated_at": "2026-05-06T00:00:00Z",
+  "validated_by": "data-steward",
+  "total_input_rows": 448610,
+  "overall_verdict": "FAIL",
+  "checks_failed": [
+    "pii_scan"
+  ],
+  "checks_warned": [
+    "date_original_issue_date",
+    "date_expiration_date",
+    "address_completeness",
+    "license_number_format",
+    "rank_license_prefix_consistency"
+  ],
+  "checks_passed": [
+    "duplicate_license_number",
+    "null_source_url",
+    "rank_normalization"
+  ],
+  "checks": {
+    "duplicate_license_number": {
+      "status": "PASS",
+      "count": 0
+    },
+    "null_source_url": {
+      "status": "PASS",
+      "count": 0
+    },
+    "date_original_issue_date": {
+      "status": "WARN",
+      "null_rows": 3278,
+      "unparseable": 0,
+      "future_date_2digit_year_artifact": 6,
+      "note": "6 rows parse as future dates due to 2-digit year ambiguity (DD-MON-YY interprets 62-68 as 2062-2068; these are pre-1969 licenses)"
+    },
+    "date_expiration_date": {
+      "status": "WARN",
+      "null_rows": 1,
+      "unparseable": 0
+    },
+    "rank_normalization": {
+      "status": "PASS",
+      "valid_ranks_present": [
+        "Broker",
+        "Broker Associate",
+        "Sales Associate"
+      ],
+      "distribution": {
+        "Sales Associate": 368497,
+        "Broker": 48510,
+        "Broker Associate": 31603
+      },
+      "invalid_rank_rows": 0
+    },
+    "address_completeness": {
+      "status": "WARN",
+      "rows_missing_any_addr_field": 116,
+      "null_by_field": {
+        "street": 42,
+        "city": 59,
+        "state": 57,
+        "zip": 56
+      },
+      "county_null": 9490,
+      "note": "Missing address fields often occur for international/out-of-state licensees; county null includes foreign addresses"
+    },
+    "pii_scan": {
+      "status": "FAIL",
+      "affected_row_count": 16,
+      "email_hits": 2,
+      "phone_hits": 14,
+      "details": [
+        {
+          "row": 79032,
+          "field": "street",
+          "pii_type": "email",
+          "license_number": "SL3048362",
+          "raw_value": "7391 IRONHORSE BLVD ALAWNROCKOFF@GMAIL.COM"
+        },
+        {
+          "row": 212466,
+          "field": "street",
+          "pii_type": "email",
+          "license_number": "SL3341580",
+          "raw_value": "CUARTASALEJA@GMAIL.COM"
+        },
+        {
+          "row": 2558,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "BK537476",
+          "raw_value": "2544531036 NUTSHELL COURT"
+        },
+        {
+          "row": 19453,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "BK443572",
+          "raw_value": "8259 STEWARD COURT 3523468458"
+        },
+        {
+          "row": 45920,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL658379",
+          "raw_value": "441  JUNG BLVD E 2397846871"
+        },
+        {
+          "row": 88638,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL3088574",
+          "raw_value": "P.O. BOX 84 8637811186"
+        },
+        {
+          "row": 111183,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL3170247",
+          "raw_value": "2514  30TH AVENUE 7062544249"
+        },
+        {
+          "row": 132110,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL3199876",
+          "raw_value": "830 VIRGINIA WOODS LANE 4078600133"
+        },
+        {
+          "row": 185077,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL3337973",
+          "raw_value": "1925 SW 5TH ROAD 3058043078"
+        },
+        {
+          "row": 257821,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL3413391",
+          "raw_value": "101431 P.O. BOX 101431 1763 FOUR MILE COVE PKWY #637"
+        },
+        {
+          "row": 264153,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL3422834",
+          "raw_value": "1279 W Palme PO BOX 2720081279 W PALMETTO P"
+        },
+        {
+          "row": 360371,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL3553560",
+          "raw_value": "Box 110542 5910 POST BLVD."
+        },
+        {
+          "row": 367128,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL3554279",
+          "raw_value": "P.O. BOX 226541 1700 NW 97TH AVENUE"
+        },
+        {
+          "row": 408654,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL3610089",
+          "raw_value": "PoBox 530085 4222 22ND AVE"
+        },
+        {
+          "row": 447503,
+          "field": "street",
+          "pii_type": "phone",
+          "license_number": "SL3656087",
+          "raw_value": "248-882-9661 2350 MONTE VISTA CT"
+        },
+        {
+          "row": 29233,
+          "field": "zip",
+          "pii_type": "phone",
+          "license_number": "SL206416",
+          "raw_value": "7272152614"
+        }
+      ],
+      "note": "Phone numbers and personal email addresses embedded in the 'street' or 'zip' field from source data quality issues; stripped in cleaned CSV"
+    },
+    "license_number_format": {
+      "status": "WARN",
+      "invalid_count": 1,
+      "details": [
+        {
+          "license_number": "BL268126",
+          "rank": "Broker Associate",
+          "primary_status": "Active"
+        }
+      ],
+      "note": "1 license with 'BL' prefix (BL268126); likely a data entry error in source; flagged but retained"
+    },
+    "rank_license_prefix_consistency": {
+      "status": "WARN",
+      "mismatch_count": 1,
+      "details": [
+        {
+          "license_number": "BL268126",
+          "rank": "Broker Associate",
+          "_ln_prefix": "BL",
+          "primary_status": "Active"
+        }
+      ]
+    }
+  }
+}

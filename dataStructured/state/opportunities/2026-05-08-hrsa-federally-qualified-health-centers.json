@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "hrsa-federally-qualified-health-centers",
+  "created": "2026-05-08T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 7,
+  "summary": "A cleaned CSV of all ~7,000 Federally Qualified Health Center (FQHC) sites and FQHC look-alike sites in the US, sourced from HRSA's direct public CSV download \u2014 no authentication required. Fields include health center organization name, site name, address, phone, services offered (dental, behavioral health, pharmacy, vision, substance use, etc.), grant awardee status, site classification, and congressional district. HRSA UDS aggregate data layers in patient volume, payer mix (% Medicaid / uninsured), and funding amounts. FQHCs are a ~$34B federally-funded primary care network \u2014 their EHR market alone is dominated by eClinicalWorks (70%+ share) while competitors like athenahealth, Greenway Health, and Netsmart are aggressively prospecting. A $39 one-time CSV on Gumroad targets health IT SDRs, medical supply reps, healthcare staffing agencies, and pharmacy benefit companies \u2014 all of whom need a complete, current contact list of FQHC sites to run their outreach.",
+  "audience": {
+    "who": "Health IT and EHR vendors competing for FQHC contracts (athenahealth, Greenway Health, Netsmart, WRS Health, NextGen \u2014 all trying to displace eClinicalWorks); healthcare staffing agencies placing nurse practitioners, physician assistants, and dentists at federally-designated shortage facilities; pharmacy benefit managers and specialty pharmacy companies targeting FQHC pharmacy programs (340B drug pricing programs worth $15B+ annually); medical and dental supply companies (Henry Schein, Patterson Companies) targeting new FQHC site openings; healthcare IT integration and interoperability vendors (Surescripts, CommonWell) targeting federal health center deployments.",
+    "where_found": [
+      "https://findahealthcenter.hrsa.gov/",
+      "https://data.hrsa.gov/topics/health-centers/uds",
+      "https://nachc.org/"
+    ]
+  },
+  "data_wanted": "HRSA Health Center Service Delivery and Look-Alike Sites \u2014 direct CSV download at https://data.hrsa.gov/DataDownload/DD_Files/Health_Center_Service_Delivery_and_LookAlike_Sites.csv. Fields: health center organization name, health center site name, site address (street, city, state, ZIP), phone number, site type (health center delivery site vs. look-alike), operational hours, services offered (medical, oral health, behavioral health, pharmacy, vision, enabling services, substance use disorder treatment), grant awardee flag, congressional district, urban/rural classification, Medicare/Medicaid participation. UDS aggregate data (https://data.hrsa.gov/topics/health-centers/uds) adds per-organization: total patients served, payer mix (% Medicaid, % uninsured, % Medicare, % commercial), total federal grant funding amount, FTE providers, and clinical quality metrics. No login or API key required for either dataset.",
+  "evidence": [
+    {
+      "source": "HRSA Health Center Service Delivery Data \u2014 direct public CSV download, no authentication required, ~7,000+ FQHC and look-alike sites",
+      "url": "https://data.hrsa.gov/data/download",
+      "quote": "Health Center Service Delivery and Look-Alike Sites \u2014 CSV download available. The Health Resources and Services Administration (HRSA) Health Center Program supports over 1,400 health center organizations operating at more than 14,000 service delivery sites."
+    },
+    {
+      "source": "NACHC (National Association of Community Health Centers) \u2014 confirms FQHCs serve 32M+ patients/year and receive $7B+ in federal grants, underscoring the commercial scale of the market",
+      "url": "https://nachc.org/",
+      "quote": "Community health centers serve over 32 million patients at 14,000+ sites nationwide. The federal Health Center Fund provides $7.2 billion annually to support HRSA-funded health centers."
+    },
+    {
+      "source": "eClinicalWorks FQHC market dominance \u2014 confirms the size and competitiveness of the EHR vendor sales motion targeting FQHCs, with active competition from athenahealth, Netsmart, and others",
+      "url": "https://www.eclinicalworks.com/healthcare-it-solutions/community-health-centers/",
+      "quote": "eClinicalWorks serves more than 850 Federally Qualified Health Centers and look-alike organizations across the United States."
+    },
+    {
+      "source": "340B Drug Pricing Program \u2014 FQHC sites are statutorily eligible for 340B drug discounts; combined market exceeds $15B annually, making FQHC pharmacy program access a major target for specialty pharmacy and PBM companies",
+      "url": "https://www.hrsa.gov/opa/",
+      "quote": "The 340B Drug Pricing Program requires drug manufacturers to provide outpatient drugs to eligible covered entities at significantly reduced prices. FQHCs are covered entities under the statute."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "EHR vendors competing for FQHC contracts spend heavily on sales and marketing \u2014 eClinicalWorks alone has 850+ FQHC clients with average contract values of $50K\u2013$200K/year. Competitors (athenahealth, Netsmart, NextGen) actively prospect these 14,000 sites and would pay $39\u2013$59 for a current bulk contact list without hesitation. Healthcare staffing agencies placing providers at shortage sites (where federal designation means chronic understaffing) also have clear ROI: a $39 CSV identifying 200 FQHC dental sites in need of dentists is worth one placement fee (~$15K). The 340B pharmacy angle is a secondary high-value hook for specialty pharmacy SDRs.",
+    "confidence": "medium-high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://data.hrsa.gov/DataDownload/DD_Files/Health_Center_Service_Delivery_and_LookAlike_Sites.csv",
+      "https://data.hrsa.gov/data/download",
+      "https://findahealthcenter.hrsa.gov/"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad one-time download + LinkedIn posts targeting health IT sales leaders and healthcare staffing directors + direct outreach to athenahealth, Netsmart, and NextGen SDR managers on LinkedIn + NACHC member community posts",
+    "angle": "Title: 'US Federally Qualified Health Centers (FQHC) Directory 2026 \u2014 7,000+ Sites, Services, Patients & Funding (CSV)'. Key selling points: (1) Every HRSA-funded FQHC and look-alike site \u2014 name, address, phone, services offered (dental, behavioral health, pharmacy, vision), (2) Patient volume and payer mix per organization \u2014 filter for high-Medicaid, high-uninsured sites (your highest-need and highest-grant-funded targets), (3) 340B eligible flag \u2014 instant pharmacy program prospect list, (4) Direct from HRSA public data \u2014 no scraping, government-verified, (5) One-time $39 CSV download. EHR vendor SDR angle: 'The complete FQHC prospect list \u2014 every site competing for eClinicalWorks' 850 accounts. Name, phone, services, patient count. $39.'"
+  },
+  "ceo_decision": {
+    "decided_at": "2026-05-08T14:00:00-04:00",
+    "decided_by": "ceo",
+    "verdict": "APPROVED",
+    "priority": 5,
+    "notes": "Score 7, direct HRSA CSV, niche but clear buyers (EHR SDRs, 340B pharmacy). Solid complement to hospital/SNF datasets."
+  }
+}

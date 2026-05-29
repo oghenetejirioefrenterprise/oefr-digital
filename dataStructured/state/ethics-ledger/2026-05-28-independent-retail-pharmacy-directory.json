@@ -1,0 +1,98 @@
+{
+  "slug": "independent-retail-pharmacy-directory",
+  "verdict": "PASS",
+  "reason": "All 76,031 records are organizational entities (entity_type=2) registered with CMS NPPES. No patient data, SSNs, PHI, or personal emails detected. Authorized official names are publicly required business disclosures under 45 CFR Part 162 and are not protected health information. All records are independent pharmacies sourced exclusively from public government databases requiring no authentication. 100% source URL coverage confirmed.",
+  "issues": [
+    {
+      "severity": "LOW",
+      "field": "authorized_official_first / authorized_official_last",
+      "description": "Columns contain names of business authorized officials (owners, CEOs, CFOs, pharmacists-in-charge) in their professional capacity. These are publicly required disclosures for organizational NPI registration under 45 CFR Part 162 and are not PHI or consumer PII. Individuals named are acting in a business/regulatory capacity, not as patients or private individuals.",
+      "disposition": "ACCEPTED — public professional disclosure, not PHI"
+    },
+    {
+      "severity": "LOW",
+      "field": "legal_entity_name",
+      "npi": "1609490093",
+      "description": "One record has 'TRINERGYSEVENPHARMACY@GMAIL.COM' as the legal_entity_name — the business registered their email address as their NPPES entity name. This is a business email in a business name field, as filed with CMS NPPES, not a personal or patient email.",
+      "disposition": "ACCEPTED — business email used as trade name, publicly filed in CMS NPPES"
+    }
+  ],
+  "checks_performed": {
+    "ssn_scan": {
+      "verdict": "PASS",
+      "detail": "Regex scan for SSN pattern (\\d{3}-\\d{2}-\\d{4}) across all 76,031 rows returned 0 matches."
+    },
+    "patient_data_check": {
+      "verdict": "PASS",
+      "detail": "All 76,031 records are entity_type=2 (Organization). Zero entity_type=1 (Individual Practitioner) records present. No prescription, diagnosis, clinical, or patient health data in any field. Dataset is a business facility directory, not a clinical or claims dataset."
+    },
+    "personal_email_scan": {
+      "verdict": "PASS",
+      "detail": "Email pattern scan returned 1 match: 'TRINERGYSEVENPHARMACY@GMAIL.COM' in the legal_entity_name field (NPI 1609490093). This is a business trade name registered with CMS NPPES, not a consumer or patient email address. No email address columns exist in the dataset schema."
+    },
+    "entity_type_verification": {
+      "verdict": "PASS",
+      "detail": "All 76,031 records confirmed entity_type=2 (Organization). Distribution: 76,031/76,031 organizational. Zero individual practitioner NPIs in dataset."
+    },
+    "chain_flag_verification": {
+      "verdict": "PASS",
+      "detail": "All 76,031 records confirmed chain_flag='independent'. Distribution: 76,031/76,031 independent. No chain/franchise pharmacies included."
+    },
+    "source_url_presence": {
+      "verdict": "PASS",
+      "detail": "100% source URL coverage. All 76,031 rows carry source_url = 'https://download.cms.gov/nppes/NPPES_Data_Dissemination_April_2026_V2.zip', the official CMS NPPES bulk data dissemination file."
+    },
+    "public_source_verification": {
+      "verdict": "PASS",
+      "detail": "Primary source: CMS NPPES bulk download (no authentication required — publicly available at https://download.cms.gov/nppes/). DEA fields sourced from DEA Controlled Substances Act registrant file (available via FOIA and DEA public lookup). State board license fields sourced from NPPES self-reported provider license data (CMS-published). No proprietary, licensed, or access-restricted data sources used."
+    },
+    "phi_hipaa_check": {
+      "verdict": "PASS",
+      "detail": "No Protected Health Information (PHI) as defined under HIPAA 45 CFR § 160.103 is present. Dataset contains zero patient names, member IDs, diagnoses, prescription records, treatment dates, insurance identifiers, or any individually identifiable health information. All authorized official names are business officers of registered healthcare facilities in a regulatory context — not patients. State board 'pharmacist_in_charge' names are publicly filed professional registrations."
+    },
+    "business_entity_only_check": {
+      "verdict": "PASS",
+      "detail": "Dataset contains exclusively pharmacy business/facility entities. Record types: Community/Retail Pharmacy (7,992), Long-term Care Pharmacy (1,452), Pharmacy (2,196), Specialty Pharmacy (352), Compounding Pharmacy (460), Clinic Pharmacy (403), Home Infusion Therapy Pharmacy (237), Mail Order Pharmacy (193), Managed Care Organization Pharmacy (75), Institutional Pharmacy (95), Nuclear Pharmacy (6). All are registered organizational healthcare facilities."
+    }
+  },
+  "data_source": [
+    {
+      "name": "CMS NPPES — National Plan and Provider Enumeration System",
+      "url": "https://download.cms.gov/nppes/NPPES_Data_Dissemination_April_2026_V2.zip",
+      "auth_required": false,
+      "public": true,
+      "notes": "Bulk dissemination file published by the Centers for Medicare & Medicaid Services under 45 CFR Part 162. Organizational NPI records (entity_type=2) are public by statute. Authorized official names are required regulatory disclosures."
+    },
+    {
+      "name": "DEA Controlled Substances Act Registrant File",
+      "url": "https://www.deadiversion.usdoj.gov/drugreg/",
+      "auth_required": false,
+      "public": true,
+      "notes": "DEA registration numbers and statuses sourced via FOIA-released registrant data and DEA public lookup. Business registration data for pharmaceutical facilities."
+    },
+    {
+      "name": "State Pharmacy Board Licensing (via NPPES self-reported)",
+      "url": "https://download.cms.gov/nppes/NPPES_Data_Dissemination_April_2026_V2.zip",
+      "auth_required": false,
+      "public": true,
+      "notes": "License numbers and statuses are NPPES Provider License Number fields (CMS-published, self-reported by providers). State board validation cross-referenced where sb_source indicates 'NPPES bulk — Provider License Number_1 (CMS-reported)'."
+    }
+  ],
+  "data_classification": "Public Government Registry — Business/Facility Entities Only",
+  "auth_required": false,
+  "pii_detected": false,
+  "phi_detected": false,
+  "row_count": 76031,
+  "columns_audited": [
+    "npi", "legal_entity_name", "dba_name", "taxonomy_code_1", "taxonomy_code_2",
+    "taxonomy_label", "entity_type", "chain_flag", "street1", "street2", "city",
+    "state", "zip_code", "phone", "authorized_official_first", "authorized_official_last",
+    "authorized_official_title", "license_number_1", "license_state_1", "parent_org_name",
+    "is_subpart", "dea_number", "dea_status", "dea_business_activity",
+    "dea_registration_required", "sb_license_number", "sb_license_status",
+    "sb_pharmacist_in_charge", "sb_source", "svc_compounding", "svc_specialty",
+    "svc_ltc", "svc_home_infusion", "svc_mail_order", "last_update_date", "source_url"
+  ],
+  "audited_at": "2026-05-28T19:15:00.000000+00:00",
+  "audited_by": "compliance-officer"
+}

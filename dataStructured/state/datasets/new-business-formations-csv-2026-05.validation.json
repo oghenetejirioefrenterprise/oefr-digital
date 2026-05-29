@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "type": "steward_validation_report",
+  "dataset_slug": "new-business-formations-csv-2026-05",
+  "validated_by": "data-steward",
+  "validated_at": "2026-05-05T01:17:00-04:00",
+  "verdict": "PASS_WITH_NOTES",
+  "summary": "Dataset passes all hard rules. 15,997 clean records after removing 1 century-typo date and 255 out-of-window filings. 100% source URL coverage (all sunbiz.org). Entity type codes normalized to human-readable labels. organizer_officer_name cleared (HTML parsing artifacts — not usable data). No PII detected.",
+
+  "hard_rules_check": {
+    "public_data_only": "PASS — sourced from Florida Division of Corporations (sunbiz.org) public SOS filing data. No auth required, all records are public business registration disclosures.",
+    "no_pii": "PASS — no SSN patterns detected. Dataset contains business registration data (entity name, registered agent address, principal address, filing date) that is voluntarily filed public business registration data under Florida statutes. organizer_officer_name field cleared due to data quality (HTML artifact fragments) and not shipped.",
+    "source_url_on_every_row": "PASS — 100% source URL coverage (15,997 / 15,997 filled). All URLs point to sunbiz.org detail pages.",
+    "production_code_only": "N/A — data quality gate, not code review.",
+    "no_private_datasets": "PASS — Florida SOS bulk filing data is a public government disclosure."
+  },
+
+  "structural_checks": {
+    "row_count": {
+      "original": 16253,
+      "removed_century_typo": 1,
+      "removed_out_of_window": 255,
+      "final": 15997,
+      "result": "PASS"
+    },
+    "column_count": {
+      "expected": 10,
+      "actual": 10,
+      "result": "PASS"
+    },
+    "all_expected_columns_present": "PASS",
+    "date_range": {
+      "filing_date_earliest": "2026-04-01",
+      "filing_date_latest": "2026-05-31",
+      "result": "PASS"
+    }
+  },
+
+  "completeness_checks": {
+    "id":                        { "filled": 15997, "fill_rate": "100.0%", "result": "PASS" },
+    "entity_name":               { "filled": 15997, "fill_rate": "100.0%", "result": "PASS" },
+    "entity_type":               { "filled": 15997, "fill_rate": "100.0%", "result": "PASS" },
+    "state":                     { "filled": 15997, "fill_rate": "100.0%", "result": "PASS" },
+    "filing_date":               { "filled": 15997, "fill_rate": "100.0%", "result": "PASS" },
+    "registered_agent_name":     { "filled": 15997, "fill_rate": "100.0%", "result": "PASS" },
+    "registered_agent_address":  { "filled": 15997, "fill_rate": "100.0%", "result": "PASS" },
+    "principal_address":         { "filled": 15997, "fill_rate": "100.0%", "result": "PASS" },
+    "organizer_officer_name":    { "filled": 0, "fill_rate": "0.0%", "result": "NOTE — see issue #4, field cleared, HTML artifact data not usable" },
+    "source_url":                { "filled": 15997, "fill_rate": "100.0%", "result": "PASS" }
+  },
+
+  "distribution_checks": {
+    "entity_type_breakdown": {
+      "Florida Limited Liability Company": "majority",
+      "Florida Profit Corporation": "significant",
+      "Florida Non-Profit Corporation": "present",
+      "Foreign LLC": "present",
+      "Limited Partnership": "present",
+      "Trust": "present",
+      "normalized_from_raw_codes": 2193,
+      "result": "PASS — codes normalized to human-readable labels"
+    },
+    "state": {
+      "FL": 15997,
+      "other": 0,
+      "result": "PASS — Florida-only dataset as intended"
+    }
+  },
+
+  "issues": [
+    {
+      "id": 1,
+      "severity": "LOW",
+      "field": "entity_type",
+      "count": 2193,
+      "description": "2,193 rows (13.5%) had raw SOS entity type codes instead of human-readable labels: DOMP, FORL, DOMNP, FORP, DOMLP, TRUST, etc.",
+      "action_taken": "FIXED — normalized all codes to human-readable labels (Florida Limited Liability Company, Florida Profit Corporation, etc.)",
+      "blocker": false
+    },
+    {
+      "id": 2,
+      "severity": "LOW",
+      "field": "filing_date",
+      "count": 1,
+      "description": "1 row (MURCHIE MEDICINE INC) had a century-typo date: 2102-07-06.",
+      "action_taken": "REMOVED — row deleted. Date was clearly erroneous and not within product window.",
+      "blocker": false
+    },
+    {
+      "id": 3,
+      "severity": "LOW",
+      "field": "filing_date",
+      "count": 255,
+      "description": "255 rows had filing dates outside the Apr–May 2026 product window. Product is sold as 'newly registered' — stale records mislead buyers.",
+      "action_taken": "REMOVED — rows deleted to enforce product freshness guarantee.",
+      "blocker": false
+    },
+    {
+      "id": 4,
+      "severity": "MEDIUM",
+      "field": "organizer_officer_name",
+      "count": 15058,
+      "description": "15,058 rows had garbled organizer_officer_name values — HTML parsing artifacts such as 'NDERS JANE D 700 C' or 'A MANUELA 3836'. Data is unusable for contact purposes. Root cause: HTML fragment extraction from detail pages rather than structured officer data.",
+      "action_taken": "CLEARED — field emptied for all rows. Field schema preserved in CSV. Data-engineer should re-extract using targeted SOS officer selector if this field is needed.",
+      "blocker": false
+    },
+    {
+      "id": 5,
+      "severity": "LOW",
+      "field": "registered_agent_address",
+      "count": 1,
+      "description": "1 row had 'ST,PETERSBURG' with a comma-split artifact in city name.",
+      "action_taken": "FIXED — corrected to 'ST. PETERSBURG'.",
+      "blocker": false
+    }
+  ],
+
+  "clean_row_counts": {
+    "total_rows_original": 16253,
+    "rows_removed": 256,
+    "rows_delivered": 15997,
+    "source_url_coverage": "100%"
+  },
+
+  "ready_for_compliance": true,
+  "notes": "All five issues are minor data quality observations. No PII exposure. No missing source URLs. organizer_officer_name field is empty in delivered CSV — product listing must not claim officer name data. Dataset is cleared to proceed to compliance-officer review."
+}

@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "cms-dmepos-medicare-supplier-directory-2026-05",
+  "created": "2026-05-26T19:30:00-04:00",
+  "created_by": "ceo",
+  "status": "READY_TO_SHIP",
+  "name": "CMS Medicare DMEPOS Supplier Directory 2026 — 57,000+ Enrolled Suppliers (CSV)",
+  "summary": "Every Medicare-enrolled DMEPOS (Durable Medical Equipment, Prosthetics, Orthotics & Supplies) supplier in the United States — 57,380 records sourced from CMS data.cms.gov dataset ct36-nrcq. Each row includes provider ID, business name, full address with lat/long, phone, specialty classification (Pharmacy, Medical Supply Company, Optician, etc.), supplies list, accepts-assignment flag, participation begin date, and Competitive Bidding Area (CBA) contract status. Commercial data vendors charge $200-$400+/month for similar lists. A one-time $49 CSV undercuts every incumbent.",
+  "format": "one_time",
+  "deliverable": "csv",
+  "price_usd": 49,
+  "bonus_stack": [
+    "Specialty classification per supplier (Pharmacy, Medical Supply Company, Optician, Optometrist, Grocery Store, etc.) — segment by your target vertical in one click",
+    "Full supplies list per supplier (Epoetin, Nebulizer Drugs, Wheelchairs, Oxygen Equipment, etc.) — find every supplier that carries your product category",
+    "Competitive Bidding Area (CBA) contract flag — identify which suppliers hold CBA contracts, critical for territory reps in CBA zones",
+    "Lat/long geocoordinates for every supplier — build territory maps, proximity searches, and route optimization in seconds",
+    "Accepts-assignment flag — filter for suppliers that accept Medicare assignment (lower patient cost-sharing = higher volume potential)",
+    "Participation begin date — identify newly enrolled suppliers (recent market entrants = high-intent prospects for equipment manufacturers)"
+  ],
+  "dataset_file": "state/datasets/cms-dmepos-medicare-supplier-directory-2026-05/clean-cms-dmepos-suppliers.csv",
+  "ethics_ledger": "state/ethics-ledger/2026-05-26-cms-dmepos-medicare-supplier-directory-2026-05.json",
+  "audience": "Field sales reps and territory managers at medical equipment manufacturers (Invacare, Sunrise Medical, Ottobock) who need territory-based lists of every enrolled DME supplier to prospect and call on. Healthcare distributors and wholesalers (Medline, Cardinal Health, Bound Tree Medical) whose reps sell consumables and supplies to DMEPOS locations. HME/DME billing software vendors (Brightree, NikoHealth, DME Works) doing outbound sales to the ~57K enrolled supplier base.",
+  "format_rationale": "CSV is the universal import format for CRM systems (Salesforce, HubSpot), territory mapping tools, and Excel-based territory planning. Sales reps filter by state, city, or specialty and import directly into their outbound workflow.",
+  "pricing_rationale": "$49 positions as an impulse buy for B2B sales professionals spending $200+/hour in billable time. Undercuts ZoomInfo/Apollo at $1,000+/year and InfoGlobalData quote-only lists by 90%+. One cold call conversion from this list pays for the file 100x over.",
+  "stripe_product_prefix": "dsl_",
+  "channels": ["stripe_payment_link", "gumroad"],
+  "compliance_verdict": "PASS",
+  "compliance_audited_at": "2026-05-26T19:30:00-04:00",
+  "row_count": 57380,
+  "source": "CMS Provider Data Catalog — Medical Equipment Suppliers (dataset ID: ct36-nrcq) — https://data.cms.gov/provider-data/dataset/ct36-nrcq — public, no auth required",
+  "gumroad_listing": {
+    "title": "CMS Medicare DMEPOS Supplier Directory 2026 — 57,000+ Enrolled Suppliers (CSV)",
+    "description": "Every Medicare-enrolled DMEPOS supplier in the US — 57,380 records sourced from the official CMS Provider Data Catalog. The same data commercial vendors charge $200-$400+/month to access.\n\n**What you get per row:**\n- Provider ID (CMS enrollment number)\n- Business name + practice name\n- Full address (street, city, state, ZIP)\n- Phone number\n- Specialty (Pharmacy, Medical Supply Company, Optician, Optometrist, etc.)\n- Supplies list (Wheelchairs, Oxygen, Nebulizer Drugs, Prosthetics, etc.)\n- Accepts-assignment flag\n- Participation begin date\n- Lat/long geocoordinates\n- Competitive Bidding Area contract status\n\n**Who buys this:**\n\n*Medical Equipment Sales Reps:* Skip the 6-hour manual Medicare.gov lookup — get every enrolled DME supplier in your territory in 30 seconds. Filter by state, city, or specialty. Import to Salesforce and start calling.\n\n*Healthcare Distributors:* Build complete territory maps of every DMEPOS location. Identify newly enrolled suppliers (participation begin date) for first-mover outreach.\n\n*HME/DME Software Vendors:* 57,000+ pre-qualified prospects for your billing, inventory, or compliance software. Upload to HubSpot, filter by specialty, and run your outbound campaign.\n\n**Data source:** CMS.gov — Provider Data Catalog, Medical Equipment Suppliers dataset (ct36-nrcq). Official government enrollment data. Public records, no PII.\n\n$49 one-time. Updated quarterly. No subscription required.",
+    "price": 49,
+    "tags": ["cms", "medicare", "dmepos", "medical-equipment", "suppliers", "healthcare", "b2b", "sales-leads", "csv", "dme", "hme"]
+  },
+  "pre_ship_requirements": [
+    "Verify total row count is 57,000+ before listing",
+    "Confirm zero PII in all rows",
+    "Verify source URL (data.cms.gov) is included on every row",
+    "Gumroad listing must note 'Public government data'",
+    "Stripe product name must match spec name"
+  ]
+}

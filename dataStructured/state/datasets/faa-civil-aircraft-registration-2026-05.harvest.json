@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "type": "harvest_report",
+  "slug": "faa-civil-aircraft-registration-2026-05",
+  "harvested_at": "2026-05-07T03:30:13.852685+00:00",
+  "source_url": "https://registry.faa.gov/database/ReleasableAircraft.zip",
+  "row_count_raw": 312352,
+  "row_count_active": 306618,
+  "columns": [
+    "n_number",
+    "serial_number",
+    "make",
+    "model",
+    "year_mfr",
+    "type_aircraft",
+    "type_engine",
+    "num_engines",
+    "registrant_name",
+    "registrant_type",
+    "street",
+    "street2",
+    "city",
+    "state",
+    "zip_code",
+    "cert_issue_date",
+    "airworthiness_class",
+    "status_code",
+    "source_url"
+  ],
+  "notes": "FAA Releasable Aircraft Database downloaded 2026-05-07. Source ZIP updated daily at 11:30 PM Central by FAA. Filtered to STATUS_CODE=V (Active/Valid) only; 5,734 non-active records excluded. Make/model/num_engines decoded via ACFTREF.txt lookup. Aircraft type, engine type, and registrant type decoded from FAA code tables. Airworthiness class decoded from first character of CERTIFICATION field. N-number prefixed with \"N\" per FAA registration convention. Cert issue date formatted YYYY-MM-DD.",
+  "status": "SUCCESS"
+}

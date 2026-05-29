@@ -1,0 +1,27 @@
+{
+  "source": "https://data.cms.gov/provider-data/dataset/ct36-nrcq",
+  "api_endpoint": "https://data.cms.gov/provider-data/api/1/datastore/query/ct36-nrcq/0",
+  "total_records": 57380,
+  "api_reported_total": 57380,
+  "harvested_at": "2026-05-26T19:20:09-0400",
+  "fields": [
+    "provider_id",
+    "acceptsassignement",
+    "participationbegindate",
+    "businessname",
+    "practicename",
+    "practiceaddress1",
+    "practiceaddress2",
+    "practicecity",
+    "practicestate",
+    "practicezip9code",
+    "telephonenumber",
+    "specialitieslist",
+    "providertypelist",
+    "supplieslist",
+    "latitude",
+    "longitude",
+    "is_contracted_for_cba"
+  ],
+  "output_file": "state/datasets/cms-dmepos-medicare-supplier-directory-2026-05/raw-cms-dmepos-suppliers.csv"
+}

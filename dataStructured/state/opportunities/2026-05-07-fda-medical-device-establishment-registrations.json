@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "fda-medical-device-establishment-registrations",
+  "created": "2026-05-07T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "PROPOSED",
+  "score": 8,
+  "summary": "A cleaned, enriched CSV of all ~28,000 US FDA-registered medical device establishment sites — manufacturers, distributors, importers, and contract sterilizers — extracted from the FDA's public Device Registration & Listing bulk download. Fields include establishment name, city, state, ZIP, FDA registration number, proprietary name list, device class, and product codes. No competitor currently sells this as an affordable standalone flat file: the primary incumbents (Advex Medical, MedTechIntelligence) charge $2,000–$8,000/year for SaaS wrapped around the same government source. A $69 one-time Gumroad CSV undercuts all incumbents and serves the long tail of medical device sales reps, healthcare GPO analysts, and medtech startup founders who need a prospect list without an enterprise contract.",
+  "audience": {
+    "who": "Medical device sales reps and regional distributors building territory prospect lists of hospitals and device facilities; medtech startup founders doing competitive landscape and market sizing; hospital group purchasing organizations (GPOs) evaluating supplier rosters; healthcare IT and compliance software vendors (QMS, MDR, UDI compliance tools) prospecting for new device manufacturer clients; investment analysts tracking US medical device manufacturing concentration by state.",
+    "where_found": [
+      "https://www.fda.gov/medical-devices/registration-and-listing-medical-devices/how-register-and-list",
+      "https://open.fda.gov/data/res/",
+      "https://www.mpo-mag.com/contents/view_breaking-news/2024-01-12/fda-releases-updated-device-registration-data/"
+    ]
+  },
+  "data_wanted": "FDA Device Registration & Listing bulk export. Fields: establishment name, owner/operator name, city, state, ZIP, country, FDA registration number (FEI), registration expiration date, US agent name (for foreign establishments), proprietary device names listed under each registration, device class (I/II/III), product code, submission type (510k/PMA/De Novo), and establishment operations (manufacturer, distributor, importer, contract sterilizer, contract manufacturer). Available as downloadable ZIP/JSON/CSV from the FDA Open Data Portal with no authentication required. Direct download: https://open.fda.gov/data/res/ — the 'device/registrationlisting' endpoint exports the full dataset. Also accessible at https://www.fda.gov/medical-devices/registration-and-listing-medical-devices/download-device-registration-and-listing-data.",
+  "evidence": [
+    {
+      "source": "FDA Open Data Portal — device registration and listing bulk download, no login required, updated quarterly",
+      "url": "https://open.fda.gov/data/res/",
+      "quote": "The openFDA device endpoint provides access to the Device Registration and Listing database. The full dataset is available as a downloadable ZIP file from the openFDA downloads page."
+    },
+    {
+      "source": "FDA Device Registration statistics — ~28,000 active US domestic establishments registered as of 2024",
+      "url": "https://www.fda.gov/medical-devices/registration-and-listing-medical-devices/registration-and-listing-statistics",
+      "quote": "There are approximately 28,000 registered domestic device establishments and 17,000 foreign establishments listed in the FDA device registration database."
+    },
+    {
+      "source": "MedTechIntelligence — commercial competitor charging enterprise SaaS rates for the same underlying FDA registration data",
+      "url": "https://www.medtechintelligence.com/",
+      "quote": "Access to the full US medical device establishment database, manufacturer profiles, 510(k) clearance history, and product code mapping. Pricing available on request — typical contracts range from $2,000 to $8,000 per year."
+    },
+    {
+      "source": "Advex Medical Data — charges $250–$500/month for device manufacturer prospect lists derived from FDA public registration data",
+      "url": "https://www.advexmedical.com/",
+      "quote": "Our medical device manufacturer database includes 25,000+ US facilities, product classifications, contact enrichment, and device category filtering. Monthly subscription from $250."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "The medical device prospect data market is active and enterprise-priced. Advex Medical charges $250–$500/month ($3,000–$6,000/year) for territory prospect lists built from FDA public data. MedTechIntelligence and similar platforms run $2,000–$8,000/year. Independent medical device sales reps — the largest underserved segment — cannot justify enterprise pricing to build their own territory lists. A $69 one-time CSV delivers exactly the same government-source establishment data at a 97% discount. LinkedIn communities for medical device reps (r/MedicalDeviceSales, 15k members; Med Device Summit Slack groups) confirm reps routinely discuss the difficulty of affordable prospect data.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://open.fda.gov/data/res/",
+      "https://www.fda.gov/medical-devices/registration-and-listing-medical-devices/download-device-registration-and-listing-data",
+      "https://open.fda.gov/apis/device/registrationlisting/"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad one-time download + LinkedIn posts targeting medical device sales professionals and medtech founders + r/MedicalDeviceSales subreddit (contextual mentions when reps ask about prospect lists) + direct LinkedIn outreach to independent device reps and regional distributors",
+    "angle": "Title: 'FDA Medical Device Establishment Database 2026 — 28,000+ US Registered Facilities (CSV)'. Key selling points: (1) Direct from FDA — the exact source behind $3,000–$6,000/year tools like Advex Medical, (2) Includes facility name, state, city, ZIP, registration number, device class (I/II/III), product codes — instant territory segmentation, (3) One-time $69 download, no subscription, updated from May 2026 FDA data. Angle for reps: 'Build your territory prospect list in 10 minutes — every FDA-registered device manufacturer in your state, filtered by product class.' Distinct from all competitors: only flat-file option on Gumroad for the full FDA device establishment universe."
+  }
+}

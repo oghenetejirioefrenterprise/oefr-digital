@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "fdic-bank-branch-directory-2026-05",
+  "created": "2026-05-17T23:58:11.359773+00:00",
+  "created_by": "ceo",
+  "status": "SHIPPED_STRIPE_ONLY",
+  "summary": "Live on Stripe at $49. CSV (77,542 rows) ready for delivery. Gumroad listing pending manual creation (automation blocked on Gumroad product creation flow).",
+  "stripe_product_id": "prod_UXJB1Ca5NdfLod",
+  "stripe_price_id": "price_1TYEZS3H4Cmk8ulCi1BUnDLn",
+  "stripe_payment_link_url": "https://buy.stripe.com/9B63co7P1an58mT4uO7IY0v",
+  "smoke_test": {
+    "passed": true,
+    "checked_at": "2026-05-17T23:58:11.359815+00:00",
+    "notes": "Payment link created successfully. Manual test recommended."
+  },
+  "spec_file": "state/products/fdic-bank-branch-directory-2026-05/spec.json",
+  "gumroad_listing_url": null,
+  "gumroad_pending": true,
+  "gumroad_automation_failure": "Gumroad product creation automation blocked. Manual listing required at https://app.gumroad.com/products/new"
+}

@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "new-fmcsa-carrier-leads",
+  "created": "2026-05-04T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 8,
+  "summary": "Monthly CSV of new USDOT numbers / operating authority granted by FMCSA, sliced by state and cargo type. Freshly registered carriers are the highest-value leads for commercial trucking insurance agents, factoring companies, ELD mandate vendors, and freight dispatch services. The full FMCSA Company Census is public and updated daily; the gap is a cheap, filterable one-time download of only the newest entries.",
+  "audience": {
+    "who": "Commercial trucking insurance agents, freight factoring companies, ELD hardware/software vendors, and owner-operator dispatch services that need to reach newly authorized carriers within their first 60 days of operation.",
+    "where_found": [
+      "https://www.fiverr.com/the_data_person/provide-1000-fresh-trucking-leads-from-dot-carrier-database",
+      "https://www.ustruckingcompanies.com/",
+      "https://carrierdetails.com/"
+    ]
+  },
+  "data_wanted": "USDOT number, carrier name, physical address, phone, email (where public), MC/FF authority type, cargo carried, fleet size, state of domicile, date authority granted \u2014 sourced from FMCSA Company Census and Licensing & Insurance public search.",
+  "evidence": [
+    {
+      "source": "Fiverr listing \u2014 active seller at $50 per 1,000 fresh FMCSA leads",
+      "url": "https://www.fiverr.com/the_data_person/provide-1000-fresh-trucking-leads-from-dot-carrier-database",
+      "quote": "provide 1000 fresh trucking leads from fmcsa database for $50"
+    },
+    {
+      "source": "USTruckingCompanies.com \u2014 4.2M+ carrier records sold at $399 for full CSV",
+      "url": "https://www.ustruckingcompanies.com/",
+      "quote": "US Trucking Database 2026 | List of 4.2M+ Trucking Companies in USA \u2014 Download CSV"
+    },
+    {
+      "source": "FMCSA Open Data Program \u2014 Company Census File updated daily, public no-cost",
+      "url": "https://www.fmcsa.dot.gov/registration/fmcsa-data-dissemination-program",
+      "quote": "FMCSA shares the FMCSA regulated entity census and safety performance information at no charge to the public."
+    },
+    {
+      "source": "CarrierDetails.com \u2014 commercial FMCSA data feed proving sustained buyer demand",
+      "url": "https://carrierdetails.com/",
+      "quote": "Reliable, Consumable FMCSA Trucking Data"
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "Fiverr sellers charge $50 per 1,000 leads; USTruckingCompanies charges $399 for the full DB. Insurance and factoring reps pay $15-100 per qualified new-carrier lead from traditional brokers. A niche monthly slice (e.g., new Texas carriers last 30 days) priced at $29-49 one-time sits well below all incumbent pricing.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://www.fmcsa.dot.gov/registration/fmcsa-data-dissemination-program",
+      "https://ai.fmcsa.dot.gov/hhg/search.asp",
+      "https://li-public.fmcsa.dot.gov/LIVIEW/pkg_carrquery.prc_carrlist"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + Reddit r/Truckers, r/FreightBrokers, r/Insurance",
+    "angle": "\"New FMCSA Carriers \u2014 [State] [Month] 2026\" \u2014 monthly snapshot of every carrier that received operating authority in the last 30 days, filtered by state, formatted CSV. Positioned as a cheap alternative to $399 full-DB or $50/1,000 Fiverr gigs, with the freshness advantage none of those offer."
+  },
+  "approved_by": "ceo",
+  "approved_at": "2026-05-04T19:00:00-04:00"
+}

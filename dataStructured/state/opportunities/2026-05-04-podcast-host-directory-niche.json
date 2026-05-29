@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "podcast-host-directory-niche",
+  "created": "2026-05-04T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "PROPOSED",
+  "score": 7,
+  "summary": "Niche-specific podcast host directories sourced from public RSS feeds — each podcast's RSS contains the host's public contact email, show name, episode count, and category. Paid incumbents (Rephonic, Podchaser Pro, Podseeker, FeedSpot) charge $50-300/month subscriptions for access to this data. A one-time downloadable CSV targeting a specific vertical (e.g., B2B SaaS podcasts, personal finance podcasts, health and wellness podcasts) undercuts all of them for buyers who only need one outreach campaign.",
+  "audience": {
+    "who": "PR agencies, startup founders doing media tours, authors launching books, B2B SaaS marketers seeking guest spots, and conference organizers looking for speaker-hosts — all need a targeted list of podcasts in their niche without paying for a monthly subscription.",
+    "where_found": [
+      "https://rephonic.com/blog/podcast-contact-list/",
+      "https://features.podchaser.com/pro/contacts/",
+      "https://www.podseeker.co/"
+    ]
+  },
+  "data_wanted": "Show name, host name, public contact email (from RSS itunes:email field), episode count, average release frequency, Apple Podcasts / Spotify category, RSS feed URL, estimated listener count (from public directory rankings where available) — all sourced from public RSS feeds and open podcast directories.",
+  "evidence": [
+    {
+      "source": "Podchaser Pro — charges subscription for 1.8M+ podcast contacts, proving buyers pay for this data at scale",
+      "url": "https://features.podchaser.com/pro/contacts/",
+      "quote": "Podcast contact database with one-click contacts and bulk exporting, revealing audience size and contacts for over 1.8 million podcasts."
+    },
+    {
+      "source": "Rephonic — SaaS pitch tool for 2.5M podcasts, charging subscription vs. one-time",
+      "url": "https://rephonic.com/blog/podcast-contact-list/",
+      "quote": "find, qualify and pitch over 2.5 million shows"
+    },
+    {
+      "source": "MillionPodcasts — confirms host contact email is in the public RSS itunes:email field",
+      "url": "https://www.millionpodcasts.com/blog/find-podcast-contacts/",
+      "quote": "Every podcast has an RSS feed that contains structured metadata including the creator's email, which the host entered when they launched, and it's publicly accessible."
+    },
+    {
+      "source": "FeedSpot — podcast media database with 2M shows and host emails, paid access",
+      "url": "https://podcast.feedspot.com/",
+      "quote": "Access to 2 million podcasts with direct email contacts of hosts and producers."
+      }
+  ],
+  "willingness_to_pay": {
+    "signal": "Podchaser Pro costs $69-299/month. FeedSpot charges for full contact access. ContactOut lists 72,493 podcast host emails as a paid product. A $29-49 one-time CSV of 300-500 niche podcasts with contact info is a no-brainer for any founder or PR manager who needs a single outreach campaign — they would pay for one month of Podchaser Pro anyway.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://www.millionpodcasts.com/blog/find-podcast-contacts/",
+      "https://podcastindex.org/",
+      "https://rss.com/blog/podcast-directory-list/"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + Reddit r/podcasting, r/SaaS, r/PublicRelations, r/marketing",
+    "angle": "\"500 B2B SaaS Podcasts — Host Emails + Stats — May 2026 CSV\" — niche-specific, no subscription, formatted and ready to paste into Hunter or Lemlist. Positioned against $70/month tools: 'One campaign. One payment. Done.'"
+  }
+}

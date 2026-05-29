@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "epa-tri-toxic-release-reporting-facilities-2026-05",
+  "created": "2026-05-10T21:45:00-04:00",
+  "created_by": "ceo",
+  "name": "EPA Toxic Release Inventory 2023 — 22,000+ Reporting Facilities, Chemicals Released by Air/Water/Land (CSV)",
+  "tagline": "Every US facility that reported toxic chemical releases to the EPA in 2023. Filter by state, NAICS, or chemical.",
+  "price_usd": 49,
+  "currency": "usd",
+  "dataset": {
+    "slug": "epa-tri-toxic-release-reporting-facilities-2026-05",
+    "csv_path": "state/datasets/epa-tri-toxic-release-reporting-facilities-2026-05.csv",
+    "row_count": 78647,
+    "columns": 27,
+    "source": "EPA Toxics Release Inventory (TRI) Basic Plus Data Files 2023",
+    "source_url": "https://data.epa.gov/efservice/downloads/tri/mv_tri_basic_download/2023_US/csv",
+    "year": "2023"
+  },
+  "stripe": {
+    "product_name": "EPA Toxic Release Inventory 2023 — 78,647 Facility-Chemical Records (CSV)",
+    "description": "Every US facility that reported toxic chemical releases to the EPA in 2023 — 78,647 facility-chemical records covering 22,000+ unique facilities and 50 states. Includes facility name, parent company, street address, city, state, ZIP, NAICS code, chemical name, CAS number, releases by medium (fugitive air, stack air, water, land), total on-site releases, total off-site transfers, carcinogen/PBT/PFAS flags, and EPA source URL per row. Direct from EPA TRI public data — the same source Sustainalytics and MSCI use for $10K/year ESG products. One-time $49 instant CSV download.",
+    "price_usd": 49,
+    "payment_link": null
+  },
+  "gumroad": {
+    "title": "EPA Toxic Release Inventory 2023 — 78,647 Records (CSV)",
+    "description": "**Every US facility that reported toxic chemical releases to the EPA in 2023.**\n\n78,647 facility-chemical records. 22,000+ unique facilities. 50 states + territories.\n\n**What's included per record:**\n- Facility name + parent company\n- Full street address, city, state, ZIP, county\n- Latitude/longitude coordinates\n- NAICS code + industry sector\n- Chemical name + CAS number\n- Release quantities by medium: fugitive air, stack air, water, underground injection, land\n- Total on-site releases (lbs)\n- Total off-site transfers (lbs)\n- Carcinogen flag | PBT flag | PFAS flag | Clean Air Act flag\n- EPA source URL for every row\n\n**Direct from EPA TRI public data** — the same dataset Sustainalytics and MSCI ESG charge $10,000+/year to access.\n\n**Who buys this:**\n- Environmental compliance attorneys identifying TRI-reporting clients\n- Corporate ESG/sustainability managers benchmarking facility peers\n- Environmental liability insurance underwriters screening facility history\n- Sustainability consultants building environmental profiles\n- Environmental justice researchers tracking chemical hotspots by zip/census tract\n\n**One-time $49 — instant CSV download. No subscription.**",
+    "price_usd": 49,
+    "tags": ["epa", "environmental", "toxic-release", "TRI", "ESG", "sustainability", "csv", "data"],
+    "listing_url": null
+  },
+  "distribution_queue": {
+    "reddit_targets": [
+      {"sub": "r/environment", "angle": "ESG attorney + compliance consultant"},
+      {"sub": "r/sustainability", "angle": "ESG benchmarking"},
+      {"sub": "r/legal", "angle": "environmental compliance attorney prospect list"}
+    ],
+    "x_angle": "Every US facility reporting toxic chemical releases to the EPA in 2023 — 78K records. Same data as $10K ESG platforms. $49 once. Direct from EPA TRI."
+  }
+}

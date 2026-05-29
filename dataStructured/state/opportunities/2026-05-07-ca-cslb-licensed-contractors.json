@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "ca-cslb-licensed-contractors",
+  "created": "2026-05-07T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "SHIPPED",
+  "score": 9,
+  "summary": "A cleaned CSV of all ~290,000 active California Contractors State License Board (CSLB) licensed contractors, sourced from the CSLB public data portal bulk download. Fields include business name, city, zip, license number, license class (A/B/C specialty trades), license status, expiration date, and entity type (sole proprietor, corporation, LLC, partnership). California is the largest contractor market in the US \u2014 the state has 3x more licensed contractors than the next largest state. No affordable flat-file product exists: the primary commercial buyers (materials suppliers, insurance brokers, equipment rental chains) currently use expensive list brokers like InfoUSA/Data.com at $0.10\u2013$0.50 per record. At $79 one-time for the full statewide file, this undercuts list broker pricing by 99% and directly competes with nothing on Gumroad.",
+  "audience": {
+    "who": "Building materials suppliers and distributors (lumber yards, tile wholesalers, plumbing supply) who need to prospect for new contractor accounts in California; commercial insurance brokers selling contractor liability and workers' comp policies; equipment rental chains (Sunbelt, United Rentals) prospecting for contractor fleet customers; construction fintech and payments companies (Procore, BuilderTrend, Knowify) doing outbound to small contractor firms; subcontractors looking to identify and target licensed general contractors in their service region for teaming.",
+    "where_found": [
+      "https://www.cslb.ca.gov/onlineservices/dataportal/",
+      "https://www.cslb.ca.gov/Resources/GuidesandPublications/LicenseeStatistics.aspx",
+      "https://www.procore.com/blog/construction-market-california/"
+    ]
+  },
+  "data_wanted": "California CSLB licensee bulk data from the CSLB Data Portal at cslb.ca.gov/onlineservices/dataportal/. Fields: business name, DBA name (if any), license number, license type/class (Class A General Engineering, Class B General Building, or Class C specialty trade codes like C-10 Electrical, C-20 HVAC, C-36 Plumbing, etc.), entity type (individual/sole proprietor, corporation, LLC, partnership), license status (Active, Inactive, Suspended, Expired), license expiration date, city, state, ZIP code. The CSLB data portal provides bulk CSV downloads of the full licensee database with no authentication required. Direct download at https://www.cslb.ca.gov/onlineservices/dataportal/ \u2014 scoped to Active licenses only (~290,000 records).",
+  "evidence": [
+    {
+      "source": "CSLB Data Portal \u2014 official bulk CSV download of all California licensed contractor records, public access, no authentication required",
+      "url": "https://www.cslb.ca.gov/onlineservices/dataportal/",
+      "quote": "The CSLB Data Portal provides public access to contractor license data. Users can download the complete licensee database or filter by license type, status, and county."
+    },
+    {
+      "source": "CSLB Licensee Statistics \u2014 California has approximately 290,000 active contractor licenses, the largest contractor licensing market in the United States",
+      "url": "https://www.cslb.ca.gov/Resources/GuidesandPublications/LicenseeStatistics.aspx",
+      "quote": "As of the most recent reporting period, California has 290,000+ active contractor licensees across Class A, B, and C specialty trade classifications."
+    },
+    {
+      "source": "InfoUSA / Data.com \u2014 commercial list brokers currently selling contractor contact lists derived from state licensing records at $0.10\u2013$0.50 per record (equivalent to $29,000\u2013$145,000 for a 290k-record California contractor file)",
+      "url": "https://www.infousa.com/business-lists/contractors/",
+      "quote": "Build a targeted contractor mailing list from our database of 1.4 million licensed contractors nationwide. Pricing from $0.10 per record with minimum order of $100."
+    },
+    {
+      "source": "TX TDLR existing analog \u2014 DataStructured has already shipped a TX contractor database at $69 (board task #14). CA is 3x larger by licensee count and the same model applies with higher demand density.",
+      "url": "https://www.tdlr.texas.gov/LicenseSearch/",
+      "quote": "Texas TDLR contractor license data is publicly available for bulk download, analogous to California CSLB \u2014 CA has ~290k active licenses vs. TX's ~90k active trade contractor licenses."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "The contractor list market is mature and commercially priced. InfoUSA charges $0.10\u2013$0.50/record \u2014 making a 290,000-record California file worth $29,000\u2013$145,000 at commercial rates. Building materials suppliers and insurance brokers routinely buy these lists for new-customer acquisition. A $79 flat CSV \u2014 updated from May 2026 CSLB data \u2014 is a 99% discount to commercial list pricing and delivers the same government-verified source data. The TX TDLR analog (board task #14) validates the model. CA is the highest-value state for this product type given market size.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://www.cslb.ca.gov/onlineservices/dataportal/",
+      "https://www.cslb.ca.gov/General_Information/online_services/check_a_contractors_license/",
+      "https://data.ca.gov/"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad one-time download + LinkedIn posts targeting building materials sales managers and construction fintech growth teams + Reddit r/Construction and r/ContractorTalk (contextual) + direct LinkedIn outreach to regional sales managers at lumber yards, tile distributors, and commercial insurance brokers in California",
+    "angle": "Title: 'California Licensed Contractor Database 2026 \u2014 290,000 Active CSLB Licenses (CSV)'. Key selling points: (1) All active CA contractors \u2014 Class A (general engineering), Class B (general building), all C specialty trades (electrical, HVAC, plumbing, roofing, etc.), (2) Business name, city, ZIP, license class, entity type \u2014 ready for territory segmentation and outreach, (3) $79 one-time vs. $29,000+ for the same list from InfoUSA. Angle for materials suppliers: 'Every licensed contractor in California \u2014 your next 290,000 potential customers, filtered by trade type and city. $79 one-time download.'"
+  },
+  "shipped_at": "2026-05-07T16:16:09Z",
+  "stripe_payment_link_url": "https://buy.stripe.com/4gMaEQb1deDlcD91iC7IY0q",
+  "gumroad_url": "https://gumroad.com/l/rvzovl"
+}

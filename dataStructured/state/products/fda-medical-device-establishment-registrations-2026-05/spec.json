@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "fda-medical-device-establishment-registrations-2026-05",
+  "created": "2026-05-27T14:00:00-04:00",
+  "created_by": "product-manager",
+  "status": "DRAFT_BY_PM",
+  "name": "FDA Medical Device Establishment Database 2026 — 28,000+ US Registered Facilities (CSV)",
+  "summary": "Every FDA-registered medical device establishment in the United States — 28,000+ manufacturers, distributors, importers, and contract sterilizers — extracted from the FDA Device Registration & Listing bulk download on the openFDA portal. Includes establishment name, address, FEI registration number, device classes (I/II/III), product codes, and establishment operations type. The same data MedTechIntelligence charges $2,000–$8,000/year for and Advex Medical sells at $250–$500/month — available as a one-time $69 download.",
+  "format": "one_time",
+  "deliverable": "csv",
+  "price_usd": 69,
+  "bonus_stack": [
+    "Device class breakdown (Class I / II / III) on every row — instantly segment by regulatory risk tier for sales prioritization and compliance targeting",
+    "Establishment operations type (manufacturer, distributor, importer, contract sterilizer, contract manufacturer) — filter your exact prospect profile without manual classification",
+    "FDA product codes mapped to each facility — identify establishments by specific device categories (orthopedic, cardiovascular, in-vitro diagnostics, surgical instruments) for precision territory planning",
+    "FEI registration number and expiration date on every row — verify active registration status and track upcoming renewals for timely outreach",
+    "Full US geographic coverage with city, state, and ZIP — segment by territory, state cluster, or metro area for regional sales campaigns",
+    "openFDA source URL for every record — full audit trail for compliance teams and procurement validation"
+  ],
+  "dataset_file": null,
+  "ethics_ledger": null,
+  "audience": "Medical device sales reps and regional distributors who need affordable territory prospect lists of FDA-registered manufacturers and facilities, replacing $3,000–$6,000/year vendor subscriptions with a single flat-file download they can filter by state, device class, and product code in any CRM or spreadsheet. Medtech startup founders and healthcare venture analysts performing competitive landscape sizing, market entry analysis, and manufacturing partner sourcing who need the complete universe of US device establishments without enterprise SaaS contracts. Hospital group purchasing organizations (GPOs), healthcare compliance software vendors (QMS, MDR, UDI tools), and insurance underwriters writing product liability policies for device manufacturers who require a verified, auditable roster of FDA-registered facilities for supplier evaluation, sales prospecting, and risk assessment.",
+  "format_rationale": "CSV is the universal import format for the three primary buyer workflows: CRM upload (Salesforce, HubSpot, Outreach used by device sales teams and SaaS vendors) for instant territory segmentation by state, device class, and product code; Excel/Google Sheets filtering by establishment operations type for founders doing competitive landscape analysis (e.g., all Class III manufacturers in California, all contract sterilizers in the Midwest); and bulk enrichment pipelines where compliance vendors and GPO procurement teams cross-reference FDA registration numbers against 510(k) clearance databases, UDI registries, or recall history for supplier risk scoring. A static CSV prevents subscription lock-in — buyers pay once and own the complete FDA device establishment universe permanently for their specific use case (territory planning, market sizing, supplier auditing) without monthly refresh fees from incumbents charging $250–$500/month for the same underlying government data.",
+  "pricing_rationale": "$69 creates a 97% discount vs. MedTechIntelligence ($2,000–$8,000/year) and 98% savings vs. Advex Medical ($3,000–$6,000/year at $250–$500/month). For an independent medical device sales rep, one closed deal on a Class II device generates $15,000–$50,000 in commission — a 217×–724× ROI on a $69 database purchase. For a medtech startup founder, replacing one month of Advex Medical ($250 minimum) with this file saves $181 instantly and delivers the identical FDA-source data. For healthcare SaaS vendors (QMS, MDR compliance tools) prospecting device manufacturers, one new enterprise customer at $25,000–$100,000 ACV delivers 362×–1,449× return. Pricing at $69 sits in the impulse-purchase zone for all three buyer segments while signaling completeness (28,000+ establishments, not a sample), and no competing flat-file CSV exists on Gumroad at any price point — the market is entirely enterprise SaaS subscriptions, leaving the one-time download niche completely unoccupied.",
+  "stripe_product_prefix": "dsl_",
+  "channels": ["stripe_payment_link", "gumroad"],
+  "compliance_verdict": "PENDING",
+  "compliance_audited_at": null,
+  "row_count": null,
+  "estimated_row_count": 28000,
+  "source": "FDA openFDA Device Registration & Listing bulk download (open.fda.gov/data/res/) — federal public data under US Government Open Data policy, no authentication required, no scraping, updated quarterly by FDA",
+  "gumroad_listing": {
+    "title": "FDA Medical Device Establishment Database 2026 — 28,000+ US Registered Facilities (CSV)",
+    "description": "Every FDA-registered medical device establishment in the United States — 28,000+ facilities sourced from the official FDA Device Registration & Listing database via the openFDA portal. The same data commercial vendors charge $2,000–$8,000/year for — available as a one-time $69 download.\n\n**What's included:**\n- Establishment name and full address (street, city, state, ZIP)\n- Owner/operator name\n- FDA Establishment Identifier (FEI) registration number\n- Registration expiration date\n- Establishment operations type (manufacturer, distributor, importer, contract sterilizer, contract manufacturer)\n- Proprietary device names listed under each registration\n- Device class (Class I / II / III)\n- FDA product codes\n- Submission type indicators (510(k), PMA, De Novo)\n- openFDA source URL for every record\n\n**Coverage:** 28,000+ FDA-registered domestic device establishments · All 50 states + territories · Manufacturers, distributors, importers, contract sterilizers\n\n**Bonus filters:**\n- Device class (I/II/III) — segment by regulatory risk tier instantly\n- Operations type — isolate manufacturers vs. distributors vs. importers\n- Product codes — filter by specific device categories (orthopedic, cardiovascular, IVD, surgical)\n- Registration expiration — target upcoming renewals for timely outreach\n\n**Who buys this:**\n- Medical device sales reps building territory prospect lists by state and device class\n- Medtech startup founders doing competitive landscape analysis and partner sourcing\n- Hospital GPOs evaluating supplier rosters and device manufacturer coverage\n- Healthcare compliance software vendors (QMS, MDR, UDI tools) prospecting device manufacturer clients\n- Insurance underwriters writing product liability policies for device manufacturers\n- Investment analysts tracking US medical device manufacturing concentration\n\n**Why $69 one-time beats $2,000+ subscriptions:**\n- MedTechIntelligence: $2,000–$8,000/year enterprise SaaS\n- Advex Medical: $250–$500/month ($3,000–$6,000/year)\n- Custom data brokers: $5,000+ per project for the same FDA-source data\n\nYou don't need an enterprise contract. You need the full FDA device establishment universe in a flat file. Here it is. One payment. No recurring fees.\n\n**Data source:** FDA openFDA Device Registration & Listing database — federal open data, public access, no scraping, no auth bypass. Updated from Q2 2026 FDA data.\n\n**Important:** Addresses are business addresses on file with the FDA. No personal home addresses, no SSN, no unlisted contact information. Buyer is responsible for CAN-SPAM/TCPA compliance and must not use for consumer solicitation.",
+    "price": 69,
+    "tags": ["fda", "medical-devices", "manufacturers", "510k", "healthcare", "csv", "b2b", "leads", "compliance", "medtech"]
+  },
+  "pre_ship_requirements": [
+    "Verify total row count is 28,000+ domestic establishments from openFDA bulk download before listing",
+    "Confirm device class (I/II/III) and product code fields have >90% fill rate across all rows",
+    "Gumroad listing must include B2B use disclaimer: buyer responsible for CAN-SPAM/TCPA compliance",
+    "Validate FEI registration numbers are present and properly formatted on every row",
+    "Stripe product name must match: FDA Medical Device Establishment Database 2026"
+  ],
+  "next_steps": [
+    "CEO approval of DRAFT_BY_PM spec → status change to APPROVED_SPEC",
+    "Hand off to data-engineer for harvest from openFDA bulk download endpoint (open.fda.gov/data/res/)",
+    "data-steward cleans, dedupes, normalizes addresses, validates FEI numbers and device class mappings",
+    "compliance-officer audits for PII leakage, source URL verification, and ethics ledger sign-off",
+    "engineer creates Stripe Payment Link + Gumroad listing upon PASS verdict"
+  ]
+}

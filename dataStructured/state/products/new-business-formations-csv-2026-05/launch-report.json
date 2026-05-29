@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "new-business-formations-csv-2026-05",
+  "created": "2026-05-05T11:44:52Z",
+  "created_by": "engineer",
+  "status": "SHIPPED",
+  "summary": "Live on Stripe. Asset hosted on GitHub Gist. Gumroad mirror live. Smoke test green.",
+  "stripe_product_id": "prod_UScdMa7WpaAHrh",
+  "stripe_price_id": "price_1TThOe3H4Cmk8ulCFyrkRXz1",
+  "stripe_payment_link_url": "https://buy.stripe.com/aFaaEQc5h66Pbz5f9s7IY0f",
+  "gumroad_listing_url": "https://3563705146415.gumroad.com/l/pzbfkf",
+  "gumroad_product_id": "pzbfkf",
+  "asset_gist_url": "https://gist.github.com/oghenetejirioefrenterprise/d5cd203cb8c6a9d3417fd515b16dec00",
+  "asset_raw_url": "https://gist.githubusercontent.com/oghenetejirioefrenterprise/d5cd203cb8c6a9d3417fd515b16dec00/raw/new-business-formations-csv-2026-05.csv",
+  "smoke_test": {
+    "passed": true,
+    "checked_at": "2026-05-05T11:44:51Z"
+  },
+  "spec_file": "state/products/new-business-formations-csv-2026-05/spec.json"
+}

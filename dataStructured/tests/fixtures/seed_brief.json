@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "smoke-test-niche",
+  "created": "2026-05-04T13:00:00Z",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 9,
+  "summary": "Smoke test fixture brief.",
+  "audience": {"who": "smoke test buyers", "where_found": ["test"]},
+  "data_wanted": "Synthetic test rows",
+  "evidence": [{"source": "test", "url": "https://example.com/", "quote": "Test signal"}],
+  "willingness_to_pay": {"signal": "$27 mentioned", "confidence": "high"},
+  "source_rights": {"public": true, "examples": ["example.com"]},
+  "first_sale_path": {"channel": "test", "angle": "test"}
+}

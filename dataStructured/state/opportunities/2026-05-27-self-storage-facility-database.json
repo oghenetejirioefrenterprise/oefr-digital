@@ -1,0 +1,29 @@
+{
+  "title": "Self-Storage Facility Owner Database",
+  "slug": "self-storage-facility-database",
+  "score": 8,
+  "demand_signal": "Exceptionally strong with transparent competitor pricing. A dedicated niche vendor (selfstoragefacilitydatabase.com) sells a 50,000+ facility database at $599-$899 — crystal-clear willingness-to-pay signal. USBizData.com also sells a US Self-Storage Database. DatabaseUSA.com offers 'triple verified' self-storage marketing lists. ListSelfStorage.com and SelfStorageDatabase.com are additional niche players. The existence of 3+ domain-specific databases dedicated solely to this vertical confirms deep, sustained demand.",
+  "target_audience": "Self-storage management software companies (SiteLink, storEDGE, Yardi Breeze, Easy Storage Solutions) prospecting facility owners for SaaS adoption; self-storage REIT investors and acquisition teams (Public Storage, Extra Space Storage, CubeSmart, Life Storage) scouting independent facilities for rollup targets; insurance brokers specializing in commercial property and tenant protection for storage facilities; security system vendors (PTI Security, Noke, OpenTech Alliance); moving company partnerships and lead-gen services; self-storage industry consultants and feasibility study firms",
+  "public_data_sources": [
+    "State Secretary of State business registries (storage facility LLCs/corps)",
+    "County tax assessor records (commercial property classifications)",
+    "Google Maps / Google Places API (business category: self_storage)",
+    "Self Storage Association member directory (partial, public-facing)",
+    "City and county business license databases",
+    "SBA business filings mentioning storage facility operations"
+  ],
+  "competitive_landscape": "Niche is remarkably concentrated: selfstoragefacilitydatabase.com dominates at $599-$899 for the full national database. USBizData and DatabaseUSA offer storage lists as part of broader business databases. General B2B providers (BookYourData, ZoomInfo) include storage facilities but don't specialize. No vendor offers affordable state-level CSVs. DataStructured wedge: $49-$99 per state vs. $599-$899 national database — 85-92% cheaper entry point for regional buyers who only need one state.",
+  "monetization_model": "State-level CSVs at $49-$99 each: facility name, address, phone, email, website, estimated unit count, owner/operator name. National bundle at $249 (vs. competitor $599-$899). Target buyers: REIT acquisition analysts (one facility purchase = $1M-$50M deal, making a $99 list trivial), SaaS vendors running state-by-state territory expansion, insurance brokers building regional books of business.",
+  "estimated_market_size": "52,456 self-storage facilities in the US. $47.28B market (2026). Industry highly fragmented: top 6 REITs own only ~25% of facilities, leaving 39,000+ independent/small-operator facilities as the core addressable market. Buyer LTV: Storage management software $50-$500/month ($600-$6,000/year), REIT acquisitions $1M-$50M per deal, insurance premiums $2,000-$20,000/year per facility.",
+  "data_freshness_requirement": "Semi-annual updates. Storage facilities are stable businesses with low turnover (~5-8% annually). New construction pipeline is trackable via county permit records.",
+  "compliance_notes": "PASS potential: Business name, address, phone, and website are publicly available commercial information. Owner names from state business registries are public record. No PII. No consumer data. Source attribution via state registry URLs and public business listings.",
+  "next_steps": [
+    "Harvest Texas and Florida self-storage facilities from state business registries + Google Maps enrichment",
+    "Cross-reference with Self Storage Association member directory for coverage validation",
+    "Build unified schema: facility name, address, phone, email, website, estimated units, owner/operator",
+    "Launch TX and FL as first SKUs at $49 each on Gumroad",
+    "Target r/selfstorage, LinkedIn self-storage investor groups, and Self Storage Association community"
+  ],
+  "research_date": "2026-05-27",
+  "researcher_notes": "This is a textbook DataStructured opportunity. A niche vendor selling the exact product at $599-$899 proves the market exists — and they've built an entire business around just this one dataset. The wedge is obvious: state-level slices at $49-$99 vs. $599-$899 for the full national dump. REIT acquisition teams need only a few states, not 50. SaaS vendors run territory-by-territory expansions. Even the $249 national bundle undercuts by 58-72%. Engineering is moderate: no single federal registry exists, so harvesting requires state business registries + Google Maps enrichment + deduplication. But the payoff is a recurring SKU set (50 states) with proven demand."
+}

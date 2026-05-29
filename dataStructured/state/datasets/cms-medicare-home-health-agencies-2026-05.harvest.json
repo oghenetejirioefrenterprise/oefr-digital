@@ -1,0 +1,46 @@
+{
+  "harvested_by": "data-engineer",
+  "harvested_at": "2026-05-05",
+  "slug": "cms-medicare-home-health-agencies",
+  "output_file": "cms-medicare-home-health-agencies-2026-05.csv",
+  "source": {
+    "name": "CMS Provider Data Catalog — Home Health Care Agencies",
+    "dataset_id": "6jpm-sxkc",
+    "page_url": "https://data.cms.gov/provider-data/dataset/6jpm-sxkc",
+    "download_url": "https://data.cms.gov/provider-data/sites/default/files/resources/f9a309e9463cdf0a7d7828f8d8d0e653_1775505949/HH_Provider_Apr2026.csv",
+    "file_name": "HH_Provider_Apr2026.csv",
+    "as_of_month": "April 2026",
+    "license": "Public domain — U.S. federal government data, no authentication required",
+    "data_dictionary": "https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/home_health/HHS_Data_Dictionary.pdf"
+  },
+  "output_stats": {
+    "total_rows": 12392,
+    "columns": 15,
+    "states_territories_covered": 55,
+    "source_url_on_every_row": true
+  },
+  "column_mapping": {
+    "agency_name":                    "Provider Name",
+    "dba_name":                       "NOT IN SOURCE — CMS HHA dataset does not publish DBA names; column included but empty",
+    "cms_certification_number":       "CMS Certification Number (CCN)",
+    "street_address":                 "Address",
+    "city":                           "City/Town",
+    "state":                          "State",
+    "zip_code":                       "ZIP Code (left-padded to 5 digits; ZIP+4 suffix dropped)",
+    "phone":                          "Telephone Number (formatted as (NXX) NXX-XXXX)",
+    "ownership_type":                 "Type of Ownership (CMS dash sentinel normalized to empty string)",
+    "agency_type":                    "Derived: all records in dataset 6jpm-sxkc are Home Health agencies",
+    "medicare_participation_status":  "Derived: only Medicare-certified agencies are published in this dataset — all set to 'Participating'",
+    "overall_quality_star_rating":    "Quality of patient care star rating (CMS dash sentinel normalized to empty string)",
+    "medicare_certification_date":    "Certification Date — date agency was first certified by Medicare",
+    "date_of_most_recent_inspection": "NOT IN SOURCE — CMS does not publish HHA inspection/survey dates in this dataset; column included but empty",
+    "source_url":                     "Static CMS dataset page URL on every row"
+  },
+  "quality_notes": [
+    "2,037 rows had ownership_type = '-' (CMS not-available sentinel); normalized to empty string",
+    "4,431 rows (35.8%) have no star rating — these are newly certified or low-volume agencies per CMS methodology",
+    "dba_name and date_of_most_recent_inspection are empty for all rows — fields not published by CMS in this dataset",
+    "phone formatting applied: 10-digit to (NXX) NXX-XXXX; 1-prefixed 11-digit also handled",
+    "ZIP codes left-padded to 5 digits to restore leading zeros dropped by spreadsheet tools"
+  ]
+}

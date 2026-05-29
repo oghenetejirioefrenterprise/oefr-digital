@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "fl-alcoholic-beverage-licensees-2026-05",
+  "created": "2026-05-07T04:30:00Z",
+  "created_by": "engineer",
+  "status": "SHIPPING",
+  "name": "Florida Active Alcohol Licensees — Bars, Restaurants & Package Stores — 2026 — 52,152 Records (CSV)",
+  "summary": "Every active Florida alcoholic beverage license for retail venues — 52,152 bars, restaurants, nightclubs, package stores, and specialty retailers. Sourced directly from the Florida DBPR Division of Alcoholic Beverages and Tobacco public records, updated regularly. Filtered to on-premise and off-premise retail licensees only (excludes brand registrations, wholesalers, manufacturers).",
+  "format": "one_time",
+  "deliverable": "csv",
+  "price_usd": 49,
+  "dataset_file": "state/datasets/fl-alcoholic-beverage-licensees-2026-05.retail.csv",
+  "ethics_ledger": "state/datasets/fl-alcoholic-beverage-licensees-2026-05.compliance.json",
+  "audience": "Liquor distributors and sales reps prospecting on-premise accounts; POS system vendors (Toast, Square, SpotOn) targeting hospitality; payment processors targeting bars and restaurants; linen and supply companies; music licensing reps (ASCAP, BMI, SESAC); entertainment and events vendors; insurance brokers selling liquor liability.",
+  "channels": ["stripe_payment_link", "gumroad"],
+  "compliance_verdict": "PASS",
+  "compliance_audited_at": "2026-05-07T03:52:55Z",
+  "row_count": 52152,
+  "source": "Florida DBPR Division of Alcoholic Beverages and Tobacco — public records, no auth required (https://www2.myfloridalicense.com/sto/file_download/extracts/bd400lic.csv)"
+}

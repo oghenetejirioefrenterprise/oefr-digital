@@ -1,0 +1,31 @@
+{
+  "title": "Real-Time AI Company Funding Tracker",
+  "slug": "ai-funding-tracker",
+  "score": 6,
+  "demand_signal": "Massive market: AI startups attract 33% of total VC funding. $56B in April 2026 alone (up 100% YoY). Investors, job seekers, competitors, and media all need real-time funding data. Existing sources: Crunchbase (expensive, generic), Epoch AI (research-focused), Growth List (9,953 companies but not real-time), and scattered news. Gap: Affordable, real-time, AI-specific tracker.",
+  "target_audience": "Angel investors and micro VCs scouting deals, AI startup employees tracking competitor funding for negotiation leverage, business development teams identifying partnership targets, journalists covering AI industry, and sales teams prospecting AI companies",
+  "public_data_sources": [
+    "Crunchbase (limited free tier + news coverage)",
+    "Company press releases on funding rounds",
+    "TechCrunch, VentureBeat, The Information articles",
+    "SEC Form D filings (US companies)",
+    "Y Combinator batch announcements",
+    "Twitter/X announcements from founders and VCs",
+    "LinkedIn company page updates",
+    "AngelList/Wellfound funding data"
+  ],
+  "competitive_landscape": "Crunchbase ($49-99/mo, generic not AI-focused), CB Insights (enterprise-priced), PitchBook (expensive), Tracxn (expensive), Growth List (static database, $79-199 one-time but not updated daily), and AI Funding Tracker (aifundingtracker.com - direct competitor, unclear pricing). Moderate competition but market is huge and fast-moving.",
+  "monetization_model": "Freemium: Free access to funding announcements from past 30 days (limited details). Premium ($19-29/mo) includes full history, founder/investor contact info, email alerts for new rounds, and CSV exports. Enterprise tier ($99/mo) with API access and daily digest emails.",
+  "estimated_market_size": "50K+ active angel investors, 10K+ VC professionals, 200K+ AI startup employees, 5K+ journalists/analysts. TAM for premium tier: $10-15M annually (assuming 1% conversion at $240/year).",
+  "data_freshness_requirement": "CRITICAL: Daily updates minimum. Ideally real-time monitoring of news sources and company announcements. Stale data kills value proposition. Need automated news aggregation + manual verification for accuracy.",
+  "compliance_notes": "PASS potential: All data from public announcements (press releases, news, SEC filings). No insider information. No cap table details unless publicly disclosed. No PII beyond founder names/titles (publicly shared for business purposes). Include source URLs for every funding entry.",
+  "next_steps": [
+    "Build automated news aggregator for AI funding announcements (TechCrunch, VentureBeat, etc.)",
+    "Create initial database: Past 90 days of AI funding rounds (100-200 companies)",
+    "Build simple timeline interface (newest first, filter by stage/amount)",
+    "Test email alert feature with beta users",
+    "Validate pricing: Survey 20-30 target users on willingness to pay"
+  ],
+  "research_date": "2026-05-25",
+  "researcher_notes": "Solid signal but execution-dependent. Success hinges on DATA FRESHNESS and COMPLETENESS. If we can't update daily, don't build this. Key differentiator: AI-ONLY focus means we can go deeper (track pivots, acquihires, down rounds) than generic tools. Consider adding 'dead pool' section (AI startups that shut down) for contrarian investors. Partner with AI-focused newsletters for distribution."
+}

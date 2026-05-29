@@ -1,0 +1,463 @@
+{
+  "jurisdictions": [
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "board_name": "Alabama State Board of Public Accountancy",
+      "url": "https://asbpa.alabama.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "board_name": "Alaska Board of Public Accountancy",
+      "url": "https://www.commerce.alaska.gov/web/cbpl/ProfessionalLicensing/BoardofPublicAccountancy.aspx",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "board_name": "Arizona State Board of Accountancy",
+      "url": "https://www.azaccountancy.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "board_name": "Arkansas State Board of Public Accountancy",
+      "url": "https://www.arkansas.gov/asbpa/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "board_name": "California Board of Accountancy",
+      "url": "https://www.dca.ca.gov/cba/",
+      "search_url": "https://www.dca.ca.gov/cba/consumers/license-lookup.shtml",
+      "data_access_type": "search_only",
+      "notes": "DCA license lookup tool"
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "board_name": "Colorado Board of Accountancy",
+      "url": "https://dora.colorado.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "board_name": "Connecticut State Board of Accountancy",
+      "url": "https://portal.ct.gov/dcp/license-services-division/boards--commissions/state-board-of-accountancy",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "board_name": "Delaware Board of Accountancy",
+      "url": "https://dpr.delaware.gov/boards/accountancy/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "board_name": "DC Board of Accountancy",
+      "url": "https://dcra.dc.gov/service/accountancy-licensure",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "board_name": "Florida Board of Accountancy",
+      "url": "https://floridasaccountancy.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "board_name": "Georgia State Board of Accountancy",
+      "url": "https://gsba.georgia.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "board_name": "Hawaii Board of Public Accountancy",
+      "url": "https://cca.hawaii.gov/pvl/boards/accountancy/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "board_name": "Idaho State Board of Accountancy",
+      "url": "https://isba.idaho.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "board_name": "Illinois Board of Examiners",
+      "url": "https://www.ilboe.org/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "board_name": "Indiana Board of Accountancy",
+      "url": "https://www.in.gov/pla/professions/indiana-board-of-accountancy/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "board_name": "Iowa Accountancy Examining Board",
+      "url": "https://iabd.iowa.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "board_name": "Kansas Board of Accountancy",
+      "url": "https://www.ksboa.ks.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "board_name": "Kentucky State Board of Accountancy",
+      "url": "https://cpa.ky.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "board_name": "Louisiana State Board of CPAs",
+      "url": "https://www.cpaboard.la.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "board_name": "Maine Board of Accountancy",
+      "url": "https://www.maine.gov/pfr/professionallicensing/professions/accountants",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "board_name": "Maryland Board of Public Accountancy",
+      "url": "https://www.dllr.state.md.us/license/cpa/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "board_name": "Massachusetts Board of Public Accountancy",
+      "url": "https://www.mass.gov/orgs/board-of-public-accountancy",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "board_name": "Michigan Board of Accountancy",
+      "url": "https://www.michigan.gov/lara/bureau-list/bpl/occ/prof/accountancy",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "board_name": "Minnesota Board of Accountancy",
+      "url": "https://www.boa.state.mn.us/",
+      "search_url": "https://www.boa.state.mn.us/findCPA.html",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "board_name": "Mississippi State Board of Public Accountancy",
+      "url": "https://www.msbpa.ms.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "board_name": "Missouri State Board of Accountancy",
+      "url": "https://pr.mo.gov/accountancy.asp",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "board_name": "Montana Board of Public Accountants",
+      "url": "https://boards.bsd.dli.mt.gov/pac",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "board_name": "Nebraska Board of Public Accountancy",
+      "url": "https://nbpa.nebraska.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "board_name": "Nevada State Board of Accountancy",
+      "url": "https://www.nvaccountancy.com/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "board_name": "New Hampshire Board of Accountancy",
+      "url": "https://www.oplc.nh.gov/accountancy/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "board_name": "New Jersey State Board of Accountancy",
+      "url": "https://www.njconsumeraffairs.gov/acc/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "board_name": "New Mexico Public Accountancy Board",
+      "url": "https://www.rld.nm.gov/boards-and-commissions/individual-boards-and-commissions/public-accountancy-board/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "board_name": "New York State Board for Public Accountancy",
+      "url": "https://www.op.nysed.gov/professions/certified-public-accountants",
+      "search_url": "https://appext20.dos.ny.gov/lcns_public/lic_name_search_frm",
+      "data_access_type": "search_only",
+      "notes": "NYSED licensee search"
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "board_name": "North Carolina State Board of CPA Examiners",
+      "url": "https://www.nccpaboard.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "board_name": "North Dakota State Board of Accountancy",
+      "url": "https://www.ndsba.nd.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "board_name": "Accountancy Board of Ohio",
+      "url": "https://acc.ohio.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "board_name": "Oklahoma Accountancy Board",
+      "url": "https://www.ok.gov/oab/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "board_name": "Oregon Board of Accountancy",
+      "url": "https://www.oregon.gov/boa/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "board_name": "Pennsylvania State Board of Accountancy",
+      "url": "https://www.dos.pa.gov/ProfessionalLicensing/BoardsCommissions/Accountancy/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "board_name": "Rhode Island Board of Accountancy",
+      "url": "https://health.ri.gov/licenses/detail.php?id=227",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "board_name": "South Carolina Board of Accountancy",
+      "url": "https://www.llr.sc.gov/boa/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "board_name": "South Dakota Board of Accountancy",
+      "url": "https://dlr.sd.gov/bdcomm/accountancy/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "board_name": "Tennessee State Board of Accountancy",
+      "url": "https://www.tn.gov/commerce/regboards/accountancy.html",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "board_name": "Texas State Board of Public Accountancy",
+      "url": "https://www.tsbpa.texas.gov/",
+      "search_url": "https://www.tsbpa.texas.gov/php/fpl/indlookup.php",
+      "data_access_type": "search_only",
+      "notes": "Individual and firm lookup tools"
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "board_name": "Utah Board of Accountancy",
+      "url": "https://dopl.utah.gov/account/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "board_name": "Vermont Board of Public Accountancy",
+      "url": "https://sos.vermont.gov/opr/accountants/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "board_name": "Virginia Board of Accountancy",
+      "url": "https://www.boa.virginia.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "board_name": "Washington State Board of Accountancy",
+      "url": "https://acb.wa.gov/",
+      "search_url": "https://data.wa.gov/d/pqu3-uhwj",
+      "data_access_type": "open_data",
+      "notes": "Washington Open Data portal"
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "board_name": "West Virginia Board of Accountancy",
+      "url": "https://www.wvboa.org/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "board_name": "Wisconsin Accounting Examining Board",
+      "url": "https://dsps.wi.gov/pages/BoardsCouncils/Accounting/Default.aspx",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "board_name": "Wyoming Board of Certified Public Accountants",
+      "url": "https://cpaboard.wyo.gov/",
+      "search_url": "",
+      "data_access_type": "",
+      "notes": ""
+    }
+  ]
+}

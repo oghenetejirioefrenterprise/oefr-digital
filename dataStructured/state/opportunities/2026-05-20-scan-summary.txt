@@ -1,0 +1,68 @@
+# Opportunity Research Scan Summary
+Date: 2026-05-20
+Researcher: opportunity-researcher
+
+## Scan Results: 3 Strong Opportunities (score >= 6)
+
+### 1. Restaurant/Food Establishment Licenses (Score: 8)
+- TAM: 700K+ licensed restaurants nationwide
+- Commercial validation: Avention Media (702K+ contacts), Openmart (500K+), pricing at $0.10-0.30/contact
+- Public data: FL, TX, NY offer downloadable databases
+- B2B buyers: Toast/Square/Clover (400K+ restaurants powered), food distributors, equipment vendors, SaaS platforms
+- Wedge: $149 vs. $5K-$15K/year subscriptions (97%+ discount)
+
+### 2. Cannabis Dispensary/Cultivation Licenses (Score: 7)
+- TAM: 30K-43K licensed cannabis businesses across 38+ legal states
+- Commercial validation: eSalesClub (15K+ contacts, 95% accuracy), CampaignLake, Coldlytics, ContactLists
+- Public data: CA Dept of Cannabis Control (daily updates), 38+ state registries
+- B2B buyers: Dutchie/Flowhub POS (mandatory compliance software at $3.6K-$18K/year), payment processors, insurance brokers, B2B suppliers
+- Smaller TAM offset by ultra-high buyer LTV (mandatory compliance software, $15K-$100K/year payment processing revenue)
+
+### 3. Certified Fitness Professionals/Personal Trainers (Score: 7)
+- TAM: 130K+ in USREPS registry, 384K+ total fitness professionals per BLS
+- Commercial validation: BookYourData (25K+ verified), InfoGlobalData ($0.10-$2.00/contact pricing), 6+ vendors
+- Public data: USREPS public registry (130K+ certified), NASM directory, ACSM profinder
+- B2B buyers: Mindbody/Zen Planner gym software (70K+ businesses), fitness equipment vendors, CE providers (mandatory recertification), insurance brokers
+- Wedge: $149 vs. $13K-$260K for full registry at per-contact pricing (87×-1,745× cost advantage)
+
+## Opportunities Evaluated But Below Threshold (score < 6)
+
+### Dog Groomers/Pet Services (Score: 4)
+- Rejected: No standardized licensing requirement in most states
+- Limited public data availability
+- Voluntary certifications only
+
+### Music Teachers/Private Tutors (Score: 4)
+- Rejected: No state licensing requirement for private music instruction
+- Only voluntary directory listings
+- No centralized public registry
+
+### Event Venues/Wedding Venues (Score: 4-5)
+- Rejected: Business permits, not professional licenses
+- No standardized public registry across states
+- Commercial directories (The Knot, WeddingWire) not public data
+
+### Yacht Brokers/Marina Operators (Score: 5-6)
+- Borderline: FL and CA have public registries
+- Rejected: Very small TAM (niche luxury market)
+- No commercial vendor pricing validation found
+
+### Gym/Fitness Centers as Businesses (Score: 6)
+- Borderline: Commercial vendors exist at $0.10-$2.00/contact
+- Rejected: Businesses rather than licensed professionals
+- Public data less standardized (some state health club registration, not universal)
+- Chose certified trainers (professionals) over facilities
+
+## Research Methodology
+- Web search for commercial database vendors (validates demand)
+- Public data source identification (state/federal registries)
+- B2B buyer segment analysis (who pays for this data and why)
+- TAM estimation (addressable market size)
+- Pricing validation (willingness-to-pay evidence)
+- Competitive gap analysis (is there a low-cost alternative?)
+
+## Next Steps
+All three opportunity briefs (score >= 6) forwarded to CEO for approval and data-engineer assignment.
+
+---
+End of 2026-05-20 scan

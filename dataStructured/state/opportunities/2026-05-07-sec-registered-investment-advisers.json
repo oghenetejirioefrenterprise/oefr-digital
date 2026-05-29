@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "sec-registered-investment-advisers",
+  "created": "2026-05-07T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "SHIPPED",
+  "score": 9,
+  "summary": "A clean, enriched CSV of all ~15,870 SEC-registered investment adviser (RIA) firms extracted from the SEC IAPD bulk data, including firm name, city, state, AUM, employee count, client count, website, phone, custodians, and fee structure \u2014 sourced entirely from Form ADV public filings with no auth required. Target buyers are asset managers, ETF issuers, wealthtech SaaS vendors, recruiters, and compliance software companies who currently pay $5,000\u2013$20,000/year for the same underlying data from platforms like AdvizorPro, RIA Database, and FINTRX. A one-time flat-file download on Gumroad at $49\u2013$99 undercuts all incumbents while delivering the same government-sourced intelligence.",
+  "audience": {
+    "who": "Primary buyers are B2B sales and distribution teams at asset managers, ETF sponsors, and fund companies trying to reach RIA gatekeepers; wealthtech SaaS companies (portfolio management, CRM, compliance tools) prospecting for new firm clients; third-party investment recruiters and talent agencies hunting for breakaway adviser targets; and boutique M&A advisers tracking the RIA consolidation wave. All of these segments currently pay four-to-five figures per year for enterprise platforms that wrap the same SEC public data.",
+    "where_found": [
+      "https://advizorpro.com/post/best-ria-databases",
+      "https://www.fintrx.com/data/registered-investment-advisor-database",
+      "https://www.riadatabase.com/"
+    ]
+  },
+  "data_wanted": "Form ADV Part 1 bulk data from the SEC Investment Adviser Public Disclosure (IAPD) system. Fields include: firm name (Item 1A), CRD number, main office address (city, state, ZIP), phone number, website URL, total AUM under management (Item 5F), number of employees (Item 5B), number of clients (Item 5D), client types served, fee schedule type (hourly/AUM/flat), custodians used, registration status (SEC vs. state), and disclosure/disciplinary history flag. Data is published as monthly ZIP/CSV archives and Excel files with no authentication required. Download page: https://catalog.data.gov/dataset/information-about-registered-investment-advisers-and-exempt-reporting-advisers and direct IAPD compilation page: https://adviserinfo.sec.gov/compilation. Historical CSV files also accessible at https://adviserinfo.sec.gov/adv. No login, API key, or payment required.",
+  "evidence": [
+    {
+      "source": "AdvizorPro pricing research via Prospeo review aggregator",
+      "url": "https://prospeo.io/s/advizorpro-pricing-reviews-pros-and-cons",
+      "quote": "AdvizorPro pricing is approximately $5,000\u2013$20,000 per year, depending on seat count, modules, and data delivery options. Price emerged as the primary complaint across the platform's 12 G2 reviews."
+    },
+    {
+      "source": "RIA Database commercial platform overview",
+      "url": "https://www.riadatabase.com/",
+      "quote": "40,000+ registered investment adviser firms, 500,000+ individual contacts, 200,000+ email addresses, 200+ searchable fields on firms and advisers. More than 600 financial institutions rely on RIA Database to identify and reach ideal prospects."
+    },
+    {
+      "source": "SEC Investment Adviser Statistics \u2014 2024 annual count",
+      "url": "https://www.sec.gov/data-research/statistics-data-visualizations/investment-adviser-statistics",
+      "quote": "The number of SEC-registered advisors rose 3.1% to 15,870 in 2024. Total investment advisers including state-registered reached 20,483."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "The commercial RIA data market is mature and enterprise-priced: AdvizorPro runs $5K\u2013$20K/year, FINTRX and RIA Database are also custom-quote enterprise tools, and more than 600 financial institutions pay ongoing fees for this data. The underlying source is entirely free and public from the SEC. A $49\u2013$99 one-time Gumroad flat file undercuts every incumbent by 98%+ and serves the long tail of smaller wealthtech startups, independent recruiters, and boutique asset managers who cannot justify enterprise SaaS contracts. Dakota FAs, the most transparently priced alternative, starts at $999/year \u2014 still 10x the proposed price point.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://catalog.data.gov/dataset/information-about-registered-investment-advisers-and-exempt-reporting-advisers",
+      "https://adviserinfo.sec.gov/compilation"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad one-time download listing + LinkedIn posts targeting ETF distribution professionals and wealthtech founders + r/financialindependence and r/investing subreddits (contextual, non-spam mentions) + cold outreach to wealthtech startup founders via LinkedIn Sales Navigator filtered to Series A/B stage",
+    "angle": "Title: 'Complete SEC RIA Database 2026 \u2014 15,800+ Registered Investment Adviser Firms (CSV)'. Key selling points: (1) Direct from SEC Form ADV \u2014 the exact same data behind $10K/year tools like AdvizorPro, (2) Includes firm name, AUM, employee count, city/state, website, phone, client types, fee structure, custodians \u2014 200+ fields, (3) Instant CSV download, no subscription, no login, updated from May 2026 SEC filing data. Price: $79 one-time. Distinction: only flat-file product on Gumroad covering the full SEC RIA universe \u2014 all competitors require annual enterprise contracts."
+  },
+  "shipped_at": "2026-05-07T23:25:27Z",
+  "shipped_slug": "sec-registered-investment-advisers-2026-05"
+}

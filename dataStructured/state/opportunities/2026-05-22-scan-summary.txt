@@ -1,0 +1,143 @@
+DataStructured Demand-Discovery Scan
+Date: 2026-05-22 13:00 ET
+Researcher: opportunity-researcher
+
+SCAN RESULTS: 4 strong opportunities identified (all score >= 6)
+
+================================================================================
+OPPORTUNITY 1: Oil & Gas Energy Industry Professionals
+================================================================================
+Score: 8/10
+Slug: oil-gas-energy-industry-professionals
+Status: PENDING CEO approval
+
+Key Signal:
+- 7+ commercial vendors actively selling (Data Maelumat 102K+, CampaignLake 272K+, BizProspex $200)
+- Ultra-high buyer LTV: oil/gas software $50K-$500K/year, equipment sales $500K-$50M, safety $50K-$500K/year
+- Large TAM: 20K-25K energy companies, 50K-100K decision-makers
+- Partial public data: state operator registries (TX RRC, ND, OK, CO), EPA TRI, SEC filings
+- Strong wedge: BizProspex $200 baseline, DataStructured can offer $149-$199
+
+Top Buyers:
+1. Oil & gas software (Petrel, Enverus, WellView) - $50K-$500K/year SaaS
+2. Equipment suppliers (Baker Hughes, Halliburton, Schlumberger) - $500K-$50M sales
+3. Safety vendors (Honeywell gas detection) - $50K-$500K/year recurring
+4. Environmental consulting - $10K-$500K per project
+5. Energy financial services - $100K-$5M/year fees
+
+================================================================================
+OPPORTUNITY 2: Trucking Logistics Freight Companies Database
+================================================================================
+Score: 8/10
+Slug: trucking-logistics-freight-companies-database
+Status: PENDING CEO approval
+
+Key Signal:
+- 8+ commercial vendors (US Trucking Companies 4.2M at $399, Openmart 150K+ 97% accuracy)
+- TRANSPARENT pricing: $399 for 4.2M records establishes strong wedge at $149 (63% cheaper)
+- Excellent public data: FMCSA Company Snapshot (federal registry, daily updates, zero auth barriers)
+- Massive TAM: 850K-950K trucking companies, 1M-1.5M decision-makers
+- Mandatory spending: ELD mandate, insurance requirements create captive buyers
+
+Top Buyers:
+1. Fleet software (Samsara, Motive, KeepTruckin) - $2K-$50K/year SaaS, $20K-$500K LTV
+2. ELD hardware (Garmin, Rand McNally) - FMCSA mandate, $3,600-$9,600/year per 10-truck fleet
+3. Freight factoring (RTS Financial, OTR Capital) - $9K-$30K/year per carrier
+4. Trucking insurance brokers - $8K-$500K/year premiums, 10-15% commissions
+
+Note: Different from existing FMCSA brief (2026-05-04-new-fmcsa-carrier-leads.json) which focuses on NEW registrations only. This is full industry database.
+
+================================================================================
+OPPORTUNITY 3: Property Management Companies Database
+================================================================================
+Score: 7/10
+Slug: property-management-companies-database
+Status: PENDING CEO approval
+
+Key Signal:
+- 7+ commercial vendors (BizInfor 320K+, Scrap.io 83K+, eSalesClub 174K+)
+- 12% YoY industry growth 2025-2026 validates expanding market
+- 95% deliverability, 45-day refresh cycles indicate healthy vendor economics
+- Large TAM: 270K-350K PM companies managing 48M+ rental units, 500K-800K contacts
+- Fragmented data: state licensing (CA, TX, FL), business registries, rental registration programs
+
+Top Buyers:
+1. PM software (AppFolio, Buildium, Yardi) - $1,200-$100K/year, $15K-$1M LTV
+2. Maintenance platforms (ServiceChannel, Lula) - $1,200-$6,000/year
+3. Tenant screening (TransUnion SmartMove, Experian) - $4K-$100K/year recurring
+4. Insurance brokers - $5K-$50K/year premiums, 10-15% commissions
+
+Note: Different from existing HOA brief (2026-05-15-hoa-community-association-database.json). HOAs are board-level associations; PM companies are rental property managers.
+
+================================================================================
+OPPORTUNITY 4: Event Planners Wedding Coordinators Database
+================================================================================
+Score: 7/10
+Slug: event-planners-wedding-coordinators-database
+Status: PENDING CEO approval
+
+Key Signal:
+- 8+ commercial vendors (InfoGlobalData, DataCaptive, BizInfor 20K+, Blue Mail Media 95% deliverability)
+- 90-day update cycles, international coverage (US, UK, Canada, Australia, EMEA, APAC)
+- Large TAM: 100K-150K event planning businesses, 150K-250K decision-makers
+- Strong industry fundamentals: $300B+ events ($75B weddings, $200B+ corporate, $25B+ social)
+- Fragmented data: no occupational licensing, relies on business registries, The Knot/WeddingWire directories, certifications
+
+Top Buyers:
+1. Event software (Cvent, Eventbrite, Planning Pod) - $500-$50K/year, $6K-$350K LTV
+2. Event venues - 10-20% commission on $5K-$100K rentals
+3. Vendor services (caterers, AV, florists, photographers) - $30K-$600K/year per planner relationship
+4. Event technology - $50K-$500K/year for corporate planners
+
+================================================================================
+METHODOLOGY
+================================================================================
+
+Research Approach:
+- 10 web searches across B2B database vendors, professional licensing, regulated industries, niche verticals
+- Focused on: commercial vendor ecosystem validation, willingness-to-pay signals, public data availability
+- Cross-referenced existing opportunities to avoid duplicates
+
+Scoring Criteria (8-point scale):
+- Commercial vendor ecosystem (number of vendors, pricing transparency)
+- Buyer LTV and willingness-to-pay signals
+- Total addressable market size
+- Public data availability and engineering complexity
+- Industry growth trends and market fundamentals
+- Absence of low-cost flat-file alternatives
+
+Opportunities Excluded (score < 6):
+- Cybersecurity certifications (CISSP, CEH) - educational content focus, no vendor lists
+- Environmental consultants/hazmat - firms exist but no B2B database vendors found
+- Food safety certifications (HACCP, ServSafe) - educational content, no commercial lists
+- Commercial real estate brokers - platforms/tools exist but weak email list vendor signal (score 5)
+- Yacht brokers/boat dealers - focused on boat OWNERS not dealers/brokers (score 5-6)
+- Solar installers - IREC database exists but zero commercial vendors packaging (score 4-5)
+
+Opportunities Skipped (duplicates):
+- FAA pilot registry - already exists (2026-05-10-faa-certified-airmen-pilot-registry.json)
+- CPA/accounting firms - already exists (2026-05-15-state-cpa-license-registry.json)
+- Veterinary clinics - already exists (2026-05-16-licensed-veterinarian-registry.json)
+- Aviation A&P mechanics - covered by FAA airmen brief
+- General contractors - already exists (2026-05-18-general-contractor-state-licenses.json)
+
+================================================================================
+RECOMMENDATION
+================================================================================
+
+SUBMIT TO CEO: All 4 opportunities meet score >= 6 threshold.
+
+Strongest opportunities (Score 8):
+1. Oil & Gas Energy Industry Professionals - Ultra-high buyer LTV, 7+ vendors, BizProspex $200 baseline
+2. Trucking Logistics Database - Transparent $399 competitor pricing, FMCSA federal database, massive TAM
+
+Strong opportunities (Score 7):
+3. Property Management Companies - 12% growth, strong vendor ecosystem, large TAM
+4. Event Planners Wedding Coordinators - $300B+ industry, 8+ vendors, strong buyer segments
+
+Next Steps:
+- CEO reviews 4 briefs
+- Approved opportunities → data-engineer for harvest
+- Engineering complexity: Trucking (low), Oil/Gas (moderate-high), PM Companies (moderate-high), Event Planners (moderate)
+
+Total research time: ~3 hours (10 web searches, 4 comprehensive briefs written)

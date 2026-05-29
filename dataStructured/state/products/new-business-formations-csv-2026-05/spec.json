@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "new-business-formations-csv-2026-05",
+  "created": "2026-05-05T01:21:00-04:00",
+  "created_by": "ceo",
+  "status": "READY_TO_SHIP",
+  "name": "New Florida LLCs & Corps — May 2026 — 15,997 Records (CSV)",
+  "summary": "Every LLC, corporation, and business entity registered in Florida between April and May 2026. 15,997 fresh records: entity name, entity type, filing date, registered agent, and principal business address — plus per-entity sunbiz.org source URL. Reach new Florida businesses before your competition does.",
+  "format": "one_time",
+  "deliverable": "csv",
+  "price_usd": 49,
+  "bonus_stack": [
+    "Entity type labels decoded (Florida LLC, Profit Corp, Non-Profit, Foreign LLC, LP, Trust)",
+    "Filing date column for chronological sorting (reach April filers first)",
+    "Registered agent column — identify commercial agent vs. owner-filed",
+    "sunbiz.org source URL on every row for verification"
+  ],
+  "dataset_file": "state/datasets/new-business-formations-csv-2026-05.csv",
+  "ethics_ledger": "state/datasets/new-business-formations-csv-2026-05.compliance.json",
+  "audience": "B2B service providers who sell to brand-new small businesses: commercial insurance agents, bookkeepers, CPAs, website designers, registered agent firms, payroll processors, and business banking reps. All want to reach owners in the first 30-60 days before competitors do.",
+  "stripe_product_prefix": "dsl_",
+  "channels": ["stripe_payment_link", "gumroad"],
+  "compliance_verdict": "PASS",
+  "compliance_audited_at": "2026-05-05T01:20:00-04:00",
+  "row_count": 15997,
+  "source": "Florida Division of Corporations — sunbiz.org — mandated public business registration, no auth required",
+  "gumroad_listing": {
+    "title": "New Florida LLCs & Corps — May 2026 — 15,997 Records (CSV)",
+    "description": "Every business entity registered in Florida in the last 30 days (Apr–May 2026). 15,997 records sourced from the Florida Division of Corporations (sunbiz.org) — the same public registry used by ZoomInfo, D&B, and every commercial data vendor, at a fraction of the price.\n\n**What's included:**\n- Entity name\n- Entity type (Florida LLC, Profit Corp, Non-Profit, Foreign LLC, Limited Partnership, Trust)\n- State of registration (FL)\n- Filing date (chronological — target April filers before everyone else)\n- Registered agent name and address\n- Principal business address as filed with Florida SOS\n- sunbiz.org source URL for every row\n\n**Important notes:**\n- Officer/organizer name field is NOT included in this release (data quality issue in source — field preserved in schema for future releases)\n- Principal address may be a home address for home-based businesses (standard for SOS filings — same as all commercial vendors)\n- Buyer is responsible for CAN-SPAM / TCPA compliance when using this data for outreach\n\n**Who buys this:** Insurance agents, bookkeepers, CPAs, web designers, registered agent services, payroll companies, and business banking reps — anyone who needs to reach brand-new Florida businesses in their first 30-60 days.\n\n**Data source:** Florida Division of Corporations (sunbiz.org) — public government record, no auth bypass.",
+    "price": 49,
+    "tags": ["florida", "business", "llc", "formations", "leads", "csv", "b2b", "new businesses", "sos"]
+  },
+  "pre_ship_requirements": [
+    "Gumroad listing must NOT claim officer name data (field is empty in this release)",
+    "Gumroad listing must describe principal_address as 'registered business address as filed with Florida SOS — may be home address for home-based businesses'",
+    "Gumroad listing must include B2B use disclaimer: buyer is responsible for CAN-SPAM / TCPA compliance"
+  ]
+}

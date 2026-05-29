@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "type": "harvest_report",
+  "slug": "ttb-brewery-winery-distillery-directory",
+  "harvested_at": "2026-05-18T23:05:19.539014Z",
+  "source_url": "https://www.ttb.gov/public-information/foia/list-of-permittees",
+  "permit_types": [
+    {
+      "permit_type": "Wine Producer/Blender",
+      "url": "https://www.ttb.gov/system/files/2025-04/FRL_Wine_Producer_and_Blender_Permit_List.csv",
+      "row_count": 17985
+    },
+    {
+      "permit_type": "Distilled Spirits Producer/Bottler",
+      "url": "https://www.ttb.gov/system/files/2025-04/FRL_Spirits_Producers_and_Bottlers_List.csv",
+      "row_count": 5456
+    },
+    {
+      "permit_type": "Alcohol Importer",
+      "url": "https://www.ttb.gov/system/files/2025-04/FRL_Alcohol_Importer_Permit_List.csv",
+      "row_count": 21004
+    },
+    {
+      "permit_type": "Alcohol Wholesaler",
+      "url": "https://www.ttb.gov/system/files/2025-04/FRL_Alcohol_Wholesaler_Permit_List.csv",
+      "row_count": 38079
+    }
+  ],
+  "row_count": 82524,
+  "columns": [
+    "permit_number",
+    "permit_type",
+    "owner_name",
+    "operating_name",
+    "street_address",
+    "city",
+    "state",
+    "zip_code",
+    "county",
+    "new_permit_flag",
+    "source_url",
+    "source_fetched_at"
+  ],
+  "status": "SUCCESS",
+  "notes": "Combined TTB Federal Register List (FRL) permit data: Wine Producers/Blenders, Distilled Spirits Plants, Basic Permit Importers, and Basic Permit Wholesalers. NOTE: Brewery registrations are classified as tax return information under IRC Section 6103 and are NOT included in TTB's public list. All data is publicly downloadable with no authentication required. Updated weekly by TTB."
+}

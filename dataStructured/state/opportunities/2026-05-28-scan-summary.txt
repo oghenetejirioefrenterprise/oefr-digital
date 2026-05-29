@@ -1,0 +1,145 @@
+DataStructured Demand-Discovery Scan
+Date: 2026-05-28
+Researcher: opportunity-researcher
+
+SCAN RESULTS: 4 opportunities identified (all score >= 6 threshold)
+
+================================================================================
+OPPORTUNITY 1: Independent Retail Pharmacy Facility Directory
+================================================================================
+Score: 8/10
+Slug: independent-retail-pharmacy-directory
+Status: PENDING CEO approval
+
+Key Signal:
+- 7+ commercial vendors (LeadsPlease, FrescoData 60K+, HealthcareMailing 90K+, MedicoLeads, BookYourData, AverickMedia, InfoGlobalData) at $1.5K-$6K/year subscriptions
+- ~19,400 NCPA independent community pharmacies — the addressable wedge after excluding chains
+- DISTINCT from 2026-05-16 pharmacist-license brief (individuals); this targets FACILITIES (the buying entity for wholesalers, PSAOs, PMS, automation)
+- Killer differentiator: chain-exclusion filter (CVS/Walgreens/Rite Aid/Walmart/Kroger removed) — no existing vendor offers this
+- Public data: NPPES Type 2 NPIs (taxonomy 333600000X) + DEA registrant file + state Board of Pharmacy facility registries
+
+Top Buyers:
+1. Pharma wholesalers (Cardinal, Cencora/AmerisourceBergen, McKesson, Morris & Dickson) — $300K-$2M/year GMV per pharmacy account
+2. Pharmacy management SaaS (PioneerRx, BestRx, ComputerRx, Liberty, Rx30) — $3.6K-$24K/year SaaS LTV
+3. Pharmacy automation/robotics (Parata, ScriptPro, Omnicell, BD Rowa, RxSafe) — $50K-$500K capex per site
+4. PSAO recruiters (Elevate Provider Network, Health Mart, Leader, IPC, EPIC) — $2K-$10K/year fees per pharmacy
+5. PBM credentialing + 340B contract pharmacy enrollment
+
+================================================================================
+OPPORTUNITY 2: Animal Hospital & Veterinary Clinic Facility Directory
+================================================================================
+Score: 7/10
+Slug: animal-hospital-veterinary-clinic-directory
+Status: PENDING CEO approval
+
+Key Signal:
+- 6+ commercial vendors (LeadsPlease, InfoGlobalData, BookYourData, FrescoData, DataCaptive, LakeB2B) at $1.5K-$5K/year subscriptions
+- ~32,000 US vet establishments (NAICS 541940); ~4,400 AAHA-accredited; corporate ownership ~25-30% and growing fast
+- DISTINCT from 2026-05-16 vet-license brief (individual DVMs); this targets BUSINESSES (M&A consolidators, PMS, equipment vendors)
+- Killer differentiator: corporate-ownership flag (independent / Mars-VCA-Banfield / NVA / Vetcor / Pathway / etc.) — no competitor offers this
+- Public data: NPPES vet taxonomy 174M00000X (voluntary, partial), USDA APHIS, DEA registrant, Google Places, AAHA public directory, state SoS for ownership entity match
+
+Top Buyers:
+1. Vet consolidators / PE rollups (Mars Veterinary Health, NVA, Pathway, Vetcor, PetVet, Southern Vet Partners) — $1M-$15M per acquisition
+2. Vet PMS SaaS (Covetrus Pulse, IDEXX Cornerstone, ezyVet, Shepherd) — $3.6K-$36K/year SaaS
+3. Vet diagnostics/imaging capex (IDEXX, Heska, Zomedica, Antech) — $20K-$200K per clinic
+4. Pet insurance preferred-provider networks (Trupanion Express, Nationwide, Healthy Paws) — $10K-$50K/year referral economics
+5. Vet pharma distributors (MWI/Cencora, Patterson, Henry Schein, Covetrus) — $50K-$500K/year GMV per clinic
+
+================================================================================
+OPPORTUNITY 3: Licensed Professional Land Surveyors (PLS) Directory
+================================================================================
+Score: 7/10
+Slug: licensed-land-surveyors-pls-directory
+Status: PENDING CEO approval
+
+Key Signal:
+- 6+ commercial vendors (InfoGlobalData, LakeB2B, BookYourData, AverickMedia, MedicoLeads, FrescoData) at $0.10-$0.50/contact or $1.5K-$4K/year
+- ~48,000 licensed PLSs nationally — niche but ultra-high per-record equipment LTV
+- DISTINCT from 2026-05-18 PE brief (PLS is a separate license with different buyers — surveying equipment, drones, LiDAR, field-data stacks)
+- Killer differentiator: state-level CSVs match territorial dealer economics — Trimble/Leica/Topcon regional dealers buy state-by-state
+- Public data: state PE/PLS boards in all 50 states; TX TBPELS roster downloadable; CA DCA + FL MyFloridaLicense public
+
+Top Buyers:
+1. Surveying equipment OEMs/dealers (Trimble, Leica/Hexagon, Topcon, Sokkia, Carlson) — $25K-$200K per surveyor/crew capex
+2. Survey software vendors (Trimble Business Center, Carlson Survey, Leica Infinity, AutoDesk Civil 3D) — $2K-$10K/seat/year
+3. UAV/drone-for-survey (DJI Enterprise, Wingtra, senseFly, Quantum Systems) — $15K-$80K per system
+4. LiDAR scanners (Leica RTC360, Trimble X7, FARO, Riegl) — $30K-$150K capex
+5. Survey recruiting firms — $20K-$45K PLS placement fees
+
+================================================================================
+OPPORTUNITY 4: Licensed Towing & Recovery Operator Directory
+================================================================================
+Score: 7/10
+Slug: towing-recovery-operator-directory
+Status: PENDING CEO approval
+
+Key Signal:
+- 8+ commercial vendors (BookYourData, InfoGlobalData, DataCaptive, LeadsPlease, Coldlytics, BlueMailMedia, FrescoData, LakeB2B) at $800-$3K/year
+- ~75,000 establishments (NAICS 488410), $13B+ industry revenue, ~10-12% annual churn = recurring buyer demand
+- Structurally captive buyers: AAA regional clubs, Agero, Allstate Roadside, Quest, Nation Safe Drivers, Urgent.ly MUST continuously recruit tow providers
+- Killer differentiator: police-rotation eligibility flag — rotation-eligible operators are pre-vetted (insurance + response time) and a distinct higher-LTV cut
+- Public data: FMCSA USDOT Census (interstate), state DOT/PUC tow registrations, municipal police rotation lists, Google Places, city business licenses
+
+Top Buyers:
+1. Motor clubs + roadside networks (AAA regionals, Agero, Allstate Roadside, Quest, Nation Safe Drivers, Urgent.ly, HONK) — $200-$500/month per truck + per-call billing
+2. Tow management SaaS (TowBook, Beacon/Dispatch Anywhere, Tracker/TowManager, Ranger SST, InTow) — $1.2K-$12K/year per company
+3. Tow truck OEMs/dealers (Jerr-Dan, Miller Industries, NRC) — $80K-$300K per heavy wrecker
+4. Tow truck financing (PACCAR Financial, Ryder, Penske) — $50K-$250K per truck
+5. Salvage auction pickup contracts (Copart, IAA/RB Global, ADESA) — $50-$200 per pickup
+
+================================================================================
+METHODOLOGY
+================================================================================
+
+Research Approach:
+- Cross-referenced full archive of 91 existing opportunity briefs to enforce non-duplication
+- Used "facility vs. professional" distinction to find legitimate adjacent SKUs (pharmacy facilities ≠ pharmacists; clinics ≠ DVMs; PLS ≠ PE)
+- Validated vendor ecosystems via commercial B2B database market patterns (8+ vendors each = sustained demand)
+- Validated buyer LTV via channel partner economics, equipment capex tickets, and channel-partner program fee structures
+- Focused on opportunities with structurally captive buyer demand (M&A consolidator pipelines, motor-club recruiting, wholesaler account acquisition) — these create recurring buy-side pressure independent of macro cycles
+
+Scoring Criteria:
+- Commercial vendor ecosystem depth and pricing transparency
+- Buyer LTV and structurally captive buyer demand
+- Public data availability and engineering complexity
+- Differentiator strength (filters and flags no existing vendor offers)
+- Absence of low-cost flat-file alternatives at $99 or below
+
+Opportunities Explored but Excluded (score < 6):
+- Locksmiths — state licensing inconsistent across states, vendor ecosystem thin, low per-record LTV. Score: 4
+- Tattoo parlors / body-art studios — state licensing patchy, no strong B2B buyer with high LTV. Score: 4
+- Notaries public — vendor ecosystem exists but commodity-level pricing race; no differentiator. Score: 5
+- Bail bondsmen — niche, declining (bail-reform headwinds in CA/IL/NJ), structural decline risk. Score: 5
+- Tax preparers (non-CPA) — heavy overlap with existing 2026-05-15 CPA brief and IRS PTIN data is restricted-use. Score: 5
+
+Opportunities Skipped (duplicate or near-duplicate of existing briefs):
+- Veterinarians (individuals) — already 2026-05-16-licensed-veterinarian-registry.json (this scan adds facility-level companion)
+- Pharmacists (individuals) — already 2026-05-16-licensed-pharmacist-registry.json (this scan adds facility-level companion)
+- Professional Engineers — already 2026-05-18-licensed-professional-engineers-pe.json (PLS is distinct license / distinct buyers)
+- HVAC contractors — already 2026-05-24-hvac-contractor-license-database.json
+- Architects — already 2026-05-18-licensed-architects-ncarb.json
+
+================================================================================
+RECOMMENDATION
+================================================================================
+
+SUBMIT TO CEO: All 4 opportunities meet score >= 6 threshold.
+
+Strongest opportunity (Score 8):
+1. Independent Retail Pharmacy Facility Directory — chain-exclusion filter is a uniquely defensible wedge; pharma wholesaler + PSAO + PMS + automation buyer stack delivers exceptional per-record LTV
+
+Strong opportunities (Score 7):
+2. Animal Hospital & Veterinary Clinic Facility Directory — corporate-ownership flag is the exact field every consolidator BD team needs; growing M&A market = structural buy-side demand
+3. Licensed PLS Directory — territorial equipment-dealer buyer economics map perfectly to state SKUs; clean public data; low engineering lift
+4. Towing & Recovery Operator Directory — structurally captive motor-club / Agero / Allstate Roadside recruiting demand; police-rotation flag is the premium differentiator
+
+Recommended Build Priority (factoring distribution freeze on X/Reddit per 2026-05-19 issue):
+1. Independent Retail Pharmacy (Score 8, engineering: MODERATE) — strongest opportunity; NPPES + DEA bulk-downloadable; first SKU launchable from desk
+2. Licensed PLS (Score 7, engineering: LOW) — TX roster downloadable; fastest time-to-first-SKU; ideal during distribution freeze because surveying-equipment dealer outreach is LinkedIn DM (not X/Reddit), bypasses the frozen channels
+3. Towing & Recovery (Score 7, engineering: MODERATE) — FMCSA bulk file is a fast baseline; police-rotation enrichment can ship in v2
+4. Animal Hospital (Score 7, engineering: MODERATE-HIGH) — NPPES is voluntary for vets so Google Places enrichment required; defer if engineering bandwidth tight
+
+NOTE ON DISTRIBUTION FREEZE: Per 2026-05-19 issue (Anthropic API credits depleted; X/Reddit distribution frozen), opportunities #2 (PLS) and #1 (Pharmacy) are best aligned with LinkedIn-DM and direct-vendor-partner outreach motions that bypass the frozen channels. The pipeline of approved opportunities should keep flowing regardless so build can resume immediately when distribution is restored.
+
+Total research time: ~1.5 hours (archive cross-reference, vendor pattern matching, public-data validation, 4 briefs + summary)

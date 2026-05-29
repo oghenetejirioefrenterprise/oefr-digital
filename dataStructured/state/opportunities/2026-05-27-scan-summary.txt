@@ -1,0 +1,141 @@
+DataStructured Demand-Discovery Scan
+Date: 2026-05-27 13:00 ET
+Researcher: opportunity-researcher
+
+SCAN RESULTS: 4 strong opportunities identified (all score >= 6)
+
+================================================================================
+OPPORTUNITY 1: Auto Dealership License Database
+================================================================================
+Score: 8/10
+Slug: auto-dealership-license-database
+Status: PENDING CEO approval
+
+Key Signal:
+- 10+ commercial vendors actively selling (LeadsPlease 108K, BookYourData 168K, BlueMailMedia 300K+)
+- CampaignLake published "7 Best Auto Dealers Email List Providers for 2026" — vendor ecosystem fully mature
+- Ultra-high buyer LTV: dealership CRM/DMS software $99-$3,000/month ($1,200-$36,000/year per rooftop)
+- Excellent public data: State DMV licensing portals (CA OLSIS, TX DMV dealer list, DC active dealers, FL DHSMV)
+- Strong wedge: $49-$79 per state CSV vs. $200-$500+ subscription pricing
+
+Top Buyers:
+1. CRM/DMS vendors (CDK Global, DealerSocket, VinSolutions, Tekion) — $1,200-$36,000/year SaaS
+2. F&I product providers (warranty companies, GAP insurance) — $500-$5,000/year per dealer
+3. Auto parts distributors — $10K-$100K/year wholesale relationships
+4. Digital marketing agencies specializing in dealerships — $2K-$10K/month retainers
+5. Automotive lenders and floor plan financing — $50K-$500K/year per dealer relationship
+
+================================================================================
+OPPORTUNITY 2: Self-Storage Facility Owner Database
+================================================================================
+Score: 8/10
+Slug: self-storage-facility-database
+Status: PENDING CEO approval
+
+Key Signal:
+- TRANSPARENT competitor pricing: selfstoragefacilitydatabase.com sells at $599-$899 for 50K+ facilities
+- 3+ dedicated niche databases exist (selfstoragefacilitydatabase.com, selfstoragedatabase.com, listselfstorage.com)
+- $47.28B market (2026), 52,456 facilities, 75% independently owned (39K+ addressable)
+- Strong wedge: $49-$99 per state CSV vs. $599-$899 national dump — 85-92% cheaper entry
+- Low data decay: storage facilities are stable businesses (~5-8% annual turnover)
+
+Top Buyers:
+1. Storage management software (SiteLink, storEDGE, Yardi Breeze) — $600-$6,000/year SaaS
+2. REIT acquisition teams (Public Storage, Extra Space, CubeSmart) — $1M-$50M per acquisition
+3. Security system vendors (PTI Security, Noke, OpenTech Alliance) — $2K-$20K/year per facility
+4. Commercial property insurance brokers — $2,000-$20,000/year premiums per facility
+5. Moving company partnership/lead-gen services — $5K-$50K/year per partnership
+
+================================================================================
+OPPORTUNITY 3: Pest Control Company License Database
+================================================================================
+Score: 7/10
+Slug: pest-control-company-license-database
+Status: PENDING CEO approval
+
+Key Signal:
+- 8+ commercial vendors (Openmart 25K+, Prospeo 116K+, LimeLeads, FacilityMgmt 300K+, DataCaptive 12K+)
+- $431.55M pest control software market (2026), growing 8.7% CAGR
+- EXCELLENT public data: state agriculture dept licensing boards in all 50 states (TX downloadable reports confirmed)
+- 68% of pest control operators use at least one software tool — high digital adoption
+- Low engineering complexity: state-licensed occupation with centralized registries
+
+Top Buyers:
+1. Field service software (PestPac, Jobber, Briostack, PestRoutes, ServSuite) — $600-$6,000/year SaaS
+2. Chemical/pesticide manufacturers and distributors — $5,000-$50,000/year supply contracts
+3. Pest control franchise development (Terminix, Orkin) — $50K-$150K franchise fees
+4. Insurance brokers (GL, workers comp) — $3,000-$15,000/year premiums
+5. Fleet/vehicle leasing companies — $5,000-$30,000/year per service fleet
+
+================================================================================
+OPPORTUNITY 4: Managed Service Provider (MSP) IT Company Database
+================================================================================
+Score: 7/10
+Slug: managed-service-provider-msp-database
+Status: PENDING CEO approval
+
+Key Signal:
+- 8+ commercial vendors (MSPCompanies.us 100K+ MSPs with 1M+ contacts, LakeB2B, SpanGlobal, DataCaptive 30K+)
+- $106.8B US managed services market, cybersecurity segment growing 18% annually
+- Ultra-high buyer LTV: top 6 cybersecurity vendors each do $75M+ annual revenue through MSP channels
+- Channel partner model = captive buyers who MUST purchase MSP directories for partner recruitment
+- Caution: NO state licensing registry — data must be assembled from multiple sources (HIGH engineering complexity)
+
+Top Buyers:
+1. Cybersecurity vendors (Acronis, Bitdefender, SentinelOne, Sophos, WatchGuard) — $75M+/year each via channel
+2. RMM/PSA software (ConnectWise, Kaseya/Datto, NinjaRMM, Atera) — $1K-$50K/year per MSP
+3. Cloud distributors (Pax8, Ingram Micro Cloud) — $10K-$500K/year per MSP partner
+4. Backup/DR vendors (Veeam, Acronis, Datto) — $5K-$100K/year per MSP reseller
+5. Cyber insurance brokers (MSP-specific E&O policies) — $5K-$50K/year premiums
+
+================================================================================
+METHODOLOGY
+================================================================================
+
+Research Approach:
+- 9 web searches across B2B database vendors, state licensing registries, industry market sizing
+- Focused on: commercial vendor ecosystem validation, transparent pricing signals, public data availability
+- Cross-referenced 82 existing opportunity briefs to avoid duplicates
+- Validated buyer LTV through CRM/DMS software pricing, channel partner economics, and industry reports
+
+Scoring Criteria:
+- Commercial vendor ecosystem (number of vendors, pricing transparency)
+- Buyer LTV and willingness-to-pay signals
+- Total addressable market size
+- Public data availability and engineering complexity
+- Industry growth trends and market fundamentals
+- Absence of low-cost flat-file alternatives
+
+Opportunities Explored but Excluded (score < 6):
+- Assisted living/senior care facilities — strong vendor ecosystem (10+ vendors, Openmart 100K+) but significant overlap with existing CMS nursing home brief (2026-05-08). ALFs are distinct from SNFs but buyer segments overlap heavily. Score: 5-6 (overlap penalty)
+- Staffing/recruiting agencies — strong demand (BookYourData 740K contacts, Lead411, DataCaptive 302K) but buyer = the staffing agencies themselves (outbound recruiting), not vendors selling TO them. Inverted demand model doesn't fit DataStructured's B2B vendor-validation framework. Score: 5
+- Commercial cleaning/janitorial companies — weak vendor ecosystem, no dedicated niche databases found. Score: 4
+
+Opportunities Skipped (duplicates or near-duplicates):
+- HVAC contractors — already exists (2026-05-24-hvac-contractor-license-database.json)
+- Property managers — already exists (2026-05-23-property-managers-apartment-owners.json)
+- General contractors — already exists (2026-05-18-general-contractor-state-licenses.json)
+- Insurance agents — already exists (2026-05-16-licensed-insurance-agent-registry.json)
+- Restaurants/food establishments — already exists (2026-05-20-restaurant-food-establishment-licenses.json)
+
+================================================================================
+RECOMMENDATION
+================================================================================
+
+SUBMIT TO CEO: All 4 opportunities meet score >= 6 threshold.
+
+Strongest opportunities (Score 8):
+1. Auto Dealership License Database — 10+ vendors, transparent pricing, state DMV public data, ultra-high CRM/DMS buyer LTV
+2. Self-Storage Facility Database — Dedicated niche vendor at $599-$899 (textbook demand validation), strong state-by-state wedge pricing
+
+Strong opportunities (Score 7):
+3. Pest Control Company License Database — Excellent state licensing public data (50 states), $431M software market, low engineering complexity
+4. MSP IT Company Database — Highest buyer LTV of the scan ($75M+ per cybersecurity vendor), but HIGH engineering complexity (no public registry)
+
+Recommended Priority Order:
+1. Auto Dealerships (Score 8, engineering: LOW-MODERATE) — TX DMV dealer list likely most accessible
+2. Self-Storage (Score 8, engineering: MODERATE) — requires multi-source assembly but stable data
+3. Pest Control (Score 7, engineering: LOW) — TX Dept of Agriculture has downloadable reports
+4. MSP Database (Score 7, engineering: HIGH) — defer until capacity allows multi-source scraping
+
+Total research time: ~2 hours (9 web searches, 4 comprehensive briefs written)

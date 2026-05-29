@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+  "created": "2026-05-18T19:18:00Z",
+  "created_by": "engineer",
+  "status": "PARTIAL_SHIPPED",
+  "stripe_product_id": "prod_UXfjHV3HAQUCEu",
+  "stripe_price_id": "price_1TYaOV3H4Cmk8ulClVcgUt5A",
+  "stripe_payment_link_url": "https://buy.stripe.com/4gM4gsd9l9j19qXf9s7IY0w",
+  "gumroad_url": null,
+  "gumroad_product_id": null,
+  "gumroad_note": "Gumroad 2FA authentication required - browser automation blocked by email token sent to oghenetejiri@oefrenterprise.com. Manual completion needed.",
+  "row_count": 82521,
+  "shipped_at": "2026-05-18T19:18:00Z",
+  "smoke_test": {
+    "passed": true,
+    "stripe_tested": true,
+    "gumroad_tested": false,
+    "checked_at": "2026-05-18T19:18:00Z",
+    "notes": "Stripe Payment Link returns HTTP 200 and loads successfully. Gumroad listing creation requires manual 2FA completion."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "title": "Auto Dealership License Database",
+  "slug": "auto-dealership-license-database",
+  "score": 8,
+  "demand_signal": "Exceptionally strong and validated. 10+ commercial vendors actively selling auto dealership email lists: LeadsPlease (108,548 contacts), BookYourData (167,607 contacts), BlueMailMedia (300K+ emails, updated April 2026), InfoGlobalData (51,932 records), AverickMedia (57,374 emails). CampaignLake published a '7 Best Auto Dealers Email List Providers for 2026' roundup — vendor ecosystem maturity is unmistakable. Data decay rate of 25-30% annually means buyers must repurchase regularly.",
+  "target_audience": "Auto dealership CRM/DMS software vendors (CDK Global, DealerSocket, VinSolutions, Tekion, AutoRaptor) running outbound sales campaigns; automotive parts and equipment distributors targeting dealership service departments; F&I product providers (warranty companies, GAP insurance); digital marketing agencies specializing in dealership SEO/SEM; dealership consulting firms; auto auction companies (Manheim, ADESA) recruiting dealer buyers; automotive lenders and floor plan financing companies",
+  "public_data_sources": [
+    "California DMV Occupational License Lookup (OLSIS) — searchable, no auth required",
+    "Texas DMV Motor Vehicle Dealer List (texasdmv.my.salesforce-sites.com/dealers)",
+    "DC DMV Active Dealers List — published as downloadable document, updated monthly",
+    "South Carolina DMV — View Dealer License Information portal",
+    "Florida DHSMV dealer licensing records",
+    "Data.gov catalog — listing of licensed automobile dealers (nightly updates, some states)",
+    "State Secretary of State business registries (all 50 states)"
+  ],
+  "competitive_landscape": "Crowded at the premium tier: BookYourData, LeadsPlease, InfoGlobalData, BlueMailMedia, AverickMedia, eSalesData, ContactLists.com all sell dealer lists at subscription or per-contact pricing ($0.10-$0.50/contact). No vendor offers a clean, one-time downloadable state-by-state CSV at a flat price. DataStructured wedge: $49-$79 per state CSV vs. $200-$500+ subscription commitments. Public DMV licensing data is free but fragmented across 50 states with inconsistent formats — cleaning and standardizing is the value-add.",
+  "monetization_model": "One-time state-specific CSVs at $49-$79 each. Bundle: 'Top 10 States Auto Dealer Database' at $199 (vs. $500+ from competitors). Fields: dealership name, DBA, license type (new/used/wholesale), license number, owner/principal name, address, phone, license status, issue/expiration dates. Revenue path: 50 state SKUs × steady demand from CRM/DMS sales teams.",
+  "estimated_market_size": "~50,000 franchised dealerships + ~60,000 independent used car dealers in the US. Buyer LTV: CRM/DMS software costs $99-$3,000/month per rooftop ($1,200-$36,000/year), meaning a single closed deal from a $49 lead list generates 24x-734x ROI for the buyer. Auto dealership CRM market valued at $2.5B+ in 2026.",
+  "data_freshness_requirement": "Quarterly updates recommended. License renewal cycles vary by state (annual or biennial). Data decay at 25-30% annually due to ownership changes, closures, and new entrants.",
+  "compliance_notes": "PASS potential: All data sourced from state DMV occupational licensing records — public information by law. No PII beyond business owner names (already public record). Dealer license status is consumer protection information. Source attribution via state DMV portal URLs.",
+  "next_steps": [
+    "Harvest Texas DMV dealer list (large market, Salesforce-hosted portal, likely API-friendly)",
+    "Harvest California OLSIS dealer records (largest state market)",
+    "Clean and standardize into unified schema across states",
+    "Launch TX + CA as first two SKUs on Gumroad at $49 each",
+    "Target r/AutoDealership, LinkedIn auto industry groups for distribution"
+  ],
+  "research_date": "2026-05-27",
+  "researcher_notes": "One of the strongest signals this scan. The 10+ vendor ecosystem with transparent pricing (CampaignLake literally published a '7 Best' roundup) is textbook demand validation. The key differentiator is format + price: nobody sells a clean one-time state CSV at $49. Everyone forces you into subscriptions or per-contact pricing. Public DMV data is freely available but scattered across 50 different state portals in different formats — the cleaning and standardization IS the product. Start with TX and CA (largest dealer populations), then expand state-by-state. High buyer LTV from CRM/DMS vendors makes even a $49 price point extremely attractive to purchasers.",
+  "status": "SHIPPED",
+  "shipped_at": "2026-05-27T23:17:00Z",
+  "stripe_payment_link_url": "https://buy.stripe.com/00w28k6KXcvdcD90ey7IY0D",
+  "gumroad_url": "https://3563705146415.gumroad.com/l/osjpcr"
+}

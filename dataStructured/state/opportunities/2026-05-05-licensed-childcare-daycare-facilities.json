@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "licensed-childcare-daycare-facilities",
+  "created": "2026-05-05T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "PROPOSED",
+  "score": 7,
+  "summary": "A cleaned, downloadable CSV of state-licensed childcare centers and daycare facilities sourced from public state licensing databases. Texas (childcare.hhs.texas.gov), Florida (caressearch.myflfamilies.com), and California (cdss.ca.gov) each publish searchable public records of all licensed childcare facilities with no authentication required; the HHS National Database of Child Care Licensing aggregates regulation documents across all 50 states. LimeLeads sells child care email lists as part of a $99/month subscription, and an entire platform (DaycareLeads.com) exists for this vertical — proving clear buyer demand. A one-time state-specific CSV targeting childcare software vendors, food/supply distributors, and insurance brokers undercuts the subscription model entirely.",
+  "audience": {
+    "who": "Childcare SaaS vendors (Brightwheel, Procare Software, HiMama, Kangarootime) whose BDRs need a list of licensed facilities to cold-outreach; food and supply distributors (meal program vendors, art/craft suppliers, cleaning product reps); childcare liability and workers comp insurance brokers; childcare staffing agencies; and franchise development consultants for childcare brands (KinderCare, Primrose, Learning Care Group).",
+    "where_found": [
+      "https://licensingregulations.acf.hhs.gov/",
+      "https://www.limeleads.com/child-care/",
+      "https://daycareleads.com/"
+    ]
+  },
+  "data_wanted": "Facility name, license number, license type (center-based/family home/group home), operator/owner name (where public), address (street, city, state, ZIP), phone number, licensed capacity, ages served, current license status (active/probation/suspended), license issue/expiration dates — sourced from state childcare licensing portals (TX, FL, CA as initial targets), all no-auth public record access.",
+  "evidence": [
+    {
+      "source": "HHS National Database of Child Care Licensing — federal aggregator of all state childcare licensing records, publicly searchable with downloadable data tables",
+      "url": "https://licensingregulations.acf.hhs.gov/",
+      "quote": "National Database of Child Care Licensing allows you to search and download child care licensing regulations documents using keyword searches and filters by state, facility type, and date."
+    },
+    {
+      "source": "LimeLeads — sells child care business email lists as part of a $99/month B2B subscription, proving buyer demand for this vertical",
+      "url": "https://www.limeleads.com/child-care/",
+      "quote": "Child Care — US-Based B2B Leads Database With 98% Plus Accuracy"
+    },
+    {
+      "source": "DaycareLeads.com — an entire platform built around childcare facility lead generation and contact data, confirming sustained commercial demand",
+      "url": "https://daycareleads.com/",
+      "quote": "DaycareLeads provides a unified, all-in-one platform tailored specifically for childcare centers."
+    },
+    {
+      "source": "Texas childcare licensing public search — free, no auth, searchable by city/county/license type; Florida CARES public search similarly open",
+      "url": "https://childcare.hhs.texas.gov/",
+      "quote": "Search Texas Child Care — searchable public database of all licensed childcare facilities in Texas."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "LimeLeads charges $99/month for a subscription that includes child care lists alongside other verticals. A one-time $39–$49 CSV of all licensed childcare facilities in Florida or Texas (approximately 15,000–25,000 facilities each) is a compelling purchase for any Brightwheel or Procare SDR running a state-specific outbound campaign — they would pay for one month of LimeLeads anyway, but only need one campaign's worth of data.",
+    "confidence": "moderate"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://childcare.hhs.texas.gov/",
+      "https://caressearch.myflfamilies.com/",
+      "https://www.cdss.ca.gov/inforesources/community-care-licensing/facility-search-welcome"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + Reddit r/Entrepreneur, r/childcare, r/SaaS (for software vendor angle), LinkedIn targeting Brightwheel and Procare SDRs and childcare insurance brokers",
+    "angle": "\"Florida Licensed Childcare & Daycare Facilities 2026 — 18,000+ Facilities, CSV\" — facility name, address, phone, licensed capacity, ages served, active license status. Angle for SaaS vendors: 'Every facility on this list is state-licensed and currently operating. No scraping. No guessing. One payment.' Launch FL first (strong childcare market, existing DataStructured FL presence), then TX as second SKU."
+  }
+}

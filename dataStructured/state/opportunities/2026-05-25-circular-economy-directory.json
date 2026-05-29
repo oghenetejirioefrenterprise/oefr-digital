@@ -1,0 +1,31 @@
+{
+  "title": "Circular Economy Companies Directory",
+  "slug": "circular-economy-directory",
+  "score": 6,
+  "demand_signal": "Growing market: $517.79B (2025) → $798.3B (2029). Major brands (Unilever, IKEA, Nike) publicly committing to circular goals. The Global Circular Economy Innovation Database exists but is research-focused, not buyer/investor-friendly. SAP, Landbell Group, and others provide enterprise solutions, but no consumer/SMB directory.",
+  "target_audience": "Sustainability officers at mid-large companies seeking vendors, impact investors screening portfolio companies, procurement teams with ESG mandates, sustainability consultants researching solutions, and B2B buyers with circular economy requirements",
+  "public_data_sources": [
+    "Company sustainability reports (circular economy commitments)",
+    "B Corp certification database",
+    "Ellen MacArthur Foundation partner listings",
+    "Cradle to Cradle certified products database",
+    "Press releases announcing circular initiatives",
+    "Sustainability-focused newsletters and news sites",
+    "Company websites (circular economy messaging, product takeback programs)",
+    "StartUs Insights reports on circular economy startups"
+  ],
+  "competitive_landscape": "Global Circular Economy Innovation Database (research tool, not buyer-focused), MSCI Circular Economy Indexes (investor tool, not directory), StartUs Insights (trends/reports, not comprehensive directory). No clear leader in consumer/SMB-accessible directory space. Opportunity for first-mover advantage.",
+  "monetization_model": "Freemium directory: Free basic listings (company name, industry, location, website). Premium vendor profiles ($299-499/year per company) with detailed product info, certifications, case studies, and contact forms. Sponsored placements for featured vendors. Enterprise API access for procurement platforms.",
+  "estimated_market_size": "10K+ companies globally with significant circular economy programs. 100K+ sustainability officers and procurement professionals. TAM: $5-10M annually from premium listings + $2-3M from enterprise access.",
+  "data_freshness_requirement": "Quarterly updates for company listings. Annual deep refresh of certifications and reports. News monitoring for major announcements (new partnerships, certifications, product launches).",
+  "compliance_notes": "PASS potential: All data from public corporate disclosures, certification bodies, and news. No proprietary/internal data. No PII. Companies publicly promote circular credentials for marketing/sales purposes. Include source URLs for all claims (certifications, commitments).",
+  "next_steps": [
+    "Curate initial dataset: 200-300 verified circular economy companies",
+    "Define taxonomy (product categories, circular model types: repair/reuse/recycle/regenerative)",
+    "Build simple directory site with search/filter",
+    "Reach out to 10-20 companies to test premium listing interest",
+    "Partner with 1-2 sustainability newsletters for initial distribution"
+  ],
+  "research_date": "2026-05-25",
+  "researcher_notes": "Moderate signal. Market is growing but still early/niche. Key risk: Will buyers actually PAY for this, or just Google it? Mitigation: Focus on vetting/curation as value-add (verified certifications, quality scoring). Consider vertical focus (circular economy for FASHION or ELECTRONICS) to increase relevance. Two-sided marketplace potential if we can drive buyer traffic."
+}

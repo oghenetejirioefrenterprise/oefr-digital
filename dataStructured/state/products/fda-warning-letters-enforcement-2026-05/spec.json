@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "fda-warning-letters-enforcement-2026-05",
+  "created": "2026-05-26T14:00:00-04:00",
+  "created_by": "product-manager",
+  "status": "DRAFT_BY_PM",
+  "name": "FDA Warning Letters Database 2020\u20132025 \u2014 1,200+ Enforcement Actions (CSV)",
+  "summary": "Every FDA warning letter issued from January 2020 through December 2025 \u2014 sourced from the FDA's public Inspections, Compliance, Enforcement & Criminal Investigations database at fda.gov. Each row includes issue date, company name, city/state/country, product category (Drugs, Biologics, Medical Devices, Food, Dietary Supplements, Cosmetics, Tobacco, Veterinary), violation categories extracted from letter text (CGMP deviations, adulteration, misbranding, 510(k) failure, HACCP non-compliance, data integrity failures), issuing FDA office (CDER, CDRH, CFSAN, CVM, ORA), subject summary, and direct URL to the full warning letter PDF. Regulatory intelligence platforms charge $2,000\u2013$15,000/year for the same underlying data wrapped in SaaS dashboards. A one-time $89 CSV undercuts every incumbent by 95%+ and serves the massive long-tail of solo RA consultants, quality managers, food safety advisors, and QMS software SDRs who need enforcement trend analysis without an enterprise contract.",
+  "format": "one_time",
+  "deliverable": "csv",
+  "price_usd": 89,
+  "bonus_stack": [
+    "Violation category extraction per letter (CGMP, adulteration, misbranding, unapproved new drug, 510(k) failure, HACCP non-compliance, data integrity, insanitary conditions) \u2014 filter all device warning letters for software validation failures or all food letters for allergen control citations without reading 1,200+ PDFs",
+    "Product category tagging (Drugs, Biologics, Medical Devices, Food, Dietary Supplements, Cosmetics, Tobacco, Veterinary) \u2014 segment by your regulated industry in one click for benchmarking reports and client proposals",
+    "Issuing FDA office mapping (CDER, CDRH, CFSAN, CVM, ORA) \u2014 track which center is ramping enforcement and which industries face escalating scrutiny year-over-year",
+    "Year-over-year trend columns (issue date parsed to year and quarter) \u2014 build enforcement trend charts for thought leadership articles, client presentations, and regulatory intelligence newsletters without manual date parsing",
+    "Direct PDF link to every full warning letter on fda.gov \u2014 one-click access to the complete enforcement text for deep-dive analysis, legal research, and compliance training case studies",
+    "Company location data (city, state, country) with foreign manufacturer flag \u2014 identify geographic enforcement hotspots and filter for domestic vs. imported product enforcement patterns"
+  ],
+  "dataset_file": "state/datasets/fda-warning-letters-enforcement-2026-05.cleaned.csv",
+  "ethics_ledger": "state/datasets/fda-warning-letters-enforcement-2026-05.compliance.json",
+  "audience": "Regulatory affairs consultants \u2014 solo practitioners and boutique firms (Lachman Consultant Services, Greenleaf Health, ProPharma Group, plus thousands of independent RA consultants billing $200\u2013$500/hour) who use warning letter trend analysis to identify common inspection pitfalls, build thought leadership content, and prove subject-matter expertise to prospects in competitive proposals. Pharmaceutical and medical device quality managers at companies ranging from Pfizer and Medtronic to 5,000+ mid-size manufacturers, who benchmark competitor inspection outcomes against their own QMS programs, prepare for FDA inspections by studying recent enforcement patterns, and justify quality system investments to leadership with concrete enforcement data. Food safety and HACCP consultants advising manufacturers, processors, and importers on FSMA compliance, plus compliance software vendors (MasterControl, Veeva Vault QMS, ETQ Reliance, Sparta Systems) who use companies with recent FDA warning letters as their highest-intent prospect list for $50K\u2013$500K CAPA, deviation management, and document control software contracts.",
+  "format_rationale": "CSV is the universal import format for the four buyer workflows this product serves: RA consultants filter in Excel by product category and violation type to build trend analysis slides for client proposals (filter Drugs + CGMP + 2024\u20132025 to show clients a rising enforcement pattern); quality managers import into internal QMS dashboards (MasterControl, Veeva) to cross-reference competitor warning letters against their own open CAPAs and deviation categories; food safety consultants pivot-table by year and violation category (HACCP, sanitation, allergen) to create industry benchmark reports that justify $5K\u2013$50K consulting engagements; and QMS software sales teams upload to Salesforce or HubSpot as a pre-qualified prospect list of companies with demonstrated urgent QMS needs. A static flat file prevents subscription lock-in \u2014 buyers pay once, own 6 years of enforcement history permanently, and filter repeatedly across all four use cases without monthly refresh fees from RAPS ($1,995/year), RegDesk ($5,000\u2013$15,000/year), or Registrar Corp's alert service.",
+  "pricing_rationale": "$89 creates a 95\u201399% discount vs. every incumbent: RAPS Premium membership ($1,995/year) includes FDA enforcement tracking as one feature among many; RegDesk charges $5,000\u2013$15,000/year for multi-agency enforcement SaaS; Registrar Corp bundles warning letter alerts into consulting retainers starting at $2,000+/year. No flat-file competitor exists below $500, leaving the entire affordable-CSV category uncontested. For RA consultants billing $200\u2013$500/hour, a single new client engagement sourced from trend-analysis thought leadership (conference talk, LinkedIn post, whitepaper citing warning letter patterns) delivers 20\u2013100\u00d7 ROI on the $89 purchase. For QMS software vendors, one closed deal at $50K\u2013$500K from a company identified through its recent FDA warning letter delivers 560\u20135,600\u00d7 return. For quality managers, avoiding a single repeat citation by studying peer enforcement patterns prevents $250K\u2013$5M in remediation costs. Pricing at $89 positions above generic government data dumps ($29\u2013$49) while remaining an impulse purchase for professionals operating at $200+/hour billing rates and enterprise sales teams with five-figure monthly prospecting budgets.",
+  "stripe_product_prefix": "dsl_",
+  "channels": [
+    "stripe_payment_link",
+    "gumroad"
+  ],
+  "compliance_verdict": "PENDING",
+  "compliance_audited_at": null,
+  "row_count": null,
+  "estimated_row_count": 1800,
+  "estimated_date_range": "2020-01-01 to 2025-12-31",
+  "source": "FDA Inspections, Compliance, Enforcement & Criminal Investigations \u2014 Warning Letters database at fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters \u2014 public, no auth required, also accessible via openFDA API at open.fda.gov",
+  "gumroad_listing": {
+    "title": "FDA Warning Letters Database 2020\u20132025 \u2014 1,200+ Enforcement Actions (CSV)",
+    "description": "Every FDA warning letter issued from 2020 through 2025 \u2014 extracted from the FDA's public enforcement database, cleaned, and structured for instant analysis. The same data RAPS, RegDesk, and Registrar Corp charge $2,000\u2013$15,000/year to access. $89 one-time.\n\n**What you get per row:**\n- Issue date (YYYY-MM-DD)\n- Warning letter number (CMS tracking ID)\n- Company name (legal entity cited)\n- Company city, state, and country\n- Product category: Drugs, Biologics, Medical Devices, Food, Dietary Supplements, Cosmetics, Tobacco, Veterinary\n- Issuing FDA office: CDER, CDRH, CFSAN, CVM, ORA\n- Violation categories: CGMP deviations, adulteration, misbranding, unapproved new drug, 510(k) failure, HACCP non-compliance, data integrity failures, insanitary conditions\n- Subject line / summary\n- Direct URL to full warning letter PDF on fda.gov\n- Foreign manufacturer flag\n\n**Coverage:**\n- 6 full years: January 2020 \u2013 December 2025\n- 1,200\u20132,400 total enforcement actions (200\u2013400 warning letters per year)\n- All FDA-regulated industries in one file\n- Year and quarter columns pre-parsed for instant trend analysis\n\n**Who buys this:**\n\n*RA Consultants:* Build your FDA compliance trend report \u2014 6 years of warning letters by product category and violation type. Prove your expertise in client proposals. Filter all 2024\u20132025 device warning letters for software validation failures in 10 seconds.\n\n*Quality Managers:* Benchmark your QMS against competitors \u2014 see which companies got cited for data integrity, CAPA failures, or validation gaps. Prepare for your next FDA inspection with industry-specific enforcement patterns.\n\n*Food Safety Consultants:* Every FSMA, HACCP, and sanitation warning letter from 2020\u20132025 \u2014 show prospects the industry-wide patterns FDA is citing. Justify your engagement in 5 minutes with violation trend data.\n\n*QMS Software Vendors:* 1,200+ companies with recent FDA warning letters \u2014 your highest-intent prospect list for CAPA, deviation management, and document control software. Import to Salesforce, filter by year and product category, and start outreach today.\n\n**Why $89 beats $2,000+/year subscriptions:**\n- RAPS Premium: $1,995/year includes FDA enforcement tracking\n- RegDesk: $5,000\u2013$15,000/year for multi-agency enforcement SaaS\n- Registrar Corp: $2,000+/year bundled alert service\n- Manual FDA.gov search: No bulk download, no filtering, no trend analysis\n- This database: $89 once. Filter. Analyze. Export charts. Own it.\n\n**Data source:** FDA.gov \u2014 Inspections, Compliance, Enforcement & Criminal Investigations, Warning Letters database. Public government records. No auth bypass, no PII (all enforcement actions are against companies, not individuals).\n\n**Important:** This database contains publicly issued FDA enforcement correspondence. Buyer is responsible for their own use case compliance. Not legal advice.",
+    "price": 89,
+    "tags": [
+      "fda",
+      "warning-letters",
+      "enforcement",
+      "regulatory",
+      "compliance",
+      "pharmaceutical",
+      "medical-devices",
+      "food-safety",
+      "cgmp",
+      "quality",
+      "csv",
+      "b2b"
+    ]
+  },
+  "pre_ship_requirements": [
+    "Verify total row count is 1,200+ before listing (6 years of warning letters at 200-400/year)",
+    "Confirm violation category extraction accuracy against 50+ random-sampled source PDFs",
+    "Verify every row has a working fda.gov PDF link (no dead links or redirects)",
+    "Confirm zero PII: no individual names, personal emails, home addresses, or personal phone numbers in any row",
+    "Gumroad listing must include disclaimer: 'Not legal advice. Buyer responsible for use case compliance.'",
+    "Stripe product name must match: FDA Warning Letters Database 2020-2025"
+  ],
+  "next_steps": [
+    "CEO approval of DRAFT_BY_PM spec \u2192 status change to APPROVED_SPEC",
+    "Hand off to data-engineer for harvest from FDA warning letters database (fda.gov + openFDA API)",
+    "data-steward validates violation category extraction, dedupes, verifies PDF links",
+    "compliance-officer audits for PII leakage (company-only enforcement \u2014 low risk) and source URL verification",
+    "engineer creates Stripe Payment Link + Gumroad listing upon PASS verdict"
+  ]
+}

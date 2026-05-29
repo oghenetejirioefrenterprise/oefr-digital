@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "samgov-small-biz-contractor-leads-2026-05",
+  "created": "2026-05-05T14:00:00-04:00",
+  "created_by": "ceo",
+  "status": "FULLY_SHIPPED",
+  "name": "SAM.gov Small Biz Contractor Leads — DMV IT Corridor — 4,731 Records (CSV)",
+  "summary": "4,731 SAM.gov-registered small business government IT contractors in Virginia, DC, and Maryland with active registrations — filtered to 19 IT/tech NAICS codes. Every row includes UEI, CAGE code, certifications (8(a)/HUBZone/WOSB/SDVOSB/Veteran), physical address, NAICS codes, and SAM.gov entity source URL. Subscription tools like SamSearch and GovWin IQ charge $200–500/month for this data.",
+  "format": "one_time",
+  "deliverable": "csv",
+  "price_usd": 49,
+  "bonus_stack": [
+    "Pre-filtered to 19 IT/tech NAICS codes — no sifting through non-tech contractors",
+    "Certification breakdown: 8(a), HUBZone, WOSB/EDWOSB, SDVOSB, Veteran-Owned, SBA",
+    "SAM.gov entity source URL on every row — direct link to authoritative profile",
+    "DMV corridor focus (VA 4,313 · MD 2,615 · DC 613) — top federal contracting region"
+  ],
+  "dataset_file": "state/datasets/samgov-small-biz-contractor-leads-2026-05.csv",
+  "ethics_ledger": "state/datasets/samgov-small-biz-contractor-leads-2026-05.compliance.json",
+  "audience": "Government contracting subcontractors seeking 8(a)/HUBZone/WOSB/SDVOSB teaming partners, IT staffing agencies targeting federal-contractor clients, management consultants pursuing government market entry, and SaaS vendors (proposal software, compliance tools, timekeeping) selling to federal IT contractors.",
+  "stripe_product_prefix": "dsl_",
+  "channels": [
+    "stripe_payment_link",
+    "gumroad"
+  ],
+  "compliance_verdict": "PASS",
+  "compliance_audited_at": "2026-05-05T14:00:00-04:00",
+  "compliance_audit_type": "compliance_re_audit",
+  "row_count": 4731,
+  "source": "USASpending.gov /api/v2/download/awards/ — U.S. Treasury FFATA transparency portal, federally mandated public disclosure, no authentication required",
+  "gumroad_listing": {
+    "title": "SAM.gov Small Biz Contractor Leads — DMV IT Corridor — 4,731 Records (CSV)",
+    "description": "4,731 SAM.gov-registered small business government IT contractors in Virginia, DC, and Maryland with **active** registrations, sourced from USASpending.gov (FFATA-mandated public data).\n\n**What's included:**\n- Legal business name (all verified entities — no sole proprietors)\n- UEI SAM identifier\n- CAGE code (where available)\n- NAICS codes (19 IT/tech codes: 541511, 541512, 541513, 541519, 541611, 518210...)\n- Small business certifications (8(a), HUBZone, WOSB, EDWOSB, SDVOSB, Veteran-Owned, SBA)\n- Physical address (commercial addresses only)\n- State (VA / MD / DC)\n- Active registration status\n- SAM.gov entity source URL for every row\n\n**Certification counts:**\n- Small Business: 5,377 (pre-filter) → commercial subset\n- 8(a): 2,956 · Veteran-Owned: 1,795 · WOSB: 1,450 · SDVOSB: 1,278 · HUBZone: 608\n\n**Top states:** VA 4,313 · MD 2,615 · DC 613\n\n**Who buys this:** Subcontractors who need teaming partners for 8(a)/HUBZone/WOSB set-aside bids, IT staffing firms targeting federal prime contractors, SaaS vendors selling into the federal IT market — anyone who needs a clean filtered list without paying $200+/month for GovWin or SamSearch.\n\n**Data source:** USASpending.gov FFATA public transparency API. Addresses are commercial business registrations from federal procurement records for B2B teaming research. Not for consumer outreach.",
+    "price": 49,
+    "tags": [
+      "samgov",
+      "government-contracting",
+      "leads",
+      "csv",
+      "small-business",
+      "8a",
+      "hubzone",
+      "wosb",
+      "sdvosb",
+      "b2b",
+      "federal-contractors"
+    ]
+  },
+  "pre_ship_requirements": [
+    "Gumroad listing must include disclosure: addresses are FFATA-mandated public SAM.gov registrations intended for B2B teaming research only"
+  ],
+  "stripe_payment_link_url": "https://buy.stripe.com/dRm5kwb1dfHp7iPe5o7IY0g",
+  "shipped_at": "2026-05-05T21:21:21Z"
+}

@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "osha-employer-inspection-violation-records",
+  "created": "2026-05-10T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "approved_at": "2026-05-10T19:00:00-04:00",
+  "approved_by": "ceo",
+  "score": 8,
+  "score_rationale": "Strong willingness-to-pay evidence from direct SaaS competitors (SafetyStratus, EHS Insight) plus a large, clearly-defined buyer population (workers' comp insurers, safety consultants, plaintiff attorneys). Data is a clean, no-auth downloadable CSV from data.osha.gov with well-structured fields. Engineering lift is low. No PII — all records are employer-level.",
+  "summary": "A cleaned CSV of OSHA employer inspection and violation records sourced from the OSHA Integrated Management Information System (IMIS) — fully public and downloadable without authentication from data.osha.gov. Each record includes the employer name, city, state, NAICS code, inspection date, inspection type (compliance, complaint, referral), citation type (willful, serious, repeat, other-than-serious), federal standard violated, initial penalty, and current penalty after settlement. SafetyStratus, Velocity EHS, and EHS Insight all charge $99–$599/month for OSHA compliance tracking built partly on this exact public dataset. A one-time $49 CSV of all OSHA inspections and penalties from the past three years targets workplace safety consultants, workers' comp insurance brokers, and plaintiff attorneys — all of whom need a bulk employer violation history that no affordable flat-file product currently sells.",
+  "audience": {
+    "who": "Workplace safety consultants who need a list of employers with recent OSHA violations as cold-outreach prospects for compliance auditing, safety training, and remediation services; workers' compensation insurance brokers underwriting employer risk who want to screen applicants against OSHA violation history; plaintiff's attorneys specializing in workplace injury who use OSHA inspection records to identify employers with repeat or willful violations as litigation targets; EHS (environment, health, safety) SaaS vendors (Cority, Intelex, Velocityehs) who need a prospect list of enforcement-active employers; OSHA-required abatement contractors and industrial hygienists seeking employers under current corrective-action orders.",
+    "where_found": [
+      "https://www.safetystratussolutions.com/",
+      "https://ehsinsight.com/",
+      "https://www.osha.gov/pls/imis/establishment.html",
+      "https://data.osha.gov/"
+    ]
+  },
+  "data_wanted": "OSHA IMIS enforcement data — downloadable from https://www.osha.gov/ords/imis/establishment.html (individual lookups) and in bulk from the OSHA API at https://data.osha.gov/api/Establishment/establishment/ (REST API, no key required) and https://enforcedata.dol.gov/views/data_summary.php (DOL Enforcement Data bulk downloads). Key fields per inspection: activity_nr (inspection ID), estab_name (employer name), site_address, site_city, site_state, site_zip, naics_code, insp_type (A=accident, B=complaint, C=referral, J=unprogrammed, K=follow-up, L=variance, M=verification, N=investigation, O=other), open_date, close_conf_date, close_case_date, tot_viol (total violations), total_initial_penalty, total_current_penalty, citation type per violation (serious, willful, repeat, other), and fed_std (federal standard cited). Scope to closed inspections from 2022–2025 with at least one citation. Approximately 150,000–200,000 inspections per year. Target output: 400,000–600,000 rows covering the last 3 fiscal years.",
+  "evidence": [
+    {
+      "source": "OSHA Enforcement Data Portal — DOL Enforcement Data (enforcedata.dol.gov) provides bulk OSHA inspection and violation data as downloadable ZIP files, no authentication required",
+      "url": "https://enforcedata.dol.gov/views/data_summary.php",
+      "quote": "DOL Enforcement Data: OSHA provides bulk data files for OSHA inspections, violations, and accident investigations, updated quarterly. Data includes establishment name, address, inspection type, citations, and penalties."
+    },
+    {
+      "source": "SafetyStratus — OSHA compliance SaaS platform charges $199–$599/month per location for EHS management including OSHA inspection tracking and violation history built from the same DOL public data",
+      "url": "https://www.safetystratussolutions.com/",
+      "quote": "SafetyStratus provides real-time OSHA inspection data, violation tracking, and compliance benchmarking. Plans start at $199/month per location."
+    },
+    {
+      "source": "EHS Insight — competitor EHS platform charges $99–$399/month for OSHA violation history monitoring and inspection scheduling, confirming sustained B2B willingness to pay for packaged OSHA data",
+      "url": "https://ehsinsight.com/",
+      "quote": "EHS Insight delivers OSHA inspection history, citation tracking, and compliance dashboards. Pricing from $99/month for small teams."
+    },
+    {
+      "source": "OSHA IMIS establishment search — confirms employer-level, publicly-accessible OSHA inspection records with no authentication barrier; records include citation types, penalty amounts, and standard violated",
+      "url": "https://www.osha.gov/pls/imis/establishment.html",
+      "quote": "OSHA Establishment Search — OSHA Integrated Management Information System. Search for OSHA inspections by employer name, city, state, NAICS code, or inspection date range. All data is publicly accessible."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "Three distinct buyer segments each have clear, independent willingness to pay. (1) Workers' comp insurers: underwriting teams routinely pay for violation history data; a $49 CSV of 400K+ inspections is a fraction of what they spend on loss-prevention data. (2) Safety consultants: every cited employer is a warm prospect for a $5K–$50K safety audit engagement; a $49 prospecting list that returns 10× in one new client is a trivial purchase. (3) Plaintiff attorneys: repeat and willful OSHA violations are key evidence in personal injury cases; attorneys billing $300–$500/hour will spend $49 without hesitation for a pre-filtered violation list in their specialty NAICS codes. The absence of any flat-file competitor at this price point (all competitors sell subscription dashboards, not one-time data files) creates an uncontested market entry.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://enforcedata.dol.gov/views/data_summary.php",
+      "https://data.osha.gov/api/Establishment/establishment/",
+      "https://www.osha.gov/pls/imis/establishment.html",
+      "https://enforcedata.dol.gov/homePage.php"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad one-time download + LinkedIn posts targeting EHS professionals, safety directors, and workers' comp insurance brokers + r/LifeSafety, r/insurance, and r/legaladvice contextual posts + direct LinkedIn outreach to solo safety consulting practices and boutique plaintiff employment-law firms",
+    "angle": "Title: 'OSHA Employer Inspection & Violation Database 2022–2025 — 400K+ Inspections, Citations & Penalties (CSV)'. Key selling points: (1) Every OSHA inspection and citation from the last 3 years — employer name, city, state, NAICS, violation type (willful/serious/repeat), penalty paid, (2) Direct from DOL enforcement data — the same source used by SafetyStratus and EHS Insight, (3) Filter by state and NAICS — find every cited manufacturing employer in Ohio or every construction company with repeat violations in Texas, (4) One-time $49 instant CSV — not $199/month. Safety consultant angle: 'Build your cold-outreach list — every employer OSHA cited in your specialty industry in your state. $49 once. Instant CSV.' Insurance underwriter angle: 'Screen your applicants — cross-reference against 400K+ OSHA inspections and penalties before you quote.'"
+  }
+}

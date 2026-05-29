@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "date": "2026-05-27",
+  "generated_at": "2026-05-27T15:02:07+00:00",
+  "plans": [
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "reddit",
+      "subreddit_or_handle": "r/sales",
+      "draft": {
+        "subreddit_suggestions": [
+          "r/sales",
+          "r/datasets",
+          "r/smallbusiness"
+        ],
+        "title": "Built a complete US winery/distillery database from TTB data - lessons on prospecting craft beverage producers",
+        "body": "I spent the last month pulling together every federally-licensed winery, distillery, and craft beverage producer in the US from TTB (Tax and Trade Bureau) records. Final count: 82,500+ active licenses.\n\nA few things I learned that might help if you're selling to this market:\n\n1. The official TTB search is deliberately limited - they cap results at 1,000 records and don't offer bulk downloads. If you're prospecting beyond your local region, you're doing hundreds of manual queries.\n\n2. License type matters more than you'd think - A DSP (distilled spirits plant) has completely different equipment needs than a bonded winery. Filtering by the right federal permit type saves you from cold-calling the wrong prospects.\n\n3. New licenses are a goldmine - Producers who just got their TTB approval are in the market for everything: tanks, bottling lines, POS systems, insurance. But you can't get new license alerts from the TTB website.\n\n4. Geographic gaps are real - Some states have 10x the density of others. If you're a regional supplier, knowing where the clusters are changes your territory planning.\n\nI packaged the full dataset as a CSV because I kept running into barrel brokers, POS vendors, and packaging companies who were burning hours on manual lookups. It's available at https://buy.stripe.com/4gM4gsd9l9j19qXf9s7IY0w for $79.\n\nFull disclosure: this is my product (part of a public-data-products business I'm building). But even if you don't buy it, the TTB's COLA registry and Permitsonline portal are free and worth learning to navigate if you're prospecting this industry.\n\nHappy to answer questions about the data structure or how I pulled it together."
+      },
+      "rationale": "Reddit -> r/sales | round-robin assignment",
+      "scheduled_for": "2026-05-27T21:00:00+00:00",
+      "requires_founder_review": false
+    }
+  ]
+}

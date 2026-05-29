@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "type": "compliance_report",
+  "slug": "faa-civil-aircraft-registration-2026-05",
+  "reviewed_at": "2026-05-07T03:34:03Z",
+  "verdict": "PASS",
+  "checks": {
+    "public_source_confirmed": true,
+    "no_auth_bypass": true,
+    "no_email_column": true,
+    "no_phone_column": true,
+    "no_ssn_or_financial": true,
+    "no_health_data": true,
+    "source_permits_commercial_redistribution": true,
+    "address_pii_assessment": "ACCEPTABLE — Individual registrant addresses are published as a regulatory transparency requirement under federal law (FAA aircraft registration is mandatory under 49 U.S.C. § 44103). The FAA explicitly packages and releases this data daily as the Releasable Aircraft Database at no cost and with no terms prohibiting commercial redistribution. Multiple established commercial services (AviationDB, ACE Pilot DB, National Aviation Center) sell formatted versions of this identical data. Aircraft ownership is an activity subject to federal regulatory oversight, placing it in the same category as business licenses and professional certifications — not purely private activity. The inclusion of individual addresses is therefore acceptable for commercial redistribution."
+  },
+  "false_positive_findings": {
+    "email_pattern_scan": "1 row flagged — row 89697 (N331WP, FMS MANAGEMENT SYSTEM LLC). Email address 'jpearson@pnlenterprises.com' appears inside the 'street' field as a C/O mailing contact submitted by the LLC registrant to the FAA as its official address. This is a business contact in a mailing address field, not a personal email column. No dedicated email column exists in the dataset.",
+    "phone_pattern_scan": "256 rows flagged — all are aircraft serial numbers (numeric strings 8-12 digits long such as '1786501038', '0082300026') that incidentally match a 10-digit phone regex. No dedicated phone column exists. Zero actual phone numbers found.",
+    "ssn_pattern_scan": "23 rows flagged — all are aircraft manufacturer serial numbers in hyphenated numeric format (e.g., '269-20-3757', '415-26-8958') that incidentally match the NNN-NN-NNNN SSN pattern. These are FAA aircraft serial numbers assigned by manufacturers. No SSNs present. No dedicated SSN or financial account column exists."
+  },
+  "column_inventory": [
+    "n_number", "serial_number", "make", "model", "year_mfr", "type_aircraft",
+    "type_engine", "num_engines", "registrant_name", "registrant_type",
+    "street", "street2", "city", "state", "zip_code", "cert_issue_date",
+    "airworthiness_class", "source_url"
+  ],
+  "source_url_coverage": "100% — source_url null rate is 0.00% across all 302,810 rows",
+  "notes": "Dataset is sourced from registry.faa.gov/database/ReleasableAircraft.zip — a free, unauthenticated federal government daily download. The FAA's own distribution page states the data is refreshed nightly and is freely available. No terms of service prohibiting commercial redistribution were found; FAA public datasets are federal government works released under the principle of public domain / open government data. Individual registrant addresses are present for ~41% of records (registrant_type = Individual, 124,964 rows) and constitute the primary compliance consideration. After analysis, this is assessed as acceptable: aircraft ownership is federally regulated activity, the FAA deliberately publishes this data for public transparency, and commercial redistribution of this same data by established aviation data vendors is an established market practice. No prohibited PII categories (email addresses, phone numbers, SSNs, financial account numbers, health data) are present in any dedicated column.",
+  "reviewer": "compliance-officer"
+}

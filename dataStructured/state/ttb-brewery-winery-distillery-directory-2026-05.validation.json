@@ -1,0 +1,157 @@
+{
+  "validated_at": "2026-05-18T23:10:46.208642Z",
+  "input_file": "/home/oghenetejiri/apps/dataStructured/state/ttb-brewery-winery-distillery-directory-2026-05.csv",
+  "harvest_metadata": {
+    "version": 1,
+    "type": "harvest_report",
+    "slug": "ttb-brewery-winery-distillery-directory",
+    "harvested_at": "2026-05-18T23:05:19.539014Z",
+    "source_url": "https://www.ttb.gov/public-information/foia/list-of-permittees",
+    "permit_types": [
+      {
+        "permit_type": "Wine Producer/Blender",
+        "url": "https://www.ttb.gov/system/files/2025-04/FRL_Wine_Producer_and_Blender_Permit_List.csv",
+        "row_count": 17985
+      },
+      {
+        "permit_type": "Distilled Spirits Producer/Bottler",
+        "url": "https://www.ttb.gov/system/files/2025-04/FRL_Spirits_Producers_and_Bottlers_List.csv",
+        "row_count": 5456
+      },
+      {
+        "permit_type": "Alcohol Importer",
+        "url": "https://www.ttb.gov/system/files/2025-04/FRL_Alcohol_Importer_Permit_List.csv",
+        "row_count": 21004
+      },
+      {
+        "permit_type": "Alcohol Wholesaler",
+        "url": "https://www.ttb.gov/system/files/2025-04/FRL_Alcohol_Wholesaler_Permit_List.csv",
+        "row_count": 38079
+      }
+    ],
+    "row_count": 82524,
+    "columns": [
+      "permit_number",
+      "permit_type",
+      "owner_name",
+      "operating_name",
+      "street_address",
+      "city",
+      "state",
+      "zip_code",
+      "county",
+      "new_permit_flag",
+      "source_url",
+      "source_fetched_at"
+    ],
+    "status": "SUCCESS",
+    "notes": "Combined TTB Federal Register List (FRL) permit data: Wine Producers/Blenders, Distilled Spirits Plants, Basic Permit Importers, and Basic Permit Wholesalers. NOTE: Brewery registrations are classified as tax return information under IRC Section 6103 and are NOT included in TTB's public list. All data is publicly downloadable with no authentication required. Updated weekly by TTB."
+  },
+  "validation_results": {
+    "total_rows_read": 82524,
+    "total_rows_cleaned": 82521,
+    "rows_removed": 3,
+    "issues_found": [
+      "CRITICAL: 3 rows with PII violations (removed)",
+      "Found 3 invalid zip codes",
+      "Found 80 rows with missing street_address"
+    ]
+  },
+  "data_quality": {
+    "completeness": {
+      "missing_fields": {
+        "street_address": 80
+      },
+      "total_required_fields": 7
+    },
+    "duplicates": {
+      "count": 0,
+      "examples": []
+    },
+    "invalid_data": {
+      "invalid_states": {
+        "count": 0,
+        "examples": []
+      },
+      "invalid_zip_codes": {
+        "count": 3,
+        "examples": [
+          {
+            "row": 1328,
+            "permit_number": "CA-W-16883",
+            "invalid_zip": "95066-361"
+          },
+          {
+            "row": 24685,
+            "permit_number": "CA-I-16753",
+            "invalid_zip": "92691-263"
+          },
+          {
+            "row": 28954,
+            "permit_number": "CO-I-391",
+            "invalid_zip": "8027"
+          }
+        ]
+      },
+      "missing_source_urls": {
+        "count": 0,
+        "examples": []
+      }
+    },
+    "pii_violations": {
+      "count": 3,
+      "examples": [
+        {
+          "row": 41062,
+          "permit_number": "SC-I-21018",
+          "issues": [
+            "Phone number found in owner_name"
+          ]
+        },
+        {
+          "row": 69651,
+          "permit_number": "NY-P-15198",
+          "issues": [
+            "Email found in operating_name"
+          ]
+        },
+        {
+          "row": 75932,
+          "permit_number": "SC-P-21066",
+          "issues": [
+            "Phone number found in owner_name"
+          ]
+        }
+      ]
+    },
+    "state_derivation": {
+      "states_derived_from_permit_number": 82523,
+      "unparseable_permit_numbers": {
+        "count": 1,
+        "examples": [
+          {
+            "row": 72814,
+            "permit_number": "OHIO-P-21001"
+          }
+        ]
+      }
+    }
+  },
+  "summary": {
+    "status": "PASS",
+    "data_quality_score": "100.00%",
+    "rows_in_cleaned_dataset": 82521,
+    "critical_issues_removed": 3,
+    "non_critical_issues": 3,
+    "enhancements": {
+      "states_derived": 82523,
+      "note": "State codes were derived from permit number prefixes where missing"
+    },
+    "compliance_notes": {
+      "source_url_coverage": "100%",
+      "pii_violations": "3 rows removed",
+      "duplicates": "0 removed",
+      "cleaned_dataset_status": "Ready for compliance review"
+    }
+  }
+}

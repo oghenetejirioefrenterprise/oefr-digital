@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "dataset": "fl-real-estate-agent-licenses-2026-05",
+  "audited_at": "2026-05-06T00:00:00Z",
+  "audited_by": "compliance-officer",
+  "verdict": "PASS",
+  "hard_gates": {
+    "public_data_only": {
+      "result": "PASS",
+      "rationale": "Source is Florida DBPR (Department of Business and Professional Regulation) weekly CSV at https://www2.myfloridalicense.com/real-estate-commission/public-records/ \u2014 mandated public disclosure under Florida Public Records Act (F.S. Ch. 119). No authentication required, no login bypass, no scraped-behind-login data. Direct file download at https://www2.myfloridalicense.com/sto/file_download/extracts/REALESTATE2501LICENSE_1.csv."
+    },
+    "no_pii_in_delivered_csv": {
+      "result": "PASS",
+      "rationale": "Data steward identified and stripped 16 rows (14 phone numbers, 2 personal email addresses embedded in 'street' or 'zip' source fields). Independent full-column PII sweep across all 448,610 rows of the cleaned CSV confirms zero residual email addresses, phone numbers, or SSNs in any field (license_code, licensee_name, dba_name, rank, street, city, state, zip, county). All 16 originally-flagged license numbers individually verified clean.",
+      "steward_stripped_rows": 16,
+      "residual_pii_found": 0
+    },
+    "source_url_on_every_row": {
+      "result": "PASS",
+      "rationale": "All 448,610 data rows carry a non-empty source_url pointing to the DBPR CSV download. Zero rows missing.",
+      "total_rows": 448610,
+      "rows_with_source_url": 448610,
+      "rows_missing_source_url": 0,
+      "source_url_value": "https://www2.myfloridalicense.com/sto/file_download/extracts/REALESTATE2501LICENSE_1.csv"
+    },
+    "commercial_resale_rights": {
+      "result": "PASS",
+      "rationale": "Florida DBPR license records are government-mandated public records under Florida Public Records Act (F.S. Ch. 119). Government agency public records are not subject to copyright (17 U.S.C. \u00a7 105 by analogy; Florida courts hold the same for state records). No terms of service restrict commercial redistribution of the DBPR public records export. Confirmed commercial market: at least three vendors (RealEstateAgentData.com, BookYourData, USAgentLeads) currently sell formatted versions of the identical dataset at $39\u2013$499+ price points."
+    }
+  },
+  "data_quality_warnings": {
+    "note": "The following are non-blocking quality flags from the steward's validation pass. They do not affect the compliance verdict.",
+    "warnings": [
+      {
+        "check": "date_original_issue_date",
+        "detail": "3,278 null issue dates; 6 rows parse as future dates due to DD-MON-YY 2-digit year ambiguity (likely pre-1969 licenses). Source data quality artifact."
+      },
+      {
+        "check": "date_expiration_date",
+        "detail": "1 null expiration date row."
+      },
+      {
+        "check": "address_completeness",
+        "detail": "116 rows missing one or more address fields (international/out-of-state licensees); 9,490 rows with null county (foreign addresses). Source data reflects real-world address variation."
+      },
+      {
+        "check": "license_number_format",
+        "detail": "1 license with 'BL' prefix (BL268126, Broker Associate) \u2014 likely source data entry error. Retained as-is; not a compliance issue."
+      },
+      {
+        "check": "rank_license_prefix_consistency",
+        "detail": "Same 1 row as above (BL268126). Mismatch is a source artifact."
+      }
+    ]
+  },
+  "pii_stripped_rows": {
+    "count": 16,
+    "breakdown": {
+      "email_in_street": 2,
+      "phone_in_street": 14,
+      "phone_in_zip": 1
+    },
+    "note": "Counts overlap \u2014 15 rows affected in 'street', 1 in 'zip', total 16 distinct rows."
+  },
+  "files_audited": [
+    "state/datasets/fl-real-estate-agent-licenses-2026-05.cleaned.csv",
+    "state/datasets/fl-real-estate-agent-licenses-2026-05.validation.json",
+    "state/opportunities/2026-05-06-fl-real-estate-agent-licenses.json"
+  ],
+  "deliverable_row_count": 448610,
+  "columns": [
+    "license_code",
+    "licensee_name",
+    "dba_name",
+    "rank",
+    "street",
+    "city",
+    "state",
+    "zip",
+    "county",
+    "license_number",
+    "primary_status",
+    "original_issue_date",
+    "expiration_date",
+    "source_url",
+    "validation_flags"
+  ]
+}

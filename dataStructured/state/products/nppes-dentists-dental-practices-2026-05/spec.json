@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "type": "product_spec",
+  "slug": "nppes-dentists-dental-practices-2026-05",
+  "created": "2026-05-07T16:28:35Z",
+  "created_by": "engineer",
+  "status": "SHIPPED",
+  "name": "US Dentists & Dental Practices \u2014 NPI Database 2026 \u2014 371,786 Records (CSV)",
+  "summary": "371,786 active US dentists and dental practices from the CMS NPPES National Provider Identifier registry, April 2026. Includes all dental specialties. 100% phone coverage. One-time purchase.",
+  "format": "one_time",
+  "deliverable": "csv",
+  "price_usd": 79,
+  "dataset_file": "state/nppes-dentists-dental-practices-2026-05.cleaned.csv",
+  "ethics_ledger": "state/nppes-dentists-dental-practices-2026-05.compliance.json",
+  "audience": "Dental supply companies (Patterson, Henry Schein, Benco), dental SaaS vendors (Dentrix, Eaglesoft, Carestream SDRs), dental equipment manufacturers/reps, dental lab companies, dental CE education providers, practice management consultants, dental insurance brokers, dental staffing agencies.",
+  "channels": [
+    "stripe_payment_link",
+    "gumroad"
+  ],
+  "compliance_verdict": "PASS",
+  "row_count": 371786,
+  "source": "CMS NPPES National Provider Identifier Registry \u2014 April 2026 V2 monthly bulk download (download.cms.gov/nppes/NPI_Files.html) \u2014 U.S. federal open data, mandatory public disclosure under HIPAA 45 CFR \u00a7 162.410"
+}

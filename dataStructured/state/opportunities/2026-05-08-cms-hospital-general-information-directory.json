@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "cms-hospital-general-information-directory",
+  "created": "2026-05-08T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 8,
+  "summary": "A cleaned CSV of all ~6,200 US Medicare-certified hospitals sourced from CMS Care Compare Hospital General Information dataset \u2014 publicly downloadable with no authentication required. Fields include hospital name, address, phone, hospital type (acute care, critical access, psychiatric, children's), ownership (for-profit, nonprofit, government, VA, church), emergency services flag, overall star rating (1\u20135 stars), mortality rating, safety rating, readmission rating, patient experience rating, timeliness of care rating, and CMS Certification Number (CCN). Definitive Healthcare charges $15,000\u2013$50,000/year for hospital intelligence used by medtech, pharma, and health IT vendors; IQVIA charges even more. A $59 one-time Gumroad flat file targets health IT SDR teams, medical device reps, healthcare staffing agencies, and hospital consulting firms \u2014 the broadest and most commercially valuable segment of the healthcare B2B market \u2014 who need a bulk hospital contact and quality-ratings list that no affordable flat-file product currently sells.",
+  "audience": {
+    "who": "Health IT and EHR SDRs (Epic, Oracle Cerner, Meditech, MEDITECH, Altera) targeting acute care hospitals for contract renewals and competitive displacement; medical device and surgical supply reps (Stryker, Medtronic, Johnson & Johnson MedTech) who need hospital-level contact and ownership data for territory planning; healthcare staffing agencies placing RNs and travel nurses in acute care hospitals (targeting hospitals with low staffing ratings); hospital management consulting firms (Huron, Navigant, Quorum) prospecting for turnaround and quality improvement engagements; pharmaceutical companies targeting hospital formulary decision-makers by hospital type and star rating.",
+    "where_found": [
+      "https://www.definitivehc.com/solutions/hospital-intelligence",
+      "https://data.cms.gov/provider-data/topics/hospitals",
+      "https://www.iqvia.com/solutions/real-world-evidence/data-assets/hospital-data"
+    ]
+  },
+  "data_wanted": "CMS Care Compare \u2014 Hospital General Information dataset, updated monthly. Download URL: https://data.cms.gov/provider-data/dataset/xubh-q36u. Fields per hospital: CMS Certification Number (CCN), facility name, address (street, city, state, ZIP), phone number, hospital type (Acute Care \u2013 General, Acute Care \u2013 Department of Defense, Acute Care \u2013 Veterans Administration, Critical Access Hospital, Psychiatric, Children's), hospital ownership (Voluntary non-profit \u2013 Church / Private / Other; Proprietary; Government \u2013 Federal / State / Local / Hospital District; Physician; Tribal), emergency services (yes/no), meets criteria for meaningful use of electronic health records, overall star rating (1\u20135, or 'Not Available'), safety of care rating, readmission rating, patient experience rating, effectiveness of care rating, timeliness of care rating, efficient use of medical imaging rating, mortality rating. No login or API key required \u2014 direct CSV download from data.cms.gov.",
+  "evidence": [
+    {
+      "source": "CMS Care Compare Hospital General Information \u2014 official public dataset, monthly updated, direct CSV download with no authentication required, ~6,200 hospitals",
+      "url": "https://data.cms.gov/provider-data/dataset/xubh-q36u",
+      "quote": "Hospital General Information dataset provides comprehensive data on all Medicare-certified hospitals, including facility type, ownership, star ratings, and contact information. Updated monthly. Available as CSV, JSON, or API."
+    },
+    {
+      "source": "Definitive Healthcare \u2014 the leading hospital intelligence platform; charges $15,000\u2013$50,000+/year for hospital profiles used by medtech and health IT sales teams, built on the same CMS and state licensing public data",
+      "url": "https://www.definitivehc.com/solutions/hospital-intelligence",
+      "quote": "Definitive Healthcare provides the most comprehensive healthcare provider database available, covering 8,000+ hospitals with 1,000+ data elements per facility. Sales intelligence teams use Definitive to prioritize hospital accounts, benchmark competitors, and identify acquisition targets. Enterprise pricing from $15,000/year."
+    },
+    {
+      "source": "IQVIA Hospital Data \u2014 charges enterprise pricing for hospital-level intelligence including administrative claims, staffing, and quality data used by pharma and medtech companies for territory planning",
+      "url": "https://www.iqvia.com/solutions/real-world-evidence/data-assets/hospital-data",
+      "quote": "IQVIA hospital-level data covers over 6,500 US hospitals and provides insight into patient volumes, procedure mix, and physician preferences for medical device and pharmaceutical market planning."
+    },
+    {
+      "source": "AHA (American Hospital Association) Hospital Statistics 2025 \u2014 confirms ~6,200 registered hospitals in the US, with approximately 2,600 nonprofit, 1,200 for-profit, and 1,000 state/local government hospitals",
+      "url": "https://www.aha.org/statistics/fast-facts-us-hospitals",
+      "quote": "Total US registered hospitals: 6,120 (2024). Community hospitals: 5,129. For-profit hospitals: 1,167. Nonprofit hospitals: 2,616. State and local government hospitals: 1,008. Critical access hospitals: 1,358."
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "The hospital data market is the highest-value segment in all of healthcare B2B: Definitive Healthcare has a $300M+ annual revenue business built on it, IQVIA and Sg2 charge similar enterprise rates, and every medtech sales rep, health IT SDR, and hospital recruiter uses some form of hospital directory. A $59 flat CSV with hospital names, addresses, types, ownership, and 5-star quality ratings captures the massive underserved long tail \u2014 solo medical device reps, healthcare startup SDRs, travel nurse agency recruiters, and boutique consulting firms \u2014 none of whom can justify $15K/year but would trivially spend $59 to build a call list. The quality ratings angle is particularly strong for staffing agencies (filter for 1\u20132 star overall hospitals = highest care quality pressure = highest staffing need).",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://data.cms.gov/provider-data/dataset/xubh-q36u",
+      "https://data.cms.gov/provider-data/topics/hospitals"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad one-time download + LinkedIn posts targeting health IT sales leaders, medtech reps, and healthcare staffing agency directors + r/healthIT and healthcare LinkedIn groups + direct outreach to health IT startup founders and solo medtech reps on LinkedIn",
+    "angle": "Title: 'US Hospital Directory 2026 \u2014 6,200+ Medicare-Certified Hospitals, Star Ratings, Ownership & Contact Info (CSV)'. Key selling points: (1) Every Medicare-certified hospital in the US \u2014 name, address, phone, hospital type (acute care, critical access, psychiatric, children's), (2) Ownership type \u2014 for-profit, nonprofit, government, VA, church \u2014 filter for your exact target segment in seconds, (3) CMS 5-star quality ratings \u2014 mortality, safety, readmissions, patient experience, timeliness \u2014 filter for 1-2 star hospitals (highest-need staffing and consulting accounts), (4) Direct from CMS public data \u2014 the same government source behind Definitive Healthcare's $15K/year platform, (5) One-time $59 instant CSV. Staffing agency angle: 'Find every 1-2 star hospital in your territory \u2014 those are your highest-urgency travel nurse accounts. 6,200 hospitals. $59 once.'"
+  },
+  "ceo_decision": {
+    "decided_at": "2026-05-08T14:00:00-04:00",
+    "decided_by": "ceo",
+    "verdict": "APPROVED",
+    "priority": 2,
+    "notes": "Score 8, direct CMS CSV, 6200 hospitals, health IT SDR market is high-value and ready-to-buy"
+  }
+}

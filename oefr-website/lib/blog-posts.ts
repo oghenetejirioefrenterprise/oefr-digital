@@ -2619,6 +2619,105 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "ssdi-hearing-5-day-evidence-rule",
+    title: "The SSDI 5-Day Evidence Rule: Inform vs. Submit (and Why the Difference Wins Hearings)",
+    description:
+      "Under 20 CFR § 404.935(a) you must inform the hearing office about — or submit — evidence at least 5 business days before your SSDI ALJ hearing. Most guides only cover submitting. Informing is a separate right that preserves mandatory consideration of records that arrive late.",
+    keywords: [
+      "SSDI 5 day rule",
+      "20 CFR 404.935",
+      "SSDI hearing evidence deadline",
+      "inform vs submit evidence SSDI",
+      "ALJ hearing evidence rule",
+      "HALLEX I-2-5-13",
+      "SSDI evidence 5 business days",
+      "disability hearing medical records late",
+      "SSR 17-4p",
+      "preserve evidence SSDI hearing",
+    ],
+    publishedDate: "2026-05-29",
+    readingTime: "6 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "There are two ways to comply with the SSDI 5-day evidence rule — and most claimants only know about one. Knowing the second can keep a late-arriving medical record from being shut out of your hearing.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        If you have a Social Security disability (SSDI) hearing scheduled in front of an Administrative Law Judge (ALJ), there is one procedural rule that quietly decides whether your strongest medical evidence gets considered at all. It is called the 5-day rule, and it lives in <strong class="text-white">20 CFR § 404.935(a)</strong>. Most disability guides explain half of it. The half they skip is the half that wins.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What the rule actually says</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under 20 CFR § 404.935(a), you must <strong class="text-white">inform the hearing office about</strong> — or <strong class="text-white">submit</strong> — any written evidence no later than <strong class="text-white">5 business days before</strong> the date of your scheduled hearing. Miss that window without a qualifying reason, and the ALJ <em>may decline to consider</em> the evidence.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Read that sentence again. There are two separate ways to comply: <strong class="text-white">submit</strong> the evidence, or <strong class="text-white">inform</strong> the office that it exists. They are not the same action, and they do not require the same thing from you.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Submit vs. inform — the distinction that matters</h2>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-3">
+          <li>📄 <strong class="text-white">Submit</strong> means the actual document is in the file at least 5 business days out. Great — when you already have the record in hand.</li>
+          <li>✉️ <strong class="text-white">Inform</strong> means you notify the hearing office, in writing, that relevant evidence <em>exists and is outstanding</em> — even if you don't physically have it yet.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This is the part claimants miss. You requested records from a provider, the provider is slow, and your hearing is three weeks away. You cannot submit a document you don't have. But you <strong class="text-white">can</strong> inform the office that it's coming. Doing so on time preserves the ALJ's obligation to consider those records when they arrive — see <strong class="text-white">HALLEX I-2-5-13</strong>, which governs how the agency handles evidence and the 5-day requirement.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why this is a proactive move, not a rescue</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The 5-day rule is not something you reach for after you've blown a deadline. It is a step you take <strong class="text-white">early</strong> — the moment you know a record is outstanding and the hearing is more than 5 business days away. A timely inform letter is the difference between "the ALJ will consider this when it lands" and "the ALJ has discretion to ignore it." You want to be on the first side of that line before the clock runs down, not arguing about it afterward.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What a good inform letter contains</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        An inform letter is short, but it has to be specific. Vague "I have more records coming" language gives the ALJ nothing to act on. A letter that preserves consideration generally identifies:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li>🏥 <strong class="text-white">The source</strong> — which provider or facility holds the outstanding evidence.</li>
+          <li>🗓️ <strong class="text-white">The time period</strong> the records cover.</li>
+          <li>🧾 <strong class="text-white">The type</strong> of evidence (treatment notes, imaging, a medical source statement).</li>
+          <li>🎯 <strong class="text-white">Relevance</strong> — why it bears on your claim, framed against the kinds of evidence the agency weighs under <strong class="text-white">SSR 17-4p</strong>.</li>
+          <li>📌 <strong class="text-white">Status</strong> — that it was requested and is outstanding, with the request date.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        SSR 17-4p is worth knowing here because it frames the claimant's responsibility to make a good-faith effort to get evidence into the record. An inform letter is documentary proof of exactly that effort.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Counting "5 business days" correctly</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Business days exclude weekends and federal holidays, and you count back from the hearing date. If your hearing is on a Wednesday, the fifth business day before it generally falls on the prior Wednesday — but a holiday in that window pushes the cutoff earlier. People lose evidence not because the records were bad, but because they counted calendar days instead of business days and missed by 48 hours. Map the date the moment your hearing notice arrives.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The bottom line</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The 5-day rule under 20 CFR § 404.935(a) gives you two doors. Submitting is the obvious one. Informing — notifying the office, on time and with specifics, about evidence that's still outstanding — is the one that protects you when a provider is slow and the hearing is close. Used early, it keeps your strongest records in play.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you'd rather not draft the inform letter from scratch, we built a fill-in-the-blank version: <a href="/ssdi-hearing-evidence-letter" class="text-amber-300 hover:text-amber-200 underline">the SSDI Hearing Evidence Letter Kit ($14)</a> — a one-page INFORM letter template plus a short procedural explainer citing 20 CFR § 404.935(a), HALLEX I-2-5-13, and SSR 17-4p, and a 60-day deadline calendar so you count business days correctly. Instant PDF.
+      </p>
+
+      <p class="text-sm text-slate-400 leading-relaxed mb-6 italic">
+        This article is general educational information about Social Security procedure, not legal advice. For advice on your specific case, consult a representative or attorney.
+      </p>
+    `,
+    cta: {
+      text: "Get the SSDI Hearing Evidence Letter Kit ($14)",
+      href: "/ssdi-hearing-evidence-letter",
+    },
+    relatedProducts: [
+      {
+        name: "SSDI Hearing Evidence Letter Kit — 5-Day INFORM Rule",
+        href: "/ssdi-hearing-evidence-letter",
+        description:
+          "Fill-in-the-blank INFORM letter template + procedural explainer citing 20 CFR § 404.935(a), HALLEX I-2-5-13, and SSR 17-4p + a 60-day deadline calendar. Instant PDF download, $14.",
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

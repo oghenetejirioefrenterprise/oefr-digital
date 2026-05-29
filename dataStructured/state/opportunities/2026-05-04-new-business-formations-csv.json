@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "type": "opportunity_brief",
+  "slug": "new-business-formations-csv",
+  "created": "2026-05-04T13:00:00-04:00",
+  "created_by": "opportunity-researcher",
+  "status": "APPROVED",
+  "score": 8,
+  "summary": "Weekly or monthly CSV of newly registered LLCs and corporations from state Secretary of State public filings. With 5.5M new US businesses formed in 2025 (+6.5% YoY), the first-30-days window is the highest-value prospecting window for insurance agents, accountants, CPAs, web designers, registered agent services, and payroll companies. State SOS bulk data is public in most states; the gap is a cleaned, filterable, cheap one-time file targeting a specific state or niche.",
+  "audience": {
+    "who": "B2B service providers who sell to brand-new small businesses: commercial insurance agents, bookkeepers, CPAs, website designers, registered agent firms, payroll processors, and business banking reps. All want to reach owners in the first 30-60 days before competitors do.",
+    "where_found": [
+      "https://www.registeredagentsinc.com/business-formation-report/",
+      "https://www.wolterskluwer.com/en/news/wolters-kluwer-finds-strong-2025-growth-in-us-business-formations",
+      "https://www.llcuniversity.com/50-secretary-of-state-sos-business-entity-search/"
+    ]
+  },
+  "data_wanted": "Entity name, entity type (LLC/Corp/etc.), state of registration, registered agent name and address, filing date, principal address (where available), officer/organizer names \u2014 all pulled from public SOS bulk data files.",
+  "evidence": [
+    {
+      "source": "Registered Agents Inc New Business Formations Report \u2014 tracks all 50 states monthly, free to economists; proves public data availability and consistent audience interest",
+      "url": "https://www.registeredagentsinc.com/business-formation-report/",
+      "quote": "The New Business Formations Report data is made free to economists, journalists, policymakers, and entrepreneurs every month."
+    },
+    {
+      "source": "Wolters Kluwer analysis \u2014 5.5M new businesses in 2025, up 6.5% YoY, signals large addressable market of newly incorporated businesses",
+      "url": "https://www.wolterskluwer.com/en/news/wolters-kluwer-finds-strong-2025-growth-in-us-business-formations",
+      "quote": "Nearly 5.5 million new businesses formed in 2025, signaling durable entrepreneurial momentum."
+    },
+    {
+      "source": "Kyckr \u2014 commercial California business registry data product, pricing proof that formatted SOS data is sold",
+      "url": "https://www.kyckr.com/blog/california-business-register-2025-update",
+      "quote": "California Business Registry (2025 Update)"
+    },
+    {
+      "source": "LLC University \u2014 all 50 state SOS business entity search portals are public and accessible",
+      "url": "https://www.llcuniversity.com/50-secretary-of-state-sos-business-entity-search/",
+      "quote": "Secretary of State Business Entity Search (all 50 states)"
+    }
+  ],
+  "willingness_to_pay": {
+    "signal": "Commercial lead vendors charge $0.25-$1.00 per new business record. Insurance agencies pay $50-200/month for new-business lead subscriptions. A one-time state-specific file (e.g., \"Texas LLCs filed April 2026, 4,200 records\") priced at $39-79 undercuts all subscription services and the per-record pricing on Fiverr gigs for the same data.",
+    "confidence": "high"
+  },
+  "source_rights": {
+    "public": true,
+    "examples": [
+      "https://www.sos.ca.gov/business-programs/business-entities/starting-business/types/",
+      "https://www.registeredagentsinc.com/business-formation-report/",
+      "https://census.gov/econ/bfs/data.html"
+    ]
+  },
+  "first_sale_path": {
+    "channel": "Gumroad listing + targeted post in r/Insurance, r/Accounting, r/smallbusiness, r/Entrepreneur",
+    "angle": "\"[State] New LLCs & Corps \u2014 [Month] 2026 \u2014 [N] records, CSV\" \u2014 cleaned, ready-to-import list of every business formed in the last 30 days in a high-formation state (Texas, Florida, California). Angle: 'Reach them before everyone else. No subscription needed.'"
+  },
+  "approved_by": "ceo",
+  "approved_at": "2026-05-05T00:00:00-04:00"
+}

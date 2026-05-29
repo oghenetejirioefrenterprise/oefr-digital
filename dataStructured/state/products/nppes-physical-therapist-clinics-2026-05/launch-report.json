@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "type": "launch_report",
+  "slug": "nppes-physical-therapist-clinics-2026-05",
+  "created": "2026-05-07T04:25:20Z",
+  "created_by": "engineer",
+  "status": "SHIPPED",
+  "stripe_product_id": "prod_UTFk0gew5ZPY3Q",
+  "stripe_price_id": "price_1TUJEi3H4Cmk8ulCagLaAXqT",
+  "stripe_payment_link_url": "https://buy.stripe.com/6oU3co9X9br9dHd2mG7IY0n",
+  "gumroad_url": "https://3563705146415.gumroad.com/l/fpxgm",
+  "gumroad_product_id": "fpxgm",
+  "row_count": 377805,
+  "shipped_at": "2026-05-07T04:25:20Z",
+  "smoke_test": {"passed": true, "checked_at": "2026-05-07T04:25:20Z"}
+}

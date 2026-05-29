@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LaunchReport",
+  "type": "object",
+  "required": ["version", "type", "slug", "created", "created_by", "status", "summary", "smoke_test", "spec_file"],
+  "properties": {
+    "version": {"const": 1},
+    "type": {"const": "launch_report"},
+    "slug": {"type": "string"},
+    "created": {"type": "string", "format": "date-time"},
+    "created_by": {"const": "engineer"},
+    "status": {"enum": ["SHIPPED", "FAILED", "BLOCKED"]},
+    "summary": {"type": "string"},
+    "stripe_product_id": {"type": "string"},
+    "stripe_price_id": {"type": "string"},
+    "stripe_payment_link_url": {"type": "string", "format": "uri"},
+    "gumroad_url": {"type": "string", "format": "uri"},
+    "smoke_test": {
+      "type": "object",
+      "required": ["passed", "checked_at"],
+      "properties": {
+        "passed": {"type": "boolean"},
+        "checked_at": {"type": "string", "format": "date-time"},
+        "failure_reason": {"type": "string"}
+      }
+    },
+    "spec_file": {"type": "string"},
+    "failure_reason": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "SHIPPED"}}},
+      "then": {"properties": {"smoke_test": {"properties": {"passed": {"const": true}}}}}
+    },
+    {
+      "if": {"properties": {"status": {"enum": ["FAILED", "BLOCKED"]}}},
+      "then": {"required": ["failure_reason"]}
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "validated_at": "2026-05-05T13:07:23.255597+00:00",
+  "file": "state/datasets/samgov-small-biz-contractor-leads-2026-05.csv",
+  "overall_status": "PASS",
+  "summary": {
+    "row_count": 4731,
+    "column_count": 10,
+    "columns": [
+      "legal_business_name",
+      "uei_sam",
+      "cage_code",
+      "naics_codes",
+      "small_business_certifications",
+      "physical_address",
+      "state",
+      "poc_email",
+      "active_registration_status",
+      "source_url"
+    ]
+  },
+  "checks": {
+    "poc_phone_absent": {
+      "status": "PASS",
+      "detail": "poc_phone column not found in dataset"
+    },
+    "required_fields_present": {
+      "status": "PASS",
+      "missing": []
+    },
+    "blank_required_fields": {
+      "status": "PASS",
+      "rows_with_any_blank": 0,
+      "blank_counts_by_field": {
+        "legal_business_name": 0,
+        "uei_sam": 0,
+        "naics_codes": 0,
+        "small_business_certifications": 0,
+        "physical_address": 0,
+        "state": 0,
+        "active_registration_status": 0,
+        "source_url": 0
+      }
+    },
+    "duplicate_ueis": {
+      "status": "PASS",
+      "duplicate_count": 0,
+      "empty_uei_rows": 0,
+      "duplicates": {}
+    },
+    "source_url_format": {
+      "status": "PASS",
+      "bad_format_count": 0,
+      "blank_url_count": 0
+    }
+  }
+}

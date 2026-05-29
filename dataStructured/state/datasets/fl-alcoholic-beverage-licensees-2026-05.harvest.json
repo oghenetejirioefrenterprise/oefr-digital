@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "type": "harvest_report",
+  "slug": "fl-alcoholic-beverage-licensees-2026-05",
+  "harvested_at": "2026-05-07T03:47:58.228744+00:00",
+  "source_url": "https://www2.myfloridalicense.com/sto/file_download/extracts/bd400lic.csv",
+  "source_page": "https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/",
+  "row_count_raw": 212071,
+  "row_count_active": 209496,
+  "row_count_written": 207536,
+  "columns": [
+    "license_number",
+    "license_type",
+    "license_type_description",
+    "business_name",
+    "owner_name",
+    "street_address",
+    "city",
+    "state",
+    "zip_code",
+    "county",
+    "license_status",
+    "license_issue_date",
+    "license_expiry_date",
+    "mail_address",
+    "mail_city",
+    "mail_state",
+    "mail_zip",
+    "source_url"
+  ],
+  "top_license_types": [
+    {
+      "type": "BRND",
+      "count": 107459
+    },
+    {
+      "type": "2APS",
+      "count": 17458
+    },
+    {
+      "type": "LQS",
+      "count": 17122
+    },
+    {
+      "type": "2COP",
+      "count": 13158
+    },
+    {
+      "type": "RGST",
+      "count": 12040
+    },
+    {
+      "type": "4COP/SFS",
+      "count": 8947
+    },
+    {
+      "type": "AMFG",
+      "count": 7066
+    },
+    {
+      "type": "RTPD",
+      "count": 6283
+    },
+    {
+      "type": "4COP",
+      "count": 2973
+    },
+    {
+      "type": "3PS",
+      "count": 2278
+    },
+    {
+      "type": "ODP",
+      "count": 1905
+    },
+    {
+      "type": "4COP/S",
+      "count": 1213
+    },
+    {
+      "type": "11C",
+      "count": 1133
+    },
+    {
+      "type": "13CT",
+      "count": 742
+    },
+    {
+      "type": "1APS",
+      "count": 702
+    },
+    {
+      "type": "RNPD",
+      "count": 682
+    },
+    {
+      "type": "IMPR",
+      "count": 541
+    },
+    {
+      "type": "11CG",
+      "count": 419
+    },
+    {
+      "type": "UNLM",
+      "count": 418
+    },
+    {
+      "type": "TWD",
+      "count": 380
+    }
+  ],
+  "filters_applied": [
+    "Primary Status IN (20=Current, 21=Temp Certificate) \u2014 active licenses only",
+    "Deduplicated by License Number"
+  ],
+  "notes": "Downloaded from Florida DBPR Division of Alcoholic Beverages and Tobacco public records. Source file: bd400lic.csv (all ABT licensees). Filtered to active/current licenses (Primary Status 20 and 21). Raw file contained 212071 rows; 209496 were active status; 207536 unique license numbers written to output. Column mapping derived from bd4006lic.csv which has matching headers. County codes are DBPR internal codes mapped to FL county names. Empty county fields are expected \u2014 the source file does not populate this for all records.",
+  "status": "SUCCESS"
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Pest Control Company License Database",
+  "slug": "pest-control-company-license-database",
+  "score": 7,
+  "demand_signal": "Strong and validated. 8+ commercial vendors selling pest control company databases: Openmart (25K+ companies, 97% accuracy), Prospeo.io (116,683 companies with 483,409 contacts), LimeLeads (92% accuracy, 90-day refresh), FacilityManagementLeads (300K+ contacts), DataCaptive (12K+ companies), Coldlytics, AverickMedia, Bancomail (5,665 records). The pest control software market alone is valued at $431.55M in 2026, confirming strong vendor ecosystem selling into this vertical.",
+  "target_audience": "Pest control field service management software vendors (PestPac, Jobber, Briostack, PestRoutes, ServSuite, Pocomos) running customer acquisition campaigns; chemical and pesticide manufacturers/distributors (Rentokil, Rollins/Orkin supply chain); pest control franchise development teams (Terminix, Orkin, ABC Home & Commercial); commercial property managers seeking pest control vendor bids; pest control insurance brokers (general liability, workers comp); pest control industry associations (NPMA) for membership drives; fleet/vehicle leasing companies targeting service vehicle operators",
+  "public_data_sources": [
+    "Texas Department of Agriculture — Structural Pest Control Reports: Current Licenses (downloadable)",
+    "California Structural Pest Control Board — license search portal (no auth required)",
+    "Florida FDACS — public license search and verification (aeslicensing.fdacs.gov)",
+    "North Carolina Department of Agriculture — Structural Pest Control license search",
+    "Georgia Department of Agriculture — search licenses portal",
+    "Washington State Department of Agriculture — license and company portals",
+    "Illinois DOH Environmental — pest control business verification search",
+    "New York DEC Bureau of Pesticides Management — business and applicator search"
+  ],
+  "competitive_landscape": "Moderately crowded at premium tier. Openmart and Prospeo have the largest databases (25K-116K companies). General B2B providers (LimeLeads, DataCaptive, FacilityManagementLeads) include pest control as a category. No vendor offers clean, one-time state-level CSVs from verified state licensing boards at a flat price. All use subscription or per-contact pricing. DataStructured wedge: $39-$49 per state CSV sourced directly from state agriculture department licensing registries — public data, verifiable, compliance-safe.",
+  "monetization_model": "State-level CSVs at $39-$49 each. Fields: business name, license holder name, license number, license type (structural pest control, termite, fumigation), license status, issue/expiration dates, business address, phone. Start with TX (large market, downloadable data), CA, FL. Multi-state bundle: 'Top 10 States Pest Control Licenses' at $149. Target: PestPac and Jobber sales teams who run state-by-state territory campaigns.",
+  "estimated_market_size": "25,000-120,000 pest control companies in the US (range depends on counting method — licensed operators vs. businesses). 68% use at least one software tool (2024 data). $431M pest control software market growing at 8.7% CAGR. Buyer LTV: field service software $50-$500/month ($600-$6,000/year), chemical supply contracts $5,000-$50,000/year, franchise fees $50K-$150K upfront.",
+  "data_freshness_requirement": "Annual updates aligned with state license renewal cycles. Most states require annual or biennial renewal. Texas publishes current license reports that can be harvested periodically.",
+  "compliance_notes": "PASS potential: All data sourced from state agriculture department and structural pest control board public licensing registries. License information is public record intended for consumer protection — consumers can verify if their pest control provider is properly licensed. No PII beyond business owner/licensee names (already public record). Source attribution via state agency URLs.",
+  "next_steps": [
+    "Harvest Texas Dept of Agriculture structural pest control license reports (downloadable format confirmed)",
+    "Harvest California Structural Pest Control Board via license search scraping",
+    "Harvest Florida FDACS pest control business licenses",
+    "Clean and standardize across states into unified CSV schema",
+    "Launch TX as first SKU at $39 on Gumroad, target r/pestcontrol and LinkedIn pest control industry groups"
+  ],
+  "research_date": "2026-05-27",
+  "researcher_notes": "Solid opportunity with excellent public data availability. The key advantage is that pest control is a state-licensed occupation in all 50 states via agriculture departments and structural pest control boards — unlike many other trades, there's a clear licensing authority with public records in every state. Texas even publishes downloadable reports. Engineering complexity is low-to-moderate: 8 states with confirmed public portals, most with searchable interfaces. The $431M software market (PestPac, Jobber, Briostack) means strong buyer LTV and recurring demand from SaaS sales teams running territory expansions. Not as high-scoring as auto dealerships or self-storage because buyer LTV is lower and the niche is narrower, but the public data access is among the best of any opportunity in our pipeline."
+}

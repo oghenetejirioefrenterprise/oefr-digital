@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "date": "2026-05-22",
+  "generated_at": "2026-05-22T15:01:03+00:00",
+  "plans": [
+    {
+      "item_id": "ttb-brewery-winery-distillery-directory-2026-05-2026-05-18",
+      "slug": "ttb-brewery-winery-distillery-directory-2026-05",
+      "channel": "reddit",
+      "subreddit_or_handle": "r/b2bsales",
+      "draft": {
+        "subreddit_suggestions": [
+          "r/b2bsales",
+          "r/datasets",
+          "r/entrepreneur"
+        ],
+        "title": "The TTB publishes a complete list of every federally licensed winery and distillery in the US (82,500+ producers). Here's what I learned cleaning it up for B2B prospecting.",
+        "body": "If you sell to craft beverage producers (barrels, packaging, POS systems, ingredients, compliance services, etc.), the TTB's public registry is the most comprehensive source for prospect lists. It covers every federally licensed winery, distillery, brewery, cidery, and meadery in the country.\n\nThe raw data is free but messy: inconsistent formats, duplicate entries, incomplete addresses, mixed business types. I spent the last few weeks standardizing it into a clean CSV with 82,500+ rows, filterable by license type, state, and status.\n\nSome things I found interesting:\n\n- California has 6,200+ wineries alone (nearly 3x the next state)\n- Distilleries have exploded since 2010; most are micro-operations\n- A surprising number of producers hold multiple license types at the same address\n\nFull transparency: I packaged this as a product ($79 for the CSV). It's called the US Winery & Distillery Directory 2026 and it's available here: https://buy.stripe.com/4gM4gsd9l9j19qXf9s7IY0w\n\nIf you just want the free raw data from TTB, you can download it yourself from their FOIA portal. I'm just offering a cleaned, standardized version for anyone who doesn't want to spend time wrangling it.\n\nHappy to answer questions about the data structure or share a sample if anyone's curious."
+      },
+      "rationale": "Reddit -> r/b2bsales | round-robin assignment",
+      "scheduled_for": "2026-05-22T21:00:00+00:00",
+      "requires_founder_review": false
+    }
+  ]
+}

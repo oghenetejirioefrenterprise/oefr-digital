@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RawDatasetMetadata",
+  "type": "object",
+  "required": ["version", "type", "slug", "created", "created_by", "status", "summary", "source_brief", "data_file", "row_count", "columns", "queries_executed", "urls_fetched"],
+  "properties": {
+    "version": {"const": 1},
+    "type": {"const": "raw_dataset_metadata"},
+    "slug": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$"},
+    "created": {"type": "string", "format": "date-time"},
+    "created_by": {"const": "data-engineer"},
+    "status": {"enum": ["READY_FOR_STEWARD", "BLOCKED", "FAILED"]},
+    "summary": {"type": "string", "minLength": 10},
+    "source_brief": {"type": "string"},
+    "data_file": {"type": "string"},
+    "row_count": {"type": "integer", "minimum": 1},
+    "columns": {"type": "array", "items": {"type": "string"}, "minItems": 2},
+    "queries_executed": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "urls_fetched": {"type": "integer", "minimum": 1},
+    "known_gaps": {"type": "string"},
+    "failure_reason": {"type": "string"}
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "slug": "fl-real-estate-agent-licenses",
+  "harvested_at": "2026-05-06T23:03:42.233113+00:00",
+  "harvested_by": "data-engineer",
+  "source_url": "https://www2.myfloridalicense.com/sto/file_download/extracts/REALESTATE2501LICENSE_1.csv",
+  "source_name": "Florida DBPR Real Estate Commission \u2014 Weekly Public Extract",
+  "output_file": "fl-real-estate-agent-licenses-2026-05.csv",
+  "total_rows": 448610,
+  "dropped_rows": {
+    "no_license_number": 24,
+    "no_primary_status": 8
+  },
+  "fields": [
+    "license_code",
+    "licensee_name",
+    "dba_name",
+    "rank",
+    "street",
+    "city",
+    "state",
+    "zip",
+    "county",
+    "license_number",
+    "primary_status",
+    "original_issue_date",
+    "expiration_date",
+    "source_url"
+  ],
+  "rank_distribution": {
+    "Sales Associate": 368514,
+    "Broker": 48525,
+    "Broker Associate": 31603
+  },
+  "status_distribution": {
+    "Active": 319247,
+    "Inactive": 129363
+  },
+  "top_counties": {
+    "Dade": 67190,
+    "Broward": 48151,
+    "Palm Beach": 38869,
+    "Orange": 31388,
+    "Out of State": 22929
+  },
+  "source_rights": "Public records \u2014 no auth required. DBPR weekly export.",
+  "pii_check": "PASS \u2014 no personal email, phone, or financial account fields present. Mailing addresses are business/licensee addresses on public record.",
+  "compliance_status": "pending",
+  "notes": "Column 17 (formatted license number with BK/SL prefix) used as license_number. 24 rows from source lacked a formatted license number and were dropped. 8 rows had blank primary_status and were dropped. All retained rows have source_url on every row."
+}

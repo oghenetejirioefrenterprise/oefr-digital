@@ -30,6 +30,8 @@ CSV_FILE = PRODUCT_DIR / "fdic-bank-branch-directory-2026-05.csv"
 
 sys.path.insert(0, str(BASE))
 
+from scripts.stripe_helpers import create_price, create_payment_link
+
 # ── guard: already shipped? (idempotent re-runs) ─────────────────────────────────
 # Without this, a re-run mints a NEW Stripe Product + Price + Payment Link and
 # orphans the previously-live link, cluttering the catalog and splitting sales.
@@ -114,10 +116,10 @@ if PRIOR_STRIPE_PRICEID:
     stripe_price = _Obj(id=PRIOR_STRIPE_PRICEID)
 else:
     try:
-        stripe_price = stripe.Price.create(
-            product=stripe_product.id,
-            unit_amount=PRICE * 100,  # Convert to cents
-            currency="usd"
+        stripe_price = create_price(
+            stripe_product.id,
+            PRICE,
+            idempotency_key=f"dsl_{SLUG.replace('-', '_')}_price",
         )
         print(f"[ship]   ✓ Price ID: {stripe_price.id}")
         _save_partial(stripe_price_id=stripe_price.id)
@@ -133,14 +135,10 @@ if PRIOR_STRIPE_URL:
     payment_link = _Obj(url=PRIOR_STRIPE_URL)
 else:
     try:
-        payment_link = stripe.PaymentLink.create(
-            line_items=[{"price": stripe_price.id, "quantity": 1}],
-            after_completion={
-                "type": "hosted_confirmation",
-                "hosted_confirmation": {
-                    "custom_message": f"Thank you for your purchase! Download your CSV below. You'll also receive an email receipt with the download link.\n\nDataset: {TITLE}\nRows: {spec['row_count']:,}\nSource: {spec['source']}"
-                }
-            }
+        payment_link = create_payment_link(
+            stripe_price.id,
+            f"Thank you for your purchase! Download your CSV below. You'll also receive an email receipt with the download link.\n\nDataset: {TITLE}\nRows: {spec['row_count']:,}\nSource: {spec['source']}",
+            idempotency_key=f"dsl_{SLUG.replace('-', '_')}_link",
         )
         print(f"[ship]   ✓ Payment Link: {payment_link.url}")
         _save_partial(stripe_payment_link_url=payment_link.url)

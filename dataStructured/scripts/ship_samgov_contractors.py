@@ -93,6 +93,7 @@ else:
 
 # ── 2. Stripe: product + price + payment link ─────────────────────────────────
 import stripe
+from scripts import stripe_helpers
 stripe.api_key = STRIPE_SECRET
 
 if PRIOR_STRIPE_URL and PRIOR_STRIPE_PID:
@@ -111,30 +112,29 @@ else:
         "Reply to your receipt email if you have any issues."
     )
 
-    stripe_product = stripe.Product.create(
-        name=TITLE,
-        description=(
+    stripe_product = stripe_helpers.create_product(
+        SLUG,
+        TITLE,
+        (
             "4,731 SAM.gov-registered small business IT contractors in VA, MD, and DC — "
             "UEI, CAGE, NAICS codes, 8(a)/HUBZone/WOSB/SDVOSB certifications, address, "
             "and SAM.gov source URL on every row. FFATA-mandated public data."
         ),
-        metadata={"product_id": f"dsl_{SLUG.replace('-', '_')}", "lob": "datastructured"}
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_product",
     )
     print(f"   Product: {stripe_product.id}")
 
-    stripe_price = stripe.Price.create(
-        product=stripe_product.id,
-        unit_amount=PRICE * 100,
-        currency="usd",
+    stripe_price = stripe_helpers.create_price(
+        stripe_product.id,
+        PRICE,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_price",
     )
     print(f"   Price: {stripe_price.id}")
 
-    stripe_link = stripe.PaymentLink.create(
-        line_items=[{"price": stripe_price.id, "quantity": 1}],
-        after_completion={
-            "type": "hosted_confirmation",
-            "hosted_confirmation": {"custom_message": success_msg},
-        },
+    stripe_link = stripe_helpers.create_payment_link(
+        stripe_price.id,
+        success_msg,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_link",
     )
     stripe_url = stripe_link.url
     print(f"   Payment Link: {stripe_url}")

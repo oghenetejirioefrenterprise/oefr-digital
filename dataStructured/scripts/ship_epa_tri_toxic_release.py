@@ -163,6 +163,7 @@ else:
 # STEP 2 — Stripe: product + price + Payment Link
 # ─────────────────────────────────────────────────────────────────────────────
 import stripe
+from scripts import stripe_helpers
 stripe.api_key = STRIPE_SECRET
 
 if PRIOR_STRIPE_URL and PRIOR_STRIPE_PID and str(PRIOR_STRIPE_PID).startswith("prod_"):
@@ -184,30 +185,26 @@ else:
     )
     assert len(success_msg) <= 500, f"success_msg too long: {len(success_msg)} chars"
 
-    stripe_product = stripe.Product.create(
-        name=stripe_spec["product_name"],
-        description=stripe_spec["description"],
-        metadata={
-            "product_id": f"dsl_{SLUG.replace('-', '_')}",
-            "lob": "datastructured"
-        },
+    stripe_product = stripe_helpers.create_product(
+        SLUG,
+        stripe_spec["product_name"],
+        stripe_spec["description"],
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_product",
     )
     print(f"   Product: {stripe_product.id}")
 
-    stripe_price = stripe.Price.create(
-        product=stripe_product.id,
-        unit_amount=PRICE * 100,
-        currency="usd",
+    stripe_price = stripe_helpers.create_price(
+        stripe_product.id,
+        PRICE,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_price",
     )
     print(f"   Price:   {stripe_price.id}")
     _save_partial(stripe_product_id=stripe_product.id, stripe_price_id=stripe_price.id)
 
-    stripe_link = stripe.PaymentLink.create(
-        line_items=[{"price": stripe_price.id, "quantity": 1}],
-        after_completion={
-            "type": "hosted_confirmation",
-            "hosted_confirmation": {"custom_message": success_msg},
-        },
+    stripe_link = stripe_helpers.create_payment_link(
+        stripe_price.id,
+        success_msg,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_link",
     )
     stripe_url = stripe_link.url
     _save_partial(

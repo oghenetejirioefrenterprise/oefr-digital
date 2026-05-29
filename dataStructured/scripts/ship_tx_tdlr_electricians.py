@@ -125,6 +125,7 @@ gist_url = release_url  # alias for report field naming
 # STEP 2 — Stripe: product + price + Payment Link
 # ─────────────────────────────────────────────────────────────────────────────
 import stripe
+from scripts import stripe_helpers
 stripe.api_key = STRIPE_SECRET
 
 if PRIOR_STRIPE_URL and PRIOR_STRIPE_PID and str(PRIOR_STRIPE_PID).startswith("prod_"):
@@ -146,9 +147,10 @@ else:
     )
     assert len(success_msg) <= 500, f"success_msg too long: {len(success_msg)} chars"
 
-    stripe_product = stripe.Product.create(
-        name=TITLE,
-        description=(
+    stripe_product = stripe_helpers.create_product(
+        SLUG,
+        TITLE,
+        (
             "204,535 active licensed electricians and electrical contractors in Texas — "
             "sourced from the Texas Department of Licensing and Regulation (TDLR) public database. "
             "Includes Master Electricians, Journeyman Electricians, Apprentice Electricians, "
@@ -156,26 +158,21 @@ else:
             "Fields: name, license type, license number, business address, city, ZIP, phone, expiration date. "
             "Public government data — mandatory disclosure under Texas Government Code §552. No auth bypass."
         ),
-        metadata={
-            "product_id": f"dsl_{SLUG.replace('-', '_')}",
-            "lob": "datastructured"
-        },
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_product",
     )
     print(f"   Product: {stripe_product.id}")
 
-    stripe_price = stripe.Price.create(
-        product=stripe_product.id,
-        unit_amount=PRICE * 100,
-        currency="usd",
+    stripe_price = stripe_helpers.create_price(
+        stripe_product.id,
+        PRICE,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_price",
     )
     print(f"   Price:   {stripe_price.id}")
 
-    stripe_link = stripe.PaymentLink.create(
-        line_items=[{"price": stripe_price.id, "quantity": 1}],
-        after_completion={
-            "type": "hosted_confirmation",
-            "hosted_confirmation": {"custom_message": success_msg},
-        },
+    stripe_link = stripe_helpers.create_payment_link(
+        stripe_price.id,
+        success_msg,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_payment_link",
     )
     stripe_url = stripe_link.url
     print(f"   Payment Link: {stripe_url}")

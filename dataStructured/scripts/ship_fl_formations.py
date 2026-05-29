@@ -96,6 +96,8 @@ else:
 import stripe
 stripe.api_key = STRIPE_SECRET
 
+from scripts.stripe_helpers import create_product, create_price, create_payment_link
+
 if PRIOR_STRIPE_URL and PRIOR_STRIPE_PID:
     print(f"[2/5] Reusing existing Stripe: {PRIOR_STRIPE_URL}")
     stripe_url    = PRIOR_STRIPE_URL
@@ -113,30 +115,29 @@ else:
         "Reply to your receipt email if you have any issues."
     )
 
-    stripe_product = stripe.Product.create(
-        name=TITLE,
-        description=(
+    stripe_product = create_product(
+        SLUG,
+        TITLE,
+        (
             "15,997 Florida LLC & Corp registrations (Apr–May 2026). "
             "Entity name, type, filing date, registered agent, principal address, sunbiz.org source URL. "
             "Public SOS data — no auth bypass."
         ),
-        metadata={"product_id": f"dsl_{SLUG.replace('-', '_')}", "lob": "datastructured"}
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_product",
     )
     print(f"   Product: {stripe_product.id}")
 
-    stripe_price = stripe.Price.create(
-        product=stripe_product.id,
-        unit_amount=PRICE * 100,
-        currency="usd",
+    stripe_price = create_price(
+        stripe_product.id,
+        PRICE,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_price",
     )
     print(f"   Price: {stripe_price.id}")
 
-    stripe_link = stripe.PaymentLink.create(
-        line_items=[{"price": stripe_price.id, "quantity": 1}],
-        after_completion={
-            "type": "hosted_confirmation",
-            "hosted_confirmation": {"custom_message": success_msg},
-        },
+    stripe_link = create_payment_link(
+        stripe_price.id,
+        success_msg,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_link",
     )
     stripe_url = stripe_link.url
     print(f"   Payment Link: {stripe_url}")

@@ -124,7 +124,12 @@ try:
     import stripe
     stripe.api_key = STRIPE_SECRET
 
+    from scripts.stripe_helpers import create_price, create_payment_link
+
     # Create product
+    # NOTE: left inline (not migrated to stripe_helpers.create_product) because this
+    # metadata carries extra keys (slug, row_count, format) that the shared helper's
+    # fixed metadata={"product_id","lob"} would silently drop.
     stripe_product = stripe.Product.create(
         name=TITLE,
         description=f"{SUMMARY[:400]}...",
@@ -139,10 +144,10 @@ try:
     print(f"  ✓ Product ID: {stripe_product.id}")
 
     # Create price
-    stripe_price = stripe.Price.create(
-        product=stripe_product.id,
-        unit_amount=PRICE * 100,
-        currency="usd"
+    stripe_price = create_price(
+        stripe_product.id,
+        PRICE,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_price",
     )
     print(f"  ✓ Price ID: {stripe_price.id}")
 
@@ -156,12 +161,10 @@ try:
         f"You'll also receive this link via email receipt."
     )
 
-    stripe_link = stripe.PaymentLink.create(
-        line_items=[{"price": stripe_price.id, "quantity": 1}],
-        after_completion={
-            "type": "hosted_confirmation",
-            "hosted_confirmation": {"custom_message": success_message}
-        }
+    stripe_link = create_payment_link(
+        stripe_price.id,
+        success_message,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_link",
     )
     print(f"  ✓ Payment Link: {stripe_link.url}")
 

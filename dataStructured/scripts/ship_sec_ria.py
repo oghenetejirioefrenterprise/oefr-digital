@@ -142,6 +142,7 @@ print(f"\nShipping: {TITLE} @ ${PRICE}\n")
 # STEP 1 — Stripe: product + price + Payment Link
 # ─────────────────────────────────────────────────────────────────────────────
 import stripe
+from scripts import stripe_helpers
 stripe.api_key = STRIPE_SECRET
 
 if PRIOR_STRIPE_URL and PRIOR_STRIPE_PID and str(PRIOR_STRIPE_PID).startswith("prod_"):
@@ -174,31 +175,27 @@ else:
         stripe_product = _Obj(id=PRIOR_STRIPE_PID)
         stripe_price   = _Obj(id=PRIOR_STRIPE_PRCE)
     else:
-        stripe_product = stripe.Product.create(
-            name=TITLE,
-            description=STRIPE_DESCRIPTION,
-            metadata={
-                "product_id": f"dsl_{SLUG.replace('-', '_')}",
-                "lob": "datastructured"
-            },
+        stripe_product = stripe_helpers.create_product(
+            SLUG,
+            TITLE,
+            STRIPE_DESCRIPTION,
+            idempotency_key=f"dsl_{SLUG.replace('-', '_')}_product",
         )
         print(f"   Product: {stripe_product.id}")
 
-        stripe_price = stripe.Price.create(
-            product=stripe_product.id,
-            unit_amount=PRICE * 100,
-            currency="usd",
+        stripe_price = stripe_helpers.create_price(
+            stripe_product.id,
+            PRICE,
+            idempotency_key=f"dsl_{SLUG.replace('-', '_')}_price",
         )
         print(f"   Price:   {stripe_price.id}")
         # Persist immediately so a crash before the payment link cannot orphan the product.
         _save_partial(stripe_product_id=stripe_product.id, stripe_price_id=stripe_price.id)
 
-    stripe_link = stripe.PaymentLink.create(
-        line_items=[{"price": stripe_price.id, "quantity": 1}],
-        after_completion={
-            "type": "hosted_confirmation",
-            "hosted_confirmation": {"custom_message": success_msg},
-        },
+    stripe_link = stripe_helpers.create_payment_link(
+        stripe_price.id,
+        success_msg,
+        idempotency_key=f"dsl_{SLUG.replace('-', '_')}_payment_link",
     )
     stripe_url = stripe_link.url
     _save_partial(

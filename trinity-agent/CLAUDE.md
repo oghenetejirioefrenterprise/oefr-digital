@@ -80,6 +80,8 @@ The factory (`providers/factory.py`) instantiates the correct provider from `Aut
 
 **SDK Provider note:** The `ClaudeSDKProvider` runs its own agent loop internally — `run_agent()` in `base.py` sees a single `end_turn` response. Tool-use events are surfaced via optional `on_tool`/`on_text` callbacks set on the provider instance before each call (wired by `_set_provider_callbacks()` in `app.py`).
 
+**SDK tool exposure:** Besides the SDK built-ins (Read/Write/Edit/Bash/Glob/Grep/Web*), the provider exposes Trinity's *non-built-in* tools (`x_*`, `memory_*`, knowledge, kanban, git, delegate) to the `claude` CLI as an in-process SDK MCP server (`mcp__trinity__<tool>`), dispatching to `tools.registry.execute_tool` in a worker thread. Without this, a `claude_sdk` employee told to use e.g. `x_search`/`x_post` has no such tool and improvises raw shell calls. Excluded: filesystem/shell/web duplicates of built-ins, and `send_telegram` (a cycle's result is already delivered to its `report_to` channel by `run_cycle`). See `_build_trinity_mcp` in `providers/claude_sdk_provider.py`.
+
 ### Live Telegram Streaming (telegram/streaming.py)
 
 The `StreamState` class provides real-time feedback in Telegram while the agent works:

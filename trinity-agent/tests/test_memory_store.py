@@ -149,6 +149,57 @@ def test_recall_does_not_rewrite_markdown_export(tmp_path):
     assert store.recall_memory(td, mid)["access_count"] == 7
 
 
+def test_recall_does_not_reset_decay_clock(tmp_path):
+    """Reading a memory must NOT refresh its decay reference (last_reinforced).
+
+    Regression for rec 5: decay is measured from last_reinforced (store/update),
+    not last_accessed (every read), so recalling a memory doesn't make it
+    immortal.
+    """
+    import datetime as dt
+    from trinity.config import MemoryConfig
+    from trinity.memory import db
+    from trinity.memory.decay import effective_importance
+
+    td = _td(tmp_path)
+    mid = store.store_memory(td, "a decaying memory", "facts")
+    old = (dt.datetime.now() - dt.timedelta(hours=96)).isoformat(timespec="seconds")
+    conn = db.connect(td)
+    conn.execute(
+        "UPDATE memories SET last_reinforced=?, last_accessed=?, created=?",
+        (old, old, old),
+    )
+    conn.close()
+
+    before = store.list_memories(td)[0]
+    eff_before = effective_importance(before, MemoryConfig())
+
+    store.recall_memory(td, mid)  # bumps last_accessed, NOT last_reinforced
+    after = store.list_memories(td)[0]
+
+    assert after["last_reinforced"] == old          # decay clock untouched by read
+    assert after["last_accessed"] != old            # last-seen did advance
+    eff_after = effective_importance(after, MemoryConfig())
+    assert eff_after == pytest.approx(eff_before, abs=0.01)  # decay unchanged by read
+    assert eff_after < 0.5  # still decayed (would be ~0.7 if read had reset it)
+
+
+def test_update_reinforces_decay_clock(tmp_path):
+    """A content update refreshes the decay reference."""
+    import datetime as dt
+    from trinity.memory import db
+
+    td = _td(tmp_path)
+    mid = store.store_memory(td, "v1", "facts")
+    old = (dt.datetime.now() - dt.timedelta(hours=96)).isoformat(timespec="seconds")
+    conn = db.connect(td)
+    conn.execute("UPDATE memories SET last_reinforced=?", (old,))
+    conn.close()
+
+    store.update_memory(td, mid, "v2 content")
+    assert store.list_memories(td)[0]["last_reinforced"] != old
+
+
 def test_get_memory_has_no_side_effects(tmp_path):
     td = _td(tmp_path)
     mid = store.store_memory(td, "inspect me", "facts")

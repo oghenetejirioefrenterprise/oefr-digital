@@ -169,18 +169,36 @@ falsy-field preservation, and side-effect-free `get_memory`. Full suite: **136 p
 
 ---
 
-## 7. Recommended follow-ups (not in this change)
+## 7. Follow-ups — IMPLEMENTED (2026-05-29)
 
-1. **Commitments → SQLite** (kanban already models `dedupe_key` + `status`). Low
-   severity; would make the whole data layer uniformly SQLite.
-2. **Usage counter → single-row UPDATE** (or in-memory + flush) instead of
-   full-file rewrite; cross-process safe.
-3. **Chat history → append-only / JSONL or a table keyed by `chat_id`** instead of
-   read-rewrite per turn (bounded today, so low priority).
-4. **Debounce briefing regeneration** to once per cycle rather than after every
-   `log_*` write.
-5. **Decouple decay reinforcement from reads** — have decay key off a
-   `last_reinforced` timestamp set on store/update, not on every `recall`.
+The recommended follow-ups were subsequently applied:
+
+1. **Commitments → SQLite** — `commitments/db.py` (new, WAL + BEGIN IMMEDIATE,
+   mirrors kanban) + `commitments/store.py` rewritten on SQLite with the same
+   public API (`add_or_merge`/`list_records`/`due_now`/`update_status`/
+   `purge_terminal`) and a one-time migration from `commitments.json`.
+2. **Usage counter cross-process safe** — `_persist_usage` (agents/base.py) now
+   wraps its read-modify-write in a new `_io.file_lock` (fcntl advisory lock),
+   so concurrent CLI/daemon writers no longer drop token increments.
+3. **Chat history** — the audit's concurrency claim was *rejected* (a single
+   per-chat worker thread serialises writes), and the file is bounded by
+   compaction, so a full JSONL rewrite was unwarranted. Added a defensive
+   `file_lock` around `_save_chat_history`'s read-append-write for cross-process
+   safety; format unchanged.
+4. **Briefing** — the per-write O(N) cost was already removed by the SQLite
+   migration (indexed `WHERE kind=?` instead of full-index reparse). Collapsed
+   `generate_briefing`'s four issue-status queries into one query + Python
+   partition.
+5. **Decouple decay from reads** — added a `last_reinforced` column;
+   `effective_importance` now decays from `last_reinforced` (set on store/update,
+   **not** on `recall`), so reading a memory no longer resets its decay clock.
+   `db._ensure_columns` adds + backfills the column on existing DBs.
+6. **Cross-workspace `pull` ingests into the DB** — `cmd_memory_pull` now calls
+   `store_memory` for each shared `.md` (previously it only wrote files the DB
+   never read). `file_lock` also guards the compactor failure-state RMW.
+
+New tests cover the decay-decouple behaviour and the commitments migration;
+full suite: **142 passing.**
 6. **Cross-workspace sharing (`trinity memory publish` / `pull`)** still operates
    on the Markdown export. `publish` (cli.py) reads the long-term `.md` files —
    fine, the export carries current content. But `pull` writes `shared_*.md`

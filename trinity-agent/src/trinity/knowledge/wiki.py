@@ -150,11 +150,12 @@ def generate_briefing(trinity_dir: Path) -> str:
     today = dt.date.today().isoformat()
     sections = []
 
-    # --- Open issues from memory ---
-    open_issues = query_by_kind(trinity_dir, "issue", status="open")
-    fixed_issues = query_by_kind(trinity_dir, "issue", status="fixed")
-    fp_issues = query_by_kind(trinity_dir, "issue", status="false-positive")
-    wontfix_issues = query_by_kind(trinity_dir, "issue", status="wont-fix")
+    # --- Open issues from memory (one query, partitioned by status) ---
+    all_issues = query_by_kind(trinity_dir, "issue")
+    open_issues = [e for e in all_issues if e.get("status") == "open"]
+    fixed_issues = [e for e in all_issues if e.get("status") == "fixed"]
+    fp_issues = [e for e in all_issues if e.get("status") == "false-positive"]
+    wontfix_issues = [e for e in all_issues if e.get("status") == "wont-fix"]
 
     # Fallback to legacy flat files if memory has zero issue entries
     has_memory_issues = any([open_issues, fixed_issues, fp_issues, wontfix_issues])

@@ -861,36 +861,32 @@ def cmd_memory_pull(workspace: Path, args) -> int:
         print(f"ERROR: no published memories at {src_dir}")
         return 1
 
-    out_dir = config.trinity_dir / "memory" / "long-term"
-    if not args.dry_run:
-        out_dir.mkdir(parents=True, exist_ok=True)
+    # Ingest each shared memory into the SQLite store so it is searchable /
+    # recallable (the old code only wrote .md files, which the DB never reads).
+    from trinity.memory.store import store_memory, _parse_memory_file, SEGMENTS
 
     count = 0
     for md in src_dir.glob("*.md"):
         if not args.dry_run:
-            dest = out_dir / f"shared_{src_workspace_name}_{md.name}"
             try:
-                text = md.read_text()
+                meta = _parse_memory_file(md)
             except OSError:
                 continue
-            if text.startswith("---\n"):
-                # Append source_workspace to existing frontmatter, before its closing ---.
-                try:
-                    end = text.index("\n---", 4)
-                    new_text = (
-                        text[:end]
-                        + f"\nsource_workspace: {src_workspace_name}"
-                        + text[end:]
-                    )
-                except ValueError:
-                    new_text = (
-                        f"---\nsource_workspace: {src_workspace_name}\n---\n\n" + text
-                    )
-            else:
-                new_text = (
-                    f"---\nsource_workspace: {src_workspace_name}\n---\n\n" + text
-                )
-            dest.write_text(new_text)
+            content = (meta.get("content") or "").strip()
+            if not content:
+                continue
+            segment = meta.get("segment") or "context"
+            if segment not in SEGMENTS:
+                segment = "context"
+            store_memory(
+                config.trinity_dir,
+                content,
+                segment=segment,
+                kind=str(meta.get("kind") or ""),
+                product=str(meta.get("product") or ""),
+                category=str(meta.get("category") or ""),
+                source=f"shared:{src_workspace_name}",
+            )
         count += 1
 
     verb = "(dry-run) would pull" if args.dry_run else "pulled"

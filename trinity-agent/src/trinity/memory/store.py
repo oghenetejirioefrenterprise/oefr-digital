@@ -175,6 +175,7 @@ def _row_to_index_entry(row: Any) -> dict[str, Any]:
 
     Mirrors the keys the old index.json carried (no body content).
     """
+    keys = row.keys() if hasattr(row, "keys") else {}
     return {
         "id": row["id"],
         "tier": row["tier"],
@@ -182,6 +183,7 @@ def _row_to_index_entry(row: Any) -> dict[str, Any]:
         "importance": row["importance"],
         "decay_rate": row["decay_rate"],
         "last_accessed": row["last_accessed"],
+        "last_reinforced": row["last_reinforced"] if "last_reinforced" in keys else row["last_accessed"],
         "created": row["created"],
         "access_count": row["access_count"],
         "summary": row["summary"],
@@ -259,9 +261,10 @@ def _run_migration(trinity_dir: Path) -> None:
                 conn.execute(
                     """INSERT OR IGNORE INTO memories
                        (id, tier, segment, importance, decay_rate, created,
-                        last_accessed, access_count, source, summary, kind,
-                        status, product, category, scope, content, supersedes)
-                       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                        last_accessed, last_reinforced, access_count, source,
+                        summary, kind, status, product, category, scope, content,
+                        supersedes)
+                       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                     (
                         str(mid),
                         tier,
@@ -270,6 +273,7 @@ def _run_migration(trinity_dir: Path) -> None:
                         float(entry.get("decay_rate", file_meta.get("decay_rate", 1.0)) or 1.0),
                         created,
                         last_acc,
+                        last_acc,  # last_reinforced: best-effort backfill from last_accessed
                         int(entry.get("access_count", file_meta.get("access_count", 1)) or 1),
                         str(entry.get("source") or file_meta.get("source") or ""),
                         str(entry.get("summary") or file_meta.get("summary") or ""),
@@ -377,12 +381,12 @@ def store_memory(
         row = conn.execute(
             """INSERT INTO memories
                (id, tier, segment, importance, decay_rate, created,
-                last_accessed, access_count, source, summary, kind,
-                status, product, category, scope, content, supersedes)
-               VALUES (?, 'short-term', ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?, ?, ?, '')
+                last_accessed, last_reinforced, access_count, source, summary,
+                kind, status, product, category, scope, content, supersedes)
+               VALUES (?, 'short-term', ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?, ?, ?, '')
                RETURNING *""",
             (
-                memory_id, segment, importance, decay_rate, now, now,
+                memory_id, segment, importance, decay_rate, now, now, now,
                 source, summary, kind, status, product, category, scope, content,
             ),
         ).fetchone()
@@ -444,11 +448,12 @@ def update_memory(trinity_dir: Path, memory_id: str, content: str) -> bool:
     content = redact(content)
     summary = _generate_summary(content)
     now = _now()
+    # A content edit is a reinforcement: refresh the decay clock too.
     with _read(trinity_dir) as conn:
         updated = conn.execute(
-            "UPDATE memories SET content=?, summary=?, last_accessed=? "
+            "UPDATE memories SET content=?, summary=?, last_accessed=?, last_reinforced=? "
             "WHERE id=? RETURNING *",
-            (content, summary, now, memory_id),
+            (content, summary, now, now, memory_id),
         ).fetchone()
     if updated is None:
         return False

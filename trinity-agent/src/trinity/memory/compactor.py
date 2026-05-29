@@ -81,18 +81,22 @@ def _in_cooldown(config: TrinityConfig) -> bool:
 
 
 def _record_failure(config: TrinityConfig) -> None:
-    state = _read_state(config)
-    state["last_failure_at"] = time.time()
-    state["failure_count"] = int(state.get("failure_count", 0)) + 1
-    _write_state(config, state)
+    from trinity._io import file_lock
+    with file_lock(_state_path(config)):
+        state = _read_state(config)
+        state["last_failure_at"] = time.time()
+        state["failure_count"] = int(state.get("failure_count", 0)) + 1
+        _write_state(config, state)
 
 
 def _record_success(config: TrinityConfig) -> None:
-    state = _read_state(config)
-    state.pop("last_failure_at", None)
-    state["failure_count"] = 0
-    state["last_success_at"] = time.time()
-    _write_state(config, state)
+    from trinity._io import file_lock
+    with file_lock(_state_path(config)):
+        state = _read_state(config)
+        state.pop("last_failure_at", None)
+        state["failure_count"] = 0
+        state["last_success_at"] = time.time()
+        _write_state(config, state)
 
 
 def _build_transcript(entries: list[dict]) -> str:

@@ -514,7 +514,7 @@ def _compress_entries(entries: list[dict], config: TrinityConfig) -> dict | None
 
 def _handle_compress(api, chat_id, config: TrinityConfig):
     """Compress this chat's rolling history into a single summary entry."""
-    from trinity._io import atomic_write_json
+    from trinity._io import atomic_write_json, file_lock
     chat_id_str = str(chat_id)
     history_file = config.trinity_dir / "chat-history" / f"{chat_id_str}.json"
 
@@ -522,28 +522,33 @@ def _handle_compress(api, chat_id, config: TrinityConfig):
         api.send_message(int(chat_id), "No chat history to compress.")
         return
 
-    try:
-        data = json.loads(history_file.read_text())
-    except (json.JSONDecodeError, OSError) as e:
-        api.send_message(int(chat_id), f"Could not read chat history: {e}")
-        return
+    # Same cross-process lock as _save_chat_history: every writer of this
+    # chat's history file holds the lock, so the invariant holds regardless
+    # of future callers.
+    with file_lock(history_file):
+        try:
+            data = json.loads(history_file.read_text())
+        except (json.JSONDecodeError, OSError) as e:
+            api.send_message(int(chat_id), f"Could not read chat history: {e}")
+            return
 
-    if not data:
-        api.send_message(int(chat_id), "No chat history to compress.")
-        return
+        if not data:
+            api.send_message(int(chat_id), "No chat history to compress.")
+            return
 
-    if len(data) <= 1:
-        api.send_message(
-            int(chat_id), f"Already at minimum size ({len(data)} entry).",
-        )
-        return
+        if len(data) <= 1:
+            api.send_message(
+                int(chat_id), f"Already at minimum size ({len(data)} entry).",
+            )
+            return
 
-    summary_entry = _compress_entries(data, config)
-    if summary_entry is None:
-        api.send_message(int(chat_id), "Compression failed or produced no output.")
-        return
+        summary_entry = _compress_entries(data, config)
+        if summary_entry is None:
+            api.send_message(int(chat_id), "Compression failed or produced no output.")
+            return
 
-    atomic_write_json(history_file, [summary_entry])
+        atomic_write_json(history_file, [summary_entry])
+
     api.send_message(
         int(chat_id),
         f"Compressed {len(data)} exchanges into 1 summary entry "
@@ -750,42 +755,45 @@ def _save_chat_history(chat_id: str, user_name: str, user_msg: str,
     stay verbatim. If compression fails (no provider, LLM error), we fall
     back to plain truncation so we never grow unbounded.
     """
-    from trinity._io import atomic_write_json
+    from trinity._io import atomic_write_json, file_lock
     history_file = config.trinity_dir / "chat-history" / f"{chat_id}.json"
-    try:
-        data = json.loads(history_file.read_text()) if history_file.exists() else []
-    except (json.JSONDecodeError, OSError):
-        data = []
+    # Cross-process lock around the read-append-write so a CLI run and the
+    # daemon can't clobber each other's history for the same chat.
+    with file_lock(history_file):
+        try:
+            data = json.loads(history_file.read_text()) if history_file.exists() else []
+        except (json.JSONDecodeError, OSError):
+            data = []
 
-    data.append({
-        "user": user_msg,
-        "assistant": assistant_msg,
-        "user_name": user_name,
-        "timestamp": __import__("datetime").datetime.now().isoformat(),
-    })
+        data.append({
+            "user": user_msg,
+            "assistant": assistant_msg,
+            "user_name": user_name,
+            "timestamp": __import__("datetime").datetime.now().isoformat(),
+        })
 
-    buffer = max(config.memory.chat_history_buffer, 1)
-    compress_at = config.memory.chat_history_compress_at or (buffer * 2)
-    if compress_at <= buffer:
-        compress_at = buffer + 1
+        buffer = max(config.memory.chat_history_buffer, 1)
+        compress_at = config.memory.chat_history_compress_at or (buffer * 2)
+        if compress_at <= buffer:
+            compress_at = buffer + 1
 
-    if len(data) > compress_at:
-        keep_count = max(buffer - 1, 1)
-        keep = data[-keep_count:]
-        old = data[:-keep_count]
-        # Don't re-summarize an existing summary head — fold it into the
-        # new transcript so the resulting summary stays cumulative.
-        summary_entry = _compress_entries(old, config)
-        if summary_entry is not None:
-            log.info(
-                "auto-compressed %d old entries for chat %s (kept %d verbatim)",
-                len(old), chat_id, len(keep),
-            )
-            data = [summary_entry] + keep
-        else:
-            data = data[-buffer:]
+        if len(data) > compress_at:
+            keep_count = max(buffer - 1, 1)
+            keep = data[-keep_count:]
+            old = data[:-keep_count]
+            # Don't re-summarize an existing summary head — fold it into the
+            # new transcript so the resulting summary stays cumulative.
+            summary_entry = _compress_entries(old, config)
+            if summary_entry is not None:
+                log.info(
+                    "auto-compressed %d old entries for chat %s (kept %d verbatim)",
+                    len(old), chat_id, len(keep),
+                )
+                data = [summary_entry] + keep
+            else:
+                data = data[-buffer:]
 
-    atomic_write_json(history_file, data)
+        atomic_write_json(history_file, data)
 
 
 def _log_session(chat_name: str, user_name: str, user_msg: str,

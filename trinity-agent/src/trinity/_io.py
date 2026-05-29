@@ -8,10 +8,35 @@ atomic on POSIX filesystems.
 """
 from __future__ import annotations
 
+import fcntl
 import json
 import os
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
+
+
+@contextmanager
+def file_lock(path: Path):
+    """Cross-process exclusive advisory lock around a read-modify-write.
+
+    The in-process ``threading.Lock`` used by the JSON state stores does not
+    serialise *separate processes* (the daemon vs. CLI invocations), so two
+    processes can each load → mutate → atomic-write and silently lose one
+    update. This wraps the critical section in an ``fcntl.flock`` on a sidecar
+    ``.lock`` file, which serialises across processes AND threads.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    lock_path = path.with_suffix(path.suffix + ".lock")
+    fd = open(lock_path, "w")
+    try:
+        fcntl.flock(fd.fileno(), fcntl.LOCK_EX)
+        yield
+    finally:
+        try:
+            fcntl.flock(fd.fileno(), fcntl.LOCK_UN)
+        finally:
+            fd.close()
 
 
 def atomic_write_text(path: Path, content: str, *, fsync: bool = True) -> None:

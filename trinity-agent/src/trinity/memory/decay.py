@@ -48,13 +48,15 @@ def effective_importance(memory: dict, config: MemoryConfig) -> float:
     if half_life <= 0:
         return base_importance
 
-    # Calculate hours since last access
-    last_accessed = memory.get("last_accessed", "")
-    if not last_accessed:
+    # Decay is measured from the last *reinforcement* (store/update), NOT from
+    # the last read — so merely recalling a memory no longer resets its decay
+    # clock. Falls back to last_accessed for legacy rows without the field.
+    reference = memory.get("last_reinforced") or memory.get("last_accessed", "")
+    if not reference:
         return base_importance
 
     try:
-        last_dt = dt.datetime.fromisoformat(last_accessed)
+        last_dt = dt.datetime.fromisoformat(reference)
     except (ValueError, TypeError):
         return base_importance
 

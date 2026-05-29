@@ -29,9 +29,10 @@ CREATE TABLE IF NOT EXISTS memories (
   segment       TEXT NOT NULL,
   importance    REAL NOT NULL DEFAULT 0.5,
   decay_rate    REAL NOT NULL DEFAULT 1.0,
-  created       TEXT NOT NULL,
-  last_accessed TEXT NOT NULL,
-  access_count  INTEGER NOT NULL DEFAULT 1,
+  created        TEXT NOT NULL,
+  last_accessed  TEXT NOT NULL,
+  last_reinforced TEXT NOT NULL DEFAULT '',
+  access_count   INTEGER NOT NULL DEFAULT 1,
   source        TEXT NOT NULL DEFAULT '',
   summary       TEXT NOT NULL DEFAULT '',
   kind          TEXT NOT NULL DEFAULT '',
@@ -97,8 +98,26 @@ def init(trinity_dir: Path) -> None:
             return
         with sqlite3.connect(p) as conn:
             conn.executescript(_SCHEMA)
+            _ensure_columns(conn)
             conn.commit()
         _initialised.add(key)
+
+
+def _ensure_columns(conn: sqlite3.Connection) -> None:
+    """Add columns introduced after the initial schema, for existing DBs.
+
+    SQLite CREATE TABLE IF NOT EXISTS won't alter an existing table, so newer
+    columns are added here (idempotent) and backfilled.
+    """
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(memories)").fetchall()}
+    if "last_reinforced" not in cols:
+        conn.execute(
+            "ALTER TABLE memories ADD COLUMN last_reinforced TEXT NOT NULL DEFAULT ''"
+        )
+        # Backfill: treat creation as the initial reinforcement.
+        conn.execute(
+            "UPDATE memories SET last_reinforced=created WHERE last_reinforced=''"
+        )
 
 
 def connect(trinity_dir: Path) -> sqlite3.Connection:

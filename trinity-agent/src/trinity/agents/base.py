@@ -35,11 +35,19 @@ def set_usage_path(trinity_dir: Path) -> None:
 
 
 def _persist_usage(input_tokens: int, output_tokens: int) -> None:
-    """Append token counts to today's usage totals."""
+    """Append token counts to today's usage totals.
+
+    Cross-process safe: separate CLI processes and the daemon both write
+    usage.json, so the read-modify-write is wrapped in an OS file lock to
+    avoid silently dropping each other's token increments.
+    """
     if not _usage_path:
         return
-    with _usage_lock:
-        try:
+    from trinity._io import file_lock
+    # Best-effort: lock acquisition is inside the guard too, so a failure to
+    # take the lock (e.g. unwritable state dir) never aborts a finished turn.
+    try:
+        with _usage_lock, file_lock(_usage_path):
             today = dt.date.today().isoformat()
             data: dict = {}
             if _usage_path.exists():
@@ -57,8 +65,8 @@ def _persist_usage(input_tokens: int, output_tokens: int) -> None:
             data["calls"] = data.get("calls", 0) + 1
 
             atomic_write_json(_usage_path, data)
-        except Exception:
-            log.debug("Failed to persist usage", exc_info=True)
+    except Exception:
+        log.debug("Failed to persist usage", exc_info=True)
 
 
 def run_agent(

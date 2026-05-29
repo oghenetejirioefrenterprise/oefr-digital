@@ -20,8 +20,7 @@ from trinity.memory.store import (
     query_by_kind,
     update_memory_metadata,
     list_memories,
-    _parse_memory_file,
-    _tier_dir,
+    get_memory,
     TIERS,
 )
 from trinity.memory.search import search_memories
@@ -95,21 +94,12 @@ def _recent_entries(content: str, days: int = 7) -> list[str]:
 
 
 def _memory_content_for_entry(trinity_dir: Path, entry: dict) -> str:
-    """Read full content from a memory file given an index entry."""
+    """Read full content for an index entry (no access-stat side effects)."""
     memory_id = entry.get("id", "")
-    tier = entry.get("tier", "short-term")
-    path = _tier_dir(trinity_dir, tier) / f"{memory_id}.md"
-    if not path.exists():
-        # Try all tiers
-        for t in TIERS:
-            p = _tier_dir(trinity_dir, t) / f"{memory_id}.md"
-            if p.exists():
-                path = p
-                break
-        else:
-            return entry.get("summary", "")
-    data = _parse_memory_file(path)
-    return data.get("content", entry.get("summary", ""))
+    data = get_memory(trinity_dir, memory_id)
+    if not data:
+        return entry.get("summary", "")
+    return data.get("content") or entry.get("summary", "")
 
 
 _STATUS_SECTIONS = {
@@ -160,11 +150,12 @@ def generate_briefing(trinity_dir: Path) -> str:
     today = dt.date.today().isoformat()
     sections = []
 
-    # --- Open issues from memory ---
-    open_issues = query_by_kind(trinity_dir, "issue", status="open")
-    fixed_issues = query_by_kind(trinity_dir, "issue", status="fixed")
-    fp_issues = query_by_kind(trinity_dir, "issue", status="false-positive")
-    wontfix_issues = query_by_kind(trinity_dir, "issue", status="wont-fix")
+    # --- Open issues from memory (one query, partitioned by status) ---
+    all_issues = query_by_kind(trinity_dir, "issue")
+    open_issues = [e for e in all_issues if e.get("status") == "open"]
+    fixed_issues = [e for e in all_issues if e.get("status") == "fixed"]
+    fp_issues = [e for e in all_issues if e.get("status") == "false-positive"]
+    wontfix_issues = [e for e in all_issues if e.get("status") == "wont-fix"]
 
     # Fallback to legacy flat files if memory has zero issue entries
     has_memory_issues = any([open_issues, fixed_issues, fp_issues, wontfix_issues])

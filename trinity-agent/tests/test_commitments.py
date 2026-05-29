@@ -182,3 +182,16 @@ def test_extraction_handles_garbage(tmp_path):
         "u", "a", "42", cfg, _ExtractStub("not even close to JSON"),
     )
     assert out == []
+
+
+def test_migrates_legacy_json(tmp_path):
+    """A legacy commitments.json is imported into the DB once, then renamed."""
+    ws = _ws(tmp_path)
+    rec = _make_record(text="legacy promise", dedupe_key="legacydk", id="cmt_legacy01")
+    (ws / "state" / "commitments.json").write_text(json.dumps([rec.to_dict()]))
+
+    recs = store.list_records(ws)
+    assert len(recs) == 1
+    assert recs[0].text == "legacy promise"
+    assert not (ws / "state" / "commitments.json").exists()
+    assert (ws / "state" / "commitments.json.migrated").exists()

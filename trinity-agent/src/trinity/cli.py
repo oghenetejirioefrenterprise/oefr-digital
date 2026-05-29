@@ -127,7 +127,11 @@ def main():
     )
     p_mem_cleanup.add_argument(
         "--dry-run", action="store_true",
-        help="Don't delete; just report what would be deleted",
+        help="Report what would be deleted (this is the default)",
+    )
+    p_mem_cleanup.add_argument(
+        "--apply", action="store_true",
+        help="Actually delete the candidates. Without this, cleanup is dry-run.",
     )
     p_mem_cleanup.add_argument(
         "--stale-days", type=int, default=30,
@@ -429,10 +433,9 @@ def cmd_init(workspace: Path, from_openclaw: bool = False):
     from trinity.knowledge.wiki import init_knowledge
     init_knowledge(trinity_dir)
 
-    # Initialize memory index
-    index_path = trinity_dir / "memory" / "index.json"
-    if not index_path.exists():
-        index_path.write_text("[]")
+    # Initialize the SQLite-backed memory store (creates memory.db + tiers)
+    from trinity.memory.store import init_memory
+    init_memory(trinity_dir)
 
     print()
     print("  " + "=" * 34)
@@ -638,17 +641,17 @@ def cmd_status(workspace: Path):
         employees = [d.name for d in emp_dir.iterdir() if d.is_dir()]
         print(f"Employees: {', '.join(employees) or '(none)'}")
 
-    index = config.trinity_dir / "memory" / "index.json"
-    if index.exists():
-        try:
-            data = json.loads(index.read_text())
-            tiers = {}
-            for m in data:
-                t = m.get("tier", "?")
-                tiers[t] = tiers.get(t, 0) + 1
-            print(f"Memories:  {sum(tiers.values())} total ({tiers})")
-        except (json.JSONDecodeError, OSError):
-            print("Memories:  (index unreadable)")
+    try:
+        from trinity.memory.store import list_memories
+
+        memories = list_memories(config.trinity_dir)
+        tiers: dict[str, int] = {}
+        for m in memories:
+            t = m.get("tier", "?")
+            tiers[t] = tiers.get(t, 0) + 1
+        print(f"Memories:  {len(memories)} total ({tiers})")
+    except Exception:
+        print("Memories:  (unavailable)")
 
     token = config.telegram.get_bot_token()
     print(f"Telegram:  {'configured' if token else 'not configured'}")
@@ -763,14 +766,18 @@ def cmd_memory(workspace: Path, args):
 
     elif args.memory_cmd == "cleanup":
         from trinity.memory.cleanup import run_cleanup
+        # Safe by default: delete only when --apply is given.
+        dry_run = not getattr(args, "apply", False)
         summary = run_cleanup(
-            config.trinity_dir / "memory",
-            dry_run=args.dry_run,
+            config.trinity_dir,
+            dry_run=dry_run,
             stale_days=args.stale_days,
         )
         print("Memory cleanup summary:")
         for k, v in summary.items():
             print(f"  {k}: {v}")
+        if dry_run and summary.get("to_delete"):
+            print("  (dry-run — re-run with --apply to delete)")
 
     elif args.memory_cmd == "publish":
         return cmd_memory_publish(workspace, args)
@@ -854,36 +861,32 @@ def cmd_memory_pull(workspace: Path, args) -> int:
         print(f"ERROR: no published memories at {src_dir}")
         return 1
 
-    out_dir = config.trinity_dir / "memory" / "long-term"
-    if not args.dry_run:
-        out_dir.mkdir(parents=True, exist_ok=True)
+    # Ingest each shared memory into the SQLite store so it is searchable /
+    # recallable (the old code only wrote .md files, which the DB never reads).
+    from trinity.memory.store import store_memory, _parse_memory_file, SEGMENTS
 
     count = 0
     for md in src_dir.glob("*.md"):
         if not args.dry_run:
-            dest = out_dir / f"shared_{src_workspace_name}_{md.name}"
             try:
-                text = md.read_text()
+                meta = _parse_memory_file(md)
             except OSError:
                 continue
-            if text.startswith("---\n"):
-                # Append source_workspace to existing frontmatter, before its closing ---.
-                try:
-                    end = text.index("\n---", 4)
-                    new_text = (
-                        text[:end]
-                        + f"\nsource_workspace: {src_workspace_name}"
-                        + text[end:]
-                    )
-                except ValueError:
-                    new_text = (
-                        f"---\nsource_workspace: {src_workspace_name}\n---\n\n" + text
-                    )
-            else:
-                new_text = (
-                    f"---\nsource_workspace: {src_workspace_name}\n---\n\n" + text
-                )
-            dest.write_text(new_text)
+            content = (meta.get("content") or "").strip()
+            if not content:
+                continue
+            segment = meta.get("segment") or "context"
+            if segment not in SEGMENTS:
+                segment = "context"
+            store_memory(
+                config.trinity_dir,
+                content,
+                segment=segment,
+                kind=str(meta.get("kind") or ""),
+                product=str(meta.get("product") or ""),
+                category=str(meta.get("category") or ""),
+                source=f"shared:{src_workspace_name}",
+            )
         count += 1
 
     verb = "(dry-run) would pull" if args.dry_run else "pulled"

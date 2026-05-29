@@ -98,7 +98,7 @@ Memory has two scopes:
 
 `global_trinity_dir` in `TrinityConfig` is set automatically by `load_config()`. Search and recall merge results from both scopes, deduplicated by ID, with a `source` field (`"local"` or `"global"`) on each result.
 
-Within each scope, memories are organized into three tiers. Memories are Markdown files with YAML frontmatter, tracked by an `index.json`.
+Within each scope, memories are organized into three tiers. Each scope is an **embedded SQLite database** at `<scope>/memory/memory.db` (WAL + `busy_timeout` + `BEGIN IMMEDIATE`, mirroring `kanban/db.py`) with an **FTS5** full-text index over `summary`+`content`. `memory/db.py` holds the connection/schema helpers; `memory/store.py` is the SQLite-backed CRUD layer (public API unchanged). This replaced the old "Markdown files + monolithic `index.json`" design, which rewrote the whole index on every op (O(N²)), rewrote files on reads, re-parsed every file per search, and had no cross-process safety — see `docs/superpowers/specs/2026-05-28-memory-db-investigation.md`. The Markdown files under `memory/{tier}/` are kept as a **synced, human-readable export** (source of truth is the DB; never read on the hot path). On first init, a legacy `index.json` + `.md` layout is migrated into the DB automatically (idempotent; `index.json` renamed to `.migrated`). Use `store.get_memory()` for side-effect-free reads and `store.recall_memory()` only for a deliberate reinforcement read (it bumps access stats). Secret-shaped substrings are redacted before persistence.
 
 - **short-term** — New memories land here, decay after 48h by default
 - **long-term** — Promoted from short-term when score exceeds `promotion_threshold`

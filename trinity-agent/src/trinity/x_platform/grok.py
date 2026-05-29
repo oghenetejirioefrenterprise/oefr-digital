@@ -8,17 +8,25 @@ import subprocess
 log = logging.getLogger(__name__)
 
 _GROK_BIN = shutil.which("grok") or "grok"
-_TIMEOUT = 60
+# search_x runs take ~45-70s; 60s was too tight and produced spurious timeouts.
+_TIMEOUT = 120
 
 
 def _run(prompt: str) -> str:
-    """Run grok -p <prompt> and return stdout."""
+    """Run grok -p <prompt> headlessly and return stdout.
+
+    ``--no-alt-screen`` + a /dev/null stdin are REQUIRED: grok does not
+    auto-detect a non-interactive context and will otherwise start its TUI
+    alt-screen/pager and hang forever (until the timeout) when run from a
+    daemon/subprocess with no TTY.
+    """
     try:
         result = subprocess.run(
-            [_GROK_BIN, "-p", prompt, "--output-format", "plain"],
+            [_GROK_BIN, "-p", prompt, "--output-format", "plain", "--no-alt-screen"],
             capture_output=True,
             text=True,
             timeout=_TIMEOUT,
+            stdin=subprocess.DEVNULL,
         )
         if result.returncode != 0 and result.stderr:
             log.warning("grok stderr: %s", result.stderr[:500])

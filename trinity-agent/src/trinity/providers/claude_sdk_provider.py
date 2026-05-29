@@ -22,6 +22,8 @@ from claude_agent_sdk import (
     ResultMessage,
     TextBlock,
     ToolUseBlock,
+    tool,
+    create_sdk_mcp_server,
 )
 
 from .base import (
@@ -40,6 +42,19 @@ BUILTIN_TOOLS = [
     "Read", "Write", "Edit", "Bash", "Glob", "Grep",
     "WebSearch", "WebFetch",
 ]
+
+# Trinity tools NOT exposed as MCP tools to the SDK:
+#  - filesystem/shell/web: already covered by SDK built-ins (Read/Write/Edit/
+#    Bash/Glob/Grep/Web*), so don't duplicate them.
+#  - send_telegram: a cycle's result is already delivered to its report_to
+#    channel by run_cycle, so exposing it would risk double-reporting.
+# Everything else (x_*, memory_*, knowledge, kanban, git, delegate) IS exposed
+# so claude_sdk employees can call it directly instead of improvising via Bash.
+_SDK_TOOL_EXCLUDE = {
+    "read_file", "write_file", "edit_file", "run_command",
+    "search_files", "list_files", "web_fetch", "web_search",
+    "send_telegram",
+}
 
 
 class ClaudeSDKProvider(Provider):
@@ -91,18 +106,52 @@ class ClaudeSDKProvider(Provider):
         found = shutil.which("claude")
         return found if found else None
 
+    def _build_trinity_mcp(
+        self, tools: list[ToolDef] | None
+    ) -> tuple[dict[str, Any] | None, list[str]]:
+        """Expose Trinity's non-built-in tools to the SDK as in-process MCP tools.
+
+        Without this the SDK only has Read/Write/Bash/etc., so an employee told
+        to use x_search/x_post (which have no built-in equivalent) improvises
+        raw shell calls and hangs. Returns (mcp_servers, extra_allowed_names).
+        Sync Trinity handlers run in a worker thread so handlers that call
+        ``asyncio.run`` themselves (e.g. browser-based x_post) don't collide
+        with the SDK's running event loop.
+        """
+        if not tools:
+            return None, []
+        ws = Path(self._cwd) if self._cwd else Path.cwd()
+        sdk_tools = []
+        names: list[str] = []
+        for td in tools:
+            if td.name in _SDK_TOOL_EXCLUDE:
+                continue
+            handler = _make_sdk_tool_handler(td.name, ws)
+            sdk_tools.append(tool(td.name, td.description, td.input_schema)(handler))
+            names.append(f"mcp__trinity__{td.name}")
+
+        if not sdk_tools:
+            return None, []
+        server = create_sdk_mcp_server(name="trinity", version="1.0.0", tools=sdk_tools)
+        return {"trinity": server}, names
+
     def _build_options(
         self,
         model: str,
         system: str,
         max_tokens: int,
+        tools: list[ToolDef] | None = None,
     ) -> ClaudeAgentOptions:
         """Build ClaudeAgentOptions for a query."""
+        mcp_servers, mcp_names = self._build_trinity_mcp(tools)
+        allowed = list(self._allowed_tools) + mcp_names
         kwargs: dict[str, Any] = {
-            "allowed_tools": self._allowed_tools,
+            "allowed_tools": allowed,
             "permission_mode": self._permission_mode,
             "max_turns": self._max_turns,
         }
+        if mcp_servers:
+            kwargs["mcp_servers"] = mcp_servers
         if model:
             kwargs["model"] = model
         if system:
@@ -139,7 +188,7 @@ class ClaudeSDKProvider(Provider):
             if isinstance(last_msg.content, str)
             else str(last_msg.content)
         )
-        options = self._build_options(model, system, max_tokens)
+        options = self._build_options(model, system, max_tokens, tools)
 
         async def _timed() -> tuple:
             return await asyncio.wait_for(
@@ -194,7 +243,7 @@ class ClaudeSDKProvider(Provider):
             if isinstance(last_msg.content, str)
             else str(last_msg.content)
         )
-        options = self._build_options(model, system, max_tokens)
+        options = self._build_options(model, system, max_tokens, tools)
 
         async def _timed_stream() -> tuple:
             return await asyncio.wait_for(
@@ -296,6 +345,27 @@ class ClaudeSDKProvider(Provider):
             text_parts.append("(no response)")
 
         return text_parts, usage_data
+
+
+def _make_sdk_tool_handler(tool_name: str, workspace_root: Path):
+    """Build an async SDK MCP handler that dispatches to Trinity's tool registry.
+
+    ``execute_tool`` is synchronous and some handlers (e.g. browser-based
+    x_post) call ``asyncio.run`` internally, so it runs in a worker thread to
+    avoid nesting event loops. ``registry`` is imported lazily and by-module so
+    the dispatch target stays patchable and free of import cycles.
+    """
+    async def _handler(args: dict) -> dict:
+        import asyncio
+        import trinity.tools.registry as _registry
+        try:
+            result = await asyncio.to_thread(
+                _registry.execute_tool, tool_name, dict(args or {}), workspace_root
+            )
+        except Exception as e:  # pragma: no cover - defensive
+            result = f"Error in {tool_name}: {type(e).__name__}: {e}"
+        return {"content": [{"type": "text", "text": str(result)}]}
+    return _handler
 
 
 def _summarize_sdk_tool(name: str, tool_input: dict) -> str:

@@ -41,58 +41,64 @@ def test_nim_llm_factory_missing_key_raises():
                 mod.create_nim_llm()
 
 
-def test_grok_search_calls_subprocess():
-    """search() shells out to grok -p with search prompt."""
-    with patch("trinity.x_platform.grok.subprocess") as mock_sub:
-        mock_sub.run.return_value = MagicMock(
-            stdout="Found 5 posts about AI agents...",
-            stderr="",
-            returncode=0,
-        )
-        mock_sub.TimeoutExpired = real_subprocess.TimeoutExpired
+def test_grok_search_uses_x_search():
+    """search() calls the xAI Responses API with the x_search tool."""
+    with patch("trinity.x_platform.grok._call") as mock_call:
+        mock_call.return_value = "Found 5 posts about AI agents..."
         from trinity.x_platform.grok import search
         result = search("AI agents")
-        mock_sub.run.assert_called_once()
-        assert "AI agents" in str(mock_sub.run.call_args)
+        mock_call.assert_called_once()
+        prompt, kwargs = mock_call.call_args[0][0], mock_call.call_args
+        assert "AI agents" in prompt
+        assert kwargs.kwargs.get("x_search") is True
         assert "Found 5 posts" in result
 
 
-def test_grok_search_timeout_returns_error():
-    """search() returns error string on timeout instead of crashing."""
-    with patch("trinity.x_platform.grok.subprocess") as mock_sub:
-        mock_sub.run.side_effect = real_subprocess.TimeoutExpired(cmd="grok", timeout=60)
-        mock_sub.TimeoutExpired = real_subprocess.TimeoutExpired
+def test_grok_search_http_error_returns_error_string():
+    """search() returns an Error: string (not a crash) on an API HTTP error."""
+    import urllib.error
+    with patch("trinity.x_platform.grok._oauth_token", return_value="tok"), \
+         patch("trinity.x_platform.grok.urllib.request.urlopen",
+               side_effect=urllib.error.HTTPError("u", 429, "Too Many", {}, None)):
         from trinity.x_platform.grok import search
         result = search("anything")
-        assert "timed out" in result.lower()
+        assert result.startswith("Error: xAI API returned HTTP 429")
 
 
-def test_grok_draft_calls_subprocess():
-    """draft() generates tweet content via grok -p."""
-    with patch("trinity.x_platform.grok.subprocess") as mock_sub:
-        mock_sub.run.return_value = MagicMock(
-            stdout="Here's a tweet draft:\n\nNew FMCSA carrier data is live...",
-            stderr="",
-            returncode=0,
-        )
-        mock_sub.TimeoutExpired = real_subprocess.TimeoutExpired
+def test_grok_no_token_returns_error():
+    """With no OAuth token, calls degrade to an Error: string."""
+    with patch("trinity.x_platform.grok._oauth_token", return_value=None):
+        from trinity.x_platform.grok import search
+        assert "OAuth token" in search("anything")
+
+
+def test_grok_draft_no_x_search():
+    """draft() is plain generation — must NOT request the x_search tool."""
+    with patch("trinity.x_platform.grok._call") as mock_call:
+        mock_call.return_value = "New FMCSA carrier data is live..."
         from trinity.x_platform.grok import draft
         result = draft("FMCSA carrier leads", context="B2B data product")
+        assert mock_call.call_args.kwargs.get("x_search") is False
         assert len(result) > 0
 
 
-def test_grok_analyze_calls_subprocess():
-    """analyze() runs sentiment/engagement analysis via grok -p."""
-    with patch("trinity.x_platform.grok.subprocess") as mock_sub:
-        mock_sub.run.return_value = MagicMock(
-            stdout="Sentiment: mostly positive. Engagement: moderate.",
-            stderr="",
-            returncode=0,
-        )
-        mock_sub.TimeoutExpired = real_subprocess.TimeoutExpired
+def test_grok_analyze_uses_x_search():
+    """analyze() runs over X data via x_search."""
+    with patch("trinity.x_platform.grok._call") as mock_call:
+        mock_call.return_value = "Sentiment: mostly positive."
         from trinity.x_platform.grok import analyze
         result = analyze("OEFR Digital")
+        assert mock_call.call_args.kwargs.get("x_search") is True
         assert len(result) > 0
+
+
+def test_grok_extract_text_parses_responses_payload():
+    """_extract_text pulls output_text out of a /v1/responses payload."""
+    from trinity.x_platform.grok import _extract_text
+    payload = {"output": [{"type": "message", "content": [
+        {"type": "output_text", "text": "hello from X"},
+    ]}]}
+    assert _extract_text(payload) == "hello from X"
 
 
 def test_post_tweet_creates_agent(tmp_path):
@@ -193,9 +199,7 @@ def test_tool_handlers_return_strings(tmp_path):
     from trinity.x_platform import tools as x_tools
     x_tools.set_trinity_dir(trinity_dir)
 
-    with patch("trinity.x_platform.grok.subprocess") as mock_sub:
-        mock_sub.run.return_value = MagicMock(stdout="results", stderr="", returncode=0)
-        mock_sub.TimeoutExpired = real_subprocess.TimeoutExpired
+    with patch("trinity.x_platform.grok._call", return_value="results"):
         result = x_tools.x_search_handler({"query": "test"}, tmp_path)
         assert isinstance(result, str)
         assert len(result) > 0

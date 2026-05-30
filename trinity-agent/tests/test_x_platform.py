@@ -230,3 +230,55 @@ def test_tweet_truncation(tmp_path):
                     task_text = mock_agent_cls.call_args.kwargs.get("task", "")
                     assert "A" * 300 not in task_text
                     assert "..." in task_text
+
+
+# ── grok OAuth proactive refresh ─────────────────────────────────────
+
+def _auth_entry(expires_at):
+    import json
+    return json.dumps({"https://auth.x.ai::id": {
+        "key": "OLD", "refresh_token": "R0", "oidc_client_id": "C",
+        "oidc_issuer": "https://auth.x.ai", "expires_at": expires_at, "auth_mode": "oidc",
+    }})
+
+
+def _iso(delta_min):
+    import datetime as dt
+    return (dt.datetime.now(dt.timezone.utc) + dt.timedelta(minutes=delta_min)).strftime(
+        "%Y-%m-%dT%H:%M:%S.000000000Z")
+
+
+def test_oauth_refreshes_when_near_expiry(tmp_path, monkeypatch):
+    import json
+    from trinity.x_platform import grok
+    auth = tmp_path / "auth.json"
+    auth.write_text(_auth_entry(_iso(-5)))  # expired 5 min ago
+    auth.chmod(0o600)
+    monkeypatch.setattr(grok, "_AUTH_PATH", auth)
+    monkeypatch.setattr(grok, "_refresh",
+                        lambda e: {"access_token": "NEW", "refresh_token": "R1", "expires_in": 3600})
+    assert grok._oauth_token() == "NEW"
+    saved = json.loads(auth.read_text())["https://auth.x.ai::id"]
+    assert saved["key"] == "NEW"
+    assert saved["refresh_token"] == "R1"            # rotated token persisted
+    assert oct(auth.stat().st_mode)[-3:] == "600"    # perms preserved
+
+
+def test_oauth_no_refresh_when_valid(tmp_path, monkeypatch):
+    from trinity.x_platform import grok
+    auth = tmp_path / "auth.json"
+    auth.write_text(_auth_entry(_iso(120)))  # 2h left
+    monkeypatch.setattr(grok, "_AUTH_PATH", auth)
+    def _boom(e):
+        raise AssertionError("must not refresh a valid token")
+    monkeypatch.setattr(grok, "_refresh", _boom)
+    assert grok._oauth_token() == "OLD"
+
+
+def test_oauth_refresh_failure_falls_back_to_stale(tmp_path, monkeypatch):
+    from trinity.x_platform import grok
+    auth = tmp_path / "auth.json"
+    auth.write_text(_auth_entry(_iso(-5)))
+    monkeypatch.setattr(grok, "_AUTH_PATH", auth)
+    monkeypatch.setattr(grok, "_refresh", lambda e: None)
+    assert grok._oauth_token() == "OLD"  # graceful: stale token, no crash

@@ -1,73 +1,129 @@
-"""Grok CLI headless wrapper — search, draft, and analyze via subprocess."""
+"""Grok via the xAI API — live X (Twitter) search/analysis + drafting.
+
+The grok *CLI* (the local `grok` binary, model `grok-build`) is a coding agent
+and has NO X-search tool — so the old subprocess approach returned empty. The
+official live-X-search path is the xAI **Agent Tools API**: POST
+``/v1/responses`` with ``tools:[{type:"x_search"}]``. We authenticate with the
+OAuth token grok stores at ``~/.grok/auth.json`` (the same login the CLI uses) —
+no separate API key needed. ``search``/``analyze`` use ``x_search``; ``draft``
+is plain generation. Public function signatures are unchanged.
+"""
 from __future__ import annotations
 
+import json
 import logging
-import shutil
-import subprocess
+import urllib.error
+import urllib.request
+from pathlib import Path
 
 log = logging.getLogger(__name__)
 
-_GROK_BIN = shutil.which("grok") or "grok"
-# search_x runs take ~45-70s; 60s was too tight and produced spurious timeouts.
-_TIMEOUT = 120
+_API_URL = "https://api.x.ai/v1/responses"
+_MODEL = "grok-4-fast"
+_TIMEOUT = 90
+_AUTH_PATH = Path.home() / ".grok" / "auth.json"
 
 
-def _run(prompt: str) -> str:
-    """Run grok -p <prompt> headlessly and return stdout.
+def _oauth_token() -> str | None:
+    """Read the current xAI OAuth access token from grok's auth store.
 
-    ``--no-alt-screen`` + a /dev/null stdin are REQUIRED: grok does not
-    auto-detect a non-interactive context and will otherwise start its TUI
-    alt-screen/pager and hang forever (until the timeout) when run from a
-    daemon/subprocess with no TTY.
+    Read fresh each call so a token grok has refreshed is picked up.
     """
     try:
-        result = subprocess.run(
-            [_GROK_BIN, "-p", prompt, "--output-format", "plain", "--no-alt-screen"],
-            capture_output=True,
-            text=True,
-            timeout=_TIMEOUT,
-            stdin=subprocess.DEVNULL,
-        )
-        if result.returncode != 0 and result.stderr:
-            log.warning("grok stderr: %s", result.stderr[:500])
-        return result.stdout.strip() or result.stderr.strip()
-    except subprocess.TimeoutExpired:
-        return f"Error: grok CLI timed out after {_TIMEOUT}s"
-    except FileNotFoundError:
-        return "Error: grok CLI not found in PATH"
+        data = json.loads(_AUTH_PATH.read_text())
+    except (OSError, json.JSONDecodeError):
+        return None
+    for v in data.values():
+        if isinstance(v, dict) and v.get("key"):
+            return v["key"]
+    return None
+
+
+def _extract_text(data: dict) -> str:
+    """Pull the assistant's output_text out of a /v1/responses payload."""
+    texts: list[str] = []
+
+    def walk(o: object) -> None:
+        if isinstance(o, dict):
+            if o.get("type") == "output_text" and isinstance(o.get("text"), str):
+                texts.append(o["text"])
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+
+    walk(data.get("output", data))
+    return "\n".join(t for t in texts if t).strip()
+
+
+def _call(prompt: str, x_search: bool = True) -> str:
+    """Call the xAI Responses API and return the assistant text (or an Error: string)."""
+    token = _oauth_token()
+    if not token:
+        return "Error: no grok OAuth token found (run `grok login`)"
+
+    body: dict = {"model": _MODEL, "input": prompt}
+    if x_search:
+        body["tools"] = [{"type": "x_search"}]
+
+    req = urllib.request.Request(
+        _API_URL,
+        data=json.dumps(body).encode("utf-8"),
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=_TIMEOUT) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        detail = ""
+        try:
+            detail = e.read().decode("utf-8", "replace")[:200]
+        except Exception:
+            pass
+        log.warning("xAI API HTTP %s: %s", e.code, detail)
+        return f"Error: xAI API returned HTTP {e.code}"
+    except (urllib.error.URLError, TimeoutError) as e:
+        return f"Error: xAI API call failed: {e}"
+    except Exception as e:  # pragma: no cover - defensive
+        return f"Error: xAI API unexpected failure: {type(e).__name__}: {e}"
+
+    return _extract_text(data) or "(no result)"
 
 
 def search(query: str, limit: int = 10) -> str:
-    """Search X for posts matching query via Grok's built-in search_x tool."""
+    """Search X for posts matching *query* via the xAI x_search tool."""
     prompt = (
         f"Search X (Twitter) for: {query}\n\n"
-        f"Return up to {limit} recent, relevant posts. "
-        f"For each post include: author handle, text, date, and URL if available. "
-        f"Use your search_x tool."
+        f"Return up to {limit} recent, relevant posts. For each post include the "
+        f"author @handle, the text, the date, and the post URL."
     )
-    return _run(prompt)
+    return _call(prompt, x_search=True)
 
 
 def draft(topic: str, context: str = "", tone: str = "professional") -> str:
-    """Generate a tweet draft via Grok CLI."""
+    """Generate a tweet draft (no X search needed)."""
     prompt = (
         f"Draft a tweet (max 280 characters) about: {topic}\n"
-        f"Tone: {tone}. "
-        f"Make it specific with real numbers or facts — no vague claims. "
-        f"No hashtags unless they add real value. "
-        f"Do not include any links in the tweet text."
+        f"Tone: {tone}. Make it specific with real numbers or facts — no vague "
+        f"claims. No hashtags unless they add real value. Do not include links "
+        f"in the tweet text."
     )
     if context:
         prompt += f"\nAdditional context: {context}"
-    return _run(prompt)
+    return _call(prompt, x_search=False)
 
 
 def analyze(query: str) -> str:
-    """Analyze X sentiment and engagement patterns via Grok CLI."""
+    """Analyze X sentiment and engagement patterns via the xAI x_search tool."""
     prompt = (
-        f"Analyze X (Twitter) activity around: {query}\n\n"
-        f"Cover: overall sentiment (positive/negative/neutral), "
-        f"engagement level, key themes, notable accounts discussing it, "
-        f"and any trending angles. Use your search_x tool to gather data first."
+        f"Search X (Twitter) for activity around: {query}\n\n"
+        f"Cover: overall sentiment (positive/negative/neutral), engagement level, "
+        f"key themes, notable accounts discussing it, and any trending angles. "
+        f"Cite specific posts with @handles and URLs."
     )
-    return _run(prompt)
+    return _call(prompt, x_search=True)

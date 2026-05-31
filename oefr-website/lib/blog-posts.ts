@@ -18,6 +18,10 @@ export interface BlogPost {
     href: string;
     description: string;
   }[];
+  faq?: {
+    q: string;
+    a: string;
+  }[];
 }
 
 export const blogPosts: BlogPost[] = [
@@ -2715,6 +2719,28 @@ export const blogPosts: BlogPost[] = [
         href: "/ssdi-hearing-evidence-letter",
         description:
           "Fill-in-the-blank INFORM letter template + procedural explainer citing 20 CFR § 404.935(a), HALLEX I-2-5-13, and SSR 17-4p + a 60-day deadline calendar. Instant PDF download, $14.",
+      },
+    ],
+    faq: [
+      {
+        q: "What is the SSDI 5-day evidence rule?",
+        a: "Under 20 CFR § 404.935(a), you must inform the hearing office about — or submit — any written evidence no later than 5 business days before your scheduled SSDI hearing in front of an Administrative Law Judge. If you miss that window without a qualifying reason, the ALJ may decline to consider the evidence.",
+      },
+      {
+        q: "What is the difference between informing and submitting evidence under the 5-day rule?",
+        a: "Submitting means the actual document is in your file at least 5 business days before the hearing. Informing means notifying the hearing office in writing that the evidence exists and is still outstanding, even if you don't have the record in hand yet. Both satisfy 20 CFR § 404.935(a), but informing is the separate right that preserves consideration of records that arrive late.",
+      },
+      {
+        q: "How do you count 5 business days before an SSDI hearing?",
+        a: "Count backward from the hearing date, excluding weekends and federal holidays. A holiday inside that window pushes the cutoff earlier. People often lose evidence because they counted calendar days instead of business days, so map the exact date the moment your hearing notice arrives.",
+      },
+      {
+        q: "What happens if you miss the SSDI 5-day deadline?",
+        a: "If evidence is informed about or submitted late without a qualifying exception, the ALJ may decline to consider it. Informing the office on time about outstanding records is what keeps a slow-arriving medical record from being shut out of your hearing.",
+      },
+      {
+        q: "Does informing the hearing office preserve late-arriving medical records?",
+        a: "Yes. When you inform the hearing office on time and with specifics about evidence that is still outstanding, you preserve the ALJ's obligation to consider those records even if they arrive after the 5-business-day cutoff, consistent with HALLEX I-2-5-13 and SSR 17-4p.",
       },
     ],
   },

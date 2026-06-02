@@ -123,12 +123,22 @@ export const blogPosts: BlogPost[] = [
       </p>
       <ol class="list-decimal list-inside text-slate-300 space-y-2 mb-6 pl-2">
         <li><strong class="text-white">Get one cloud networking cert</strong> — AWS Advanced Networking or Azure Network Engineer. Not both. One, deep.</li>
-        <li><strong class="text-white">Build one automation project</strong> — Automate something real at your job. Ansible for switch config management is the easiest entry point.</li>
-        <li><strong class="text-white">Learn one security framework</strong> — NIST 800-207 for Zero Trust. It's free, it's readable, and it's what every enterprise is adopting.</li>
+        <li><strong class="text-white">Build one automation project</strong> — Automate something real at your job. <a href="/blog/ansible-network-automation-getting-started-2026" class="text-blue-400 underline hover:text-blue-300">Ansible for switch config management</a> is the easiest entry point.</li>
+        <li><strong class="text-white">Learn one security framework</strong> — NIST 800-207 for <a href="/blog/zero-trust-network-architecture-guide-2026" class="text-blue-400 underline hover:text-blue-300">Zero Trust</a>. It's free, it's readable, and it's what every enterprise is adopting.</li>
       </ol>
       <p class="text-slate-300 leading-relaxed mb-6">
         Don't try to do everything. Pick one gap and close it in 90 days. Then pick the next one.
       </p>
+
+      <div class="bg-slate-900/40 border border-slate-700/50 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold text-sm mb-3">📚 Related guides to close the gap</p>
+        <ul class="list-disc list-inside text-slate-300 text-sm space-y-2">
+          <li><a href="/blog/ansible-network-automation-getting-started-2026" class="text-blue-400 underline hover:text-blue-300">Ansible network automation: getting started in 2026</a> — the automation skill that commands a 15–20% premium.</li>
+          <li><a href="/blog/zero-trust-network-architecture-guide-2026" class="text-blue-400 underline hover:text-blue-300">Zero-trust network architecture guide</a> — the security framework every enterprise is adopting.</li>
+          <li><a href="/blog/network-security-audit-checklist-2026" class="text-blue-400 underline hover:text-blue-300">Network security audit checklist</a> — turn security integration into a repeatable, billable skill.</li>
+          <li><a href="/blog/ats-resume-tips-2026" class="text-blue-400 underline hover:text-blue-300">ATS resume tips for 2026</a> — if you're below market, the fastest raise is usually a new offer.</li>
+        </ul>
+      </div>
 
       <div class="bg-blue-950/30 border border-blue-800/50 rounded-xl p-5 mb-6">
         <p class="text-blue-400 font-semibold text-sm mb-2">📊 Check Your Salary</p>

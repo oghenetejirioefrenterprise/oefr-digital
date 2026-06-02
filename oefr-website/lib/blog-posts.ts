@@ -2593,27 +2593,13 @@ export const blogPosts: BlogPost[] = [
         The tighter the SOP scope, the more reliably cleaners execute it.
       </p>
 
-      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the April-2026-Ready 8-Tab Pack</h2>
-
-      <p class="text-slate-300 leading-relaxed mb-6">
-        OEFR Digital is shipping this exact 8-tab structure as a single Google Sheets pack plus a printable PDF — room-by-room turnover checklist, damage report form (original-camera-files compatible), supply par-level inventory, guest welcome template, co-host handoff doc, cleaner SLA + pay-rate worksheet, maintenance log, and owner-statement summary. Built for hosts running 1–20 listings. Founder lock-in pricing: $17 for the first five buyers, then $24 list. A v2 expansion is in build — adding a 12-shot per-room photo sequence, a quarterly walkthrough audit, a receipts/appliance documentation index, and a ToS compliance acceptance log — and ships free to founder buyers.
-      </p>
-
-      <p class="text-slate-300 leading-relaxed mb-6">
-        Get the pack: <a href="https://buy.stripe.com/7sYbIU1qDeDl7iP0ey7IY04" class="text-amber-300 hover:text-amber-200 underline">Airbnb Turnover SOP Pack — $17 founder lock-in (first five buyers)</a>.
-      </p>
-
-      <p class="text-slate-300 leading-relaxed mb-6">
-        Prefer Etsy? The same 8-tab pack is also live on the Etsy storefront with instant digital download: <a href="https://www.etsy.com/listing/4498258509/airbnb-damage-claim-sop-toolkit-april" class="text-amber-300 hover:text-amber-200 underline">Airbnb Damage Claim SOP Toolkit on Etsy</a> — same $17 founder lock-in price, same PDF + HTML + Markdown delivery.
-      </p>
-
       <p class="text-slate-300 leading-relaxed mb-6">
         For the upstream question of how to keep household and short-term-rental finances separated when an Airbnb is part of a broader budget, see <a href="/blog/wedding-budget-spreadsheet-2026" class="text-amber-300 hover:text-amber-200 underline">the 6-tab spreadsheet system that holds</a> — same line-item discipline, different domain.
       </p>
     `,
     cta: {
-      text: "Pre-order the Airbnb Turnover SOP Pack ($17)",
-      href: "https://buy.stripe.com/7sYbIU1qDeDl7iP0ey7IY04",
+      text: "See the 6-tab budget system that holds",
+      href: "/blog/wedding-budget-spreadsheet-2026",
     },
     relatedProducts: [
       {

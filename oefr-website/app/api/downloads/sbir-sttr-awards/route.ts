@@ -3,24 +3,18 @@ import { readFile } from "fs/promises";
 import { join } from "path";
 
 /**
- * Protected download endpoint for the SSDI 5-Day INFORM Letter Kit PDF.
- * Verifies the Stripe checkout session before serving the file.
- * The PDF lives outside public/ so it cannot be hotlinked / paywall-bypassed.
+ * Protected download endpoint for SBIR/STTR CSV.
+ * Verifies Stripe checkout session before serving the file.
+ * The CSV lives outside public/ so it cannot be hotlinked.
  */
 
-const PDF_PATH = join(
-  process.cwd(),
-  "data",
-  "protected-downloads",
-  "SSDI-5-Day-INFORM-Letter-Kit.pdf",
-);
+const CSV_PATH = join(process.cwd(), "data", "protected-downloads", "SBIR-STTR-Awards-FY2023-2025.csv");
 
-// This product is $14. The shared Stripe account sells many products, so a
-// "paid" session alone is NOT proof the buyer purchased THIS item — without an
-// amount floor, any cheaper paid session_id would unlock this file (and the
-// $59 SBIR dataset on the sibling endpoint). Gate on the minimum expected
-// amount + currency so a lower-priced session cannot escalate to this download.
-const MIN_AMOUNT_TOTAL = 1400; // $14.00 in cents
+// This dataset is $59. The shared Stripe account sells many cheaper products,
+// so "payment_status === paid" alone is NOT proof the buyer bought THIS item —
+// any cheaper paid session_id would otherwise unlock this 37MB dataset. Gate on
+// the minimum expected amount + currency to block cross-product escalation.
+const MIN_AMOUNT_TOTAL = 5900; // $59.00 in cents
 const EXPECTED_CURRENCY = "usd";
 
 export async function GET(req: NextRequest) {
@@ -32,7 +26,7 @@ export async function GET(req: NextRequest) {
 
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeKey) {
-    console.error("[api/downloads/ssdi-inform-letter] STRIPE_SECRET_KEY missing");
+    console.error("[api/downloads/sbir-sttr-awards] STRIPE_SECRET_KEY missing");
     return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
   }
 
@@ -57,26 +51,26 @@ export async function GET(req: NextRequest) {
     const currencyOk = (session.currency ?? "").toLowerCase() === EXPECTED_CURRENCY;
     if (!amountOk || !currencyOk) {
       console.warn(
-        `[api/downloads/ssdi-inform-letter] session ${sessionId} paid but amount/currency mismatch ` +
+        `[api/downloads/sbir-sttr-awards] session ${sessionId} paid but amount/currency mismatch ` +
           `(amount_total=${session.amount_total}, currency=${session.currency}) — refusing download`,
       );
       return NextResponse.json({ error: "Purchase does not match this product" }, { status: 403 });
     }
 
     // Serve the file
-    const fileBuffer = await readFile(PDF_PATH);
+    const fileBuffer = await readFile(CSV_PATH);
 
     return new NextResponse(fileBuffer, {
       status: 200,
       headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="SSDI-5-Day-INFORM-Letter-Kit.pdf"',
+        "Content-Type": "text/csv; charset=utf-8",
+        "Content-Disposition": 'attachment; filename="SBIR-STTR-Awards-FY2023-2025.csv"',
         "Content-Length": String(fileBuffer.length),
         "Cache-Control": "private, no-store",
       },
     });
   } catch (err) {
-    console.error("[api/downloads/ssdi-inform-letter] Error:", err);
+    console.error("[api/downloads/sbir-sttr-awards] Error:", err);
     return NextResponse.json({ error: "Download failed" }, { status: 500 });
   }
 }

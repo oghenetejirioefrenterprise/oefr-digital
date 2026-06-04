@@ -149,6 +149,28 @@ export const blogPosts: BlogPost[] = [
         <em>Data sources: BLS.gov (March 2026), Glassdoor, Levels.fyi, LinkedIn Salary Insights. Salary ranges reflect full-time W2 compensation excluding equity and bonuses.</em>
       </p>
     `,
+    faq: [
+      {
+        q: "How much does a network engineer make in 2026?",
+        a: "Median US compensation in 2026 runs about $105,000 for a network engineer, $132,000 for a senior network engineer, and $148,000 for a network architect. Network administrators sit around $78,000 and junior network engineers around $62,000. These are full-time W2 figures excluding equity and bonuses.",
+      },
+      {
+        q: "Which network certification increases salary the most?",
+        a: "CCNP holders earn roughly 12–18% more than non-certified peers at the same experience level, and CCIE pushes that to 25–35%. The premium only holds with hands-on experience — hiring managers now filter out resume cert collectors, so certifications without real projects behind them don't move the number.",
+      },
+      {
+        q: "How much more do cloud networking skills pay for network engineers?",
+        a: "Engineers who can design hybrid architectures — on-prem BGP/EVPN fabric connected to AWS Transit Gateway or Azure Virtual WAN — see 15–20% premiums over pure on-prem roles in 2026. Cloud networking is now table stakes for senior roles rather than a nice-to-have.",
+      },
+      {
+        q: "What is the highest-paying city for network engineers in 2026?",
+        a: "At the network architect level, San Francisco leads at about $185,000, followed by New York ($172,000), Seattle ($168,000), and Boston ($158,000). Remote US-based roles now pay 85–95% of top metro rates for senior talent — a much smaller haircut than the 20–30% remote discount of a few years ago.",
+      },
+      {
+        q: "Why is my network engineer salary stuck below $115,000?",
+        a: "Engineers with 5+ years who can configure VLANs and troubleshoot spanning tree but have never touched cloud networking, automation (Ansible/Terraform), or security frameworks tend to land in the $95–115K range. The engineers earning $150K+ share three traits: cloud fluency, automation skills, and security integration. The fastest fix is to pick one gap and close it in 90 days.",
+      },
+    ],
     cta: {
       text: "Check Your Salary — Free Network Engineer Salary Calculator (2026 Data)",
       href: "https://net-salary-calc-psi.vercel.app",

@@ -15,6 +15,14 @@ const PDF_PATH = join(
   "SSDI-5-Day-INFORM-Letter-Kit.pdf",
 );
 
+// This product is $14. The shared Stripe account sells many products, so a
+// "paid" session alone is NOT proof the buyer purchased THIS item — without an
+// amount floor, any cheaper paid session_id would unlock this file. Gate on the
+// minimum expected amount + currency so a lower-priced session cannot escalate
+// to this download.
+const MIN_AMOUNT_TOTAL = 1400; // $14.00 in cents
+const EXPECTED_CURRENCY = "usd";
+
 export async function GET(req: NextRequest) {
   const sessionId = req.nextUrl.searchParams.get("session_id");
 
@@ -40,6 +48,19 @@ export async function GET(req: NextRequest) {
 
     if (!isPaid) {
       return NextResponse.json({ error: "Payment not verified" }, { status: 403 });
+    }
+
+    // Confirm the session actually purchased THIS product, not just *a* product
+    // on the shared Stripe account (cross-product paywall-bypass guard).
+    const amountOk =
+      typeof session.amount_total === "number" && session.amount_total >= MIN_AMOUNT_TOTAL;
+    const currencyOk = (session.currency ?? "").toLowerCase() === EXPECTED_CURRENCY;
+    if (!amountOk || !currencyOk) {
+      console.warn(
+        `[api/downloads/ssdi-inform-letter] session ${sessionId} paid but amount/currency mismatch ` +
+          `(amount_total=${session.amount_total}, currency=${session.currency}) — refusing download`,
+      );
+      return NextResponse.json({ error: "Purchase does not match this product" }, { status: 403 });
     }
 
     // Serve the file

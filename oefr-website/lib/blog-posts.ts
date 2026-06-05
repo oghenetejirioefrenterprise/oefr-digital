@@ -4,6 +4,7 @@ export interface BlogPost {
   description: string;
   keywords: string[];
   publishedDate: string;
+  updatedDate?: string;
   readingTime: string;
   author: string;
   excerpt: string;
@@ -977,12 +978,17 @@ export const blogPosts: BlogPost[] = [
       "freelancer payment terms",
       "self-employed invoice template",
       "freelance bookkeeping",
+      "1099-NEC threshold 2026",
+      "new 1099 reporting threshold $2000",
+      "OBBBA 1099 changes",
+      "do I need to send a 1099 in 2026",
     ],
     publishedDate: "2026-03-18",
+    updatedDate: "2026-06-05",
     readingTime: "9 min read",
     author: "OEFR Digital",
     excerpt:
-      "Most freelancers lose $3,000–$8,000/year to bad invoicing habits and missed tax deductions. Here's how to fix both — without an accountant on retainer.",
+      "Most freelancers lose $3,000–$8,000/year to bad invoicing habits and missed tax deductions. Here's how to fix both — without an accountant on retainer. Updated June 2026 for the new OBBBA 1099-NEC reporting threshold ($600 → $2,000).",
     content: `
       <p class="text-lg text-slate-300 leading-relaxed mb-6">
         There are 73 million freelancers in the US alone, and the majority share two problems: getting paid on time, and not overpaying the IRS. The average freelancer loses $3,000–$8,000 per year to missed deductions, late payments, and invoicing mistakes that are embarrassingly easy to fix. If you're filing 1099s — or about to — this guide is the cheat sheet you didn't know you needed.
@@ -1156,13 +1162,27 @@ export const blogPosts: BlogPost[] = [
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
         <ul class="text-slate-300 space-y-2">
           <li>📅 <strong class="text-white">Jan 15:</strong> Q4 2025 estimated tax payment due</li>
-          <li>📅 <strong class="text-white">Jan 31:</strong> Send 1099-NEC to contractors you paid $600+</li>
+          <li>📅 <strong class="text-white">Feb 2:</strong> Send 1099-NEC forms (the Jan 31 deadline lands on a weekend in 2026, so it shifts to Mon, Feb 2). See the threshold note below — it changed for 2026 payments.</li>
           <li>📅 <strong class="text-white">April 15:</strong> Tax return due + Q1 2026 estimated payment</li>
           <li>📅 <strong class="text-white">June 16:</strong> Q2 2026 estimated payment due</li>
           <li>📅 <strong class="text-white">Sept 15:</strong> Q3 2026 estimated payment due</li>
           <li>📅 <strong class="text-white">Oct 15:</strong> Extended tax return deadline (if filed extension)</li>
           <li>📅 <strong class="text-white">Dec 31:</strong> Last day for SEP IRA contributions (if no extension), equipment purchases for current-year deduction</li>
         </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">New for 2026: The 1099-NEC Threshold Jumped from $600 to $2,000</h2>
+      <div class="bg-amber-950/40 border border-amber-700/60 rounded-xl p-5 mb-6">
+        <p class="text-slate-200 leading-relaxed mb-3">
+          <strong class="text-white">This is the change most freelancers and small businesses will miss.</strong> Under the One Big Beautiful Bill Act (OBBBA), the threshold for issuing a Form 1099-NEC rose from <strong class="text-white">$600 to $2,000</strong> for payments made on or after January 1, 2026. Here's how to apply it without making a costly mistake:
+        </p>
+        <ul class="text-slate-300 space-y-2 mb-3">
+          <li>🗓️ <strong class="text-white">For 2025 payments</strong> (the 1099s you file in early 2026): the old <strong class="text-white">$600</strong> threshold still applies. Don't skip a form because of the new rule — it isn't retroactive.</li>
+          <li>🗓️ <strong class="text-white">For 2026 payments</strong> (filed in early 2027): you only issue a 1099-NEC to a contractor you paid <strong class="text-white">$2,000 or more</strong> for the year. From 2027 onward the $2,000 figure is inflation-indexed.</li>
+        </ul>
+        <p class="text-slate-300 leading-relaxed">
+          The higher threshold means fewer forms, but the rules that actually trip people up didn't change: collect a <strong class="text-white">W-9 before you pay anyone</strong>, classify the worker correctly (contractor vs. employee), and keep clean payment records. The dollar threshold only decides whether you file the form — it never decides whether the income is taxable. Always confirm the current-year figures against the IRS Form 1099-NEC instructions before you file.
+        </p>
       </div>
 
       <p class="text-slate-300 leading-relaxed mb-6">

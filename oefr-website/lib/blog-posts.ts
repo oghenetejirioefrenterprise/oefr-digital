@@ -4,6 +4,7 @@ export interface BlogPost {
   description: string;
   keywords: string[];
   publishedDate: string;
+  updatedDate?: string;
   readingTime: string;
   author: string;
   excerpt: string;
@@ -17,6 +18,10 @@ export interface BlogPost {
     name: string;
     href: string;
     description: string;
+  }[];
+  faq?: {
+    q: string;
+    a: string;
   }[];
 }
 
@@ -119,12 +124,22 @@ export const blogPosts: BlogPost[] = [
       </p>
       <ol class="list-decimal list-inside text-slate-300 space-y-2 mb-6 pl-2">
         <li><strong class="text-white">Get one cloud networking cert</strong> — AWS Advanced Networking or Azure Network Engineer. Not both. One, deep.</li>
-        <li><strong class="text-white">Build one automation project</strong> — Automate something real at your job. Ansible for switch config management is the easiest entry point.</li>
-        <li><strong class="text-white">Learn one security framework</strong> — NIST 800-207 for Zero Trust. It's free, it's readable, and it's what every enterprise is adopting.</li>
+        <li><strong class="text-white">Build one automation project</strong> — Automate something real at your job. <a href="/blog/ansible-network-automation-getting-started-2026" class="text-blue-400 underline hover:text-blue-300">Ansible for switch config management</a> is the easiest entry point.</li>
+        <li><strong class="text-white">Learn one security framework</strong> — NIST 800-207 for <a href="/blog/zero-trust-network-architecture-guide-2026" class="text-blue-400 underline hover:text-blue-300">Zero Trust</a>. It's free, it's readable, and it's what every enterprise is adopting.</li>
       </ol>
       <p class="text-slate-300 leading-relaxed mb-6">
         Don't try to do everything. Pick one gap and close it in 90 days. Then pick the next one.
       </p>
+
+      <div class="bg-slate-900/40 border border-slate-700/50 rounded-xl p-5 mb-6">
+        <p class="text-white font-semibold text-sm mb-3">📚 Related guides to close the gap</p>
+        <ul class="list-disc list-inside text-slate-300 text-sm space-y-2">
+          <li><a href="/blog/ansible-network-automation-getting-started-2026" class="text-blue-400 underline hover:text-blue-300">Ansible network automation: getting started in 2026</a> — the automation skill that commands a 15–20% premium.</li>
+          <li><a href="/blog/zero-trust-network-architecture-guide-2026" class="text-blue-400 underline hover:text-blue-300">Zero-trust network architecture guide</a> — the security framework every enterprise is adopting.</li>
+          <li><a href="/blog/network-security-audit-checklist-2026" class="text-blue-400 underline hover:text-blue-300">Network security audit checklist</a> — turn security integration into a repeatable, billable skill.</li>
+          <li><a href="/blog/ats-resume-tips-2026" class="text-blue-400 underline hover:text-blue-300">ATS resume tips for 2026</a> — if you're below market, the fastest raise is usually a new offer.</li>
+        </ul>
+      </div>
 
       <div class="bg-blue-950/30 border border-blue-800/50 rounded-xl p-5 mb-6">
         <p class="text-blue-400 font-semibold text-sm mb-2">📊 Check Your Salary</p>
@@ -135,6 +150,28 @@ export const blogPosts: BlogPost[] = [
         <em>Data sources: BLS.gov (March 2026), Glassdoor, Levels.fyi, LinkedIn Salary Insights. Salary ranges reflect full-time W2 compensation excluding equity and bonuses.</em>
       </p>
     `,
+    faq: [
+      {
+        q: "How much does a network engineer make in 2026?",
+        a: "Median US compensation in 2026 runs about $105,000 for a network engineer, $132,000 for a senior network engineer, and $148,000 for a network architect. Network administrators sit around $78,000 and junior network engineers around $62,000. These are full-time W2 figures excluding equity and bonuses.",
+      },
+      {
+        q: "Which network certification increases salary the most?",
+        a: "CCNP holders earn roughly 12–18% more than non-certified peers at the same experience level, and CCIE pushes that to 25–35%. The premium only holds with hands-on experience — hiring managers now filter out resume cert collectors, so certifications without real projects behind them don't move the number.",
+      },
+      {
+        q: "How much more do cloud networking skills pay for network engineers?",
+        a: "Engineers who can design hybrid architectures — on-prem BGP/EVPN fabric connected to AWS Transit Gateway or Azure Virtual WAN — see 15–20% premiums over pure on-prem roles in 2026. Cloud networking is now table stakes for senior roles rather than a nice-to-have.",
+      },
+      {
+        q: "What is the highest-paying city for network engineers in 2026?",
+        a: "At the network architect level, San Francisco leads at about $185,000, followed by New York ($172,000), Seattle ($168,000), and Boston ($158,000). Remote US-based roles now pay 85–95% of top metro rates for senior talent — a much smaller haircut than the 20–30% remote discount of a few years ago.",
+      },
+      {
+        q: "Why is my network engineer salary stuck below $115,000?",
+        a: "Engineers with 5+ years who can configure VLANs and troubleshoot spanning tree but have never touched cloud networking, automation (Ansible/Terraform), or security frameworks tend to land in the $95–115K range. The engineers earning $150K+ share three traits: cloud fluency, automation skills, and security integration. The fastest fix is to pick one gap and close it in 90 days.",
+      },
+    ],
     cta: {
       text: "Check Your Salary — Free Network Engineer Salary Calculator (2026 Data)",
       href: "https://net-salary-calc-psi.vercel.app",
@@ -941,12 +978,17 @@ export const blogPosts: BlogPost[] = [
       "freelancer payment terms",
       "self-employed invoice template",
       "freelance bookkeeping",
+      "1099-NEC threshold 2026",
+      "new 1099 reporting threshold $2000",
+      "OBBBA 1099 changes",
+      "do I need to send a 1099 in 2026",
     ],
     publishedDate: "2026-03-18",
+    updatedDate: "2026-06-05",
     readingTime: "9 min read",
     author: "OEFR Digital",
     excerpt:
-      "Most freelancers lose $3,000–$8,000/year to bad invoicing habits and missed tax deductions. Here's how to fix both — without an accountant on retainer.",
+      "Most freelancers lose $3,000–$8,000/year to bad invoicing habits and missed tax deductions. Here's how to fix both — without an accountant on retainer. Updated June 2026 for the new OBBBA 1099-NEC reporting threshold ($600 → $2,000).",
     content: `
       <p class="text-lg text-slate-300 leading-relaxed mb-6">
         There are 73 million freelancers in the US alone, and the majority share two problems: getting paid on time, and not overpaying the IRS. The average freelancer loses $3,000–$8,000 per year to missed deductions, late payments, and invoicing mistakes that are embarrassingly easy to fix. If you're filing 1099s — or about to — this guide is the cheat sheet you didn't know you needed.
@@ -1120,13 +1162,27 @@ export const blogPosts: BlogPost[] = [
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
         <ul class="text-slate-300 space-y-2">
           <li>📅 <strong class="text-white">Jan 15:</strong> Q4 2025 estimated tax payment due</li>
-          <li>📅 <strong class="text-white">Jan 31:</strong> Send 1099-NEC to contractors you paid $600+</li>
+          <li>📅 <strong class="text-white">Feb 2:</strong> Send 1099-NEC forms (the Jan 31 deadline lands on a weekend in 2026, so it shifts to Mon, Feb 2). See the threshold note below — it changed for 2026 payments.</li>
           <li>📅 <strong class="text-white">April 15:</strong> Tax return due + Q1 2026 estimated payment</li>
           <li>📅 <strong class="text-white">June 16:</strong> Q2 2026 estimated payment due</li>
           <li>📅 <strong class="text-white">Sept 15:</strong> Q3 2026 estimated payment due</li>
           <li>📅 <strong class="text-white">Oct 15:</strong> Extended tax return deadline (if filed extension)</li>
           <li>📅 <strong class="text-white">Dec 31:</strong> Last day for SEP IRA contributions (if no extension), equipment purchases for current-year deduction</li>
         </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">New for 2026: The 1099-NEC Threshold Jumped from $600 to $2,000</h2>
+      <div class="bg-amber-950/40 border border-amber-700/60 rounded-xl p-5 mb-6">
+        <p class="text-slate-200 leading-relaxed mb-3">
+          <strong class="text-white">This is the change most freelancers and small businesses will miss.</strong> Under the One Big Beautiful Bill Act (OBBBA), the threshold for issuing a Form 1099-NEC rose from <strong class="text-white">$600 to $2,000</strong> for payments made on or after January 1, 2026. Here's how to apply it without making a costly mistake:
+        </p>
+        <ul class="text-slate-300 space-y-2 mb-3">
+          <li>🗓️ <strong class="text-white">For 2025 payments</strong> (the 1099s you file in early 2026): the old <strong class="text-white">$600</strong> threshold still applies. Don't skip a form because of the new rule — it isn't retroactive.</li>
+          <li>🗓️ <strong class="text-white">For 2026 payments</strong> (filed in early 2027): you only issue a 1099-NEC to a contractor you paid <strong class="text-white">$2,000 or more</strong> for the year. From 2027 onward the $2,000 figure is inflation-indexed.</li>
+        </ul>
+        <p class="text-slate-300 leading-relaxed">
+          The higher threshold means fewer forms, but the rules that actually trip people up didn't change: collect a <strong class="text-white">W-9 before you pay anyone</strong>, classify the worker correctly (contractor vs. employee), and keep clean payment records. The dollar threshold only decides whether you file the form — it never decides whether the income is taxable. Always confirm the current-year figures against the IRS Form 1099-NEC instructions before you file.
+        </p>
       </div>
 
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -2579,27 +2635,13 @@ export const blogPosts: BlogPost[] = [
         The tighter the SOP scope, the more reliably cleaners execute it.
       </p>
 
-      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Get the April-2026-Ready 8-Tab Pack</h2>
-
-      <p class="text-slate-300 leading-relaxed mb-6">
-        OEFR Digital is shipping this exact 8-tab structure as a single Google Sheets pack plus a printable PDF — room-by-room turnover checklist, damage report form (original-camera-files compatible), supply par-level inventory, guest welcome template, co-host handoff doc, cleaner SLA + pay-rate worksheet, maintenance log, and owner-statement summary. Built for hosts running 1–20 listings. Founder lock-in pricing: $17 for the first five buyers, then $24 list. A v2 expansion is in build — adding a 12-shot per-room photo sequence, a quarterly walkthrough audit, a receipts/appliance documentation index, and a ToS compliance acceptance log — and ships free to founder buyers.
-      </p>
-
-      <p class="text-slate-300 leading-relaxed mb-6">
-        Get the pack: <a href="https://buy.stripe.com/7sYbIU1qDeDl7iP0ey7IY04" class="text-amber-300 hover:text-amber-200 underline">Airbnb Turnover SOP Pack — $17 founder lock-in (first five buyers)</a>.
-      </p>
-
-      <p class="text-slate-300 leading-relaxed mb-6">
-        Prefer Etsy? The same 8-tab pack is also live on the Etsy storefront with instant digital download: <a href="https://www.etsy.com/listing/4498258509/airbnb-damage-claim-sop-toolkit-april" class="text-amber-300 hover:text-amber-200 underline">Airbnb Damage Claim SOP Toolkit on Etsy</a> — same $17 founder lock-in price, same PDF + HTML + Markdown delivery.
-      </p>
-
       <p class="text-slate-300 leading-relaxed mb-6">
         For the upstream question of how to keep household and short-term-rental finances separated when an Airbnb is part of a broader budget, see <a href="/blog/wedding-budget-spreadsheet-2026" class="text-amber-300 hover:text-amber-200 underline">the 6-tab spreadsheet system that holds</a> — same line-item discipline, different domain.
       </p>
     `,
     cta: {
-      text: "Pre-order the Airbnb Turnover SOP Pack ($17)",
-      href: "https://buy.stripe.com/7sYbIU1qDeDl7iP0ey7IY04",
+      text: "See the 6-tab budget system that holds",
+      href: "/blog/wedding-budget-spreadsheet-2026",
     },
     relatedProducts: [
       {
@@ -2635,8 +2677,13 @@ export const blogPosts: BlogPost[] = [
       "disability hearing medical records late",
       "SSR 17-4p",
       "preserve evidence SSDI hearing",
+      "20 CFR 404.935(b)",
+      "missed SSDI 5 day deadline",
+      "good cause late evidence SSDI",
+      "submit evidence after 5 day rule",
     ],
     publishedDate: "2026-05-29",
+    updatedDate: "2026-06-06",
     readingTime: "6 min read",
     author: "OEFR Digital",
     excerpt:
@@ -2692,6 +2739,14 @@ export const blogPosts: BlogPost[] = [
         Business days exclude weekends and federal holidays, and you count back from the hearing date. If your hearing is on a Wednesday, the fifth business day before it generally falls on the prior Wednesday — but a holiday in that window pushes the cutoff earlier. People lose evidence not because the records were bad, but because they counted calendar days instead of business days and missed by 48 hours. Map the date the moment your hearing notice arrives.
       </p>
 
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What if you already missed the 5-day deadline?</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Missing the window is not automatically fatal. <strong class="text-white">20 CFR § 404.935(b)</strong> directs the ALJ to <em>accept</em> late evidence — as long as no decision has been issued yet — if one of three circumstances applies: the agency's own action misled you; a physical, mental, educational, or linguistic limitation prevented you from informing or submitting it earlier; or some other unusual, unexpected, or unavoidable circumstance beyond your control got in the way. The regulation names concrete examples of that third category — a serious illness, a death or serious illness in your immediate family, the accidental destruction of records, or having actively and diligently sought evidence from a source that simply did not send it in time.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The practical takeaway: if you blew the deadline, do not stay silent. Submit the evidence the moment you have it and state, in writing, which good-cause circumstance applies and why. That last example — you requested records on time and the provider was slow — is exactly why the <strong class="text-white">inform</strong> letter above matters so much. A timely inform letter is your documentation that you acted diligently, which is the precise showing § 404.935(b) asks for.
+      </p>
+
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">The bottom line</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
         The 5-day rule under 20 CFR § 404.935(a) gives you two doors. Submitting is the obvious one. Informing — notifying the office, on time and with specifics, about evidence that's still outstanding — is the one that protects you when a provider is slow and the hearing is close. Used early, it keeps your strongest records in play.
@@ -2715,6 +2770,32 @@ export const blogPosts: BlogPost[] = [
         href: "/ssdi-hearing-evidence-letter",
         description:
           "Fill-in-the-blank INFORM letter template + procedural explainer citing 20 CFR § 404.935(a), HALLEX I-2-5-13, and SSR 17-4p + a 60-day deadline calendar. Instant PDF download, $14.",
+      },
+    ],
+    faq: [
+      {
+        q: "What is the SSDI 5-day evidence rule?",
+        a: "Under 20 CFR § 404.935(a), you must inform the hearing office about — or submit — any written evidence no later than 5 business days before your scheduled SSDI hearing in front of an Administrative Law Judge. If you miss that window without a qualifying reason, the ALJ may decline to consider the evidence.",
+      },
+      {
+        q: "What is the difference between informing and submitting evidence under the 5-day rule?",
+        a: "Submitting means the actual document is in your file at least 5 business days before the hearing. Informing means notifying the hearing office in writing that the evidence exists and is still outstanding, even if you don't have the record in hand yet. Both satisfy 20 CFR § 404.935(a), but informing is the separate right that preserves consideration of records that arrive late.",
+      },
+      {
+        q: "How do you count 5 business days before an SSDI hearing?",
+        a: "Count backward from the hearing date, excluding weekends and federal holidays. A holiday inside that window pushes the cutoff earlier. People often lose evidence because they counted calendar days instead of business days, so map the exact date the moment your hearing notice arrives.",
+      },
+      {
+        q: "What happens if you miss the SSDI 5-day deadline?",
+        a: "If evidence is informed about or submitted late without a qualifying exception, the ALJ may decline to consider it. Informing the office on time about outstanding records is what keeps a slow-arriving medical record from being shut out of your hearing.",
+      },
+      {
+        q: "Does informing the hearing office preserve late-arriving medical records?",
+        a: "Yes. When you inform the hearing office on time and with specifics about evidence that is still outstanding, you preserve the ALJ's obligation to consider those records even if they arrive after the 5-business-day cutoff, consistent with HALLEX I-2-5-13 and SSR 17-4p.",
+      },
+      {
+        q: "Can you submit evidence after the SSDI 5-day deadline?",
+        a: "Sometimes. Under 20 CFR § 404.935(b), the ALJ will accept late evidence — as long as no decision has been issued — when the agency's action misled you, a physical, mental, educational, or linguistic limitation prevented you from acting earlier, or an unusual, unexpected, or unavoidable circumstance beyond your control got in the way (for example serious illness, a death in the immediate family, destroyed records, or actively seeking records a provider sent in late). Submit the evidence as soon as you have it and state which good-cause circumstance applies.",
       },
     ],
   },

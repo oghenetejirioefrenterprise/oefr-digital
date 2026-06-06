@@ -2677,8 +2677,13 @@ export const blogPosts: BlogPost[] = [
       "disability hearing medical records late",
       "SSR 17-4p",
       "preserve evidence SSDI hearing",
+      "20 CFR 404.935(b)",
+      "missed SSDI 5 day deadline",
+      "good cause late evidence SSDI",
+      "submit evidence after 5 day rule",
     ],
     publishedDate: "2026-05-29",
+    updatedDate: "2026-06-06",
     readingTime: "6 min read",
     author: "OEFR Digital",
     excerpt:
@@ -2734,6 +2739,14 @@ export const blogPosts: BlogPost[] = [
         Business days exclude weekends and federal holidays, and you count back from the hearing date. If your hearing is on a Wednesday, the fifth business day before it generally falls on the prior Wednesday — but a holiday in that window pushes the cutoff earlier. People lose evidence not because the records were bad, but because they counted calendar days instead of business days and missed by 48 hours. Map the date the moment your hearing notice arrives.
       </p>
 
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What if you already missed the 5-day deadline?</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Missing the window is not automatically fatal. <strong class="text-white">20 CFR § 404.935(b)</strong> directs the ALJ to <em>accept</em> late evidence — as long as no decision has been issued yet — if one of three circumstances applies: the agency's own action misled you; a physical, mental, educational, or linguistic limitation prevented you from informing or submitting it earlier; or some other unusual, unexpected, or unavoidable circumstance beyond your control got in the way. The regulation names concrete examples of that third category — a serious illness, a death or serious illness in your immediate family, the accidental destruction of records, or having actively and diligently sought evidence from a source that simply did not send it in time.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The practical takeaway: if you blew the deadline, do not stay silent. Submit the evidence the moment you have it and state, in writing, which good-cause circumstance applies and why. That last example — you requested records on time and the provider was slow — is exactly why the <strong class="text-white">inform</strong> letter above matters so much. A timely inform letter is your documentation that you acted diligently, which is the precise showing § 404.935(b) asks for.
+      </p>
+
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">The bottom line</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
         The 5-day rule under 20 CFR § 404.935(a) gives you two doors. Submitting is the obvious one. Informing — notifying the office, on time and with specifics, about evidence that's still outstanding — is the one that protects you when a provider is slow and the hearing is close. Used early, it keeps your strongest records in play.
@@ -2779,6 +2792,10 @@ export const blogPosts: BlogPost[] = [
       {
         q: "Does informing the hearing office preserve late-arriving medical records?",
         a: "Yes. When you inform the hearing office on time and with specifics about evidence that is still outstanding, you preserve the ALJ's obligation to consider those records even if they arrive after the 5-business-day cutoff, consistent with HALLEX I-2-5-13 and SSR 17-4p.",
+      },
+      {
+        q: "Can you submit evidence after the SSDI 5-day deadline?",
+        a: "Sometimes. Under 20 CFR § 404.935(b), the ALJ will accept late evidence — as long as no decision has been issued — when the agency's action misled you, a physical, mental, educational, or linguistic limitation prevented you from acting earlier, or an unusual, unexpected, or unavoidable circumstance beyond your control got in the way (for example serious illness, a death in the immediate family, destroyed records, or actively seeking records a provider sent in late). Submit the evidence as soon as you have it and state which good-cause circumstance applies.",
       },
     ],
   },

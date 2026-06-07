@@ -982,9 +982,12 @@ export const blogPosts: BlogPost[] = [
       "new 1099 reporting threshold $2000",
       "OBBBA 1099 changes",
       "do I need to send a 1099 in 2026",
+      "June 15 estimated tax deadline 2026",
+      "Q2 2026 quarterly estimated taxes due",
+      "self-employed estimated tax deadline 2026",
     ],
     publishedDate: "2026-03-18",
-    updatedDate: "2026-06-05",
+    updatedDate: "2026-06-07",
     readingTime: "9 min read",
     author: "OEFR Digital",
     excerpt:
@@ -1164,7 +1167,7 @@ export const blogPosts: BlogPost[] = [
           <li>📅 <strong class="text-white">Jan 15:</strong> Q4 2025 estimated tax payment due</li>
           <li>📅 <strong class="text-white">Feb 2:</strong> Send 1099-NEC forms (the Jan 31 deadline lands on a weekend in 2026, so it shifts to Mon, Feb 2). See the threshold note below — it changed for 2026 payments.</li>
           <li>📅 <strong class="text-white">April 15:</strong> Tax return due + Q1 2026 estimated payment</li>
-          <li>📅 <strong class="text-white">June 16:</strong> Q2 2026 estimated payment due</li>
+          <li>📅 <strong class="text-white">June 15:</strong> Q2 2026 estimated tax payment due — the second quarterly deadline of the year. June 15, 2026 falls on a Monday, so there is no weekend shift.</li>
           <li>📅 <strong class="text-white">Sept 15:</strong> Q3 2026 estimated payment due</li>
           <li>📅 <strong class="text-white">Oct 15:</strong> Extended tax return deadline (if filed extension)</li>
           <li>📅 <strong class="text-white">Dec 31:</strong> Last day for SEP IRA contributions (if no extension), equipment purchases for current-year deduction</li>

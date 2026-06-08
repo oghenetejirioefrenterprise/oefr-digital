@@ -1174,6 +1174,15 @@ export const blogPosts: BlogPost[] = [
         </ul>
       </div>
 
+      <div class="bg-emerald-950/30 border border-emerald-700/50 rounded-xl p-5 mb-6">
+        <p class="text-slate-200 leading-relaxed mb-2">
+          <strong class="text-white">Want next June to be a five-minute job instead of a weekend?</strong> The hardest part of quarterly taxes isn't writing the check — it's reconstructing a year of income and expenses the night before. If you track as you go, every deadline becomes a glance at one sheet.
+        </p>
+        <p class="text-slate-300 leading-relaxed">
+          Our <a href="https://3563705146415.gumroad.com/l/qnljkix" class="text-emerald-400 underline hover:text-emerald-300">Self-Employed Tax Organizer 2026</a> ($9.99, one-time) is a spreadsheet that auto-calculates your Schedule C categories and quarterly set-aside as you enter income — so you always know what to set aside for June 15, Sept 15, and beyond. No subscription, no bank-account linking.
+        </p>
+      </div>
+
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">New for 2026: The 1099-NEC Threshold Jumped from $600 to $2,000</h2>
       <div class="bg-amber-950/40 border border-amber-700/60 rounded-xl p-5 mb-6">
         <p class="text-slate-200 leading-relaxed mb-3">
@@ -1202,6 +1211,12 @@ export const blogPosts: BlogPost[] = [
         href: "https://3563705146415.gumroad.com/l/mdldkn",
         description:
           "Professional invoice generator with PDF export, recurring billing, and customizable templates. One-time purchase, $37.",
+      },
+      {
+        name: "Self-Employed Tax Organizer 2026",
+        href: "https://3563705146415.gumroad.com/l/qnljkix",
+        description:
+          "Spreadsheet that auto-calculates Schedule C categories and your quarterly tax set-aside as you enter income. One-time purchase, $9.99.",
       },
       {
         name: "BudgetWise Pro",

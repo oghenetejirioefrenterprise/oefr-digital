@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readFile } from "fs/promises";
 import { join } from "path";
+import { SSDI_PRICE_ID } from "@/lib/stripe-prices";
 
 /**
  * Protected download endpoint for the SSDI 5-Day INFORM Letter Kit PDF.
@@ -14,6 +15,13 @@ const PDF_PATH = join(
   "protected-downloads",
   "SSDI-5-Day-INFORM-Letter-Kit.pdf",
 );
+
+// All OEFR products share ONE Stripe account, so a "paid" session alone is NOT
+// proof the buyer purchased THIS item. An amount floor is insufficient too:
+// >= $14 lets any pricier SKU escalate, and two OTHER products also cost $14.
+// Bind to the exact SSDI Stripe price (SSDI_PRICE_ID, shared with the thank-you
+// page) so only a session that actually bought this product unlocks the file.
+// Fails closed.
 
 export async function GET(req: NextRequest) {
   const sessionId = req.nextUrl.searchParams.get("session_id");
@@ -35,11 +43,23 @@ export async function GET(req: NextRequest) {
       httpClient: Stripe.createFetchHttpClient(),
     });
 
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-    const isPaid = session.payment_status === "paid" || session.status === "complete";
+    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+      expand: ["line_items"],
+    });
+    const isPaid = session.payment_status === "paid";
+    const purchasedThisProduct = (session.line_items?.data ?? []).some(
+      (li) => li.price?.id === SSDI_PRICE_ID,
+    );
 
-    if (!isPaid) {
-      return NextResponse.json({ error: "Payment not verified" }, { status: 403 });
+    if (!isPaid || !purchasedThisProduct) {
+      console.warn(
+        `[api/downloads/ssdi-inform-letter] session ${sessionId} refused ` +
+          `(payment_status=${session.payment_status}, purchasedThisProduct=${purchasedThisProduct})`,
+      );
+      return NextResponse.json(
+        { error: "Payment not verified for this product" },
+        { status: 403 },
+      );
     }
 
     // Serve the file

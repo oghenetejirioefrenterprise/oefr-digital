@@ -2354,8 +2354,12 @@ export const blogPosts: BlogPost[] = [
       "how to budget for a wedding",
       "wedding planning spreadsheet free",
       "bride budget planner template",
+      "2026 summer wedding budget",
+      "average wedding cost 2026",
+      "how much does a wedding cost 2026",
     ],
     publishedDate: "2026-04-26",
+    updatedDate: "2026-06-09",
     readingTime: "6 min read",
     author: "OEFR Digital",
     excerpt:
@@ -2363,6 +2367,9 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p class="text-lg text-slate-300 leading-relaxed mb-6">
         Most wedding planning systems break by month three. Not because the bride lost focus — because the system was never designed for the messy middle. A vendor cancels. The guest list swells. Two RSVPs come in after the seating chart was finalized. The Pinterest checklist says one thing, the Notion template says another, and the wedding app charges $10–20/month to sync them.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you're planning a 2026 summer wedding, the timing matters. June through September is peak season — venues book a year out and vendor deposits stack up in the final stretch. That's exactly when a budget built back in winter quietly falls apart: the guest list grew, two vendors came in over quote, and the one number you actually care about — what's left to spend — is buried across six browser tabs. A spreadsheet that recalculates the moment you change a single line is the difference between adjusting on the fly and discovering you're thousands over the week of the wedding.
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -2699,9 +2706,14 @@ export const blogPosts: BlogPost[] = [
       "missed SSDI 5 day deadline",
       "good cause late evidence SSDI",
       "submit evidence after 5 day rule",
+      "SSA-3373 function report",
+      "how to fill out function report SSDI",
+      "SSA function report tips",
+      "function report adult SSA-3373-BK",
+      "SSA-3380 third party function report",
     ],
     publishedDate: "2026-05-29",
-    updatedDate: "2026-06-06",
+    updatedDate: "2026-06-10",
     readingTime: "6 min read",
     author: "OEFR Digital",
     excerpt:
@@ -2765,6 +2777,24 @@ export const blogPosts: BlogPost[] = [
         The practical takeaway: if you blew the deadline, do not stay silent. Submit the evidence the moment you have it and state, in writing, which good-cause circumstance applies and why. That last example — you requested records on time and the provider was slow — is exactly why the <strong class="text-white">inform</strong> letter above matters so much. A timely inform letter is your documentation that you acted diligently, which is the precise showing § 404.935(b) asks for.
       </p>
 
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The other form that quietly decides claims: the SSA-3373 Function Report</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The 5-day rule governs evidence at the hearing stage. But long before most claimants ever see an ALJ, another piece of paper is doing just as much quiet work: <strong class="text-white">Form SSA-3373-BK, the Function Report — Adult</strong>. It is where you describe, in your own words, how your condition limits your daily activities — and the agency reads it side by side with your medical records. (A companion form, <strong class="text-white">SSA-3380-BK</strong>, asks a third party — a spouse, relative, or friend — the same questions about you.)
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Three things claimants consistently get wrong on it:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-3">
+          <li>📝 <strong class="text-white">One-word answers.</strong> "Can you prepare meals?" answered with "yes" reads as no limitation. The accurate answer is usually conditional: what you can do, how long it takes, what help you need, and what it costs you afterward.</li>
+          <li>📊 <strong class="text-white">Describing only your best day.</strong> Conditions fluctuate. If you describe a good day as if it were every day, the report will contradict the limitations your doctors documented. Describe the range, and how often the bad days come.</li>
+          <li>🔍 <strong class="text-white">Contradicting your own medical file.</strong> Adjudicators evaluate how consistent your statements are with the rest of the record — that is the framework of <strong class="text-white">SSR 16-3p</strong>. A function report that does not match what you told your doctors undercuts both.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        And here is the hearing-stage connection: the function report does not expire when the state agency is done with it. The ALJ has it in the file at your hearing and can ask you about any line on it. Treat it with the same procedural seriousness as the 5-day rule — both are paperwork steps where claims are quietly won or lost.
+      </p>
+
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">The bottom line</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
         The 5-day rule under 20 CFR § 404.935(a) gives you two doors. Submitting is the obvious one. Informing — notifying the office, on time and with specifics, about evidence that's still outstanding — is the one that protects you when a provider is slow and the hearing is close. Used early, it keeps your strongest records in play.
@@ -2814,6 +2844,10 @@ export const blogPosts: BlogPost[] = [
       {
         q: "Can you submit evidence after the SSDI 5-day deadline?",
         a: "Sometimes. Under 20 CFR § 404.935(b), the ALJ will accept late evidence — as long as no decision has been issued — when the agency's action misled you, a physical, mental, educational, or linguistic limitation prevented you from acting earlier, or an unusual, unexpected, or unavoidable circumstance beyond your control got in the way (for example serious illness, a death in the immediate family, destroyed records, or actively seeking records a provider sent in late). Submit the evidence as soon as you have it and state which good-cause circumstance applies.",
+      },
+      {
+        q: "What is the SSA-3373 Function Report and why does it matter for an SSDI claim?",
+        a: "Form SSA-3373-BK (Function Report \u2014 Adult) is where you describe in your own words how your condition limits your daily activities. Adjudicators read it side by side with your medical records and evaluate how consistent your statements are with the rest of the file, consistent with SSR 16-3p. It stays in the file through the hearing stage, where the ALJ can ask you about any answer on it \u2014 so conditional, accurate answers that match your medical record matter as much as any procedural deadline.",
       },
     ],
   },

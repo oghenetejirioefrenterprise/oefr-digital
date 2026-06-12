@@ -2823,7 +2823,7 @@ export const blogPosts: BlogPost[] = [
         name: "SSA-3373 Function Report Walkthrough Kit",
         href: "https://3563705146415.gumroad.com/l/bdxkzh",
         description:
-          "Question-by-question prep walkthrough for the Function Report — Adult (SSA-3373-BK), built around the three answers that quietly sink claims: one-word responses, best-day-only descriptions, and contradicting your own medical file. $0 pre-order today — full kit releases June 24, 2026; you pay nothing now.",
+          "Question-by-question prep walkthrough for the Function Report — Adult (SSA-3373-BK), built around the three answers that quietly sink claims: one-word responses, best-day-only descriptions, and contradicting your own medical file. Instant download — 36-page PDF walkthrough plus an 8-tab narrative workbook.",
       },
     ],
     faq: [

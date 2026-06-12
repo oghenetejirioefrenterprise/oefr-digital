@@ -2858,6 +2858,164 @@ export const blogPosts: BlogPost[] = [
     ],
   },
   {
+    slug: "irs-cp2000-notice-response-2026",
+    title: "Got an IRS CP2000 Notice? How to Respond in the 30-Day Window (and What a CPA Charges to Do It for You)",
+    description:
+      "An IRS CP2000 is a proposed change to your return from the Automated Underreporter program — not an audit. Here's what it actually is, the 30-day response clock, how to agree / partially agree / disagree correctly, what tax pros charge to respond ($500–$1,500+), and how to package a DIY response on time.",
+    keywords: [
+      "IRS CP2000 notice response",
+      "CP2000 30 day response",
+      "respond to CP2000 notice",
+      "IRS CP2000 what to do",
+      "CP2000 is not an audit",
+      "CP2000 partially agree",
+      "CP2000 disagree response",
+      "IRS underreporter notice",
+      "CP2000 response cost",
+      "CP2000 supporting documents",
+      "Form 12203 appeals CP2000",
+      "CP2000 1099 mismatch",
+      "CP2000 response form",
+      "how to respond to IRS CP2000 without a CPA",
+    ],
+    publishedDate: "2026-06-12",
+    readingTime: "8 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "A CP2000 is not an audit — it's a proposed adjustment with a 30-day clock. Here's what the notice actually is, how to respond correctly (agree, partially agree, or disagree), what tax pros charge to do it, and how to package a DIY response before the window closes.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        If an <strong class="text-white">IRS CP2000 notice</strong> just arrived in your mailbox, the first thing to know is what it <em>isn't</em>: it is <strong class="text-white">not an audit</strong>. A CP2000 is a <strong class="text-white">proposed change</strong> to a return you already filed, generated automatically by the IRS Automated Underreporter (AUR) program when third-party documents — a 1099, a W-2, a 1099-K — don't match what was reported on the return. Nothing has been assessed yet. The notice is a proposal, and you get to respond before anything becomes final.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What a CP2000 actually is (and what it isn't)</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The IRS receives copies of the income documents that payers file about you — interest (1099-INT), dividends (1099-DIV), nonemployee compensation (1099-NEC), payment-app and card settlements (1099-K), brokerage sales (1099-B), wages (W-2), and more. The Automated Underreporter program compares those documents to your filed return. When a figure on file doesn't appear on the return — or appears with a different amount — the system generates a CP2000 proposing an adjustment, often with additional tax, interest, and potentially a penalty.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-3">
+          <li>✅ <strong class="text-white">It is</strong> a computer-matched proposed adjustment — a notice that the IRS's records and your return don't line up, and a request for your response.</li>
+          <li>🚫 <strong class="text-white">It is not</strong> an audit, a bill you're required to pay as-is, or a final determination. You can agree, partially agree, or disagree.</li>
+          <li>⚠️ <strong class="text-white">It is time-sensitive.</strong> The notice carries a response deadline — and ignoring it is how a proposal becomes an enforceable assessment.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The 30-day clock — and why it's effectively shorter</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A CP2000 gives you a <strong class="text-white">30-day window to respond</strong>, measured from the date printed on the notice — not the day it landed in your mailbox. Because mail takes time to arrive, the practical window many tax practitioners describe is closer to <strong class="text-white">20–23 usable days</strong> by the time you've opened it. Treat the date on the notice as the hard deadline and work backward.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you need more time to gather documents, you can typically request additional time by calling or writing using the contact information on the notice itself — the notice explains how. But the safest posture is to assume you have only the days that are actually left and start assembling your response immediately.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What it costs to have a tax pro respond for you</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Handing a CP2000 to a CPA, enrolled agent, or tax-resolution firm is a legitimate choice — especially if the proposed change is large or the facts are messy. It also has a price. Independent tax professionals commonly bill <strong class="text-white">$200–$400 per hour</strong>, and a straightforward CP2000 response runs a few hours of review, document gathering, and drafting — frequently landing in the <strong class="text-white">$500–$1,500+</strong> range. Dedicated tax-resolution firms can run higher still, into the thousands, depending on complexity.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        That spend can be entirely worth it for complicated cases. But a large share of CP2000s are factually simple — a single missing 1099, a brokerage sale reported without its cost basis, a 1099-K that overstates taxable income — and in those cases responding correctly is fundamentally an <strong class="text-white">organization and documentation exercise</strong> rather than a question that needs professional judgment.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The three ways to respond: agree, partially agree, disagree</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A CP2000 lays out the IRS's proposed changes as line items, and includes a Response form for you to indicate your position. There are three paths:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-3">
+          <li>1️⃣ <strong class="text-white">Agree.</strong> If the proposed change is correct — you did leave income off the return — you sign and return the Response form indicating agreement and arrange payment (or set up a payment plan). No amended return is required just to agree with a CP2000.</li>
+          <li>2️⃣ <strong class="text-white">Partially agree.</strong> Some line items are right and others aren't. You indicate which you agree with and which you dispute, and you attach supporting documentation for the items you're contesting. This is common with 1099-K notices, where the reported gross can include amounts that aren't actually taxable income.</li>
+          <li>3️⃣ <strong class="text-white">Disagree.</strong> You believe the proposed change is wrong in whole or in part. You indicate disagreement on the Response form and attach a signed statement explaining why, plus the documents that prove your position.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For a brokerage-sale (1099-B) mismatch, the most common fix is supplying the <strong class="text-white">cost basis</strong> the IRS didn't have on file: the proposal often counts the entire sale proceeds as gain because the broker reported the sale price but not what you originally paid. Attaching the basis records frequently shrinks — or eliminates — the proposed tax.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The penalty that's often on the table</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Many CP2000s propose the <strong class="text-white">accuracy-related penalty under Internal Revenue Code §6662 — 20% of the underpayment</strong> attributable to the understatement. That 20% figure is exactly why a careful response matters: if part of the proposed adjustment is wrong, knocking down the underlying tax also reduces the penalty calculated on it. Responding well isn't just about the tax — it's about the penalty stacked on top of it.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Building a response packet that lands</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Whether you agree, partially agree, or disagree, a clean response shares the same anatomy:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-3">
+          <li>📄 <strong class="text-white">The completed Response form</strong> from the notice, signed, indicating your position.</li>
+          <li>📝 <strong class="text-white">A signed explanation</strong> for anything you dispute — short, factual, item-by-item.</li>
+          <li>📎 <strong class="text-white">Supporting documents</strong> for every contested line: corrected 1099s, brokerage statements showing cost basis, records that prove a 1099-K figure isn't taxable income, proof a payment was already credited, and so on.</li>
+          <li>📅 <strong class="text-white">A record of what you sent and when</strong> — keep a dated copy of the entire packet and use trackable mail, so you can prove a timely, complete response.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The single most common avoidable mistake is mailing a response that <em>references</em> documents without <em>attaching</em> them. The IRS can only act on what's in the envelope. Attach the proof, don't describe it.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">If you still disagree after the IRS responds</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you've disagreed and the IRS doesn't accept your position, you may be able to request a review by the IRS Independent Office of Appeals. <strong class="text-white">Form 12203, Request for Appeals Review</strong>, is the form used to request that Appeals review — it is <strong class="text-white">not</strong> a request for more time and does not extend your CP2000 deadline. Treat the Form 12203 path as the step <em>after</em> a disagreement, not as a way to pause the original clock.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        And if a CP2000 is ignored entirely, the IRS can follow it with a <strong class="text-white">Notice of Deficiency (CP3219A)</strong> — a statutory notice that opens a <strong class="text-white">90-day window</strong> to petition the U.S. Tax Court. That's the expensive, high-stakes branch you avoid simply by responding to the CP2000 on time.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The bottom line</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        A CP2000 is a proposal on a deadline, not a verdict. Read it as a list of line items, decide for each one whether you agree, partially agree, or disagree, attach the documents that prove your position, and get a complete, signed packet in the mail before the date on the notice. Do that and most CP2000s resolve without an audit, without Tax Court, and without a four-figure professional bill.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you'd rather not assemble that packet from scratch, we built the <a href="https://3563705146415.gumroad.com/l/cp2000kit" class="text-amber-300 hover:text-amber-200 underline">IRS CP2000 Notice Response Organizer ($19)</a> — a line-item discrepancy parser, an agree / partially-agree / disagree decision walkthrough per discrepancy type, a supporting-documentation checklist, a response-packet structure template, and a 30-day countdown with a correspondence log. Instant download.
+      </p>
+
+      <p class="text-sm text-slate-400 leading-relaxed mb-6 italic">
+        This article is general educational information about the IRS Automated Underreporter (CP2000) process, not tax or legal advice, and no outcome is promised or implied. Verify every form number, amount, and deadline against your specific notice, the IRS website, and your own tax preparer before responding.
+      </p>
+    `,
+    cta: {
+      text: "Get the IRS CP2000 Notice Response Organizer ($19)",
+      href: "https://3563705146415.gumroad.com/l/cp2000kit",
+    },
+    relatedProducts: [
+      {
+        name: "IRS CP2000 Notice Response Organizer",
+        href: "https://3563705146415.gumroad.com/l/cp2000kit",
+        description:
+          "Line-item discrepancy parser (IRS-proposed vs. your records) + agree / partially-agree / disagree decision walkthrough per discrepancy type + supporting-documentation checklist + response-packet structure template + 30-day countdown and correspondence log. Built for taxpayers who received a CP2000 Automated Underreporter notice. Instant download, $19. A documentation organizer — not tax or legal advice.",
+      },
+    ],
+    faq: [
+      {
+        q: "Is an IRS CP2000 notice an audit?",
+        a: "No. A CP2000 is a proposed change to your return generated by the IRS Automated Underreporter program when third-party documents (1099s, W-2s, 1099-Ks) don't match what you reported. It is not an audit and not a final assessment — it's a proposal you can agree with, partially agree with, or dispute.",
+      },
+      {
+        q: "How long do I have to respond to a CP2000?",
+        a: "A CP2000 gives you 30 days to respond, measured from the date printed on the notice rather than the day it arrived. Because of mail time, the practical window is often closer to 20–23 usable days. If you need more time, the notice explains how to request it by phone or in writing.",
+      },
+      {
+        q: "What does it cost to have a tax professional respond to a CP2000?",
+        a: "Independent tax professionals commonly bill $200–$400 per hour, and a straightforward CP2000 response of a few hours often totals $500–$1,500 or more. Dedicated tax-resolution firms can charge more, into the thousands, depending on complexity. Many simpler CP2000s — a single missing 1099 or a brokerage sale missing its cost basis — are primarily a documentation exercise.",
+      },
+      {
+        q: "What are the three ways to respond to a CP2000?",
+        a: "You can agree (sign the Response form and arrange payment), partially agree (accept some line items and dispute others with supporting documents), or disagree (indicate disagreement and attach a signed explanation plus proof). The notice includes a Response form for indicating your position.",
+      },
+      {
+        q: "What is the penalty on a CP2000?",
+        a: "Many CP2000s propose the accuracy-related penalty under Internal Revenue Code §6662, which is 20% of the underpayment attributable to the understatement. Reducing an incorrect proposed adjustment also reduces the penalty calculated on it, which is one reason a careful, documented response matters.",
+      },
+      {
+        q: "Is Form 12203 a way to get more time to respond to a CP2000?",
+        a: "No. Form 12203, Request for Appeals Review, is used to request a review by the IRS Independent Office of Appeals — typically after you've disagreed and the IRS hasn't accepted your position. It is not a request for additional time and does not extend your CP2000 deadline.",
+      },
+      {
+        q: "What happens if I ignore a CP2000?",
+        a: "If you don't respond, the IRS can follow the CP2000 with a Notice of Deficiency (CP3219A), a statutory notice that opens a 90-day window to petition the U.S. Tax Court. Responding to the CP2000 on time is how you avoid that more serious, more expensive branch.",
+      },
+    ],
+  },
+  {
     slug: "guideline-f-sor-response-attorney-cost",
     title: "Guideline F Statement of Reasons: What a Response Actually Requires (and What Attorneys Charge)",
     description:

@@ -21,7 +21,9 @@ const PDF_PATH = join(
 // >= $14 lets any pricier SKU escalate, and two OTHER products also cost $14.
 // Bind to the exact SSDI Stripe price (SSDI_PRICE_ID, shared with the thank-you
 // page) so only a session that actually bought this product unlocks the file.
-// Fails closed.
+// The amount/currency floor stays as a second, independent layer. Fails closed.
+const MIN_AMOUNT_TOTAL = 1400; // $14.00 in cents
+const EXPECTED_CURRENCY = "usd";
 
 export async function GET(req: NextRequest) {
   const sessionId = req.nextUrl.searchParams.get("session_id");
@@ -60,6 +62,19 @@ export async function GET(req: NextRequest) {
         { error: "Payment not verified for this product" },
         { status: 403 },
       );
+    }
+
+    // Confirm the session actually purchased THIS product, not just *a* product
+    // on the shared Stripe account (cross-product paywall-bypass guard).
+    const amountOk =
+      typeof session.amount_total === "number" && session.amount_total >= MIN_AMOUNT_TOTAL;
+    const currencyOk = (session.currency ?? "").toLowerCase() === EXPECTED_CURRENCY;
+    if (!amountOk || !currencyOk) {
+      console.warn(
+        `[api/downloads/ssdi-inform-letter] session ${sessionId} paid but amount/currency mismatch ` +
+          `(amount_total=${session.amount_total}, currency=${session.currency}) — refusing download`,
+      );
+      return NextResponse.json({ error: "Purchase does not match this product" }, { status: 403 });
     }
 
     // Serve the file

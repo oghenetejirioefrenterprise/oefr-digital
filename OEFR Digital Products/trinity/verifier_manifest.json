@@ -1,0 +1,145 @@
+{
+  "comment": "Every revenue surface a buyer touches. Add a block when a product ships; the funnel-verifier cycle walks these daily.",
+  "checks": [
+    {
+      "type": "page",
+      "name": "storefront",
+      "url": "https://www.oefrenterprise.com",
+      "must_contain": [
+        "OEFR"
+      ]
+    },
+    {
+      "type": "page",
+      "name": "ssdi-kit",
+      "url": "https://www.oefrenterprise.com/ssdi-hearing-evidence-letter",
+      "must_contain": [
+        "Get the kit",
+        "gumroad.com/l/hvykb"
+      ]
+    },
+    {
+      "type": "gumroad_product",
+      "name": "ssdi-kit",
+      "url": "https://3563705146415.gumroad.com/l/hvykb",
+      "price": "14.0"
+    },
+    {
+      "type": "page",
+      "name": "ssdi-kit-thankyou",
+      "url": "https://www.oefrenterprise.com/thank-you/ssdi-hearing-evidence-letter",
+      "must_contain": []
+    },
+    {
+      "type": "gumroad_product",
+      "name": "ssa3373-kit",
+      "url": "https://3563705146415.gumroad.com/l/bdxkzh",
+      "price": "19.0"
+    },
+    {
+      "type": "gumroad_product",
+      "name": "cp2000-kit",
+      "url": "https://3563705146415.gumroad.com/l/cp2000kit",
+      "price": "19.0"
+    },
+    {
+      "type": "gumroad_product",
+      "name": "guideline-f-kit",
+      "url": "https://3563705146415.gumroad.com/l/dahan",
+      "price": "29.0"
+    },
+    {
+      "type": "page",
+      "name": "netarch-pro",
+      "url": "https://netarch-pro.vercel.app",
+      "must_contain": [
+        "Get the Bundle"
+      ]
+    },
+    {
+      "type": "webhook_route",
+      "name": "netarch-pro",
+      "url": "https://netarch-pro.vercel.app/api/webhooks/stripe"
+    },
+    {
+      "type": "page",
+      "name": "meal-planner",
+      "url": "https://meals.oefrenterprise.com",
+      "must_contain": []
+    },
+    {
+      "type": "webhook_route",
+      "name": "meal-planner",
+      "url": "https://meals.oefrenterprise.com/api/webhooks/stripe"
+    },
+    {
+      "type": "page",
+      "name": "subscription-tracker",
+      "url": "https://subs.oefrenterprise.com",
+      "must_contain": []
+    },
+    {
+      "type": "webhook_route",
+      "name": "subscription-tracker",
+      "url": "https://subs.oefrenterprise.com/api/webhooks/stripe"
+    },
+    {
+      "type": "page",
+      "name": "resume-builder",
+      "url": "https://resume.oefrenterprise.com",
+      "must_contain": []
+    },
+    {
+      "type": "webhook_route",
+      "name": "resume-builder",
+      "url": "https://resume.oefrenterprise.com/api/webhooks/stripe"
+    },
+    {
+      "type": "page",
+      "name": "content-calendar",
+      "url": "https://calendar.oefrenterprise.com",
+      "must_contain": []
+    },
+    {
+      "type": "webhook_route",
+      "name": "content-calendar",
+      "url": "https://calendar.oefrenterprise.com/api/webhooks/stripe"
+    },
+    {
+      "type": "page",
+      "name": "password-vault",
+      "url": "https://vault.oefrenterprise.com",
+      "must_contain": []
+    },
+    {
+      "type": "webhook_route",
+      "name": "password-vault",
+      "url": "https://vault.oefrenterprise.com/api/webhooks/stripe"
+    },
+    {
+      "type": "page",
+      "name": "habitforge",
+      "url": "https://habitforge-nu.vercel.app",
+      "must_contain": [
+        "Habit"
+      ]
+    },
+    {
+      "type": "webhook_route",
+      "name": "habitforge",
+      "url": "https://habitforge-nu.vercel.app/api/webhooks/stripe"
+    },
+    {
+      "type": "page",
+      "name": "budget-tracker",
+      "url": "https://budget.oefrenterprise.com",
+      "must_contain": []
+    },
+    {
+      "type": "page",
+      "name": "invoice-generator",
+      "url": "https://invoice.oefrenterprise.com",
+      "must_contain": []
+    }
+  ]
+}

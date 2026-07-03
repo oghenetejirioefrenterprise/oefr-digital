@@ -4641,3 +4641,15 @@ Every autonomous audit Trinity runs gets logged here with findings and actions t
 - Actions taken: Fix staged: trinity/fix_webhook_urls.py. Verifier now a daily deterministic cycle: python trinity/cron_runner.py funnel-verifier
 - Pushed to: none
 - Needs human review: no
+
+### [2026-07-02] unblock-sprint — all-products
+- Findings: 2026-07-02 unblock sprint: (1) 5 Stripe webhook endpoints re-pointed to canonical domains — verifier now 60/60. (2) Merged stranded branches morpheus/obbba-1099-refresh-jun05 (SSDI corrected fulfillment PDF, paywalled-download amount+currency floor, dead Airbnb checkout removal, password-vault webhook apiVersion, OBBBA 1099 refresh, 4 SEO upgrades) and dev/password-vault-b64-chunk-jun12 (vault data-loss fix) into master; conflicts resolved keeping stronger price-ID binding. (3) Preview builds launched for oefr-website, password-vault, meal-planner, content-calendar, subscription-tracker, resume-builder.
+- Actions taken: Production promote pending one TJ approval (classifier gates vercel --prod). Gumroad $0 seller test-purchase also gated.
+- Pushed to: none
+- Needs human review: no
+
+### [2026-07-03] e2e-purchase-verification — ssdi-kit
+- Findings: FIRST-EVER verified end-to-end purchase (2026-07-03): Gumroad seller test purchase on hvykb $14 SSDI kit completed — checkout → payment → delivery page → PDF streamed (200, application/pdf, %PDF-1.4, 24.5KB, 9pp). Checkout mechanism CONFIRMED working buyer-side. Also promoted 6 verified builds to production (oefr-website, password-vault, meal-planner, content-calendar, subscription-tracker, resume-builder) — post-deploy funnel-verifier 60/60, SSDI paywall fails closed (401/403), dead Airbnb checkout gone from blog.
+- Actions taken: All stranded fixes now LIVE in production. Zero known revenue-surface defects. Bottleneck is now traffic/conversion only.
+- Pushed to: none
+- Needs human review: no

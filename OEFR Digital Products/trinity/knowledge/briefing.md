@@ -1,9 +1,9 @@
 # Second Brain Briefing
-Generated: 2026-07-02
+Generated: 2026-07-03
 
 ## Product Health
-- Open issues: 78
-- Fixed (last 30d): 48
+- Open issues: 77
+- Fixed (last 30d): 49
 - False positives: 0
 - Won't fix: 2
 
@@ -15,21 +15,25 @@ Generated: 2026-07-02
   - [2026-04-21] vercel-env-rotation — Paranoid rotation shortlist pending post-Vercel-incident: HYPERLIQUID_SECRET (real mo
 
 ## Audits
-- Total logged: 772
-- Last 7 days: 1
+- Total logged: 774
+- Last 7 days: 3
 
   - [2026-07-02] funnel-verification — all-products
+
+  - [2026-07-02] unblock-sprint — all-products
+
+  - [2026-07-03] e2e-purchase-verification — ssdi-kit
 
 ## Active Decisions: 0
 
 ## Lessons: 0 wins, 0 failures logged
 
 ## Today's Signals
-  - [2026-07-02 06:45] [sensor-loop] sensor-loop: 17 signals across 3 sensors
-  - [2026-07-02 09:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
-  - [2026-07-02 12:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
-  - [2026-07-02 13:12] [funnel-verifier] funnel-verifier cycle now exists: 55/60 pass, 5 webhook endpoints misrouted (P1, fix staged). Gumroad seller test-purchase (full E2E incl. payment) blocked by CC permission classifier — needs allow rule.
-  - [2026-07-02 13:13] [funnel-verifier] funnel-verifier: 55/60 revenue-surface checks passed; FAILURES: stripe:webhook-endpoint https://meal-planner.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://subscription-tracker.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://resume-builder.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://content-calendar.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://password-vault.vercel.app/api/webhooks/stripe
+  - [2026-07-03 00:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+  - [2026-07-03 03:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+  - [2026-07-03 06:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+  - [2026-07-03 07:15] [funnel-verifier] funnel-verifier: 60/60 revenue-surface checks passed
+  - [2026-07-03 08:47] [funnel-verifier] E2E purchase verified + 6 apps promoted to prod. All revenue surfaces green (60/60). Distribution is now the only bottleneck.
 
 ---
 Full knowledge: ~/apps/OEFR Digital Products/trinity/knowledge/

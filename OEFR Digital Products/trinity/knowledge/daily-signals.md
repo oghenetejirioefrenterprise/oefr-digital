@@ -321,3 +321,13 @@ Cross-cycle intelligence for today. Each cycle appends, next cycle reads.
 [2026-07-02 12:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
 [2026-07-02 13:12] [funnel-verifier] funnel-verifier cycle now exists: 55/60 pass, 5 webhook endpoints misrouted (P1, fix staged). Gumroad seller test-purchase (full E2E incl. payment) blocked by CC permission classifier — needs allow rule.
 [2026-07-02 13:13] [funnel-verifier] funnel-verifier: 55/60 revenue-surface checks passed; FAILURES: stripe:webhook-endpoint https://meal-planner.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://subscription-tracker.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://resume-builder.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://content-calendar.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://password-vault.vercel.app/api/webhooks/stripe
+[2026-07-02 15:15] [funnel-verifier] funnel-verifier: 55/60 revenue-surface checks passed; FAILURES: stripe:webhook-endpoint https://meal-planner.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://subscription-tracker.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://resume-builder.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://content-calendar.vercel.app/api/webhooks/stripe, stripe:webhook-endpoint https://password-vault.vercel.app/api/webhooks/stripe
+[2026-07-02 15:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+[2026-07-02 18:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+[2026-07-02 21:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+[2026-07-02 23:15] [funnel-verifier] funnel-verifier: 60/60 revenue-surface checks passed
+[2026-07-03 00:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+[2026-07-03 03:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+[2026-07-03 06:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+[2026-07-03 07:15] [funnel-verifier] funnel-verifier: 60/60 revenue-surface checks passed
+[2026-07-03 08:47] [funnel-verifier] E2E purchase verified + 6 apps promoted to prod. All revenue surfaces green (60/60). Distribution is now the only bottleneck.

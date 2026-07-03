@@ -1,0 +1,10 @@
+# Known Issues — Archive
+
+Issues archived after 30+ days in Fixed state. Kept here for historical reference; do not re-flag.
+
+## Weekly Review 2026-05-17 (4 entries archived from Fixed)
+[2026-04-17] etsy-ai-prompts — Day 5: 3 AI Prompt Etsy listings (100 AI Prompts for NE $9.99, CCNA AI Prompt Pack $14.99, 150 AI Business Prompts $12.99) still live, no reframe/deactivate action despite flagged on Apr 12. Shop suspension risk grows with traffic. — fixed
+[2026-04-17] etsy-shop — SPRING2026 25% shop-wide sale (Apr 15 - May 15) contradicts never-discount directive. Day 3 re-escalation, no TJ decision. Sale now embedded in multiple X thread CTAs. — fixed
+[2026-04-17] cleaning-biz-pack — Stripe pre-order link (plink_1TN0AD3H4Cmk8ulCD4wheLIu, $14, 20-session cap, kill 2026-04-30) live without: (a) automated fire/cap monitor, (b) verified fulfillment artifact path. Risk: silent cap-exhaust or refund on first sale. — fixed
+[2026-04-17] cleaning-biz-startup-pack — Stripe pre-order monitor added (scripts/stripe-preorder-monitor.py) — dedupes sessions, 80%-cap alert, Telegram to Making Cheddar. Cron registration still pending. — fixed
+

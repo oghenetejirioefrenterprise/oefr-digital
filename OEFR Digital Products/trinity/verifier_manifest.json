@@ -6,7 +6,8 @@
       "name": "storefront",
       "url": "https://www.oefrenterprise.com",
       "must_contain": [
-        "OEFR"
+        "OEFR",
+        "SSDI Hearing Evidence Letter Kit"
       ]
     },
     {

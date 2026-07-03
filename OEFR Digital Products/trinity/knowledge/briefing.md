@@ -15,25 +15,25 @@ Generated: 2026-07-03
   - [2026-04-21] vercel-env-rotation — Paranoid rotation shortlist pending post-Vercel-incident: HYPERLIQUID_SECRET (real mo
 
 ## Audits
-- Total logged: 774
-- Last 7 days: 3
-
-  - [2026-07-02] funnel-verification — all-products
-
-  - [2026-07-02] unblock-sprint — all-products
+- Total logged: 776
+- Last 7 days: 5
 
   - [2026-07-03] e2e-purchase-verification — ssdi-kit
+
+  - [2026-07-03] stripe-pulse — oefr-digital
+
+  - [2026-07-03] sales-push — all-products
 
 ## Active Decisions: 0
 
 ## Lessons: 0 wins, 0 failures logged
 
 ## Today's Signals
-  - [2026-07-03 00:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
-  - [2026-07-03 03:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
-  - [2026-07-03 06:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
-  - [2026-07-03 07:15] [funnel-verifier] funnel-verifier: 60/60 revenue-surface checks passed
-  - [2026-07-03 08:47] [funnel-verifier] E2E purchase verified + 6 apps promoted to prod. All revenue surfaces green (60/60). Distribution is now the only bottleneck.
+  - [2026-07-03 15:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+  - [2026-07-03 18:06] [stripe-pulse] Day 90: 7d Stripe $0 / 0 charges / 0 disputes / 0 subs. Webhook misroute from 07-02 CONFIRMED FIXED (9/9 on oefrenterprise.com). Lone event = $59 expired checkout 07-02, assessed internal funnel-verifier E2E, not organic. Bottleneck = distribution (surfaces 60/60 green).
+  - [2026-07-03 18:07] [stripe-pulse] **Account:** OEFR Digital — live key healthy, balance $0 available / $0 pending.
+  - [2026-07-03 18:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
+  - [2026-07-03 18:56] [morpheus] Sales-push handoff: Gumroad Discover categories + profile catalog now live. Next highest-leverage: Etsy visual upgrade (3-device mockups) on top 5 listings + reposition 3 AI-prompt listings per Etsy 2024 policy. All 4 paid kits now on storefront homepage.
 
 ---
 Full knowledge: ~/apps/OEFR Digital Products/trinity/knowledge/

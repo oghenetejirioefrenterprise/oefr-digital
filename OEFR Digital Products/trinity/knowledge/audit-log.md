@@ -4653,3 +4653,15 @@ Every autonomous audit Trinity runs gets logged here with findings and actions t
 - Actions taken: All stranded fixes now LIVE in production. Zero known revenue-surface defects. Bottleneck is now traffic/conversion only.
 - Pushed to: none
 - Needs human review: no
+
+### [2026-07-03] stripe-pulse — oefr-digital
+- Findings: Day 90 (07-03): 7d Stripe $0 / 0 charges / 0 failed PIs / 0 disputes / 0 subs / 0 churn / 0 new customers / balance $0. Key healthy. 9 webhook endpoints enabled — 07-02 misroute (5x *.vercel.app) CONFIRMED FIXED, all now on oefrenterprise.com subdomains. Events 7d = 1 (checkout.session.expired: $59 NetArch doc-bundle cs 07-02 17:02 UTC, no email — timing matches funnel-verifier 13:12 ET run, assessed internal E2E test not organic). Total lifetime Stripe customers: 2. Zero-rev standing; bottleneck = distribution (funnel-verifier 60/60 green).
+- Actions taken: Logged pulse; verified webhook-fix closure; no churn autopsy needed (0 subscriptions ever). No new issues.
+- Pushed to: none
+- Needs human review: no
+
+### [2026-07-03] sales-push — all-products
+- Findings: 2026-07-03 sales push: (1) 4 paid kits added to oefrenterprise.com homepage catalog under new 'Legal & Tax Kits' category — previously orphaned, only reachable via blog; live in prod, verifier 60/60. (2) Gumroad Discover categories set on all 4 paid kits (was 'Other', now Education / Personal Finance / Careers) — required for Discover browse placement. (3) Gumroad seller profile had NO product sections (bare email box); created Products page with all 57 published products, newest-first — every 'Eustace Orukpe' byline link on product/checkout pages now lands on a full catalog.
+- Actions taken: Remaining distribution work: Etsy visual-tier upgrade on top listings + AI-prompt policy repositioning (morpheus browser lane); Facebook group re-verification (TJ-only).
+- Pushed to: none
+- Needs human review: no

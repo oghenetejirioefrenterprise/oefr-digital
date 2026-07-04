@@ -4665,3 +4665,15 @@ Every autonomous audit Trinity runs gets logged here with findings and actions t
 - Actions taken: Remaining distribution work: Etsy visual-tier upgrade on top listings + AI-prompt policy repositioning (morpheus browser lane); Facebook group re-verification (TJ-only).
 - Pushed to: none
 - Needs human review: no
+
+### [2026-07-04] seo-refresh — freelancer-tax-blog
+- Findings: Post still angled at passed June 15 Q2 deadline; invisible to live Q3 query window
+- Actions taken: Rotated keywords/excerpt/calendar/CTA to Sept 15 Q3; deployed commit 3a33c8a, curl-verified live, master merged+pushed
+- Pushed to: none
+- Needs human review: no
+
+### [2026-07-04] gumroad-visual-upgrade — paid-kits
+- Findings: 2026-07-04 Discover presentation upgrade on all 4 paid kits (hvykb/bdxkzh/vkynum/dahan): (1) professional 1280x720 cover heroes designed+uploaded (dark typographic, citation badges, price, OEFR brand — assets archived in gumroad-products/covers/), (2) Summary fields written (were empty; this is the Discover/profile card copy), (3) categories set yesterday. Product pages now at incumbent visual tier — addresses the visual-tier-deficit root cause from the 04-27 council reframe.
+- Actions taken: Cover pipeline is reusable: HTML template → Playwright screenshot → upload. Remaining: Etsy visual upgrade + AI-prompt policy listings (morpheus signal already queued), Facebook re-verification (TJ).
+- Pushed to: none
+- Needs human review: no

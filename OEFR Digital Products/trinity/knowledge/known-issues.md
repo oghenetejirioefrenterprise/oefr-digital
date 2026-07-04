@@ -88,6 +88,7 @@ Each entry: `[date] PRODUCT — description — status (open|fixed|false-positiv
 
 
 ## Fixed (keep for 30 days, then archive)
+[2026-07-04] etsy-automation — P1 etsy-session-keepalive.py crashed every 30-min cron run in drain_task_queue: read_task_queue returned raw JSON dict, loop iterated string keys -> AttributeError. Fixed 2026-07-04: dict-wrapper unwrap + non-dict entry guard, full run verified exit 0. Stale 2026-04-12 women-pivot queue (6 deprecated create_listing tasks) archived to etsy/task_queue-archived-womenpivot-2026-07-04.json so parse fix can never auto-publish deprecated SKUs. Commit 881ae0f workspace repo. — fixed
 [2026-07-02] stripe-webhooks — P1: 5 Stripe webhook endpoints registered to wrong URLs — meal-planner/subscription-tracker/resume-builder/content-calendar/password-vault point at generic *.vercel.app hosts that are dead or third-party (meal-planner.vercel.app serves a stranger's 'Tufan Admin' app). Fulfillment for these 5 products can NEVER fire. Correct hosts: meals/subs/resume/calendar/vault.oefrenterprise.com. Fix staged in trinity/fix_webhook_urls.py — needs one permitted run. — fixed
 [2026-06-12] password-vault — P2 build-break found+FIXED by build-doctor 06-12 14:4X: lib/crypto.ts vanished from working tree — the 11:0X dev-branch commit (9a2c077) made the previously-untracked file tracked on dev/password-vault-b64-chunk-jun12, so checking master back out DELETED it from disk; npm run build failed module-not-found (5 errors). Fix: restored lib/crypto.ts (chunked-b64 version) from dev branch into working tree; build now PASS rc=0. LESSON: committing a previously-untracked file on a dev branch then switching back to master removes it — untracked-source products (meal-planner class) need file restored on master or branch left checked out — fixed
 [2026-06-12] oefr-website — SSDI download paywall-bind pending-deploy manifest (2026-06-08-ssdi-download-product-bind) stale-PENDING 95.9h despite fix being live — manual verify executed 06-12: prod endpoint fail-closed (bogus session 500 generic deny, no param 401), SSDI_PRICE_ID bind on master==live. Manifest set DEPLOYED + archived; monitor exits clean. — fixed
@@ -140,6 +141,8 @@ Each entry: `[date] PRODUCT — description — status (open|fixed|false-positiv
 
 
 ## False Positives (do NOT re-flag these)
+[2026-07-04] etsy — Etsy seller session expired (checked 2026-07-04, playwright browser): /your/shops/me redirects to signin. Blocks the queued Etsy work: visual-tier upgrade on top listings + repositioning 3 AI-prompt policy-risk listings. Automated re-login risky (bot detection wedged agents in April). Needs one manual login by TJ in the OpenClaw browser, or verify OpenClaw's own session is still live before morpheus's Etsy cycle runs. — false-positive
+[2026-07-04] etsy — 2026-07-04 "Etsy seller session expired" open issue is a FALSE POSITIVE — it was probed via a fresh playwright profile, not the authenticated automation browser. Ground truth: keepalive on CDP :18800 logs SESSION ALIVE 13:00+13:18 UTC today, /your/shops/me renders Shop Info & Appearance (signed in). No TJ manual login needed. SSA-3373 Etsy publish (due 07-05) is NOT blocked; a listing tab (4532365932 ssa-3373-function-report-walkthrough-kit) is already open in the CDP browser. — false-positive
 
 
 ## Won't Fix (accepted trade-offs)

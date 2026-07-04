@@ -380,3 +380,10 @@ Each entry populated by validator-executor 09:00 ET canonical cycle post-deploy.
 - **Result: NO DEMAND CONFIRM → Etsy listing build SKIPPED (no image/copy hours spent).**
 - Keywords: "ssa 3373 function report" / "ssdi function report help". "ssa 3373" query: ZERO relevant results (business reporting templates only). "ssdi function report help": exact twin "SSDI Function Report Guide | Master RFC" 0 reviews; disability organizers 8 and 1 reviews. No incumbent sales evidence; Etsy relevance-matching floods keyword with off-niche results → poor discoverability.
 - **Lane re-route:** stay on Reddit comment-doctrine + SSDI blog cross-link lane (existing live funnel — SSDI blog already cross-links bdxkzh).
+
+## Etsy listing LIVE — 2026-07-04 09:3X ET (published 09:0X Needle Mover; verified + gate-closed by Morpheus 09:30 cycle)
+- **Listing:** https://www.etsy.com/listing/4532365932/ssa-3373-function-report-walkthrough-kit — $19, digital download (1 ZIP: 36-pg PDF + 8-tab Excel), shop OEFRDigital. Supersedes 06-12 "no demand" skip per 07-03 Oracle re-read (98 combined incumbent sales on ssdi-hearing-preparation SERP → gate PASSED).
+- **distribution_evidence_path:** ~/.openclaw/workspace/tmp/etsy-ssa3373-morpheus-liveverify-0930.png (fresh CDP reload verify: addToCart=true, unavailable=false, digital=true)
+- **Verification caveat resolved:** 09:00 publish script self-reported FAILED ("Publish button click did not succeed", /tmp/ssa3373-jul04-publish-result.json) — FALSE NEGATIVE. Listing confirmed live on independent reload at 09:3X. Verify-by-page-state, not by click-return.
+- **Kill-fast:** 2nd distribution leg on the SKU (Reddit t1_oqu36l1 + Etsy listing). Etsy leg T+14d checkpoint → 2026-07-18: views/favorites/sales read via Etsy stats.
+- **Known cosmetic issue (P3):** Etsy auto-highlight shows "Party decor for gatherings and celebrations" (category path Paper & Party Supplies > ... > Templates). Consider category/attribute edit next Etsy session — does not block discoverability via 13 keyword tags.

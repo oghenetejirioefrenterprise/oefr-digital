@@ -4677,3 +4677,9 @@ Every autonomous audit Trinity runs gets logged here with findings and actions t
 - Actions taken: Cover pipeline is reusable: HTML template → Playwright screenshot → upload. Remaining: Etsy visual upgrade + AI-prompt policy listings (morpheus signal already queued), Facebook re-verification (TJ).
 - Pushed to: none
 - Needs human review: no
+
+### [2026-07-04] skill-verification — etsy-facebook-automation
+- Findings: Verified the autonomous Etsy/Facebook skills work (2026-07-04). FINDINGS: (1) nemotron-computer-use skill (NVIDIA NIM pixel-grounding) had 2 real bugs for autonomous use: reasoning model ran 32-81s and returned content=None, causing the parser to scrape reasoning prose and MISFIRE clicks. FIXED cu.py: 'detailed thinking off' default (now 7-13s, reliable), parser takes final bracketed bbox not first-4-loose-numbers, retry-on-5xx (survives transient NIM 500s), screen-bounds clamp (refuses wild clicks). Unit-tested + live-tested. (2) Precision ceiling confirmed: model lands +-150-230px off on small web controls -- NOT safe to blind-click small web UI. (3) Real autonomous Etsy/Facebook path is CDP (both are web on :98 Chrome): VERIFIED LIVE -- cdp_helpers.py + etsy_publisher.py import clean, live CDP connect works, check_etsy_session()=True, Etsy seller tools + Facebook composer both present, neither on a login page. (4) CORRECTION: yesterday's 'Etsy session expired' was a FALSE POSITIVE from Playwright's separate browser profile; the agent's :98 Chrome is fully authenticated on both platforms.
+- Actions taken: cu.py hardened + docs updated with tool-selection guidance (CDP for web, pixel-grounding for native only). Etsy session-expired issue marked FP.
+- Pushed to: none
+- Needs human review: no

@@ -3,8 +3,8 @@ Generated: 2026-07-04
 
 ## Product Health
 - Open issues: 77
-- Fixed (last 30d): 49
-- False positives: 0
+- Fixed (last 30d): 50
+- False positives: 2
 - Won't fix: 2
 
 ### Top open issues
@@ -15,25 +15,25 @@ Generated: 2026-07-04
   - [2026-04-21] vercel-env-rotation — Paranoid rotation shortlist pending post-Vercel-incident: HYPERLIQUID_SECRET (real mo
 
 ## Audits
-- Total logged: 778
-- Last 7 days: 7
-
-  - [2026-07-03] sales-push — all-products
+- Total logged: 779
+- Last 7 days: 8
 
   - [2026-07-04] seo-refresh — freelancer-tax-blog
 
   - [2026-07-04] gumroad-visual-upgrade — paid-kits
+
+  - [2026-07-04] skill-verification — etsy-facebook-automation
 
 ## Active Decisions: 0
 
 ## Lessons: 0 wins, 0 failures logged
 
 ## Today's Signals
-  - [2026-07-04 03:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
-  - [2026-07-04 06:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
   - [2026-07-04 07:15] [funnel-verifier] funnel-verifier: 60/60 revenue-surface checks passed
   - [2026-07-04 08:03] [seo] SHIPPED+VERIFIED: freelancer-invoice-tax-prep-guide-2026 refreshed to Sept 15 Q3 window, commit 3a33c8a live on www.oefrenterprise.com, master merged+pushed
   - [2026-07-04 08:06] [opportunity-scout] 2 opportunities added (SSDI TWP back-to-work tracker #1 M-H — compounds live SSDI cluster; POA-agent fiduciary ledger #2 M); 7 rejected, 5 of them dupes — federal-form-panic vein near-fully mapped after 90d, validator throughput (prior-auth + SSA-632 pending SKUs) now beats new scouting on this axis
+  - [2026-07-04 09:34] [morpheus-cmo] SSA-3373 Etsy listing VERIFIED LIVE (listing 4532365932, $19) — 09:00 publish script false-negative FAILED rescued; gate 2026-07-03-ssa3373-etsy-publish closed passed+archived; distribution_evidence_path logged; Etsy leg T+14d checkpoint 2026-07-18
+  - [2026-07-04 09:34] [sensor-loop] sensor-loop: 19 signals across 3 sensors
 
 ---
 Full knowledge: ~/apps/OEFR Digital Products/trinity/knowledge/

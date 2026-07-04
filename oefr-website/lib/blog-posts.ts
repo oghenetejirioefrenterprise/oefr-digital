@@ -982,16 +982,17 @@ export const blogPosts: BlogPost[] = [
       "new 1099 reporting threshold $2000",
       "OBBBA 1099 changes",
       "do I need to send a 1099 in 2026",
-      "June 15 estimated tax deadline 2026",
-      "Q2 2026 quarterly estimated taxes due",
+      "September 15 estimated tax deadline 2026",
+      "Q3 2026 quarterly estimated taxes due",
       "self-employed estimated tax deadline 2026",
+      "quarterly estimated taxes september 2026",
     ],
     publishedDate: "2026-03-18",
-    updatedDate: "2026-06-07",
+    updatedDate: "2026-07-04",
     readingTime: "9 min read",
     author: "OEFR Digital",
     excerpt:
-      "Most freelancers lose $3,000–$8,000/year to bad invoicing habits and missed tax deductions. Here's how to fix both — without an accountant on retainer. Updated June 2026 for the new OBBBA 1099-NEC reporting threshold ($600 → $2,000).",
+      "Most freelancers lose $3,000–$8,000/year to bad invoicing habits and missed tax deductions. Here's how to fix both — without an accountant on retainer. Updated July 2026: the Sept 15 Q3 estimated tax deadline is next, plus the new OBBBA 1099-NEC reporting threshold ($600 → $2,000).",
     content: `
       <p class="text-lg text-slate-300 leading-relaxed mb-6">
         There are 73 million freelancers in the US alone, and the majority share two problems: getting paid on time, and not overpaying the IRS. The average freelancer loses $3,000–$8,000 per year to missed deductions, late payments, and invoicing mistakes that are embarrassingly easy to fix. If you're filing 1099s — or about to — this guide is the cheat sheet you didn't know you needed.
@@ -1167,8 +1168,8 @@ export const blogPosts: BlogPost[] = [
           <li>📅 <strong class="text-white">Jan 15:</strong> Q4 2025 estimated tax payment due</li>
           <li>📅 <strong class="text-white">Feb 2:</strong> Send 1099-NEC forms (the Jan 31 deadline lands on a weekend in 2026, so it shifts to Mon, Feb 2). See the threshold note below — it changed for 2026 payments.</li>
           <li>📅 <strong class="text-white">April 15:</strong> Tax return due + Q1 2026 estimated payment</li>
-          <li>📅 <strong class="text-white">June 15:</strong> Q2 2026 estimated tax payment due — the second quarterly deadline of the year. June 15, 2026 falls on a Monday, so there is no weekend shift.</li>
-          <li>📅 <strong class="text-white">Sept 15:</strong> Q3 2026 estimated payment due</li>
+          <li>📅 <strong class="text-white">June 15:</strong> Q2 2026 estimated tax payment due (passed — if you missed it, pay as soon as possible; the underpayment penalty accrues daily, so a late Q2 payment now still beats rolling it into Q3)</li>
+          <li>📅 <strong class="text-white">Sept 15:</strong> Q3 2026 estimated payment due — <strong class="text-white">the next deadline.</strong> Sept 15, 2026 falls on a Tuesday, so there is no weekend shift.</li>
           <li>📅 <strong class="text-white">Oct 15:</strong> Extended tax return deadline (if filed extension)</li>
           <li>📅 <strong class="text-white">Dec 31:</strong> Last day for SEP IRA contributions (if no extension), equipment purchases for current-year deduction</li>
         </ul>
@@ -1176,10 +1177,10 @@ export const blogPosts: BlogPost[] = [
 
       <div class="bg-emerald-950/30 border border-emerald-700/50 rounded-xl p-5 mb-6">
         <p class="text-slate-200 leading-relaxed mb-2">
-          <strong class="text-white">Want next June to be a five-minute job instead of a weekend?</strong> The hardest part of quarterly taxes isn't writing the check — it's reconstructing a year of income and expenses the night before. If you track as you go, every deadline becomes a glance at one sheet.
+          <strong class="text-white">Want Sept 15 to be a five-minute job instead of a weekend?</strong> The hardest part of quarterly taxes isn't writing the check — it's reconstructing months of income and expenses the night before. If you track as you go, every deadline becomes a glance at one sheet.
         </p>
         <p class="text-slate-300 leading-relaxed">
-          Our <a href="https://3563705146415.gumroad.com/l/qnljkix" class="text-emerald-400 underline hover:text-emerald-300">Self-Employed Tax Organizer 2026</a> ($9.99, one-time) is a spreadsheet that auto-calculates your Schedule C categories and quarterly set-aside as you enter income — so you always know what to set aside for June 15, Sept 15, and beyond. No subscription, no bank-account linking.
+          Our <a href="https://3563705146415.gumroad.com/l/qnljkix" class="text-emerald-400 underline hover:text-emerald-300">Self-Employed Tax Organizer 2026</a> ($9.99, one-time) is a spreadsheet that auto-calculates your Schedule C categories and quarterly set-aside as you enter income — so you always know what to set aside for Sept 15, Jan 15, and beyond. No subscription, no bank-account linking.
         </p>
       </div>
 

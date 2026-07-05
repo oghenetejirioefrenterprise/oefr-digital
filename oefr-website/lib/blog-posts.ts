@@ -3142,6 +3142,137 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "irs-cp320b-letter-105c-erc-response-2026",
+    title: "IRS Notice CP320B and Letter 105-C for ERC: Your Options and the 2-Year Deadline (2026)",
+    description:
+      "Got IRS Letter 105-C disallowing your ERC claim — or the new CP320B notice in the Form 907 flow? Here's what each one means, the OBBBA screen that decides whether your claim is even alive, why an Appeals protest does NOT pause your 2-year refund-suit clock under IRC §6532(a), and how the corrected Form 907 extension process actually works in 2026.",
+    keywords: [
+      "IRS notice CP320B",
+      "CP320B ERC",
+      "what is IRS CP320B",
+      "IRS letter 105-C response",
+      "letter 105-C ERC disallowance",
+      "ERC disallowance appeal",
+      "Form 907 ERC extension",
+      "ERC 2 year deadline refund suit",
+      "IRC 6532(a) ERC",
+      "ERC claim disallowed what to do",
+      "105-C protest letter",
+      "OBBBA ERC disallowance",
+      "ERC refund suit deadline 2026",
+      "106-C partial disallowance ERC",
+    ],
+    publishedDate: "2026-07-05",
+    readingTime: "9 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Letter 105-C is a formal disallowance with a 2-year refund-suit clock that an Appeals protest does NOT pause. CP320B is the IRS's brand-new April 2026 notice in the Form 907 extension flow. Here's the decision path — starting with the OBBBA screen that tells you whether your claim is legally alive at all.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        If the IRS sent you <strong class="text-white">Letter 105-C</strong> disallowing your Employee Retention Credit claim — or you just received the newer <strong class="text-white">Notice CP320B</strong> and can't find a plain-English explanation of it anywhere — this guide walks through what each notice means, the deadlines they carry, and the decision you actually have to make: appeal, file a refund suit, or accept the disallowance. One warning up front: <strong class="text-white">the most dangerous deadline in this process keeps running even while you're fighting</strong>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 0 — First check whether your claim is legally alive (the OBBBA screen)</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Before you spend a dollar or an hour on a protest, run this screen. Under <strong class="text-white">§70605(d) of the One Big Beautiful Bill Act</strong> (effective July 4, 2025), if your disallowed ERC claim is for <strong class="text-white">Q3 or Q4 of 2021</strong> and it was <strong class="text-white">filed after January 31, 2024</strong>, the refund is statutorily barred. Per the IRS's own ERC FAQ (updated effective July 4, 2025), no protest letter, Appeals conference, or refund suit revives a claim in that category — the law itself forecloses it. It's painful to hear, but knowing it up front is the difference between an informed decision and months of wasted effort (or thousands in professional fees) fighting a legally dead claim.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If your claim is for 2020 or Q1–Q2 2021, or it was filed on or before January 31, 2024, the screen passes — keep reading.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What Letter 105-C actually is (and how 106-C differs)</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Letter 105-C</strong> is a formal claim disallowance — the IRS examined your refund claim and is denying it <em>in full</em>. Its sibling, <strong class="text-white">Letter 106-C</strong>, is a <em>partial</em> disallowance: part of the claim is allowed, part denied. The IRS sent a wave of roughly <strong class="text-white">28,000</strong> of these ERC disallowance letters starting in <strong class="text-white">August 2024</strong> (per the National Taxpayer Advocate's blog on the disallowance wave, August 2024). That date matters enormously, because of the clock those letters started.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The 2-year clock — and why an Appeals protest does NOT pause it</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under <strong class="text-white">IRC §6532(a)</strong>, you generally have <strong class="text-white">2 years from the date of the disallowance notice</strong> to file a refund suit in federal court. Here is the trap that catches people: <strong class="text-white">filing a protest with IRS Appeals does not toll (pause) that 2-year clock</strong>. Appeals correspondence routinely takes a year or more. Businesses have sat in the Appeals queue, waited politely for an answer, and watched their right to sue expire in the meantime — losing by default without ever getting a decision.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-3">
+          <li>📅 <strong class="text-white">Do this today:</strong> find the date printed on your 105-C and calendar exactly two years out. That is your refund-suit window under §6532(a).</li>
+          <li>⚠️ <strong class="text-white">The August 2024 wave expires August–October 2026.</strong> If your letter came in that wave, your window is closing <em>now</em>.</li>
+          <li>🚫 <strong class="text-white">An Appeals protest does not extend it.</strong> Appeal if you have grounds — but track the suit deadline independently, in writing.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The 30-day protest window</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Separately from the 2-year suit clock, your 105-C typically gives you <strong class="text-white">30 days to file a protest with IRS Appeals</strong> if you disagree. A protest that works addresses the <em>specific denial reason stated in your letter</em>. ERC denials generally rest on one of two theories — a <strong class="text-white">government-order suspension</strong> that the IRS says doesn't qualify, or a <strong class="text-white">gross-receipts decline</strong> the IRS says you didn't have — and the evidence package for each is completely different. A generic "we disagree" letter restating your original claim does not move Appeals.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Notice CP320B and the Form 907 extension — the actual 2026 mechanics</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">CP320B</strong> is the IRS notice (new as of <strong class="text-white">April 2026</strong>) used in the <strong class="text-white">Form 907</strong> process — the mechanism for extending the §6532(a) refund-suit window by written agreement with the IRS. Because the notice is so new, almost nothing published explains where it fits. Here is the corrected sequence, because most summaries online get it wrong:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ol class="text-slate-300 space-y-3 list-decimal list-inside">
+          <li><strong class="text-white">Respond to your 105-C first.</strong> A filed response sitting with the IRS awaiting consideration is the <em>entry gate</em> — no response on file, no extension path.</li>
+          <li><strong class="text-white">Wait for IRS consideration</strong> while independently tracking your 2-year clock.</li>
+          <li><strong class="text-white">Eligibility trigger:</strong> you have a response on file <em>and</em> <strong class="text-white">6 months or less</strong> remain on your 2-year window.</li>
+          <li><strong class="text-white">The IRS issues Notice CP320B</strong>, after which you submit the signed Form 907 via the <strong class="text-white">Document Upload Tool at IRS.gov/DUTReply</strong>.</li>
+          <li><strong class="text-white">Both signatures</strong> (yours and the IRS's) must be completed <em>before your window expires</em>. An unsigned or late 907 extends nothing.</li>
+        </ol>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Translation: responding to the letter is the ticket to the extension. If you ignored the 105-C and plan to "deal with it later," you are also forfeiting the Form 907 path.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Appeal vs. refund suit vs. accept — the honest decision</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Many ERC disallowances were correct — especially promoter-filed claims built on aggressive government-order theories. The honest decision tree: run the OBBBA screen first; if the claim survives, match your evidence to the denial reason and decide whether a protest has substance; if the amounts justify it and the clock is short, a refund suit (or a Form 907 extension) preserves the right to fight. And know the hard hand-off points where DIY stops being appropriate: <strong class="text-white">promoter under investigation, claims of $50,000+, or anything inaccurate in the original filing</strong> — those go to a tax attorney or CPA before you respond, because a protest letter locks in your position.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        On cost: tax attorneys handling ERC disallowance work commonly quote <strong class="text-white">$3,500–$8,000 per quarter</strong>. Below that: raw IRS pages. The gap in the middle — decoding your letter, calculating your exact deadlines, and packaging a protest addressed to your actual denial reason — is exactly the documentation-and-decision layer you can do yourself if you sequence it correctly.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you're dealing with a different IRS notice — a proposed adjustment rather than a claim disallowance — see our guide to <a href="/blog/irs-cp2000-notice-response-2026" class="text-amber-400 hover:text-amber-300 underline">responding to an IRS CP2000 notice in the 30-day window</a>; the notices look similar in the mailbox but carry completely different rights and clocks.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <em>This article is general information, not legal or tax advice. Verify every deadline against the dates printed on your own notice.</em>
+      </p>
+    `,
+    cta: {
+      text: "Pre-order the IRS Letter 105-C Response Kit (free today, $29 on release)",
+      href: "https://3563705146415.gumroad.com/l/vrphz",
+    },
+    relatedProducts: [
+      {
+        name: "IRS Letter 105-C Response Kit — ERC Disallowance (2026)",
+        href: "https://3563705146415.gumroad.com/l/vrphz",
+        description:
+          "OBBBA screen, 105-C/106-C/CP320B decoder, 2-year deadline tracker (Excel), protest letter templates by denial reason, and the corrected Form 907 walkthrough — $0 pre-order, free for claimers on release.",
+      },
+    ],
+    faq: [
+      {
+        q: "What is IRS Notice CP320B?",
+        a: "CP320B is an IRS notice introduced in April 2026 as part of the Form 907 process — the mechanism for extending the 2-year refund-suit deadline under IRC §6532(a) by written agreement. It arrives after you have a response to your disallowance letter on file with the IRS and 6 months or less remain on your 2-year window; you then submit the signed Form 907 through the Document Upload Tool at IRS.gov/DUTReply, and both signatures must be completed before the window expires.",
+      },
+      {
+        q: "Does filing an appeal pause the 2-year ERC refund-suit deadline?",
+        a: "No. Filing a protest with IRS Appeals does not toll the 2-year refund-suit clock under IRC §6532(a). The clock runs from the date on your disallowance notice regardless of Appeals activity. Track the suit deadline independently — Appeals correspondence can take longer than the window itself.",
+      },
+      {
+        q: "What is the difference between IRS Letter 105-C and 106-C?",
+        a: "Letter 105-C is a full disallowance of your claim; Letter 106-C is a partial disallowance — part allowed, part denied. Both start the 2-year refund-suit clock under IRC §6532(a) for the disallowed portion, and both typically carry a 30-day window to protest to IRS Appeals.",
+      },
+      {
+        q: "Can I still fight my ERC disallowance if my claim was for Q3 or Q4 2021?",
+        a: "It depends on when the claim was filed. Under OBBBA §70605(d) (effective July 4, 2025), refunds on Q3/Q4-2021 ERC claims filed after January 31, 2024 are statutorily barred — per the IRS ERC FAQ, no protest or refund suit revives them. Claims for those quarters filed on or before January 31, 2024, and claims for earlier quarters, are not affected by this bar.",
+      },
+      {
+        q: "When do the ERC disallowance deadlines from the 2024 wave expire?",
+        a: "The IRS sent roughly 28,000 ERC disallowance letters starting in August 2024 (National Taxpayer Advocate blog, August 2024). Two years from those notice dates puts the refund-suit expiry wave at August–October 2026. Check the exact date printed on your own letter — that date, plus two years, is your window.",
+      },
+      {
+        q: "How much does a tax attorney charge to respond to an ERC disallowance?",
+        a: "Quotes for ERC disallowance representation commonly run $3,500–$8,000 per quarter at issue, varying with case complexity and the denial theory involved. For multi-quarter claims, that multiplies quickly — which is why decoding the letter and mapping your deadlines yourself before engaging a professional can materially narrow (and cheapen) the engagement.",
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

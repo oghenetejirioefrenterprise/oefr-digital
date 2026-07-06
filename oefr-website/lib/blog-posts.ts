@@ -2805,6 +2805,10 @@ export const blogPosts: BlogPost[] = [
         If you'd rather not draft the inform letter from scratch, we built a fill-in-the-blank version: <a href="/ssdi-hearing-evidence-letter" class="text-amber-300 hover:text-amber-200 underline">the SSDI Hearing Evidence Letter Kit ($14)</a> — a one-page INFORM letter template plus a short procedural explainer citing 20 CFR § 404.935(a), HALLEX I-2-5-13, and SSR 17-4p, and a 60-day deadline calendar so you count business days correctly. Instant PDF.
       </p>
 
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Going back to work while on SSDI? The earnings rules run on a completely different clock than your hearing. See our worked-example guide to <a href="/blog/ssdi-trial-work-period-math-2026" class="text-amber-400 hover:text-amber-300 underline">the 2026 Trial Work Period math (the 9-in-60 rolling window, EPE, and grace period)</a> before you report your first paycheck.
+      </p>
+
       <p class="text-sm text-slate-400 leading-relaxed mb-6 italic">
         This article is general educational information about Social Security procedure, not legal advice. For advice on your specific case, consult a representative or attorney.
       </p>
@@ -3270,6 +3274,158 @@ export const blogPosts: BlogPost[] = [
       {
         q: "How much does a tax attorney charge to respond to an ERC disallowance?",
         a: "Quotes for ERC disallowance representation commonly run $3,500–$8,000 per quarter at issue, varying with case complexity and the denial theory involved. For multi-quarter claims, that multiplies quickly — which is why decoding the letter and mapping your deadlines yourself before engaging a professional can materially narrow (and cheapen) the engagement.",
+      },
+    ],
+  },
+  {
+    slug: "ssdi-trial-work-period-math-2026",
+    title: "SSDI Trial Work Period: The 2026 Math, Worked Examples (9-in-60 Rolling Window)",
+    description:
+      "The SSDI Trial Work Period is 9 months inside a rolling 60-month window — with a different earnings trigger for each year ($1,210 in 2026, $1,160 in 2025, $1,110 in 2024). Three worked examples show how to count TWP months across different years, what happens in the 36-month EPE, the 3-month grace period, and how IRWE deductions can keep you under SGA.",
+    keywords: [
+      "SSDI trial work period 2026",
+      "trial work period rolling 60 month window example",
+      "how to count TWP months different years",
+      "TWP months different thresholds",
+      "SSDI going back to work math",
+      "trial work period calculator 2026",
+      "SSDI TWP amount 2026",
+      "extended period of eligibility SSDI",
+      "EPE 36 months SGA",
+      "SSDI grace period after trial work period",
+      "IRWE deduction SGA",
+      "SSA-821-BK work activity report",
+      "SSDI wage reporting working",
+      "trial work period tracker",
+    ],
+    publishedDate: "2026-07-06",
+    readingTime: "10 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "The fear of losing SSDI by working is real — but the math is mechanical, and almost every horror story starts with a miscounted month. Here are the actual 2026 numbers and three worked examples of the rolling 9-in-60 window, including the mistake nobody warns you about: applying this year's threshold to last year's wages.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Going back to work on SSDI shouldn't feel like defusing a bomb. But the rules — <strong class="text-white">9 Trial Work Period months inside a rolling 60-month window</strong>, then a <strong class="text-white">36-month Extended Period of Eligibility</strong> where a single month over SGA can suspend your check — are genuinely hard to track by hand, because the dollar triggers <em>change every year</em> and your rolling window almost always spans multiple years. This guide does the math out loud, with three worked examples.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 0 — This is SSDI only. SSI has different rules.</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Before anything else: everything below applies to <strong class="text-white">Social Security Disability Insurance (SSDI)</strong>. If you receive <strong class="text-white">SSI</strong> (Supplemental Security Income), the work rules are completely different — there is no Trial Work Period in SSI; earnings reduce the payment on a formula instead. If you receive both, the SSDI rules here apply only to the SSDI portion. Getting this wrong is the fastest way to a surprise overpayment.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The three numbers that control everything in 2026</h2>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-3">
+          <li>1️⃣ <strong class="text-white">TWP service-month trigger: $1,210/month gross (2026).</strong> Any month you earn over that (before taxes) is a Trial Work Period "service month." It was <strong class="text-white">$1,160 in 2025</strong> and <strong class="text-white">$1,110 in 2024</strong> — and each year's trigger applies to <em>that year's</em> months. (Self-employed: more than 80 hours in the business also counts.)</li>
+          <li>2️⃣ <strong class="text-white">You get 9 service months — counted inside a rolling 60-month window.</strong> The TWP is complete only when 9 service months fall within any 60-month span. Old service months roll <em>off</em> the window as time passes.</li>
+          <li>3️⃣ <strong class="text-white">SGA (what matters after the TWP): $1,690/month non-blind in 2026 ($2,830 blind).</strong> During the TWP itself, SGA is irrelevant — benefits continue no matter how much you earn. SGA only starts deciding checks after your 9th TWP month.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        All figures are from SSA's official cost-of-living tables (ssa.gov/oact/cola). The rulebook for how SSA field offices actually count service months is <strong class="text-white">POMS DI 13010.060</strong> — worth knowing by name, because it's the reference SSA itself uses when your count is disputed.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Worked example 1 — Maria: the same wage, two different answers</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Maria takes a part-time job in September 2025 earning a steady <strong class="text-white">$1,180/month gross</strong>, and keeps it through March 2026.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li>📅 <strong class="text-white">Sept–Dec 2025:</strong> $1,180 is <em>over</em> the 2025 trigger ($1,160) → <strong class="text-white">4 service months</strong>.</li>
+          <li>📅 <strong class="text-white">Jan–Mar 2026:</strong> the <em>same</em> $1,180 is <em>under</em> the 2026 trigger ($1,210) → <strong class="text-white">0 service months</strong>.</li>
+          <li>🧮 <strong class="text-white">Running total: 4 of 9 TWP months used.</strong> Her wage never changed — the year did.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This is the single most common counting error: applying the current year's threshold to prior-year months. If Maria had used $1,210 across the board, she'd think she had used zero TWP months in 2025 and be four months ahead of where she actually is — the kind of miscount that surfaces years later as an overpayment letter.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Worked example 2 — James: the rolling window gives months back</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        James tried working in early 2021 and logged <strong class="text-white">4 service months (February–May 2021)</strong>, each over that year's trigger. It didn't work out; he stopped. In <strong class="text-white">June 2026</strong> he starts again at $1,400/month — over the 2026 trigger, so every month counts.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li>🪟 <strong class="text-white">The window is always the 60 months ending with the month you're counting.</strong> For June 2026, it reaches back to July 2021.</li>
+          <li>♻️ His Feb–May 2021 service months are all <em>older</em> than that — they have <strong class="text-white">rolled off</strong>. Inside the current window his count is <strong class="text-white">0, not 4</strong>.</li>
+          <li>🧮 Working June 2026 onward at $1,400/mo, he doesn't complete his TWP until he accumulates <strong class="text-white">9 service months inside one 60-month span</strong> — February 2027 at the earliest.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Two takeaways. First, the rolling window can work <em>for</em> you — old attempts age off. Second, the count is not "9 in a lifetime, ever": it's 9-in-60. But once you <em>do</em> complete 9-in-60, the TWP is used — you don't get a fresh one while you remain on the same entitlement. That asymmetry is why an accurate month-by-month ledger matters so much <em>before</em> your 9th month, not after.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Worked example 3 — Aisha: the EPE, the grace period, and the IRWE save</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Aisha completed her 9th TWP month in <strong class="text-white">December 2025</strong>. Her <strong class="text-white">Extended Period of Eligibility</strong> runs <strong class="text-white">January 2026 through December 2028</strong> — 36 consecutive calendar months, whether or not she works. In 2026 she earns <strong class="text-white">$1,750/month gross</strong>, over the $1,690 SGA line.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li>🛬 <strong class="text-white">Grace period:</strong> the first month SSA determines she's over SGA after the TWP (say March 2026) plus the <em>next two months</em> — March, April, May — are <strong class="text-white">all paid in full</strong>, even over SGA.</li>
+          <li>⏸️ From June 2026: a month <em>over</em> SGA is suspended (no check that month); a month <em>under</em> SGA is paid, <strong class="text-white">automatically, with no re-application</strong> — that's the entire point of the EPE.</li>
+          <li>🧾 <strong class="text-white">The IRWE save:</strong> Aisha pays $120/month out of pocket for disability-related transportation she needs in order to work. Impairment-Related Work Expenses are deducted from countable earnings <em>before</em> the SGA test: $1,750 − $120 = <strong class="text-white">$1,630 — under $1,690</strong>. Counted correctly, she was never over SGA at all, and every check continues.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The IRWE line is the most under-used protection in the whole system. Out-of-pocket costs caused by your disability that you need in order to work — certain co-pays, medical devices, attendant care, specialized transportation — reduce your countable earnings. People suspend their own benefits by reporting gross wages without ever claiming the deduction they were entitled to.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Report monthly, and keep the ledger SSA will eventually ask for</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Two habits prevent nearly every TWP horror story. <strong class="text-white">One:</strong> report wages monthly through your <em>my Social Security</em> account (or your local office) so an overpayment can never silently accumulate. <strong class="text-white">Two:</strong> keep a month-by-month ledger — gross wages, the year-specific trigger, service-month yes/no, running 9-in-60 count, and IRWE receipts. When SSA reviews your work activity, they send <strong class="text-white">form SSA-821-BK (Work Activity Report)</strong>, which asks for exactly this, month by month, going back years. With a ledger it's a 20-minute form. Without one it's a panic — and the estimates you put down become the record you're arguing against later.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Free resources worth knowing: SSA's <strong class="text-white">Red Book</strong> (the official work-incentives guide, free PDF), the yearly amounts at <strong class="text-white">ssa.gov/oact/cola</strong>, and a <strong class="text-white">WIPA counselor</strong> (free benefits counseling via Ticket to Work) who can walk your specific case. What none of them hand you is the tracking artifact itself — a live spreadsheet that applies each year's threshold to each year's months and keeps the rolling 9-in-60 count for you. That's the gap our <a href="https://3563705146415.gumroad.com/l/nrdrj" class="text-amber-400 hover:text-amber-300 underline">SSDI Trial Work Period Tracker Kit</a> fills — free to pre-order today.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you're earlier in the process and heading to an ALJ hearing, see our guide to <a href="/blog/ssdi-hearing-5-day-evidence-rule" class="text-amber-400 hover:text-amber-300 underline">the SSDI 5-day evidence rule (inform vs. submit)</a> — a different clock entirely, and one that wins or loses hearings.
+      </p>
+      <p class="text-sm text-slate-400 leading-relaxed mb-6 italic">
+        This article is general educational information about Social Security work rules, not legal or benefits advice. Thresholds shown are the official SSA amounts for the years stated; always verify current-year figures at ssa.gov and confirm your specific situation with SSA or a WIPA counselor.
+      </p>
+    `,
+    cta: {
+      text: "Pre-order the SSDI Trial Work Period Tracker Kit (free today, $14 on release)",
+      href: "https://3563705146415.gumroad.com/l/nrdrj",
+    },
+    relatedProducts: [
+      {
+        name: "SSDI Trial Work Period Tracker — TWP/EPE Wage Kit (2026)",
+        href: "https://3563705146415.gumroad.com/l/nrdrj",
+        description:
+          "Rolling 9-in-60 TWP tracker with year-specific thresholds (Google Sheets + Excel), 36-month EPE grid with SGA flags, grace-period decoder, IRWE worksheet, and SSA-821-BK wage-reporting walkthrough — $0 pre-order, free for claimers on release.",
+      },
+      {
+        name: "SSDI Hearing Evidence Letter Kit",
+        href: "/ssdi-hearing-evidence-letter",
+        description:
+          "Fill-in-the-blank INFORM letter template for the 5-day evidence rule (20 CFR § 404.935), with procedural explainer and deadline calendar. Instant PDF, $14.",
+      },
+    ],
+    faq: [
+      {
+        q: "How does the SSDI trial work period rolling 60-month window work?",
+        a: "Your Trial Work Period is complete only when 9 service months fall within any rolling 60-month span. For any month you're counting, look back at the 60 months ending with that month: service months inside the span count toward your 9; service months older than that have rolled off and no longer count. Old work attempts can therefore age out of your window — but once you complete 9-in-60, the TWP is used for that period of entitlement.",
+      },
+      {
+        q: "How do I count TWP months across different years with different thresholds?",
+        a: "Apply each year's trigger to that year's months: a month counts as a service month if your gross earnings that month exceeded the threshold in effect that year — $1,210 in 2026, $1,160 in 2025, $1,110 in 2024. Using the current year's threshold for prior-year months is the most common counting error and can put your count off by several months in either direction.",
+      },
+      {
+        q: "What counts as a trial work period month in 2026?",
+        a: "In 2026, any calendar month in which you earn more than $1,210 gross (before taxes) is a TWP service month. For the self-employed, working more than 80 hours in your business that month also counts regardless of profit. During TWP months, your full SSDI benefit continues no matter how much you earn.",
+      },
+      {
+        q: "What happens the first time I earn over SGA after my trial work period ends?",
+        a: "You get a grace period: the first month SSA determines you performed substantial gainful activity after the TWP, plus the following two months, are all paid in full even if you're over SGA ($1,690/month non-blind in 2026). After the grace period, during your 36-month Extended Period of Eligibility, each month over SGA is suspended and each month under SGA is paid automatically — no re-application needed.",
+      },
+      {
+        q: "Do impairment-related work expenses (IRWE) apply to the SGA test?",
+        a: "Yes — out-of-pocket costs caused by your disability that you need in order to work (certain co-pays, devices, attendant care, specialized transportation) are deducted from your gross earnings before SSA applies the SGA test. A month that looks over the $1,690 line on gross wages can be under it after IRWE deductions, meaning benefits continue. Keep receipts for every IRWE, month by month.",
+      },
+      {
+        q: "Does the trial work period reset if I stop working?",
+        a: "Not exactly — the count is governed by the rolling 60-month window, not by stopping work. If you stop working, your existing service months remain on the clock until they individually become older than 60 months, at which point they roll off. If you never accumulated 9 within one 60-month span, your TWP protection continues; if you did complete 9-in-60, you do not get a new TWP during the same period of entitlement.",
       },
     ],
   },

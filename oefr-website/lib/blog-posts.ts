@@ -3429,6 +3429,132 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "background-check-wrong-pre-adverse-action-2026",
+    title: "Pre-Adverse Action Letter: What to Do in the 5-Day Window When Your Background Check Is Wrong (2026)",
+    description:
+      "Got a pre-adverse action notice because your employment background check is wrong? What to do right now: answer in writing, dispute with the screening company (HireRight, Checkr, Sterling, First Advantage) under FCRA §1681i, demand the exact report the employer saw (§1681b(b)(3)), and kill false or expunged records with a certified court disposition — before the offer is finalized away.",
+    keywords: [
+      "pre adverse action letter what to do",
+      "background check wrong criminal record",
+      "background check dispute job offer on hold",
+      "HireRight dispute how long",
+      "Checkr background check dispute",
+      "Sterling background check error",
+      "pre adverse action notice response",
+      "FCRA background check dispute",
+      "background check shows dismissed charge",
+      "expunged record showing on background check",
+      "background check not mine dispute",
+      "employer rescinded offer background check",
+      "FCRA 1681i reinvestigation 30 days",
+      "certified court disposition background check",
+    ],
+    publishedDate: "2026-07-08",
+    readingTime: "9 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "A pre-adverse action notice means the employer is about to walk away from your offer over a background report — and that report may be flat wrong. The window to act is short, commonly about five business days. Here is the exact sequence: respond in writing, dispute with the screening company (not the credit bureaus), demand the report, and pull the certified court record that ends the argument.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        You got the job. Then HR sent a <strong class="text-white">pre-adverse action notice</strong>: the background check came back with a problem — someone else's felony, a charge that was dismissed or expunged, a case that is not yours. The employer is now legally pausing before it finalizes a decision against you. That pause is short — <strong class="text-white">commonly around five business days</strong> — and what you do inside it usually decides whether the offer survives. This guide walks the sequence in order, with the exact federal citations that make screening companies move.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What a pre-adverse action notice actually is</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Under the Fair Credit Reporting Act, before an employer takes adverse action (rescinding an offer, rejecting an application) based on a background report, it must first give you a copy of the report and a summary of your FCRA rights — that is <strong class="text-white">15 U.S.C. §1681b(b)(3)</strong>. The statute then requires the employer to wait a reasonable time before finalizing, so you have a real chance to dispute. The law does not fix an exact number of days; <strong class="text-white">about five business days</strong> is the widely used convention (it traces to Federal Trade Commission staff guidance), and many employers' compliance workflows are built around it. Treat the date on your notice as a hard deadline.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 leading-relaxed">
+          ⏱️ <strong class="text-white">The clock takeaway:</strong> a pre-adverse action notice is not a rejection. It is a legally required pause that exists specifically so you can contest errors. Candidates who answer in writing inside the window get held open far more often than candidates who go quiet.
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 1 — Answer the employer in writing, today</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Before any dispute paperwork, send the recruiter or HR contact a short written reply: you have received the notice, the report contains an inaccuracy, you are formally disputing it with the screening company, and you are asking them to hold the position open while the reinvestigation runs. Keep it calm and factual — no legal threats. The point is a <strong class="text-white">paper trail</strong>: an employer that finalizes adverse action while on written notice of a pending accuracy dispute is in a much worse legal position, and its compliance team knows it. Silence, on the other hand, reads as confirmation.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 2 — Dispute with the screening company, not the credit bureaus</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This is the step most people get wrong. The free sample dispute letters that circulate online (CFPB and FTC templates) are written for the big-three credit bureaus. Your employment report almost certainly came from a <strong class="text-white">background screening company</strong> — HireRight, Checkr, Sterling, First Advantage, or a smaller regional firm. These companies are consumer reporting agencies under the FCRA in their own right, and your dispute goes to <em>them</em>, in writing, identifying each specific item that is wrong.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Once you dispute, <strong class="text-white">15 U.S.C. §1681i</strong> generally gives the screening company <strong class="text-white">30 days</strong> to reinvestigate and either verify, correct, or delete the disputed item. It must also consider the evidence you send. And under <strong class="text-white">§1681e(b)</strong>, the company was already required to follow reasonable procedures to assure <em>maximum possible accuracy</em> — a wrong-person match or a resurrected expunged charge is exactly the kind of failure that section exists for. Cite both sections in your letter. For criminal-record items on employment reports specifically, <strong class="text-white">§1681k</strong> adds its own requirements for public-record information — worth naming if your error is a court record.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 3 — Demand the exact report the employer saw</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Dispute what is actually on the report, not what you think is on it. The pre-adverse action package should already include the report copy under <strong class="text-white">§1681b(b)(3)</strong> — if it did not, request it from the employer the same day, in writing. You can also request your file directly from the screening company. Read every line: name variants, dates of birth, case numbers, dispositions. Wrong-person matches often hinge on one transposed digit, and the case number on the report is what you will take to the courthouse in the next step.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 4 — The certified court disposition: the fastest kill for a false record</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Screening companies re-verify criminal records against court data. So do not just assert the record is wrong — <strong class="text-white">hand them the court's own answer</strong>. Go to the clerk of court for the county named on the report (or its online portal, where available) and pull a <strong class="text-white">certified disposition</strong>: the sealed-stamp document showing the charge was dismissed, expunged, or belongs to a different person. Attached to your §1681i dispute, a certified disposition short-circuits the reinvestigation loop — the screening company's verification source is now contradicting its own report in writing. The process for obtaining one varies by county; the clerk's office will tell you what to ask for and the fee, which is typically modest.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 5 — If they blow the deadline or "verify" a false record</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If the screening company misses its ~30-day reinvestigation window, or comes back claiming it "verified" a record that a certified court document says is wrong, you have moved from a paperwork problem to a potential FCRA violation. Two escalation lanes, in order: file a complaint with the <strong class="text-white">CFPB</strong> (consumerfinance.gov/complaint — screening companies must respond on the record), and talk to an <strong class="text-white">FCRA plaintiff attorney</strong> — most work on contingency, and willful FCRA violations carry statutory damages. This is why documentation matters from day one: every call, email, date, and blown deadline, logged as you go, <em>is</em> the case file an attorney will ask for.
+      </p>
+
+      <div class="bg-slate-900/70 border border-amber-500/30 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 leading-relaxed">
+          📋 <strong class="text-white">Doing this under deadline pressure?</strong> The <a href="https://gumroad.com/l/bgcheckfix" class="text-amber-400 hover:text-amber-300 underline">Pre-Adverse Action Response Kit</a> packages this entire sequence: a 5-business-day clock tracker, dispute letter templates addressed to the screening companies (identity-mismatch, expunged/dismissed-charge, and wrong-disposition versions with the §1681i and §1681e(b) citations built in), the report-copy request, the certified-disposition checklist, hold-the-job employer templates, and an exhibit-style violation log. It is a free $0 pre-order right now.
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The order of operations, on one screen</h2>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2">
+          <li>1️⃣ <strong class="text-white">Day 0:</strong> written reply to the employer — disputing, ask them to hold the role.</li>
+          <li>2️⃣ <strong class="text-white">Day 0–1:</strong> written dispute to the screening company citing §1681i and §1681e(b), item by item.</li>
+          <li>3️⃣ <strong class="text-white">Day 0–1:</strong> confirm you have the exact report (§1681b(b)(3)); request it if missing.</li>
+          <li>4️⃣ <strong class="text-white">Day 1–3:</strong> pull the certified court disposition and send it as dispute evidence.</li>
+          <li>5️⃣ <strong class="text-white">Throughout:</strong> log every contact. If the ~30-day reinvestigation clock blows: CFPB complaint + FCRA attorney.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Honest scope</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This article is general information, not legal advice, and nothing here can force an employer to hold a job open. What the sequence above does is maximize the odds they choose to — and build the record that protects you if they do not. If your situation involves real damages (a lost offer over a provably false record), an FCRA attorney consultation is the right next call.
+      </p>
+    `,
+    cta: {
+      text: "Get the Pre-Adverse Action Response Kit — free $0 pre-order",
+      href: "https://gumroad.com/l/bgcheckfix",
+    },
+    relatedProducts: [
+      {
+        name: "Background Check Wrong? Pre-Adverse Action Response Kit",
+        href: "https://gumroad.com/l/bgcheckfix",
+        description:
+          "5-business-day clock tracker, screening-company dispute letter templates (§1681i / §1681e(b) citations built in), report-copy request walkthrough, certified court-record checklist, hold-the-job employer templates, and an exhibit-style violation log. $0 pre-order — claimers get it free on release.",
+      },
+    ],
+    faq: [
+      {
+        q: "What should I do when I get a pre-adverse action letter?",
+        a: "Respond to the employer in writing the same day stating you are disputing an inaccuracy and asking them to hold the position; send a written dispute to the screening company (not the credit bureaus) citing FCRA §1681i; confirm you have the exact report the employer used (§1681b(b)(3)); and start pulling a certified court disposition for any false, dismissed, or expunged record. Employers commonly wait about five business days before finalizing, so speed and a paper trail are everything.",
+      },
+      {
+        q: "How long does an employer have to wait after a pre-adverse action notice?",
+        a: "The FCRA does not set an exact number of days — it requires a reasonable time between the pre-adverse action notice and the final decision. About five business days is the widely used convention, tracing to FTC staff guidance, and many employer compliance programs are built around it. Treat any date on your notice as the real deadline and respond in writing well before it.",
+      },
+      {
+        q: "How long does a HireRight, Checkr, or Sterling dispute take?",
+        a: "Screening companies are consumer reporting agencies under the FCRA, so once you file a dispute, §1681i generally gives them 30 days to reinvestigate and verify, correct, or delete the item. Sending evidence with the dispute — especially a certified court disposition for a false or expunged record — is the most reliable way to get a correction faster than the full 30 days.",
+      },
+      {
+        q: "My background check shows a dismissed or expunged charge. How do I fix it?",
+        a: "Pull a certified disposition from the clerk of court in the county where the case was handled — the certified document showing the dismissal or expungement — and attach it to a written dispute to the screening company citing §1681i and §1681e(b). Because screening companies verify criminal records against court data, a certified court document contradicting the report is the fastest way to force a correction.",
+      },
+      {
+        q: "Can an employer rescind a job offer while my background check dispute is pending?",
+        a: "Legally the FCRA requires only a reasonable waiting period, so an employer can eventually move on — but an employer that finalizes adverse action while on written notice of a pending accuracy dispute takes on real legal risk, and compliance teams know it. That is why the written reply to the employer on day one matters: candidates with a documented, active dispute get held open far more often than candidates who stay silent.",
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

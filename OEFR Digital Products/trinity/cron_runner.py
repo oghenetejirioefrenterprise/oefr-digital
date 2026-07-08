@@ -24,6 +24,7 @@ from __future__ import annotations
 import datetime as dt
 import re
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -1121,14 +1122,6 @@ def main():
                 f"# Task\n{task}"
             )
 
-    result = run_agent(
-        task=task,
-        persona=spec["persona"],
-        max_turns=20,
-        print_output=True,
-        model=spec.get("model"),  # None → CLI default; cycles can request Sonnet
-    )
-
     # SDK failure sentinel — run_agent_sdk returns its error message string when
     # the underlying claude CLI subprocess dies (e.g. "Fatal error in message reader"
     # SSE close-path bug observed since 2026-04-19). Treating that string as a real
@@ -1138,9 +1131,34 @@ def main():
         "Error running Claude SDK",
         "Claude SDK timed out",
     )
-    sdk_failed = bool(result) and any(
-        result.lstrip().startswith(p) for p in SDK_FAILURE_PREFIXES
-    )
+
+    def _is_sdk_failure(r):
+        return bool(r) and any(r.lstrip().startswith(p) for p in SDK_FAILURE_PREFIXES)
+
+    # Retry-with-backoff (2026-07-04 nightly, Day 92): the message-reader crash is
+    # transient — ~44% of needle cycles were aborting with NO retry, so a blip cost
+    # the whole 8h cycle window and QA-approved ships stranded silently. Up to 3
+    # attempts total; only after the last one do we alert Blockers and abort.
+    SDK_MAX_ATTEMPTS = 3
+    result = None
+    for attempt in range(1, SDK_MAX_ATTEMPTS + 1):
+        result = run_agent(
+            task=task,
+            persona=spec["persona"],
+            max_turns=20,
+            print_output=True,
+            model=spec.get("model"),  # None → CLI default; cycles can request Sonnet
+        )
+        if not _is_sdk_failure(result):
+            break
+        if attempt < SDK_MAX_ATTEMPTS:
+            delay = 120 * attempt  # 2 min, then 4 min
+            print(f"[Trinity] SDK failure on attempt {attempt}/{SDK_MAX_ATTEMPTS} "
+                  f"for {cycle} — retrying in {delay}s: {result[:200]}",
+                  file=sys.stderr, flush=True)
+            time.sleep(delay)
+
+    sdk_failed = _is_sdk_failure(result)
     if sdk_failed:
         print(f"[Trinity] SDK failure detected — skipping dispatch / signal / "
               f"briefing for {cycle}: {result[:200]}", file=sys.stderr, flush=True)
@@ -1148,7 +1166,8 @@ def main():
         # poisoning the cycle's primary group or the knowledge base.
         try:
             send_telegram(
-                f"[{cycle}] SDK failure — cycle aborted, no signal/briefing written.\n"
+                f"[{cycle}] SDK failure x{SDK_MAX_ATTEMPTS} attempts — cycle aborted, "
+                f"no signal/briefing written.\n"
                 f"{result[:1500]}",
                 "blockers",
             )

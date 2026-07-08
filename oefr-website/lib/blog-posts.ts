@@ -3279,9 +3279,9 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "ssdi-trial-work-period-math-2026",
-    title: "SSDI Trial Work Period: The 2026 Math, Worked Examples (9-in-60 Rolling Window)",
+    title: "SSDI Trial Work Period Tracker: The 2026 Math, Worked Examples (9-in-60 Rolling Window)",
     description:
-      "The SSDI Trial Work Period is 9 months inside a rolling 60-month window — with a different earnings trigger for each year ($1,210 in 2026, $1,160 in 2025, $1,110 in 2024). Three worked examples show how to count TWP months across different years, what happens in the 36-month EPE, the 3-month grace period, and how IRWE deductions can keep you under SGA.",
+      "How to track your SSDI Trial Work Period: 9 months inside a rolling 60-month window — with a different earnings trigger for each year ($1,210 in 2026, $1,160 in 2025, $1,110 in 2024). Three worked examples show how to count TWP months across different years, what happens in the 36-month EPE, the 3-month grace period, and how IRWE deductions can keep you under SGA.",
     keywords: [
       "SSDI trial work period 2026",
       "trial work period rolling 60 month window example",

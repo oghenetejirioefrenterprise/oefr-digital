@@ -3281,7 +3281,7 @@ export const blogPosts: BlogPost[] = [
     slug: "ssdi-trial-work-period-math-2026",
     title: "SSDI Trial Work Period Tracker: The 2026 Math, Worked Examples (9-in-60 Rolling Window)",
     description:
-      "How to track your SSDI Trial Work Period: 9 months inside a rolling 60-month window — with a different earnings trigger for each year ($1,210 in 2026, $1,160 in 2025, $1,110 in 2024). Three worked examples show how to count TWP months across different years, what happens in the 36-month EPE, the 3-month grace period, and how IRWE deductions can keep you under SGA.",
+      "SSDI Trial Work Period tracker: count 9 TWP months in the rolling 60-month window ($1,210 trigger in 2026), the 36-month EPE and grace period — worked examples.",
     keywords: [
       "SSDI trial work period 2026",
       "trial work period rolling 60 month window example",
@@ -3433,7 +3433,7 @@ export const blogPosts: BlogPost[] = [
     slug: "background-check-wrong-pre-adverse-action-2026",
     title: "Pre-Adverse Action Letter: What to Do in the 5-Day Window When Your Background Check Is Wrong (2026)",
     description:
-      "Got a pre-adverse action notice because your employment background check is wrong? What to do right now: answer in writing, dispute with the screening company (HireRight, Checkr, Sterling, First Advantage) under FCRA §1681i, demand the exact report the employer saw (§1681b(b)(3)), and kill false or expunged records with a certified court disposition — before the offer is finalized away.",
+      "Background check wrong? You have about 5 business days before the offer dies — a CRA dispute takes 30–45. The exact FCRA response steps that move first.",
     keywords: [
       "pre adverse action letter what to do",
       "background check wrong criminal record",
@@ -3457,7 +3457,7 @@ export const blogPosts: BlogPost[] = [
       "A pre-adverse action notice means the employer is about to walk away from your offer over a background report — and that report may be flat wrong. The window to act is short, commonly about five business days. Here is the exact sequence: respond in writing, dispute with the screening company (not the credit bureaus), demand the report, and pull the certified court record that ends the argument.",
     content: `
       <p class="text-lg text-slate-300 leading-relaxed mb-6">
-        You got the job. Then HR sent a <strong class="text-white">pre-adverse action notice</strong>: the background check came back with a problem — someone else's felony, a charge that was dismissed or expunged, a case that is not yours. The employer is now legally pausing before it finalizes a decision against you. That pause is short — <strong class="text-white">commonly around five business days</strong> — and what you do inside it usually decides whether the offer survives. This guide walks the sequence in order, with the exact federal citations that make screening companies move.
+        You got the job. Then HR sent a <strong class="text-white">pre-adverse action notice</strong>: the background check came back with a problem — someone else's felony, a charge that was dismissed or expunged, a case that is not yours. The employer is now legally pausing before it finalizes a decision against you. That pause is short — <strong class="text-white">commonly around five business days</strong> — while a standard screening-company reinvestigation takes <strong class="text-white">30–45 days</strong>. Waiting on the dispute alone will not save the offer: what you do inside the 5-day window decides whether it survives. This guide walks the sequence in order, with the exact federal citations that make screening companies move.
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">What a pre-adverse action notice actually is</h2>

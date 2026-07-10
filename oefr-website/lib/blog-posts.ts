@@ -3568,6 +3568,130 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "divorce-decree-name-change-not-included-2026",
+    title: "Divorce Decree Doesn't Include Your Name Change? The Two Ways to Fix It (2026)",
+    description:
+      "Forgot to restore your maiden name in the divorce decree? Two paths fix it: reopening the original case where your state allows, or a separate name-change petition. Plus the SSA-first order that stops DMV rejections.",
+    keywords: [
+      "divorce decree does not include name change",
+      "forgot to change name in divorce decree",
+      "restore maiden name after divorce finalized",
+      "name change after divorce without decree",
+      "amend divorce decree name change",
+      "separate petition name change after divorce",
+      "maiden name restoration court order",
+      "change name back after divorce years later",
+      "SSA name change after divorce",
+      "DMV rejected name change divorce decree",
+      "documents needed to restore maiden name",
+      "post judgment name restoration",
+    ],
+    publishedDate: "2026-07-10",
+    readingTime: "8 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Most name-change guides assume your divorce decree already restores your former name. If yours doesn't — because nobody asked for it at the time — you're in a different lane: either reopening the original case (where your state allows it) or filing a standalone name-change petition. Here's how the fork works, and the SSA-first sequencing that keeps the DMV from bouncing you.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        Every name-change checklist on the internet starts the same way: "Bring your divorce decree showing your name restoration." Which is great — <strong class="text-white">unless your decree never included one</strong>. It happens constantly: the divorce was contested and the name issue got dropped, the paperwork used a template without the restoration clause, or you decided years later that you want your former name back. Agencies like the SSA and DMV need a court document that actually orders the name change — a decree that is silent on the issue usually will not work on its own.
+      </p>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The fix is one of two paths, and which one applies depends on your state. This guide explains the fork, then walks the agency sequencing that trips people up even after they have the right court order. One caveat up front: <strong class="text-white">name-restoration procedure varies significantly by state</strong> — this is general information, not legal advice, and your county clerk or state self-help center is the authority on your local process.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">First, Check the Decree Itself</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Before filing anything, read the full decree — not just the first page. Restoration language is often buried near the end, phrased like "Petitioner's former name of ______ is hereby restored." If that clause exists, you do not have a decree gap; you have a normal post-divorce name change and can go straight to the agency sequencing below. If the decree is silent, you are on the fork.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Path 1: Reopen the Original Divorce Case</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Many states let you go back into the <em>same divorce case</em> after judgment and ask the court to restore your former name — often with a short post-judgment motion or a dedicated form, sometimes years after the divorce finalized. California is the clearest example: its courts provide a specific form (an ex parte application to restore a former name after entry of judgment) that gets filed in the original case, typically without a hearing. Other states allow a comparable motion to amend or a post-judgment request within the divorce file.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Why Path 1 is usually better when available:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li>Lower filing cost — often a fraction of a fresh name-change petition, and some courts charge nothing for the post-judgment form</li>
+          <li>No publication requirement — standalone name changes in some states require publishing notice in a newspaper; restoring within the divorce case typically does not</li>
+          <li>Faster — frequently processed without a hearing</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The catch: not every state offers it, some limit how it can be used (for example, only restoring a name used before the marriage, not adopting a new one), and practice can differ county to county. Call the clerk of the court that issued your decree and ask specifically: <em>"Can I file a post-judgment request in my divorce case to restore my former name, or do I need a separate name-change petition?"</em> That one question routes you to the correct path.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Path 2: File a Standalone Name-Change Petition</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If your state or county does not allow post-judgment restoration — or you want a name different from your pre-marriage name — the route is the general civil name-change petition every state offers. Expect: a petition filed in your county of residence, a filing fee (commonly in the $100–$500 range depending on state, with fee waivers available for low income), possibly fingerprinting or a background check, possibly newspaper publication, and a court order at the end. That order becomes your proof document for every agency.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">After the Order: SSA First, Then Everything Else</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This is the sequencing mistake that causes the most wasted trips: people take their court order straight to the DMV, and the DMV cross-checks their name against Social Security records — <strong class="text-white">which still show the old name</strong>. Result: rejected, come back later.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">The order that works:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-decimal pl-5">
+          <li><strong class="text-white">Social Security Administration first</strong> — Form SS-5 with your certified court order and proof of identity. Your number stays the same; only the name on the record changes.</li>
+          <li><strong class="text-white">Wait for the change to propagate</strong> — states verify against SSA electronically, and the update commonly takes about 24–48 hours to be visible to DMV systems. Going same-day is the classic rejection.</li>
+          <li><strong class="text-white">DMV / state ID next</strong> — bring the certified court order plus your other identity documents (REAL ID appointments need the full document set).</li>
+          <li><strong class="text-white">Then the long tail</strong> — passport, bank accounts, employer/payroll, insurance, voter registration, professional licenses, utilities, subscriptions.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Document Checklist</h2>
+      <ul class="text-slate-300 space-y-2 list-disc pl-5 mb-6">
+        <li><strong class="text-white">Certified copy of the court order</strong> restoring or changing your name (order extra certified copies — several agencies want to see an original certification, and copies cost less when ordered together)</li>
+        <li>Certified copy of your divorce decree (some agencies ask for both)</li>
+        <li>Current government-issued photo ID</li>
+        <li>Birth certificate (for REAL ID and passport)</li>
+        <li>Proof of residence documents for the DMV visit</li>
+      </ul>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you want the whole process packaged — the clerk-call script for routing between Path 1 and Path 2, the agency-by-agency order with what each one requires, and a tracking checklist so nothing gets missed — that is exactly what our <a href="https://gumroad.com/l/divorcenamekit" class="text-cyan-400 hover:text-cyan-300 underline">Divorce Name Restoration Kit</a> covers, built specifically for the decree-gap situation this guide describes.
+      </p>
+
+      <p class="text-slate-400 text-sm leading-relaxed mb-6">
+        This article is general information, not legal advice. Name-change and name-restoration procedures vary by state and county; consult your local court self-help center or an attorney for guidance on your specific situation.
+      </p>
+    `,
+    cta: {
+      text: "Get the Divorce Name Restoration Kit",
+      href: "https://gumroad.com/l/divorcenamekit",
+    },
+    relatedProducts: [
+      {
+        name: "Divorce Name Restoration Kit",
+        href: "https://gumroad.com/l/divorcenamekit",
+        description: "Step-by-step kit for restoring your name after divorce — including when the decree doesn't include a name-change clause.",
+      },
+    ],
+    faq: [
+      {
+        q: "My divorce decree doesn't mention a name change. Can I still go back to my maiden name?",
+        a: "Yes — but a decree that is silent on the name issue usually will not work as proof by itself. You either reopen the original divorce case with a post-judgment request to restore your former name (available in many states, including a dedicated form process in California), or you file a standalone name-change petition in your county. Ask the clerk of the court that issued your decree which route your state uses.",
+      },
+      {
+        q: "Can I restore my maiden name years after the divorce was finalized?",
+        a: "In many states, yes. Post-judgment name restoration often has no deadline — California's form process, for example, can be used long after entry of judgment. If your state does not allow reopening the case, the standalone name-change petition is always available. Procedure varies by state, so confirm locally.",
+      },
+      {
+        q: "Why did the DMV reject my name change even though I had a court order?",
+        a: "Most commonly because Social Security still had your old name. State DMV systems verify your identity against SSA records electronically, so you must update SSA first (Form SS-5 with a certified court order) and then wait roughly 24–48 hours for the change to propagate before visiting the DMV.",
+      },
+      {
+        q: "Do I need a certified copy of the court order, or is a photocopy enough?",
+        a: "Get certified copies — SSA, the DMV, and the passport agency generally want a certified court document, not a plain photocopy. Order two or three certified copies from the clerk when your order is entered; it is cheaper than ordering them one at a time later.",
+      },
+      {
+        q: "Is restoring my former name in the divorce case cheaper than a separate name-change petition?",
+        a: "Usually, where it is available. Post-judgment restoration in the original case typically has a lower fee (sometimes none), no newspaper publication requirement, and often no hearing. A standalone petition commonly runs $100–$500 in filing fees depending on the state, plus publication costs where required. Fee waivers exist in most states if the cost is a hardship.",
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

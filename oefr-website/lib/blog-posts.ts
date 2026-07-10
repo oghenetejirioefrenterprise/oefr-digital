@@ -3380,8 +3380,15 @@ export const blogPosts: BlogPost[] = [
       <p class="text-slate-300 leading-relaxed mb-6">
         If you're earlier in the process and heading to an ALJ hearing, see our guide to <a href="/blog/ssdi-hearing-5-day-evidence-rule" class="text-amber-400 hover:text-amber-300 underline">the SSDI 5-day evidence rule (inform vs. submit)</a> — a different clock entirely, and one that wins or loses hearings.
       </p>
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">On SSDI because a private LTD insurer made you file? Your LTD denial runs on its own clock</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Many people tracking TWP months got here through a <strong class="text-white">group long-term disability policy</strong>: employer-sponsored LTD plans almost universally require claimants to apply for SSDI, because the plan offsets your SSDI award against what the insurer pays. If that's you and the insurer has <strong class="text-white">denied or cut off your LTD claim</strong>, know that the LTD appeal runs on a completely separate clock from anything SSA does. For employer group plans governed by ERISA, federal rules give you <strong class="text-white">at least 180 days to appeal</strong> — your denial letter's date governs your exact deadline — and you have the right to request the insurer's <strong class="text-white">entire claim file, free</strong> (29 CFR 2560.503-1). Both matter immediately, because federal courts reviewing an ERISA denial later rarely look beyond the administrative record you build during that appeal window.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Winning your SSDI case does not automatically fix an LTD denial, and returning to work under TWP rules doesn't pause the LTD appeal clock either. If you're in that window, our <a href="https://3563705146415.gumroad.com/l/qjjwv" class="text-amber-400 hover:text-amber-300 underline">LTD Denial Appeal Kit — ERISA 180-Day Response Pack</a> organizes the deadline math, the claim-file request, and the evidence checklist ($0 pre-order today). ERISA group plans only — individual policies and government/church plans follow different rules — and for final denials, buyout offers, or litigation, retain an ERISA attorney.
+      </p>
       <p class="text-sm text-slate-400 leading-relaxed mb-6 italic">
-        This article is general educational information about Social Security work rules, not legal or benefits advice. Thresholds shown are the official SSA amounts for the years stated; always verify current-year figures at ssa.gov and confirm your specific situation with SSA or a WIPA counselor.
+        This article is general educational information about Social Security work rules, not legal or benefits advice. Thresholds shown are the official SSA amounts for the years stated; always verify current-year figures at ssa.gov and confirm your specific situation with SSA or a WIPA counselor. The LTD section describes ERISA group-plan procedure generally and is not legal advice.
       </p>
     `,
     cta: {
@@ -3400,6 +3407,12 @@ export const blogPosts: BlogPost[] = [
         href: "/ssdi-hearing-evidence-letter",
         description:
           "Fill-in-the-blank INFORM letter template for the 5-day evidence rule (20 CFR § 404.935), with procedural explainer and deadline calendar. Instant PDF, $14.",
+      },
+      {
+        name: "LTD Denial Appeal Kit — ERISA 180-Day Response Pack",
+        href: "https://3563705146415.gumroad.com/l/qjjwv",
+        description:
+          "Group LTD claim denied? Organize the ERISA appeal: claim-file request walkthrough, 180-day deadline tracker, administrative-record evidence checklist, appeal-letter framework. $0 pre-order; educational templates, not legal advice — ERISA group plans only.",
       },
     ],
     faq: [

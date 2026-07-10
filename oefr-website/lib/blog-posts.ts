@@ -3692,6 +3692,127 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "no-surprises-act-dispute-surprise-medical-bill-2026",
+    title: "How to Dispute a Surprise Medical Bill Under the No Surprises Act (2026)",
+    description:
+      "Surprise or balance bill? Federal law gives you two levers: the No Surprises Act coverage rules and the PPDR process — the $400 GFE rule, the 120-day window, the $25 fee, and the exact documents reviewers want.",
+    keywords: [
+      "no surprises act dispute",
+      "dispute surprise medical bill",
+      "balance billing illegal",
+      "good faith estimate dispute $400",
+      "patient provider dispute resolution",
+      "PPDR filing how to",
+      "bill higher than good faith estimate",
+      "out of network doctor in network hospital bill",
+      "surprise ER bill dispute",
+      "no surprises act air ambulance",
+      "CMS no surprises help desk",
+      "medical bill dispute federal process",
+    ],
+    publishedDate: "2026-07-10",
+    readingTime: "9 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Most people who get a surprise medical bill either pay it or try to haggle with the billing department. Federal law gives you a third option almost nobody uses: a formal dispute process with an independent reviewer, hard deadlines, and rules that protect you from collections while it runs. Here's how to tell whether your bill is covered, and exactly how the process works.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A surprise bill after an ER visit. An out-of-network anesthesiologist at your in-network hospital. An air-ambulance ride you never chose. Since 2022, the federal <strong class="text-white">No Surprises Act</strong> (implemented at 45 CFR Part 149) has made most of these bills either illegal to send or formally disputable — but the process is buried in agency documentation, and providers are not required to walk you through it. This guide lays out the two levers patients actually have, in plain English. It is general information, not legal advice — your situation may differ, and the official CMS process is the authority.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 1: Is Your Bill Even Covered?</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Before fighting, check whether the No Surprises Act applies — because if it does, the provider may not be allowed to balance-bill you at all, and your leverage changes completely.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Generally protected:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5 mb-4">
+          <li><strong class="text-white">Emergency care</strong> — including the out-of-network ER physician who treated you at any hospital</li>
+          <li><strong class="text-white">Out-of-network providers at an in-network facility</strong> — the classic surprise: in-network hospital, out-of-network anesthesiologist, radiologist, or assistant surgeon</li>
+          <li><strong class="text-white">Air ambulance</strong> transport</li>
+        </ul>
+        <p class="text-slate-300 mb-2"><strong class="text-white">Generally NOT protected:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li><strong class="text-white">Ground ambulance</strong> — the biggest gap in the law</li>
+          <li>Care where you knowingly chose an out-of-network provider and <strong class="text-white">signed a valid notice-and-consent waiver</strong> in advance</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If your bill falls in the protected categories and you have insurance, you generally owe only your in-network cost-sharing — the provider billing you for the balance is the part the law prohibits. Start by calling the <strong class="text-white">CMS No Surprises Help Desk at 1-800-985-3059</strong>. It is free, staffed by the agency that runs the process, and they will tell you whether your situation qualifies and take complaints against providers who bill illegally.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 2 (Uninsured or Self-Pay): The $400 Good Faith Estimate Rule</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you are uninsured or chose not to use insurance, providers are required to give you a written <strong class="text-white">Good Faith Estimate (GFE)</strong> before scheduled care. Here is the lever: if your final bill comes in <strong class="text-white">$400 or more above that written estimate</strong>, federal law gives you a formal dispute path — you do not have to accept "estimates aren't guarantees" from the billing office.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 3: Filing a Patient-Provider Dispute Resolution (PPDR)</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The dispute is not an argument with the billing department — it is a filing with an independent, federally certified reviewer. The mechanics that matter:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2 list-decimal pl-5">
+          <li><strong class="text-white">The window is 120 calendar days</strong> from the date on the bill. Miss it and the process is closed — this deadline is the single most common way people lose.</li>
+          <li><strong class="text-white">The administrative fee is $25</strong>, and if you win, the provider effectively bears it (it comes off what you owe).</li>
+          <li><strong class="text-white">Collections protection:</strong> while the dispute is pending, the provider cannot move the disputed charge to collections or take other prohibited collection actions against it.</li>
+          <li><strong class="text-white">The reviewer compares your bill to the estimate</strong> and decides what you owe — the decision is binding on the provider.</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 4: Build the Evidence Package Before You File</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Disputes get bounced for missing documentation far more often than for being wrong on the merits. Gather these before filing:
+      </p>
+      <ul class="text-slate-300 space-y-2 list-disc pl-5 mb-6">
+        <li><strong class="text-white">The written Good Faith Estimate</strong> (or your request records, if the provider never gave one — that itself is a complaint to the Help Desk)</li>
+        <li><strong class="text-white">The final itemized bill</strong> — request it in writing if you only got a summary</li>
+        <li><strong class="text-white">Your EOB</strong> (Explanation of Benefits) if insurance was involved</li>
+        <li>Dates of service, the provider's name exactly as billed, and any written communication about pricing</li>
+      </ul>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you want the whole process packaged — the coverage decision tree, the GFE-variance dispute pathway with its deadline, the PPDR filing walkthrough, pre-written dispute letters citing 45 CFR Part 149, and the evidence-binder checklist — that is exactly what our <a href="https://gumroad.com/l/nsabillfight" class="text-cyan-400 hover:text-cyan-300 underline">No Surprises Act Bill-Fight Kit</a> organizes into one usable sequence.
+      </p>
+
+      <p class="text-slate-400 text-sm leading-relaxed mb-6">
+        This article is general information, not legal, medical, or financial advice. The No Surprises Act and PPDR process are administered by CMS; figures cited (the $400 threshold, 120-day window, and $25 fee) are from the official federal process. For advice on your specific bill, consult the CMS Help Desk, your state consumer protection office, or an attorney.
+      </p>
+    `,
+    cta: {
+      text: "Get the No Surprises Act Bill-Fight Kit",
+      href: "https://gumroad.com/l/nsabillfight",
+    },
+    relatedProducts: [
+      {
+        name: "No Surprises Act Bill-Fight Kit",
+        href: "https://gumroad.com/l/nsabillfight",
+        description: "Coverage decision tree, GFE $400-rule dispute pathway, PPDR filing walkthrough, citation-armed dispute letters, and evidence-binder checklist.",
+      },
+    ],
+    faq: [
+      {
+        q: "Is balance billing illegal now?",
+        a: "For the protected categories — emergency care, out-of-network providers at in-network facilities, and air ambulance — the No Surprises Act generally prohibits billing insured patients beyond their in-network cost-sharing, unless you signed a valid notice-and-consent waiver in advance. Ground ambulance is the major category the federal law does not cover, though some states have their own rules.",
+      },
+      {
+        q: "What if the bill is only $300 over my Good Faith Estimate?",
+        a: "The federal PPDR process requires the bill to be $400 or more above the written estimate. Below that threshold you can still negotiate directly, complain to the CMS Help Desk, or use state-level remedies — but the formal federal dispute path does not open.",
+      },
+      {
+        q: "Can the hospital send me to collections while my PPDR dispute is pending?",
+        a: "No — once a PPDR dispute is initiated, the provider is barred from moving the disputed amount to collections or taking prohibited collection actions against it while the review is pending. Keep your filing confirmation as proof.",
+      },
+      {
+        q: "I never received a Good Faith Estimate at all. Do I have a case?",
+        a: "Providers are required to give uninsured and self-pay patients a written GFE for scheduled services. If you never got one, report it to the CMS No Surprises Help Desk at 1-800-985-3059 — the missing estimate is itself a compliance failure, and the Help Desk can advise you on your dispute options for the bill.",
+      },
+      {
+        q: "Does the No Surprises Act apply if I have insurance through my employer?",
+        a: "Yes — the protections apply to most group health plans and individual-market coverage. The surprise-billing protections are about the provider's network status in the protected scenarios, not about how you got your insurance. Short-term plans and some excepted benefits are outside the rules, so check with your plan if unsure.",
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

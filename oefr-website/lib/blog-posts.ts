@@ -3832,6 +3832,10 @@ export const blogPosts: BlogPost[] = [
       "irs reasonable cause examples",
       "penalty abatement request letter",
       "irs penalty waiver how to",
+      "irs cp14 notice what to do",
+      "cp14 penalty abatement",
+      "irs cp501 notice",
+      "cp14 notice balance due",
     ],
     publishedDate: "2026-07-10",
     readingTime: "9 min read",
@@ -3841,6 +3845,11 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p class="text-lg text-slate-300 leading-relaxed mb-6">
         An IRS penalty notice is not final. The IRS abates (removes) penalties constantly — through two very different doors: <strong class="text-white">First-Time Abatement (FTA)</strong>, which is close to automatic when you qualify, and <strong class="text-white">reasonable cause</strong>, which is a documented argument that reviewers score against specific criteria. Most people pick the wrong door first and lose time or money. This guide is general information, not tax or legal advice — it explains the order that works and what each request needs.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Got a CP14 or CP501 Notice? Read This First</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If the letter in your hand says <strong class="text-white">CP14</strong>, it is the IRS's first balance-due notice — tax owed plus, in most cases, a <strong class="text-white">failure-to-pay penalty and interest already added</strong>. The IRS mails millions of CP14s in early summer, and if the first one goes unanswered, a <strong class="text-white">CP501</strong> follow-up arrives weeks later with the penalty still compounding monthly. Two things matter right away: the penalty portion of that balance is often <strong class="text-white">removable</strong> through the exact FTA and reasonable-cause paths below, and abatement does not pause collection — so address the tax itself (pay it or set up a payment plan) while you pursue removal of the penalties on top of it. Do not pay the penalty line assuming it's final; check your abatement eligibility first.
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 1: Always Check First-Time Abatement FIRST</h2>
@@ -3910,6 +3919,10 @@ export const blogPosts: BlogPost[] = [
       },
     ],
     faq: [
+      {
+        q: "I got a CP14 notice — can the penalty on it be removed?",
+        a: "Often, yes. A CP14 is the IRS's first balance-due notice, and the failure-to-pay penalty included in it is one of the penalty types First-Time Abatement covers. If your prior three years are clean, a phone request can remove it. If not, a documented reasonable-cause request is the path. Either way, handle the underlying tax (payment or payment plan) separately — abatement removes penalties, not the tax, and doesn't pause collection.",
+      },
       {
         q: "What penalties does First-Time Abatement cover?",
         a: "FTA applies to failure-to-file, failure-to-pay, and failure-to-deposit penalties. It does not cover accuracy-related penalties or estimated-tax penalties — those need other arguments. The qualifying test is a clean compliance history for the prior three tax years, with required returns filed and tax paid or arranged.",

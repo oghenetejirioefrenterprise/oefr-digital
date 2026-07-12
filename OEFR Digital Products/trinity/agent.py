@@ -744,6 +744,7 @@ async def _sdk_query_collect(
     prompt: str,
     max_turns: int,
     model: str | None = None,
+    stderr_sink: list[str] | None = None,
 ) -> tuple[str, dict | None]:
     """Run a single SDK query and collect (final_text, usage_dict)."""
     # Lazy import so the SDK isn't a hard dep for processes that only use
@@ -752,7 +753,17 @@ async def _sdk_query_collect(
         AssistantMessage, ClaudeAgentOptions, ResultMessage, TextBlock, query,
     )
 
+    # 2026-07-12: capture the claude CLI's stderr. ProcessError's own text is
+    # just "Check stderr output for details" — without this sink every
+    # message-reader death (Rule-13 class) is undiagnosable after the fact.
+    def _capture_stderr(line: str) -> None:
+        if stderr_sink is not None:
+            stderr_sink.append(line)
+            if len(stderr_sink) > 200:
+                del stderr_sink[:100]
+
     options = ClaudeAgentOptions(
+        stderr=_capture_stderr,
         permission_mode="bypassPermissions",
         max_turns=max_turns,
         cwd=str(WORKSPACE),
@@ -782,6 +793,12 @@ async def _sdk_query_collect(
             if getattr(message, "result", None):
                 final_result = message.result
             usage = getattr(message, "usage", None)
+            # The CLI reports fatal API errors (bad model, auth, rate limit)
+            # as an is_error result on STDOUT, then exits 1 — the SDK reader
+            # raises a generic "exit code 1" and the real diagnostic is lost.
+            # Stash it in the sink so the failure message shows the cause.
+            if getattr(message, "is_error", False) and stderr_sink is not None:
+                stderr_sink.append(f"CLI error result: {message.result}")
 
     output = final_result if final_result else "".join(text_chunks).strip()
     return output, usage
@@ -817,10 +834,18 @@ def run_agent_sdk(
     output, usage = None, None
     last_err: Exception | None = None
 
+    stderr_lines: list[str] = []
+
+    def _stderr_tail(n: int = 15) -> str:
+        tail = [l for l in stderr_lines[-n:] if l.strip()]
+        return ("\nCLI stderr tail:\n" + "\n".join(tail)) if tail else ""
+
     for attempt in range(1, max_attempts + 1):
+        stderr_lines.clear()
         try:
             output, usage = asyncio.run(
-                asyncio.wait_for(_sdk_query_collect(full_prompt, max_turns, model=model),
+                asyncio.wait_for(_sdk_query_collect(full_prompt, max_turns, model=model,
+                                                    stderr_sink=stderr_lines),
                                  timeout=CLAUDE_TIMEOUT)
             )
             if attempt > 1 and print_output:
@@ -841,18 +866,19 @@ def run_agent_sdk(
             last_err = e
             if print_output:
                 print(f"[Trinity SDK] attempt {attempt}/{max_attempts} failed "
-                      f"({type(e).__name__}): {e}", file=sys.stderr, flush=True)
+                      f"({type(e).__name__}): {e}{_stderr_tail()}",
+                      file=sys.stderr, flush=True)
             if attempt < max_attempts:
                 time.sleep(backoff * (2 ** (attempt - 1)))
                 continue
         except Exception as e:
-            msg = f"Error running Claude SDK ({type(e).__name__}): {e}"
+            msg = f"Error running Claude SDK ({type(e).__name__}): {e}{_stderr_tail()}"
             if print_output:
                 print(msg, file=sys.stderr, flush=True)
             return msg
     else:
         msg = (f"Error running Claude SDK after {max_attempts} attempts "
-               f"({type(last_err).__name__}): {last_err}")
+               f"({type(last_err).__name__}): {last_err}{_stderr_tail()}")
         if print_output:
             print(msg, file=sys.stderr, flush=True)
         return msg

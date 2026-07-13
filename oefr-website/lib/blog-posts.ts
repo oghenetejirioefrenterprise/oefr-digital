@@ -3821,7 +3821,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "IRS Penalty Abatement: the First-Time Abate Shortcut Almost Nobody Checks — and What a Reasonable-Cause Letter Needs to Actually Work (2026)",
     description:
-      "Before writing an IRS hardship letter, check First-Time Abatement — no story needed. Then build a reasonable-cause request the way reviewers actually score it.",
+      "Before writing an IRS hardship letter, check First-Time Abatement — no story needed. Covers CP14 through CP504 Notice of Intent to Levy, Form 843, and a reasonable-cause request reviewers actually score.",
     keywords: [
       "irs penalty abatement",
       "first time penalty abatement",
@@ -3842,6 +3842,11 @@ export const blogPosts: BlogPost[] = [
       "irs cp503 notice",
       "cp503 notice what to do",
       "cp14 cp501 cp503 difference",
+      "irs cp504 notice",
+      "cp504 notice of intent to levy",
+      "notice of intent to levy what to do",
+      "irs levy notice penalty abatement",
+      "cp504 before levy response",
     ],
     publishedDate: "2026-07-10",
     readingTime: "9 min read",
@@ -3860,8 +3865,24 @@ export const blogPosts: BlogPost[] = [
       <p class="text-slate-300 leading-relaxed mb-6">
         A <strong class="text-white">CP503</strong> means you're now two reminders deep: it's the second follow-up in the balance-due sequence (CP14 → CP501 → CP503), and the next step after it is typically a <strong class="text-white">CP504 — Notice of Intent to Levy</strong>. A CP503 is urgent, but it does not change your abatement rights at all: the failure-to-pay penalty inside that balance is exactly as removable at the CP503 stage as it was at CP14. The right response is the same two-track move — arrange the tax (payment or installment agreement) to stop the sequence, and pursue FTA or reasonable-cause abatement on the penalty portion using the steps below. What you should NOT do is wait for the next letter: after CP503, collection tools escalate from reminders to enforcement.
       </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Got a CP504 Notice of Intent to Levy? Act Before Collection Escalates</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
-        Holding a different kind of IRS letter? A <strong class="text-white">CP2000</strong> is not a balance-due reminder — it's a proposed adjustment with its own 30-day clock and response rules. See our guide to <a href="/blog/irs-cp2000-notice-response-2026" class="text-amber-400 hover:text-amber-300 underline">responding to an IRS CP2000 notice in the 30-day window</a>.
+        A <strong class="text-white">CP504 — Notice of Intent to Levy</strong> is not another soft reminder. It is the IRS telling you that unpaid balance-due collection is moving from paper follow-ups toward levy tools (wages, bank accounts, and other sources in scope of the notice). The sequence is usually CP14 → CP501 → CP503 → <strong class="text-white">CP504</strong>. Receiving a CP504 is high-urgency, but it is <strong class="text-white">not</strong> the moment abatement rights disappear: failure-to-pay (and related FTA-eligible) penalties on that balance are still requestable under the same First-Time Abatement and reasonable-cause rules below.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">CP504 two-track response (same day if possible):</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li><strong class="text-white">Tax track:</strong> pay what you can, or set up / confirm an installment agreement so the levy path can be stopped or paused through compliance — do not treat the notice as optional mail.</li>
+          <li><strong class="text-white">Penalty track:</strong> check FTA first (phone is often enough if the prior three years are clean). If FTA does not fit, file a documented reasonable-cause request (and Form 843 when refund of a paid penalty is the posture).</li>
+          <li><strong class="text-white">Do not wait for the next letter:</strong> after a Notice of Intent to Levy, the cost of delay is enforcement risk, not just compounding math. Abatement does not automatically stop collection — arrange the tax while you pursue the penalty.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If your envelope says CP504 and you also see failure-to-pay or failure-to-file lines, use the decision order in this guide immediately: FTA eligibility → reasonable-cause narrative with dates and documents → Form 843 or written response → appeal if denied. The levy label is scary on purpose; the abatement mechanics are still the same ones that work at CP14.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Holding a different kind of IRS letter? A <strong class="text-white">CP2000</strong> is not a balance-due reminder or a levy notice — it's a proposed adjustment with its own 30-day clock and response rules. See our guide to <a href="/blog/irs-cp2000-notice-response-2026" class="text-amber-400 hover:text-amber-300 underline">responding to an IRS CP2000 notice in the 30-day window</a>.
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 1: Always Check First-Time Abatement FIRST</h2>
@@ -3934,6 +3955,14 @@ export const blogPosts: BlogPost[] = [
       {
         q: "I got a CP14 notice — can the penalty on it be removed?",
         a: "Often, yes. A CP14 is the IRS's first balance-due notice, and the failure-to-pay penalty included in it is one of the penalty types First-Time Abatement covers. If your prior three years are clean, a phone request can remove it. If not, a documented reasonable-cause request is the path. Either way, handle the underlying tax (payment or payment plan) separately — abatement removes penalties, not the tax, and doesn't pause collection.",
+      },
+      {
+        q: "I received a CP504 Notice of Intent to Levy — can I still get penalties abated?",
+        a: "Yes — a CP504 raises collection urgency, but it does not cancel First-Time Abatement or reasonable-cause rights on the penalty portion of the balance. Treat it as two tracks the same day: arrange the tax (payment or installment agreement) to address the levy path, and request FTA by phone if you qualify or file a documented reasonable-cause / Form 843 request for the penalties. Abatement removes penalties; it does not by itself stop levy activity on unpaid tax.",
+      },
+      {
+        q: "What is the difference between CP14, CP501, CP503, and CP504?",
+        a: "They are successive balance-due stages. CP14 is the first notice that tax is owed (often with failure-to-pay penalty and interest). CP501 and CP503 are follow-up reminders if the balance stays unpaid. CP504 is the Notice of Intent to Levy — the step where collection tools escalate beyond reminders. Penalty abatement eligibility is evaluated under FTA and reasonable-cause rules at each of these stages; the notice number mainly signals how urgent the tax track is.",
       },
       {
         q: "What penalties does First-Time Abatement cover?",

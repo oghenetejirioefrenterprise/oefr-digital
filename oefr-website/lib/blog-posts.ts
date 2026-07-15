@@ -4506,6 +4506,202 @@ export const blogPosts: BlogPost[] = [
     ],
   },
 
+  {
+    slug: "erisa-ltd-denial-claim-file-180-day-appeal-2026",
+    title:
+      "LTD Claim Denied: Request the Claim File and Work the 180-Day ERISA Appeal Window (2026)",
+    description:
+      "Group long-term disability denials under ERISA give you a free claim-file right and at least 180 days to appeal. Here's the administrative-record assembly order — not a contingency lawyer pitch and not an SSDI kit.",
+    keywords: [
+      "LTD claim denied what to do",
+      "ERISA long term disability appeal",
+      "request LTD claim file",
+      "29 CFR 2560.503-1 claim file",
+      "180 day LTD appeal deadline",
+      "ERISA administrative record evidence",
+      "group LTD denial appeal checklist",
+      "long term disability insurer claim file",
+      "ERISA LTD vs individual disability policy",
+      "disability denial appeal letter framework",
+      "LTD appeal insufficient objective evidence",
+      "when to hire ERISA disability attorney",
+      "SSDI offset LTD claim interaction",
+      "long term disability appeal deadline tracker",
+    ],
+    publishedDate: "2026-07-15",
+    readingTime: "11 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "When a group LTD claim is denied, two clocks matter more than online rage: your right to the insurer's full claim file, and the appeal window on the denial letter (at least 180 days under federal claims-procedure rules). This is the organize layer — ERISA group plans only — before you fire an angry one-page appeal or sign a contingency retainer you do not yet need.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        A long-term disability denial does not feel like paperwork. It feels like the paycheck stopped and a stranger in a medical review unit decided your life. The free internet answer is usually either "get a lawyer tomorrow" or a sample appeal letter with no system behind it. Both miss the procedural map that actually decides most group LTD cases: <strong class="text-white">what is in the administrative record when the appeal clock runs out</strong>.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Not legal advice.</strong> This guide is educational organization material for people whose <strong class="text-white">employer-sponsored group LTD plan</strong> is governed by ERISA. Private individual disability policies, government plans, and church plans often follow different rules. Strategy, advocacy, lump-sum buyout negotiation, and litigation belong with a licensed ERISA disability attorney. We cover the document-assembly and deadline layer only — no outcome promises.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">First Filter: Is This an ERISA Group Plan?</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Before you copy any federal-claims advice, answer one question: is this <strong class="text-white">group LTD through an employer</strong> (or union/association plan that is ERISA-covered), or an individual policy you bought yourself? The kit and this article target the first category. ERISA claims-procedure rules — including the free claim-file right and appeal timing floors in <strong class="text-white">29 CFR 2560.503-1</strong> — do not automatically apply the same way to every disability contract.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Quick decoder:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li><strong class="text-white">Likely ERISA group LTD:</strong> premium payroll-deducted or employer-paid; summary plan description (SPD) language; insurer name on an employer plan booklet</li>
+          <li><strong class="text-white">Often not this kit's scope:</strong> individual disability policy sold direct to you; many government-employee plans; certain church plans</li>
+          <li>If you are unsure, pull the SPD / certificate and the denial letter before you write anything</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Move 1 — Request the Complete Claim File in Writing</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        You cannot effectively appeal a denial you have not fully read. Under federal claims-procedure rules for ERISA plans, you generally have the right to request, free of charge, the documents, records, and other information relevant to your claim — the material the insurer relied on: treating notes it reviewed, paper-review physician reports, surveillance summaries, internal guidelines, and correspondence. Send the request <strong class="text-white">in writing</strong>, keep proof of delivery, and calendar a follow-up.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Claim-file request minimums:</strong></p>
+        <ol class="text-slate-300 space-y-2 list-decimal pl-5">
+          <li>Your full name, claim number, policy/group number, and date of denial</li>
+          <li>Explicit request for the <strong class="text-white">complete claim file / administrative record</strong> and all documents relevant to the claim determination</li>
+          <li>Request for any internal rules, guidelines, or protocols the plan relied on</li>
+          <li>Mail or portal submission with a dated copy saved to your binder</li>
+          <li>A one-line inventory log: date sent, method, tracking, date received, page count</li>
+        </ol>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Do not wait until week 20 of the appeal window to ask for the file. The file is what you answer.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Move 2 — Read the Denial Letter Like a Deadline Instrument</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Federal rules set a floor: for many adverse benefit determinations on disability claims, you get <strong class="text-white">at least 180 days</strong> to appeal. Your <strong class="text-white">denial letter's stated deadline and mailing date control</strong> the calendar for your plan — never treat a blog's "180 days" as a substitute for the letter in your hand. Build a deadline tracker the day the letter arrives: denial date, appeal-due date, claim-file request date, evidence milestones at 30/60/90 days, and a hard stop before the last two weeks for assembly only.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Extract from the denial letter on day one:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li>Stated reasons for denial (every bullet — not just the headline)</li>
+          <li>Appeal deadline language and any address/portal for appeals</li>
+          <li>Definition stage: own-occupation vs any-occupation if the plan uses a transition</li>
+          <li>References to surveillance, social media, or IME / paper review</li>
+          <li>Any SSDI filing demand or offset language (common on group LTD)</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Move 3 — Treat the Appeal Stage as the Case File</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        In ERISA disability litigation, courts often review only what was in front of the plan when it decided the appeal — the <strong class="text-white">administrative record</strong>. Evidence you "meant to get later" frequently cannot be added in court. That is why a fast angry letter in week one can be worse than a structured appeal later: you may have closed the record without the treating-physician update, functional capacity documentation, or error correction the denial actually invited.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Your job in the window is not to invent medical theory. It is to <strong class="text-white">stack the record</strong> against each stated denial reason: updated treating statements, test results the paper-review doctor never saw, a contemporaneous symptom/function log, work-duty descriptions from the real job, and corrections to factual mistakes in the denial.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Administrative-record stack (examples — match to YOUR denial reasons):</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li>Complete treating-provider records for the relevant period, not just a one-line work note</li>
+          <li>Narrative from treating clinician addressing the denial's "insufficient objective evidence" language if that appears</li>
+          <li>Job description / essential functions from the employer (not a generic DOT guess)</li>
+          <li>Medication side-effect and appointment calendar that explains functional limits</li>
+          <li>Written response to each surveillance clip or social-media claim the insurer cited</li>
+          <li>SSDI filing status and decision docs if the plan demanded filing (offset interaction is real; SSDI is a parallel track, not a substitute LTD appeal)</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Move 4 — Structure the Appeal Around the Denial's Stated Reasons</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        An appeal is not a diary and not a lawsuit brief. It is a mapped response: for each reason the insurer gave, point to the pages in the claim file and the new evidence you are adding. Keep a section index. Number exhibits. Cite the claim-file page when you correct a misquote of your medical history.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Practical appeal skeleton:</strong></p>
+        <ol class="text-slate-300 space-y-2 list-decimal pl-5">
+          <li>Identity + claim numbers + denial date + statement that this is a timely appeal</li>
+          <li>Request for full and fair review under the plan and applicable claims-procedure rules</li>
+          <li>Section-by-section response to each denial reason with exhibit cites</li>
+          <li>List of new evidence submitted with the appeal (and what it rebuts)</li>
+          <li>Request for the decision and any additional relevant documents</li>
+          <li>Signature, date, and proof of submission method</li>
+        </ol>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This structure does not guarantee approval. It prevents the most common DIY failure mode: a narrative that never meets the denial on its own terms.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">SSDI Is Adjacent — Not the Same Product</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Group LTD insurers often require or pressure claimants to file for Social Security Disability Insurance. SSDI decisions, offsets, and overpayments interact with LTD, but <strong class="text-white">an SSDI kit does not prosecute your ERISA administrative appeal</strong>, and winning SSDI does not automatically reverse an LTD denial. Keep the tracks labeled: LTD claim file + ERISA appeal clock on one binder spine; SSDI filings on another, with a one-page cross-reference for offsets.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When to Stop DIY and Hire an ERISA Attorney</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Organization kits are not advocacy. Escalate to contingency ERISA counsel when the facts leave the pure checklist layer:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li>Final denial after appeal / you are staring at litigation deadlines</li>
+          <li>Lump-sum buyout offer that needs present-value and risk analysis</li>
+          <li>Any-occupation transition cutoff with vocational evidence fights</li>
+          <li>Complex surveillance, IME wars, or pre-existing-condition disputes</li>
+          <li>You cannot complete the claim-file review and evidence stack before the letter's deadline</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What to Do This Week</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Confirm ERISA group-plan scope. Send the written claim-file request. Build the 180-day (letter-controlled) deadline tracker. Extract every denial reason into a response matrix. Start treating-provider updates aimed at those reasons — not a generic "please support my claim" note. Do not burn the administrative record on a week-one vent letter.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you want that sequence packaged — "Is my plan ERISA?" decoder, claim-file request letter template, 180-day deadline tracker, denial-reason decoder, administrative-record evidence checklist, appeal-letter evidence framework, SSDI cross-track pointer, and attorney-escalation checklist — that is the <a href="https://gumroad.com/l/qjjwv" class="text-cyan-400 hover:text-cyan-300 underline">LTD Denial Appeal Kit — ERISA 180-Day Response Pack</a> ($0 pre-order today; releases 2026-07-24; educational templates only — not legal advice, ERISA group plans only).
+      </p>
+
+      <p class="text-slate-400 text-sm leading-relaxed mb-6">
+        This article is general educational information about ERISA claims-procedure concepts and document-organization workflow for group long-term disability denials. It is not legal advice, not a representation agreement, and not a promise of appeal success. Plan terms and federal regulations control; verify 29 CFR 2560.503-1, your SPD, and your denial letter. Consult a licensed ERISA disability attorney for strategy, advocacy, buyouts, or litigation.
+      </p>
+    `,
+    cta: {
+      text: "Reserve the LTD Denial Appeal Kit — $0 pre-order",
+      href: "https://gumroad.com/l/qjjwv",
+    },
+    relatedProducts: [
+      {
+        name: "LTD Denial Appeal Kit — ERISA 180-Day Response Pack",
+        href: "https://gumroad.com/l/qjjwv",
+        description:
+          "Claim-file request template, 180-day deadline tracker, administrative-record checklist, appeal evidence framework, SSDI cross-track pointer — educational only, ERISA group plans, not legal advice.",
+      },
+      {
+        name: "SSDI 5-Day Hearing Evidence Letter Kit",
+        href: "https://www.oefrenterprise.com/ssdi-hearing-evidence-letter",
+        description:
+          "Adjacent federal-disability track for hearing evidence organization — complementary to LTD, not a substitute ERISA appeal kit.",
+      },
+    ],
+    faq: [
+      {
+        q: "How long do I have to appeal a group LTD denial under ERISA?",
+        a: "Federal claims-procedure rules generally provide at least 180 days to appeal many disability adverse benefit determinations — but your denial letter's stated deadline controls. Never rely on a blog number alone; calendar from the letter in hand.",
+      },
+      {
+        q: "What is the LTD claim file and why request it?",
+        a: "The claim file (administrative record materials the insurer used) is what you must answer. Under 29 CFR 2560.503-1-style claims-procedure rights for ERISA plans, you can typically request relevant documents free of charge. Appealing without the file is arguing in the dark.",
+      },
+      {
+        q: "Does this apply to individual disability insurance I bought myself?",
+        a: "Usually not the same way. This article and kit target employer-sponsored group LTD plans governed by ERISA. Individual policies and many government/church plans follow different rules — confirm your contract type first.",
+      },
+      {
+        q: "If I win SSDI, does my LTD denial reverse automatically?",
+        a: "No. SSDI and LTD are related but separate. Insurers may demand SSDI filing and apply offsets, but an SSDI award is not a substitute for building the ERISA administrative record on the LTD claim.",
+      },
+      {
+        q: "When should I hire an ERISA disability attorney?",
+        a: "Common trigger points: final denial after appeal, lump-sum buyout offers, any-occupation cutoffs with vocational fights, complex surveillance/IME disputes, or when you cannot complete a proper record before the deadline. Contingency representation is common in this niche — still get terms in writing.",
+      },
+      {
+        q: "Is this legal advice?",
+        a: "No. It is general educational information about document organization and federal claims-procedure concepts. It does not create an attorney-client relationship and does not promise any appeal outcome.",
+      },
+    ],
+  },
+
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

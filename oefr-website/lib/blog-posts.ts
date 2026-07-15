@@ -4315,6 +4315,197 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "crypto-1099-da-zero-cost-basis-form-8949-2026",
+    title:
+      "Form 1099-DA Shows $0 Cost Basis: How to Reconcile Crypto for Form 8949 (2026)",
+    description:
+      "US brokers are issuing Form 1099-DA for digital assets — often with $0 cost basis for pre-2025 acquisitions. Here's the reconciliation order for Form 8949 and Schedule D without treating the broker PDF as gospel.",
+    keywords: [
+      "Form 1099-DA $0 cost basis",
+      "crypto 1099-DA reconciliation",
+      "Form 8949 crypto cost basis",
+      "Coinbase 1099-DA zero basis",
+      "digital asset broker reporting 2025",
+      "Schedule D crypto capital gains",
+      "Rev Proc 2024-28 unused basis",
+      "Notice 2024-57 transition relief",
+      "crypto tax Form 8949 walkthrough",
+      "1099-DA missing cost basis",
+      "how to fix $0 basis on 1099-DA",
+      "crypto broker transfer double count",
+      "Form 8949 box crypto short term long term",
+      "crypto tax extension October 2026",
+    ],
+    publishedDate: "2026-07-15",
+    readingTime: "11 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "If your 1099-DA shows $0 cost basis for crypto you bought years ago, filing the PDF as-is can invent a huge taxable gain. This is the document-assembly and reconciliation order — Form 8949, Schedule D, transfers vs sales — not a substitute for a CPA on large gaps.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        For tax year 2025, US digital-asset brokers began issuing <strong class="text-white">Form 1099-DA</strong> under the expanded broker-reporting rules. The form looks official. The number that panics people is usually in the cost-basis field: <strong class="text-white">$0</strong> for assets acquired before the reporting regime, transferred between wallets, or moved across exchanges. If you copy that $0 into <strong class="text-white">Form 8949</strong> without reconstructing what you actually paid, you can over-report capital gain by thousands.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Not tax advice.</strong> This is a documentation and reconciliation map for DIY filers and extension filers who need an assembly order before they talk to software or a CPA. Rules, boxes, and transition relief change — verify current IRS Form 1099-DA instructions, Form 8949 instructions, Publication 544, and (where relevant) Rev. Proc. 2024-28 and Notice 2024-57 against the year you are filing. Large basis gaps, DeFi complexity, or IRS notices belong with a licensed tax professional.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Why Brokers Report $0 Cost Basis</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Brokers often only know what happened <em>inside their platform</em>. If you bought BTC on Exchange A in 2021, moved it to a hardware wallet, then sold from Exchange B in 2025, Exchange B may correctly report the sale proceeds and still default basis to <strong class="text-white">$0</strong> because it never saw your acquisition cost. That is a reporting default under the digital-asset broker framework — not proof that your basis is zero, and not a free pass to invent basis without records.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Common $0-basis triggers:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li>Assets acquired <strong class="text-white">before 2025</strong> when full cost-basis reporting did not apply the way it does now</li>
+          <li><strong class="text-white">Wallet-to-wallet or exchange-to-exchange transfers</strong> (not taxable sales) that break the broker's acquisition trail</li>
+          <li>Assets received via transfer-in where the prior platform never sent basis</li>
+          <li>Incomplete lot history after account migrations or platform exits</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 1 — Inventory Every 1099-DA and Every Sale Lot</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Do not open tax software first. Open a folder. Pull every broker 1099-DA PDF, every annual gain/loss CSV, and every self-custody export for the tax year. Build a <strong class="text-white">lot inventory</strong>: asset, quantity, acquisition date (if known), acquisition cost (if known), disposition date, proceeds, and which 1099-DA line (if any) reports that disposition.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Minimum assembly package:</strong></p>
+        <ol class="text-slate-300 space-y-2 list-decimal pl-5">
+          <li>All Form 1099-DA PDFs for the year (Coinbase, Kraken, Gemini, Binance.US, brokers, etc.)</li>
+          <li>Exchange trade history CSV for every platform that held or sold assets</li>
+          <li>Wallet export or address history for self-custody moves</li>
+          <li>Prior-year worksheets if you already tracked lots (do not start from zero if you have them)</li>
+          <li>A one-page list of transfers that were <em>not</em> sales (so you do not double-count)</li>
+        </ol>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 2 — Separate Transfers from Taxable Dispositions</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The single most expensive DIY mistake is treating a <strong class="text-white">transfer</strong> like a sale — or ignoring a sale because the funds "just moved." Transfers between your own wallets or exchanges are generally not taxable events by themselves; sales, trades, and many other dispositions are. Flag every line that looks like a transfer and keep it out of your gain/loss totals until you have confirmed it is not a disposition that needs reporting.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Cross-exchange noise is where people double-count proceeds or lose basis. Your reconciliation sheet should have an explicit column: <strong class="text-white">sale / transfer / income event / unknown</strong>. Unknowns get researched before they hit Form 8949.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 3 — Reconstruct Basis When the Broker Shows $0</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        When Box-level basis is missing or $0 and you have records of what you paid, rebuild <strong class="text-white">adjusted basis</strong> from those records: original purchase invoices, exchange buy history, bank/card statements that funded buys, and prior tax-year lot trackers. Apply a consistent lot method (for example FIFO or specific identification where your facts and the current rules allow) and document which method you used.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">What "good enough" basis evidence looks like:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li>Exchange export showing buy date, quantity, and cost in USD (or a clear USD conversion record)</li>
+          <li>Bank statement + exchange deposit timestamp that matches the buy</li>
+          <li>Prior-year Form 8949 or worksheet that already established a lot</li>
+          <li>A written method note (FIFO vs specific ID) applied consistently</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you truly have <em>no</em> records for an old lot, that is a professional-judgment problem — not something a blog post should invent for you. Some filers use reasonable-cause documentation when reconstructing imperfect histories; whether that fits your facts is a CPA question, not a template guarantee.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 4 — Map Lots to Form 8949 (Then Schedule D)</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Form 8949 is where each capital-asset disposition is listed (description, dates, proceeds, basis, gain/loss, and codes when basis was not fully reported to the IRS). Totals then flow to <strong class="text-white">Schedule D</strong> and into Form 1040. Crypto does not get a free pass because it is "digital" — if it is a capital asset disposition, it belongs in that pipeline.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Practical 8949 discipline:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li>Match short-term vs long-term holding periods from <em>your</em> acquisition dates, not only the broker PDF</li>
+          <li>Align proceeds to the 1099-DA sale lines so you are not inventing a second set of sales</li>
+          <li>Where basis was not reported correctly to the IRS, use the form's adjustment/code pathway per current instructions — do not silently change a number with no trail</li>
+          <li>Keep a worksheet that proves every 8949 line back to a lot and a source document</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 5 — Events 1099-DA May Not Fully Cover</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Broker forms are not a complete picture of a self-custody life. DeFi swaps, staking rewards, airdrops, hard forks, and pure wallet-to-wallet moves often need separate tracking. If your only system is "whatever Coinbase mailed me," you will miss non-broker events — or misclassify them when they later hit a centralized exchange.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Build a short "off-broker" list for the year. Anything material on that list is either on your return with a paper trail or flagged for a professional. Do not assume silence equals non-taxable.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Extension Filers and the CP2000 Shadow</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you are on extension, the calendar pressure is real — but rushing a $0-basis paste job can create a worse problem later. The IRS receives third-party documents. When your return and the broker file do not match, Automated Underreporter systems can generate a <strong class="text-white">CP2000</strong> proposed change months later. The cleanest defense is a reconciliation worksheet you can still explain: proceeds matched, basis reconstructed from records, transfers isolated, method documented.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Transition relief and safe-harbor procedures (including materials discussed under Notice 2024-57 and Rev. Proc. 2024-28 for the first-year reporting environment) are fact-specific. Read the primary IRS text for the year you are filing; do not rely on a secondary summary for penalty-relief eligibility.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When to Stop DIY and Hire a CPA</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Spreadsheets organize. They do not practice tax law. Escalate when:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li>Reconstructed basis still leaves a large unexplained gap vs proceeds</li>
+          <li>Heavy DeFi, NFTs, or multi-chain activity without clean exports</li>
+          <li>You already filed with $0 basis and need amendment strategy</li>
+          <li>A CP2000 or other IRS notice already arrived</li>
+          <li>Entity-level, multi-state, or wash-sale-adjacent complexity your software cannot express</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What to Do This Week</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Download every 1099-DA. Export every exchange CSV. Build a transfer log. Reconstruct basis only where you have evidence. Draft Form 8949 lines on a worksheet before software. If the gap is small and documented, file with the paper trail. If the gap is large or the history is broken, book a CPA with the folder already assembled — that is how you stop paying someone to hunt PDFs.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you want that whole sequence packaged — 1099-DA box-by-box decoder, cost-basis-gap reconstruction worksheet, cross-exchange transfer flagging, Form 8949 box walkthrough, Schedule D overlay, missing-basis reasonable-cause letter template, Notice 2024-57 / Rev. Proc. 2024-28 decoder pointers, DeFi/wallet supplement, 50-state pointer, and CP2000 pre-response binder structure — that is the <a href="https://gumroad.com/l/djhfxt" class="text-cyan-400 hover:text-cyan-300 underline">Crypto 1099-DA Reconciliation Kit</a> ($19): educational worksheets and templates only — not tax advice and not a CPA substitute.
+      </p>
+
+      <p class="text-slate-400 text-sm leading-relaxed mb-6">
+        This article is general educational information about digital-asset broker reporting concepts and capital-gain documentation workflow. It is not tax advice, not legal advice, and not a filing service. Tax law and IRS forms change; verify current instructions and publications for your tax year. Consult a licensed CPA or enrolled agent for basis reconstruction judgment, penalty relief, notices, or complex crypto activity.
+      </p>
+    `,
+    cta: {
+      text: "Get the Crypto 1099-DA Reconciliation Kit — $19",
+      href: "https://gumroad.com/l/djhfxt",
+    },
+    relatedProducts: [
+      {
+        name: "Crypto 1099-DA Reconciliation Kit",
+        href: "https://gumroad.com/l/djhfxt",
+        description:
+          "1099-DA decoder, cost-basis-gap worksheet, Form 8949 walkthrough, Schedule D overlay, transfer flagging, and CP2000 pre-response structure — educational templates, not tax advice.",
+      },
+      {
+        name: "IRS CP2000 Notice Response Organizer",
+        href: "https://gumroad.com/l/cp2000kit",
+        description:
+          "If a CP2000 already arrived for underreported income, organize the agree / partial-agree / dispute packet and documentation checklist.",
+      },
+    ],
+    faq: [
+      {
+        q: "Why does my Form 1099-DA show $0 cost basis for crypto?",
+        a: "Brokers often default basis to $0 when they lack a complete acquisition trail — common for pre-2025 purchases, transfers between wallets/exchanges, or assets transferred in without basis. $0 on the form is a reporting default, not automatic proof that your true basis is zero. Reconstruct from your records when you have them.",
+      },
+      {
+        q: "If I file the 1099-DA as-is with $0 basis, what happens?",
+        a: "You may over-report capital gain (and tax) for lots where you actually paid something. Later, mismatches between broker files and your return can also contribute to Automated Underreporter notices such as a CP2000. Reconcile before you file when records exist.",
+      },
+      {
+        q: "Is a wallet-to-wallet transfer a taxable sale?",
+        a: "Moving crypto between wallets or exchanges you control is generally not itself a sale — but the next disposition might be, and broken transfer trails are exactly why brokers report $0 basis. Track transfers separately so you neither invent sales nor lose lot history.",
+      },
+      {
+        q: "Where do crypto capital gains get reported?",
+        a: "Typically on Form 8949 (lot-level dispositions) with totals carried to Schedule D and Form 1040. Follow the current-year IRS instructions for boxes and codes when basis was not fully reported to the IRS.",
+      },
+      {
+        q: "Does this kit replace a CPA?",
+        a: "No. A kit organizes worksheets and checklists. It does not prepare your return, practice tax law, or guarantee penalty relief. Hire a licensed tax professional for large basis gaps, DeFi complexity, amendments, or IRS notices.",
+      },
+      {
+        q: "Is this tax advice?",
+        a: "No. It is general educational information about documentation workflow for Form 1099-DA / Form 8949 style reconciliation. Verify primary IRS sources for your tax year.",
+      },
+    ],
+  },
+
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

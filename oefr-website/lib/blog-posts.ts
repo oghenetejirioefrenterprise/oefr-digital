@@ -4134,6 +4134,187 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "medicaid-5-year-lookback-nursing-home-application-2026",
+    title:
+      "Medicaid 5-Year Lookback for Nursing Homes: What Caseworkers Flag and How Families Organize the File (2026)",
+    description:
+      "When a parent needs long-term care, Medicaid's 60-month lookback, spend-down rules, and spousal-protection framework decide the file. Here's the federal document-assembly order — not another generic caregiver binder.",
+    keywords: [
+      "medicaid 5 year lookback",
+      "medicaid nursing home application checklist",
+      "60 month lookback medicaid",
+      "medicaid spend down allowable expenses",
+      "CSRA spousal protection medicaid",
+      "community spouse resource allowance",
+      "long term care medicaid documents",
+      "nursing home medicaid application documents",
+      "medicaid lookback transfers gifts",
+      "MMMNA community spouse income",
+      "medicaid fair hearing denial",
+      "elder law when to hire medicaid",
+      "medicaid asset lookback checklist",
+      "how to organize medicaid nursing home application",
+    ],
+    publishedDate: "2026-07-15",
+    readingTime: "10 min read",
+    author: "OEFR Digital",
+    excerpt:
+      "Families lose months of coverage not because the rules are secret, but because the application stalls on missing five-year statements, undocumented transfers, and confusion about what spend-down actually allows. This is the federal lookback document-assembly order — plus when to stop DIY and hire elder-law counsel.",
+    content: `
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        The week a parent needs a nursing home, three problems hit at once: the facility wants a payment path, the family cannot reconstruct five years of finances from memory, and someone on the internet is already saying "just gift the house to the kids." That last suggestion is how people create a <strong class="text-white">transfer penalty</strong> they did not understand. This guide is the <strong class="text-white">organize-and-understand layer</strong> — what Medicaid's federal long-term-care lookback actually flags, what spend-down generally allows, how the at-home spouse is protected under federal spousal rules, and which documents caseworkers stall applications over.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Not legal advice.</strong> Medicaid is <strong class="text-white">state-administered</strong> under a federal framework (including the 60-month lookback in 42 U.S.C. §1396p). Your state's Medicaid agency sets figures, forms, and procedures. Use this as a documentation checklist and conversation map — not a 50-state eligibility opinion. Strategy moves involving gifting, trusts, annuities, promissory notes, or deed changes belong with a licensed elder-law attorney in your state.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What the 5-Year (60-Month) Lookback Actually Flags</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For nursing-facility and many other long-term-care Medicaid applications, agencies review transfers of assets during a lookback window that is generally <strong class="text-white">60 months before the application date</strong> (federal DRA framework). The issue is not "spending money." The issue is transfers <strong class="text-white">for less than fair market value</strong> — gifts to children, adding a relative to a deed for $1, "selling" a car to a family member below market, or large unexplained cash movements that look like uncompensated transfers.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">What caseworkers commonly question:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li><strong class="text-white">Gifts and "helping the kids"</strong> without full fair-market consideration</li>
+          <li><strong class="text-white">Deed / title changes</strong> that transfer equity without market sale</li>
+          <li><strong class="text-white">Large cash withdrawals</strong> with no paper trail for where the money went</li>
+          <li><strong class="text-white">Sales to relatives</strong> priced far below comparable market value</li>
+          <li><strong class="text-white">Transfers into accounts or names</strong> that no longer look like the applicant's assets</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Ordinary spending on the applicant's own needs — medical care, food, utilities, legitimate debts, prepaid funeral arrangements where your state allows them — is a different category from gifts. Keep receipts. The file that wins is the file that can show <em>where the money went</em>, not the file that hopes nobody asks.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Start Here: Assemble 60 Months of Statements</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Applications stall on missing statements more than on clever legal theory. Before you argue eligibility math, build a <strong class="text-white">statement-assembly tracker</strong> by institution and month. Banks, brokerages, retirement accounts with distributions, life-insurance cash values, and closed accounts that existed in the lookback window all matter. Request missing PDFs now — institutions can take weeks, and the facility bill does not wait.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Minimum lookback assembly package:</strong></p>
+        <ol class="text-slate-300 space-y-2 list-decimal pl-5">
+          <li>List every bank, credit union, brokerage, and investment account open at any time in the last 60 months</li>
+          <li>Pull monthly (or quarterly, if that is all the institution issues) statements for each</li>
+          <li>Flag any transfer, gift, wire, cashier's check, or cash withdrawal above your family's "explain this" threshold</li>
+          <li>Match each flagged item to a receipt, invoice, or written explanation</li>
+          <li>Inventory real property, vehicles, and life-insurance cash value with ownership documents</li>
+          <li>Separate the applicant's assets from the community (at-home) spouse's assets for later CSRA work</li>
+        </ol>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Spend-Down Is Not "Burn the Money"</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Families hear "spend down" and panic-spend on relatives or luxury items. That can create lookback problems. In broad federal terms, resources generally must be reduced to eligibility limits through <strong class="text-white">allowable uses for the applicant's benefit</strong> or other recognized paths under your state's rules — not uncompensated gifts. Common categories families document (always verify on your state Medicaid site) include paying the applicant's medical bills and care costs, paying legitimate debts, certain home modifications for medical necessity, and prepaid funeral/burial arrangements where permitted.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Build an <strong class="text-white">allowable-vs-penalized decision list</strong> before money moves: what is being paid, to whom, for what need, and what paper you will keep. If the plan involves transferring assets to children "to protect them," stop. That is attorney territory.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The At-Home Spouse Is Not Required to Go Broke First</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Federal <strong class="text-white">spousal impoverishment</strong> rules exist so the spouse who remains in the community is not forced into poverty to qualify the institutionalized spouse. Two named frameworks matter in almost every conversation with a caseworker or elder-law attorney:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li><strong class="text-white">CSRA (Community Spouse Resource Allowance):</strong> a protected share of the couple's countable resources for the at-home spouse. Federal law sets a min/max band; states set the figure within that band and update it. Do not use a number you read on a blog from two years ago — pull the current figure from your state Medicaid agency or CMS/Medicaid.gov materials for this year.</li>
+          <li><strong class="text-white">MMMNA (Minimum Monthly Maintenance Needs Allowance):</strong> income-protection math for the community spouse when the institutionalized spouse's income is allocated. Again: state figures, annual updates, verify primary sources.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Your job as the family organizer is not to invent the CSRA number. Your job is to have a clean inventory of joint vs separate assets, income sources, and the documents that prove them so whoever runs the worksheet (you with state instructions, or an attorney) is not guessing.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Application Evidence Binder: Categories Caseworkers Expect</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Every state form looks different. The document <em>categories</em> repeat. Assemble once, label clearly, and copy what each agency packet requests:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li>Identity and citizenship/immigration documentation for the applicant</li>
+          <li>Social Security, Medicare, and other insurance cards</li>
+          <li>Proof of residence / living arrangement and facility admission paperwork if already placed</li>
+          <li>Income: Social Security award letters, pensions, annuities, wages, VA</li>
+          <li>Resources: the 60-month statement set, deeds, vehicle titles, life-insurance statements</li>
+          <li>Transfer explanations with supporting receipts for any lookback flags</li>
+          <li>Medical need / level-of-care materials the state requires for LTC Medicaid</li>
+          <li>Power of attorney or guardianship papers if someone else is applying</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">If the Application Is Denied</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Read the denial for the <strong class="text-white">stated reason and the appeal / fair-hearing deadline</strong>. Deadlines are short and state-specific. Common reversible failures: missing statements, unexplained transfers that can be documented after the fact, incomplete resource inventories, or income allocated incorrectly between spouses. Cure the exact gap named in the notice. Do not restart from zero with a new scatter of papers.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">When to Stop DIY and Hire Elder-Law Counsel</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Checklists organize. They do not practice law. Escalate to a licensed elder-law attorney in your state when any of the following appear:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li>Past gifts, deed transfers, or "family sales" inside the 60-month window</li>
+          <li>Trusts, annuities, promissory notes, or life-estate planning already in place (or proposed)</li>
+          <li>Penalty-period math, partial months, or cure strategies after a transfer finding</li>
+          <li>Home-equity, business interests, or multi-state assets</li>
+          <li>Denial heading to fair hearing with contested legal issues — not just missing paperwork</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Attorney engagements for Medicaid planning often start in the thousands of dollars because the downside of a multi-month penalty is facility private-pay rates. The DIY layer is for assembling the evidence and understanding the framework so you do not walk into that meeting empty-handed — or worse, having already made a transfer you cannot reverse cleanly.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">What to Do This Week</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Open a shared folder. List every financial institution from the last five years. Request statements. Build a one-page transfer log for anything that looks like a gift or below-market move. Pull your state Medicaid agency's long-term-care application checklist (primary source). Write down the community spouse's income and resource picture separately. Only after the file exists should anyone discuss "planning moves."
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you want that whole sequence packaged — eligibility decoder with state-pointer table, 60-month lookback documentation checklist by asset class, spend-down allowable-vs-penalized decision list, CSRA/spousal-protection worksheet framework, application evidence binder, denial/fair-hearing deadline pointer, and attorney-escalation checklist — that is the <a href="https://gumroad.com/l/vbebrb" class="text-cyan-400 hover:text-cyan-300 underline">Medicaid Nursing Home Application &amp; 5-Year Lookback Kit</a> ($0 pre-order today; lists at $24 after release): educational templates only — not legal advice and not a substitute for an elder-law attorney.
+      </p>
+
+      <p class="text-slate-400 text-sm leading-relaxed mb-6">
+        This article is general educational information about Medicaid long-term-care documentation and federal lookback concepts. It is not legal advice, not tax advice, and not an eligibility determination. Medicaid rules are state-administered and change; CSRA/MMMNA figures and forms update. Verify current instructions with your state Medicaid agency and consult a licensed elder-law attorney in your state for transfers, trusts, penalty math, fair hearings, or any strategy beyond document assembly.
+      </p>
+    `,
+    cta: {
+      text: "Get the Medicaid Nursing Home Application & 5-Year Lookback Kit — $0 Pre-Order",
+      href: "https://gumroad.com/l/vbebrb",
+    },
+    relatedProducts: [
+      {
+        name: "Medicaid Nursing Home Application & 5-Year Lookback Kit",
+        href: "https://gumroad.com/l/vbebrb",
+        description:
+          "Lookback document checklist, spend-down decision list, CSRA/spousal worksheet framework, application binder, and attorney-escalation triggers — educational templates, not legal advice.",
+      },
+    ],
+    faq: [
+      {
+        q: "What is the Medicaid 5-year lookback period?",
+        a: "For many long-term-care Medicaid applications, agencies review asset transfers during a lookback window that is generally 60 months before the application date under federal law (42 U.S.C. §1396p). Transfers for less than fair market value can create a penalty period. Your state Medicaid agency administers the program and may have state-specific procedures — verify primary sources.",
+      },
+      {
+        q: "Does spend-down mean I should give assets to my children?",
+        a: "No. Uncompensated gifts to children are exactly the kind of transfer the lookback often penalizes. Spend-down generally means reducing countable resources through allowable uses for the applicant's benefit under your state's rules (for example care costs, debts, certain medical home modifications), with documentation. Gift-and-hope strategies belong in an elder-law consultation, not a weekend DIY move.",
+      },
+      {
+        q: "Will the at-home spouse lose everything?",
+        a: "Federal spousal-impoverishment rules (including the CSRA resource allowance and MMMNA income framework) protect a share of resources and income for the community spouse. Exact dollar figures are set within federal bands by states and update over time — pull current numbers from your state Medicaid agency, not outdated blog posts.",
+      },
+      {
+        q: "What documents stall Medicaid nursing home applications most often?",
+        a: "Missing multi-year bank and brokerage statements, unexplained cash withdrawals, incomplete transfer explanations, and incomplete inventories of property, vehicles, and life-insurance cash value. Start statement requests early and build a month-by-institution tracker.",
+      },
+      {
+        q: "When should we hire an elder-law attorney?",
+        a: "When there are gifts or deed changes in the lookback window, trusts/annuities/promissory notes, penalty-period math, multi-state or business assets, or a denial headed to fair hearing on contested legal issues. Use checklists to assemble the file; use counsel for strategy and contested law.",
+      },
+      {
+        q: "Is a documentation kit a substitute for legal advice?",
+        a: "No. A kit organizes checklists and worksheets. It does not determine eligibility, practice law, or replace your state Medicaid agency or a licensed elder-law attorney.",
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

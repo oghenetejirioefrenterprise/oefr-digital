@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Client** | TEK — Tasty E-Kitchen Ltd, London, UK (tekvers.ai) |
-| **Prepared by** | Oghenetejiri Orukpe — OEFR Digital (oefrenterprise.com) |
+| **Prepared by** | Oghenetejiri Orukpe — OEFR Enterprise Inc (oefrenterprise.com) |
 | **Date** | 16 July 2026 |
 | **Version** | 1.0 — Proposal draft |
 | **Status** | For client review |
@@ -359,4 +359,4 @@ Everything in Lean, plus: dedicated staging environment with seeded demo tenant 
 2. Statement of Work + first-phase invoice issued; kickoff within 5 business days of deposit.
 3. Weekly written progress reports; phase demos on a shared staging environment.
 
-*Prepared by OEFR Digital · oefrenterprise.com · Contact: Oghenetejiri Orukpe*
+*Prepared by OEFR Enterprise Inc · oefrenterprise.com · Contact: Oghenetejiri Orukpe*

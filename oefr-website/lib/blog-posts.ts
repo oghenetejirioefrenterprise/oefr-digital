@@ -3933,7 +3933,7 @@ export const blogPosts: BlogPost[] = [
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
-        If you want the whole decision path packaged — the FTA eligibility decoder, the reasonable-cause narrative builder with a documentation checklist per circumstance type, the Form 843 walkthrough, citation-armed request letters, and the denial-appeal track — that is exactly what our <a href="https://gumroad.com/l/irspenaltyfix" class="text-cyan-400 hover:text-cyan-300 underline">IRS Penalty Abatement Kit</a> organizes into one usable sequence.
+        If you want the whole decision path packaged — the FTA eligibility decoder, the reasonable-cause narrative builder with a documentation checklist per circumstance type, the Form 843 walkthrough, citation-armed request letters, and the denial-appeal track — that is exactly what our <a href="https://www.etsy.com/listing/4536937210/irs-penalty-abatement-kit-cp14-cp501" class="text-cyan-400 hover:text-cyan-300 underline">IRS Penalty Abatement Kit</a> (available now as a digital download) organizes into one usable sequence.
       </p>
 
       <p class="text-slate-400 text-sm leading-relaxed mb-6">
@@ -3942,13 +3942,13 @@ export const blogPosts: BlogPost[] = [
     `,
     cta: {
       text: "Get the IRS Penalty Abatement Kit",
-      href: "https://gumroad.com/l/irspenaltyfix",
+      href: "https://www.etsy.com/listing/4536937210/irs-penalty-abatement-kit-cp14-cp501",
     },
     relatedProducts: [
       {
         name: "IRS Penalty Abatement Kit — Letter Builder + Form 843",
-        href: "https://gumroad.com/l/irspenaltyfix",
-        description: "FTA eligibility decoder, reasonable-cause narrative builder with documentation checklists, Form 843 walkthrough, request-letter templates, and the denial-appeal track.",
+        href: "https://www.etsy.com/listing/4536937210/irs-penalty-abatement-kit-cp14-cp501",
+        description: "FTA eligibility decoder, reasonable-cause narrative builder with documentation checklists, Form 843 walkthrough, request-letter templates, and the denial-appeal track. Live digital download on Etsy.",
       },
     ],
     faq: [

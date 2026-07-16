@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Database Reactivation Service — Recover Revenue from Cold Contacts | OEFR",
   description:
-    "Done-for-you email reactivation service. We turn your dormant CRM contacts into warm leads and recovered revenue — no ads, no new leads needed. Results in 2 weeks.",
+    "A 14-day, done-for-you reactivation pilot for independent fitness businesses. Test a compliant win-back campaign with your approved dormant-contact list.",
   keywords: [
     "database reactivation",
     "email reactivation service",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Database Reactivation — Recover Revenue Hiding in Your CRM",
     description:
-      "We reactivate your cold contacts and put money back in your business. No new ads. No new leads. Just results from what you already have.",
+      "Run a focused, 14-day win-back pilot using contacts your business already has permission to reach.",
     url: "https://www.oefrenterprise.com/reactivation",
     siteName: "OEFR Digital",
     type: "website",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Database Reactivation — Recover Revenue Hiding in Your CRM",
     description:
-      "Done-for-you email reactivation. Turn dormant CRM contacts into revenue — results in 2 weeks.",
+      "A focused 14-day reactivation pilot for independent gyms and fitness studios.",
     creator: "@eustaceorukpe",
   },
   alternates: {
@@ -47,12 +47,12 @@ const jsonLd = {
     url: "https://www.oefrenterprise.com",
   },
   description:
-    "Done-for-you email reactivation service for gyms, dental clinics, and service businesses. We recover revenue from cold contacts with no new ad spend.",
+    "A done-for-you 14-day reactivation pilot for independent gyms and fitness studios using an approved dormant-contact list.",
   offers: {
     "@type": "Offer",
-    price: "750",
+    price: "500",
     priceCurrency: "USD",
-    description: "Setup fee plus 300 per month management",
+    description: "One-time founding-pilot fee",
   },
   areaServed: "United States",
   url: "https://www.oefrenterprise.com/reactivation",

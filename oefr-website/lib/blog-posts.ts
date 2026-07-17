@@ -3821,7 +3821,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "IRS Penalty Abatement: the First-Time Abate Shortcut Almost Nobody Checks — and What a Reasonable-Cause Letter Needs to Actually Work (2026)",
     description:
-      "Before writing an IRS hardship letter, check First-Time Abatement — no story needed. Covers CP14 through CP504 Notice of Intent to Levy, when to use Form 843 vs a notice response, and a reasonable-cause request reviewers actually score.",
+      "Before writing an IRS hardship letter, check First-Time Abatement — no story needed. Covers CP14 through CP504, the FTA phone script, how long abatement takes, when to use Form 843 vs a notice response, and a reasonable-cause request reviewers actually score.",
     keywords: [
       "irs penalty abatement",
       "first time penalty abatement",
@@ -3851,10 +3851,17 @@ export const blogPosts: BlogPost[] = [
       "notice of intent to levy what to do",
       "irs levy notice penalty abatement",
       "cp504 before levy response",
+      "how long does irs penalty abatement take",
+      "irs penalty abatement timeline",
+      "first time abatement phone call",
+      "what to say when calling irs about penalty",
+      "irs first time abate phone request",
+      "call irs first time abatement script",
+      "failure to pay penalty how calculated",
     ],
     publishedDate: "2026-07-10",
-    updatedDate: "2026-07-16",
-    readingTime: "11 min read",
+    updatedDate: "2026-07-17",
+    readingTime: "13 min read",
     author: "OEFR Digital",
     excerpt:
       "The IRS removes penalties every day — but only for people who ask the right way. Most taxpayers write a long hardship letter for a penalty the IRS would have removed in one phone call, or send a one-line 'please waive this' for a case that needed a documented reasonable-cause narrative. Here's the decision order that works, and what a reasonable-cause request actually needs.",
@@ -3906,6 +3913,35 @@ export const blogPosts: BlogPost[] = [
         The honest caveat: FTA by phone is free, and if your case qualifies, you may not need anything else. Where people get stuck is everything after the word "no" — and the reasonable-cause path, where a phone call is rarely enough.
       </p>
 
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">FTA Phone Call: What to Say (and What to Have in Front of You)</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If FTA may fit, <strong class="text-white">call before you write a long hardship letter</strong>. Use the phone number printed on your notice (or the official IRS contact path on IRS.gov for your notice type) — do not rely on random third-party numbers. This is a compliance-history request, not a negotiation and not a sob story.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Have this ready before you dial:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li><strong class="text-white">Notice ID / CP number</strong> (CP14, CP501, CP503, CP504, etc.) and the notice date</li>
+          <li><strong class="text-white">Tax year and form</strong> the penalty attaches to (for example, Form 1040 for 2024)</li>
+          <li><strong class="text-white">Which penalty line</strong> you want removed — failure-to-file, failure-to-pay, and/or failure-to-deposit — and the dollar amount if listed</li>
+          <li><strong class="text-white">SSN or EIN</strong> and identity-verification answers the IRS will ask for</li>
+          <li><strong class="text-white">Prior three years snapshot</strong> — confirm required returns were filed (or validly extended) and that you were not hit with the same penalty classes that would break FTA eligibility</li>
+        </ul>
+      </div>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Say this structure (adapt to your facts — not a magic script):</strong></p>
+        <ol class="text-slate-300 space-y-2 list-decimal pl-5">
+          <li>"I'm calling about notice <strong class="text-white">[CP number / notice ID]</strong> for tax year <strong class="text-white">[year]</strong> on Form <strong class="text-white">[form]</strong>."</li>
+          <li>"I want to request <strong class="text-white">First-Time Abatement</strong> for the <strong class="text-white">[failure-to-pay / failure-to-file / failure-to-deposit]</strong> penalty of <strong class="text-white">$[amount if known]</strong>."</li>
+          <li>"I believe I meet the clean three-year compliance history for FTA. Can you check my account and apply First-Time Abatement if I qualify?"</li>
+          <li>If they ask about hardship: "I'm requesting <strong class="text-white">First-Time Abatement under the administrative waiver</strong>, not a hardship or reasonable-cause determination."</li>
+          <li>If granted: ask for the <strong class="text-white">adjusted penalty balance</strong>, whether a confirmation letter will mail, and how interest on the abated penalty will recompute. Write down the date, agent ID if given, and what they said was adjusted.</li>
+          <li>If denied for eligibility: ask <strong class="text-white">which year or which penalty</strong> broke the three-year test, then stop arguing FTA and prepare a written reasonable-cause package (Step 2) instead of improvising hardship on the call.</li>
+        </ol>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Two call mistakes burn time: (1) asking for a vague "penalty waiver" or "hardship" when you mean FTA, and (2) staying on the phone to invent a reasonable-cause story after FTA is denied. Phone FTA is the fast path when you qualify; reasonable cause is a <strong class="text-white">documented written</strong> path with dates and attachments — switch vehicles when the eligibility test fails.
+      </p>
+
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 2: Reasonable Cause — Where Most Letters Fail</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
         If FTA doesn't fit — a penalty in your prior three years, a penalty type FTA doesn't cover, or a repeat year — the path is a <strong class="text-white">reasonable-cause request</strong>. This is where letters fail, because reviewers don't score sympathy. They score specific elements:
@@ -3955,6 +3991,30 @@ export const blogPosts: BlogPost[] = [
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
         Always download the current Form 843 and instructions from IRS.gov before filing — line numbers and mailing addresses change. This guide is procedural orientation only, not a substitute for the official form instructions or advice from a CPA, enrolled agent, or tax attorney.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">How Long Does IRS Penalty Abatement Take?</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        There is no single IRS stopwatch published for every abatement request — timing depends on the <strong class="text-white">vehicle</strong> and whether the account needs a manual review. Use these realistic bands so you plan collection and follow-up correctly (always verify current processing notes on IRS.gov for your notice type):
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li><strong class="text-white">FTA by phone (eligible cases):</strong> often same-day adjustment or a short post-call account update. Ask on the call whether the penalty line will recompute immediately and whether a notice will mail.</li>
+          <li><strong class="text-white">Written reasonable-cause response to an open notice:</strong> commonly measured in <strong class="text-white">weeks to a few months</strong>, not days — mail/processing queues and whether you attached complete proof drive the variance.</li>
+          <li><strong class="text-white">Form 843 claim for refund (already paid):</strong> frequently a <strong class="text-white">multi-month</strong> claim cycle. Incomplete packages get information requests that restart the wait — which is why dates + attachments matter more than a long essay.</li>
+          <li><strong class="text-white">Denial → appeal / reconsideration:</strong> adds another full response window on top of the first pass. First-pass denials for missing documents are common; the fix is a targeted second package, not a second identical letter.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        While you wait, <strong class="text-white">abatement does not pause collection on the tax</strong>. Keep the tax track current (payment or installment agreement) so a CP501 → CP503 → CP504 ladder does not escalate while a penalty request is pending. Log every submission date, tracking number, and phone reference; if silence exceeds normal bands for your vehicle, use the notice's follow-up instructions or IRS account tools rather than re-filing a duplicate claim that can tangle processing.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">How Failure-to-Pay Penalties Accrue (Why Waiting Costs Real Money)</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        On many balance-due accounts, the <strong class="text-white">failure-to-pay</strong> penalty is not a one-time flat fee. Under the general IRC §6651 framework taxpayers meet most often, failure-to-pay accrues at a monthly rate on the unpaid tax (commonly described as <strong class="text-white">0.5% per month or part of a month</strong>, with a statutory ceiling often discussed as <strong class="text-white">25%</strong> of the unpaid tax — reduced rates can apply in limited payment-arrangement contexts). <strong class="text-white">Failure-to-file</strong> is a separate, usually steeper monthly stack when a return was late. Exact math depends on your return, payment dates, and any interaction rules between penalties — always recompute from the notice and IRS.gov publications, not from a blog percentage alone.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The practical takeaway for a CP14 / CP501 / CP503 / CP504 stack: every month of inaction can grow the penalty line even while you "think about writing a letter." That is why the decision order is <strong class="text-white">FTA phone first if you may qualify</strong>, then a complete written package — not a multi-week draft cycle for a penalty FTA could have cleared in one call. Interest is separate and generally follows the tax; win the penalty and related interest often falls with it (see interest note below).
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 4: A Denial Is Not the End</h2>
@@ -4026,6 +4086,18 @@ export const blogPosts: BlogPost[] = [
       {
         q: "I already paid the failure-to-pay penalty — can I still get it back?",
         a: "Often yes, if FTA or reasonable cause applies to that penalty. Paying does not automatically forfeit abatement rights. The usual vehicle is a Form 843 claim for refund of the penalty amount, supported by the same eligibility facts or documented reasonable-cause package you would have used before payment. Interest treatment still follows the underlying tax and penalty rules — win the penalty and related interest often falls with it.",
+      },
+      {
+        q: "What should I say when I call the IRS for First-Time Abatement?",
+        a: "Identify the notice number, tax year, and form first. Then request First-Time Abatement by name for the specific penalty type (failure-to-file, failure-to-pay, or failure-to-deposit) and amount if listed — not a generic hardship waiver. Have identity info and a quick prior-three-year compliance snapshot ready. If granted, record the adjusted balance and any confirmation. If denied for eligibility, ask which year or penalty broke the test and switch to a written reasonable-cause package instead of improvising hardship on the phone.",
+      },
+      {
+        q: "How long does IRS penalty abatement take?",
+        a: "It depends on the vehicle. Eligible First-Time Abatement requests by phone are often adjusted the same day or shortly after the call. Written reasonable-cause responses to open notices commonly take weeks to a few months. Form 843 refund claims for penalties already paid often run multi-month cycles, longer if documentation is incomplete. Abatement does not pause collection on the underlying tax — keep payment or an installment plan current while you wait.",
+      },
+      {
+        q: "How is the failure-to-pay penalty calculated?",
+        a: "For many individual balance-due cases under the general IRC §6651 framework, failure-to-pay accrues monthly on unpaid tax (commonly described as about 0.5% per month or part of a month, with a statutory ceiling often discussed as 25%). Failure-to-file is a separate, usually steeper monthly penalty when a return was late. Exact amounts depend on your return, payment dates, and special rules — use the figures on your notice and current IRS publications rather than estimating from a percentage alone. Abatement can remove the penalty line; interest follows separate rules.",
       },
     ],
   },

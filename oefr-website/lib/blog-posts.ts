@@ -3819,11 +3819,16 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "irs-penalty-abatement-reasonable-cause-letter-2026",
     title:
-      "IRS Penalty Abatement: the First-Time Abate Shortcut Almost Nobody Checks — and What a Reasonable-Cause Letter Needs to Actually Work (2026)",
+      "IRS Penalty Abatement 2026: AEP, FTA & Reasonable-Cause Letters",
     description:
-      "Before writing an IRS hardship letter, check First-Time Abatement — no story needed. Covers CP14 through CP504, the FTA phone script, how long abatement takes, when to use Form 843 vs a notice response, and a reasonable-cause request reviewers actually score.",
+      "The IRS is replacing First-Time Abate with Automatic Exemption from Penalty. See when AEP applies—and when to use FTA, Form 843, or reasonable cause.",
     keywords: [
       "irs penalty abatement",
+      "automatic exemption from penalty",
+      "irs aep 2026",
+      "automatic irs penalty relief",
+      "aep vs first time abate",
+      "does first time abate still exist",
       "first time penalty abatement",
       "reasonable cause letter irs",
       "irs penalty abatement letter sample",
@@ -3860,62 +3865,77 @@ export const blogPosts: BlogPost[] = [
       "failure to pay penalty how calculated",
     ],
     publishedDate: "2026-07-10",
-    updatedDate: "2026-07-17",
-    readingTime: "13 min read",
+    updatedDate: "2026-07-19",
+    readingTime: "15 min read",
     author: "OEFR Digital",
     excerpt:
-      "The IRS removes penalties every day — but only for people who ask the right way. Most taxpayers write a long hardship letter for a penalty the IRS would have removed in one phone call, or send a one-line 'please waive this' for a case that needed a documented reasonable-cause narrative. Here's the decision order that works, and what a reasonable-cause request actually needs.",
+      "The IRS began replacing First-Time Abate with Automatic Exemption from Penalty in summer 2026. Some taxpayers now get relief without asking; transitional returns still use FTA, and everyone else may need reasonable cause or Form 843. Here is the current decision order.",
     content: `
       <p class="text-lg text-slate-300 leading-relaxed mb-6">
-        An IRS penalty notice is not final. The IRS abates (removes) penalties constantly — through two very different doors: <strong class="text-white">First-Time Abatement (FTA)</strong>, which is close to automatic when you qualify, and <strong class="text-white">reasonable cause</strong>, which is a documented argument that reviewers score against specific criteria. Most people pick the wrong door first and lose time or money. This guide is general information, not tax or legal advice — it explains the order that works and what each request needs.
+        An IRS penalty notice is not always final — but the decision order changed in July 2026. There are now three doors: <strong class="text-white">Automatic Exemption from Penalty (AEP)</strong> for eligible returns during original processing, transitional <strong class="text-white">First-Time Abate (FTA)</strong> for specific earlier periods, and <strong class="text-white">reasonable cause</strong> when automatic or administrative relief does not fit. This guide is general information, not tax or legal advice — it explains which door applies and what each request needs.
       </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">2026 Update: Automatic Exemption from Penalty (AEP) Is Replacing First-Time Abate</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        On July 8, 2026, the IRS announced <strong class="text-white">Automatic Exemption from Penalty</strong>, or AEP. For eligible original returns, AEP prevents certain failure-to-file, failure-to-pay, or failure-to-deposit penalties from being assessed during processing. <strong class="text-white">No form, phone call, or separate request is required</strong> when AEP applies; the IRS says it will send a notice confirming the relief. Read the <a href="https://www.irs.gov/newsroom/automatic-exemption-from-penalty-what-taxpayers-should-know" class="text-amber-400 hover:text-amber-300 underline">official IRS AEP fact sheet</a> before relying on any older First-Time Abate checklist.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">AEP vs. FTA during the 2026 transition:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li><strong class="text-white">AEP is beginning with eligible 2025 tax-year returns and 2026 quarterly returns.</strong> Eligibility includes three prior years of timely compliance, or 12 consecutive quarters for quarterly returns.</li>
+          <li><strong class="text-white">FTA still requires a request for transition-period cases.</strong> The IRS lists eligible 2024 tax-year returns, 2025 quarterly returns, 2025 tax-year returns processed before AEP starts, and 2026 quarterly returns processed before AEP starts.</li>
+          <li><strong class="text-white">For original returns due January 1, 2027 or later, AEP replaces FTA.</strong> Do not mail a First-Time Abate letter for relief the IRS says should be tested automatically during original processing.</li>
+          <li><strong class="text-white">AEP is not universal.</strong> It does not cover every return or penalty; the IRS specifically excludes categories such as accuracy-related, information-return, and daily-delinquency penalties.</li>
+          <li><strong class="text-white">Reasonable cause remains available.</strong> If AEP does not apply and transitional FTA does not resolve the penalty, you can still request relief based on documented facts and appeal an adverse decision.</li>
+        </ul>
+      </div>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Got a CP14, CP501, or CP503 Notice? Read This First</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
-        If the letter in your hand says <strong class="text-white">CP14</strong>, it is the IRS's first balance-due notice — tax owed plus, in most cases, a <strong class="text-white">failure-to-pay penalty and interest already added</strong>. The IRS mails millions of CP14s in early summer, and if the first one goes unanswered, a <strong class="text-white">CP501</strong> follow-up arrives weeks later with the penalty still compounding monthly. Two things matter right away: the penalty portion of that balance is often <strong class="text-white">removable</strong> through the exact FTA and reasonable-cause paths below, and abatement does not pause collection — so address the tax itself (pay it or set up a payment plan) while you pursue removal of the penalties on top of it. Do not pay the penalty line assuming it's final; check your abatement eligibility first.
+        If the letter in your hand says <strong class="text-white">CP14</strong>, it is the IRS's first balance-due notice — tax owed plus, in most cases, a <strong class="text-white">failure-to-pay penalty and interest already added</strong>. The IRS mails millions of CP14s in early summer, and if the first one goes unanswered, a <strong class="text-white">CP501</strong> follow-up arrives weeks later with the penalty still compounding monthly. Two things matter right away: the penalty portion may be <strong class="text-white">prevented or removed</strong> through AEP, transitional FTA, or reasonable cause, and relief does not pause collection — so address the tax itself (pay it or set up a payment plan) while you resolve the penalty track. Do not assume the penalty line is final; first identify the return period and which relief system applies.
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
-        A <strong class="text-white">CP503</strong> means you're now two reminders deep: it's the second follow-up in the balance-due sequence (CP14 → CP501 → CP503), and the next step after it is typically a <strong class="text-white">CP504 — Notice of Intent to Levy</strong>. A CP503 is urgent, but it does not change your abatement rights at all: the failure-to-pay penalty inside that balance is exactly as removable at the CP503 stage as it was at CP14. The right response is the same two-track move — arrange the tax (payment or installment agreement) to stop the sequence, and pursue FTA or reasonable-cause abatement on the penalty portion using the steps below. What you should NOT do is wait for the next letter: after CP503, collection tools escalate from reminders to enforcement.
+        A <strong class="text-white">CP503</strong> means you're now two reminders deep: it's the second follow-up in the balance-due sequence (CP14 → CP501 → CP503), and the next step after it is typically a <strong class="text-white">CP504 — Notice of Intent to Levy</strong>. A CP503 is urgent, but it does not erase penalty-relief options. The right response is the same two-track move — arrange the tax (payment or installment agreement) to address collection, and check AEP, transitional FTA, or reasonable cause for the penalty portion. Do not wait for the next letter: after CP503, collection tools can escalate from reminders to enforcement.
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Got a CP504 Notice of Intent to Levy? Act Before Collection Escalates</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
-        A <strong class="text-white">CP504 — Notice of Intent to Levy</strong> is not another soft reminder. It is the IRS telling you that unpaid balance-due collection is moving from paper follow-ups toward levy tools (wages, bank accounts, and other sources in scope of the notice). The sequence is usually CP14 → CP501 → CP503 → <strong class="text-white">CP504</strong>. Receiving a CP504 is high-urgency, but it is <strong class="text-white">not</strong> the moment abatement rights disappear: failure-to-pay (and related FTA-eligible) penalties on that balance are still requestable under the same First-Time Abatement and reasonable-cause rules below.
+        A <strong class="text-white">CP504 — Notice of Intent to Levy</strong> is not another soft reminder. It is the IRS telling you that unpaid balance-due collection is moving from paper follow-ups toward levy tools (wages, bank accounts, and other sources in scope of the notice). The sequence is usually CP14 → CP501 → CP503 → <strong class="text-white">CP504</strong>. Receiving a CP504 is high-urgency, but it is <strong class="text-white">not</strong> the moment penalty-relief rights disappear: identify whether AEP should have prevented the covered penalty, whether transitional FTA remains requestable, or whether reasonable cause fits.
       </p>
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
         <p class="text-slate-300 mb-2"><strong class="text-white">CP504 two-track response (same day if possible):</strong></p>
         <ul class="text-slate-300 space-y-2 list-disc pl-5">
           <li><strong class="text-white">Tax track:</strong> pay what you can, or set up / confirm an installment agreement so the levy path can be stopped or paused through compliance — do not treat the notice as optional mail.</li>
-          <li><strong class="text-white">Penalty track:</strong> check FTA first (phone is often enough if the prior three years are clean). If FTA does not fit, file a documented reasonable-cause request (and Form 843 when refund of a paid penalty is the posture).</li>
+          <li><strong class="text-white">Penalty track:</strong> check whether AEP should have applied automatically. For a transition-period return, request FTA if eligible. If neither fits, make a documented reasonable-cause request (and use Form 843 when a form-based claim is the right posture).</li>
           <li><strong class="text-white">Do not wait for the next letter:</strong> after a Notice of Intent to Levy, the cost of delay is enforcement risk, not just compounding math. Abatement does not automatically stop collection — arrange the tax while you pursue the penalty.</li>
         </ul>
       </div>
       <p class="text-slate-300 leading-relaxed mb-6">
-        If your envelope says CP504 and you also see failure-to-pay or failure-to-file lines, use the decision order in this guide immediately: FTA eligibility → reasonable-cause narrative with dates and documents → Form 843 or written response → appeal if denied. The levy label is scary on purpose; the abatement mechanics are still the same ones that work at CP14.
+        If your envelope says CP504 and you also see failure-to-pay or failure-to-file lines, use the decision order in this guide immediately: AEP status → transitional FTA eligibility → reasonable-cause narrative with dates and documents → Form 843 or written response → appeal if denied. The levy label is scary on purpose; the underlying tax and penalty tracks still need separate action.
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
         Holding a different kind of IRS letter? A <strong class="text-white">CP2000</strong> is not a balance-due reminder or a levy notice — it's a proposed adjustment with its own 30-day clock and response rules. See our guide to <a href="/blog/irs-cp2000-notice-response-2026" class="text-amber-400 hover:text-amber-300 underline">responding to an IRS CP2000 notice in the 30-day window</a>.
       </p>
 
-      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 1: Always Check First-Time Abatement FIRST</h2>
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 1: Check AEP Status or Transitional FTA Before Writing a Letter</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
-        FTA is the shortcut almost nobody checks. Under the IRS's own procedures (Internal Revenue Manual 20.1.1.3.6.1), if you have a <strong class="text-white">clean compliance history for the prior three tax years</strong> — no penalties (other than certain minor ones), all required returns filed or validly extended, and any tax due paid or in a payment arrangement — the IRS can remove <strong class="text-white">failure-to-file, failure-to-pay, and failure-to-deposit</strong> penalties without any hardship story at all.
+        Start with the return period, not your hardship story. If AEP applies, the IRS tests the compliance history automatically during original processing and sends a notice when relief is granted. If your return falls inside the published transition periods and a penalty was assessed, FTA may still be requestable. Both systems are based on timely-compliance history, not sympathy; reasonable cause is the separate facts-and-documentation path.
       </p>
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
-        <p class="text-slate-300 mb-2"><strong class="text-white">Why FTA first:</strong></p>
+        <p class="text-slate-300 mb-2"><strong class="text-white">Use this order:</strong></p>
         <ul class="text-slate-300 space-y-2 list-disc pl-5">
-          <li>No narrative or documentation of hardship is required — it is a compliance-history test, not a sympathy test</li>
-          <li>You can request it <strong class="text-white">by phone</strong> — for many penalties, one call resolves it</li>
-          <li>Using reasonable cause when FTA would have worked wastes your strongest, simplest argument</li>
+          <li><strong class="text-white">AEP-period eligible return:</strong> confirm whether the IRS applied automatic relief and issued the AEP notice; no separate application should be necessary.</li>
+          <li><strong class="text-white">Transition-period eligible return with a penalty notice:</strong> contact the IRS and request FTA by name; it is not automatic for the listed transition cases.</li>
+          <li><strong class="text-white">AEP/FTA unavailable or denied:</strong> switch to reasonable cause and document what happened, when, how it prevented compliance, and how quickly you corrected it.</li>
         </ul>
       </div>
       <p class="text-slate-300 leading-relaxed mb-6">
-        The honest caveat: FTA by phone is free, and if your case qualifies, you may not need anything else. Where people get stuck is everything after the word "no" — and the reasonable-cause path, where a phone call is rarely enough.
+        The honest caveat: AEP is automatic and a transitional FTA phone request is free. You do not need to buy a template to receive either one. Templates become useful only when the account does not qualify, the penalty type is outside those systems, or the IRS needs a written reasonable-cause, Form 843, or appeal package.
       </p>
 
-      <h2 class="text-2xl font-bold text-white mt-10 mb-4">FTA Phone Call: What to Say (and What to Have in Front of You)</h2>
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Transitional FTA Phone Call: What to Say (and What to Have Ready)</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
-        If FTA may fit, <strong class="text-white">call before you write a long hardship letter</strong>. Use the phone number printed on your notice (or the official IRS contact path on IRS.gov for your notice type) — do not rely on random third-party numbers. This is a compliance-history request, not a negotiation and not a sob story.
+        If the IRS transition list still puts your return under FTA and a penalty was assessed, <strong class="text-white">call before writing a long hardship letter</strong>. Use the phone number printed on your notice (or the official IRS contact path on IRS.gov for your notice type) — do not rely on random third-party numbers. This is a compliance-history request, not a negotiation. If the return should instead be under AEP, ask the IRS to explain the account status rather than forcing an obsolete FTA script onto it.
       </p>
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
         <p class="text-slate-300 mb-2"><strong class="text-white">Have this ready before you dial:</strong></p>
@@ -3939,12 +3959,12 @@ export const blogPosts: BlogPost[] = [
         </ol>
       </div>
       <p class="text-slate-300 leading-relaxed mb-6">
-        Two call mistakes burn time: (1) asking for a vague "penalty waiver" or "hardship" when you mean FTA, and (2) staying on the phone to invent a reasonable-cause story after FTA is denied. Phone FTA is the fast path when you qualify; reasonable cause is a <strong class="text-white">documented written</strong> path with dates and attachments — switch vehicles when the eligibility test fails.
+        Two call mistakes burn time: (1) asking for a vague "penalty waiver" without identifying the return period and relief path, and (2) improvising a reasonable-cause story after transitional FTA is denied. Phone FTA remains the request path only for eligible transition cases; reasonable cause is a <strong class="text-white">facts-and-documentation</strong> path with dates and support — switch vehicles when the eligibility test fails.
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 2: Reasonable Cause — Where Most Letters Fail</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
-        If FTA doesn't fit — a penalty in your prior three years, a penalty type FTA doesn't cover, or a repeat year — the path is a <strong class="text-white">reasonable-cause request</strong>. This is where letters fail, because reviewers don't score sympathy. They score specific elements:
+        If AEP or transitional FTA does not fit — because of the return period, compliance history, penalty type, or other eligibility rule — the path may be a <strong class="text-white">reasonable-cause request</strong>. This is where letters fail, because reviewers do not score sympathy. They score specific elements:
       </p>
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
         <ul class="text-slate-300 space-y-2 list-decimal pl-5">
@@ -3960,21 +3980,22 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 3: Form 843, Letter, or Phone? Pick the Right Vehicle</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
-        The mechanics depend on the penalty and posture. <strong class="text-white">Form 843</strong> (Claim for Refund and Request for Abatement) is the IRS's formal claim vehicle — especially if you already paid the penalty and want it refunded. For an unpaid penalty on a recent CP14/CP501/CP503/CP504-style notice, a written reasonable-cause statement responding to that notice often works without Form 843. Simple First-Time Abatement cases can still be handled <strong class="text-white">by phone</strong>. Requesting the wrong way isn't fatal, but it adds months of wait time and rework.
+        The mechanics depend on the penalty, return period, and posture. <strong class="text-white">Form 843</strong> (Claim for Refund and Request for Abatement) is the IRS's formal claim vehicle when a form-based request is required. For an unpaid penalty on a recent CP14/CP501/CP503/CP504-style notice, the IRS may handle reasonable cause by phone or ask for a written request/Form 843 with support. Transitional FTA cases can still be handled <strong class="text-white">by phone</strong>. Requesting the wrong way is not always fatal, but it adds delay and rework.
       </p>
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
         <p class="text-slate-300 mb-2"><strong class="text-white">Decision tree (use in this order):</strong></p>
         <ol class="text-slate-300 space-y-2 list-decimal pl-5">
-          <li><strong class="text-white">FTA-eligible?</strong> Call first. Have your notice ID, tax year, and SSN/EIN ready. Ask specifically for First-Time Abatement on the failure-to-file / failure-to-pay / failure-to-deposit line — not a generic "hardship waiver."</li>
+          <li><strong class="text-white">AEP-period return?</strong> Check the IRS notice and account status first. If eligible, relief is automatic during original processing; no form or separate request is required.</li>
+          <li><strong class="text-white">Transition-period FTA-eligible?</strong> Call with the notice ID, tax year, and SSN/EIN ready. Ask specifically for First-Time Abatement on the penalty line.</li>
           <li><strong class="text-white">Unpaid penalty on an open balance-due notice?</strong> Send a dated written reasonable-cause response that references the notice number, tax year, and penalty type. Attach proof for every date claim. Mail or e-file per the notice instructions; keep a copy and proof of delivery.</li>
           <li><strong class="text-white">Already paid the penalty and want it back?</strong> That is the classic <strong class="text-white">Form 843</strong> posture — claim for refund of the abated amount, with the same reasonable-cause (or FTA) facts attached or explained on the form.</li>
-          <li><strong class="text-white">Not sure which path?</strong> Do not invent a hybrid. FTA first if you may qualify; written notice response if the balance is still open; Form 843 if money already left your account for the penalty line.</li>
+          <li><strong class="text-white">Not sure which path?</strong> Do not invent a hybrid. Match the return date to AEP/FTA transition rules, then follow the notice instructions or current IRS.gov guidance for phone, written response, or Form 843.</li>
         </ol>
       </div>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">How to Use Form 843 for Penalty Abatement (Without Wasting Months)</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
-        Form 843 is titled <strong class="text-white">Claim for Refund and Request for Abatement</strong>. It is not a "sympathy letter" and it is not required for every FTA phone grant. It is the structured way to ask the IRS to abate (or refund) certain penalties when a form-based claim is the right vehicle. Treat it as a package: the form lines identify <em>who / which year / which penalty</em>; your attached statement supplies the <em>dates, causal link, and proof</em> from Step 2.
+        Form 843 is titled <strong class="text-white">Claim for Refund and Request for Abatement</strong>. It is not a "sympathy letter," it is not an AEP application, and it is not required for a transitional FTA phone grant. It is the structured way to ask the IRS to abate or refund certain penalties when a form-based claim is the right vehicle. Treat it as a package: the form lines identify <em>who / which year / which penalty</em>; your attached statement supplies the <em>dates, causal link, and proof</em> from Step 2.
       </p>
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
         <p class="text-slate-300 mb-2"><strong class="text-white">Form 843 practical checklist:</strong></p>
@@ -3987,7 +4008,7 @@ export const blogPosts: BlogPost[] = [
         </ul>
       </div>
       <p class="text-slate-300 leading-relaxed mb-6">
-        Two common mistakes slow Form 843 claims: (1) filing Form 843 for a simple FTA case that a phone request would have cleared, and (2) filing Form 843 with no dates or attachments — which forces a denial or multi-month information request. Match the vehicle to the posture, then match the narrative to the four scored elements.
+        Two common mistakes slow Form 843 claims: (1) filing it as an unnecessary application for AEP or a transitional FTA case the IRS can handle by phone, and (2) filing with no dates or attachments. Match the vehicle to the posture, then match the narrative to the four evidence elements.
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
         Always download the current Form 843 and instructions from IRS.gov before filing — line numbers and mailing addresses change. This guide is procedural orientation only, not a substitute for the official form instructions or advice from a CPA, enrolled agent, or tax attorney.
@@ -3999,7 +4020,8 @@ export const blogPosts: BlogPost[] = [
       </p>
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
         <ul class="text-slate-300 space-y-2 list-disc pl-5">
-          <li><strong class="text-white">FTA by phone (eligible cases):</strong> often same-day adjustment or a short post-call account update. Ask on the call whether the penalty line will recompute immediately and whether a notice will mail.</li>
+          <li><strong class="text-white">AEP (eligible original returns):</strong> applied during original processing, with an IRS notice confirming that the covered penalty was not assessed.</li>
+          <li><strong class="text-white">Transitional FTA by phone:</strong> timing varies by account; ask whether the penalty line will recompute immediately and whether a confirmation notice will mail.</li>
           <li><strong class="text-white">Written reasonable-cause response to an open notice:</strong> commonly measured in <strong class="text-white">weeks to a few months</strong>, not days — mail/processing queues and whether you attached complete proof drive the variance.</li>
           <li><strong class="text-white">Form 843 claim for refund (already paid):</strong> frequently a <strong class="text-white">multi-month</strong> claim cycle. Incomplete packages get information requests that restart the wait — which is why dates + attachments matter more than a long essay.</li>
           <li><strong class="text-white">Denial → appeal / reconsideration:</strong> adds another full response window on top of the first pass. First-pass denials for missing documents are common; the fix is a targeted second package, not a second identical letter.</li>
@@ -4014,7 +4036,7 @@ export const blogPosts: BlogPost[] = [
         On many balance-due accounts, the <strong class="text-white">failure-to-pay</strong> penalty is not a one-time flat fee. Under the general IRC §6651 framework taxpayers meet most often, failure-to-pay accrues at a monthly rate on the unpaid tax (commonly described as <strong class="text-white">0.5% per month or part of a month</strong>, with a statutory ceiling often discussed as <strong class="text-white">25%</strong> of the unpaid tax — reduced rates can apply in limited payment-arrangement contexts). <strong class="text-white">Failure-to-file</strong> is a separate, usually steeper monthly stack when a return was late. Exact math depends on your return, payment dates, and any interaction rules between penalties — always recompute from the notice and IRS.gov publications, not from a blog percentage alone.
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
-        The practical takeaway for a CP14 / CP501 / CP503 / CP504 stack: every month of inaction can grow the penalty line even while you "think about writing a letter." That is why the decision order is <strong class="text-white">FTA phone first if you may qualify</strong>, then a complete written package — not a multi-week draft cycle for a penalty FTA could have cleared in one call. Interest is separate and generally follows the tax; win the penalty and related interest often falls with it (see interest note below).
+        The practical takeaway for a CP14 / CP501 / CP503 / CP504 stack: every month of inaction can grow the penalty line while you decide what to do. That is why the decision order is <strong class="text-white">AEP status → transitional FTA if applicable → complete reasonable-cause package</strong>. Interest is separate and generally follows the tax; if the IRS removes a penalty, it also reduces or removes the related interest (see interest note below).
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Step 4: A Denial Is Not the End</h2>
@@ -4028,11 +4050,11 @@ export const blogPosts: BlogPost[] = [
       </p>
 
       <p class="text-slate-300 leading-relaxed mb-6">
-        If you want the whole decision path packaged — the FTA eligibility decoder, the reasonable-cause narrative builder with a documentation checklist per circumstance type, the Form 843 walkthrough, citation-armed request letters, and the denial-appeal track — that is exactly what our <a href="https://www.etsy.com/listing/4536937210/irs-penalty-abatement-kit-cp14-cp501" class="text-cyan-400 hover:text-cyan-300 underline">IRS Penalty Abatement Kit</a> (available now as a digital download) organizes into one usable sequence.
+        If automatic relief does not apply and you need the written path organized, our <a href="https://www.etsy.com/listing/4536937210/irs-penalty-abatement-kit-cp14-cp501" class="text-cyan-400 hover:text-cyan-300 underline">IRS Penalty Abatement Kit</a> packages the reasonable-cause narrative builder, documentation checklists, Form 843 walkthrough, request-letter templates, and denial-appeal track into one usable sequence. AEP itself requires no paid form or application.
       </p>
 
       <p class="text-slate-400 text-sm leading-relaxed mb-6">
-        This article is general information, not tax or legal advice. Penalty abatement standards are administered by the IRS under the Internal Revenue Manual; outcomes depend on your specific facts and documentation. For advice on your situation, consult a CPA, enrolled agent, or tax attorney — and note that a straightforward First-Time Abatement request is free to make by phone.
+        This article is general information, not tax or legal advice. IRS transition guidance can change; verify the date and return period against the current AEP fact sheet and your notice. For advice on your situation, consult a CPA, enrolled agent, or tax attorney. AEP is automatic when it applies, and requesting transitional FTA from the IRS is free.
       </p>
     `,
     cta: {
@@ -4043,29 +4065,37 @@ export const blogPosts: BlogPost[] = [
       {
         name: "IRS Penalty Abatement Kit — Letter Builder + Form 843",
         href: "https://www.etsy.com/listing/4536937210/irs-penalty-abatement-kit-cp14-cp501",
-        description: "FTA eligibility decoder, reasonable-cause narrative builder with documentation checklists, Form 843 walkthrough, request-letter templates, and the denial-appeal track. Live digital download on Etsy.",
+        description: "Reasonable-cause narrative builder with documentation checklists, Form 843 walkthrough, request-letter templates, and the denial-appeal track when automatic relief does not resolve the penalty. Live digital download on Etsy.",
       },
     ],
     faq: [
       {
         q: "I got a CP14 notice — can the penalty on it be removed?",
-        a: "Often, yes. A CP14 is the IRS's first balance-due notice, and the failure-to-pay penalty included in it is one of the penalty types First-Time Abatement covers. If your prior three years are clean, a phone request can remove it. If not, a documented reasonable-cause request is the path. Either way, handle the underlying tax (payment or payment plan) separately — abatement removes penalties, not the tax, and doesn't pause collection.",
+        a: "Often, yes. For eligible original returns in the new AEP system, certain failure-to-pay penalties are prevented automatically during processing. For listed transition periods, First-Time Abate may still be requestable. Otherwise, documented reasonable cause may apply. Handle the underlying tax or payment plan separately because penalty relief does not erase the tax or stop collection by itself.",
       },
       {
         q: "I received a CP504 Notice of Intent to Levy — can I still get penalties abated?",
-        a: "Yes — a CP504 raises collection urgency, but it does not cancel First-Time Abatement or reasonable-cause rights on the penalty portion of the balance. Treat it as two tracks the same day: arrange the tax (payment or installment agreement) to address the levy path, and request FTA by phone if you qualify or file a documented reasonable-cause / Form 843 request for the penalties. Abatement removes penalties; it does not by itself stop levy activity on unpaid tax.",
+        a: "Yes — a CP504 raises collection urgency, but it does not cancel penalty-relief rights. Treat it as two tracks the same day: arrange the tax or payment plan to address the levy path, and check AEP status, transitional FTA eligibility, or documented reasonable cause for the penalty. Relief removes covered penalties; it does not by itself stop levy activity on unpaid tax.",
       },
       {
         q: "What is the difference between CP14, CP501, CP503, and CP504?",
-        a: "They are successive balance-due stages. CP14 is the first notice that tax is owed (often with failure-to-pay penalty and interest). CP501 and CP503 are follow-up reminders if the balance stays unpaid. CP504 is the Notice of Intent to Levy — the step where collection tools escalate beyond reminders. Penalty abatement eligibility is evaluated under FTA and reasonable-cause rules at each of these stages; the notice number mainly signals how urgent the tax track is.",
+        a: "They are successive balance-due stages. CP14 is the first notice that tax is owed, often with failure-to-pay penalty and interest. CP501 and CP503 are follow-up reminders. CP504 is the Notice of Intent to Levy, where collection urgency increases. The notice number signals the tax track; penalty relief is evaluated separately under AEP, transitional FTA, or reasonable cause.",
+      },
+      {
+        q: "What is the IRS Automatic Exemption from Penalty (AEP)?",
+        a: "AEP is the IRS process introduced in summer 2026 that prevents certain failure-to-file, failure-to-pay, and failure-to-deposit penalties from being assessed during original return processing when an eligible taxpayer meets the compliance-history requirements. No application or separate request is required when it applies, and the IRS sends a notice confirming the relief.",
+      },
+      {
+        q: "Does First-Time Abate still exist in 2026?",
+        a: "Yes, but only during the transition for the return periods the IRS lists: eligible 2024 tax-year returns, 2025 quarterly returns, 2025 tax-year returns processed before AEP starts, and 2026 quarterly returns processed before AEP starts. For original returns due January 1, 2027 or later, the IRS says AEP replaces FTA.",
       },
       {
         q: "What penalties does First-Time Abatement cover?",
-        a: "FTA applies to failure-to-file, failure-to-pay, and failure-to-deposit penalties. It does not cover accuracy-related penalties or estimated-tax penalties — those need other arguments. The qualifying test is a clean compliance history for the prior three tax years, with required returns filed and tax paid or arranged.",
+        a: "During the transition, FTA applies to certain failure-to-file, failure-to-pay, and failure-to-deposit penalties for eligible returns. It does not cover every penalty or return. AEP is replacing FTA for eligible original returns and also covers only specified penalty classes. Check the current IRS transition list and the exact penalty on your notice.",
       },
       {
         q: "Can I just call the IRS to remove a penalty?",
-        a: "Often, yes — for First-Time Abatement. If you qualify, a phone request can resolve many failure-to-file and failure-to-pay penalties on the spot or shortly after. Reasonable-cause cases usually need a written, documented request; a phone call alone rarely carries them.",
+        a: "Sometimes. AEP does not require a call when it applies. For a listed transition-period FTA case, use the number on the notice and request FTA by name. The IRS may also consider reasonable cause by phone, but if it cannot approve relief during the call, it may direct you to submit Form 843 and supporting documents.",
       },
       {
         q: "What counts as reasonable cause to the IRS?",
@@ -4077,23 +4107,23 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Do I need Form 843 to request abatement?",
-        a: "Not always. Form 843 is the formal claim vehicle — especially if you already paid the penalty and are requesting a refund. For an unpaid penalty on a recent notice, a written reasonable-cause statement in response to the notice is often the right move, and qualifying FTA requests can be made by phone.",
+        a: "Not always. AEP requires no application or form. Transitional FTA can be requested by phone for eligible periods. If the IRS cannot approve reasonable cause by phone or a form-based claim is required, it may direct you to submit Form 843 with supporting documents. Follow the current IRS guidance and the instructions on your notice.",
       },
       {
         q: "How do I file Form 843 for IRS penalty abatement?",
-        a: "Use Form 843 when a form-based claim fits — most clearly when you already paid the penalty and want a refund of the abated amount, or when the IRS path expects a formal claim. Fill the year, form, and penalty type accurately; attach a dated reasonable-cause statement with the four scored elements (what happened, dates, causal link, prompt compliance after); attach proof for every factual claim; sign and keep a full copy with mailing proof. For open unpaid notice balances, a written response to the notice is often enough without Form 843; for FTA, start with a phone request if you may qualify.",
+        a: "Use Form 843 when the IRS guidance or your notice calls for a form-based abatement or refund claim. Fill the year, form, penalty type, and amount accurately; attach a dated reasonable-cause statement explaining what happened, when, how it prevented compliance, and what you did afterward; attach proof; sign and keep a complete copy with mailing proof. Do not file Form 843 as an AEP application because AEP is automatic when it applies.",
       },
       {
         q: "I already paid the failure-to-pay penalty — can I still get it back?",
-        a: "Often yes, if FTA or reasonable cause applies to that penalty. Paying does not automatically forfeit abatement rights. The usual vehicle is a Form 843 claim for refund of the penalty amount, supported by the same eligibility facts or documented reasonable-cause package you would have used before payment. Interest treatment still follows the underlying tax and penalty rules — win the penalty and related interest often falls with it.",
+        a: "Potentially, if a valid relief ground applies. Paying does not automatically forfeit the ability to request a refund of an abated penalty. Follow the current Form 843 instructions or the directions on the IRS notice, and support the claim with the relevant eligibility facts or documented reasonable cause. If the IRS removes a penalty, it also reduces or removes the related interest.",
       },
       {
         q: "What should I say when I call the IRS for First-Time Abatement?",
-        a: "Identify the notice number, tax year, and form first. Then request First-Time Abatement by name for the specific penalty type (failure-to-file, failure-to-pay, or failure-to-deposit) and amount if listed — not a generic hardship waiver. Have identity info and a quick prior-three-year compliance snapshot ready. If granted, record the adjusted balance and any confirmation. If denied for eligibility, ask which year or penalty broke the test and switch to a written reasonable-cause package instead of improvising hardship on the phone.",
+        a: "First confirm that the return is in an IRS-listed FTA transition period. Identify the notice number, tax year, form, penalty type, and amount; then request First-Time Abatement by name. Have identity information and the prior compliance history ready. If the IRS says AEP now governs the return, ask it to explain the account status. If FTA is denied, ask which eligibility condition failed before moving to reasonable cause.",
       },
       {
         q: "How long does IRS penalty abatement take?",
-        a: "It depends on the vehicle. Eligible First-Time Abatement requests by phone are often adjusted the same day or shortly after the call. Written reasonable-cause responses to open notices commonly take weeks to a few months. Form 843 refund claims for penalties already paid often run multi-month cycles, longer if documentation is incomplete. Abatement does not pause collection on the underlying tax — keep payment or an installment plan current while you wait.",
+        a: "It depends on the vehicle. AEP is applied during original return processing and confirmed by notice. Transitional FTA timing varies by account. Written reasonable-cause responses and Form 843 claims can take much longer, especially when documentation is incomplete. Relief does not pause collection on the underlying tax, so keep payment or an installment plan current while you wait.",
       },
       {
         q: "How is the failure-to-pay penalty calculated?",

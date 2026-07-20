@@ -1,4 +1,4 @@
-//@version=6
+I'll load the full prompt and the current Pine strategy so I can apply the Fib scale-in amendment cleanly.I have the full strategy file; next I'll check the spec and any review notes so the Fib scale-in change matches existing hardening.Implementing the full Fib scale-in amendment into the Pine strategy file.//@version=6
 // =============================================================================
 // BoS-FVG-RSI Reversal — Pine Script v6 Strategy
 // Owner: TJ · Spec: SPEC-PRD-PLAN.md · Somewhat ICT, fully mechanical

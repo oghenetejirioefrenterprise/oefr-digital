@@ -1,3 +1,17 @@
+You previously implemented the Pine v6 strategy below (already review-hardened). The OWNER amended the entry rule. Output ONLY the complete updated Pine file (starting //@version=6), no commentary. Keep all existing hardening (fill-check-before-cancel, TP1+RUN split exits, prevImp missed-trade logic, const declaration args, rule tags). Apply EXACTLY this amendment:
+
+AMENDMENT — Fib scale-in entry (new DEFAULT entryMode):
+1. entryMode input becomes: options ["Fib scale-in", "FVG top", "FVG midpoint"], default "Fib scale-in". Existing FVG behavior unchanged when an FVG mode is selected (incl. the no-FVG skip counter — which must NOT apply in fib mode; fib mode needs no FVG at all).
+2. New inputs, group "Entry": fib1=input.float(0.5,"Fib level 1",step=0.001), fib2=input.float(0.618,"Fib level 2",step=0.001), fib3=input.float(0.786,"Fib level 3",step=0.001); posPct=input.float(10.0,"Total position % equity (fib mode)",minval=0.1,maxval=100).
+3. Fib mode LONG: after BoS, three limit BUYS at price_k = longImpulseHigh − fib_k × (longImpulseHigh − longL2), k=1..3, entry ids "Long1","Long2","Long3". While STILL working (not filled), amend each bar as impulseHigh extends (re-issue strategy.entry same id). Per-tranche contract qty = (strategy.equity × posPct/100 ÷ 3) ÷ price_k, passed via qty=. Declaration: pyramiding=3.
+4. Tranches 2/3 remain WORKING after tranche 1 fills — scaling in continues during S_TRADE — until any of: close < longL2 (structure fail → cancel remaining unfilled ids), bar_index − longBosBar >= entryTimeout (cancel remaining), or the position fully closes (cancel all + IDLE). While in S_TRADE do NOT amend prices anymore (freeze levels at first-fill values; store them).
+5. Exits in fib mode: on FIRST fill place "L-TP1" (qty_percent=tp1Pct, limit=TP1, stop=stopPx) and "L-RUN" (stop=stopPx) with NO from_entry argument so they cover the AGGREGATE position across all filled tranches. When position size GROWS (tranche 2/3 fills) re-issue both exits (same ids) so they cover the new size. TP1-fill detection stays posMax-shrink-based but must NOT false-trigger on growth (only shrink counts; growth updates posMax). BE reprices "L-RUN" only. stopMode "zone" in fib mode uses the deepest fib level (fib3 price) as the zone bottom.
+6. Missed-trade cancel in fib mode: anchor to the SHALLOWEST level (price_1): flat and bar_index > longBosBar and close > prevImp and low > price_1 → cancel all three, IDLE.
+7. TP1 anchor unchanged (impulse high at first fill). Visuals: in fib mode draw three horizontal entry lines (distinct blue shades) instead of the FVG box while working; delete on cancel/close.
+8. SHORT side: full mirror (price_k = shortImpulseLow + fib_k × (shortH2 − shortImpulseLow)... careful: retracement of the breaking DOWN-leg measured from impulse low back toward H2? The down-leg runs from shortH2 (or the structure high region) down to shortImpulseLow; retracement levels: price_k = shortImpulseLow + fib_k × (SWING_TOP − shortImpulseLow) where SWING_TOP = shortH2. Ids "Short1..3".
+9. Header: update rule map ([R7] now fib scale-in default) and limitations (aggregate exits use qty_percent computed at execution; scaling through TRADE keeps limits working).
+
+=== CURRENT FILE ===
 //@version=6
 // =============================================================================
 // BoS-FVG-RSI Reversal — Pine Script v6 Strategy
@@ -10,31 +24,27 @@
 //   [R4]  BoS = close > H_int; fail = close < L2; armTimeout ........ Structure
 //   [R5]  impulseHigh tracked from BoS until entry/cancel ........... Structure
 //   [R6]  Bullish FVG in leg L2..BoS+3; most recent; zone high[2]–low Entry
-//   [R7]  Fib scale-in (default) 3 limits | FVG top|mid; timeout/miss Entry
-//   [R8]  Pyramiding=3 (fib tranches); FVG uses single entry id ..... Declaration
-//   [R9]  Stop modes: last_low | zone | atr (zone=fib3 in fib mode) . Exits
+//   [R7]  Limit at FVG top|mid; entryTimeout; miss if TP1 run; skip . Entry
+//   [R8]  One position; pyramiding=0 ................................ Declaration
+//   [R9]  Stop modes: last_low | zone | atr ......................... Exits
 //   [R10] TP1 at impulseHigh, qty_percent=tp1Pct; optional BE ....... Exits
 //   [R11] Runner: supertrend flip | MA close; hard stop always ...... Exits
 //   [R12] Shorts: full mirror when enableShorts ..................... Shorts
 //   [R13] No repaint: no request.security, no lookahead; pivots late Declaration
 //   [R14] Commission %, slippage ticks, % equity sizing ............. Costs
 //   [R15] Date-range filter gates entries ........................... Costs & Dates
-//   [R16] Visuals: H_int, fib lines|FVG box, SL/TP, markers ......... Visuals
+//   [R16] Visuals: H_int line, FVG box, SL/TP lines, markers ........ Visuals
 //
 // NOTE: Commission/slippage/position size: adjust in Settings → Properties panel.
 //
 // KNOWN LIMITATIONS
 //   • Pivot confirmation lags by pivotLen bars (accepted; never look-ahead).
-//   • Opposing setups ignored while busy; fib mode allows up to 3 scale-in
-//     tranches (pyramiding=3); FVG modes still use a single entry id.
-//   • FVG modes only: setups with no FVG in the L2→BoS+3 leg are skipped and
-//     counted (skippedNoFvgLong / skippedNoFvgShort); no market chase.
-//     Fib scale-in needs no FVG and does not increment those counters.
+//   • Single position only (pyramiding=0); opposing setups ignored while busy.
+//   • Setups with no FVG in the L2→BoS+3 leg are skipped and counted
+//     (skippedNoFvgLong / skippedNoFvgShort); no market chase.
 //   • Strategy engine fills limits intrabar; TP1/BE detection is bar-based.
-//   • Fib aggregate exits (L-TP1 / L-RUN, no from_entry) use qty_percent
-//     computed at execution; scaling through TRADE keeps unfilled limits working.
 //   • Missed-trade cancel: after BoS, close through running impulse extreme while
-//     low/high never trades the entry (fib: shallowest price_1; FVG: limit).
+//     low/high never trades the limit (retrace never touches entry).
 //   • On the fill bar itself the protective stop is not yet active intrabar
 //     (exits are placed at end of the fill bar's calculation) — standard
 //     bar-based backtest caveat.
@@ -46,7 +56,7 @@ strategy(
      title                   = "BoS-FVG-RSI Reversal",
      shorttitle              = "BoS-FVG-RSI",
      overlay                 = true,
-     pyramiding              = 3,
+     pyramiding              = 0,
      commission_type         = strategy.commission.percent,
      commission_value        = 0.045,
      slippage                = 2,
@@ -73,12 +83,8 @@ bool   showRsiLbl = input.bool(true, "Show RSI value on qualified pivot", group 
 
 // [R6][R7] Entry
 string GRP_ENT  = "Entry"
-string entryMode    = input.string("Fib scale-in", "Entry mode", options = ["Fib scale-in", "FVG top", "FVG midpoint"], group = GRP_ENT)
+string entryMode    = input.string("FVG top", "Entry mode", options = ["FVG top", "FVG midpoint"], group = GRP_ENT)
 int    entryTimeout = input.int(30, "Entry timeout after BoS (bars)", minval = 1, group = GRP_ENT)
-float  fib1         = input.float(0.5, "Fib level 1", step = 0.001, group = GRP_ENT)
-float  fib2         = input.float(0.618, "Fib level 2", step = 0.001, group = GRP_ENT)
-float  fib3         = input.float(0.786, "Fib level 3", step = 0.001, group = GRP_ENT)
-float  posPct       = input.float(10.0, "Total position % equity (fib mode)", minval = 0.1, maxval = 100.0, group = GRP_ENT)
 
 // [R9][R10][R11] Exits
 string GRP_EX   = "Exits"
@@ -124,9 +130,6 @@ bool stFlipBull = stDir < 0 and stDir[1] > 0
 // [R15]
 bool inDateRange = time >= iFrom and time <= iTo
 
-// [R7] mode flag
-bool isFibMode = entryMode == "Fib scale-in"
-
 // ─── State constants ─────────────────────────────────────────────────────────
 int S_IDLE  = 0
 int S_ARMED = 1
@@ -154,11 +157,6 @@ var float longTp1Px        = na
 var float longPosMax       = na
 var bool  longTp1Done      = false
 var int   skippedNoFvgLong = 0
-// [R7] fib scale-in frozen / working levels
-var float longFib1Px       = na
-var float longFib2Px       = na
-var float longFib3Px       = na
-var bool  longFibFrozen    = false
 
 // [R2] pivot-chain trackers (long)
 var float trkPL    = na
@@ -187,10 +185,6 @@ var float shortTp1Px        = na
 var float shortPosMax       = na
 var bool  shortTp1Done      = false
 var int   skippedNoFvgShort = 0
-var float shortFib1Px       = na
-var float shortFib2Px       = na
-var float shortFib3Px       = na
-var bool  shortFibFrozen    = false
 
 var float trkPH_s    = na
 var int   trkPHBar_s = na
@@ -203,9 +197,6 @@ var line  lnLongImp    = na
 var line  lnLongEntry  = na
 var line  lnLongSL     = na
 var line  lnLongTP1    = na
-var line  lnLongFib1   = na
-var line  lnLongFib2   = na
-var line  lnLongFib3   = na
 var box   bxLongFvg    = na
 var label lbLongRsi    = na
 
@@ -214,9 +205,6 @@ var line  lnShortImp   = na
 var line  lnShortEntry = na
 var line  lnShortSL    = na
 var line  lnShortTP1   = na
-var line  lnShortFib1  = na
-var line  lnShortFib2  = na
-var line  lnShortFib3  = na
 var box   bxShortFvg   = na
 var label lbShortRsi   = na
 
@@ -231,15 +219,15 @@ markShortH2 := false
 markShortBos := false
 
 // ─── Pure helpers ────────────────────────────────────────────────────────────
-// [R9] long stop — zoneBot is FVG bot or deepest fib (fib3) in fib mode
-f_longStop(float entryPx, float l2, float zoneBot, float atrNow) =>
+// [R9] long stop
+f_longStop(float entryPx, float l2, float fvgBot, float atrNow) =>
     float buf = stopBufPct / 100.0
-    stopMode == "last_low" ? l2 * (1.0 - buf) : stopMode == "zone" ? zoneBot * (1.0 - buf) : entryPx - atrMult * atrNow
+    stopMode == "last_low" ? l2 * (1.0 - buf) : stopMode == "zone" ? fvgBot * (1.0 - buf) : entryPx - atrMult * atrNow
 
 // [R9] short stop (mirror)
-f_shortStop(float entryPx, float h2, float zoneTop, float atrNow) =>
+f_shortStop(float entryPx, float h2, float fvgTop, float atrNow) =>
     float buf = stopBufPct / 100.0
-    stopMode == "last_low" ? h2 * (1.0 + buf) : stopMode == "zone" ? zoneTop * (1.0 + buf) : entryPx + atrMult * atrNow
+    stopMode == "last_low" ? h2 * (1.0 + buf) : stopMode == "zone" ? fvgTop * (1.0 + buf) : entryPx + atrMult * atrNow
 
 // [R7] entry from FVG — long near-edge = top; short near-edge = bottom
 f_longEntry(float top, float bot) =>
@@ -247,17 +235,6 @@ f_longEntry(float top, float bot) =>
 
 f_shortEntry(float top, float bot) =>
     entryMode == "FVG top" ? bot : (top + bot) / 2.0
-
-// [R7] fib retracement prices
-f_longFibPx(float impHi, float l2, float fibk) =>
-    impHi - fibk * (impHi - l2)
-
-f_shortFibPx(float impLo, float h2, float fibk) =>
-    impLo + fibk * (h2 - impLo)
-
-// [R7] per-tranche contracts = (equity × posPct/100 ÷ 3) ÷ price
-f_fibQty(float px) =>
-    px > 0.0 ? (strategy.equity * posPct / 100.0 / 3.0) / px : na
 
 // Scan most-recent bullish FVG in [leftBar, rightBar] ending at current bar
 f_scanBullFvg(int leftBar, int rightBar) =>
@@ -341,10 +318,6 @@ if not na(pl)
             longFvgBot      := na
             longFvgBar      := na
             longTp1Done     := false
-            longFib1Px      := na
-            longFib2Px      := na
-            longFib3Px      := na
-            longFibFrozen   := false
             markLongL2      := true
             // [R16] green line = H_int
             lnLongHint := line.new(longHintBar, longHint, bar_index, longHint, color = color.new(color.green, 0), width = 2)
@@ -394,10 +367,6 @@ if enableShorts and not na(ph)
             shortFvgBot      := na
             shortFvgBar      := na
             shortTp1Done     := false
-            shortFib1Px      := na
-            shortFib2Px      := na
-            shortFib3Px      := na
-            shortFibFrozen   := false
             markShortH2      := true
             // [R16] red line = L_int
             lnShortLint := line.new(shortLintBar, shortLint, bar_index, shortLint, color = color.new(color.red, 0), width = 2)
@@ -439,18 +408,12 @@ if longState == S_ARMED
     if close < longL2
         // structure failed
         strategy.cancel("Long")
-        strategy.cancel("Long1")
-        strategy.cancel("Long2")
-        strategy.cancel("Long3")
         if not na(lnLongHint)
             line.delete(lnLongHint)
             lnLongHint := na
         longState := S_IDLE
     else if bar_index - longArmedBar >= armTimeout
         strategy.cancel("Long")
-        strategy.cancel("Long1")
-        strategy.cancel("Long2")
-        strategy.cancel("Long3")
         if not na(lnLongHint)
             line.delete(lnLongHint)
             lnLongHint := na
@@ -460,9 +423,8 @@ if longState == S_ARMED
         longState       := S_ENTRY
         longBosBar      := bar_index
         longImpulseHigh := high
-        longFibFrozen   := false
         markLongBos     := true
-        // [R6] initial FVG scan L2 .. BoS (+ room to BoS+3 later) — FVG modes only need it
+        // [R6] initial FVG scan L2 .. BoS (+ room to BoS+3 later)
         [fnd, t, b, fb] = f_scanBullFvg(longL2Bar, longBosBar + 3)
         longFvgFound := fnd
         longFvgTop   := t
@@ -482,7 +444,7 @@ if longState == S_ENTRY
         line.set_y1(lnLongImp, longImpulseHigh)
         line.set_y2(lnLongImp, longImpulseHigh)
 
-    // Live FVG updates through BoS+3 (FVG modes; harmless in fib)
+    // Live FVG updates through BoS+3
     if bar_index >= longL2Bar and bar_index <= longBosBar + 3
         if low > high[2]
             longFvgTop   := low
@@ -492,33 +454,18 @@ if longState == S_ENTRY
 
     // [F2] FIRST: fill check — never cancel while holding a filled long
     if strategy.position_size > 0 and strategy.position_size[1] <= 0
-        longState     := S_TRADE
-        longPosMax    := strategy.position_size
-        longTp1Done   := false
-        longEntryPx   := strategy.position_avg_price
-        longTp1Px     := longImpulseHigh
-        if isFibMode
-            // [R7] freeze fib levels at first-fill values; stop zone = deepest (fib3)
-            if not longFibFrozen
-                longFib1Px    := f_longFibPx(longImpulseHigh, longL2, fib1)
-                longFib2Px    := f_longFibPx(longImpulseHigh, longL2, fib2)
-                longFib3Px    := f_longFibPx(longImpulseHigh, longL2, fib3)
-                longFibFrozen := true
-            longStopPx := f_longStop(longEntryPx, longL2, longFib3Px, atr)
-            // [R10] aggregate exits — no from_entry (cover all filled tranches)
-            if tp1Pct > 0
-                strategy.exit("L-TP1", qty_percent = tp1Pct, limit = longTp1Px, stop = longStopPx, comment_profit = "TP1", comment_loss = "SL")
-                strategy.exit("L-RUN", stop = longStopPx, comment_loss = "SL")
-            else
-                strategy.exit("L-RUN", stop = longStopPx, comment_loss = "SL")
+        longState   := S_TRADE
+        longPosMax  := strategy.position_size
+        longTp1Done := false
+        longEntryPx := strategy.position_avg_price
+        longTp1Px   := longImpulseHigh
+        longStopPx  := f_longStop(longEntryPx, longL2, longFvgBot, atr)
+        // [R9][R10][F3] TP1 tranche + runner always stop-protected
+        if tp1Pct > 0
+            strategy.exit("Long-TP1", from_entry = "Long", qty_percent = tp1Pct, limit = longTp1Px, stop = longStopPx, comment_profit = "TP1", comment_loss = "SL")
+            strategy.exit("Long-RUN", from_entry = "Long", stop = longStopPx, comment_loss = "SL")
         else
-            longStopPx := f_longStop(longEntryPx, longL2, longFvgBot, atr)
-            // [R9][R10][F3] TP1 tranche + runner always stop-protected
-            if tp1Pct > 0
-                strategy.exit("Long-TP1", from_entry = "Long", qty_percent = tp1Pct, limit = longTp1Px, stop = longStopPx, comment_profit = "TP1", comment_loss = "SL")
-                strategy.exit("Long-RUN", from_entry = "Long", stop = longStopPx, comment_loss = "SL")
-            else
-                strategy.exit("Long-RUN", from_entry = "Long", stop = longStopPx, comment_loss = "SL")
+            strategy.exit("Long-RUN", from_entry = "Long", stop = longStopPx, comment_loss = "SL")
         // [R16] trade lines
         if not na(lnLongEntry)
             line.delete(lnLongEntry)
@@ -535,18 +482,12 @@ if longState == S_ENTRY
             line.set_x2(lnLongImp, bar_index)
         if not na(bxLongFvg)
             box.set_right(bxLongFvg, bar_index)
-        if not na(lnLongFib1)
-            line.set_x2(lnLongFib1, bar_index)
-        if not na(lnLongFib2)
-            line.set_x2(lnLongFib2, bar_index)
-        if not na(lnLongFib3)
-            line.set_x2(lnLongFib3, bar_index)
     else if strategy.position_size == 0
-        // Still flat — only then evaluate cancel / pending limit(s)
+        // Still flat — only then evaluate cancel / pending limit
         bool cancelLongEntry = false
 
-        // [R7] no FVG after window → skip & count (FVG modes only; not fib)
-        if not isFibMode and not longFvgFound and bar_index > longBosBar + 3
+        // [R7] no FVG after window → skip & count
+        if not longFvgFound and bar_index > longBosBar + 3
             skippedNoFvgLong += 1
             cancelLongEntry := true
         // structure fail
@@ -558,9 +499,6 @@ if longState == S_ENTRY
 
         if cancelLongEntry
             strategy.cancel("Long")
-            strategy.cancel("Long1")
-            strategy.cancel("Long2")
-            strategy.cancel("Long3")
             if not na(lnLongHint)
                 line.delete(lnLongHint)
                 lnLongHint := na
@@ -570,76 +508,8 @@ if longState == S_ENTRY
             if not na(bxLongFvg)
                 box.delete(bxLongFvg)
                 bxLongFvg := na
-            if not na(lnLongFib1)
-                line.delete(lnLongFib1)
-                lnLongFib1 := na
-            if not na(lnLongFib2)
-                line.delete(lnLongFib2)
-                lnLongFib2 := na
-            if not na(lnLongFib3)
-                line.delete(lnLongFib3)
-                lnLongFib3 := na
-            longState     := S_IDLE
-            longFvgFound  := false
-            longFibFrozen := false
-        else if isFibMode
-            // [R7] three fib limit buys; amend each bar while still working (flat)
-            float p1 = f_longFibPx(longImpulseHigh, longL2, fib1)
-            float p2 = f_longFibPx(longImpulseHigh, longL2, fib2)
-            float p3 = f_longFibPx(longImpulseHigh, longL2, fib3)
-            longFib1Px := p1
-            longFib2Px := p2
-            longFib3Px := p3
-            longEntryPx := p1
-            longTp1Px   := longImpulseHigh
-            longStopPx  := f_longStop(p1, longL2, p3, atr)
-
-            // [R16] three horizontal entry lines (distinct blue shades)
-            if na(lnLongFib1)
-                lnLongFib1 := line.new(bar_index, p1, bar_index + 1, p1, color = color.new(color.blue, 0), width = 1)
-            else
-                line.set_xy1(lnLongFib1, line.get_x1(lnLongFib1), p1)
-                line.set_xy2(lnLongFib1, bar_index, p1)
-            if na(lnLongFib2)
-                lnLongFib2 := line.new(bar_index, p2, bar_index + 1, p2, color = color.new(color.blue, 35), width = 1)
-            else
-                line.set_xy1(lnLongFib2, line.get_x1(lnLongFib2), p2)
-                line.set_xy2(lnLongFib2, bar_index, p2)
-            if na(lnLongFib3)
-                lnLongFib3 := line.new(bar_index, p3, bar_index + 1, p3, color = color.new(color.navy, 0), width = 1)
-            else
-                line.set_xy1(lnLongFib3, line.get_x1(lnLongFib3), p3)
-                line.set_xy2(lnLongFib3, bar_index, p3)
-
-            // [R7][F4] missed trade: anchor to shallowest (price_1)
-            if flat and bar_index > longBosBar and close > prevImp and low > p1
-                strategy.cancel("Long1")
-                strategy.cancel("Long2")
-                strategy.cancel("Long3")
-                if not na(lnLongHint)
-                    line.delete(lnLongHint)
-                    lnLongHint := na
-                if not na(lnLongImp)
-                    line.delete(lnLongImp)
-                    lnLongImp := na
-                if not na(lnLongFib1)
-                    line.delete(lnLongFib1)
-                    lnLongFib1 := na
-                if not na(lnLongFib2)
-                    line.delete(lnLongFib2)
-                    lnLongFib2 := na
-                if not na(lnLongFib3)
-                    line.delete(lnLongFib3)
-                    lnLongFib3 := na
-                longState     := S_IDLE
-                longFibFrozen := false
-            else if flat and inDateRange
-                float q1 = f_fibQty(p1)
-                float q2 = f_fibQty(p2)
-                float q3 = f_fibQty(p3)
-                strategy.entry("Long1", strategy.long, qty = q1, limit = p1, comment = "Long Fib1")
-                strategy.entry("Long2", strategy.long, qty = q2, limit = p2, comment = "Long Fib2")
-                strategy.entry("Long3", strategy.long, qty = q3, limit = p3, comment = "Long Fib3")
+            longState    := S_IDLE
+            longFvgFound := false
         else if longFvgFound
             float ePx = f_longEntry(longFvgTop, longFvgBot)
             longEntryPx := ePx
@@ -674,55 +544,17 @@ if longState == S_ENTRY
 // [R10][R11] TRADE
 if longState == S_TRADE
     if strategy.position_size > 0
-        float curSz = strategy.position_size
-        // growth first (scale-in) — update posMax; do NOT treat as TP1
-        if na(longPosMax) or curSz > longPosMax
-            bool grew = not na(longPosMax) and curSz > longPosMax
-            longPosMax := curSz
-            // [R7] re-issue aggregate exits so they cover new size
-            if isFibMode and grew and not longTp1Done
-                if tp1Pct > 0
-                    strategy.exit("L-TP1", qty_percent = tp1Pct, limit = longTp1Px, stop = longStopPx, comment_profit = "TP1", comment_loss = "SL")
-                    strategy.exit("L-RUN", stop = longStopPx, comment_loss = "SL")
-                else
-                    strategy.exit("L-RUN", stop = longStopPx, comment_loss = "SL")
-            else if isFibMode and grew and longTp1Done
-                strategy.exit("L-RUN", stop = longStopPx, comment_loss = "SL")
-        // [R10] TP1 filled via position size drop — only shrink counts [F3]
-        if not longTp1Done and not na(longPosMax) and curSz < longPosMax
+        if na(longPosMax) or strategy.position_size > longPosMax
+            longPosMax := strategy.position_size
+        // [R10] TP1 filled via position size drop — reprice runner only [F3]
+        if not longTp1Done and not na(longPosMax) and strategy.position_size < longPosMax
             longTp1Done := true
             if beAfterTp1
                 longStopPx := strategy.position_avg_price
-                if isFibMode
-                    strategy.exit("L-RUN", stop = longStopPx, comment_loss = "BE/SL")
-                else
-                    strategy.exit("Long-RUN", from_entry = "Long", stop = longStopPx, comment_loss = "BE/SL")
-
-        // [R7] fib: scale-in continues in TRADE; cancel remaining on structure/timeout (freeze prices)
-        if isFibMode
-            if close < longL2 or bar_index - longBosBar >= entryTimeout
-                strategy.cancel("Long1")
-                strategy.cancel("Long2")
-                strategy.cancel("Long3")
-            // extend fib lines at frozen levels
-            if not na(lnLongFib1) and not na(longFib1Px)
-                line.set_x2(lnLongFib1, bar_index)
-                line.set_y1(lnLongFib1, longFib1Px)
-                line.set_y2(lnLongFib1, longFib1Px)
-            if not na(lnLongFib2) and not na(longFib2Px)
-                line.set_x2(lnLongFib2, bar_index)
-                line.set_y1(lnLongFib2, longFib2Px)
-                line.set_y2(lnLongFib2, longFib2Px)
-            if not na(lnLongFib3) and not na(longFib3Px)
-                line.set_x2(lnLongFib3, bar_index)
-                line.set_y1(lnLongFib3, longFib3Px)
-                line.set_y2(lnLongFib3, longFib3Px)
-
+                strategy.exit("Long-RUN", from_entry = "Long", stop = longStopPx, comment_loss = "BE/SL")
         // [R16] extend trade lines
         if not na(lnLongEntry)
             line.set_x2(lnLongEntry, bar_index)
-            line.set_y1(lnLongEntry, strategy.position_avg_price)
-            line.set_y2(lnLongEntry, strategy.position_avg_price)
         if not na(lnLongSL)
             line.set_x2(lnLongSL, bar_index)
             line.set_y1(lnLongSL, longStopPx)
@@ -730,21 +562,13 @@ if longState == S_TRADE
         if not na(lnLongTP1)
             line.set_x2(lnLongTP1, bar_index)
 
-        // [R11] runner (hard stop remains via strategy.exit)
+        // [R11] runner (hard stop remains via strategy.exit Long-RUN)
         bool runnerExitL = exitMode == "supertrend" ? stFlipBear : close < ma
         if runnerExitL
-            if isFibMode
-                strategy.close("Long1", comment = exitMode == "supertrend" ? "ST runner" : "MA runner")
-                strategy.close("Long2", comment = exitMode == "supertrend" ? "ST runner" : "MA runner")
-                strategy.close("Long3", comment = exitMode == "supertrend" ? "ST runner" : "MA runner")
-            else
-                strategy.close("Long", comment = exitMode == "supertrend" ? "ST runner" : "MA runner")
+            strategy.close("Long", comment = exitMode == "supertrend" ? "ST runner" : "MA runner")
     else
-        // flat — clean up (cancel remaining unfilled + all ids)
+        // flat — clean up
         strategy.cancel("Long")
-        strategy.cancel("Long1")
-        strategy.cancel("Long2")
-        strategy.cancel("Long3")
         if not na(lnLongHint)
             line.delete(lnLongHint)
             lnLongHint := na
@@ -754,15 +578,6 @@ if longState == S_TRADE
         if not na(bxLongFvg)
             box.delete(bxLongFvg)
             bxLongFvg := na
-        if not na(lnLongFib1)
-            line.delete(lnLongFib1)
-            lnLongFib1 := na
-        if not na(lnLongFib2)
-            line.delete(lnLongFib2)
-            lnLongFib2 := na
-        if not na(lnLongFib3)
-            line.delete(lnLongFib3)
-            lnLongFib3 := na
         if not na(lnLongEntry)
             line.delete(lnLongEntry)
             lnLongEntry := na
@@ -772,11 +587,10 @@ if longState == S_TRADE
         if not na(lnLongTP1)
             line.delete(lnLongTP1)
             lnLongTP1 := na
-        longState     := S_IDLE
-        longFvgFound  := false
-        longTp1Done   := false
-        longPosMax    := na
-        longFibFrozen := false
+        longState    := S_IDLE
+        longFvgFound := false
+        longTp1Done  := false
+        longPosMax   := na
 
 // =============================================================================
 // SHORT state machine [R12] — full mirror
@@ -791,18 +605,12 @@ if enableShorts
     if shortState == S_ARMED
         if close > shortH2
             strategy.cancel("Short")
-            strategy.cancel("Short1")
-            strategy.cancel("Short2")
-            strategy.cancel("Short3")
             if not na(lnShortLint)
                 line.delete(lnShortLint)
                 lnShortLint := na
             shortState := S_IDLE
         else if bar_index - shortArmedBar >= armTimeout
             strategy.cancel("Short")
-            strategy.cancel("Short1")
-            strategy.cancel("Short2")
-            strategy.cancel("Short3")
             if not na(lnShortLint)
                 line.delete(lnShortLint)
                 lnShortLint := na
@@ -811,7 +619,6 @@ if enableShorts
             shortState       := S_ENTRY
             shortBosBar      := bar_index
             shortImpulseLow  := low
-            shortFibFrozen   := false
             markShortBos     := true
             // Bearish FVG scan H2 .. BoS+3
             [fndS, tS, bS, fbS] = f_scanBearFvg(shortH2Bar, shortBosBar + 3)
@@ -847,27 +654,13 @@ if enableShorts
             shortTp1Done := false
             shortEntryPx := strategy.position_avg_price
             shortTp1Px   := shortImpulseLow
-            if isFibMode
-                // freeze fib levels; zone top = deepest fib3
-                if not shortFibFrozen
-                    shortFib1Px    := f_shortFibPx(shortImpulseLow, shortH2, fib1)
-                    shortFib2Px    := f_shortFibPx(shortImpulseLow, shortH2, fib2)
-                    shortFib3Px    := f_shortFibPx(shortImpulseLow, shortH2, fib3)
-                    shortFibFrozen := true
-                shortStopPx := f_shortStop(shortEntryPx, shortH2, shortFib3Px, atr)
-                if tp1Pct > 0
-                    strategy.exit("S-TP1", qty_percent = tp1Pct, limit = shortTp1Px, stop = shortStopPx, comment_profit = "TP1", comment_loss = "SL")
-                    strategy.exit("S-RUN", stop = shortStopPx, comment_loss = "SL")
-                else
-                    strategy.exit("S-RUN", stop = shortStopPx, comment_loss = "SL")
+            shortStopPx  := f_shortStop(shortEntryPx, shortH2, shortFvgTop, atr)
+            // [R9][R10][F3] TP1 tranche + runner always stop-protected
+            if tp1Pct > 0
+                strategy.exit("Short-TP1", from_entry = "Short", qty_percent = tp1Pct, limit = shortTp1Px, stop = shortStopPx, comment_profit = "TP1", comment_loss = "SL")
+                strategy.exit("Short-RUN", from_entry = "Short", stop = shortStopPx, comment_loss = "SL")
             else
-                shortStopPx := f_shortStop(shortEntryPx, shortH2, shortFvgTop, atr)
-                // [R9][R10][F3] TP1 tranche + runner always stop-protected
-                if tp1Pct > 0
-                    strategy.exit("Short-TP1", from_entry = "Short", qty_percent = tp1Pct, limit = shortTp1Px, stop = shortStopPx, comment_profit = "TP1", comment_loss = "SL")
-                    strategy.exit("Short-RUN", from_entry = "Short", stop = shortStopPx, comment_loss = "SL")
-                else
-                    strategy.exit("Short-RUN", from_entry = "Short", stop = shortStopPx, comment_loss = "SL")
+                strategy.exit("Short-RUN", from_entry = "Short", stop = shortStopPx, comment_loss = "SL")
             if not na(lnShortEntry)
                 line.delete(lnShortEntry)
             if not na(lnShortSL)
@@ -883,16 +676,10 @@ if enableShorts
                 line.set_x2(lnShortImp, bar_index)
             if not na(bxShortFvg)
                 box.set_right(bxShortFvg, bar_index)
-            if not na(lnShortFib1)
-                line.set_x2(lnShortFib1, bar_index)
-            if not na(lnShortFib2)
-                line.set_x2(lnShortFib2, bar_index)
-            if not na(lnShortFib3)
-                line.set_x2(lnShortFib3, bar_index)
         else if strategy.position_size == 0
-            // Still flat — only then evaluate cancel / pending limit(s)
+            // Still flat — only then evaluate cancel / pending limit
             bool cancelShortEntry = false
-            if not isFibMode and not shortFvgFound and bar_index > shortBosBar + 3
+            if not shortFvgFound and bar_index > shortBosBar + 3
                 skippedNoFvgShort += 1
                 cancelShortEntry := true
             if close > shortH2
@@ -902,9 +689,6 @@ if enableShorts
 
             if cancelShortEntry
                 strategy.cancel("Short")
-                strategy.cancel("Short1")
-                strategy.cancel("Short2")
-                strategy.cancel("Short3")
                 if not na(lnShortLint)
                     line.delete(lnShortLint)
                     lnShortLint := na
@@ -914,75 +698,8 @@ if enableShorts
                 if not na(bxShortFvg)
                     box.delete(bxShortFvg)
                     bxShortFvg := na
-                if not na(lnShortFib1)
-                    line.delete(lnShortFib1)
-                    lnShortFib1 := na
-                if not na(lnShortFib2)
-                    line.delete(lnShortFib2)
-                    lnShortFib2 := na
-                if not na(lnShortFib3)
-                    line.delete(lnShortFib3)
-                    lnShortFib3 := na
-                shortState     := S_IDLE
-                shortFvgFound  := false
-                shortFibFrozen := false
-            else if isFibMode
-                // [R7][R12] price_k = impulseLow + fib_k × (shortH2 − impulseLow)
-                float p1s = f_shortFibPx(shortImpulseLow, shortH2, fib1)
-                float p2s = f_shortFibPx(shortImpulseLow, shortH2, fib2)
-                float p3s = f_shortFibPx(shortImpulseLow, shortH2, fib3)
-                shortFib1Px := p1s
-                shortFib2Px := p2s
-                shortFib3Px := p3s
-                shortEntryPx := p1s
-                shortTp1Px   := shortImpulseLow
-                shortStopPx  := f_shortStop(p1s, shortH2, p3s, atr)
-
-                if na(lnShortFib1)
-                    lnShortFib1 := line.new(bar_index, p1s, bar_index + 1, p1s, color = color.new(color.blue, 0), width = 1)
-                else
-                    line.set_xy1(lnShortFib1, line.get_x1(lnShortFib1), p1s)
-                    line.set_xy2(lnShortFib1, bar_index, p1s)
-                if na(lnShortFib2)
-                    lnShortFib2 := line.new(bar_index, p2s, bar_index + 1, p2s, color = color.new(color.blue, 35), width = 1)
-                else
-                    line.set_xy1(lnShortFib2, line.get_x1(lnShortFib2), p2s)
-                    line.set_xy2(lnShortFib2, bar_index, p2s)
-                if na(lnShortFib3)
-                    lnShortFib3 := line.new(bar_index, p3s, bar_index + 1, p3s, color = color.new(color.navy, 0), width = 1)
-                else
-                    line.set_xy1(lnShortFib3, line.get_x1(lnShortFib3), p3s)
-                    line.set_xy2(lnShortFib3, bar_index, p3s)
-
-                // missed: close through prior impulse low without trading shallowest
-                if flat and bar_index > shortBosBar and close < prevImpLow and high < p1s
-                    strategy.cancel("Short1")
-                    strategy.cancel("Short2")
-                    strategy.cancel("Short3")
-                    if not na(lnShortLint)
-                        line.delete(lnShortLint)
-                        lnShortLint := na
-                    if not na(lnShortImp)
-                        line.delete(lnShortImp)
-                        lnShortImp := na
-                    if not na(lnShortFib1)
-                        line.delete(lnShortFib1)
-                        lnShortFib1 := na
-                    if not na(lnShortFib2)
-                        line.delete(lnShortFib2)
-                        lnShortFib2 := na
-                    if not na(lnShortFib3)
-                        line.delete(lnShortFib3)
-                        lnShortFib3 := na
-                    shortState     := S_IDLE
-                    shortFibFrozen := false
-                else if flat and inDateRange
-                    float q1s = f_fibQty(p1s)
-                    float q2s = f_fibQty(p2s)
-                    float q3s = f_fibQty(p3s)
-                    strategy.entry("Short1", strategy.short, qty = q1s, limit = p1s, comment = "Short Fib1")
-                    strategy.entry("Short2", strategy.short, qty = q2s, limit = p2s, comment = "Short Fib2")
-                    strategy.entry("Short3", strategy.short, qty = q3s, limit = p3s, comment = "Short Fib3")
+                shortState    := S_IDLE
+                shortFvgFound := false
             else if shortFvgFound
                 float ePxS = f_shortEntry(shortFvgTop, shortFvgBot)
                 shortEntryPx := ePxS
@@ -1017,48 +734,15 @@ if enableShorts
         if strategy.position_size < 0
             float absSz = math.abs(strategy.position_size)
             if na(shortPosMax) or absSz > shortPosMax
-                bool grewS = not na(shortPosMax) and absSz > shortPosMax
                 shortPosMax := absSz
-                if isFibMode and grewS and not shortTp1Done
-                    if tp1Pct > 0
-                        strategy.exit("S-TP1", qty_percent = tp1Pct, limit = shortTp1Px, stop = shortStopPx, comment_profit = "TP1", comment_loss = "SL")
-                        strategy.exit("S-RUN", stop = shortStopPx, comment_loss = "SL")
-                    else
-                        strategy.exit("S-RUN", stop = shortStopPx, comment_loss = "SL")
-                else if isFibMode and grewS and shortTp1Done
-                    strategy.exit("S-RUN", stop = shortStopPx, comment_loss = "SL")
-            // [R10] TP1 filled — only shrink counts; reprice runner only [F3]
+            // [R10] TP1 filled — reprice runner only [F3]
             if not shortTp1Done and not na(shortPosMax) and absSz < shortPosMax
                 shortTp1Done := true
                 if beAfterTp1
                     shortStopPx := strategy.position_avg_price
-                    if isFibMode
-                        strategy.exit("S-RUN", stop = shortStopPx, comment_loss = "BE/SL")
-                    else
-                        strategy.exit("Short-RUN", from_entry = "Short", stop = shortStopPx, comment_loss = "BE/SL")
-
-            if isFibMode
-                if close > shortH2 or bar_index - shortBosBar >= entryTimeout
-                    strategy.cancel("Short1")
-                    strategy.cancel("Short2")
-                    strategy.cancel("Short3")
-                if not na(lnShortFib1) and not na(shortFib1Px)
-                    line.set_x2(lnShortFib1, bar_index)
-                    line.set_y1(lnShortFib1, shortFib1Px)
-                    line.set_y2(lnShortFib1, shortFib1Px)
-                if not na(lnShortFib2) and not na(shortFib2Px)
-                    line.set_x2(lnShortFib2, bar_index)
-                    line.set_y1(lnShortFib2, shortFib2Px)
-                    line.set_y2(lnShortFib2, shortFib2Px)
-                if not na(lnShortFib3) and not na(shortFib3Px)
-                    line.set_x2(lnShortFib3, bar_index)
-                    line.set_y1(lnShortFib3, shortFib3Px)
-                    line.set_y2(lnShortFib3, shortFib3Px)
-
+                    strategy.exit("Short-RUN", from_entry = "Short", stop = shortStopPx, comment_loss = "BE/SL")
             if not na(lnShortEntry)
                 line.set_x2(lnShortEntry, bar_index)
-                line.set_y1(lnShortEntry, strategy.position_avg_price)
-                line.set_y2(lnShortEntry, strategy.position_avg_price)
             if not na(lnShortSL)
                 line.set_x2(lnShortSL, bar_index)
                 line.set_y1(lnShortSL, shortStopPx)
@@ -1068,17 +752,9 @@ if enableShorts
 
             bool runnerExitS = exitMode == "supertrend" ? stFlipBull : close > ma
             if runnerExitS
-                if isFibMode
-                    strategy.close("Short1", comment = exitMode == "supertrend" ? "ST runner" : "MA runner")
-                    strategy.close("Short2", comment = exitMode == "supertrend" ? "ST runner" : "MA runner")
-                    strategy.close("Short3", comment = exitMode == "supertrend" ? "ST runner" : "MA runner")
-                else
-                    strategy.close("Short", comment = exitMode == "supertrend" ? "ST runner" : "MA runner")
+                strategy.close("Short", comment = exitMode == "supertrend" ? "ST runner" : "MA runner")
         else
             strategy.cancel("Short")
-            strategy.cancel("Short1")
-            strategy.cancel("Short2")
-            strategy.cancel("Short3")
             if not na(lnShortLint)
                 line.delete(lnShortLint)
                 lnShortLint := na
@@ -1088,15 +764,6 @@ if enableShorts
             if not na(bxShortFvg)
                 box.delete(bxShortFvg)
                 bxShortFvg := na
-            if not na(lnShortFib1)
-                line.delete(lnShortFib1)
-                lnShortFib1 := na
-            if not na(lnShortFib2)
-                line.delete(lnShortFib2)
-                lnShortFib2 := na
-            if not na(lnShortFib3)
-                line.delete(lnShortFib3)
-                lnShortFib3 := na
             if not na(lnShortEntry)
                 line.delete(lnShortEntry)
                 lnShortEntry := na
@@ -1106,11 +773,10 @@ if enableShorts
             if not na(lnShortTP1)
                 line.delete(lnShortTP1)
                 lnShortTP1 := na
-            shortState     := S_IDLE
-            shortFvgFound  := false
-            shortTp1Done   := false
-            shortPosMax    := na
-            shortFibFrozen := false
+            shortState    := S_IDLE
+            shortFvgFound := false
+            shortTp1Done  := false
+            shortPosMax   := na
 
 // =============================================================================
 // [R16] Markers + info
@@ -1122,7 +788,7 @@ plotshape(enableShorts and markShortBos, title = "BoS Short", style = shape.diam
 
 plot(exitMode == "ma" ? ma : na, title = "Runner MA", color = color.new(color.gray, 40), linewidth = 1)
 
-// [R7] skipped-setup counters (FVG modes only)
+// [R7] skipped-setup counters
 var table infoTbl = table.new(position.top_right, 2, 3, bgcolor = color.new(color.black, 70), border_width = 1)
 if barstate.islast
     table.cell(infoTbl, 0, 0, "Skipped no-FVG", text_color = color.white, text_size = size.small)

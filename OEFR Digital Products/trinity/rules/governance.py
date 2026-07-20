@@ -138,8 +138,13 @@ _PATH_TOKEN_RE = re.compile(
 # extension (e.g. "deploy-lane-router 0/0/0"). Hyphenated compounds —
 # never a product proposal.
 _SCRIPT_STEM_RE = re.compile(
-    r"(?<!\S)(?:deploy-lane-router|lane-router)[s]?\b:?"
-    r"|(?<!\S)router\b:(?=\s)",  # "Router:" section label (echoes the script) — not a proposal
+    r"(?<!\S)(?:deploy-lane-router|lane-router|lane-triage)[s]?\b:?"
+    # "Router:" / "**Router:**" section labels (echo the script) — not a proposal.
+    # (?<![\w/-]) instead of (?<!\S) so markdown bold/underscore prefixes pass;
+    # bare colon (no (?=\s)) so "Router:**" closes too. 4th live FP 2026-07-20.
+    r"|(?<![\w/-])router\b:"
+    # "Router first: ..." section phrasing (validator-executor output style)
+    r"|(?<![\w/-])router\s+first\b:?",
     re.IGNORECASE,
 )
 

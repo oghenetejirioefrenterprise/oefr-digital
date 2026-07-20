@@ -2795,6 +2795,9 @@ export const blogPosts: BlogPost[] = [
       <p class="text-slate-300 leading-relaxed mb-6">
         And here is the hearing-stage connection: the function report does not expire when the state agency is done with it. The ALJ has it in the file at your hearing and can ask you about any line on it. Treat it with the same procedural seriousness as the 5-day rule — both are paperwork steps where claims are quietly won or lost.
       </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If you want question-by-question help before you fill it out, we built one: <a href="https://www.etsy.com/listing/4532365932" class="text-amber-300 hover:text-amber-200 underline" rel="noopener" target="_blank">the SSA-3373 Function Report Walkthrough Kit ($19 on Etsy)</a> — a 36-page walkthrough mapped 1:1 to the form, plus an 8-tab narrative workbook with good-day-versus-bad-day framing and a companion decoder for the SSA-3380 third-party report. Instant digital download. Not legal advice — a narrative-writing aid anchored on the SSA-published form.
+      </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">The bottom line</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
@@ -2826,9 +2829,9 @@ export const blogPosts: BlogPost[] = [
       },
       {
         name: "SSA-3373 Function Report Walkthrough Kit",
-        href: "https://3563705146415.gumroad.com/l/bdxkzh",
+        href: "https://www.etsy.com/listing/4532365932",
         description:
-          "Question-by-question prep walkthrough for the Function Report — Adult (SSA-3373-BK), built around the three answers that quietly sink claims: one-word responses, best-day-only descriptions, and contradicting your own medical file. Instant download — 36-page PDF walkthrough plus an 8-tab narrative workbook.",
+          "Question-by-question prep walkthrough for the Function Report — Adult (SSA-3373-BK), built around the three answers that quietly sink claims: one-word responses, best-day-only descriptions, and contradicting your own medical file. Instant digital download on Etsy ($19) — 36-page PDF walkthrough plus an 8-tab narrative workbook.",
       },
     ],
     faq: [

@@ -2869,7 +2869,7 @@ export const blogPosts: BlogPost[] = [
     slug: "irs-cp2000-notice-response-2026",
     title: "Got an IRS CP2000 Notice? How to Respond in the 30-Day Window (and What a CPA Charges to Do It for You)",
     description:
-      "An IRS CP2000 is a proposed change to your return from the Automated Underreporter program — not an audit. Here's what it actually is, the 30-day response clock, how to agree / partially agree / disagree correctly, what tax pros charge to respond ($500–$1,500+), and how to package a DIY response on time.",
+      "An IRS CP2000 is a proposed change to your return from the Automated Underreporter program — not an audit. Here's the 30-day response clock, how to agree / partially agree / disagree correctly, what tax pros charge ($500–$1,500+), and what happens if you miss the window (CP3219A and the 90-day Tax Court clock).",
     keywords: [
       "IRS CP2000 notice response",
       "CP2000 30 day response",
@@ -2885,6 +2885,10 @@ export const blogPosts: BlogPost[] = [
       "CP2000 1099 mismatch",
       "CP2000 response form",
       "how to respond to IRS CP2000 without a CPA",
+      "missed CP2000 deadline",
+      "CP2000 no response what happens",
+      "CP3219A notice of deficiency",
+      "CP2000 after 30 days",
     ],
     publishedDate: "2026-06-12",
     readingTime: "8 min read",
@@ -2968,6 +2972,22 @@ export const blogPosts: BlogPost[] = [
         And if a CP2000 is ignored entirely, the IRS can follow it with a <strong class="text-white">Notice of Deficiency (CP3219A)</strong> — a statutory notice that opens a <strong class="text-white">90-day window</strong> to petition the U.S. Tax Court. That's the expensive, high-stakes branch you avoid simply by responding to the CP2000 on time.
       </p>
 
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Missed the 30-day window? What happens next — CP3219A and the 90-day clock</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If the CP2000 deadline passes without a complete response, the next letter is typically a <strong class="text-white">Statutory Notice of Deficiency — CP3219A</strong>. This is not another reminder. It's a formal statutory notice that starts a new clock: <strong class="text-white">90 days from the date on the notice</strong> (150 days if it's addressed to you outside the United States) to file a petition with the <strong class="text-white">U.S. Tax Court</strong> if you dispute the deficiency.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-3">
+          <li>⏱️ <strong class="text-white">The 90-day deadline is set by statute.</strong> Unlike the CP2000's 30-day window, it generally cannot be extended — not by phone, not in writing. Missing it means losing the ability to challenge the deficiency in Tax Court before paying.</li>
+          <li>📬 <strong class="text-white">You can still send the IRS information during the 90 days.</strong> A CP3219A doesn't stop you from submitting the documentation that should have gone in the CP2000 response — a missing cost basis, a corrected 1099, proof a 1099-K figure wasn't income — and mismatches are still resolved this way at this stage. But sending information <em>does not pause the Tax Court clock</em>; only a timely petition preserves that right.</li>
+          <li>✍️ <strong class="text-white">If you agree at this stage,</strong> the CP3219A packet includes <strong class="text-white">Form 5564 (Notice of Deficiency — Waiver)</strong> to sign and return, which lets the IRS assess the agreed amount without waiting out the 90 days.</li>
+          <li>💸 <strong class="text-white">If nothing happens within 90 days,</strong> the proposed tax is assessed as-is — penalty and interest included — and the balance-due collection sequence (CP14 and the notices that follow it) begins.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The practical takeaway for late responders: the underlying work is the same <strong class="text-white">line-item documentation exercise</strong> described above — compare what the IRS proposed against your records, gather the proof, and send a complete packet by trackable mail — just under a harsher, non-extendable clock. Anything involving an actual Tax Court petition is the point where professional help stops being optional for most people.
+      </p>
+
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">The bottom line</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
         A CP2000 is a proposal on a deadline, not a verdict. Read it as a list of line items, decide for each one whether you agree, partially agree, or disagree, attach the documents that prove your position, and get a complete, signed packet in the mail before the date on the notice. Do that and most CP2000s resolve without an audit, without Tax Court, and without a four-figure professional bill.
@@ -3007,6 +3027,10 @@ export const blogPosts: BlogPost[] = [
       {
         q: "What does it cost to have a tax professional respond to a CP2000?",
         a: "Independent tax professionals commonly bill $200–$400 per hour, and a straightforward CP2000 response of a few hours often totals $500–$1,500 or more. Dedicated tax-resolution firms can charge more, into the thousands, depending on complexity. Many simpler CP2000s — a single missing 1099 or a brokerage sale missing its cost basis — are primarily a documentation exercise.",
+      },
+      {
+        q: "What happens if I miss the CP2000 response deadline?",
+        a: "The IRS typically follows an unanswered CP2000 with a Statutory Notice of Deficiency (CP3219A), which starts a 90-day clock (150 days if you're outside the U.S.) to petition the U.S. Tax Court. That deadline is set by statute and generally cannot be extended. You can still send the IRS supporting documentation during the 90 days — and mismatches are still resolved that way — but submitting information does not pause the Tax Court clock. If nothing happens within 90 days, the proposed tax is assessed and collection notices follow.",
       },
       {
         q: "What are the three ways to respond to a CP2000?",

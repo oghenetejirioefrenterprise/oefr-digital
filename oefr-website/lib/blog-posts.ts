@@ -2902,7 +2902,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">What a CP2000 actually is (and what it isn't)</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
-        The IRS receives copies of the income documents that payers file about you — interest (1099-INT), dividends (1099-DIV), nonemployee compensation (1099-NEC), payment-app and card settlements (1099-K), brokerage sales (1099-B), wages (W-2), and more. The Automated Underreporter program compares those documents to your filed return. When a figure on file doesn't appear on the return — or appears with a different amount — the system generates a CP2000 proposing an adjustment, often with additional tax, interest, and potentially a penalty.
+        The IRS receives copies of the income documents that payers file about you — interest (1099-INT), dividends (1099-DIV), nonemployee compensation (1099-NEC), payment-app and card settlements (1099-K), brokerage sales (1099-B), digital-asset sales (1099-DA, new for tax year 2025), wages (W-2), and more. The Automated Underreporter program compares those documents to your filed return. When a figure on file doesn't appear on the return — or appears with a different amount — the system generates a CP2000 proposing an adjustment, often with additional tax, interest, and potentially a penalty. If your mismatch involves crypto, the basis problem usually starts on the broker form itself — see our <a href="/blog/crypto-1099-da-zero-cost-basis-form-8949-2026" class="text-cyan-400 hover:text-cyan-300 underline">1099-DA $0 cost-basis reconciliation guide</a>.
       </p>
       <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
         <ul class="text-slate-300 space-y-3">
@@ -4508,6 +4508,10 @@ export const blogPosts: BlogPost[] = [
       "crypto broker transfer double count",
       "Form 8949 box crypto short term long term",
       "crypto tax extension October 2026",
+      "forgot to report crypto 1099-DA",
+      "amend crypto tax return Form 1040-X",
+      "CP2501 crypto notice",
+      "1099-DA overpaid capital gains refund",
     ],
     publishedDate: "2026-07-15",
     readingTime: "11 min read",
@@ -4606,6 +4610,23 @@ export const blogPosts: BlogPost[] = [
         Transition relief and safe-harbor procedures (including materials discussed under Notice 2024-57 and Rev. Proc. 2024-28 for the first-year reporting environment) are fact-specific. Read the primary IRS text for the year you are filing; do not rely on a secondary summary for penalty-relief eligibility.
       </p>
 
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">Already Filed With the $0 Basis? The Form 1040-X Amend Path</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Tax year 2025 was the first year digital-asset brokers filed <strong class="text-white">Form 1099-DA copies with the IRS</strong> — which means every one of those forms is now sitting in the matching pipeline. If you filed by the April deadline and pasted the broker's numbers straight into your return, a $0-basis error cuts one of two ways, and both have a fix: <strong class="text-white">Form 1040-X</strong>, the amended individual return.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-3">
+          <li>💸 <strong class="text-white">You over-reported gain.</strong> If you copied $0 basis for lots you actually paid for, you likely overpaid tax. Amending with a reconstructed, documented basis is how you claim that money back. Refund claims generally must be filed within <strong class="text-white">three years of the original return (or two years of payment, whichever is later)</strong> — verify the current window for your year, but do not assume it stays open forever.</li>
+          <li>📉 <strong class="text-white">You under-reported income.</strong> If a sale never made it onto your Form 8949 at all — a forgotten exchange, an unreported disposition — self-correcting with a 1040-X <em>before</em> the Automated Underreporter cycle flags the mismatch is generally a far cleaner posture than answering a notice later. Interest on unpaid tax runs from the original due date either way, and penalty determinations are fact-specific — but a voluntary amendment with documentation is the version of this story you want to be telling.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Mechanically: prepare a corrected <strong class="text-white">Form 8949 and Schedule D</strong> from your reconciliation worksheet, attach them to Form 1040-X with a plain-language explanation of what changed and why, and keep the basis evidence in your folder. Recent-year 1040-X returns can generally be e-filed through supporting software. Also confirm the <strong class="text-white">digital-asset question</strong> on Form 1040 was answered accurately as filed — if it wasn't, fix that in the amendment too.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        If the IRS gets there first, the mismatch typically arrives as a <strong class="text-white">CP2501</strong> (an initial "explain this discrepancy" inquiry) or a <strong class="text-white">CP2000</strong> (a proposed adjustment with computed tax). Neither is an audit, and both are answerable with the same reconciliation evidence described on this page — our <a href="/blog/irs-cp2000-notice-response-2026" class="text-cyan-400 hover:text-cyan-300 underline">CP2000 response guide</a> walks that notice timeline step by step. But responding to a notice is the expensive-in-time version; amending on your own clock is the cheap one.
+      </p>
+
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">When to Stop DIY and Hire a CPA</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
         Spreadsheets organize. They do not practice tax law. Escalate when:
@@ -4666,6 +4687,10 @@ export const blogPosts: BlogPost[] = [
       {
         q: "Where do crypto capital gains get reported?",
         a: "Typically on Form 8949 (lot-level dispositions) with totals carried to Schedule D and Form 1040. Follow the current-year IRS instructions for boxes and codes when basis was not fully reported to the IRS.",
+      },
+      {
+        q: "I already filed using the $0 basis from my 1099-DA — what now?",
+        a: "You can generally amend with Form 1040-X, attaching a corrected Form 8949 and Schedule D built from documented basis. If the $0 basis made you over-report gain, the amendment is how you claim the overpayment back (refund windows are limited — generally three years from filing or two from payment). If you under-reported, self-correcting before an IRS matching notice (CP2501/CP2000) arrives is generally the cleaner path. Fact-specific situations belong with a licensed tax professional.",
       },
       {
         q: "Does this kit replace a CPA?",

@@ -6,24 +6,25 @@
 |---|---|
 | **Client** | TEK — Tasty E-Kitchen Ltd, London, UK (tekvers.ai) |
 | **Prepared by** | Oghenetejiri Orukpe — OEFR Enterprise Inc (oefrenterprise.com) |
-| **Date** | 16 July 2026 |
-| **Version** | 1.0 — Proposal draft |
+| **Date** | 19 July 2026 (v1.0: 16 July 2026) |
+| **Version** | 2.0 — Revised all-inclusive proposal |
 | **Status** | For client review |
 
 ---
 
 ## 1. Executive Summary
 
-TEK positions itself as "the intelligence layer that powers the future of hospitality." This document specifies the buildout of the core platform that delivers that promise: a multi-tenant SaaS for independent restaurants and hospitality groups, built from scratch, comprising four integrated modules:
+TEK positions itself as "the intelligence layer that powers the future of hospitality." This document specifies the buildout of the core platform that delivers that promise: a multi-tenant SaaS for independent restaurants and hospitality groups, built from scratch, comprising five integrated modules:
 
 1. **First-party customer food-preference database** — TEK-owned capture surfaces that turn every guest interaction into structured preference data.
 2. **AI meal recommendation engine** — personalised dish recommendations per guest, per venue, with human-readable reasoning.
 3. **CRM with automated personalised marketing and loyalty programmes** — segmentation, automated campaigns (email/SMS), and a configurable loyalty engine.
 4. **AI predictive analytics** — churn risk, demand forecasting, and menu-performance intelligence surfaced in a venue dashboard.
+5. **TEK Guest mobile app** — iOS & Android app (single cross-platform codebase) bringing the menu, ordering, personalised recommendations, loyalty wallet and consent-gated push notifications to guests' phones.
 
-The platform is delivered in three fixed-price phases (plus an optional fourth for POS integrations), each independently valuable and demonstrable. Two pricing tracks are quoted: **Lean** and **Studio** (Section 12).
+The platform is delivered in five fixed-price phases, each independently valuable and demonstrable, quoted as a single **all-inclusive engagement** (Section 12).
 
-**Out of scope for this engagement:** VR food visualisation/commerce, native mobile apps, and hardware/smart-kitchen infrastructure. The architecture leaves clean seams for all three.
+**Out of scope for this engagement:** VR food visualisation/commerce and hardware/smart-kitchen infrastructure. The architecture leaves clean seams for both.
 
 ---
 
@@ -66,18 +67,19 @@ Independent restaurants lose the retention game: the guest relationship is owned
 - Venue-facing business intelligence dashboard.
 - GDPR/UK-DPA compliance tooling: consent records, export, right-to-erasure.
 - TEK internal admin panel (tenant management, plan limits, platform health).
+- TEK Guest mobile app for iOS & Android (Module 5) with push notifications.
 
 ### 3.2 Out of scope (this engagement)
 
 - VR/3D food visualisation and VR commerce.
-- Native iOS/Android apps (all guest surfaces are mobile-first web).
 - Payments/ordering fulfilment beyond capture (no kitchen display, no delivery logistics).
-- POS integrations in Phases 1–3 (delivered as optional Phase 4).
 - Multi-language localisation (English-first; i18n-ready string handling).
+- Per-venue custom-branded mobile apps, offline mode, and in-app payment processing (the TEK Guest app ships under the TEK brand; venues appear within it).
 
 ### 3.3 Assumptions
 
 - TEK supplies brand assets, domain(s), and legal copy (privacy policy, terms) — templates provided by OEFR.
+- TEK supplies Apple Developer and Google Play accounts (and store listing approvals) for the mobile app; OEFR prepares builds and store assets.
 - TEK operates the commercial relationships with venues; OEFR delivers the platform.
 - Third-party service costs (hosting, email/SMS delivery, LLM API usage) are billed directly to TEK's accounts; estimates in Section 11.
 - Pilot cohort of 3–10 venues available for Phase 2–3 validation.
@@ -216,6 +218,28 @@ All guest activity is written as immutable events against a guest profile: `menu
 
 ---
 
+## 8A. Module 5 — TEK Guest Mobile App (iOS & Android)
+
+### 8A.1 Scope
+
+Single cross-platform codebase (React Native/Expo) shipping to both stores under the TEK brand, consuming the same APIs as the web surfaces:
+
+- **Venue entry:** scan a table QR or enter a venue code; recent venues remembered.
+- **Menu & ordering:** full menu with allergen labels, dish detail, capture-only ordering — identical scope to the web ordering surface (§5.2).
+- **For-you recommendations:** the Module 2 rail, with the same code-enforced allergen filtering.
+- **Loyalty wallet:** balance/progress, reward catalogue, redemption short codes; join in one step.
+- **Push notifications:** campaign and reward messages via a dedicated `push` consent channel (opt-in at first run, one-tap opt-out, enforced at send time exactly like email/SMS — Module 3's compliance rules apply unchanged).
+- **Account & privacy:** profile, consent management, data export/erasure — parity with the web privacy hub (§5.3, Module 1 GDPR tooling).
+
+### 8A.2 Acceptance criteria (Module 5)
+
+- App approved and live on both the Apple App Store and Google Play under TEK's accounts.
+- A guest can scan a venue QR from the app, order, join loyalty, and redeem — end-to-end parity with the web journey.
+- Push messages deliver only to guests with explicit push consent; opt-out stops sends within minutes.
+- All allergen and consent guarantees hold identically to the web surfaces (shared API enforcement, verified by the same test suites).
+
+---
+
 ## 9. Architecture & Technical Design
 
 ### 9.1 Approach: modular monolith (approved)
@@ -276,9 +300,10 @@ Guests (QR menu / ordering / signup)     Venue staff (dashboard)      TEK admin
 | **1 — Data Foundation** | Multi-tenant core, auth/RBAC, venue onboarding, menu manager + AI taxonomy tagging, QR menu + ordering + signup surfaces, guest profiles + event spine, GDPR tooling, TEK admin panel | 5 weeks | A pilot venue onboards itself, guests browse/order/sign up, profiles populate, erasure works |
 | **2 — Intelligence** | Recommendation engine (all 3 stages), analytics dashboard, churn model, demand forecast, menu performance, weekly digest | 5 weeks | Live recommendations on the pilot venue's menu; churn bands + forecasts on real captured data; backtest reports |
 | **3 — Activation** | Segment builder, campaign automation (email+SMS), attribution, loyalty engine + guest surfaces + staff redemption, AI copy/reward assist | 5 weeks | End-to-end: segment → automated campaign → attributed redemption; loyalty earn/redeem live |
-| **4 — POS Integrations** *(optional)* | Square, Toast or Lightspeed connectors (2 in scope): historical import + ongoing order sync into the event spine | 4 weeks | Pilot venue's POS orders flow into profiles and retrain models |
+| **4 — POS Integrations** | Square, Toast or Lightspeed connectors (2 in scope): historical import + ongoing order sync into the event spine | 4 weeks | Pilot venue's POS orders flow into profiles and retrain models |
+| **5 — Mobile App** | TEK Guest app (iOS & Android): menu/ordering, recommendations, loyalty wallet, push notifications, privacy parity | 4 weeks (overlaps Phase 4) | App live in both stores; end-to-end guest journey passes on device |
 
-Total core programme (Phases 1–3): **~15 weeks** from kickoff. Each phase gates on written acceptance before the next begins.
+Total programme (Phases 1–5): **~19 weeks** from kickoff (Phases 4 and 5 run in parallel). Each phase gates on written acceptance before the next begins.
 
 ---
 
@@ -296,35 +321,22 @@ Per-venue infrastructure cost at pilot scale: **≈ £6–£15/month**, comforta
 
 ---
 
-## 12. Commercial Proposal — Fixed Price per Phase
+## 12. Commercial Terms — Agreed All-Inclusive Engagement
 
-Two tracks. Same scope and acceptance criteria per phase; tracks differ in delivery wrap (documentation depth, UAT support, warranty, response SLAs).
+Terms agreed between TEK and OEFR Enterprise Inc in direct negotiation, superseding the v1.0 two-track quotation (OEFR-PF-2026-001/-002). One fixed price covers the complete programme — all five phases, nothing optional:
 
-### Track A — Lean
-
-Solo senior delivery, AI-accelerated. 30-day post-phase defect warranty, async support (48 h response), essential documentation (admin guide + API reference).
-
-| Phase | Price |
+| Phase | Fixed Price |
 |---|---|
-| 1 — Data Foundation | £12,000 |
-| 2 — Intelligence | £14,000 |
-| 3 — Activation | £12,000 |
-| **Core total (1–3)** | **£38,000** |
-| 4 — POS Integrations (optional) | £9,000 |
+| 1 — Data Foundation | £4,999 |
+| 2 — Intelligence | £4,800 |
+| 3 — Activation | £4,000 |
+| 4 — POS Integrations (2 connectors) | £2,500 |
+| 5 — Mobile App (iOS & Android) | £2,500 |
+| **Programme total (all-inclusive)** | **£18,799** |
 
-### Track B — Studio
+Delivery wrap: solo senior delivery, AI-accelerated; 30-day post-phase defect warranty; async support (48 h response); essential documentation (admin guide + API reference); dedicated staging environment with seeded demo tenant (already live for TEK review).
 
-Everything in Lean, plus: dedicated staging environment with seeded demo tenant for TEK sales use, extended UAT (2 rounds per phase + on-call launch support), 90-day warranty per phase, full documentation pack (architecture dossier, runbooks, onboarding playbooks, training videos), priority SLA (same-business-day), and quarterly model-performance review through the engagement.
-
-| Phase | Price |
-|---|---|
-| 1 — Data Foundation | £26,000 |
-| 2 — Intelligence | £32,000 |
-| 3 — Activation | £26,000 |
-| **Core total (1–3)** | **£84,000** |
-| 4 — POS Integrations (optional) | £18,000 |
-
-### Ongoing operations (optional, post-launch, either track)
+### Ongoing operations (optional, post-launch)
 
 | Plan | Scope | Monthly |
 |---|---|---|
@@ -333,9 +345,9 @@ Everything in Lean, plus: dedicated staging environment with seeded demo tenant 
 
 ### Payment terms
 
-- Per phase: **40% to commence, 60% on written acceptance** of that phase's exit criteria.
-- Prices exclude VAT (if applicable) and third-party running costs (Section 11).
-- Quotation valid 30 days from the date of this document.
+- **40% to commence (£7,519), 60% on final written acceptance (£11,280)** of the Phase 5 exit criteria.
+- Prices exclude VAT (if applicable) and third-party running costs (Section 11, plus app store developer fees on TEK's accounts).
+- Terms valid 30 days from the date of this document.
 - Scope changes handled by written change order against a day rate agreed at signature.
 
 ---
@@ -355,8 +367,8 @@ Everything in Lean, plus: dedicated staging environment with seeded demo tenant 
 
 ## 14. Acceptance & Next Steps
 
-1. TEK reviews this document and selects track (A or B) and optional Phase 4 / Ops plan.
-2. Statement of Work + first-phase invoice issued; kickoff within 5 business days of deposit.
-3. Weekly written progress reports; phase demos on a shared staging environment.
+1. TEK confirms written acceptance of this document and the agreed terms (pro forma invoice OEFR-PF-2026-003).
+2. Statement of Work + commencement invoice issued; kickoff within 5 business days of deposit.
+3. Weekly written progress reports; phase demos on the shared staging environment (already live).
 
 *Prepared by OEFR Enterprise Inc · oefrenterprise.com · Contact: Oghenetejiri Orukpe*

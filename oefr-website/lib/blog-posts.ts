@@ -4163,7 +4163,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "Hurricane Insurance Claim Denied for \"Pre-Existing Damage\"? The Before-Photo Evidence That Actually Wins (2026)",
     description:
-      "After a hurricane, the most common denial is \"pre-existing damage.\" Here's the dated before/after photo system, the wind-vs-flood policy split, the NFIP 60-day Proof-of-Loss clock, and the appeal framework adjusters actually read.",
+      "After a hurricane, the most common denial is \"pre-existing damage.\" Here's the dated before/after photo system, the wind-vs-flood policy split, how the percentage hurricane deductible really works, the NFIP 60-day Proof-of-Loss clock, and the appeal framework adjusters actually read.",
     keywords: [
       "hurricane insurance claim denied preexisting damage",
       "pre storm photo documentation insurance",
@@ -4179,6 +4179,10 @@ export const blogPosts: BlogPost[] = [
       "how to document hurricane damage for insurance",
       "hurricane insurance claim checklist",
       "NFIP vs homeowners policy hurricane",
+      "hurricane deductible how does it work",
+      "2 percent hurricane deductible",
+      "named storm deductible vs hurricane deductible",
+      "hurricane deductible calendar year florida",
     ],
     publishedDate: "2026-07-14",
     readingTime: "9 min read",
@@ -4213,6 +4217,17 @@ export const blogPosts: BlogPost[] = [
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
         On the flood side, NFIP claims revolve around a written <strong class="text-white">Proof of Loss</strong>. The baseline deadline many homeowners first learn about is <strong class="text-white">60 days from the date of loss</strong> — but FEMA can extend that window by event-specific bulletin after major disasters. Always verify the current deadline for <em>your</em> event on official FEMA/NFIP sources; never assume a prior storm's extension applies to this one.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Hurricane Deductible Shock: A Percentage of Your Dwelling Limit, Not Your Loss</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        The second most common season-opening surprise, after the wind/flood split, is the <strong class="text-white">hurricane (or named-storm/wind) deductible</strong>. In most coastal states it is not a flat $1,000 or $2,500 — it is a <strong class="text-white">percentage of your Coverage A dwelling limit</strong>, commonly between 1% and 5% and in some markets up to 10%. The percentage applies to the <em>coverage limit</em>, not to the size of your loss. A home insured for $400,000 with a 2% hurricane deductible means roughly <strong class="text-white">$8,000 out of pocket</strong> before wind coverage pays — even if the storm damage itself is $15,000.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Three details to pull from your declarations page <em>before</em> a storm is named. First, the <strong class="text-white">trigger</strong>: policies define when the hurricane deductible applies instead of your standard deductible — commonly tied to a named storm or an official hurricane watch/warning window — and the definition varies by state and carrier. Second, the <strong class="text-white">basis</strong>: confirm which coverage limit the percentage is calculated against. Third, the <strong class="text-white">application period</strong>: Florida, for example, generally applies the hurricane deductible on a <strong class="text-white">calendar-year basis</strong> rather than per storm — so if a second hurricane hits in the same season, receipts and photos proving what you already spent after the first storm directly reduce what you owe on the second claim. That is a documentation problem, which is exactly why it belongs in your pre-season file.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Two more planning notes. Your separate <strong class="text-white">NFIP flood policy carries its own deductible</strong>, chosen at purchase — it does not share or stack with the wind-side percentage deductible. And if a loss looks like it may land near or below your hurricane deductible, <strong class="text-white">document it anyway</strong>: in calendar-year states it counts toward the season's deductible math, and an undocumented "small" loss is the seed of next year's pre-existing-damage denial. Deductible terms are policy- and state-specific and change at renewal — verify your own declarations page and your state insurance department's current guidance.
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Right After the Storm: Mitigate, Don't Erase Evidence</h2>
@@ -4291,6 +4306,10 @@ export const blogPosts: BlogPost[] = [
       {
         q: "What is the NFIP Proof of Loss deadline?",
         a: "Many NFIP claims require a signed Proof of Loss. The commonly cited baseline is 60 days from the date of loss, but FEMA often issues event-specific extensions after major disasters. Always confirm the deadline that applies to your specific event on official FEMA/NFIP sources.",
+      },
+      {
+        q: "Is my hurricane deductible 2% of the damage amount?",
+        a: "No — percentage hurricane deductibles are calculated against your Coverage A dwelling limit, not the size of the loss. A $400,000 dwelling limit with a 2% hurricane deductible means about $8,000 out of pocket before wind coverage pays, regardless of whether the damage is $10,000 or $100,000. Check your declarations page for the percentage, the trigger definition, and (in states like Florida) whether it applies per calendar year rather than per storm.",
       },
       {
         q: "Can I make repairs before the insurance adjuster comes?",

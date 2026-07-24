@@ -3681,7 +3681,7 @@ export const blogPosts: BlogPost[] = [
       </ul>
 
       <p class="text-slate-300 leading-relaxed mb-6">
-        If you want the whole process packaged — the clerk-call script for routing between Path 1 and Path 2, the agency-by-agency order with what each one requires, and a tracking checklist so nothing gets missed — that is exactly what our <a href="https://gumroad.com/l/divorcenamekit" class="text-cyan-400 hover:text-cyan-300 underline">Divorce Name Restoration Kit</a> covers, built specifically for the decree-gap situation this guide describes.
+        If you want the whole process packaged — the clerk-call script for routing between Path 1 and Path 2, the agency-by-agency order with what each one requires, and a tracking checklist so nothing gets missed — that is exactly what the <a href="https://www.etsy.com/listing/4543323418" class="text-cyan-400 hover:text-cyan-300 underline">Name Change After Divorce Kit ($14 on Etsy, instant download)</a> covers, built specifically for the decree-gap situation this guide describes.
       </p>
 
       <p class="text-slate-400 text-sm leading-relaxed mb-6">
@@ -3689,14 +3689,14 @@ export const blogPosts: BlogPost[] = [
       </p>
     `,
     cta: {
-      text: "Get the Divorce Name Restoration Kit",
-      href: "https://gumroad.com/l/divorcenamekit",
+      text: "Get the Name Change After Divorce Kit — $14 on Etsy",
+      href: "https://www.etsy.com/listing/4543323418",
     },
     relatedProducts: [
       {
-        name: "Divorce Name Restoration Kit",
-        href: "https://gumroad.com/l/divorcenamekit",
-        description: "Step-by-step kit for restoring your name after divorce — including when the decree doesn't include a name-change clause.",
+        name: "Name Change After Divorce Kit ($14 on Etsy)",
+        href: "https://www.etsy.com/listing/4543323418",
+        description: "Instant-download kit for restoring your name after divorce — including when the decree doesn't include a name-change clause. Checklist, tracker, REAL ID document decoder, SSA/DMV/passport steps. Not legal advice.",
       },
     ],
     faq: [
@@ -4486,7 +4486,7 @@ export const blogPosts: BlogPost[] = [
         Open a shared folder. List every financial institution from the last five years. Request statements. Build a one-page transfer log for anything that looks like a gift or below-market move. Pull your state Medicaid agency's long-term-care application checklist (primary source). Write down the community spouse's income and resource picture separately. Only after the file exists should anyone discuss "planning moves."
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
-        If you want that whole sequence packaged — eligibility decoder with state-pointer table, 60-month lookback documentation checklist by asset class, spend-down allowable-vs-penalized decision list, CSRA/spousal-protection worksheet framework, application evidence binder, denial/fair-hearing deadline pointer, and attorney-escalation checklist — that is the <a href="https://gumroad.com/l/vbebrb" class="text-cyan-400 hover:text-cyan-300 underline">Medicaid Nursing Home Application &amp; 5-Year Lookback Kit</a> ($0 pre-order today; lists at $24 after release): educational templates only — not legal advice and not a substitute for an elder-law attorney.
+        If you want that whole sequence packaged — eligibility decoder with state-pointer table, 60-month lookback documentation checklist by asset class, spend-down allowable-vs-penalized decision list, CSRA/spousal-protection worksheet framework, application evidence binder, denial/fair-hearing deadline pointer, and attorney-escalation checklist — that is the <a href="https://www.etsy.com/listing/4543288665" class="text-cyan-400 hover:text-cyan-300 underline">Medicaid Nursing Home Application &amp; 5-Year Lookback Kit</a> ($24 on Etsy, instant download): educational templates only — not legal advice and not a substitute for an elder-law attorney.
       </p>
 
       <p class="text-slate-400 text-sm leading-relaxed mb-6">
@@ -4494,13 +4494,13 @@ export const blogPosts: BlogPost[] = [
       </p>
     `,
     cta: {
-      text: "Get the Medicaid Nursing Home Application & 5-Year Lookback Kit — $0 Pre-Order",
-      href: "https://gumroad.com/l/vbebrb",
+      text: "Get the Medicaid Nursing Home Application & 5-Year Lookback Kit — $24 on Etsy",
+      href: "https://www.etsy.com/listing/4543288665",
     },
     relatedProducts: [
       {
-        name: "Medicaid Nursing Home Application & 5-Year Lookback Kit",
-        href: "https://gumroad.com/l/vbebrb",
+        name: "Medicaid Nursing Home Application & 5-Year Lookback Kit ($24 on Etsy)",
+        href: "https://www.etsy.com/listing/4543288665",
         description:
           "Lookback document checklist, spend-down decision list, CSRA/spousal worksheet framework, application binder, and attorney-escalation triggers — educational templates, not legal advice.",
       },

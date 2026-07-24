@@ -87,8 +87,8 @@ that day's line value; fill price = min(line value, day's open) — i.e., if the
 opens below the line, fill at the open (gap fill). If the trigger day opens below
 all lines, all three fill that day (this happened in 2018). **→ §13.2** (fill
 direction). Tranches that never fill roll their capital into §5's deployment
-— **→ §13.6 and §14 OQ-3: the reference implementation sends it to the breakout
-instead, and flags the question as needing owner sign-off.**
+— **confirmed by owner decision 2026-07-24: into the ladder pool, not straight to
+the breakout (→ §13.6, §14 OQ-3 resolved). `cy1_lifecycle.json` deviates here.**
 
 ## 4. Structure: lower high & break of structure (v1.1 — Amendment 1)
 
@@ -398,8 +398,10 @@ artifact — see the provenance block.)*
 ### 13.6 Accumulation-line lifetime
 
 Lines are live from the trigger day through the **BoS day inclusive**. After the
-BoS, §5 governs and no accumulation fill may occur. Where unfilled tranche capital
-goes is **not settled — §14 OQ-3**.
+BoS, §5 governs and no accumulation fill may occur. Unfilled tranche capital rolls
+into the **§5 ladder pool** (not straight to the breakout), deploying with the
+ladder's 2 : 4 : 8 proportions; ladder rungs that then go unfilled join the
+**breakout fallback**. Owner decision 2026-07-24 — **§14 OQ-3, resolved**.
 
 ### 13.7 Savings accrual window
 
@@ -469,12 +471,36 @@ of 226.93 (0.6857). The number also comes from the **3x-perp/BoS-sale** file, a
 product requirement, so this must be pinned. *Decide the basis (daily close is
 closest at 0.7pt), then recompute all MAE figures from `cy1_lifecycle.json`.*
 
-**OQ-3 — Where unfilled accumulation capital goes.**
-§3 says it rolls into the §5 **ladder**. `cy1_lifecycle.json` says "unfilled joins
-**breakout** [FLAGGED]", and `v4_lifecycle.json` lists "unfilled accumulation
-tranche capital joins at BoS (**interpretation, needs owner sign-off**)". So the
-doc states as settled what the implementation flags as unresolved. Materially
-different: ladder = buy the retrace, breakout = buy the break. *Decide.*
+**OQ-3 — Where unfilled accumulation capital goes. → RESOLVED 2026-07-24.**
+
+**Owner decision:** *"unfilled accumulation capital goes to the ladder and
+unfulfilled ladder goes to the breakout."*
+
+This **confirms §3 and §5 as written**; it is `cy1_lifecycle.json` ("unfilled joins
+**breakout** [FLAGGED]") that deviates. Normative cascade:
+
+```
+accumulation tranche unfilled at BoS  ──►  joins the §5 ladder pool
+ladder rung unfilled                  ──►  joins the §5 breakout fallback
+```
+
+The rolled capital deploys with the ladder's existing **2 : 4 : 8** proportions
+across 0.5 / 0.62 / 0.786 — the weights are ratios, applied to whatever the pool
+holds (reserve cash + savings + rolled accumulation). Total remains 21 units
+(7 accumulation + 14 ladder), matching `cy1_lifecycle.json`'s `units_filled_of_21`.
+
+**Gate impact: none.** Accumulation filled 3/3 in every historical episode
+(EP2/EP3/EP4/EP5), so this branch was never exercised in-sample — which is why it
+stayed ambiguous. §11 and G1–G5 are unaffected. The second leg *was* exercised in
+all four: EP2 (0.786 unfilled), EP3 and EP4 (all three rungs unfilled), EP5 (0.62,
+0.786) — each resolving to a breakout fill.
+
+**Live exposure:** EP6 is on track to be the first episode to exercise the first
+leg. No tranche is filled and BTC sits far above T1 (≈52.9k) with BoS at 82,850, so
+a break of structure without a revisit to the realized line rolls the **entire**
+accumulation pool — a third of total capital — down an untested path. A synthetic
+fixture covering it is required before live arming; historical coverage does not
+exist.
 
 **OQ-4 — §11's pnl figures do not match the reference implementation.**
 

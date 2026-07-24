@@ -276,6 +276,7 @@ optional.
 | Engine | G1–G5 as executable fixtures (SPEC §10), in CI |
 | Engine | §11 regression reproducing `cy1_lifecycle.json` (subject to OQ-4) |
 | Engine | Determinism property: identical inputs → identical outputs |
+| Engine | **Synthetic fixtures for paths with no historical coverage** — chiefly the OQ-3 roll (accumulation unfilled at BoS → ladder → breakout), which never occurred in EP2–EP5 and which EP6 may be the first to take |
 | Reconciler | Partial fill · cancel/place race · already-filled · missed run · double run |
 | Venue | Binance spot **testnet** — full episode replay |
 | Guard | One test per interlock proving it refuses |
@@ -317,13 +318,18 @@ start immediately.
 Two of SPEC §14's open items change *which orders exist* and must be settled by the
 owner before the executor can be correct:
 
-- **OQ-3 — where unfilled accumulation capital goes.** SPEC §3 says the ladder;
-  `cy1_lifecycle.json` says the breakout and flags it "[FLAGGED]"; `v4_lifecycle.json`
-  calls it "interpretation, needs owner sign-off". Different resting orders,
-  different sizes.
-- **OQ-1 — concurrent episodes.** If a new episode triggers while a position is
-  open, does the system size a second full allocation? Nothing currently says, and
-  an autonomous system will do *something*. EP3/EP4 overlapped historically.
+- ~~**OQ-3 — where unfilled accumulation capital goes.**~~ **RESOLVED 2026-07-24:**
+  unfilled accumulation → the **ladder** pool (2:4:8 proportions); unfilled ladder →
+  the **breakout**. Confirms SPEC §3/§5 as written; `cy1_lifecycle.json` deviates.
+  No gate impact — accumulation filled 3/3 in every historical episode, so the
+  branch was never exercised. **This makes it an untested path that EP6 is likely to
+  be the first to take** (no tranche filled, BTC far above T1, BoS at 82,850): a
+  break of structure without a revisit to realized rolls the entire accumulation
+  pool — a third of capital. A synthetic fixture is mandatory before M5.
+- **OQ-1 — concurrent episodes.** Still open, still blocking M5. If a new episode
+  triggers while a position is open, does the system size a second full allocation?
+  Nothing currently says, and an autonomous system will do *something*. EP3/EP4
+  overlapped historically, and the cash-flow record gives each a fresh $10k.
 
 OQ-2 (MAE convention), OQ-4 (§11 pnl figures vs the reference) and OQ-5 (EP3
 sign-off) affect reporting only and may trail.

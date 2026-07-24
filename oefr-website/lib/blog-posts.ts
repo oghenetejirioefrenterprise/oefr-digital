@@ -4330,12 +4330,16 @@ export const blogPosts: BlogPost[] = [
     title:
       "Medicaid 5-Year Lookback for Nursing Homes: What Caseworkers Flag and How Families Organize the File (2026)",
     description:
-      "When a parent needs long-term care, Medicaid's 60-month lookback, spend-down rules, and spousal-protection framework decide the file. Here's the federal document-assembly order — not another generic caregiver binder.",
+      "When a parent needs long-term care, Medicaid spend-down rules, the 60-month lookback, and the spousal-protection framework decide the file. What spend-down can pay for, the per-transaction paper trail, and the federal document-assembly order — not another generic caregiver binder.",
     keywords: [
       "medicaid 5 year lookback",
       "medicaid nursing home application checklist",
       "60 month lookback medicaid",
       "medicaid spend down allowable expenses",
+      "medicaid spend down checklist",
+      "medicaid spend down documentation",
+      "what can medicaid spend down money be used for",
+      "medicaid spend down rules nursing home",
       "CSRA spousal protection medicaid",
       "community spouse resource allowance",
       "long term care medicaid documents",
@@ -4400,6 +4404,28 @@ export const blogPosts: BlogPost[] = [
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
         Build an <strong class="text-white">allowable-vs-penalized decision list</strong> before money moves: what is being paid, to whom, for what need, and what paper you will keep. If the plan involves transferring assets to children "to protect them," stop. That is attorney territory.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Spend-Down Paper Trail: Documenting Every Dollar So the Lookback Does Not Flag It</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Here is the mechanical reality of how spend-down goes wrong: the caseworker does not watch you spend the money — they read the <strong class="text-white">bank statements afterward</strong>. Every withdrawal, transfer, or check over your state's scrutiny threshold is a line item the applicant may be asked to explain. A legitimate spend with no paper behind it looks identical to an uncompensated gift on a statement. So the working rule for families is simple: <strong class="text-white">no undocumented dollar leaves an account once long-term care is on the horizon.</strong>
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        For each spend-down transaction, capture four things at the time of the spend — not months later from memory:
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li><strong class="text-white">What was paid and to whom</strong> — invoice, receipt, or contract naming the payee</li>
+          <li><strong class="text-white">Whose benefit it served</strong> — the applicant's care, debts, home, or health, in a form a stranger can verify</li>
+          <li><strong class="text-white">Proof of payment</strong> — the cancelled check, card statement line, or transfer record matching the invoice</li>
+          <li><strong class="text-white">Date relative to the application</strong> — spends inside the lookback window get the most scrutiny; keep the timeline reconstructable</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Commonly documented spend-down categories (verify each against your state Medicaid agency's rules before spending): the applicant's own <strong class="text-white">medical and care bills</strong>, legitimate <strong class="text-white">debts in the applicant's name</strong>, <strong class="text-white">medically necessary home modifications</strong> with a supporting need, and <strong class="text-white">prepaid funeral/burial arrangements</strong> where your state permits them. Commonly flagged: cash withdrawals with no receipts, "loans" to family with no note or repayment, paying a relative for care without a written caregiver agreement that meets state requirements, and any transfer where the applicant received nothing of equal value back. The middle category — paying family caregivers — is the one that most often needs an elder-law attorney <em>before</em> the first payment, because an informal arrangement is routinely treated as a gift.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        This is also why spend-down and the application checklist are one workstream, not two. Each documented spend feeds directly into the evidence binder below: the statement line, the receipt, and the one-sentence explanation get filed the day the money moves. Families who do this never face the worst version of the process — reconstructing eighteen months of transactions under a caseworker's deadline.
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">The At-Home Spouse Is Not Required to Go Broke First</h2>
@@ -4487,6 +4513,10 @@ export const blogPosts: BlogPost[] = [
       {
         q: "Does spend-down mean I should give assets to my children?",
         a: "No. Uncompensated gifts to children are exactly the kind of transfer the lookback often penalizes. Spend-down generally means reducing countable resources through allowable uses for the applicant's benefit under your state's rules (for example care costs, debts, certain medical home modifications), with documentation. Gift-and-hope strategies belong in an elder-law consultation, not a weekend DIY move.",
+      },
+      {
+        q: "What documentation do I need for each spend-down purchase?",
+        a: "For every transaction: an invoice or receipt naming the payee, evidence the spend served the applicant's benefit, proof of payment that matches the invoice (cancelled check, card statement line, or transfer record), and the date relative to the application timeline. Caseworkers reconstruct spend-down from bank statements after the fact, so an undocumented legitimate spend can look identical to a penalized gift. File the paper the day the money moves, and verify category rules with your state Medicaid agency before spending.",
       },
       {
         q: "Will the at-home spouse lose everything?",

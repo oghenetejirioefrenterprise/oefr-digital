@@ -2,8 +2,8 @@
 
 **Product:** A standalone application for TJ's BTC cycle trading system ("CY-1").
 **Owner:** TJ (sole user; personal book — fully separate from the v4 trading firm's capital and gates).
-**Status:** Rules are FROZEN and validated (spec v1.1, 2026-07-23). This app re-implements them with fresh eyes; it does not redesign them.
-**Companion doc:** `SPEC.md` — the exact rules, formulas, and must-pass verification fixtures.
+**Status:** Rules are FROZEN and validated (spec v1.2, 2026-07-24 — editorial pass over the frozen v1.1). This app re-implements them with fresh eyes; it does not redesign them.
+**Companion doc:** `SPEC.md` — the exact rules, formulas, and must-pass verification fixtures. **Read its §13 (clarifications that override the older prose) and §14 (five open items needing TJ's decision) before building.**
 
 ---
 
@@ -30,9 +30,12 @@ product, and independence from the firm's infrastructure.
 
 ## 3. Users & mode of use
 
-Single user (TJ). The app **signals; the human executes**. v1 places no orders.
-TJ receives Telegram alerts, opens the dashboard, and buys/sells spot manually on
-his exchange. (Auto-execution is a possible v2, gated behind a separate decision.)
+Single user (TJ). ~~The app **signals; the human executes**. v1 places no orders.~~
+**SUPERSEDED 2026-07-24** — TJ took the v2 decision this clause reserved. The app
+now **executes autonomously** via resting exchange-side orders; see
+`docs/superpowers/specs/2026-07-24-cycle-trader-v2-design.md`. Telegram alerts and
+the dashboard remain, but as reporting, not as a call to action. The shadow ledger
+(P6) narrows to recording manual overrides.
 
 ## 4. Product scope (v1)
 
@@ -42,7 +45,7 @@ his exchange. (Auto-execution is a possible v2, gated behind a separate decision
 | P2 | **Verification-gate test suite** | The owner's chart reads are executable fixtures (SPEC §10). CI fails if any gate stops reproducing. This is the product's spine — an engine that fails a gate is wrong, full stop. |
 | P3 | **Live episode tracker** | Persistent state machine for the current episode (today: EP6, watching, trigger 2026-02-01). Tracks: operative LH, accumulation-line values (refreshed daily), tranche fill status, savings accrual, armed/unarmed exit state. |
 | P4 | **Alerting** | Telegram alerts with cooldowns on: RSI approach/trigger, each accumulation-line touch, BoS print, ladder-level touches, breakout, 1.272 print, mirror-exit signal + 50%-bounce fill window, stop touch. Every alert states the rule it fires under and the action it implies. |
-| P5 | **Dashboard** | Local, self-contained HTML (no hosted dependency): weekly candles with episode anatomy (LH/BoS lines, fills, exits), live EP6 card with current levels, historical episode cards, full trade table, the frozen rules, and the record incl. rejected variants. Regenerated daily by cron so it is always current when opened from disk. |
+| P5 | **Dashboard** | ~~Local, self-contained HTML, regenerated daily by cron.~~ **SUPERSEDED 2026-07-24** — now a hosted, responsive **read-only Next.js web app** over Supabase, with the kill switch as its one write path. Same content: weekly candles with episode anatomy (LH/BoS lines, fills, exits), live episode card, historical cards, full trade table, frozen rules, and the record incl. rejected variants and the "read honestly" note. Mobile packaging deferred. |
 | P6 | **Shadow ledger** | Records TJ's actual manual fills against the system's prescribed fills; divergence is visible, never silently reconciled. |
 | P7 | **Historical reproduction harness** | One command rebuilds the full 2011→present backtest from raw data and asserts the record in SPEC §11 (regression fixtures). |
 
@@ -55,7 +58,9 @@ his exchange. (Auto-execution is a possible v2, gated behind a separate decision
   The 3x variant made +3,694% vs spot's +2,417% but carried a liquidation line ABOVE
   the episode-low stop for the dominant tranche in every episode; the corrected 2015
   episode retroactively LIQUIDATES under it. Closed.
-- **No order execution.**
+- ~~**No order execution.**~~ **SUPERSEDED 2026-07-24** (v2 design). Execution is
+  now in scope: fully autonomous, limit orders where possible, market only for
+  breakouts, daily reconciliation. Every other non-goal in this section stands.
 - **No altcoin signal generation.** BTC only; the beta sleeve consumes BTC's signals.
 - **No parameter search / re-optimization.** Rules are frozen; the app implements,
   it does not fit. Any rule change is an owner-approved amendment with a new spec
@@ -68,6 +73,16 @@ his exchange. (Auto-execution is a possible v2, gated behind a separate decision
    (SPEC §11) pass from a cold clone with one command.
 2. **Liveness:** accumulation lines refresh daily; alerts fire within one polling
    interval (≤1h) of a level touch; the state machine survives restarts.
+   **Daily refresh is anchored to the UTC daily close** (§0 conventions); intraday
+   polls evaluate the forming bar against the last completed line values, and a
+   touch on the forming bar alerts immediately rather than waiting for the close.
+2a. **Liveness is proven, not assumed — deadman requirement.** This is a cron-driven
+   alerter whose entire value is not missing a level touch, so silence must be
+   distinguishable from "nothing happened". The app emits a heartbeat on every
+   successful run and alerts if no successful run has completed in **3 hours**, if
+   a data source returns stale or partial series, or if a scheduled run raised.
+   A missed BoS caused by a dead fetcher is the product's worst failure mode and is
+   not covered by the balanced-price staleness alert in §10.
 3. **Auditability:** every signal, level value, and state transition is logged with
    the data it was computed from; the shadow ledger shows prescribed-vs-actual.
 4. **Fresh-eyes test:** a developer with no context can read PRD + SPEC, build the
@@ -75,9 +90,14 @@ his exchange. (Auto-execution is a possible v2, gated behind a separate decision
 
 ## 7. Operating constraints
 
-- Python 3.12, shared venv `~/venvs/oefr/` (workspace convention), SQLite for state,
-  cron for scheduling, Telegram via the existing bot token (env: project `.env`,
-  never `~/.profile`).
+- Python 3.12, shared venv `~/venvs/oefr/` (workspace convention) for local work and
+  CI; Telegram via the existing bot token (env: project `.env`, never `~/.profile`).
+- ~~SQLite for state, cron for scheduling.~~ **SUPERSEDED 2026-07-24** — runtime is
+  **Vercel serverless + Vercel cron (daily, post-UTC-close)** with **Supabase** for
+  episode state, the journal, and the order log. The engine stays pure Python with
+  no pandas/numpy so it fits the serverless bundle. The gate suite runs in **GitHub
+  Actions**, not on Vercel (a full 2011→present rebuild exceeds function timeouts),
+  importing the same package Vercel deploys.
 - Free data only: exchange klines (Bitstamp/Binance), CoinMetrics community API,
   checkonchain-derived balanced-price series (SPEC §8 has sources + fallbacks).
 - The historical daily dataset and all validation JSONs exist in the v4 repo under
@@ -102,7 +122,15 @@ his exchange. (Auto-execution is a possible v2, gated behind a separate decision
 1. **M1 — Engine + gates** (the hard part): data layer, structure engine, exits;
    all gates and regression fixtures green.
 2. **M2 — Live tracker + alerts**: EP6 state machine, daily line refresh, Telegram.
-   Cut over from v4's `cycle_watch.py` (retire it only after parallel-run agreement).
+   Cut over from v4's `cycle_watch.py`. **Cutover criterion:** ≥14 consecutive days
+   of parallel running in which (a) both systems compute T1/T2/T3 within 0.5% each
+   day, (b) both agree on the operative LH and BoS-trigger level exactly, and
+   (c) every alert one fires, the other fires within one polling interval. Any
+   divergence resets the counter. Note v4's `cycle_watch.py` hard-codes
+   `BAL_RATIO = 0.7351`, so its T2/T3 are the ratio-fallback approximation — expect
+   and account for a constant offset against a live checkonchain series rather than
+   treating it as disagreement. Retire the hourly `:20` cron only after the criterion
+   is met.
 3. **M3 — Dashboard**: local HTML, daily regen.
 4. **M4 — Shadow ledger.**
 5. **M5 (optional) — Beta sleeve tracker.**
@@ -114,6 +142,14 @@ his exchange. (Auto-execution is a possible v2, gated behind a separate decision
   fallback. Alert loudly on staleness rather than failing silently.
 - **n=5 episodes.** The record is anatomy, not statistics; the app must present it
   that way (the dashboard's "read honestly" note is a product requirement).
+- **The headline record is provisional and must be surfaced as such.** EP3's 2019
+  BoS has no owner sign-off yet and contributes 36% of the summed return
+  (SPEC §14 OQ-5); the per-episode pnl figures in SPEC §11 do not currently
+  reconcile with the reference implementation (OQ-4); and the quoted MAE figures
+  are not reproducible from any stated convention and originate from a rejected
+  strategy variant (OQ-2). Any surface quoting +2,417% must carry the caveat until
+  those are closed. **Only `cy1_lifecycle.json` implements CY-1** — the other
+  validation JSONs are different strategies (SPEC §11).
 - **Cycle-scale patience**: worst historical sit-throughs were −49% (2014
   accumulation) and −64% MAE (2019 spot through COVID). The dashboard must show MAE
   history so future drawdowns read as in-distribution, not as failure.

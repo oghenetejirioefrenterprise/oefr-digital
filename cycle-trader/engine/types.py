@@ -1,7 +1,8 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date as _date
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, InvalidOperation, localcontext
+from engine.context import CTX
 from enum import Enum
 
 
@@ -136,7 +137,18 @@ class OnChain:
 
     @property
     def midpoint(self) -> Decimal:
-        return (self.realized + self.balanced) / Decimal(2)
+        """T2, the midpoint accumulation line (SPEC §3).
+
+        This is a **fill price**, not a display value: `lines_for` hands it
+        straight to the buy-limit primitive. The division is inexact, so it runs
+        in the engine's pinned context (`engine/context.py`) — the same treatment
+        as the identical expression in `levels.mirror_target`. Measured on EP3's
+        fill day 2018-11-26, it is ambient-dependent from prec <= 10 (3e-7 at
+        prec 10, 0.006 at prec 6, 0.114 at prec 4), a wider window than any other
+        computation in the engine.
+        """
+        with localcontext(CTX):
+            return (self.realized + self.balanced) / Decimal(2)
 
 
 @dataclass(frozen=True, slots=True)

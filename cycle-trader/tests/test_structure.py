@@ -347,10 +347,10 @@ def test_rally_pct_is_independent_of_the_ambient_decimal_context():
     change can admit or drop a lower-high candidate -- and the operative LH is
     what the BoS, the ladder leg and EL* all hang off.
 
-    Measured on the frozen series the candidate set survives down to prec 3 and
-    flips only at prec 1 (EP6 yields 8 candidates instead of 12), but the
-    tightest real margin is 0.4988 points (wk 2025-11-24 rallies +15.4988%
-    against the 15 cutoff), which the error clears only from prec >= 4.
+    Measured on the frozen series the candidate set survives down to prec 2 and
+    flips only at prec 1 (EP6 yields 8 candidates instead of 12, EP4 24 instead
+    of 25), but the tightest real margin is 0.4988 points (wk 2025-11-24 rallies
+    +15.4988% against the 15 cutoff), which the error clears only from prec >= 4.
     engine/context.py pins the context; this test fails if that pin is removed.
 
     The fixture's rally is deliberately non-terminating -- (82,850 - 60,000) /

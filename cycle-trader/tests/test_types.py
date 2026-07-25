@@ -1,7 +1,10 @@
 import dataclasses
-from decimal import Decimal
+from decimal import Decimal, Inexact, ROUND_FLOOR, localcontext
 
 import pytest
+
+from engine.context import CTX
+from engine.lines import lines_for
 
 from engine.types import (
     Bar,
@@ -240,3 +243,41 @@ def test_engine_result_holds_state_and_orders_and_is_frozen():
     assert r.orders == (o,)
     with pytest.raises(dataclasses.FrozenInstanceError):
         r.orders = ()
+
+
+def test_midpoint_is_independent_of_the_ambient_decimal_context():
+    """`OnChain.midpoint` is the T2 accumulation line -- a **fill price**, handed
+    straight to the buy-limit primitive by `lines_for`, not a display value. Its
+    division is inexact, so an ambient precision change moves a price the
+    strategy actually trades at: on EP3's real fill day (2018-11-26) the midpoint
+    is 4502.886081702271637464274772, and it deviates by 3e-7 at prec 10, 0.006
+    at prec 6 and 0.114 at prec 4 -- ambient-dependent over a wider window than
+    any other computation in the engine.
+
+    This module was wrongly cleared in `engine/context.py`'s audit as
+    construction-only until 2026-07-25; `_dec` is indeed context-free, but
+    `midpoint` computes. engine/context.py pins it; this test fails if that pin
+    is removed.
+
+    Inputs carry 28 significant digits deliberately -- that is what the real
+    CoinMetrics-derived series looks like, because `data/loaders.py` derives
+    realized price by an unpinned division at the ambient default. The quotient
+    therefore needs 28 digits, far more than the hostile precision below, so
+    precision is genuinely observable; round two-decimal inputs would pass
+    unpinned. (It terminates at 28 rather than saturating `CTX.prec`, so the
+    exact value is asserted directly and holds for any pin >= 29.)
+    """
+    oc = OnChain(date="2018-11-26",
+                 realized=Decimal("5138.427551844371825042817368"),
+                 balanced=Decimal("3867.344611560171449885732176"))
+    expected = oc.midpoint
+    assert expected == Decimal("4502.886081702271637464274772")
+    assert len(expected.as_tuple().digits) == 28 <= CTX.prec
+
+    with localcontext() as ctx:
+        ctx.prec = 4
+        ctx.rounding = ROUND_FLOOR
+        ctx.traps[Inexact] = True
+        assert oc.midpoint == expected
+        # lines_for must carry the pinned value through, not recompute it
+        assert lines_for(oc)[1] == expected

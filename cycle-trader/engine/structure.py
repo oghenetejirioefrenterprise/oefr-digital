@@ -74,10 +74,10 @@ def find_lh_candidates(weeks: list[Week], bars: list[Bar], scope_start: str,
         # than the function precisely to mark which line is inexact; every
         # other operation here is a comparison or a min/max over raw OHLC.
         # Measured on the frozen series: the candidate set is stable down to
-        # prec 3 and flips only at prec 1 (EP6: 8 candidates instead of 12),
-        # but the tightest real margin is 0.4988 pts (wk 2025-11-24 rallies
-        # +15.4988% against the R_e=15 cutoff), which the error clears only
-        # from prec >= 4.
+        # prec 2 and flips only at prec 1 (EP6 yields 8 candidates instead of
+        # 12; EP4 24 instead of 25), but the tightest real margin is 0.4988 pts
+        # (wk 2025-11-24 rallies +15.4988% against the R_e=15 cutoff), which the
+        # error clears only from prec >= 4.
         with localcontext(CTX):
             rally = (cand.high - l0) / l0 * Decimal(100)
         if rally < r_e:

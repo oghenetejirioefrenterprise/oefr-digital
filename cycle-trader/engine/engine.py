@@ -60,6 +60,19 @@ ground truth, one at a time.
   rather than freezing it, and market-sells the position.
 - **`STOPPED` vs `held_units`.** A stopped episode rests nothing, and `()` means
   "cancel everything" — correct only if the stop actually executed.
+- **An EMPTY order set vs `held_units`** (the wrapper around `_compute`). The
+  three checks above catch inputs that contradict each other; this one catches an
+  *output* that is well-formed and still unsafe. `()` is the reconciler's
+  instruction to cancel every resting order, so it is only ever correct while the
+  account is flat. It is reachable with nothing individually wrong: on an episode
+  HANDOVER — a new episode's trigger settles while the previous one is still
+  positioned — `compute` reports the new episode (§14 OQ-1), `filled_purposes`
+  still carries the previous episode's tranche fills, and `_watching` therefore
+  skips all three accumulation limits. Measured on the frozen series, that
+  happens on 2018-11-25, 2020-03-15 and 2026-02-01, and it would cancel a live
+  stop each time. Whether `filled_purposes` is per-episode, and what becomes of
+  the prior position, is an owner question (SPEC §14); the refusal is what both
+  answers need.
 
 WHAT THIS FUNCTION IS NOT
 -------------------------
@@ -271,7 +284,42 @@ def compute(bars: list[Bar], onchain: dict[str, OnChain],
     Raises `ValueError` for any state that cannot be turned into a coherent
     order set. That is the intended behaviour, not a bug to be caught: see the
     module docstring.
+
+    The last of those checks is on the RESULT rather than the inputs, which is
+    why it lives here and not in `_compute`: an empty tuple is a well-formed
+    answer that no single input contradicts, and it is the reconciler's
+    instruction to cancel everything. It is therefore refused whenever the
+    account is holding units, on whichever code path produced it.
     """
+    result = _compute(bars, onchain, prior_state, asof, filled_purposes,
+                      held_units)
+    if held_units > 0 and not result.orders:
+        raise ValueError(
+            f"empty desired order set while held_units={held_units}: the "
+            f"engine reports {result.state.status.value} at asof {asof} for "
+            f"the episode triggered {result.state.trigger_date}, and has "
+            "nothing to rest. The daily run is a desired-state reconciler, so "
+            "an empty set is the instruction to CANCEL EVERY RESTING ORDER — "
+            "including the stop protecting these units. The known cause is an "
+            "episode HANDOVER: a new episode's trigger settles while the "
+            "previous episode is still positioned, only the newest episode is "
+            "reported (SPEC §14 OQ-1), and `filled_purposes` carried over from "
+            "the previous episode suppresses every order the new one would "
+            "rest. On the frozen series that is 2018-11-25, 2020-03-15 and "
+            "2026-02-01. Whether `filled_purposes` is scoped per episode, and "
+            "what becomes of the prior episode's position, is an open owner "
+            "question (SPEC §14) — until it is settled this run is refused, "
+            "and a failed run changes nothing and never cancels.")
+    return result
+
+
+def _compute(bars: list[Bar], onchain: dict[str, OnChain],
+             prior_state: EpisodeState, asof: str,
+             filled_purposes: frozenset[OrderPurpose],
+             held_units: Decimal) -> EngineResult:
+    """`compute` minus the empty-set guard. Never call this directly: the guard
+    is not an optional extra, it is the difference between a refused run and a
+    cancelled stop."""
     _check_ledger_coherent(filled_purposes, held_units)
 
     visible = [b for b in bars if b.date <= asof]

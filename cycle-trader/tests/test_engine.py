@@ -1073,3 +1073,106 @@ def test_stopped_while_still_holding_units_is_refused(bars, onchain):
                            filled=RUNG_FILLED | {OrderPurpose.STOP})
     assert r.state.status is EpisodeStatus.STOPPED
     assert r.orders == ()
+
+
+# --------------------------------------------------------------------------
+# 12. the empty desired set — the one output the reconciler cannot survive
+# --------------------------------------------------------------------------
+
+#: Every day on the frozen series where a NEW episode's trigger settles while
+#: the PREVIOUS episode is still positioned. On each of them `compute` used to
+#: return `()`: the ledger guard passes (buy purposes filled, units held),
+#: `_watching` skips all three tranches because they are in `filled_purposes`,
+#: and the run succeeds with nothing to rest.
+#:
+#: The ledger paired with each date is the previous episode's real one — EP2 and
+#: EP5 have taken Exit 1 by their handover day and hold half, EP3 has not.
+HANDOVERS = (
+    ("2018-11-25", ARMED, ARMED_UNITS),               # EP2 (distributing) -> EP3
+    ("2020-03-15", ACCUMULATED, ACCUMULATED_UNITS),   # EP3 (confirmed)    -> EP4
+    ("2026-02-01", ARMED, ARMED_UNITS),               # EP5 (distributing) -> EP6
+)
+
+
+@pytest.mark.parametrize("handover,filled,held", HANDOVERS)
+def test_an_episode_handover_refuses_instead_of_cancelling_the_open_position(
+        bars, onchain, handover, filled, held):
+    """`compute` may never return an empty order set while units are held.
+
+    This is the one output that is unsafe *because it is well-formed*. Under the
+    desired-state reconciler (v2 design §4) the returned tuple is the complete
+    picture of what should be resting, so `()` is not "no news" — it is *cancel
+    every resting order*, stop included. Every other refusal in this module
+    exists to avoid emitting a SHORT set; this one exists to avoid emitting an
+    EMPTY one, and it is reachable without any input being individually wrong.
+
+    The path: a new episode's trigger week settles while the previous episode is
+    still positioned. `compute` reports only the latest episode (§14 OQ-1), so
+    the new one is WATCHING — and `filled_purposes`, which still carries the
+    *previous* episode's tranche fills, suppresses all three of its accumulation
+    limits. Nothing raises, nothing is missing, and the answer is `()`.
+
+    Three assertions, because the emptiness has to be attributed:
+
+    * the day BEFORE is a full, live order set — so this is a handover, not a
+      quiet stretch of the series;
+    * the same day with a FLAT ledger rests the new episode's three tranches —
+      so the emptiness comes from the carried `filled_purposes`, not the date;
+    * with a position, it raises.
+
+    **What the guard deliberately does not do is decide the semantics.** Whether
+    `filled_purposes` should be scoped per episode, and what becomes of the
+    prior episode's open position, is an owner question recorded in SPEC §14.
+    Both answers need this refusal: under either one, cancelling a live stop
+    because two episodes overlapped is wrong. A failed run changes nothing.
+    """
+    before = compute(bars, onchain, EpisodeState(), asof=_day_before(handover),
+                     filled_purposes=filled, held_units=held)
+    assert before.orders, (
+        f"{handover} is not a handover on this data: the previous day already "
+        "rested nothing, so this test is asserting the wrong thing")
+    assert OrderPurpose.STOP in _purposes(before)
+
+    flat = compute(bars, onchain, EpisodeState(), asof=handover)
+    assert flat.state.status is EpisodeStatus.WATCHING
+    assert _purposes(flat) == TRANCHES
+
+    with pytest.raises(ValueError, match="empty desired order set") as excinfo:
+        compute(bars, onchain, EpisodeState(), asof=handover,
+                filled_purposes=filled, held_units=held)
+    # The message has to be actionable by M2, which sees only the exception:
+    # what was held, which day, and which episode is now being reported.
+    message = str(excinfo.value)
+    assert str(held) in message and handover in message
+    assert flat.state.trigger_date in message
+
+    # The threshold is "holds anything at all", not "holds a round number of
+    # units". A partially filled order or a dust remainder still has a stop
+    # resting over it, and cancelling that stop is the same mistake at a
+    # smaller size — so the guard tests `> 0` rather than any working minimum.
+    with pytest.raises(ValueError, match="empty desired order set"):
+        compute(bars, onchain, EpisodeState(), asof=handover,
+                filled_purposes=filled, held_units=Decimal("0.0000001"))
+
+
+def test_the_empty_set_guard_is_keyed_on_the_position_not_on_the_date(bars,
+                                                                      onchain):
+    """`()` is the correct answer whenever the account is flat, and stays so.
+
+    The guard must not become "compute never returns `()`" — an IDLE engine
+    before the first trigger, and a STOPPED episode whose stop actually
+    executed, both correctly rest nothing. Those are the cases that make the
+    refusal above a statement about *open positions* rather than about empty
+    tuples.
+    """
+    idle = compute(bars, onchain, EpisodeState(), asof="2011-10-01")
+    assert idle.state.status is EpisodeStatus.IDLE
+    assert idle.orders == ()
+
+    rows = _ramp_through_the_lh()
+    rows += [(Decimal("83000"), Decimal("82000"))] * 6
+    rows += [(Decimal("82500"), Decimal("57000"))]
+    _extended, stopped = _bos_of(bars, onchain, rows,
+                                 filled=RUNG_FILLED | {OrderPurpose.STOP})
+    assert stopped.state.status is EpisodeStatus.STOPPED
+    assert stopped.orders == ()

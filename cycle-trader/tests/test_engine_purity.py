@@ -56,8 +56,17 @@ IMPURE_BUILTIN_CALLS = frozenset({"open", "input", "print", "eval", "exec",
                                   "compile", "__import__", "breakpoint"})
 
 
-def _modules() -> list[Path]:
-    return sorted(ENGINE.glob("*.py"))
+def _modules(root: Path = ENGINE) -> list[Path]:
+    """Every module under `root`, **recursively**.
+
+    `glob` (non-recursive) was the first version and it was blind by one
+    character: a file at `engine/sub/adapter.py` importing pandas and calling
+    `os.listdir` produced zero violations and the gate stayed green. `engine/`
+    is flat today, but this gate exists to survive M2/M3 — when it will not be —
+    and `test_engine_modules_exist_to_be_checked` asserts a *superset* of known
+    names, so it could never have noticed either.
+    """
+    return sorted(root.rglob("*.py"))
 
 
 def _violations(source: str, filename: str) -> list[str]:
@@ -143,12 +152,38 @@ def test_datetime_is_imported_only_for_calendar_arithmetic():
     assert names <= {"date", "timedelta"}, sorted(names)
 
 
+def test_the_scan_recurses_into_subpackages(tmp_path):
+    """Pins `rglob`, the one character this gate was blind by.
+
+    Built in a tmp tree rather than by writing into `engine/`, so a crashed run
+    cannot leave an impure file behind in the package under test. Both halves
+    matter: the nested module must be *found*, and its violation *reported*.
+    """
+    (tmp_path / "flat.py").write_text("from decimal import Decimal\n")
+    nested = tmp_path / "sub" / "deeper"
+    nested.mkdir(parents=True)
+    (nested / "adapter.py").write_text("import pandas\n\n\ndef go():\n    return 1\n")
+
+    found = _modules(tmp_path)
+    assert sorted(p.name for p in found) == ["adapter.py", "flat.py"], \
+        "a non-recursive glob sees only flat.py and the gate goes green"
+    violations = [v for p in found for v in _violations(p.read_text(), p.name)]
+    assert len(violations) == 1 and "pandas" in violations[0]
+
+
 def test_the_checker_actually_catches_impurity():
-    """The teeth. Four hazards must NOT trip; four violations must.
+    """The teeth. The four hazards must NOT trip; sixteen violations must.
 
     Without this, a checker that silently inspected nothing — a bad glob, an
     ALLOWED_IMPORTS that grew to cover everything — would still show green, and
     the purity gate would be decoration.
+
+    Each case asserts the *count* and the *text* of what came back, not merely
+    that something did: a checker that reported one generic violation for every
+    input would otherwise pass. The awkward cases are deliberate — an import
+    hidden inside a function body or a `try/except ImportError`, a star-import,
+    `time.time()` (which is both a forbidden import and a clock read, hence two
+    violations), and `date.today()` off an import that is itself legal.
     """
     clean = '''
 from __future__ import annotations
@@ -170,18 +205,36 @@ def fill(bar, level):
 '''
     assert _violations(clean, "clean.py") == []
 
-    for bad, marker in [("import pandas as pd", "pandas"),
-                        ("import numpy", "numpy"),
-                        ("from data.loaders import load_bars", "data.loaders"),
-                        ("import json", "json"),
-                        ("from pathlib import Path", "pathlib"),
-                        ("import random", "random"),
-                        ("def f():\n    return open('x').read()", "open"),
-                        ("import datetime\ndef f():\n    return datetime.datetime.now()",
-                         "now"),
-                        ("from datetime import date\ndef f():\n    return date.today()",
-                         "today"),
-                        ("import time\ndef f():\n    return time.time()", "time"),
-                        ("def f(x):\n    print(x)", "print")]:
+    cases = [
+        # third-party and forbidden-stdlib imports
+        ("import pandas as pd", "pandas", 1),
+        ("import numpy", "numpy", 1),
+        ("import polars", "polars", 1),          # never named anywhere: deny-by-default
+        ("from data.loaders import load_bars", "data.loaders", 1),
+        ("import json", "json", 1),
+        ("from pathlib import Path", "pathlib", 1),
+        ("import random", "random", 1),
+        ("from os import *", "os", 1),
+        ("from . import types", "relative", 1),
+        # imports that a line-oriented check would not be looking at
+        ("def f():\n    import numpy\n    return numpy", "numpy", 1),
+        ("try:\n    import numpy\nexcept ImportError:\n    numpy = None",
+         "numpy", 1),
+        # I/O and code execution
+        ("def f():\n    return open('x').read()", "open", 1),
+        ("def f(s):\n    return compile(s, '<s>', 'exec')", "compile", 1),
+        ("def f(x):\n    print(x)", "print", 1),
+        # clock reads, including off imports that are themselves legal
+        ("import datetime\ndef f():\n    return datetime.datetime.now()", "now", 1),
+        ("from datetime import date\ndef f():\n    return date.today()", "today", 1),
+        ("import datetime\ndef f():\n    return datetime.datetime.utcnow()",
+         "utcnow", 1),
+        # `time` is both a forbidden import and a clock call: two distinct hits
+        ("import time\ndef f():\n    return time.time()", "time", 2),
+        ("import time\ndef f():\n    return time.monotonic()", "monotonic", 2),
+    ]
+    for bad, marker, expected in cases:
         found = _violations(bad, "bad.py")
         assert found, f"{marker!r} slipped through the purity checker"
+        assert len(found) == expected, f"{marker!r}: {found}"
+        assert any(marker in v for v in found), f"{marker!r} not named in {found}"

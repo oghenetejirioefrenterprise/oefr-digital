@@ -247,11 +247,22 @@ def test_the_full_roll_deploys_at_a_better_average_price_than_the_breakout(bars)
     """Why leg 1 favours the ladder, in numbers, and why leg 2 is the worse arm.
 
     Both legs deploy the same 21 units; only the price differs. If every rung
-    fills, the book averages ~65.4k. If none does, leg 2 takes all 21 units at
-    the BoS-week high — the single worst price on the path and ~27% further from
-    the stop. Asserting the average also pins the size-to-level join: swap the
-    3-unit and 12-unit rungs and the ratios still look right, but the average
-    entry moves the wrong way.
+    fills, the book averages 65,372.39 — 7,572.20 above EL*. If none does, leg 2
+    takes all 21 units at the BoS-week high, 25,049.81 above EL*, so the same
+    position sits **231% further from the stop** and risks 3.31x as much.
+
+    Price ratio and risk ratio are different numbers and the second is the one
+    an owner acts on. 82,850 / 65,372.39 = 1.27 says the breakout pays 27% more
+    per coin; it says nothing about exposure, because the stop is not at zero.
+    Measured to the stop — the only distance that can actually be lost — the
+    ratio is 3.31. The first review of this file quoted 1.27 as the risk figure
+    and asserted the bound against it, which advertised a tight assertion that
+    was 2.6x loose. Both bounds below are therefore two-sided and pinned to
+    ~0.3%: a one-sided `> 1.27` passes on almost any arithmetic.
+
+    Asserting the average also pins the size-to-level join: swap the 3-unit and
+    12-unit rungs and the 2:4:8 ratios still look right, but the average entry
+    moves the wrong way.
     """
     el_star = freeze_el(bars, EP6_D_WEEK, ASOF)
     orders = _by_purpose(desired_orders(_state(el_star), {}, set(), Decimal(0)))
@@ -259,9 +270,13 @@ def test_the_full_roll_deploys_at_a_better_average_price_than_the_breakout(bars)
     with localcontext(CTX):
         notional = sum((o.price * o.units for o in rungs), Decimal(0))
         avg = notional / TOTAL_UNITS
-        breakout_risk = (BOS_HIGH - el_star) * TOTAL_UNITS
+        # Risk = price distance to the stop x size. EL* is where the position is
+        # closed (§6.3), so it is the floor of the loss, not zero.
         ladder_risk = notional - el_star * TOTAL_UNITS
-    assert Decimal("65300") < avg < Decimal("65400")
+        breakout_risk = (BOS_HIGH - el_star) * TOTAL_UNITS
+        risk_ratio = breakout_risk / ladder_risk
+        price_ratio = BOS_HIGH / avg
+    assert Decimal("65372") < avg < Decimal("65373")
     # The average sits below the midpoint of the rung range, because the deep
     # rung carries 12 of the 21 units. A size/level swap breaks this, not the
     # bare "inside the range" check.
@@ -273,7 +288,44 @@ def test_the_full_roll_deploys_at_a_better_average_price_than_the_breakout(bars)
     assert orders[OrderPurpose.BREAKOUT].price == BOS_HIGH
     assert avg < BOS_HIGH
     assert ladder_risk < breakout_risk
-    assert breakout_risk / ladder_risk > Decimal("1.27")
+    assert Decimal("3.30") < risk_ratio < Decimal("3.32")
+    # ...and the two ratios are kept side by side so neither can be quoted as
+    # the other again. 1.27 is real, but it answers a different question.
+    assert Decimal("1.26") < price_ratio < Decimal("1.27")
+    assert risk_ratio > price_ratio * Decimal("2.6")
+
+
+def test_the_roll_puts_exactly_half_as_much_again_behind_the_same_stop(bars):
+    """Leg 1's cost, stated as the owner would feel it.
+
+    The roll does not move a single rung price, so the extra exposure is purely
+    the extra size: 21 units where a 3/3-filled episode would have laddered 14,
+    at identical levels against an identical stop. That is **+50%**, exactly —
+    not "a third more", which is the share of the book the roll moves (7 of 21),
+    a different quantity that the first review of this file conflated with it.
+    Exact rather than approximate because 21/14 scales every term of the risk
+    sum by the same 1.5.
+    """
+    el_star = freeze_el(bars, EP6_D_WEEK, ASOF)
+    state = _state(el_star)
+
+    def ladder_risk(filled, held):
+        rungs = [o for o in desired_orders(state, {}, set(filled), held)
+                 if o.purpose in RUNGS]
+        with localcontext(CTX):
+            units = sum((o.units for o in rungs), Decimal(0))
+            return sum((o.price * o.units for o in rungs),
+                       Decimal(0)) - el_star * units, units
+
+    rolled, rolled_units = ladder_risk(set(), Decimal(0))          # leg 1 fires
+    base, base_units = ladder_risk(TRANCHES, Decimal(7))           # history's path
+    assert (rolled_units, base_units) == (Decimal(21), Decimal(14))
+    with localcontext(CTX):
+        assert rolled / base == Decimal("1.5")
+    assert rolled > base
+    # The 7 rolled units are a third of the book and a half again of the ladder.
+    with localcontext(CTX):
+        assert (rolled_units - base_units) / TOTAL_UNITS == Decimal(1) / Decimal(3)
 
 
 def test_the_rolled_episode_reconciles_idempotently_from_bos_to_full_deployment(

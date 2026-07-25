@@ -16,6 +16,14 @@
 #
 #     git clone <repo> && cd <repo>/cycle-trader && pip install ".[dev]" && pytest
 #
+# The Install step below runs that exact command, deliberately: a documented
+# command the workflow does not itself execute is a command nobody is checking.
+# (It was `pip install -e` for one commit while this comment said otherwise.)
+# Editable adds nothing here — pyproject's `pythonpath = ["."]` already makes
+# pytest import the source tree, which is what Vercel deploys — and the project
+# forbids editable installs into the shared venv, so `-e` in the documented
+# command would be a trap for anyone pasting it locally.
+#
 # There is no network access, no API key and no fixture generation step — every
 # input is a frozen snapshot under cycle-trader/data/reference/.
 name: CY-1 gates
@@ -69,7 +77,7 @@ jobs:
           test -s data/reference/cy1_lifecycle_reference.json
 
       - name: Install
-        run: pip install -e ".[dev]"
+        run: pip install ".[dev]"
 
       # engine/ must stay stdlib-only, I/O-free and clock-free (CLAUDE.md).
       # Checked by AST in tests/test_engine_purity.py rather than by grep: four
@@ -85,14 +93,16 @@ jobs:
       - name: Run the full suite
         run: pytest -v
 
-      # A suite that silently stopped collecting the gates would still be green:
-      # `pytest` exits 0 on zero tests matched under a path that still exists.
-      # The gates are the point of this workflow, so a floor is asserted. It only
-      # ever needs raising, never lowering — a drop below it means gates were
-      # deleted or stopped being collected, which is the event worth failing on.
+      # PARTIAL gate loss is what this catches. Total loss does not need it:
+      # `pytest` exits 5 (not 0) when a path collects nothing, so the step above
+      # already fails — an earlier version of this comment claimed otherwise and
+      # was wrong. But 69 gate tests silently becoming 30 — a file dropped from
+      # collection, a rename that orphans a module, a conftest fixture error that
+      # skips rather than fails — exits 0 and shows green on a suite that no
+      # longer checks the episodes. Hence a floor. It only ever needs raising.
       - name: Assert the gates actually ran
         run: |
           collected=$(pytest tests/gates -q --collect-only \
             | awk '/tests? collected/ { print $1; exit }')
           echo "gate tests collected: ${collected:-0}"
-          test "${collected:-0}" -ge 69
+          test "${collected:-0}" -ge 75

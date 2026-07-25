@@ -15,6 +15,7 @@ absent *for SPEC's stated reason*.
 """
 from decimal import Decimal
 from engine.structure import find_lh_candidates, operative_lh, find_bos
+from engine.lifecycle import freeze_el
 from engine.bars import monday_of
 
 
@@ -58,7 +59,7 @@ def walk_forward_bos(episode_scope, trigger: str) -> str:
     return episode_scope["scopes"][trigger][1]
 
 
-def test_episode_chain_matches_spec_13_3(episode_scope):
+def test_episode_chain_matches_spec_13_3(bars, episode_scope):
     """SPEC §13.3's executed table: the six triggers, each episode's D, and each
     activation — the shared precondition of G1, G2 and G3.
 
@@ -100,6 +101,64 @@ def test_episode_chain_matches_spec_13_3(episode_scope):
     assert episode_scope["scopes"]["2020-03-09"][0] != \
         episode_scope["scopes"]["2018-11-19"][0]
 
+    # EL* — SPEC §13.1/§13.3, the running low frozen at the BoS. **This is the
+    # stop level.** Every other number in this gate is a signal that can be
+    # re-derived tomorrow; EL* is the one the position is risked against, so a
+    # silent drift here is the failure mode that costs money rather than
+    # accuracy. §13.3's executed table carries all four and `freeze_el`
+    # reproduces them exactly. Scope is D's Monday, NOT the prior-ATH week.
+    for trigger, expected in (("2014-09-22", Decimal("152.40")),
+                              ("2018-11-19", Decimal("3156.26")),
+                              ("2020-03-09", Decimal("3782.13")),
+                              ("2022-05-16", Decimal("15476.00"))):
+        d_week, bos = episode_scope["scopes"][trigger]
+        assert freeze_el(bars, d_week, bos) == expected
+
+
+def test_r_e_15_is_the_unique_gate_passing_value(bars, weeks, episode_scope):
+    """SPEC §4.2/§9 and CLAUDE.md rule 2: `R_e = 15` is "the unique
+    gate-passing value, not a tunable". That is a FALSIFIABLE claim, and
+    nothing else in the suite tests it — every other assertion runs at the
+    default and so cannot tell a load-bearing constant from an inert one.
+
+    Both directions are checked, because "15 works" is not the claim:
+
+      lower it -> a high SPEC says must be excluded gets admitted;
+      raise it -> a gate's own operative LH is destroyed.
+
+    This is also where the Nov-2022 FTX bounce's rally is asserted. At R_e=15
+    that week is not a candidate, so the engine computes no `rally_pct` for it;
+    reading it off the r_e=10 run is the only way to assert the ENGINE's number
+    rather than re-deriving one by hand. The distinction is not academic: hand
+    arithmetic off EL* (15,476) gives +11.07%, while the engine's L0 is wk
+    2022-11-07's low 15,588 and its rally is +10.28%. Both fall inside any
+    loose (10, 15) band, so a hand-rolled check passes while observing nothing.
+    """
+    ep5_trigger, ep5_d = "2022-05-16", "2021-11-08"
+    ep2_trigger, ep2_d = "2014-09-22", "2013-11-25"
+    assert episode_scope["scopes"][ep5_trigger][0] == ep5_d
+    assert episode_scope["scopes"][ep2_trigger][0] == ep2_d
+
+    # Lowering R_e admits what §10 G3 says must be excluded: the FTX bounce.
+    loosened = find_lh_candidates(weeks, bars, scope_start=ep5_d,
+                                  trigger_monday=ep5_trigger, r_e=Decimal("10"))
+    ftx = next(c for c in loosened if c.week_monday == "2022-11-14")
+    assert ftx.origin_week == "2022-11-07"
+    assert ftx.origin_low == Decimal("15588.00")
+    assert Decimal("10") < ftx.rally_pct < Decimal("15")      # engine's number
+    assert pct(ftx.rally_pct, Decimal("10.28")) < Decimal("1")
+
+    # Raising R_e destroys G1: 305.00 stops being generated and the operative
+    # LH reverts to the previous structure — §4's failure signature exactly.
+    at_15 = find_lh_candidates(weeks, bars, scope_start=ep2_d,
+                               trigger_monday=ep2_trigger, r_e=Decimal("15"))
+    at_20 = find_lh_candidates(weeks, bars, scope_start=ep2_d,
+                               trigger_monday=ep2_trigger, r_e=Decimal("20"))
+    assert any(c.price == Decimal("305.00") for c in at_15)
+    assert all(c.price != Decimal("305.00") for c in at_20)
+    assert operative_lh(at_20, asof="2015-01-20").price == Decimal("453.92")
+    assert operative_lh(at_20, asof="2015-01-20").week_monday == "2014-11-10"
+
 
 def test_g1_2015_entry(bars, weeks, episode_scope):
     """LH 305.00 (week of 2015-01-05, +19.6% off fresh 255.00, confirmed by
@@ -126,6 +185,20 @@ def test_g1_2015_entry(bars, weeks, episode_scope):
     # Verified against the frozen data. Asserting the prose date fails correct code.
     assert lh.confirmed_at == "2015-01-13"
     assert pct(lh.rally_pct, Decimal("19.6")) < Decimal("1")
+
+    # NO LOOKAHEAD (CLAUDE.md rule 5, SPEC §4.3): the candidate is unusable
+    # before its confirmation date. One day earlier the operative LH is still
+    # the PREVIOUS structure, 453.92 @ wk 2014-11-10 (confirmed 2015-01-04);
+    # it flips to 305.00 on 2015-01-13, the day the low first breaks L0 = 255.
+    #
+    # This is the gate's only guard on that rule. `walk_forward_bos` below does
+    # NOT catch it: deleting `b.date > op.confirmed_at` from `first_bos` leaves
+    # all four gates green, because G1's break (2015-01-26) postdates its
+    # confirmation anyway and the two BoS routines then agree on a wrong rule.
+    # Asserting the flip is what makes premature usability observable.
+    assert operative_lh(cands, asof="2015-01-12").price == Decimal("453.92")
+    assert operative_lh(cands, asof="2015-01-12").week_monday == "2014-11-10"
+    assert operative_lh(cands, asof="2015-01-13").price == Decimal("305.00")
 
     bos = find_bos(bars, lh.price, after=lh.confirmed_at)
     assert monday_of(bos) == "2015-01-26"
@@ -156,10 +229,17 @@ def test_g2_2020_entry(bars, weeks, episode_scope):
 
     # The excluded high is a WEEK, not a price. SPEC's "early-March ~9.2k" is
     # wk 2020-03-02 (high 9,188.00); its would-be rally origin is wk 2020-02-24's
-    # low 8,411.00 — SPEC's "origin ~8.5k". Assert the identification, then the
-    # exclusion, then SPEC's stated REASON (8,411 is not fresh: the scope from D
-    # already holds 6,435), so the test fails loudly if some other rule starts
-    # doing the excluding.
+    # low 8,411.00 — SPEC's "origin ~8.5k".
+    #
+    # HONEST SCOPE OF THIS EXCLUSION: it is OVER-DETERMINED on the frozen data.
+    # Wk 2020-03-02 fails freshness (L0 = 8,411 >= the 6,435 already in scope
+    # from D) AND degree (rally +9.24% < R_e = 15). Proven by mutation: deleting
+    # EITHER rule leaves this test green. So this block does NOT pin freshness,
+    # and an earlier version of this comment claiming it "fails loudly if some
+    # other rule starts doing the excluding" was wrong.
+    # **Freshness is pinned by G3's wk 2022-09-12 (+23.17%, clears R_e), not
+    # here.** Kept regardless: it is still strictly stronger than the price band
+    # it replaced, which failed on correct code (see below).
     march = next(w for w in weeks if w.monday == "2020-03-02")
     assert pct(march.high, Decimal("9200")) < Decimal("1")
     assert all(c.week_monday != "2020-03-02" for c in cands)
@@ -201,25 +281,45 @@ def test_g3_2022_entry(bars, weeks, episode_scope):
     assert lh.confirmed_at == "2022-11-08"
 
     # Excluded by week, with the stated price attached so a data change that
-    # moves the high cannot let the assertion pass vacuously.
-    for week_monday, high in (("2022-09-12", Decimal("22799")),
-                              ("2022-10-03", Decimal("20475"))):
+    # moves the high cannot let the assertion pass vacuously, and each paired
+    # with the origin the ENGINE actually computes for it — naming a plausible
+    # nearby week instead makes the "stated reason" assertion vacuous, which is
+    # the whole failure mode that week-identification exists to prevent.
+    #
+    # These two are NOT equally load-bearing, and the difference matters:
+    #
+    #   wk 2022-09-12 (22,799) — origin wk 2022-09-05, L0 = 18,510.77,
+    #       rally +23.17%. Clears R_e comfortably, so FRESHNESS ALONE excludes
+    #       it. This is the one assertion in the suite that isolates the
+    #       freshness rule on real data, and it is what kills the freshness
+    #       mutant. SPEC §10 G3's stated reason, exactly.
+    #   wk 2022-10-03 (20,475) — origin wk 2022-09-19, L0 = 18,125.98,
+    #       rally +12.96%. OVER-DETERMINED: it fails freshness AND degree, so it
+    #       proves nothing on its own and is kept only because §10 names it.
+    for week_monday, high, origin_monday, origin_low in (
+            ("2022-09-12", Decimal("22799"), "2022-09-05", Decimal("18510.77")),
+            ("2022-10-03", Decimal("20475"), "2022-09-19", Decimal("18125.98"))):
         week = next(w for w in weeks if w.monday == week_monday)
         assert week.high == high
         assert all(c.week_monday != week_monday for c in cands)
-    # SPEC's stated reason for both: their origins (~18.1-18.2k) never undercut
-    # June's 17,622, so they are not fresh lows.
-    for origin_monday in ("2022-09-05", "2022-09-26"):
-        assert next(w for w in weeks
-                    if w.monday == origin_monday).low > Decimal("17622")
+        origin = next(w for w in weeks if w.monday == origin_monday)
+        assert origin.low == origin_low
+        # SPEC's stated reason: the origin never undercut June's 17,622.
+        assert origin.low > Decimal("17622")
+    # The load-bearing half, spelled out: 22,799's rally clears R_e, so its
+    # exclusion cannot be attributed to the degree test.
+    sept = next(w for w in weeks if w.monday == "2022-09-12")
+    sept_origin = next(w for w in weeks if w.monday == "2022-09-05")
+    assert (sept.high - sept_origin.low) / sept_origin.low * Decimal(100) \
+        > Decimal("15")
 
-    # The Nov FTX bounce is excluded by a DIFFERENT rule — degree, not freshness
-    # (~+11% < R_e = 15) — and the brief's original G3 omitted it entirely.
-    # Asserting it separately keeps R_e's role in this gate observable.
-    ftx = next(w for w in weeks if w.monday == "2022-11-14")
+    # The Nov FTX bounce is excluded by a DIFFERENT rule — degree, not freshness.
+    # Its rally is asserted in test_r_e_15_is_the_unique_gate_passing_value,
+    # which reads the ENGINE's rally_pct off the r_e=10 candidate rather than
+    # recomputing it here: at R_e=15 this week is not a candidate at all, so no
+    # engine-computed number for it exists in `cands` to assert against, and
+    # hand-arithmetic off EL* would silently use the wrong L0 (see that test).
     assert all(c.week_monday != "2022-11-14" for c in cands)
-    el = Decimal("15476")                            # EP5's EL* / the FTX low
-    assert Decimal("10") < (ftx.high - el) / el * Decimal(100) < Decimal("15")
 
     bos = find_bos(bars, lh.price, after=lh.confirmed_at)
     assert monday_of(bos) == "2023-02-13"

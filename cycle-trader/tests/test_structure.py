@@ -337,6 +337,12 @@ def test_first_bos_requires_a_strict_break_and_honours_its_window():
     assert (bos, broken.price) == ("2015-01-26", Decimal("305"))
     # `end` excludes the break day
     assert first_bos(bars, cands, start="2015-01-01", end="2015-01-25") == (None, None)
+    # ...and `end` is INCLUSIVE of it: a BoS landing exactly on the window's
+    # last day counts. Callers pass the next episode's trigger as `end`, so
+    # this decides whether a break on that very day belongs to this episode or
+    # is lost between the two. No historical episode lands there, so nothing
+    # else in the suite reaches this boundary.
+    assert first_bos(bars, cands, start="2015-01-01", end="2015-01-26")[0] == "2015-01-26"
     # `start` after the break: 305 is already dead
     assert first_bos(bars, cands, start="2015-01-27", end="2015-12-31") == (None, None)
 

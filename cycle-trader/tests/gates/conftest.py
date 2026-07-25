@@ -45,7 +45,8 @@ def episode_scope(bars, weeks, weekly_rsi):
     from engine.structure import find_lh_candidates, first_bos
 
     triggers = find_triggers(weeks, weekly_rsi)
-    scopes: dict[str, tuple[str, str]] = {}   # trigger -> (D_monday, bos_date|None)
+    # trigger -> (D_monday, bos_date|None, broken_LH_price|None)
+    scopes: dict[str, tuple[str, str | None, object]] = {}
     window_start = weeks[0].monday            # data start; EP1 has no predecessor
     data_end = bars[-1].date
 
@@ -59,8 +60,15 @@ def episode_scope(bars, weeks, weekly_rsi):
         # Walk-forward BoS against the THEN-operative LH. Asking for the
         # operative LH at era_end instead returns None — the BoS killed it —
         # and the whole chain silently records every episode as expired.
-        bos, _broken = first_bos(bars, cands, start=trigger, end=era_end)
-        scopes[trigger] = (d_week, bos)
+        #
+        # `broken` — WHICH candidate was broken — is carried through, not
+        # discarded. A BoS date alone does not say the engine broke the right
+        # structure: `return b.date, candidates[0]` produces every correct date
+        # off the wrong LH, and that LH is what the §5 leg and the §6.1
+        # extension hang off. The gates already know the answer, so they assert
+        # it.
+        bos, broken = first_bos(bars, cands, start=trigger, end=era_end)
+        scopes[trigger] = (d_week, bos, broken.price if broken else None)
         if bos is not None:
             window_start = bos                # next episode's window starts here
 

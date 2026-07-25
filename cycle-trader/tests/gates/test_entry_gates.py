@@ -15,7 +15,7 @@ absent *for SPEC's stated reason*.
 """
 from decimal import Decimal
 from engine.structure import find_lh_candidates, operative_lh, find_bos
-from engine.lifecycle import freeze_el
+from engine.lifecycle import freeze_el, running_low
 from engine.bars import monday_of
 
 
@@ -40,7 +40,7 @@ def scope_for_episode(episode_scope, sunday_label: str, expected_d: str):
     assert expected_monday in episode_scope["triggers"], (
         f"engine did not detect a trigger at {expected_monday} "
         f"(from reference label {sunday_label}); found {episode_scope['triggers']}")
-    d_week, _bos = episode_scope["scopes"][expected_monday]
+    d_week, _bos, _broken = episode_scope["scopes"][expected_monday]
     assert d_week == expected_d, (
         f"D for trigger {expected_monday} is {d_week}, expected {expected_d} "
         "(SPEC §13.3 verified table). If this episode's D is wrong the bug may "
@@ -57,6 +57,15 @@ def walk_forward_bos(episode_scope, trigger: str) -> str:
     returns `first_bos`'s answer — derived only from the candidate list — so
     each gate can assert the two agree."""
     return episode_scope["scopes"][trigger][1]
+
+
+def broken_lh(episode_scope, trigger: str):
+    """The price of the candidate `first_bos` actually broke.
+
+    Asserting only the BoS *date* leaves the identity of the broken structure
+    untested — `return b.date, candidates[0]` yields every correct date off the
+    wrong LH — and that LH anchors the §5 ladder leg and the §6.1 extension."""
+    return episode_scope["scopes"][trigger][2]
 
 
 def test_episode_chain_matches_spec_13_3(bars, episode_scope):
@@ -84,15 +93,17 @@ def test_episode_chain_matches_spec_13_3(bars, episode_scope):
         "2022-05-16",   # EP5 — G3
         "2026-01-26",   # EP6 — live
     ]
-    # trigger -> (D's Monday, activation day or None). SPEC §13.3 states BoS at
-    # WEEK resolution; the day is the engine's output and is checked as such.
+    # trigger -> (D's Monday, activation day or None, price of the LH broken).
+    # SPEC §13.3 states BoS at WEEK resolution; the day is the engine's output
+    # and is checked as such. The third slot pins WHICH structure was broken —
+    # EP3's 4,450.38 is asserted nowhere else in the suite.
     assert episode_scope["scopes"] == {
-        "2011-11-21": ("2011-11-21", None),          # D == trigger week -> guard
-        "2014-09-22": ("2013-11-25", "2015-01-26"),  # BoS wk 2015-01-26
-        "2018-11-19": ("2017-12-11", "2019-04-02"),  # BoS wk 2019-04-01
-        "2020-03-09": ("2019-06-24", "2020-07-27"),  # BoS wk 2020-07-27
-        "2022-05-16": ("2021-11-08", "2023-02-16"),  # BoS wk 2023-02-13
-        "2026-01-26": ("2025-10-06", None),          # live, no BoS yet
+        "2011-11-21": ("2011-11-21", None, None),                    # guard
+        "2014-09-22": ("2013-11-25", "2015-01-26", Decimal("305.00")),
+        "2018-11-19": ("2017-12-11", "2019-04-02", Decimal("4450.38")),
+        "2020-03-09": ("2019-06-24", "2020-07-27", Decimal("10500.00")),
+        "2022-05-16": ("2021-11-08", "2023-02-16", Decimal("25211.32")),
+        "2026-01-26": ("2025-10-06", None, None),                    # live
     }
     # EP4's D is the June-2019 13,970 week, NOT the Dec-2017 19,798.68 ATH —
     # SPEC §13.3's proof that structure and exits use different anchors. It is
@@ -107,24 +118,62 @@ def test_episode_chain_matches_spec_13_3(bars, episode_scope):
     # silent drift here is the failure mode that costs money rather than
     # accuracy. §13.3's executed table carries all four and `freeze_el`
     # reproduces them exactly. Scope is D's Monday, NOT the prior-ATH week.
+    data_end = bars[-1].date
     for trigger, expected in (("2014-09-22", Decimal("152.40")),
                               ("2018-11-19", Decimal("3156.26")),
                               ("2020-03-09", Decimal("3782.13")),
                               ("2022-05-16", Decimal("15476.00"))):
-        d_week, bos = episode_scope["scopes"][trigger]
+        d_week, bos, _broken = episode_scope["scopes"][trigger]
         assert freeze_el(bars, d_week, bos) == expected
+        # EL* RATCHETS DOWN before the BoS (§13.1: "a running anchor, not a
+        # stop level" — a new low pre-BoS updates the anchor and is not a stop
+        # event). Observable and strict on every episode, so it pins EL* as a
+        # running minimum over the scope rather than any fixed level.
+        assert running_low(bars, d_week, trigger) > expected
+
+        # ...and it FREEZES at the BoS. **This gate cannot test that, and the
+        # assertion below records why rather than pretending otherwise.**
+        # min() over a longer window is monotonically non-increasing, so the
+        # freeze is only observable if a new low prints AFTER the BoS — and on
+        # the frozen 2011->2026 series that never happens: for all four
+        # activated episodes the running low to the END OF DATA still equals
+        # EL*. Consequently a `freeze_el` that ignored `bos_date` entirely and
+        # ran to today would return the identical four numbers, so no
+        # value-based assertion here can distinguish frozen from running.
+        # The freeze is pinned by the synthetic fixture in
+        # tests/test_lifecycle.py, which is the only place it is reachable.
+        #
+        # Asserted rather than merely commented so the blind spot is
+        # self-invalidating: if a data refresh ever prints a post-BoS low, this
+        # fails and whoever sees it gets a real freeze test out of the box.
+        assert running_low(bars, d_week, data_end) == expected
 
 
-def test_r_e_15_is_the_unique_gate_passing_value(bars, weeks, episode_scope):
-    """SPEC §4.2/§9 and CLAUDE.md rule 2: `R_e = 15` is "the unique
-    gate-passing value, not a tunable". That is a FALSIFIABLE claim, and
-    nothing else in the suite tests it — every other assertion runs at the
-    default and so cannot tell a load-bearing constant from an inert one.
+def test_r_e_15_is_the_upper_edge_of_the_passing_interval(bars, weeks,
+                                                          episode_scope):
+    """`R_e = 15` bounds an INTERVAL; it is not uniquely determined by evidence.
 
-    Both directions are checked, because "15 works" is not the claim:
+    CLAUDE.md rule 2 calls 15 "the unique gate-passing value, not a tunable",
+    and an earlier version of this test was named for that claim. **Measured,
+    the claim is false**, so the name and the docstring now state what the
+    evidence actually shows. Swept by editing `R_E_DEFAULT` and re-running:
 
-      lower it -> a high SPEC says must be excluded gets admitted;
-      raise it -> a gate's own operative LH is destroyed.
+      historical gates alone   PASS over R_e in (12.0422, 19.60784]
+      full suite               PASS over R_e in [13.78809, 15.00]
+
+    Neither interval pins 15. All three gates return the identical operative
+    LH at 14 and at 15, so no chart read in §10 can tell them apart.
+
+    Both full-suite edges come from SYNTHETIC fixtures in
+    tests/test_structure.py, not from history: the upper edge is
+    `test_degree_is_inclusive_at_exactly_r_e` (a constructed exactly-15%
+    rally), the lower is `test_rally_below_15_percent_is_rejected` (G5's June
+    bounce at +13.78809%). So "the suite fails at 15.01" is a fact about a
+    hand-built fixture, and the honest summary is that 15 sits at the top of a
+    wide passing band whose edges the owner chose rather than the data forcing.
+
+    What history DOES force is the two-sided bound below — SPEC §9 rejects R10
+    and R20, and both are reproduced here. That is the real claim §9 makes.
 
     This is also where the Nov-2022 FTX bounce's rally is asserted. At R_e=15
     that week is not a candidate, so the engine computes no `rally_pct` for it;
@@ -158,6 +207,51 @@ def test_r_e_15_is_the_unique_gate_passing_value(bars, weeks, episode_scope):
     assert all(c.price != Decimal("305.00") for c in at_20)
     assert operative_lh(at_20, asof="2015-01-20").price == Decimal("453.92")
     assert operative_lh(at_20, asof="2015-01-20").week_monday == "2014-11-10"
+
+    # --- the measured edges of the passing interval, pinned directly ---
+    # UPPER: set by G1's own LH. Its rally is 19.60784...%, so R_e may rise all
+    # the way to that value before 305.00 stops being generated. Bisected.
+    lh305 = next(c for c in at_15 if c.price == Decimal("305.00"))
+    assert Decimal("19.6078") < lh305.rally_pct < Decimal("19.6079")
+    at_edge = find_lh_candidates(weeks, bars, scope_start=ep2_d,
+                                 trigger_monday=ep2_trigger,
+                                 r_e=Decimal("19.60784"))
+    past_edge = find_lh_candidates(weeks, bars, scope_start=ep2_d,
+                                   trigger_monday=ep2_trigger,
+                                   r_e=Decimal("19.6079"))
+    assert any(c.price == Decimal("305.00") for c in at_edge)
+    assert all(c.price != Decimal("305.00") for c in past_edge)
+
+    # LOWER: set by EP3's wk 2018-12-10 (high 3,610.00 off L0 3,222.00,
+    # +12.0422%). It is the highest-rallying week the gates require to stay
+    # OUT; admitting it perturbs EP3's structure and the chain carries that
+    # into EP4, which is how a too-low R_e breaks G2 rather than G3.
+    ep3_d, ep3_trigger = "2017-12-11", "2018-11-19"
+    assert episode_scope["scopes"][ep3_trigger][0] == ep3_d
+    admits = find_lh_candidates(weeks, bars, scope_start=ep3_d,
+                                trigger_monday=ep3_trigger,
+                                r_e=Decimal("12.0422"))
+    excludes = find_lh_candidates(weeks, bars, scope_start=ep3_d,
+                                  trigger_monday=ep3_trigger,
+                                  r_e=Decimal("12.0423"))
+    edge_wk = next(c for c in admits if c.week_monday == "2018-12-10")
+    assert edge_wk.origin_low == Decimal("3222.00")
+    assert Decimal("12.0422") < edge_wk.rally_pct < Decimal("12.0423")
+    assert all(c.week_monday != "2018-12-10" for c in excludes)
+
+    # --- and the insensitivity itself: 14 and 15 are indistinguishable ---
+    # This is the assertion that makes the "unique value" claim falsifiable.
+    # If a future gate ever DOES separate them, this fails and the docstring
+    # above must be rewritten — which is the outcome we want.
+    for d_week, trigger, asof in (("2013-11-25", "2014-09-22", "2015-01-20"),
+                                  ("2019-06-24", "2020-03-09", "2020-07-01"),
+                                  ("2021-11-08", "2022-05-16", "2023-02-01")):
+        at14 = find_lh_candidates(weeks, bars, scope_start=d_week,
+                                  trigger_monday=trigger, r_e=Decimal("14"))
+        at15 = find_lh_candidates(weeks, bars, scope_start=d_week,
+                                  trigger_monday=trigger, r_e=Decimal("15"))
+        assert operative_lh(at14, asof=asof).price == \
+            operative_lh(at15, asof=asof).price
 
 
 def test_g1_2015_entry(bars, weeks, episode_scope):
@@ -203,6 +297,8 @@ def test_g1_2015_entry(bars, weeks, episode_scope):
     bos = find_bos(bars, lh.price, after=lh.confirmed_at)
     assert monday_of(bos) == "2015-01-26"
     assert bos == walk_forward_bos(episode_scope, trigger)
+    # ...and it broke THIS structure, not merely something on this day.
+    assert broken_lh(episode_scope, trigger) == lh.price
     # §10: "BoS = week of 2015-01-26 (weekly high 309.90 > 305)".
     bos_bar = next(b for b in bars if b.date == bos)
     assert bos_bar.high == Decimal("309.90")
@@ -257,6 +353,7 @@ def test_g2_2020_entry(bars, weeks, episode_scope):
     bos = find_bos(bars, lh.price, after=lh.confirmed_at)
     assert monday_of(bos) == "2020-07-27"
     assert bos == walk_forward_bos(episode_scope, trigger)
+    assert broken_lh(episode_scope, trigger) == lh.price
     # §10: "first trade > 10,500".
     bos_bar = next(b for b in bars if b.date == bos)
     assert bos_bar.high > Decimal("10500")
@@ -324,6 +421,7 @@ def test_g3_2022_entry(bars, weeks, episode_scope):
     bos = find_bos(bars, lh.price, after=lh.confirmed_at)
     assert monday_of(bos) == "2023-02-13"
     assert bos == walk_forward_bos(episode_scope, trigger)
+    assert broken_lh(episode_scope, trigger) == lh.price
     # §10: "weekly high ~25,250".
     bos_bar = next(b for b in bars if b.date == bos)
     assert pct(bos_bar.high, Decimal("25250")) < Decimal("0.5")

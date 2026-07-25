@@ -116,4 +116,4 @@ jobs:
           collected=$(pytest tests/test_engine.py -q --collect-only \
             | awk '/tests? collected/ { print $1; exit }')
           echo "compute() tests collected: ${collected:-0}"
-          test "${collected:-0}" -ge 47
+          test "${collected:-0}" -ge 58

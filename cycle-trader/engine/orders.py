@@ -106,6 +106,19 @@ LADDER_PURPOSE = {"0.5": OrderPurpose.LADDER_050,
                   "0.786": OrderPurpose.LADDER_0786}
 #: SPEC §14 OQ-3: 21 units = 7 accumulation + 14 ladder. Gate-passing constants.
 TOTAL_UNITS = Decimal(21)
+#: Which side each purpose trades. The taxonomy lives here, next to the code
+#: that emits every one of them, so adding a purpose puts the maintainer in
+#: front of the classification instead of leaving a new name silently
+#: unclassified. Completeness is asserted in
+#: `tests/test_engine.py::test_every_order_purpose_is_classified_by_side`.
+#:
+#: `compute()` uses these to cross-check its two ledger inputs — see
+#: `desired_orders`' note on why that check is NOT here.
+BUY_PURPOSES = frozenset({OrderPurpose.T1, OrderPurpose.T2, OrderPurpose.T3,
+                          OrderPurpose.LADDER_050, OrderPurpose.LADDER_062,
+                          OrderPurpose.LADDER_0786, OrderPurpose.BREAKOUT})
+SELL_PURPOSES = frozenset({OrderPurpose.EXIT1, OrderPurpose.MIRROR,
+                           OrderPurpose.STOP})
 #: Nothing rests: no episode, or the episode is over and the reconciler clears.
 NO_ORDERS = (EpisodeStatus.IDLE, EpisodeStatus.CLOSED, EpisodeStatus.STOPPED,
              EpisodeStatus.EXPIRED)
@@ -165,6 +178,26 @@ def desired_orders(state: EpisodeState,
     25,250, which only the settled-week reading reproduces), but they run in CI,
     not in front of the venue. `compute()` must not call this with `CONFIRMED`
     until the BoS week has closed.
+
+    **`filled_purposes` and `held_units` are taken as independent ground truth
+    here, and are NOT cross-checked.** They can contradict each other — a
+    21-unit ladder (nothing filled) resting alongside a 7-unit stop (seven units
+    held) is accepted without complaint, and that combination is the most likely
+    way a caller loses money on correct-looking engine code. The check exists,
+    but one layer up in `engine.engine.compute`, for two reasons. First, the
+    contradiction is not a fact about *this* state object the way the inverted
+    leg and the sub-`EL*` exit anchor are — those are checkable from a single
+    order-set computation and are why an order set would be arithmetically
+    wrong. It is a fact about the caller's *ledger reconstruction*: whether its
+    trade history and its order book agree. `compute()` owns that contract
+    because `compute()` is what M2 calls. Second, this function's own tests
+    deliberately vary one axis at a time ("does the stop rest when we hold
+    units?" does not involve `filled_purposes` at all), and a cross-axis guard
+    here would make that impossible to ask.
+
+    **A caller that reaches this function without going through `compute()` is
+    responsible for that check itself** — `BUY_PURPOSES` / `SELL_PURPOSES` above
+    are exported for exactly that.
 
     Raises `ValueError` on any state that cannot be turned into a coherent order
     set — see the module docstring for why refusing beats emitting a smaller set.

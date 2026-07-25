@@ -37,6 +37,30 @@ place where the module signatures cannot help — they take no dates:
 4. **A mirror signal must post-date arming** (§6.2), and the fallback deadline
    is measured in calendar days from the signal, not in bars.
 
+THE INPUT CONTRACT — three reconstructions that must agree
+-----------------------------------------------------------
+`held_units` (a trade history), `filled_purposes` (an order book) and `asof` (a
+clock) describe the same account on the same day, but M2 wires them from three
+different places and they can lag independently. Every individual value stays
+reasonable while the combination becomes impossible, and the resulting order
+sets are wrong in the expensive direction — so each disagreement is refused
+rather than clamped. `desired_orders` cannot do this: it takes all three as
+ground truth, one at a time.
+
+- **`held_units` vs `filled_purposes`** (`_check_ledger_coherent`). Holding units
+  with nothing filled, or fills on record with no position and no sale to
+  explain it. The first is the costly one, and the *defaults* are what make it
+  easy to reach: `filled_purposes=frozenset()` is not conservative on the buy
+  side — it selects §14 OQ-3's roll, so the rungs go 3 / 6 / 12 instead of
+  2 / 4 / 8 and the breakout carries the whole 21-unit book instead of 14, a
+  branch that has never once happened in the record.
+- **`asof` vs `bars`** (`MAX_BAR_LAG_DAYS`). Two decisions here read the clock
+  and no price at all: the BoS-week release and §6.2's 8-week deadline. A dead
+  feed with a live cron therefore walks the engine forward on imagined time
+  rather than freezing it, and market-sells the position.
+- **`STOPPED` vs `held_units`.** A stopped episode rests nothing, and `()` means
+  "cancel everything" — correct only if the stop actually executed.
+
 WHAT THIS FUNCTION IS NOT
 -------------------------
 - **It does not catch `ValueError`.** `engine/orders.py` raises rather than
@@ -52,8 +76,9 @@ WHAT THIS FUNCTION IS NOT
   overwritten with a fabricated IDLE.
 - **It does not track fills.** `filled_purposes` and `held_units` are inputs, fed
   in M2 from venue trade history. Their defaults (nothing filled, nothing held)
-  make every sell-side order inert by construction — the right posture for an
-  engine that cannot yet know what it holds.
+  are the only coherent "flat" pair, and they make every sell-side order inert —
+  the right posture for an engine that cannot yet know what it holds. They are
+  *not* conservative on the buy side; see the input contract above.
 
 KNOWN LIMITS, STATED RATHER THAN IMPLIED
 ----------------------------------------
@@ -84,7 +109,7 @@ from engine.levels import extension_1272, mirror_target
 from engine.lifecycle import (chain_episodes, find_triggers, freeze_el,
                               prior_cycle_ath, running_low)
 from engine.lines import lines_for
-from engine.orders import desired_orders
+from engine.orders import BUY_PURPOSES, SELL_PURPOSES, desired_orders
 from engine.rsi import wilder_rsi
 from engine.structure import find_swing_lows, operative_lh
 from engine.types import (Bar, DesiredOrder, EngineResult, EpisodeState,
@@ -92,6 +117,26 @@ from engine.types import (Bar, DesiredOrder, EngineResult, EpisodeState,
 
 #: SPEC §6.2 — "no 50% bounce within 8 weeks of the signal -> sell at market".
 MIRROR_FALLBACK_DAYS = 56
+#: How far the newest bar may lag `asof` before the run is refused.
+#:
+#: `asof` is a clock and `bars` is a price feed, and two of this engine's
+#: decisions read the clock alone: `bos_week_closed` (which releases a 21-unit
+#: breakout) and §6.2's 8-week deadline (which converts a resting limit into a
+#: **market sell of the whole position**). Neither consults a price. So a feed
+#: that stops updating while the cron keeps firing does not freeze the engine —
+#: it walks it forward on imagined time. Measured: bars truncated at 2025-01-20
+#: with `asof="2025-03-20"` flips EP5's mirror to MARKET / price=None and keeps
+#: it there, i.e. the engine market-sells the book because the prices stopped
+#: arriving.
+#:
+#: One day, not zero: the run fires after the UTC close of `asof`, so that day's
+#: candle should exist, but a publisher that has not yet closed it must not halt
+#: an otherwise healthy system. Anything longer is a broken feed, and under this
+#: project's failure rule — a failed run changes nothing and never cancels —
+#: refusing is the safe direction. M2 layers its own freshness gate and alert
+#: taxonomy on top; this one is here because it is cheap, total, and the engine
+#: should not be *capable* of emitting a market sell from stale data.
+MAX_BAR_LAG_DAYS = 1
 #: Priced off the BoS-*week* high, so none of them can exist until that week has
 #: closed (SPEC §5, and the caller contract in `orders.desired_orders`).
 UNPRICEABLE_UNTIL_BOS_WEEK_CLOSES = frozenset({
@@ -102,6 +147,47 @@ UNPRICEABLE_UNTIL_BOS_WEEK_CLOSES = frozenset({
 def _days_between(start: str, end: str) -> int:
     """Calendar days, not bars. A data gap must not postpone §6.2's deadline."""
     return (_date.fromisoformat(end) - _date.fromisoformat(start)).days
+
+
+def _check_ledger_coherent(filled_purposes: frozenset[OrderPurpose],
+                           held_units: Decimal) -> None:
+    """The two ledger inputs must be able to describe the same account.
+
+    `filled_purposes` and `held_units` come from two different reconstructions
+    of the same history — the order book and the trade history — and M2 wires
+    them from different places, so they can lag independently. Neither is
+    checked by `desired_orders`, which takes both as ground truth, and the
+    contradiction is silent and expensive rather than loud:
+
+        held_units=7, filled_purposes=frozenset()   ->  a 21-unit ladder AND a
+                                                        7-unit stop, together
+
+    The buy side is where this bites, and it is the opposite of what the
+    defaults suggest. `filled_purposes=frozenset()` is not the conservative
+    branch: under §14 OQ-3 it rolls the entire unfilled accumulation pool into
+    the ladder (3 / 6 / 12 instead of 2 / 4 / 8) and rests a breakout for the
+    **whole 21-unit book** instead of 14. SPEC §14 OQ-3 records accumulation
+    filling 3/3 in every one of the four activated episodes, so the default is
+    the branch that has never once happened.
+
+    Raising rather than clamping, for `desired_orders`' reason: under a
+    desired-state reconciler a silently-wrong order set is worse than a refused
+    run, and a refused run cancels nothing.
+    """
+    bought = filled_purposes & BUY_PURPOSES
+    if held_units > 0 and not bought:
+        raise ValueError(
+            f"incoherent ledger: held_units={held_units} but no buy-side "
+            "purpose is recorded as filled. The engine would rest a stop over "
+            "a position it has no record of opening, and size the ladder as if "
+            "the whole accumulation pool were still unspent. Refusing rather "
+            "than acting on two inputs that cannot both be true.")
+    if bought and held_units == 0 and not (filled_purposes & SELL_PURPOSES):
+        raise ValueError(
+            f"incoherent ledger: {sorted(p.value for p in bought)} filled but "
+            "held_units=0 with nothing sold. The position bought by those "
+            "fills has vanished without an exit, a stop or a mirror to account "
+            "for it.")
 
 
 def _settled_weeks(visible: list[Bar], asof: str):
@@ -186,9 +272,22 @@ def compute(bars: list[Bar], onchain: dict[str, OnChain],
     order set. That is the intended behaviour, not a bug to be caught: see the
     module docstring.
     """
+    _check_ledger_coherent(filled_purposes, held_units)
+
     visible = [b for b in bars if b.date <= asof]
     if not visible:
+        # No information rather than "IDLE": the caller's persisted state is
+        # returned untouched and nothing is cancelled. The freshness check below
+        # deliberately does not apply — there is no bar to be stale.
         return EngineResult(state=prior_state, orders=())
+    if _days_between(visible[-1].date, asof) > MAX_BAR_LAG_DAYS:
+        raise ValueError(
+            f"stale price feed: newest bar is {visible[-1].date} but asof is "
+            f"{asof}, a lag of {_days_between(visible[-1].date, asof)} days "
+            f"(limit {MAX_BAR_LAG_DAYS}). `asof` alone advances the BoS-week "
+            "release and §6.2's 8-week deadline, so continuing would let the "
+            "clock issue orders — including a market sell of the whole "
+            "position — off prices that stopped arriving.")
 
     weeks = _settled_weeks(visible, asof)
     triggers = find_triggers(weeks, wilder_rsi([w.close for w in weeks])) \
@@ -257,6 +356,23 @@ def compute(bars: list[Bar], onchain: dict[str, OnChain],
     # EL* is the running low *through* the BoS day and equals that day's low
     # whenever the break and the low print together.
     if any(b.date > bos and b.low <= el_star for b in visible):
+        # A stopped episode rests nothing, and under a desired-state reconciler
+        # `()` means "cancel everything" — including the stop that was supposed
+        # to have closed it. That is correct only if the stop actually executed.
+        # If it did not (venue outage, a gap through the level, a rejected
+        # size), the account is still long, the engine believes it is flat, and
+        # a silent `()` would disarm the position permanently: no stop, no exit,
+        # and no path back for this episode, since the status never leaves
+        # STOPPED. So the divergence is raised instead of being cancelled away.
+        # M2 clears it by recording the STOP fill, which is also what makes
+        # held_units 0.
+        if held_units > 0:
+            raise ValueError(
+                f"engine says STOPPED but held_units={held_units}: EL* "
+                f"{el_star} was touched after the BoS, yet the account is "
+                "still long. A stopped episode rests no orders, and emitting "
+                "an empty set here would cancel the stop that failed to "
+                "execute and leave the position unprotected for good.")
         return EngineResult(state=replace(state, status=EpisodeStatus.STOPPED),
                             orders=())
 

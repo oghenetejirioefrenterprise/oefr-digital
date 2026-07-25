@@ -18,6 +18,13 @@ What this file is trying to pin down, beyond "it returns something plausible":
 4. **That refusal propagates.** `desired_orders` raises rather than emitting a
    smaller set, because under a desired-state reconciler a short set reads at the
    venue as "cancel everything, including the stop". `compute` must not catch it.
+5. **The input contract with M2** (§11 below). `compute` takes three things M2
+   reconstructs independently — a trade history (`held_units`), an order book
+   (`filled_purposes`) and a clock (`asof`) — and any two of them can disagree
+   with the third while every individual value looks reasonable. Each such
+   disagreement is refused, because the resulting order sets are not merely
+   wrong, they are wrong in the expensive direction: a 21-unit breakout, or a
+   market sell of the whole position off a dead feed.
 
 **The daily-run model these boundaries assume, stated once.** The cron runs after
 the UTC daily close (CLAUDE.md), so `compute(asof=D)` sees D's completed bar and
@@ -44,6 +51,25 @@ TRANCHES = {OrderPurpose.T1, OrderPurpose.T2, OrderPurpose.T3}
 RUNGS = {OrderPurpose.LADDER_050, OrderPurpose.LADDER_062,
          OrderPurpose.LADDER_0786}
 
+# --- coherent ledgers -----------------------------------------------------
+# `filled_purposes` and `held_units` must be able to describe the same account,
+# and `compute` refuses when they cannot. Every positioned test below therefore
+# names a real ledger rather than reaching for `held_units=1` with nothing
+# filled — which is not a shortcut but the exact contradiction the guard exists
+# to catch, and which on the buy side silently selects the 21-unit branch.
+#
+#: What happened in all four activated episodes: accumulation filled 3/3
+#: (§14 OQ-3), so 7 units held.
+ACCUMULATED = frozenset(TRANCHES)
+ACCUMULATED_UNITS = Decimal(7)
+#: ...and after Exit 1 sold half.
+ARMED = ACCUMULATED | {OrderPurpose.EXIT1}
+ARMED_UNITS = Decimal("3.5")
+#: EP6's live path instead: no tranche filled, so the position comes from the
+#: ladder. A filled 0.5 rung on the rolled 21-unit pool is 3 units (§14 OQ-3).
+RUNG_FILLED = frozenset({OrderPurpose.LADDER_050})
+RUNG_UNITS = Decimal(3)
+
 
 def _day_before(iso: str) -> str:
     return (_date.fromisoformat(iso) - timedelta(days=1)).isoformat()
@@ -65,12 +91,18 @@ def _by_purpose(result):
 # 1. the two properties that make the gates mean anything
 # --------------------------------------------------------------------------
 
-@pytest.mark.parametrize("asof", ["2026-07-19", "2023-03-01", "2024-12-01"])
-def test_compute_is_deterministic(bars, onchain, asof):
+@pytest.mark.parametrize("asof,filled,held", [
+    ("2026-07-19", frozenset({OrderPurpose.T1}), ONE),      # WATCHING
+    ("2023-03-01", ACCUMULATED, ACCUMULATED_UNITS),         # CONFIRMED
+    ("2024-12-01", ARMED, ARMED_UNITS),                     # DISTRIBUTING
+])
+def test_compute_is_deterministic(bars, onchain, asof, filled, held):
     """Same inputs, same outputs — always. One date per status, because the
     three branches reach different code."""
-    a = compute(bars, onchain, EpisodeState(), asof=asof, held_units=ONE)
-    b = compute(bars, onchain, EpisodeState(), asof=asof, held_units=ONE)
+    a = compute(bars, onchain, EpisodeState(), asof=asof,
+                filled_purposes=filled, held_units=held)
+    b = compute(bars, onchain, EpisodeState(), asof=asof,
+                filled_purposes=filled, held_units=held)
     assert a == b
 
 
@@ -169,7 +201,8 @@ def test_a_filled_tranche_is_not_re_rested(bars, onchain):
     """§3 through `compute`: `filled_purposes` removes that buy-limit and only
     that one. M1 always passes the empty set; M2 feeds it from trade history."""
     r = compute(bars, onchain, EpisodeState(), asof="2026-07-19",
-                filled_purposes=frozenset({OrderPurpose.T1, OrderPurpose.T3}))
+                filled_purposes=frozenset({OrderPurpose.T1, OrderPurpose.T3}),
+                held_units=Decimal(5))          # 1 + 4 units, the two that filled
     assert _purposes(r) == {OrderPurpose.T2}
 
 
@@ -289,7 +322,8 @@ def test_the_ladder_and_breakout_wait_for_the_bos_week_to_close(bars, onchain):
     """
     bos_week = ("2015-01-26", "2015-01-27", "2015-01-30", "2015-01-31")
     for asof in bos_week:
-        r = compute(bars, onchain, EpisodeState(), asof=asof, held_units=ONE)
+        r = compute(bars, onchain, EpisodeState(), asof=asof,
+                    filled_purposes=ACCUMULATED, held_units=ACCUMULATED_UNITS)
         assert r.state.status is EpisodeStatus.CONFIRMED
         assert not (_purposes(r) & (RUNGS | {OrderPurpose.BREAKOUT})), asof
         # The stop is priced off EL*, which froze at the BoS — so it CAN rest,
@@ -346,7 +380,8 @@ def test_the_oq3_roll_is_wired_through_compute(bars, onchain):
     assert units[OrderPurpose.BREAKOUT] == Decimal(21)
 
     all_filled = compute(bars, onchain, EpisodeState(), asof="2015-02-01",
-                         filled_purposes=TRANCHES)
+                         filled_purposes=ACCUMULATED,
+                         held_units=ACCUMULATED_UNITS)
     units = {p: o.units for p, o in _by_purpose(all_filled).items()}
     assert [units[p] for p in (OrderPurpose.LADDER_050, OrderPurpose.LADDER_062,
                                OrderPurpose.LADDER_0786)] == [Decimal(2),
@@ -370,7 +405,7 @@ def test_compute_ep5_distributing_after_exit1_with_no_unarmed_mirror(bars,
     MIRROR order was possible.
     """
     r = compute(bars, onchain, EpisodeState(), asof="2024-12-01",
-                held_units=ONE)
+                filled_purposes=ARMED, held_units=ARMED_UNITS)
     assert r.state.status is EpisodeStatus.DISTRIBUTING
     assert r.state.exit1_done is True
     assert _purposes(r) == {OrderPurpose.STOP}
@@ -390,14 +425,14 @@ def test_exit1_rests_at_the_1272_extension_until_it_prints(bars, onchain):
     """§6.1 through `compute`: EL* + 1.272 x (prior ATH - EL*), and §11's EP2
     Exit 1 of 1,437.88 on 2017-05-02."""
     before = compute(bars, onchain, EpisodeState(), asof="2017-05-01",
-                     held_units=ONE)
+                     filled_purposes=ACCUMULATED, held_units=ACCUMULATED_UNITS)
     assert before.state.status is EpisodeStatus.CONFIRMED
     exit1 = _by_purpose(before)[OrderPurpose.EXIT1]
     assert exit1.side is OrderSide.SELL and exit1.kind is OrderKind.LIMIT
-    assert exit1.units == Decimal("0.5")           # half the position
+    assert exit1.units == ACCUMULATED_UNITS / 2    # half the position
     assert exit1.price.quantize(Decimal("0.01")) == Decimal("1437.88")
     after = compute(bars, onchain, EpisodeState(), asof="2017-05-02",
-                    held_units=ONE)
+                    filled_purposes=ARMED, held_units=ARMED_UNITS)
     assert after.state.status is EpisodeStatus.DISTRIBUTING
     assert OrderPurpose.EXIT1 not in _purposes(after)
 
@@ -421,7 +456,7 @@ def test_compute_reproduces_the_reference_mirror_exit(bars, onchain, cy1,
     ref = {e["episode"]: e for e in cy1["episodes"]}[label]["exit_mirror"]
     bar = {b.date: b for b in bars}[ref["date"]]
     r = compute(bars, onchain, EpisodeState(), asof=_day_before(ref["date"]),
-                held_units=ONE)
+                filled_purposes=ARMED, held_units=ARMED_UNITS)
     assert r.state.status is EpisodeStatus.DISTRIBUTING
     mirror = _by_purpose(r)[OrderPurpose.MIRROR]
     assert mirror.side is OrderSide.SELL and mirror.kind is OrderKind.LIMIT
@@ -447,7 +482,7 @@ def test_ep5_mirror_does_not_reproduce_and_that_is_oq7b(bars, onchain, cy1):
 
     day = "2025-01-15"
     r = compute(bars, onchain, EpisodeState(), asof=_day_before(day),
-                held_units=ONE)
+                filled_purposes=ARMED, held_units=ARMED_UNITS)
     mirror = _by_purpose(r)[OrderPurpose.MIRROR]
     bar = {b.date: b for b in bars}[day]
     assert sell_limit_fill(bar, mirror.price) == Decimal("98804.845")
@@ -465,11 +500,13 @@ def test_the_mirror_falls_back_to_market_eight_weeks_after_the_signal(bars,
     """
     signal = "2017-07-10"
     still_limit = compute(bars, onchain, EpisodeState(),
-                          asof=_plus(signal, 56), held_units=ONE)
+                          asof=_plus(signal, 56), filled_purposes=ARMED,
+                          held_units=ARMED_UNITS)
     assert _by_purpose(still_limit)[OrderPurpose.MIRROR].kind is OrderKind.LIMIT
 
     fallback = compute(bars, onchain, EpisodeState(),
-                       asof=_plus(signal, 57), held_units=ONE)
+                       asof=_plus(signal, 57), filled_purposes=ARMED,
+                       held_units=ARMED_UNITS)
     mirror = _by_purpose(fallback)[OrderPurpose.MIRROR]
     assert mirror.kind is OrderKind.MARKET
     assert mirror.price is None
@@ -495,7 +532,8 @@ def test_the_first_armed_mirror_signal_wins_and_later_structure_is_inert(
     sell is repriced off a *later* top. On EP2 and EP4 the two readings happen
     to agree, so nothing else in this file would notice.
     """
-    r = compute(bars, onchain, EpisodeState(), asof=asof, held_units=ONE)
+    r = compute(bars, onchain, EpisodeState(), asof=asof,
+                filled_purposes=ARMED, held_units=ARMED_UNITS)
     assert r.state.status is EpisodeStatus.DISTRIBUTING
     assert r.state.trigger_date == "2022-05-16"
     mirror = _by_purpose(r)[OrderPurpose.MIRROR]
@@ -636,22 +674,27 @@ def _ramp_through_the_lh(pad: int = 0, extra: int = 0):
     return rows
 
 
-def _bos_of(bars, onchain, rows, held=ONE):
+def _bos_of(bars, onchain, rows, filled=frozenset(), held=Decimal(0)):
     extended = _extend(bars, rows)
     return extended, compute(extended, onchain, EpisodeState(),
-                             asof=extended[-1].date, held_units=held)
+                             asof=extended[-1].date, filled_purposes=filled,
+                             held_units=held)
 
 
 def test_a_synthetic_break_of_the_live_lh_confirms_ep6(bars, onchain):
     """The premise of the stop tests: the fabricated future activates EP6 on a
     break of 82,850, with EL* frozen at the real running low."""
-    _extended, r = _bos_of(bars, onchain, _ramp_through_the_lh())
+    _extended, r = _bos_of(bars, onchain, _ramp_through_the_lh(),
+                           filled=RUNG_FILLED, held=RUNG_UNITS)
     assert r.state.status is EpisodeStatus.CONFIRMED
     assert r.state.trigger_date == "2026-01-26"
     assert r.state.operative_lh == EP6_LH
     assert r.state.el_star == EP6_EL
-    assert _by_purpose(r)[OrderPurpose.STOP].price == EP6_EL
-    assert _by_purpose(r)[OrderPurpose.STOP].kind is OrderKind.STOP_MARKET
+    stop = _by_purpose(r)[OrderPurpose.STOP]
+    assert stop.price == EP6_EL
+    assert stop.kind is OrderKind.STOP_MARKET
+    # Sized from what is HELD, never from the capital plan (orders.py).
+    assert stop.units == RUNG_UNITS
 
 
 def test_the_bos_week_high_is_running_while_the_week_is_open(bars, onchain):
@@ -671,8 +714,7 @@ def test_the_bos_week_high_is_running_while_the_week_is_open(bars, onchain):
 
     seen = []
     for bar in [b for b in extended if b.date >= bos]:
-        r = compute(extended, onchain, EpisodeState(), asof=bar.date,
-                    held_units=ONE)
+        r = compute(extended, onchain, EpisodeState(), asof=bar.date)
         assert r.state.bos_date == bos
         assert not (_purposes(r) & (RUNGS | {OrderPurpose.BREAKOUT}))
         seen.append(r.state.bos_week_high)
@@ -698,7 +740,11 @@ def test_a_post_bos_new_low_stops_the_episode_without_moving_the_anchor(
     rows = _ramp_through_the_lh()
     rows += [(Decimal("83000"), Decimal("82000"))] * 6      # settle the BoS week
     rows += [(Decimal("82500"), Decimal("57000"))]          # the breach
-    extended, r = _bos_of(bars, onchain, rows)
+    # The stop executed, so the ledger says so: bought a rung, sold it on the
+    # STOP, holding nothing. `held_units > 0` here is a venue divergence and is
+    # refused instead — see the test below.
+    extended, r = _bos_of(bars, onchain, rows,
+                          filled=RUNG_FILLED | {OrderPurpose.STOP})
     assert r.state.status is EpisodeStatus.STOPPED
     assert r.orders == ()
     assert r.state.el_star == EP6_EL
@@ -707,7 +753,8 @@ def test_a_post_bos_new_low_stops_the_episode_without_moving_the_anchor(
 
     # One session earlier the episode is alive and the stop is resting.
     alive = compute(extended[:-1], onchain, EpisodeState(),
-                    asof=extended[-2].date, held_units=ONE)
+                    asof=extended[-2].date, filled_purposes=RUNG_FILLED,
+                    held_units=RUNG_UNITS)
     assert alive.state.status is EpisodeStatus.CONFIRMED
     assert OrderPurpose.STOP in _purposes(alive)
 
@@ -717,7 +764,8 @@ def test_a_touch_of_el_star_to_the_cent_stops_the_episode(bars, onchain):
     rows = _ramp_through_the_lh()
     rows += [(Decimal("83000"), Decimal("82000"))] * 6
     rows += [(Decimal("82500"), EP6_EL)]
-    _extended, r = _bos_of(bars, onchain, rows)
+    _extended, r = _bos_of(bars, onchain, rows,
+                           filled=RUNG_FILLED | {OrderPurpose.STOP})
     assert r.state.status is EpisodeStatus.STOPPED
 
 
@@ -876,3 +924,152 @@ def test_each_episodes_window_starts_at_the_previous_activation(bars,
     assert episodes["2020-03-09"].window_start == episodes["2018-11-19"].bos_date
     assert episodes["2022-05-16"].window_start == episodes["2020-03-09"].bos_date
     assert episodes["2011-11-21"].window_start == "2011-08-15"   # data start
+
+
+# --------------------------------------------------------------------------
+# 11. the input contract with M2
+# --------------------------------------------------------------------------
+#
+# `held_units`, `filled_purposes` and `asof` are three independent
+# reconstructions of the same account and the same day. M2 wires them from
+# different places — trade history, order book, cron — so they can lag
+# independently, and each individual value looks perfectly reasonable while the
+# combination does not. All three combinations below produce order sets that are
+# wrong in the expensive direction, which is why they are refused rather than
+# clamped: under a desired-state reconciler a silently-wrong set is worse than a
+# refused run, and a refused run cancels nothing.
+
+def test_every_order_purpose_is_classified_by_side():
+    """`BUY_PURPOSES | SELL_PURPOSES` must cover `OrderPurpose` exactly.
+
+    The coherence guard asks "did anything buy-side fill?", so a purpose missing
+    from both sets would be invisible to it and a purpose in both would make the
+    question meaningless. Adding an `OrderPurpose` without classifying it fails
+    here rather than quietly widening the hole the guard exists to close.
+    """
+    from engine.orders import BUY_PURPOSES, SELL_PURPOSES
+    assert BUY_PURPOSES | SELL_PURPOSES == set(OrderPurpose)
+    assert not (BUY_PURPOSES & SELL_PURPOSES)
+
+
+def test_holding_units_with_nothing_filled_is_refused(bars, onchain):
+    """The contradiction that costs the most, and the reason the *defaults* are
+    not the conservative choice they look like on the buy side.
+
+    `filled_purposes=frozenset()` selects §14 OQ-3's roll: the whole unfilled
+    accumulation pool joins the ladder, so the rungs go 3 / 6 / 12 instead of
+    2 / 4 / 8 and the breakout carries the entire 21-unit book instead of 14.
+    SPEC §14 OQ-3 records accumulation filling 3/3 in every activated episode,
+    so that is the branch that has never once happened. Combine it with
+    `held_units=7` and the engine rests a 21-unit ladder and a 7-unit stop in
+    the same tuple, from inputs that cannot both be true.
+    """
+    with pytest.raises(ValueError, match="incoherent ledger"):
+        compute(bars, onchain, EpisodeState(), asof="2015-02-01",
+                held_units=ACCUMULATED_UNITS)
+
+    # The two branches this is protecting, measured rather than asserted in
+    # prose — this is what the refused run would have emitted.
+    aggressive = _by_purpose(compute(bars, onchain, EpisodeState(),
+                                     asof="2015-02-01"))
+    conservative = _by_purpose(compute(bars, onchain, EpisodeState(),
+                                       asof="2015-02-01",
+                                       filled_purposes=ACCUMULATED,
+                                       held_units=ACCUMULATED_UNITS))
+    assert aggressive[OrderPurpose.BREAKOUT].units == Decimal(21)
+    assert conservative[OrderPurpose.BREAKOUT].units == Decimal(14)
+    assert aggressive[OrderPurpose.LADDER_050].units == Decimal(3)
+    assert conservative[OrderPurpose.LADDER_050].units == Decimal(2)
+
+
+def test_buying_and_then_holding_nothing_is_refused(bars, onchain):
+    """The converse: fills on record, no position, and nothing sold to explain
+    where it went."""
+    with pytest.raises(ValueError, match="incoherent ledger"):
+        compute(bars, onchain, EpisodeState(), asof="2015-02-01",
+                filled_purposes=ACCUMULATED, held_units=Decimal(0))
+    # A sell-side fill is exactly what makes it coherent again.
+    ok = compute(bars, onchain, EpisodeState(), asof="2017-06-01",
+                 filled_purposes=ARMED | {OrderPurpose.MIRROR},
+                 held_units=Decimal(0))
+    assert ok.state.status is EpisodeStatus.DISTRIBUTING
+
+
+@pytest.mark.parametrize("filled,held", [
+    (frozenset(), Decimal(0)),                       # flat, nothing done
+    (ACCUMULATED, ACCUMULATED_UNITS),                # accumulation 3/3
+    (ARMED, ARMED_UNITS),                            # ...half sold at Exit 1
+    (RUNG_FILLED, RUNG_UNITS),                       # EP6's ladder-only path
+])
+def test_the_coherent_ledgers_are_accepted(bars, onchain, filled, held):
+    """The guard must not be so strict that it refuses the real shapes."""
+    r = compute(bars, onchain, EpisodeState(), asof="2023-03-01",
+                filled_purposes=filled, held_units=held)
+    assert r.state.status is EpisodeStatus.CONFIRMED
+
+
+def test_a_stale_price_feed_is_refused_instead_of_market_selling(bars, onchain):
+    """`asof` is a clock; `bars` is a price feed. Two decisions read the clock
+    alone — the BoS-week release and §6.2's 8-week deadline — so a feed that
+    stops updating while the cron keeps firing walks the engine forward on
+    imagined time rather than freezing it.
+
+    The measured consequence, and the reason this is engine-side: with EP5
+    positioned, bars truncated at 2025-01-20 and `asof="2025-03-20"`, the mirror
+    flips to a MARKET order with `price=None` — the engine market-sells the
+    whole remaining position because the prices stopped arriving — and stays
+    there for every later `asof`.
+    """
+    stale = [b for b in bars if b.date <= "2025-01-20"]
+    with pytest.raises(ValueError, match="stale price feed"):
+        compute(stale, onchain, EpisodeState(), asof="2025-03-20",
+                filled_purposes=ARMED, held_units=ARMED_UNITS)
+
+    # ...and it is not only the mirror: a full CONFIRMED set, breakout included,
+    # would otherwise be published off bars ten months old.
+    with pytest.raises(ValueError, match="stale price feed"):
+        compute([b for b in bars if b.date <= "2015-02-01"], onchain,
+                EpisodeState(), asof="2015-12-01")
+
+
+def test_one_day_of_publisher_lag_is_tolerated(bars, onchain):
+    """The run fires after the UTC close of `asof`, so that day's candle should
+    exist — but a publisher that has not yet closed it must not halt an
+    otherwise healthy system. One day is the whole allowance; two is a broken
+    feed.
+    """
+    lagging = [b for b in bars if b.date <= "2023-02-28"]
+    ok = compute(lagging, onchain, EpisodeState(), asof="2023-03-01",
+                 filled_purposes=ACCUMULATED, held_units=ACCUMULATED_UNITS)
+    assert ok.state.status is EpisodeStatus.CONFIRMED
+    with pytest.raises(ValueError, match="stale price feed"):
+        compute(lagging, onchain, EpisodeState(), asof="2023-03-02",
+                filled_purposes=ACCUMULATED, held_units=ACCUMULATED_UNITS)
+
+
+def test_an_empty_window_is_not_a_stale_feed(bars, onchain):
+    """No bar at all is "no information", not "stale": there is nothing to be
+    stale, so the prior state is returned and nothing is cancelled."""
+    prior = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal(10))
+    assert compute(bars, onchain, prior, asof="2009-01-01").state is prior
+
+
+def test_stopped_while_still_holding_units_is_refused(bars, onchain):
+    """A stopped episode rests nothing, and `()` means "cancel everything" to
+    the reconciler — correct only if the stop actually executed.
+
+    If it did not (venue outage, a gap straight through the level, a rejected
+    size), the account is still long while the engine believes it is flat, and a
+    silent `()` disarms that position permanently: the status never leaves
+    STOPPED, so no stop and no exit is ever re-rested for the episode again.
+    """
+    rows = _ramp_through_the_lh()
+    rows += [(Decimal("83000"), Decimal("82000"))] * 6
+    rows += [(Decimal("82500"), Decimal("57000"))]
+    with pytest.raises(ValueError, match="STOPPED but held_units"):
+        _bos_of(bars, onchain, rows, filled=RUNG_FILLED, held=RUNG_UNITS)
+    # Recording the STOP fill — which is what makes held_units 0 — clears it.
+    _extended, r = _bos_of(bars, onchain, rows,
+                           filled=RUNG_FILLED | {OrderPurpose.STOP})
+    assert r.state.status is EpisodeStatus.STOPPED
+    assert r.orders == ()

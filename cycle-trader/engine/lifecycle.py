@@ -2,6 +2,7 @@
 scope, the running low, and the EL* freeze at BoS (SPEC §1 and §13.1)."""
 from __future__ import annotations
 from decimal import Decimal
+from engine.bars import monday_of
 from engine.types import Bar, Week
 
 RSI_TRIGGER = Decimal("35")
@@ -20,6 +21,15 @@ def find_triggers(weeks: list[Week], rsi: list[Decimal | None]) -> list[str]:
     entry *i* of the other. That join is load-bearing (a one-slot offset arms
     the episode on the wrong week) and `zip` truncates a mismatch in silence,
     so the lengths are checked rather than trusted.
+
+    **The returned Monday is a week LABEL, not an actionable date.** It names
+    the armed week; that week's RSI is not knowable until its Sunday close, so
+    treating the Monday as "the trigger day" is a one-week lookahead. SPEC §11
+    records accumulation fills starting the Monday *after* the trigger week —
+    EP3 wk 2018-11-19 fills 2018-11-26, EP4 wk 2020-03-09 fills 2020-03-16 —
+    and §13.6 dates line lifetime from that first actionable day. Callers that
+    need a date must advance to the following Monday; callers comparing weeks
+    (§13.3's `monday(D) < trigger_week` guard) use the label as-is.
     """
     if len(weeks) != len(rsi):
         raise ValueError(
@@ -73,7 +83,23 @@ def downtrend_anchor(weeks: list[Week], window_start: str,
     none). D anchors the LH scan scope, the freshness window, the trigger
     guard and the episode low (SPEC §13.3 v1.2.1). NOT the exit anchor —
     that is prior_cycle_ath(), and they differ in EP4.
+
+    **Both bounds accept any day and both ends are week-INCLUSIVE.** SPEC §13.3
+    names them in mixed units — window_start is a BoS *date*, asof is the
+    *trigger week* — while `weeks` are keyed by Monday. A mid-week
+    `window_start` compared against Mondays raw would silently drop the BoS's
+    own week, so it is normalised here rather than left as every caller's
+    problem; `monday_of` is idempotent, so Monday arguments are unaffected.
+    `asof` needs no such normalisation and deliberately gets none: no week's
+    Monday falls strictly between `monday_of(asof)` and `asof`, so `<= asof`
+    already admits the asof week and nothing later.
+
+    Inclusivity is load-bearing on real data: EP1's D *is* its own trigger week
+    (15.00 @ 2011-11-21), which an exclusive `asof` would push back to
+    11.85 @ 2011-08-15 — flipping §13.3's `monday(D) < trigger_week` guard from
+    failing to passing, so EP1 would stop expiring as §11 requires.
     """
+    window_start = monday_of(window_start)
     window = [w for w in weeks if window_start <= w.monday <= asof]
     if not window:
         raise ValueError("empty anchor window")

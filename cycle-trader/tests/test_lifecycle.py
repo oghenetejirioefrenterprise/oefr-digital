@@ -248,6 +248,108 @@ def test_prior_cycle_ath_excludes_the_trigger_week_itself():
     assert prior_cycle_ath(weeks, "2022-05-23") == (Decimal("31000"), "2022-05-16")
 
 
+def test_downtrend_anchor_bounds_are_both_week_inclusive():
+    """The argmax sitting exactly ON a bound must still win. `asof` is the
+    live case: EP1's D is its own trigger week, and an exclusive bound would
+    move it back a step and flip §13.3's `monday(D) < trigger_week` guard
+    from failing to passing, un-expiring EP1."""
+    at_start = [wk("2019-04-01", 13970, 11000, 12000),   # argmax == window_start
+                wk("2019-10-21", 10370, 8200, 9200)]
+    assert downtrend_anchor(at_start, window_start="2019-04-01",
+                            asof="2020-03-09") == (Decimal("13970"), "2019-04-01")
+
+    at_asof = [wk("2019-04-01", 5350, 4067, 5250),
+               wk("2020-03-09", 13970, 11000, 12000)]    # argmax == asof
+    assert downtrend_anchor(at_asof, window_start="2019-04-01",
+                            asof="2020-03-09") == (Decimal("13970"), "2020-03-09")
+
+
+def test_downtrend_anchor_normalises_mid_week_bounds_to_their_week():
+    """SPEC §13.3 names window_start as a BoS *date*. A mid-week BoS must not
+    drop its own week from the window (nor a mid-week asof drop the trigger
+    week), and Monday arguments must be unchanged by the normalisation."""
+    weeks = [wk("2019-04-01", 13970, 11000, 12000),
+             wk("2019-04-08", 9000, 8000, 8500),
+             wk("2019-10-21", 10370, 8200, 9200)]
+    # 2019-04-03 is the Wednesday of the 2019-04-01 week
+    assert downtrend_anchor(weeks, window_start="2019-04-03",
+                            asof="2019-10-21") == (Decimal("13970"), "2019-04-01")
+    # 2019-04-05 is the Friday of that same week, used as the asof bound
+    assert downtrend_anchor(weeks, window_start="2019-04-01",
+                            asof="2019-04-05") == (Decimal("13970"), "2019-04-01")
+
+
+# --- against the frozen reference series ----------------------------------
+# `data.loaders` is test-only; `engine/` never imports it.
+
+# SPEC §13.3's executed table (2026-07-25). window_start is the PREVIOUS
+# episode's activation (its BoS week; the data start for EP1).
+SPEC_EPISODES = [
+    # trigger wk,   window_start,  D week,       D high,      BoS week,     EL*
+    ("2011-11-21", "2011-08-15", "2011-11-21", "15.0", None, None),
+    ("2014-09-22", "2011-11-21", "2013-11-25", "1163.0", "2015-01-26", "152.40"),
+    ("2018-11-19", "2015-01-26", "2017-12-11", "19798.68", "2019-04-01", "3156.26"),
+    ("2020-03-09", "2019-04-01", "2019-06-24", "13970.0", "2020-07-27", "3782.13"),
+    ("2022-05-16", "2020-07-27", "2021-11-08", "69000.0", "2023-02-13", "15476.00"),
+    ("2026-01-26", "2023-02-13", "2025-10-06", "126199.63", None, None),
+]
+
+
+@pytest.fixture(scope="module")
+def real():
+    from data.loaders import load_bars
+    from engine.bars import to_weeks
+    bars = load_bars()
+    return bars, to_weeks(bars)
+
+
+def test_find_triggers_reproduces_all_six_spec_triggers(real):
+    """The module's real-world contract, not a fixture: the whole daily
+    history through `to_weeks` and `wilder_rsi` must yield exactly SPEC
+    §13.3's six triggers."""
+    bars, weeks = real
+    triggers = find_triggers(weeks, wilder_rsi([w.close for w in weeks]))
+    assert triggers == [ep[0] for ep in SPEC_EPISODES]
+
+
+def test_downtrend_anchor_reproduces_all_six_spec_D_values(real):
+    _, weeks = real
+    got = [downtrend_anchor(weeks, window_start=ws, asof=trig)
+           for trig, ws, _, _, _, _ in SPEC_EPISODES]
+    assert got == [(Decimal(d_high), d_week)
+                   for _, _, d_week, d_high, _, _ in SPEC_EPISODES]
+
+
+def test_freeze_el_reproduces_every_spec_el_star(real):
+    """EL* is recorded by BoS *week*; assert at both ends of that week to show
+    the day-within-week ambiguity does not move any of the four values."""
+    from datetime import date, timedelta
+    bars, _ = real
+    for _, _, d_week, _, bos_week, el in SPEC_EPISODES:
+        if bos_week is None:
+            continue
+        sunday = (date.fromisoformat(bos_week) + timedelta(days=6)).isoformat()
+        assert freeze_el(bars, d_week, bos_week) == Decimal(el)
+        assert freeze_el(bars, d_week, sunday) == Decimal(el)
+
+
+def test_ep4_anchor_separation_holds_on_the_real_series(real):
+    """Not a coincidence of the fixtures: on the frozen data EP4's exit anchor
+    and its D are different weeks, and swapping them returns EP3's low."""
+    bars, weeks = real
+    assert prior_cycle_ath(weeks, "2020-03-09") == (Decimal("19798.68"), "2017-12-11")
+    assert downtrend_anchor(weeks, window_start="2019-04-01",
+                            asof="2020-03-09") == (Decimal("13970.0"), "2019-06-24")
+    assert running_low(bars, "2019-06-24", "2020-07-27") == Decimal("3782.13")
+    assert running_low(bars, "2017-12-11", "2020-07-27") == Decimal("3156.26")
+
+
+def test_ep6_running_low_matches_prd_section_8(real):
+    """The live episode: no BoS yet, so the low is still running, not frozen."""
+    bars, _ = real
+    assert running_low(bars, "2025-10-06", "2026-07-20") == Decimal("57800.19")
+
+
 def test_empty_scopes_raise_rather_than_return_a_wrong_default():
     with pytest.raises(ValueError):
         prior_cycle_ath([wk("2022-05-23", 30000, 28000, 29000)], "2022-05-23")

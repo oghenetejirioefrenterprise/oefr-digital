@@ -626,20 +626,38 @@ four-episode mirror-exit reproduction (§14 OQ-7's run):
 Independently confirmed by running `tests/gates/test_regression_ep2_ep5.py`
 against a swept default: **fails** at 0, 5, 8.3 and 9.5; **passes** from 9.55 up.
 
-So the record bounds `R_down` on **both** sides — **`(9.5476, 13.757]`** — making
-it a genuine two-sided band like `R_e`, not a half-line. Note how close the frozen
-value sits to the lower edge: **10 clears it by 0.45 points**, versus 3.76 points
-of headroom above. That is the strongest available defence of `R_down = 10` as a
-frozen constant, and it only appears once the *episodes* are reproduced rather
-than G4 alone.
+So the record bounds `R_down` on **both** sides. **Which evidence sets which edge
+matters** — conflating them is the exact misattribution §13.3a exists to prevent:
+
+| Evidence | Band it alone supports |
+|---|---|
+| **G4** (the chart read) | `(−∞, 13.757]` — ceiling only |
+| **EP2–EP5 reproduction** | `(9.5476, 17.6241]` — floor **and** a *looser* ceiling |
+| **Joint** | **`(9.5476, 13.757]`** |
+
+The floor is the episodes' alone; the ceiling is G4's alone. The four episodes
+tolerate `R_down` up to **17.6241** by themselves, so quoting 13.757 as "the
+episodes' upper edge" would be wrong.
+
+Note how close the frozen value sits to the joint floor: **10 clears it by 0.45
+points**, versus 3.76 of headroom above. That is the strongest available defence of
+`R_down = 10`, and it only appears once the *episodes* are reproduced rather than
+G4 alone.
+
+**Both edges are now executable**, not merely documented — asserted in
+`tests/gates/test_regression_ep2_ep5.py` (floor, and the episodes' own ceiling) and
+`tests/gates/test_mirror_gate.py` (G4's ceiling), in both cases by passing `r_down`
+explicitly so the assertions survive an edit to the default.
 
 The general lesson, and the reason this retraction exists: a bound measured on one
 gate is a fact about that gate, not about the record.
 
-**`R_DOWN_DEFAULT` is dead code.** Setting it to `99` leaves all 212 tests green —
-every call site passes `r_down` explicitly. The constant is frozen in the engine
-and exercised by nothing, so a future edit to it is invisible to CI while silently
-changing the behaviour of any M2 caller that omits the argument.
+**~~`R_DOWN_DEFAULT` is dead code.~~ CLOSED 2026-07-25.** This section originally
+recorded that setting the default to `99` left the whole suite green, because every
+call site passed `r_down` explicitly — a frozen constant CI could not see change.
+The EP2–EP5 mirror reproduction now exercises it: swept against the full suite,
+`9.5` fails 2 tests, `13` fails 3, and **`99` fails 13**. The constant is live and
+guarded.
 
 > **Methodology warning, learned by getting it wrong here.** Sweeping
 > `R_DOWN_DEFAULT` shows the gate passing at *every* value — not because the

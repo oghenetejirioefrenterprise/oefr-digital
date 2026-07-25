@@ -3269,15 +3269,15 @@ export const blogPosts: BlogPost[] = [
       </p>
     `,
     cta: {
-      text: "Pre-order the IRS Letter 105-C Response Kit (free today, $29 on release)",
-      href: "https://3563705146415.gumroad.com/l/vrphz",
+      text: "Browse more IRS notice response guides",
+      href: "/blog",
     },
     relatedProducts: [
       {
-        name: "IRS Letter 105-C Response Kit — ERC Disallowance (2026)",
-        href: "https://3563705146415.gumroad.com/l/vrphz",
+        name: "IRS CP2000 Notice? The 30-Day Response Walkthrough (free guide)",
+        href: "/blog/irs-cp2000-notice-response-2026",
         description:
-          "OBBBA screen, 105-C/106-C/CP320B decoder, 2-year deadline tracker (Excel), protest letter templates by denial reason, and the corrected Form 907 walkthrough — $0 pre-order, free for claimers on release.",
+          "A different IRS notice with a different clock — a proposed adjustment, not a claim disallowance. Decode it, build the paper trail, and respond inside the 30-day window.",
       },
     ],
     faq: [
@@ -3537,7 +3537,7 @@ export const blogPosts: BlogPost[] = [
 
       <div class="bg-slate-900/70 border border-amber-500/30 rounded-xl p-5 mb-6">
         <p class="text-slate-300 leading-relaxed">
-          📋 <strong class="text-white">Doing this under deadline pressure?</strong> The <a href="https://gumroad.com/l/bgcheckfix" class="text-amber-400 hover:text-amber-300 underline">Pre-Adverse Action Response Kit</a> packages this entire sequence: a 5-business-day clock tracker, dispute letter templates addressed to the screening companies (identity-mismatch, expunged/dismissed-charge, and wrong-disposition versions with the §1681i and §1681e(b) citations built in), the report-copy request, the certified-disposition checklist, hold-the-job employer templates, and an exhibit-style violation log. It is a free $0 pre-order right now.
+          📋 <strong class="text-white">Doing this under deadline pressure?</strong> Work straight from this guide: start a dated clock log today (the ~5-business-day window runs from the pre-adverse letter), send the written disputes to the screening company with the §1681i and §1681e(b) citations from the sections above, request the exact report copy the employer used, order the certified court disposition, and send the hold-the-job note — keeping every message, date, and reply in one folder as your exhibit-style violation log.
         </p>
       </div>
 
@@ -3558,15 +3558,15 @@ export const blogPosts: BlogPost[] = [
       </p>
     `,
     cta: {
-      text: "Get the Pre-Adverse Action Response Kit — free $0 pre-order",
-      href: "https://gumroad.com/l/bgcheckfix",
+      text: "Browse more consumer-defense guides",
+      href: "/blog",
     },
     relatedProducts: [
       {
-        name: "Background Check Wrong? Pre-Adverse Action Response Kit",
-        href: "https://gumroad.com/l/bgcheckfix",
+        name: "IRS CP2000 Notice? The 30-Day Response Walkthrough (free guide)",
+        href: "/blog/irs-cp2000-notice-response-2026",
         description:
-          "5-business-day clock tracker, screening-company dispute letter templates (§1681i / §1681e(b) citations built in), report-copy request walkthrough, certified court-record checklist, hold-the-job employer templates, and an exhibit-style violation log. $0 pre-order — claimers get it free on release.",
+          "Another deadline-driven dispute process, same discipline: decode the notice, build the paper trail, and respond inside the window.",
       },
     ],
     faq: [
@@ -4296,7 +4296,7 @@ export const blogPosts: BlogPost[] = [
         Mid-season is not too late for before-documentation on rooms that still stand. Walk the house once with a checklist. Back up off-site. Start the inventory for high-ticket items. Know which policies you actually hold (homeowners, wind pool, flood). When a storm is named, re-shoot anything that changed and confirm the backup still opens from another location. After impact, mitigate temporarily, open claims early, and keep every conversation dated.
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
-        If you want that whole sequence packaged — room-by-room photo log, home-inventory workbook with serial fields, NFIP Proof-of-Loss deadline tracker, post-storm "don't repair yet" checklist, adjuster prep sheet, claim-denial appeal letter template, and state-DOI pointers for major coastal markets — that is the <a href="https://gumroad.com/l/fyviso" class="text-cyan-400 hover:text-cyan-300 underline">Hurricane Insurance Claim Kit</a> ($24, instant download): Google Sheets + PDF you can reuse every season. Documentation organizer only — not legal advice and not a public-adjuster service.
+        If you want that whole sequence packaged — room-by-room photo log, home-inventory workbook with serial fields, NFIP Proof-of-Loss deadline tracker, post-storm "don't repair yet" checklist, adjuster prep sheet, claim-denial appeal letter template, and state-DOI pointers for major coastal markets — that is the <a href="https://www.etsy.com/listing/4543863298" class="text-cyan-400 hover:text-cyan-300 underline">Hurricane Claim Evidence Kit</a> ($24 instant download on Etsy): workbook, checklists, and trackers you can reuse every season. Documentation organizer only — not legal advice and not a public-adjuster service.
       </p>
 
       <p class="text-slate-400 text-sm leading-relaxed mb-6">
@@ -4304,15 +4304,15 @@ export const blogPosts: BlogPost[] = [
       </p>
     `,
     cta: {
-      text: "Get the Hurricane Insurance Claim Kit — $24 Instant Download",
-      href: "https://gumroad.com/l/fyviso",
+      text: "Get the Hurricane Claim Evidence Kit — $24 Instant Download on Etsy",
+      href: "https://www.etsy.com/listing/4543863298",
     },
     relatedProducts: [
       {
-        name: "Hurricane Insurance Claim Kit",
-        href: "https://gumroad.com/l/fyviso",
+        name: "Hurricane Claim Evidence Kit ($24 on Etsy)",
+        href: "https://www.etsy.com/listing/4543863298",
         description:
-          "Pre-storm photo log, inventory workbook, NFIP deadline tracker, adjuster prep, and claim-denial appeal letter template — instant download.",
+          "Pre-storm photo log, home-inventory workbook, NFIP deadline tracker, adjuster prep, and claim-denial appeal letter template — instant digital download.",
       },
     ],
     faq: [

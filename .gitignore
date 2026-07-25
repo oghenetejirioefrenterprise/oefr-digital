@@ -8,3 +8,4 @@ node_modules/
 # cycle-trader is its own standalone repo (extracted 2026-07-25), not part of oefr-digital
 cycle-trader/
 journal/
+oefr-digital/

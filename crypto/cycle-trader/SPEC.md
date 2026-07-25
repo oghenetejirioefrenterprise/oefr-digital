@@ -394,7 +394,8 @@ D = argmax-high week within [window_start, trigger week]
 
 for each week i with monday(i) >= monday(D), walk-forward:
     j    = anchor(i)                       # most recent week with a higher high
-    L0   = min(low[j+1 .. i-1])            # rally origin; EXCLUDES week i's own low
+    L0   = min(low[j .. i-1])              # rally origin; window INCLUDES the
+                                           # anchor week j, EXCLUDES week i's low
     w0   = argmin week of L0
 
     fresh    = L0 < min(low[D .. w0-1])                 # undercut ALL scope lows
@@ -414,7 +415,18 @@ BoS = first day with daily high > operative_LH(t)
 The guard is what expires EP1: its 2013-era candidates descend from the Dec-2013
 ATH, and that D postdates the Nov-2011 trigger.
 
-Two implementation traps this pseudocode implies but does not spell out:
+**The origin window includes the anchor week `j`** (v1.2.2, 2026-07-25 — found by
+executing this pseudocode against the raw data). §4.1's prose is precise about
+this: it excludes *"the candidate week's own low"* and nothing else. v1.2's
+pseudocode wrote `low[j+1 .. i-1]` and thereby dropped the anchor week — which
+**fails G1, G3 and G5**, because the fresh low routinely prints in the very week
+that made the higher high. G1 is the proof: week 2014-12-29 has high **321.00**
+(the anchor, above the 305.00 candidate) and low **255.00** (the origin). With
+`j+1` that week's low is invisible, the origin window is empty, and LH 305.00 is
+never generated at all. Executed on real data, `j` reproduces every gate; `j+1`
+reproduces only G2.
+
+Two further implementation traps this pseudocode implies but does not spell out:
 
 - **The guard tests D, not `anchor(i)`.** `anchor(i)` may legitimately postdate
   the trigger — G3's operative LH (25,211.32, wk 2022-08-15) has `anchor(i)` =
@@ -434,6 +446,24 @@ vs window-min 275 · EP4 D = 13,970 (wk 2019-06-24), **6,435 fresh vs window-min
 6,515** — under a prior-ATH scope it is *not* fresh (3,156.26 exists) and G2
 fails · EP5 D = 69,000, 17,622 fresh vs 26,560, Sept-2022 origin correctly not
 fresh · EP6 D = 126,199.63, low-from-D 57,800.19 — both matching PRD §8.
+
+**Executed end-to-end on the frozen data (2026-07-25).** This section is no longer
+prose-only: the algorithm above was run against 2011-08-18 → 2026-07-22 and
+reproduces the whole record.
+
+| | Trigger (Mon) | D | Operative LH | BoS week | `EL*` |
+|---|---|---|---|---|---|
+| EP1 | 2011-11-21 | — | none | — | **expired**, as required |
+| EP2 | 2014-09-22 | 2013-11-25 | **305.00** (wk 2015-01-05) | **2015-01-26** | 152.40 |
+| EP3 | 2018-11-19 | 2017-12-11 | 4,450.38 (rule output, no owner anchor) | **2019-04-01** | 3,156.26 |
+| EP4 | 2020-03-09 | 2019-06-24 | **10,500.00** (wk 2020-02-10) | **2020-07-27** | 3,782.13 |
+| EP5 | 2022-05-16 | 2021-11-08 | **25,211.32** (wk 2022-08-15) | **2023-02-13** | 15,476.00 |
+| EP6 | 2026-01-26 | 2025-10-06 | **82,850.00** (wk 2026-05-04) | none yet | — (running 57,800.19) |
+
+G1's ladder reproduces to the cent (231.15 / 212.25 / 186.10; 0.5 gap-fills
+2015-02-02 @ 226.93, 0.62 fills 2015-02-05 @ 212.25, 0.786 never, breakout
+2015-07-12 @ 309.90). G4's detector fires the week of 2025-10-06 and fills
+2025-10-12 @ 114,099.82. All six triggers and every `EL*` match the reference.
 
 Reproduces every entry gate: G1 `(305−255)/255 = +19.6%` off fresh 255, confirmed
 by 152.40 on 2015-01-14, BoS week 2015-01-26 @ 309.90 · G2 `+63.2%` off 6,435, the
@@ -510,6 +540,12 @@ A reproduction harness must normalise labels before comparing, or it will report
 G4 use Mondays, but G2's "week of 2020-02-16" / "week of 2020-08-02" and G5's
 "week of 2026-05-10" are Sunday labels — ISO Mondays 2020-02-10, 2020-07-27 and
 2026-05-04. An assertion that pastes a §10 label as a Monday fails on G2 and G5.
+
+**G5's "confirmed 2026-06-07" is also a Sunday label, not a fill-style daily
+date.** The confirming daily low prints **2026-06-05** (Friday of the week ending
+Sunday 06-07) — verified by execution. Contrast G1's "confirmed by 152.40 on
+2015-01-14", which *is* a true daily date. Assert 2026-06-05 for the daily value,
+or compare at week resolution.
 
 ---
 

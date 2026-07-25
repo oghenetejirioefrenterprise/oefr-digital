@@ -48,6 +48,22 @@ Two anchors per episode, and they differ in EP4:
   **fails G2 and EP4** (6,435 not fresh vs 3,156.26; low 3,156 ≠ reference 3,782.13).
   Measuring from D reproduces all five episodes exactly.
 
+**The whole algorithm was executed against the frozen data on 2026-07-25** before
+this revision. These are measured outputs, not expectations — if your engine
+produces anything else, your engine is wrong:
+
+| | Trigger (Mon) | D | Operative LH | LH week | BoS week | `EL*` |
+|---|---|---|---|---|---|---|
+| EP1 | 2011-11-21 | — | none → **expired** | — | — | — |
+| EP2 | 2014-09-22 | 2013-11-25 | **305.00** | 2015-01-05 | **2015-01-26** | 152.40 |
+| EP3 | 2018-11-19 | 2017-12-11 | 4,450.38 | 2018-07-23 | **2019-04-01** | 3,156.26 |
+| EP4 | 2020-03-09 | 2019-06-24 | **10,500.00** | 2020-02-10 | **2020-07-27** | 3,782.13 |
+| EP5 | 2022-05-16 | 2021-11-08 | **25,211.32** | 2022-08-15 | **2023-02-13** | 15,476.00 |
+| EP6 | 2026-01-26 | 2025-10-06 | **82,850.00** | 2026-05-04 | none yet | running 57,800.19 |
+
+EP3's LH is pure rule output — SPEC §11 flags "no owner anchor for 2019". Every
+other bolded value is a gate requirement.
+
 **On-chain source policy** (verified reproduces every episode fill):
 - `realized` = CoinMetrics `CapMrktCurUSD / CapMVRVCur / SplyCur`, coverage 2010-07-18 → 2026-05-23
 - `realized` **after** CoinMetrics ends = checkonchain `realised` (this is what produces EP6's 52,848)
@@ -1185,10 +1201,15 @@ def find_lh_candidates(weeks: list[Week], bars: list[Bar], scope_start: str,
             if in_scope[k].high > cand.high:
                 j = k
                 break
-        if j is None or j + 1 > i - 1:
+        if j is None:
             continue
 
-        between = in_scope[j + 1:i]
+        # Window INCLUDES the anchor week j and excludes the candidate's own
+        # week i. Using j+1 here fails G1, G3 and G5: the fresh low routinely
+        # prints in the very week that made the higher high. G1's proof — week
+        # 2014-12-29 has high 321.00 (the anchor) AND low 255.00 (the origin);
+        # with j+1 the window is empty and LH 305.00 is never generated.
+        between = in_scope[j:i]
         if not between:
             continue
         origin_week = min(between, key=lambda w: w.low)
@@ -1800,8 +1821,9 @@ Expect failures in this order, and fix them in this order:
 1. **`find_triggers` doesn't produce the expected Monday.** `scope_for_episode` asserts this first and prints what the engine did find. Check the RSI series alignment (`wilder_rsi` returns `None` for the first 14 weeks) and the 26-quiet-week clustering before suspecting anything else.
 2. **G2 fails on freshness (6,435 rejected) or EP4's low comes out 3,156.** You fed the prior-ATH week as scope instead of **D** — the exact bug the 2026-07-24 review caught. The scan scope and freshness window run from `downtrend_anchor` (D), whose window starts at the previous episode's BoS. `prior_cycle_ath` is ONLY for the 1.272 extension. See the "Scope anchors" table.
 3. **The activation chain is broken.** Each episode's window starts at the previous episode's BoS, so scopes must be derived in trigger order (the `episode_scope` fixture does this). If EP4's D is wrong, the bug may be in EP3's BoS, not EP4.
-4. **A candidate is missing or an excluded high survives.** This is `find_lh_candidates`. Walk SPEC §13.3 (v1.2.1) line by line against the failing week: the usual culprits are `L0` accidentally including the candidate week's own low, and the freshness window not starting at D.
-5. **BoS lands a week early or late.** `find_bos` must compare *daily* highs strictly greater than the LH, starting strictly after the confirmation date.
+4. **G1/G3/G5's LH is missing entirely** (G2 still passes). You excluded the anchor week from the rally-origin window — `in_scope[j+1:i]` instead of `in_scope[j:i]`. This is the single highest-frequency bug in this algorithm; it was in the first two drafts of this plan. Verified failure signature: EP2 yields LH 453.92 / BoS 2015-11-04, EP5 yields 48,189.84 / BoS 2024-01-11, EP6 yields no LH at all.
+5. **A candidate is missing or an excluded high survives** for some other reason. Walk SPEC §13.3 (v1.2.2) line by line against the failing week: remaining culprits are `L0` accidentally including the candidate week's *own* low, and the freshness window not starting at D.
+6. **BoS lands a week early or late.** `find_bos` must compare *daily* highs strictly greater than the LH, starting strictly after the confirmation date.
 
 - [ ] **Step 4: Run tests to verify they pass**
 
@@ -1902,8 +1924,11 @@ def test_g5_operative_lh_is_82850_not_the_june_bounce(bars, weeks, episode_scope
     # SPEC G5 says "week of 2026-05-10" — that is a SUNDAY label (§13.10);
     # the ISO Monday of that week is 2026-05-04.
     assert lh.week_monday == "2026-05-04"
+    assert lh.origin_low == Decimal("60000")
     assert pct(lh.rally_pct, Decimal("38.1")) < Decimal("1")
-    assert lh.confirmed_at == "2026-06-07"
+    # G5's "confirmed 2026-06-07" is a SUNDAY label (§13.10); the confirming
+    # daily low prints 2026-06-05, the Friday inside that week. Verified.
+    assert lh.confirmed_at == "2026-06-05"
     assert all(c.price != Decimal("67292.15") for c in cands), \
         "the June bounce is +13.8% and must fail R_e=15"
 

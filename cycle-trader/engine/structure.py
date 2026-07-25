@@ -147,6 +147,16 @@ def find_swing_lows(weeks: list[Week], bars: list[Bar],
     requires confirmation to precede the break, which is the CALLER's ordering
     check (`bar.date > swing.confirmed_at`).
 
+    **RETURN ORDER IS PART OF THE CONTRACT: strictly ascending by
+    `week_monday`,** inherited from `weeks` (which `to_weeks` sorts) and never
+    re-sorted here. §6.2 breaks "the most recent confirmed swing low", so a
+    caller indexing positionally — the M1 plan's `_mirror_lines` does
+    `for s in reversed(swings)` — reads the wrong level if this order changes,
+    and prices a resting mirror sell off it. Asserted in
+    `tests/test_structure.py::test_returned_swings_are_strictly_ascending_by_week`
+    rather than left as an implementation accident. Callers that can sort
+    should; callers that cannot are relying on this line.
+
     **Scope is the caller's.** §6.2 restricts the scan to structure formed during
     the position's lifetime; this function has no notion of a position, so pass
     the window you mean. §13.9's G4 harness disables that scope by passing
@@ -177,7 +187,7 @@ def find_swing_lows(weeks: list[Week], bars: list[Bar],
     Sunday, i.e. lookahead (CLAUDE.md rule 5). Measured on G4's own window that
     is not hypothetical — a week-label rule stamps wk 2025-08-25 confirmed
     2025-09-08 when the confirming high printed 2025-09-10 (2 days), and wk
-    2025-08-18 confirmed 2025-09-08 against 2025-09-11 (3 days). §13.4 settles
+    2025-08-18 confirmed 2025-09-15 against 2025-09-18 (3 days). §13.4 settles
     the resolution question for §4 and the same argument transfers.
 
     CONFIRMATION, part 2: the REFERENCE PRICE is an open question — §14 material

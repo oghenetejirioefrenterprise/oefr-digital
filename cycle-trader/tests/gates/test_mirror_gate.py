@@ -124,6 +124,17 @@ def test_g4_detects_the_double_bottom_and_nothing_spurious(g4_swings):
         "2025-12-01": Decimal("83822.76"),
         "2025-12-15": Decimal("84450.01"),
     }
+    # RETURN ORDER, on the real window. `got` above is a dict and cannot see it,
+    # and the swing lows here are emphatically not monotone (107,255 -> 111,560
+    # -> 103,528 -> 85,272), so week order is a distinct claim from every other
+    # sort. Task 14's `_mirror_lines` takes "the most recent confirmed swing"
+    # positionally via `reversed(swings)`; if this order drifts it prices a live
+    # mirror sell off the wrong level.
+    order = [s.week_monday for s in g4_swings]
+    assert order == sorted(order)
+    assert all(a < b for a, b in zip(order, order[1:]))
+    assert [s.low for s in g4_swings] != sorted(s.low for s in g4_swings)
+
     # The decline's argmax top flips at the ATH, which is the observable trace of
     # the "argmax over prior weeks in scope" rule this detector actually runs
     # (`find_swing_lows`' KNOWN SIMPLIFICATION note). Pinned so that when M2

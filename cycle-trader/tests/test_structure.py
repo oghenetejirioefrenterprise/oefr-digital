@@ -517,3 +517,35 @@ def test_a_non_positive_top_is_skipped_rather_than_dividing_by_zero():
              wk("2026-01-19", 53000, 51000)]
     bars = [bar("2026-01-20", 52500, 53000, 51000)]
     assert find_swing_lows(weeks, bars, r_down=Decimal("10")) == []
+
+
+def test_returned_swings_are_strictly_ascending_by_week():
+    """`find_swing_lows` returns swings in strictly ascending week order.
+
+    A contract, not an accident: §6.2 breaks "the most recent confirmed swing
+    low", and the M1 plan's `_mirror_lines` reads it as `reversed(swings)[0]`
+    — a positional read. If the order ever changed, that caller would price the
+    resting mirror sell off the wrong level, silently and with money on it.
+
+    Strictness matters as much as the order: weeks are unique keys here, so a
+    duplicated week would mean the same structure emitted twice and `reversed`
+    would still "work" while the swing set was wrong.
+
+    The fixture's lows DESCEND while its weeks ascend, deliberately. A first
+    version had both ascending together, which made it blind to a
+    `sorted(..., key=lambda s: s.low)` reordering — the mutant survived. Any
+    fixture asserting an ordering has to break every other ordering that could
+    coincide with it, or it asserts nothing."""
+    weeks = [wk("2026-01-05", 70000, 65000),
+             wk("2026-01-12", 56000, 55000),      # -21.4%, low 55,000
+             wk("2026-01-19", 57000, 50000),      # -28.6%, low 50,000 (LOWER)
+             wk("2026-01-26", 58000, 57000)]
+    bars = [bar("2026-01-19", 56500, 57000, 50000),
+            bar("2026-01-27", 57500, 58000, 57000)]
+    got = find_swing_lows(weeks, bars, r_down=Decimal("10"))
+    weeks_out = [s.week_monday for s in got]
+    assert len(weeks_out) > 1, "fixture must produce enough swings to order"
+    assert all(a < b for a, b in zip(weeks_out, weeks_out[1:]))
+    # ...and the by-low order is the REVERSE, so week order is what is asserted
+    # and not some other sort that happens to agree with it.
+    assert [s.low for s in got] == sorted((s.low for s in got), reverse=True)

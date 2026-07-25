@@ -641,6 +641,42 @@ the discrepancy is isolated to these five numbers. *Either restate §11 from the
 reference run, or identify the run that produced these — §9 forbids restating a
 record without a reason on file.*
 
+**OQ-6 — EP1's "EXPIRED" rests on a data artifact, and §0/§11 justify each other
+in a circle. → RAISED 2026-07-25 by execution, during the M1 build.**
+
+§11 records EP1 as `EXPIRED`, and §13.3's prose attributes that to the
+trigger-anchor guard rejecting "its 2013-era candidates descend[ed] from the
+Dec-2013 ATH". **Executed against the frozen data, neither part holds.**
+
+What actually expires EP1 is the guard `monday(D) < trigger_week` failing because
+D *is* the trigger week — and D is the trigger week only because of the suspect
+Bitstamp wick §0 already flags. On 2011-11-25 the bar opens 2.50, closes 2.75 and
+prints a **15.00** high; every other day that week tops at 3.00.
+
+Clamp that wick to any sane value (2.75 / 3.00 / 4.00 all give the same result)
+and: **D moves to 11.85 @ wk 2011-08-15, the guard passes, the scan yields 12
+candidates, and EP1 activates with a BoS on 2011-12-20** — well inside its expiry
+bound. It trades.
+
+A per-candidate reading of the guard does not rescue the prose either: all 12
+candidates carry anchors between 2011-08-29 and 2011-10-03, every one *strictly
+before* the 2011-11-21 trigger. The scan never reaches 2013, so the 2013-era
+anchors §13.3 blames are never even evaluated.
+
+**The circularity:** §0 dismisses the wick as a known wart on the grounds that
+"EP1 is expired under v1.1 anyway — see §11", while §11's `EXPIRED` row is
+produced *solely* by that wick. Neither section carries an independent basis.
+
+**Not currently blocking:** no §10 gate covers EP1, and §11's regression fixtures
+run EP2–EP5, so nothing in the M1 suite asserts this. **It must be settled before
+EP1's status is quoted as a rule outcome** — and it bears on the honesty of the
+record, since an EP1 that trades would add a fifth episode to a record described
+as "4 clean episodes".
+
+*Decide: (a) accept the artifact and say so explicitly in §11, (b) clean or
+exclude the 2011 thin-market data and accept whatever EP1 then does, or (c) find
+the independent rule basis the prose asserts but the algorithm does not apply.*
+
 **OQ-5 — EP3's 2019 BoS still lacks owner sign-off.**
 Flagged in Amendment 1 and in §11 ("no owner anchor for 2019 — rule output, owner
 sign-off pending"). It contributes +879.89% — **36% of the headline sum**. Until

@@ -30,15 +30,18 @@ Two anchors per episode, and they differ in EP4:
 
 | Episode | Scope window starts (prev. activation) | **D** (structure/low anchor) | Exit anchor (prior ATH) | Episode low |
 |---|---|---|---|---|
-| EP2 | data start | 1,163.00 (wk of 2013-11-24) | 1,163.00 | 152.40 |
+| EP2 | data start | 1,163.00 (wk of 2013-11-25) | 1,163.00 | 152.40 |
 | EP3 | EP2 BoS (2015-02) | 19,798.68 (Dec-2017) | 19,798.68 | 3,156.26 |
 | EP4 | EP3 BoS (2019-04) | **13,970.00 (2019-06-26)** | **19,798.68** | 3,782.13 |
 | EP5 | EP4 BoS (2020-08) | 69,000.00 (2021-11-10) | 69,000.00 | 15,476.00 |
 | EP6 | EP5 BoS (2023-02) | 126,199.63 (2025-10-06) | 126,199.63 | 57,800.19 (running) |
 
-- **D** = argmax-high week of `[previous episode's activation, now]`, walk-forward.
+- **D** = argmax-high week of `[previous episode's activation, own trigger week]`.
   Governs the LH scan scope, the freshness window, the trigger guard, and the
-  episode low (SPEC §13.3 as corrected by v1.2.1).
+  episode low (SPEC §13.3 as corrected by v1.2.1). **Bound the window at the
+  episode's OWN trigger** — bounding at the next episode's trigger leaks the
+  following bull run into D (verified: EP2's D becomes Dec-2017 19,798.68 and
+  EP4's becomes Nov-2021 69,000, both wrong).
 - **Exit anchor** = highest weekly high before the trigger, full history
   (`prior_cycle_ath`). Governs §6.1's 1.272 extension ONLY.
 - Verified: measuring freshness or the episode low from the prior-ATH week
@@ -1024,7 +1027,7 @@ git commit -m "feat(cycle-trader): episode lifecycle, clustering and EL* freeze"
 
 **Interfaces:**
 - Consumes: `Bar`, `Week` from Task 1
-- Produces: `LHCandidate` dataclass; `find_lh_candidates(weeks, bars, scope_start, trigger_monday, r_e=Decimal("15")) -> list[LHCandidate]`; `operative_lh(candidates, asof) -> LHCandidate | None`; `find_bos(bars, lh_price, after) -> str | None`; `find_swing_lows(weeks, r_down=Decimal("10")) -> list[...]`
+- Produces: `LHCandidate` dataclass; `find_lh_candidates(weeks, bars, scope_start, trigger_monday, r_e=Decimal("15")) -> list[LHCandidate]`; `operative_lh(candidates, asof) -> LHCandidate | None`; `find_bos(bars, lh_price, after) -> str | None` (fixed-price helper); `first_bos(bars, candidates, start, end) -> (bos_date, broken_candidate) | (None, None)` (walk-forward reconstruction — the only correct way to find a historical BoS); `find_swing_lows(weeks, r_down=Decimal("10")) -> list[...]`
 
 This is the load-bearing algorithm — SPEC §13.3 **as corrected by v1.2.1** gives the pseudocode. Follow it exactly. The `scope_start` parameter is **D's Monday** (from `downtrend_anchor`), never the prior-ATH week — passing the prior-ATH week fails G2.
 
@@ -1033,7 +1036,7 @@ This is the load-bearing algorithm — SPEC §13.3 **as corrected by v1.2.1** gi
 ```python
 # tests/test_structure.py
 from decimal import Decimal
-from engine.structure import find_lh_candidates, operative_lh, find_bos
+from engine.structure import find_lh_candidates, operative_lh, find_bos, first_bos
 from engine.types import Bar, Week
 
 
@@ -1093,6 +1096,33 @@ def test_bos_is_first_daily_high_above_the_operative_lh():
 def test_bos_returns_none_when_never_broken():
     bars = [bar("2026-07-20", 60000, 61000, 59000)]
     assert find_bos(bars, Decimal("82850"), after="2026-06-07") is None
+
+
+def test_candidate_operative_through_break_day_and_first_bos_finds_it():
+    """§4.5's invalidation IS the BoS. Day-resolution invalidation, operative
+    through the break day — with `>` instead of `>=`, or with week-Monday
+    invalidation labels, the walk can never see its own break."""
+    weeks = [wk("2014-09-01", 500, 400),
+             wk("2014-09-29", 480, 275),
+             wk("2014-12-29", 300, 255),
+             wk("2015-01-05", 305, 260)]
+    bars = [bar("2015-01-14", 200, 210, 152.40),
+            bar("2015-01-28", 300, 309.90, 295)]   # the break day
+    cands = find_lh_candidates(weeks, bars, "2014-09-01", "2014-09-29")
+    lh = next(c for c in cands if c.price == Decimal("305"))
+    assert lh.invalidated_at == "2015-01-28"                     # daily, not weekly
+    assert operative_lh(cands, asof="2015-01-28") is not None    # alive on break day
+    assert operative_lh(cands, asof="2015-01-29") is None        # dead after
+    bos, broken = first_bos(bars, cands, start="2014-09-29", end="2015-12-31")
+    assert bos == "2015-01-28"
+    assert broken.price == Decimal("305")
+
+
+def test_d_guard_rejects_scope_that_postdates_the_trigger():
+    """EP1's 2013 trap: no valid downtrend anchor predating the trigger."""
+    weeks = [wk("2013-12-02", 1163, 800)]
+    assert find_lh_candidates(weeks, [], scope_start="2013-12-02",
+                              trigger_monday="2011-11-21") == []
 ```
 
 - [ ] **Step 2: Run test to verify it fails**
@@ -1141,6 +1171,11 @@ def _week_end(monday: str) -> str:
 def find_lh_candidates(weeks: list[Week], bars: list[Bar], scope_start: str,
                        trigger_monday: str,
                        r_e: Decimal = R_E_DEFAULT) -> list[LHCandidate]:
+    # scope_start is monday(D). The trigger-anchor guard (SPEC §13.3) tests D,
+    # not anchor(i): if D does not predate the trigger there is no valid
+    # downtrend structure at all (this is what expires EP1's 2013 trap).
+    if scope_start >= trigger_monday:
+        return []
     in_scope = [w for w in weeks if w.monday >= scope_start]
     out: list[LHCandidate] = []
 
@@ -1169,12 +1204,18 @@ def find_lh_candidates(weeks: list[Week], bars: list[Bar], scope_start: str,
         if rally < r_e:
             continue
 
-        if in_scope[j].monday >= trigger_monday:
-            continue  # anchor must predate the trigger
+        # NOTE: no guard on anchor(i) here. The trigger guard tests D — done
+        # once, before this loop. anchor(i) may legitimately postdate the
+        # trigger: G3's LH 25,211.32 has anchor(i) = wk 2022-06-13 (26,895.84),
+        # AFTER the 2022-05-16 trigger. Guarding on anchor(i) fails G3.
 
         cand_end = _week_end(cand.monday)
         confirmed_at = next((b.date for b in bars if b.date > cand_end and b.low < l0), None)
-        invalidated_at = next((w.monday for w in in_scope[i + 1:] if w.high > cand.high), None)
+        # Invalidation is DAY-resolution: the first daily high above the
+        # candidate. Week-resolution (a Monday label) kills the candidate at
+        # the start of its own break week, and the BoS scan never sees it.
+        invalidated_at = next((b.date for b in bars
+                               if b.date > cand_end and b.high > cand.high), None)
 
         out.append(LHCandidate(
             week_monday=cand.monday, price=cand.high, origin_low=l0,
@@ -1186,22 +1227,46 @@ def find_lh_candidates(weeks: list[Week], bars: list[Bar], scope_start: str,
 
 
 def operative_lh(candidates: list[LHCandidate], asof: str) -> LHCandidate | None:
-    """Most recent candidate confirmed on or before `asof` and not yet invalidated."""
+    """Most recent candidate confirmed on or before `asof` and not yet dead.
+
+    A candidate stays operative THROUGH its invalidation day (`>=`): the break
+    that invalidates it (§4.5) is the BoS of that structure, printed intraday —
+    with `>` the walk-forward scan below could never see its own break.
+    """
     live = [c for c in candidates
             if c.confirmed_at is not None and c.confirmed_at <= asof
-            and (c.invalidated_at is None or c.invalidated_at > asof)]
+            and (c.invalidated_at is None or c.invalidated_at >= asof)]
     return max(live, key=lambda c: c.week_monday) if live else None
 
 
 def find_bos(bars: list[Bar], lh_price: Decimal, after: str) -> str | None:
-    """First daily high strictly above the operative LH, after `after`."""
+    """First daily high strictly above a FIXED price, after `after`. Test/gate
+    helper for a known LH; historical reconstruction uses first_bos()."""
     return next((b.date for b in bars if b.date > after and b.high > lh_price), None)
+
+
+def first_bos(bars: list[Bar], candidates: list[LHCandidate], start: str,
+              end: str) -> tuple[str, LHCandidate] | tuple[None, None]:
+    """Walk-forward BoS: the first day in [start, end] whose high exceeds the
+    THEN-operative LH (strictly after that candidate's confirmation).
+
+    This is the only correct way to find a historical BoS. Asking "what is the
+    operative LH today?" after a BoS returns nothing — the BoS killed it — so
+    reconstruction must walk days against the structure as it stood each day.
+    """
+    for b in bars:
+        if b.date < start or b.date > end:
+            continue
+        op = operative_lh(candidates, asof=b.date)
+        if op is not None and b.date > op.confirmed_at and b.high > op.price:
+            return b.date, op
+    return None, None
 ```
 
 - [ ] **Step 4: Run test to verify it passes**
 
 Run: `pytest tests/test_structure.py -v`
-Expected: 5 passed
+Expected: 7 passed
 
 - [ ] **Step 5: Commit**
 
@@ -1525,17 +1590,18 @@ def desired_orders(state: EpisodeState, lines: dict[str, Decimal],
             out.append(DesiredOrder(purpose=OrderPurpose.STOP, side=OrderSide.SELL,
                                     kind=OrderKind.STOP_MARKET, price=state.el_star,
                                     units=held_units))
-        if held_units > 0 and "mirror" in lines:
+        if held_units > 0 and lines.get("mirror_fallback"):
+            # 8 weeks past the signal with no 50% bounce: sell at market.
+            # REPLACES the limit — emitting both would sell the remainder twice.
+            out.append(DesiredOrder(purpose=OrderPurpose.MIRROR, side=OrderSide.SELL,
+                                    kind=OrderKind.MARKET, price=None,
+                                    units=held_units))
+        elif held_units > 0 and "mirror" in lines:
             # Only present when the mirror SIGNAL has fired (armed + swing-low
             # break, confirmation strictly preceding the break) — compute()
             # gates this; no signal, no resting mirror sell (SPEC §6.2).
             out.append(DesiredOrder(purpose=OrderPurpose.MIRROR, side=OrderSide.SELL,
                                     kind=OrderKind.LIMIT, price=lines["mirror"],
-                                    units=held_units))
-        if held_units > 0 and lines.get("mirror_fallback"):
-            # 8 weeks past the signal with no 50% bounce: sell at market.
-            out.append(DesiredOrder(purpose=OrderPurpose.MIRROR, side=OrderSide.SELL,
-                                    kind=OrderKind.MARKET, price=None,
                                     units=held_units))
         return tuple(out)
 
@@ -1613,7 +1679,7 @@ def episode_scope(bars, weeks, weekly_rsi):
     this codebase labels by ISO Monday, so pasted dates are off by six days.
     """
     from engine.lifecycle import downtrend_anchor, find_triggers
-    from engine.structure import find_bos, find_lh_candidates, operative_lh
+    from engine.structure import find_lh_candidates, first_bos
 
     triggers = find_triggers(weeks, weekly_rsi)
     scopes: dict[str, tuple[str, str]] = {}   # trigger -> (D_monday, bos_date|None)
@@ -1621,21 +1687,20 @@ def episode_scope(bars, weeks, weekly_rsi):
     data_end = bars[-1].date
 
     for trigger, nxt in zip(triggers, triggers[1:] + [None]):
-        era_end = nxt or data_end             # an episode's era ends at the next trigger
-        _d_price, d_week = downtrend_anchor(weeks, window_start, asof=era_end)
+        era_end = nxt or data_end             # BoS must print before the next trigger
+        # D is bounded at the episode's OWN trigger — bounding at era_end leaks
+        # the next bull run into D (EP2 -> Dec-2017, EP4 -> Nov-2021; both wrong).
+        _d_price, d_week = downtrend_anchor(weeks, window_start, asof=trigger)
         cands = find_lh_candidates(weeks, bars, scope_start=d_week,
                                    trigger_monday=trigger)
-        lh = operative_lh(cands, asof=era_end)
-        bos = find_bos(bars, lh.price, after=lh.confirmed_at) if lh else None
-        if bos is not None and nxt is not None and bos >= nxt:
-            bos = None                        # never broke structure inside its era: expired
+        # Walk-forward BoS against the THEN-operative LH. Asking for the
+        # operative LH at era_end instead returns None — the BoS killed it —
+        # and the whole chain silently records every episode as expired.
+        bos, _broken = first_bos(bars, cands, start=trigger, end=era_end)
         scopes[trigger] = (d_week, bos)
         if bos is not None:
             window_start = bos                # next episode's window starts here
 
-    # Bounding D and the LH pick at era_end is a fixture convenience, not extra
-    # lookahead — every value is re-derived walk-forward inside the gate tests
-    # themselves via operative_lh(asof=...) at in-era dates.
     return {"triggers": triggers, "scopes": scopes}
 ```
 
@@ -1834,7 +1899,9 @@ def test_g5_operative_lh_is_82850_not_the_june_bounce(bars, weeks, episode_scope
     lh = operative_lh(cands, asof="2026-07-22")
     assert lh is not None
     assert lh.price == Decimal("82850")
-    assert lh.week_monday == "2026-05-10"
+    # SPEC G5 says "week of 2026-05-10" — that is a SUNDAY label (§13.10);
+    # the ISO Monday of that week is 2026-05-04.
+    assert lh.week_monday == "2026-05-04"
     assert pct(lh.rally_pct, Decimal("38.1")) < Decimal("1")
     assert lh.confirmed_at == "2026-06-07"
     assert all(c.price != Decimal("67292.15") for c in cands), \
@@ -1876,6 +1943,13 @@ def find_swing_lows(weeks: list[Week], r_down: Decimal = R_DOWN_DEFAULT) -> list
     """Mirror of the LH rule with R_down: a weekly low preceded by a decline of
     at least r_down% from the argmax high since the prior swing, confirmed by a
     subsequent higher high. Confirmation strictly precedes any break (SPEC §6.2).
+
+    KNOWN SIMPLIFICATION (fine for G4, revisit in M2): the decline is measured
+    from the argmax over ALL prior weeks in the passed scope, not "since the
+    prior swing". After a lower top T2 < T1, a dip that is >=10% off T1 but
+    <10% off T2 is wrongly accepted. G4's bounded window sidesteps this; the
+    live mirror detector in M2 must implement the since-prior-swing argmax and
+    prove it still reproduces G4 and EP5's 2025-02-24 signal.
     """
     out: list[SwingLow] = []
     for i, cand in enumerate(weeks):
@@ -2178,9 +2252,35 @@ def test_compute_never_looks_past_asof(bars, onchain):
     part = compute(truncated, oc, EpisodeState(), asof="2026-05-01")
     assert full.state == part.state
     assert full.orders == part.orders
+
+
+def test_compute_reconstructs_ep5_confirmed_after_its_bos(bars, onchain):
+    """The killer regression for stateless reconstruction: at a post-BoS date
+    the broken LH is invalidated (§4.5 — the BoS killed it), so any
+    implementation that derives the BoS from 'today's operative LH' flips back
+    to WATCHING here. first_bos() walking the then-operative LH is what makes
+    this pass."""
+    from decimal import Decimal
+    from engine.bars import monday_of
+    r = compute(bars, onchain, EpisodeState(), asof="2023-03-01")
+    assert r.state.status is EpisodeStatus.CONFIRMED
+    assert r.state.el_star == Decimal("15476")
+    assert monday_of(r.state.bos_date) == "2023-02-13"
+    assert r.state.operative_lh == Decimal("25211.32")   # the broken LH, kept
+
+
+def test_compute_ep5_distributing_after_exit1_with_no_unarmed_mirror(bars, onchain):
+    """2024-12-01: Exit 1 printed 2024-11-11, so EP5 is DISTRIBUTING — but the
+    Aug-2024 break of the May-2024 swing PRE-dates arming and must not have
+    produced a mirror signal (SPEC §6.2: arming precedes the signal)."""
+    r = compute(bars, onchain, EpisodeState(), asof="2024-12-01")
+    assert r.state.status is EpisodeStatus.DISTRIBUTING
+    assert r.state.exit1_done is True
+    # held_units == 0 in M1 keeps the order list empty either way; the state
+    # and the absence of a crash are what this test pins down.
 ```
 
-Add to `tests/conftest.py` (project root) the same `bars` and `onchain` session fixtures defined in `tests/gates/conftest.py`, so both suites share them.
+**Move** the session fixtures (`bars`, `weeks`, `weekly_rsi`, `onchain`, `cy1`, `episode_scope`) from `tests/gates/conftest.py` to `tests/conftest.py` (project root) so both suites share one copy — don't duplicate them, or the reference data loads twice per run.
 
 - [ ] **Step 2: Run test to verify it fails**
 
@@ -2211,7 +2311,7 @@ from engine.lifecycle import (downtrend_anchor, find_triggers, freeze_el,
 from engine.lines import lines_for
 from engine.orders import desired_orders
 from engine.rsi import wilder_rsi
-from engine.structure import (find_bos, find_lh_candidates, find_swing_lows,
+from engine.structure import (find_lh_candidates, find_swing_lows, first_bos,
                               operative_lh)
 from engine.types import Bar, EngineResult, EpisodeState, EpisodeStatus, OnChain
 
@@ -2219,30 +2319,39 @@ MIRROR_FALLBACK_DAYS = 56   # 8 weeks (SPEC §6.2)
 
 
 def _latest_episode(weeks, bars, triggers):
-    """Chain episodes in trigger order; return (trigger, D_monday) for the
-    latest one. Same chain as the gate fixtures — one rule, two callers."""
+    """Chain episodes in trigger order (each window starts at the previous
+    episode's BoS); return the latest episode as
+    (trigger, d_week, candidates, bos_date, broken_lh).
+    Same chain as the gate fixtures — one rule, two callers."""
     window_start = weeks[0].monday
-    d_week = window_start
+    result = None
     for trigger, nxt in zip(triggers, triggers[1:] + [None]):
         era_end = nxt or bars[-1].date
-        _dp, d_week = downtrend_anchor(weeks, window_start, asof=era_end)
+        # D is bounded at the episode's OWN trigger. Bounding at era_end leaks
+        # the next bull run into D (EP2 -> Dec-2017, EP4 -> Nov-2021).
+        _dp, d_week = downtrend_anchor(weeks, window_start, asof=trigger)
         cands = find_lh_candidates(weeks, bars, d_week, trigger)
-        lh = operative_lh(cands, asof=era_end)
-        bos = find_bos(bars, lh.price, after=lh.confirmed_at) if lh else None
-        if bos is not None and (nxt is None or bos < nxt):
+        # Walk-forward BoS against the THEN-operative LH — today's operative LH
+        # is None after any BoS, because the BoS invalidated it (§4.5).
+        bos, broken = first_bos(bars, cands, start=trigger, end=era_end)
+        result = (trigger, d_week, cands, bos, broken)
+        if bos is not None:
             window_start = bos
-    return triggers[-1], d_week
+    return result
 
 
-def _mirror_lines(visible, weeks, bos, asof) -> dict[str, Decimal]:
-    """Mirror-exit lines, ONLY once a signal has fired (SPEC §6.2): armed is a
-    precondition handled by the caller; here we need a confirmed swing low
-    (confirmation strictly preceding the break) broken by a daily low."""
+def _mirror_lines(visible, weeks, bos, armed_since, asof) -> dict[str, Decimal]:
+    """Mirror-exit lines, ONLY once a signal has fired (SPEC §6.2): a confirmed
+    swing low (confirmation strictly preceding the break) broken by a daily low
+    STRICTLY AFTER ARMING. A pre-arming break is not a signal — EP5's Aug-2024
+    break of the May-2024 swing predates Exit 1 (2024-11-11) and must not
+    produce a mirror sell."""
     era_weeks = [w for w in weeks if w.monday >= monday_of(bos)]
     swings = [s for s in find_swing_lows(era_weeks) if s.confirmed_at is not None]
     for s in reversed(swings):                       # most recent swing first
+        earliest = max(s.confirmed_at, armed_since)
         brk = next((b for b in visible
-                    if b.date > s.confirmed_at and b.low < s.low), None)
+                    if b.date > earliest and b.low < s.low), None)
         if brk is None:
             continue
         top = max(b.high for b in visible if bos <= b.date <= brk.date)
@@ -2268,36 +2377,50 @@ def compute(bars: list[Bar], onchain: dict[str, OnChain],
     if not triggers:
         return EngineResult(state=EpisodeState(status=EpisodeStatus.IDLE), orders=())
 
-    trigger, d_week = _latest_episode(weeks, visible, triggers)
+    trigger, d_week, cands, bos, broken = _latest_episode(weeks, visible, triggers)
     ath_price, _ath_week = prior_cycle_ath(weeks, trigger)   # exit anchor ONLY
-
-    cands = find_lh_candidates(weeks, visible, d_week, trigger)
-    lh = operative_lh(cands, asof=asof)
     low = running_low(visible, d_week, asof)
+    exit1_date = None
 
-    state = EpisodeState(
-        status=EpisodeStatus.WATCHING, trigger_date=trigger, prior_ath=ath_price,
-        scope_start=d_week, running_low=low,
-        operative_lh=lh.price if lh else None,
-        lh_confirmed_at=lh.confirmed_at if lh else None,
-    )
-
-    bos = find_bos(visible, lh.price, after=lh.confirmed_at) if lh else None
-    if bos is not None:
+    if bos is None:
+        lh = operative_lh(cands, asof=asof)
+        state = EpisodeState(
+            status=EpisodeStatus.WATCHING, trigger_date=trigger,
+            prior_ath=ath_price, scope_start=d_week, running_low=low,
+            operative_lh=lh.price if lh else None,
+            lh_confirmed_at=lh.confirmed_at if lh else None,
+        )
+    else:
+        # Post-BoS the broken LH is invalidated (§4.5) — operative_lh(asof)
+        # returns None here. State carries the LH that was actually broken.
         el = freeze_el(visible, d_week, bos)
         bos_week_high = next(w.high for w in weeks if w.monday == monday_of(bos))
-        state = replace(state, status=EpisodeStatus.CONFIRMED, el_star=el,
-                        bos_date=bos, bos_week_high=bos_week_high)
-        if max(b.high for b in visible if b.date >= bos) >= extension_1272(el, ath_price):
+        state = EpisodeState(
+            status=EpisodeStatus.CONFIRMED, trigger_date=trigger,
+            prior_ath=ath_price, scope_start=d_week, running_low=low,
+            el_star=el, operative_lh=broken.price,
+            lh_confirmed_at=broken.confirmed_at,
+            bos_date=bos, bos_week_high=bos_week_high,
+        )
+        ext = extension_1272(el, ath_price)
+        exit1_date = next((b.date for b in visible
+                           if b.date >= bos and b.high >= ext), None)
+        if exit1_date is not None:
             state = replace(state, status=EpisodeStatus.DISTRIBUTING, exit1_done=True)
+        # Stop touch (strictly after the BoS day): episode over, nothing rests.
+        # CLOSED (exit 2 filled) needs fill tracking and is M2's concern —
+        # with held_units == 0 in M1 no order can be wrongly emitted meanwhile.
+        if next((b.date for b in visible if b.date > bos and b.low <= el), None):
+            return EngineResult(state=replace(state, status=EpisodeStatus.STOPPED),
+                                orders=())
 
     lines: dict[str, Decimal] = {}
     if state.status is EpisodeStatus.WATCHING and asof in onchain:
         t1, t2, t3 = lines_for(onchain[asof])
         lines = {"t1": t1, "t2": t2, "t3": t3}
     elif state.status is EpisodeStatus.DISTRIBUTING:
-        lines = _mirror_lines(visible, weeks, state.bos_date, asof)
-        # No signal -> no mirror lines -> only the stop rests. SPEC §6.2.
+        lines = _mirror_lines(visible, weeks, state.bos_date, exit1_date, asof)
+        # No post-arming signal -> no mirror lines -> only the stop rests.
 
     return EngineResult(state=state,
                         orders=desired_orders(state, lines, filled_purposes=set(),
@@ -2320,7 +2443,7 @@ def compute(bars: list[Bar], onchain: dict[str, OnChain],
 - [ ] **Step 4: Run test to verify it passes**
 
 Run: `pytest tests/test_engine.py -v`
-Expected: 3 passed
+Expected: 5 passed
 
 - [ ] **Step 5: Commit**
 

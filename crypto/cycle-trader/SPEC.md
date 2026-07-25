@@ -383,8 +383,14 @@ merged:
   episode that proves it.
 
 ```
-W = [previous episode's activation (BoS date; data start if none), t]
-D(t) = argmax-high week within W                     # walk-forward
+window_start = previous episode's activation (BoS date; data start if none)
+D = argmax-high week within [window_start, trigger week]
+    # Walk-forward-safe: computing D at any candidate week i instead gives the
+    # same answer for every gate — a post-trigger weekly high above D's high
+    # would invalidate all candidates via §4.5 anyway. Do NOT bound the window
+    # at a later date (e.g. the next episode's trigger): that leaks the next
+    # bull run into D and destroys EP2 (D becomes Dec-2017) and EP4 (Nov-2021).
+    # D freezes at BoS along with EL* (§13.1).
 
 for each week i with monday(i) >= monday(D), walk-forward:
     j    = anchor(i)                       # most recent week with a higher high
@@ -408,7 +414,22 @@ BoS = first day with daily high > operative_LH(t)
 The guard is what expires EP1: its 2013-era candidates descend from the Dec-2013
 ATH, and that D postdates the Nov-2011 trigger.
 
-Verified against raw data (2026-07-24): EP2 D = 1,163 (wk 2013-11-24⁺), 255 fresh
+Two implementation traps this pseudocode implies but does not spell out:
+
+- **The guard tests D, not `anchor(i)`.** `anchor(i)` may legitimately postdate
+  the trigger — G3's operative LH (25,211.32, wk 2022-08-15) has `anchor(i)` =
+  the wk-2022-06-13 high 26,895.84, three weeks *after* the 2022-05-16 trigger.
+  Guarding on `anchor(i)` rejects G3's LH.
+- **The BoS kills its own LH (§4.5), so invalidation is day-resolution and the
+  candidate is operative *through* its break day.** The BoS-week high exceeds
+  the LH by definition, so week-resolution invalidation makes the candidate
+  dead on the Monday of the very week that breaks it — a walk-forward scan then
+  never sees the break. Likewise, "what is the operative LH today?" returns
+  nothing (or stale structure) for any post-BoS date; historical reconstruction
+  must find the BoS by walking days against the *then*-operative LH, never by
+  breaking today's.
+
+Verified against raw data (2026-07-24): EP2 D = 1,163 (wk of 2013-11-25), 255 fresh
 vs window-min 275 · EP4 D = 13,970 (wk 2019-06-24), **6,435 fresh vs window-min
 6,515** — under a prior-ATH scope it is *not* fresh (3,156.26 exists) and G2
 fails · EP5 D = 69,000, 17,622 fresh vs 26,560, Sept-2022 origin correctly not
@@ -484,6 +505,11 @@ identical; only the labels differ. G1's "BoS week of 2015-01-26" is
 `cy1_lifecycle.json`'s `2015-02-01`; its LH "week of 2015-01-05" is `2015-01-11`.
 A reproduction harness must normalise labels before comparing, or it will report a
 6-day error on every structural date.
+
+**§10 itself mixes conventions** (labels carried from their sources): G1, G3 and
+G4 use Mondays, but G2's "week of 2020-02-16" / "week of 2020-08-02" and G5's
+"week of 2026-05-10" are Sunday labels — ISO Mondays 2020-02-10, 2020-07-27 and
+2026-05-04. An assertion that pastes a §10 label as a Monday fails on G2 and G5.
 
 ---
 

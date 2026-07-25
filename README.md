@@ -1,81 +1,90 @@
-# OEFR Digital
+# ~/apps
 
-**Building a $1M/year digital business with zero human employees.**
+**This directory is not a git repository.** It is a plain folder holding
+independent projects, each with its own git repo and history.
 
-OEFR Digital is an autonomous AI-operated digital products company. Trinity (AI CEO) handles strategy, product development, marketing, and operations. TJ (Founder/Chairman) provides direction and oversight.
+That changed on **2026-07-25**. Until then `~/apps` was itself a git repo — the
+public `oefr-digital` monorepo — which tracked 14 top-level paths while 37 other
+projects underneath kept separate repos of their own. The two schemes overlapped
+and, for `options-agent`, actively conflicted: two repos believed they owned the
+same 40 files.
 
-## 🚀 The Mission
+The company README that used to live here is now
+[`docs/README.md`](docs/README.md), with the other company documentation.
 
-| Milestone | Target | Status |
-|-----------|--------|--------|
-| Month 1 | $5K MRR | 🔄 In Progress |
-| Month 6 | $50K MRR | ⏳ Planned |
-| Year 1 | $1M ARR | ⏳ Planned |
+## Current structure
 
-**Founded:** March 12, 2026  
-**Domain:** [oefrenterprise.com](https://oefrenterprise.com)  
-**Storefront:** [oefr-digital.vercel.app](https://oefr-digital.vercel.app)
+**48 standalone git repos** directly under `~/apps/`. Twelve were extracted from
+the old monorepo on 2026-07-25, each with its history preserved via
+`git subtree split` (eleven remain — see `oefr-digital` below):
 
-## 📦 Product Catalog (17 Products)
+| Project | Commits | Notes |
+|---|---|---|
+| `oefr-website` | 62 | storefront; 47 previously-unversioned source files committed |
+| `trinity-agent` | 31 | 151 tests pass |
+| `crypto` | 29 | `.gitignore` added — it had none, and `.env` holds live keys |
+| `options-agent` | 24 | double-tracking resolved; prior 73-commit repo archived |
+| `OEFR Digital Products` | 22 | 12 nested product repos gitignored |
+| `auto-research-trader` | 8 | |
+| `tek-proposal` | 5 | |
+| `dataStructured` | 4 | 91 tests pass; ops belong to Trinity/Ralph |
+| `docs` | 1 | company-level strategy docs |
+| `journal` | 1 | |
+| `auto-research-trader-v3` | 1 | |
 
-### Network Engineering Tools
-| Product | Price | Platform |
-|---------|-------|----------|
-| Enterprise Network HLD Template | $39 | Stripe + Gumroad |
-| Ansible Network Automation Pack | $49 | Stripe + Gumroad |
-| Network Documentation Bundle | $59 | Stripe + Gumroad |
-| Routing Protocol Cheat Sheets | $14 | Stripe + Gumroad |
-| Network Security Audit Checklist | $24 | Stripe + Gumroad |
+`cycle-trader` (69 commits) was extracted separately earlier the same day.
 
-### SaaS Web Apps
-| Product | Price | URL |
-|---------|-------|-----|
-| BudgetWise Pro | $29 | budget-tracker-lime-psi.vercel.app |
-| InvoiceFlow | $37 | invoice-generator-nine-psi.vercel.app |
-| ResumeForge | $29 | resume-builder-delta-puce.vercel.app |
-| Postify Content Calendar | $29 | content-calendar-vert.vercel.app |
-| VaultPass Password Manager | $19 | password-vault-kappa-ten.vercel.app |
-| MealCraft Pro | $27 | meal-planner-taupe-one.vercel.app |
-| SignatureCraft | $9 | email-signature-liart.vercel.app |
-| SubTracker | $19 | subscription-tracker-mu-two.vercel.app |
-| HabitForge | $19 | habitforge-nu.vercel.app |
+**No extracted repo has a remote.** Nothing is pushed anywhere unless TJ asks.
 
-### AI Prompt Packs (Gumroad)
-| Product | Price | Code |
-|---------|-------|------|
-| 100 AI Prompts for Network Engineers | $19 | velypm |
-| AI Business Toolkit: 150 ChatGPT Prompts | $19 | qjrwxp |
-| 10 Free AI Prompts (Lead Magnet) | FREE | Pending |
+## Where to commit
 
-## 🏗️ Architecture
+Commit **inside the project directory**. There is no repo at this level any more,
+so a `git commit` run from `~/apps` fails rather than silently sweeping up
+another project's work. That is the point.
 
-- **Hosting:** Vercel (all web apps + storefront)
-- **Payments:** Stripe (live keys) + Gumroad
-- **DNS:** Vercel nameservers, Google Workspace MX preserved
-- **AI Stack:** Claude Opus 4.6 (Trinity/CEO), Claude Sonnet 4.6 (Neo/CTO + Dev Agents)
-- **Orchestration:** OpenClaw (agent framework)
+## The old monorepo history
 
-## 🤖 Team (All AI)
+Archived, not deleted:
 
-| Role | Agent | Model |
-|------|-------|-------|
-| CEO | Trinity | Claude Opus 4.6 |
-| CTO/CSO | Neo | Claude Sonnet 4.6 |
-| Dev Agent | On-demand subagents | Claude Sonnet 4.6 |
-| Job Scout | Cron (8 AM M-F) | Claude Sonnet 4.6 |
+```bash
+git --git-dir=~/repo-archives/apps-monorepo-dotgit-2026-07-25 log --oneline
+```
 
-## 📖 Documentation
+- `~/repo-archives/apps-monorepo-dotgit-2026-07-25/` — the full 259-commit `.git`
+- `~/repo-archives/apps-monorepo-MANIFEST.txt` — every commit
+- `~/repo-archives/apps-monorepo-EXTRACTION-COMMITS.txt` — the 13 extraction commits
 
-- [Journey Log](journal/README.md) — Daily progress log
-- [Architecture](docs/architecture.md) — Technical infrastructure
-- [Product Playbook](docs/product-playbook.md) — How we build and ship
-- [Marketing Strategy](docs/marketing.md) — Distribution channels and tactics
-- [Security](docs/security.md) — Audit findings and remediation
+Those 13 commits were **not pushed**. `origin/master` on GitHub still sits 13
+commits behind, showing the pre-split state. Pushing is outward-facing and was
+left as TJ's call.
 
-## 📊 Revenue
+## Decisions TJ made on 2026-07-25
 
-See [journal/revenue.md](journal/revenue.md) for daily revenue tracking.
+- **`oefr-digital` was removed.** It was a stale 2026-03-18 snapshot of 8
+  `oefr-website` files (5 of which had since diverged, with `oefr-website`
+  holding the newer versions), had no `package.json` and could not build.
+  Moved to `~/repo-archives/oefr-digital-stale-duplicate-2026-07-25/` rather
+  than deleted outright, so it is recoverable. Nothing referenced its path — no
+  cron entry, no script, no `.vercel` link. `oefr-website` builds clean without it.
+- **`crypto/auto-research-trader-v3` (632 files) and
+  `crypto/auto-research-trader` (3,156 files) stay unversioned, deliberately.**
+  TJ's call: still useful, but not worth tracking. They are gitignored inside
+  `crypto/` so they can never be swept into that repo by accident. Being outside
+  git, they have **no history and no recovery path** — back them up by copying,
+  not by committing.
+- **The 13 extraction commits were pushed** to `origin/master`. The public repo
+  now reflects the split rather than the pre-split monorepo.
+- The Etsy password in the public history is **accepted as-is** — the `.profile`
+  value stays current. No rotation.
 
----
+## ⚠️ Still unversioned
 
-*This repo is maintained daily by Trinity (AI CEO) as the public record of OEFR Digital's journey from $0 to $1M.*
+These directories have no git repo at all, some of them large:
+`hyper-grok-dashboard` (121k files), `email-webhook` (29k), `email-signature`
+(21k), `browser-use-mcp-server` (18k), `interview` (10k),
+`SMB_youtube_transcripts`, `tiktok-marketing`, `scroll-site-test`,
+`eckrown_youtube_transcripts`, `images_openai`, `interview-prep`,
+`tradingview-scripts`. They were outside this migration's scope.
+
+`.gitignore` at this level is now inert — nothing reads it. Kept only in case
+this directory is ever re-initialised as a repo.

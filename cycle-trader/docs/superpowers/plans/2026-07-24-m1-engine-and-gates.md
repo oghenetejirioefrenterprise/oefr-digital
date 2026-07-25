@@ -880,17 +880,25 @@ def test_quiet_weeks_constant_is_26():
 
 
 def test_armed_weeks_within_26_quiet_weeks_cluster_into_one_episode():
+    # 2020-01-06, -13, -20 are consecutive real Mondays
     weeks = [wk(f"2020-01-{i:02d}", 1, 1, 1) for i in (6, 13, 20)]
     rsi = [Decimal("30"), Decimal("40"), Decimal("30")]  # armed, quiet, armed
     assert find_triggers(weeks, rsi) == ["2020-01-06"]
 
 
 def test_trigger_after_26_quiet_weeks_starts_a_new_episode():
-    weeks = [wk("2020-01-06", 1, 1, 1)]
-    weeks += [wk(f"w{i}", 1, 1, 1) for i in range(QUIET_WEEKS + 1)]
-    weeks += [wk("2020-08-03", 1, 1, 1)]
+    """Filler weeks must carry REAL ISO Mondays: Task 1 hardened `Week` to
+    validate `monday` as an ISO YYYY-MM-DD date, so placeholder labels like
+    "w0"/"w1" now raise ValueError at construction."""
+    from datetime import date, timedelta
+    start = date.fromisoformat("2020-01-06")
+    mondays = [(start + timedelta(weeks=k)).isoformat()
+               for k in range(QUIET_WEEKS + 3)]
+    weeks = [wk(m, 1, 1, 1) for m in mondays]
     rsi = [Decimal("30")] + [Decimal("50")] * (QUIET_WEEKS + 1) + [Decimal("30")]
-    assert find_triggers(weeks, rsi) == ["2020-01-06", "2020-08-03"]
+    assert len(rsi) == len(weeks)
+    # armed, then 27 consecutive quiet weeks (>= 26 closes the window), then armed
+    assert find_triggers(weeks, rsi) == [mondays[0], mondays[-1]]
 
 
 def test_none_armed_gives_no_triggers():

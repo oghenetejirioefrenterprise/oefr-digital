@@ -44,8 +44,14 @@ transfer to a developer with no context (PRD §6.4).
    its reading is. G1–G5 are the owner's own chart reads — G1 (2015) is what forced
    Amendment 1; G5 is live EP6.
 2. **This app implements; it does not fit.** No parameter search, no
-   re-optimization, no "improving" a constant. `R_e = 15` and `1.272` are the unique
-   gate-passing values, not tunables.
+   re-optimization, no "improving" a constant. `R_e = 15` and `1.272` are frozen
+   owner choices, not tunables.
+   *Accuracy note (measured 2026-07-25, SPEC §13.3a):* earlier wording here called
+   these "the unique gate-passing values". For `R_e` that is false — 13.8 through
+   15.0 all pass the full suite, so 15 is the upper **edge** of a passing interval.
+   `QUIET_WEEKS = 26` sits in an even wider plateau (§13.5). The rule is unchanged
+   — **do not tune them** — but do not cite them as gate-derived either. What the
+   gates prove is that R10 and R20 both fail, not that 15 is singular.
 3. **Amendment by addition only.** Rule changes require owner approval, a new spec
    version + hash, an appended (never edited) amendment entry, and every prior gate
    still passing. Historical records get withdrawn with a reason or appended — never

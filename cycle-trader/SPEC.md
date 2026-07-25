@@ -473,6 +473,31 @@ by 152.40 on 2015-01-14, BoS week 2015-01-26 @ 309.90 · G2 `+63.2%` off 6,435, 
 `cy1_lifecycle.json → ep6_operative_by_Re` confirms R10 → 67,292 (wrong), R15 and
 R20 → 82,850.
 
+### 13.3a `R_e = 15` is an edge, not a unique point (measured 2026-07-25)
+
+§4.2 calls 15 "the unique value passing all gates", and CLAUDE.md repeats it. Swept
+against the full M1 suite, **that is not true**:
+
+| `R_e` | Result |
+|---|---|
+| 13.5 | fails |
+| **13.8 · 13.9 · 14 · 14.5 · 14.99 · 15** | **all pass 190/190** |
+| 15.01 · 16 · 19.6 · 20 | fail |
+
+So 15 is the **upper edge** of a passing interval of roughly `(13.5, 15.0]`. The
+gates cannot distinguish 14 from 15.
+
+What §4.2's evidence actually establishes is narrower and still sound: **R10 and
+R20 both fail** — R10 admits the +11% FTX bounce, R20 rejects Jan-2015's +19.6%
+rally and loses G1's 2015-01-26 BoS. Both remain true. The overclaim is "unique",
+not the choice of 15.
+
+This does not make the engine wrong — 15 is the owner's value and it passes. It
+means the *record cannot justify* 15 over 14 on gate evidence alone, exactly as
+§13.5's 26-quiet-week plateau cannot justify 26 over 30. Treat both as
+owner-chosen constants that sit safely inside a passing region, and do not cite
+either as gate-derived.
+
 ### 13.4 Confirmation resolution
 
 Confirmation (§4.3) is a **daily** low, strictly less than `L₀` — per G1's

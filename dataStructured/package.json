@@ -1,6 +1,0 @@
-{
-  "name": "datastructured",
-  "private": true,
-  "description": "OEFR DataStructured — Python data-harvest/ship/distribution pipeline. The storefront lives in site/ (separate Next.js package). No root-level Node dependencies.",
-  "dependencies": {}
-}

@@ -3405,7 +3405,7 @@ export const blogPosts: BlogPost[] = [
         Two habits prevent nearly every TWP horror story. <strong class="text-white">One:</strong> report wages monthly through your <em>my Social Security</em> account (or your local office) so an overpayment can never silently accumulate. <strong class="text-white">Two:</strong> keep a month-by-month ledger — gross wages, the year-specific trigger, service-month yes/no, running 9-in-60 count, and IRWE receipts. When SSA reviews your work activity, they send <strong class="text-white">form SSA-821-BK (Work Activity Report)</strong>, which asks for exactly this, month by month, going back years. With a ledger it's a 20-minute form. Without one it's a panic — and the estimates you put down become the record you're arguing against later.
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
-        Free resources worth knowing: SSA's <strong class="text-white">Red Book</strong> (the official work-incentives guide, free PDF), the yearly amounts at <strong class="text-white">ssa.gov/oact/cola</strong>, and a <strong class="text-white">WIPA counselor</strong> (free benefits counseling via Ticket to Work) who can walk your specific case. What none of them hand you is the tracking artifact itself — a live spreadsheet that applies each year's threshold to each year's months and keeps the rolling 9-in-60 count for you. That's the gap our <a href="https://3563705146415.gumroad.com/l/nrdrj" class="text-amber-400 hover:text-amber-300 underline">SSDI Trial Work Period Tracker Kit</a> fills — free to pre-order today.
+        Free resources worth knowing: SSA's <strong class="text-white">Red Book</strong> (the official work-incentives guide, free PDF), the yearly amounts at <strong class="text-white">ssa.gov/oact/cola</strong>, and a <strong class="text-white">WIPA counselor</strong> (free benefits counseling via Ticket to Work) who can walk your specific case. What none of them hand you is the tracking artifact itself — so build it the day you start working: a spreadsheet with one row per month and columns for gross wages, that year's trigger amount, service-month yes/no, the running 9-in-60 count, and IRWE receipts. Ten minutes of setup now is what turns a future SSA-821-BK into a 20-minute form.
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
         If you're earlier in the process and heading to an ALJ hearing, see our guide to <a href="/blog/ssdi-hearing-5-day-evidence-rule" class="text-amber-400 hover:text-amber-300 underline">the SSDI 5-day evidence rule (inform vs. submit)</a> — a different clock entirely, and one that wins or loses hearings.
@@ -3415,23 +3415,17 @@ export const blogPosts: BlogPost[] = [
         Many people tracking TWP months got here through a <strong class="text-white">group long-term disability policy</strong>: employer-sponsored LTD plans almost universally require claimants to apply for SSDI, because the plan offsets your SSDI award against what the insurer pays. If that's you and the insurer has <strong class="text-white">denied or cut off your LTD claim</strong>, know that the LTD appeal runs on a completely separate clock from anything SSA does. For employer group plans governed by ERISA, federal rules give you <strong class="text-white">at least 180 days to appeal</strong> — your denial letter's date governs your exact deadline — and you have the right to request the insurer's <strong class="text-white">entire claim file, free</strong> (29 CFR 2560.503-1). Both matter immediately, because federal courts reviewing an ERISA denial later rarely look beyond the administrative record you build during that appeal window.
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
-        Winning your SSDI case does not automatically fix an LTD denial, and returning to work under TWP rules doesn't pause the LTD appeal clock either. If you're in that window, our <a href="https://3563705146415.gumroad.com/l/qjjwv" class="text-amber-400 hover:text-amber-300 underline">LTD Denial Appeal Kit — ERISA 180-Day Response Pack</a> organizes the deadline math, the claim-file request, and the evidence checklist ($0 pre-order today). ERISA group plans only — individual policies and government/church plans follow different rules — and for final denials, buyout offers, or litigation, retain an ERISA attorney.
+        Winning your SSDI case does not automatically fix an LTD denial, and returning to work under TWP rules doesn't pause the LTD appeal clock either. If you're in that window, start with our guide to <a href="/blog/erisa-ltd-denial-claim-file-180-day-appeal-2026" class="text-amber-400 hover:text-amber-300 underline">the ERISA 180-day LTD appeal — the claim-file request, the deadline math, and the evidence checklist</a>. ERISA group plans only — individual policies and government/church plans follow different rules — and for final denials, buyout offers, or litigation, retain an ERISA attorney.
       </p>
       <p class="text-sm text-slate-400 leading-relaxed mb-6 italic">
         This article is general educational information about Social Security work rules, not legal or benefits advice. Thresholds shown are the official SSA amounts for the years stated; always verify current-year figures at ssa.gov and confirm your specific situation with SSA or a WIPA counselor. The LTD section describes ERISA group-plan procedure generally and is not legal advice.
       </p>
     `,
     cta: {
-      text: "Pre-order the SSDI Trial Work Period Tracker Kit (free today, $14 on release)",
-      href: "https://3563705146415.gumroad.com/l/nrdrj",
+      text: "Get the SSDI Hearing Evidence Letter Kit — $14 instant download",
+      href: "/ssdi-hearing-evidence-letter",
     },
     relatedProducts: [
-      {
-        name: "SSDI Trial Work Period Tracker — TWP/EPE Wage Kit (2026)",
-        href: "https://3563705146415.gumroad.com/l/nrdrj",
-        description:
-          "Rolling 9-in-60 TWP tracker with year-specific thresholds (Google Sheets + Excel), 36-month EPE grid with SGA flags, grace-period decoder, IRWE worksheet, and SSA-821-BK wage-reporting walkthrough — $0 pre-order, free for claimers on release.",
-      },
       {
         name: "SSDI Hearing Evidence Letter Kit",
         href: "/ssdi-hearing-evidence-letter",
@@ -3439,10 +3433,10 @@ export const blogPosts: BlogPost[] = [
           "Fill-in-the-blank INFORM letter template for the 5-day evidence rule (20 CFR § 404.935), with procedural explainer and deadline calendar. Instant PDF, $14.",
       },
       {
-        name: "LTD Denial Appeal Kit — ERISA 180-Day Response Pack",
-        href: "https://3563705146415.gumroad.com/l/qjjwv",
+        name: "ERISA 180-Day LTD Appeal Guide (free)",
+        href: "/blog/erisa-ltd-denial-claim-file-180-day-appeal-2026",
         description:
-          "Group LTD claim denied? Organize the ERISA appeal: claim-file request walkthrough, 180-day deadline tracker, administrative-record evidence checklist, appeal-letter framework. $0 pre-order; educational templates, not legal advice — ERISA group plans only.",
+          "Group LTD claim denied? The claim-file request, letter-controlled deadline tracker, and administrative-record evidence sequence — free educational guide, ERISA group plans only, not legal advice.",
       },
     ],
     faq: [
@@ -3802,7 +3796,7 @@ export const blogPosts: BlogPost[] = [
       </ul>
 
       <p class="text-slate-300 leading-relaxed mb-6">
-        If you want the whole process packaged — the coverage decision tree, the GFE-variance dispute pathway with its deadline, the PPDR filing walkthrough, pre-written dispute letters citing 45 CFR Part 149, and the evidence-binder checklist — that is exactly what our <a href="https://gumroad.com/l/nsabillfight" class="text-cyan-400 hover:text-cyan-300 underline">No Surprises Act Bill-Fight Kit</a> organizes into one usable sequence.
+        If you want the whole process in one pass, work straight from this guide: run the coverage decision tree above, request the itemized bill and your GFE records in writing the day the bill arrives, calendar the 120-day PPDR deadline immediately, and build the evidence binder before you file — disputes get bounced for missing documentation far more often than on the merits.
       </p>
 
       <p class="text-slate-400 text-sm leading-relaxed mb-6">
@@ -3810,14 +3804,14 @@ export const blogPosts: BlogPost[] = [
       </p>
     `,
     cta: {
-      text: "Get the No Surprises Act Bill-Fight Kit",
-      href: "https://gumroad.com/l/nsabillfight",
+      text: "Browse more consumer-defense guides",
+      href: "/blog",
     },
     relatedProducts: [
       {
-        name: "No Surprises Act Bill-Fight Kit",
-        href: "https://gumroad.com/l/nsabillfight",
-        description: "Coverage decision tree, GFE $400-rule dispute pathway, PPDR filing walkthrough, citation-armed dispute letters, and evidence-binder checklist.",
+        name: "IRS CP2000 Notice? The 30-Day Response Walkthrough (free guide)",
+        href: "/blog/irs-cp2000-notice-response-2026",
+        description: "Another deadline-driven dispute process, same discipline: decode the notice, build the paper trail, and respond inside the window.",
       },
     ],
     faq: [
@@ -4926,7 +4920,7 @@ export const blogPosts: BlogPost[] = [
         Confirm ERISA group-plan scope. Send the written claim-file request. Build the 180-day (letter-controlled) deadline tracker. Extract every denial reason into a response matrix. Start treating-provider updates aimed at those reasons — not a generic "please support my claim" note. Do not burn the administrative record on a week-one vent letter.
       </p>
       <p class="text-slate-300 leading-relaxed mb-6">
-        If you want that sequence packaged — "Is my plan ERISA?" decoder, claim-file request letter template, 180-day deadline tracker, denial-reason decoder, administrative-record evidence checklist, appeal-letter evidence framework, SSDI cross-track pointer, and attorney-escalation checklist — that is the <a href="https://gumroad.com/l/qjjwv" class="text-cyan-400 hover:text-cyan-300 underline">LTD Denial Appeal Kit — ERISA 180-Day Response Pack</a> ($0 pre-order today; releases 2026-07-24; educational templates only — not legal advice, ERISA group plans only).
+        If you want that sequence in one place, work straight from this article: confirm ERISA scope, send the claim-file request first, build the letter-controlled deadline tracker, turn every denial reason into a response-matrix row, and aim each treating-provider update at a specific denial reason. The order matters more than any template — the administrative record you build in this window is what a reviewing court will see.
       </p>
 
       <p class="text-slate-400 text-sm leading-relaxed mb-6">
@@ -4934,16 +4928,10 @@ export const blogPosts: BlogPost[] = [
       </p>
     `,
     cta: {
-      text: "Reserve the LTD Denial Appeal Kit — $0 pre-order",
-      href: "https://gumroad.com/l/qjjwv",
+      text: "Adjacent SSDI track: Hearing Evidence Letter Kit — $14 instant download",
+      href: "https://www.oefrenterprise.com/ssdi-hearing-evidence-letter",
     },
     relatedProducts: [
-      {
-        name: "LTD Denial Appeal Kit — ERISA 180-Day Response Pack",
-        href: "https://gumroad.com/l/qjjwv",
-        description:
-          "Claim-file request template, 180-day deadline tracker, administrative-record checklist, appeal evidence framework, SSDI cross-track pointer — educational only, ERISA group plans, not legal advice.",
-      },
       {
         name: "SSDI 5-Day Hearing Evidence Letter Kit",
         href: "https://www.oefrenterprise.com/ssdi-hearing-evidence-letter",

@@ -11,6 +11,7 @@ from engine.lifecycle import (
     prior_cycle_ath,
     running_low,
 )
+from engine.levels import extension_1272
 from engine.rsi import wilder_rsi
 from engine.types import Bar, Week
 
@@ -94,10 +95,12 @@ def test_ep4_episode_low_from_d_not_from_prior_ath():
 
 
 def test_ep5_frozen_el_reproduces_the_1272_exit():
-    """EL* = 15,476 and prior ATH 69,000 give SPEC §11's Exit 1 of 83,558.53."""
-    el = Decimal("15476")
-    ath = Decimal("69000")
-    lvl = el + Decimal("1.272") * (ath - el)
+    """EL* = 15,476 and prior ATH 69,000 give SPEC §11's Exit 1 of 83,558.53.
+
+    §13.1's argument for the frozen anchor: the extension only reconciles with
+    the record when it is anchored on EL* rather than on a still-running low.
+    Driven through engine.levels so this asserts the engine, not the arithmetic."""
+    lvl = extension_1272(Decimal("15476"), Decimal("69000"))
     assert abs(lvl - Decimal("83558.53")) < Decimal("0.01")
 
 

@@ -487,14 +487,22 @@ weeks** after the last armed week close the window, so the next armed week start
 a new episode. *(Note: the entire clustering rule is absent from the anchored
 artifact — see the provenance block.)*
 
-**26 is historically unfalsifiable, but robustly so** (measured 2026-07-25).
-**Every** value in `[10, 52]` produces the identical six triggers on the frozen
-data. It breaks only at ≤8 — where EP2 splits into 2014-09-22 + 2014-12-29 and
-EP6 into 2026-01-26 + 2026-06-01, giving eight triggers — and at ≥78, where EP3
-merges into EP4 and only five remain. So 26 sits in the interior of a 5.2×-wide
-plateau: the record can neither confirm nor refute it, but it also cannot be wrong
-by a little. The defensible claim is "26 is interior to the plateau", and that is
-what a fixture should pin (at 9/10 and 52/53), not the value itself.
+**26 is historically unfalsifiable, but robustly so** (swept `q = 1…119` against
+the frozen data, 2026-07-25; figures corrected after a first pass reported them
+wrong). **Every** value in `[10, 57]` — 48 consecutive values, a 5.7× span —
+produces the identical six triggers. The plateau is contiguous and breaks at
+exactly two points:
+
+| | Triggers | What changes |
+|---|---|---|
+| `q = 9` | 7 | EP6 splits |
+| `q ∈ [10, 57]` | **6** | the recorded episode set |
+| `q = 58` | 5 | EP4 merges into EP3 |
+
+So 26 sits deep in the interior: the record can neither confirm nor refute it, but
+it also cannot be wrong by a little. The defensible claim is "26 is interior to the
+plateau" — pin the **edges (9/10 and 57/58)**, not the value. Note the chain gate's
+exact six-trigger assertion already pins both edges as a side effect.
 
 ### 13.6 Accumulation-line lifetime
 

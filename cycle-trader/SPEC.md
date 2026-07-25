@@ -790,6 +790,42 @@ as "4 clean episodes".
 exclude the 2011 thin-market data and accept whatever EP1 then does, or (c) find
 the independent rule basis the prose asserts but the algorithm does not apply.*
 
+**OQ-7 — §6.2's mirror exit has three undefined parameters, all of which change
+which orders exist. → RAISED 2026-07-25 during the M1 gate build.**
+
+Exit 2 sells the remaining half of the position. Implementing its detector surfaced
+three places where §6.2's prose does not determine the behaviour. Each was resolved
+one way to ship M1, each choice is disclosed in `engine/structure.py` and pinned by
+an observable assertion — but **none is settled**, and all three meet §14's blocking
+criterion: they change which orders exist.
+
+**(a) The decline's argmax scope.** §6.2 measures the decline "from the argmax high
+**since the prior swing**" — self-referential, since the prior swing is what we are
+computing. Implemented as the argmax over all prior weeks in the passed scope. The
+divergence is real: after a lower top `T2 < T1`, a dip ≥10% off `T1` but <10% off
+`T2` is wrongly accepted.
+
+**(b) The confirmation reference price.** §6.2 says a swing low is "confirmed by a
+subsequent higher high" without saying *higher than what*. Two readings:
+
+| | Confirms when a later daily high exceeds… | Post-crash behaviour |
+|---|---|---|
+| **(a) implemented** | the candidate week's own high | the five post-2025-10 rows confirm normally |
+| **(b) strict §4.3 mirror** | the decline's top high | **nothing confirms until a new ATH** |
+
+G4 cannot separate them — both give signal 2025-10-10 and the same fill. But under
+(b) a live position would **never receive a mirror signal during a bear leg**. Note
+(a) mirrors §4's *invalidation*, not its confirmation.
+
+**(c) The mirror fill's `top_high` scan origin.** The target is
+`(top_high + low_so_far) / 2`, and §6.2 never says over what window `top_high` is
+taken. Three candidates — the detector's window start, the BoS, or the position
+lifetime — and this value **directly prices the resting sell order**.
+
+*Not blocking M1: no engine code executes the mirror signal or fill loop yet (that
+is M2/Task 14), and G4 runs the detector standalone per §13.9. Blocking M5
+alongside OQ-1 and the §4 over-commit.*
+
 **OQ-5 — EP3's 2019 BoS still lacks owner sign-off.**
 Flagged in Amendment 1 and in §11 ("no owner anchor for 2019 — rule output, owner
 sign-off pending"). It contributes +879.89% — **36% of the headline sum**. Until

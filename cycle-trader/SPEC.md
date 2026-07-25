@@ -487,6 +487,15 @@ weeks** after the last armed week close the window, so the next armed week start
 a new episode. *(Note: the entire clustering rule is absent from the anchored
 artifact — see the provenance block.)*
 
+**26 is historically unfalsifiable, but robustly so** (measured 2026-07-25).
+**Every** value in `[10, 52]` produces the identical six triggers on the frozen
+data. It breaks only at ≤8 — where EP2 splits into 2014-09-22 + 2014-12-29 and
+EP6 into 2026-01-26 + 2026-06-01, giving eight triggers — and at ≥78, where EP3
+merges into EP4 and only five remain. So 26 sits in the interior of a 5.2×-wide
+plateau: the record can neither confirm nor refute it, but it also cannot be wrong
+by a little. The defensible claim is "26 is interior to the plateau", and that is
+what a fixture should pin (at 9/10 and 52/53), not the value itself.
+
 ### 13.6 Accumulation-line lifetime
 
 Lines are live from the trigger day through the **BoS day inclusive**. After the
@@ -662,6 +671,20 @@ A per-candidate reading of the guard does not rescue the prose either: all 12
 candidates carry anchors between 2011-08-29 and 2011-10-03, every one *strictly
 before* the 2011-11-21 trigger. The scan never reaches 2013, so the 2013-era
 anchors §13.3 blames are never even evaluated.
+
+**The artifact does double duty — which makes the circularity worse, not better
+(refined 2026-07-25 during the M1 gate build).** Bypassing only the *guard*, while
+leaving the wick in place, still yields no trade: the scan produces 11 candidates
+but every one has `confirmed_at = None`. That is not an independent rule basis —
+it is the same artifact acting a second time. Because the wick makes the trigger
+week itself the argmax, D lands *after* the real 2011 bottom (2.22, printed
+2011-10-20/21), so the scan window is truncated, every rally origin `L₀` collapses
+to the minimum of what remains, and confirmation becomes impossible by
+construction. Remove the wick and both mechanisms release together.
+
+So EP1's expiry is doubly determined by one bad print. A mutation of the guard
+looks "chain-equivalent" on the frozen data, but that means the guard is
+**unexercised**, not that it is validated.
 
 **The circularity:** §0 dismisses the wick as a known wart on the grounds that
 "EP1 is expired under v1.1 anyway — see §11", while §11's `EXPIRED` row is

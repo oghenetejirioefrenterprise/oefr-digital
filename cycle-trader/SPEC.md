@@ -723,6 +723,34 @@ fill dates, fill prices, exit dates, exit prices — all of which reconcile exac
 with `cy1_lifecycle.json`. Treat derived pnl percentages as informational and
 target the reference implementation's values, not §11's transcriptions.
 
+**OQ-1a — Order lifetime across an episode handover. → RAISED 2026-07-25, found by
+the M1 whole-branch review. Distinct from OQ-1 below, which asks about *capital*.**
+
+`filled_purposes` and `held_units` carry **no episode identity**. `OrderPurpose.T1`
+means "T1 filled", not "T1 filled *in this episode*". Measured on the record with
+`filled_purposes={T1,T2,T3}, held_units=7`:
+
+```
+2020-03-14  CONFIRMED (EP3)  ladder + breakout + STOP 3,156.26 ×7 + EXIT1 ×3.5
+2020-03-15  WATCHING  (EP4)  ()          <- the run SUCCEEDS and returns empty
+```
+
+Under the v2 design's desired-state reconciler an empty set means **cancel every
+resting order** — including EP3's stop and Exit 1 on a position still held. The run
+does not raise: the ledger is coherent, and `watching` legitimately rests nothing
+because all three tranches are already in `filled_purposes`.
+
+Three such handovers exist in the record — **2018-11-25** (EP2 distributing → EP3
+watching, on an un-exited half), **2020-03-15**, **2026-02-01** — so on the
+historical record this is the *common* case, not an edge.
+
+M1 now **refuses** rather than returning empty whenever `held_units > 0`, which is
+correct under either answer and consistent with §6's "a failed run changes nothing
+and never cancels". But a refusal is an alert, not a behaviour: M2 needs a defined
+one. *Decide: scope both ledger inputs per episode; or define what a prior
+episode's open position does when a new episode triggers — it currently has no
+stop, no exit and no owner.*
+
 **OQ-1 — Concurrent episodes and capital independence.**
 EP3 (trigger 2018-11-25) is still fully positioned when EP4 triggers 2020-03-15;
 both exit 2021-04-28, and both draw on the same 19,798.68 prior-cycle ATH. §2 says
@@ -914,6 +942,45 @@ reproduce as well, so the conclusion stands; only the attribution was wrong.)*
 implemented all-prior-weeks argmax only; "since the prior swing" has no unambiguous
 implementation to run against it (that ambiguity is the open question). It stays
 fully open, and nothing here should be read as evidence either way.
+
+**OQ-8 — the breakout's touch predicate: §13.2 contradicts §0/§5, the record
+picks a side, and a real exchange picks the other. → RAISED 2026-07-25.**
+
+Three sources, two answers:
+
+| Source | Predicate |
+|---|---|
+| §0 and §5 prose — "the first daily **trade above** the BoS-week high" | strict `>` |
+| **§13.2's table** (added by the v1.2 editorial pass) — buy-stop touch | `high >= level` |
+| A real exchange stop order | `>=` |
+
+`engine/fills.py` implements `>=`, following §13.2. **The record follows `>`.**
+
+EP2, EP3 and EP4 cannot separate them. **EP5 can**, because its breakout level is
+25,250.00 and two days printed a high of *exactly* that:
+
+| | Breakout | 0.5 rung | Breakout units |
+|---|---|---|---|
+| strict `>` | **2023-03-14** | fills 2023-03-09 @ 20,363 | **12** |
+| `>=` | 2023-02-21 | **never fills** | **14** |
+| `cy1_lifecycle.json` | 2023-03-14 | filled 2023-03-09 @ 20,363 | 12 |
+
+So `>=` fires the breakout *before* the 0.5 rung's fill, the rung is skipped, and
+two units migrate from a 20,363 entry to a 25,250 one. Note 2023-02-16 also printed
+exactly 25,250.00 — that is inside the BoS week, and only §5's "after the BoS week"
+rule keeps it out.
+
+This is not a corner case by construction: the breakout level **is** a historical
+bar high, and this dataset contains 362 days whose high exactly repeats an earlier
+high. §13.2's own justification ("G1 and G3 fill at 309.90 / 25,250") cannot
+adjudicate — both predicates give those numbers.
+
+*Decide: (a) `>` everywhere, matching the record and §0/§5, and accept that a live
+exchange stop will fill on an exact touch the backtest would not; (b) `>=`
+everywhere, matching the venue, and accept that §11's EP5 row is then unreachable;
+or (c) `>` for backtest reproduction and `>=` for live, documented as a deliberate
+divergence. Blocks M5 for the same reason OQ-3 did — it changes which orders exist
+and at what size.*
 
 **OQ-5 — EP3's 2019 BoS still lacks owner sign-off.**
 Flagged in Amendment 1 and in §11 ("no owner anchor for 2019 — rule output, owner

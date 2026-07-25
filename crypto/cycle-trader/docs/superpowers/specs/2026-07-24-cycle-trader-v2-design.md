@@ -136,10 +136,16 @@ harmless; a crash mid-run self-heals on the next run; and there is no
 
 | Episode state | Resting at the exchange |
 |---|---|
-| `watching` (pre-BoS) | 3 limit buys at T1 / T2 / T3, **re-priced every run** as the lines move |
-| `confirmed` (post-BoS) | ladder limit buys at 0.5 / 0.62 / 0.786 · stop-market at `EL*` · stop-market at the BoS-week high (breakout fallback) |
-| `distributing` (Exit 1 crossed) | limit sell at the mirror target, **amended daily** as `low_so_far` falls · stop-market at `EL*` |
+| `watching` (pre-BoS) | 3 limit buys at T1 / T2 / T3, **re-priced every run** as the lines move. No stop (SPEC §13.1) and no exits |
+| `confirmed` (post-BoS) | ladder limit buys at 0.5 / 0.62 / 0.786 · stop-market at `EL*` for the **held** units · **limit sell (Exit 1) at the 1.272 extension for half the held units** · stop-market at the BoS-week high (breakout fallback) |
+| `distributing`, armed, **no mirror signal yet** | stop-market at `EL*` for the remainder — and nothing else. The mirror target does not exist before a signal (SPEC §6.2) |
+| `distributing`, **signal fired** | limit sell at the walk-forward mirror target, **amended daily** as `low_so_far` falls · stop-market at `EL*` · market sell if 8 weeks pass with no 50% bounce |
 | `closed` / `stopped` / `expired` | none — the reconciler cancels everything |
+
+Every sell order is sized from **held units** (venue trade history), never from
+the capital plan — a stop for 21 units against a 7-unit position is an order to
+sell BTC the account doesn't hold. (2026-07-24 review; first issue of this table
+omitted Exit 1 and rested the mirror sell unconditionally.)
 
 ### Order types
 
@@ -252,8 +258,13 @@ wrong order.
 1. **Trade-only API key with withdrawals disabled** — asserted at startup; the
    adapter refuses to run if the key reports withdrawal permission.
 2. **Hard notional cap** in config. Any order set exceeding it aborts the run.
-3. **Kill switch** — one flag in Supabase. When set, the next run cancels all
-   orders and goes inert. Reachable from the web app in one click.
+3. **Kill switch** — one flag in Supabase, reachable from the web app in one
+   click. When set, the next run cancels every **entry** order (accumulation,
+   ladder, breakout) and stops placing or amending anything — but **keeps the
+   protective stop and any resting exit sells**. Cancelling the stop on kill
+   would leave an open position unprotected at exactly the moment TJ has decided
+   he distrusts the system. Fully flattening the position is a separate,
+   deliberate manual action, never a side effect of the kill flag.
 4. **Dry-run mode** — computes and journals the full desired order set without
    placing. Must run clean for **30 consecutive days** before live arming, with zero
    aborted runs and zero plausibility refusals in that window.
@@ -299,7 +310,7 @@ variant SPEC §9 rejects. Comparing against either produces nonsense.
 | **M2** | Data adapters, Supabase state + journal, daily Vercel cron, Telegram alerts — **signals only** | Parallel-run agreement vs v4 `cycle_watch.py` (PRD M2 criterion) |
 | **M3** | Venue adapter, reconciler, guard — **dry-run + testnet only** | Testnet episode replays correctly; every interlock provably refuses |
 | **M4** | Web app: read-only dashboard + kill switch | Kill switch works before any live order can exist |
-| **M5** | **Arm live** | OQ-1 and OQ-3 settled + 30 clean dry-run days |
+| **M5** | **Arm live** | OQ-1 settled (OQ-3 resolved 2026-07-24) + 30 clean dry-run days |
 
 Real money appears only at M5, behind a kill switch that already exists and
 interlocks already proven to fire.

@@ -93,8 +93,10 @@ the breakout (→ §13.6, §14 OQ-3 resolved). `cy1_lifecycle.json` deviates her
 ## 4. Structure: lower high & break of structure (v1.1 — Amendment 1)
 
 **→ §13.3 gives the walk-forward algorithm for this section in pseudocode, and
-fixes one term for the three names used below ("prior higher week", "argmax-high
-week its fresh low descends from", "argmax high since the prior swing").**
+disambiguates the section's anchor language: §4.1's "prior higher week"
+(`anchor(i)`, bounding the rally-origin window) and §4.4's "argmax-high week its
+fresh low descends from" (`D`, the downtrend anchor governing scope, freshness
+and the trigger guard) are two different weeks in general — EP4 proves it.**
 
 **Lower-high candidate (the load-bearing definition):** a weekly high H such that
 
@@ -299,10 +301,28 @@ must not be compared against this table:
 unchanged. Where §13 and §§0–11 prose disagree, §13 governs. Items requiring an
 actual owner decision are in §14, not here.
 
+**v1.2.1 correction (2026-07-24, same day):** review against the raw data showed
+the first issue of §13.1/§13.3 used the wrong scope anchor — it measured the
+downtrend scope, the episode low, and fresh-low freshness from the **prior-cycle-ATH
+week**, which fails G2 and mis-states EP4: under that anchor EP4's origin 6,435 is
+not fresh (3,156.26 printed 2018-12-15) and EP4's episode low computes as 3,156.26
+instead of the reference's 3,782.13. The corrected anchor below (scope from the
+previous episode's activation; **D** = that scope's argmax-high week) reproduces
+every gate and every reference value, and matches the rule text
+`episodes_dashboard.json` carried all along ("scope starts at the previous
+episode's activation"). Gates beat prose — including this section's own first
+draft.
+
 ### 13.1 Episode low: running anchor, frozen at BoS — and the stop's true scope
 
-`episode_low(t)` = lowest daily low from the start of the prior-cycle-ATH week
-through day `t` inclusive. It is a **running anchor**, not a stop level.
+`episode_low(t)` = lowest daily low from the start of the **downtrend-anchor week
+D** (defined in §13.3 — *not* necessarily the prior-cycle-ATH week) through day
+`t` inclusive. It is a **running anchor**, not a stop level.
+
+*(v1.2.1: EP4 is why D, not the prior ATH, is the anchor: from the Dec-2017 ATH
+the lowest low is 3,156.26 — EP3's low — but the reference records EP4's episode
+low as 3,782.13, which is the minimum from D = the June-2019 argmax week. The
+other four episodes agree under either anchor; EP4 disambiguates.)*
 
 - At the BoS (first day whose high > operative LH) the value **freezes**:
   `EL* = episode_low(BoS day)`. `EL*` anchors the §5 leg and the §6.1 extension.
@@ -344,24 +364,36 @@ gives exactly §11's "survived by 19.8%".
 G1 and G3 fill the breakout at 309.90 and 25,250 — the BoS-week high itself, which
 only the buy-stop rule reproduces.
 
-### 13.3 Operative-LH algorithm
+### 13.3 Operative-LH algorithm *(v1.2.1 — scope anchor corrected)*
 
-One term replaces the doc's three: for candidate week `i`, **`anchor(i)`** = the
-most recent week `j < i` in scope with `high[j] > high[i]`. This is §4.1's "prior
-higher week", §4.4's "argmax-high week its fresh low descends from", and §6.2's
-"argmax high since the prior swing".
+Two distinct anchors, which the doc's prose blurs and v1.2's first draft wrongly
+merged:
+
+- **`anchor(i)`** — per candidate week `i`: the most recent week `j < i` with
+  `high[j] > high[i]`. This is §4.1's "prior higher week"; it bounds the rally-
+  origin window only.
+- **`D` (downtrend anchor)** — per episode, walk-forward: the argmax-high week of
+  the **scope window**, where the scope window starts at the **previous episode's
+  activation** (its BoS; data start if none). This is §4.4's "argmax-high week its
+  fresh low descends from". D anchors the downtrend scope, the freshness test,
+  the trigger-anchor guard, and §13.1's episode low. D usually *is* the
+  prior-cycle-ATH week (EP2/EP3/EP5/EP6) — but not always: EP4's D is the
+  June-2019 13,970 week, while its **exit** anchor (§6.1's prior_ATH) remains the
+  absolute 19,798.68. Exits and structure use different anchors; EP4 is the
+  episode that proves it.
 
 ```
-scope_start = week of the prior-cycle ATH (all-time-high weekly high before trigger)
+W = [previous episode's activation (BoS date; data start if none), t]
+D(t) = argmax-high week within W                     # walk-forward
 
-for each week i in scope, walk-forward:
+for each week i with monday(i) >= monday(D), walk-forward:
     j    = anchor(i)                       # most recent week with a higher high
     L0   = min(low[j+1 .. i-1])            # rally origin; EXCLUDES week i's own low
     w0   = argmin week of L0
 
-    fresh    = L0 < min(low[scope_start .. w0-1])       # undercut ALL prior lows
+    fresh    = L0 < min(low[D .. w0-1])                 # undercut ALL scope lows
     degree   = (high[i] - L0) / L0 >= 0.15              # R_e = 15
-    guard    = start_of(j) < trigger_week               # anchor predates the trigger
+    guard    = monday(D) < trigger_week                 # D predates the trigger
     if not (fresh and degree and guard): continue
 
     confirmed_at = first DAY after week i whose daily low < L0   # strict; §13.4
@@ -372,6 +404,15 @@ operative_LH(t) = high of the most recent candidate that is
                   confirmed (confirmed_at <= t) and not yet invalidated
 BoS = first day with daily high > operative_LH(t)
 ```
+
+The guard is what expires EP1: its 2013-era candidates descend from the Dec-2013
+ATH, and that D postdates the Nov-2011 trigger.
+
+Verified against raw data (2026-07-24): EP2 D = 1,163 (wk 2013-11-24⁺), 255 fresh
+vs window-min 275 · EP4 D = 13,970 (wk 2019-06-24), **6,435 fresh vs window-min
+6,515** — under a prior-ATH scope it is *not* fresh (3,156.26 exists) and G2
+fails · EP5 D = 69,000, 17,622 fresh vs 26,560, Sept-2022 origin correctly not
+fresh · EP6 D = 126,199.63, low-from-D 57,800.19 — both matching PRD §8.
 
 Reproduces every entry gate: G1 `(305−255)/255 = +19.6%` off fresh 255, confirmed
 by 152.40 on 2015-01-14, BoS week 2015-01-26 @ 309.90 · G2 `+63.2%` off 6,435, the

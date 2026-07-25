@@ -25,6 +25,26 @@
 
 These were confirmed against the frozen snapshots before this plan was written. Treat them as ground truth.
 
+**Scope anchors — the finding that reshaped this plan (v2, 2026-07-24 review).**
+Two anchors per episode, and they differ in EP4:
+
+| Episode | Scope window starts (prev. activation) | **D** (structure/low anchor) | Exit anchor (prior ATH) | Episode low |
+|---|---|---|---|---|
+| EP2 | data start | 1,163.00 (wk of 2013-11-24) | 1,163.00 | 152.40 |
+| EP3 | EP2 BoS (2015-02) | 19,798.68 (Dec-2017) | 19,798.68 | 3,156.26 |
+| EP4 | EP3 BoS (2019-04) | **13,970.00 (2019-06-26)** | **19,798.68** | 3,782.13 |
+| EP5 | EP4 BoS (2020-08) | 69,000.00 (2021-11-10) | 69,000.00 | 15,476.00 |
+| EP6 | EP5 BoS (2023-02) | 126,199.63 (2025-10-06) | 126,199.63 | 57,800.19 (running) |
+
+- **D** = argmax-high week of `[previous episode's activation, now]`, walk-forward.
+  Governs the LH scan scope, the freshness window, the trigger guard, and the
+  episode low (SPEC §13.3 as corrected by v1.2.1).
+- **Exit anchor** = highest weekly high before the trigger, full history
+  (`prior_cycle_ath`). Governs §6.1's 1.272 extension ONLY.
+- Verified: measuring freshness or the episode low from the prior-ATH week
+  **fails G2 and EP4** (6,435 not fresh vs 3,156.26; low 3,156 ≠ reference 3,782.13).
+  Measuring from D reproduces all five episodes exactly.
+
 **On-chain source policy** (verified reproduces every episode fill):
 - `realized` = CoinMetrics `CapMrktCurUSD / CapMVRVCur / SplyCur`, coverage 2010-07-18 → 2026-05-23
 - `realized` **after** CoinMetrics ends = checkonchain `realised` (this is what produces EP6's 52,848)
@@ -801,7 +821,9 @@ git commit -m "feat(cycle-trader): direction-aware fill primitives (SPEC 13.2)"
 
 **Interfaces:**
 - Consumes: `Week`, `EpisodeState`, `EpisodeStatus` from Task 1; `wilder_rsi` from Task 3
-- Produces: `find_triggers(weeks, rsi) -> list[str]`, `prior_cycle_ath(weeks, trigger_monday) -> tuple[Decimal, str]`, `running_low(bars, scope_start, upto) -> Decimal`, `freeze_el(bars, scope_start, bos_date) -> Decimal`
+- Produces: `find_triggers(weeks, rsi) -> list[str]`, `prior_cycle_ath(weeks, trigger_monday) -> tuple[Decimal, str]` (exit anchor ONLY), `downtrend_anchor(weeks, window_start, asof) -> tuple[Decimal, str]` (D — structure/low anchor), `running_low(bars, scope_start, upto) -> Decimal`, `freeze_el(bars, scope_start, bos_date) -> Decimal`
+
+**Two anchors, do not conflate them** (see "Scope anchors" table above): `prior_cycle_ath` feeds the 1.272 extension; `downtrend_anchor` (D) feeds the LH scan, the freshness window, and `running_low`'s `scope_start`. They coincide in every episode except EP4.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -860,6 +882,29 @@ def test_running_low_is_lowest_daily_low_walk_forward():
     assert running_low(bars, "2022-05-23", "2022-11-09") == Decimal("15476")
 
 
+def test_downtrend_anchor_is_argmax_high_week_of_the_window():
+    from engine.lifecycle import downtrend_anchor
+    weeks = [wk("2019-04-01", 5350, 4067, 5250),
+             wk("2019-06-24", 13970, 11000, 12000),
+             wk("2019-10-21", 10370, 8200, 9200),
+             wk("2020-02-10", 10500, 9700, 9900)]
+    d_price, d_week = downtrend_anchor(weeks, window_start="2019-04-01",
+                                       asof="2020-03-09")
+    assert d_price == Decimal("13970")
+    assert d_week == "2019-06-24"
+
+
+def test_ep4_episode_low_from_d_not_from_prior_ath():
+    """The disambiguating case: from the Dec-2017 ATH the min low is 3,156.26
+    (EP3's low); from D = June-2019 it is 3,782.13, which is what the
+    reference records for EP4."""
+    bars = [bar("2018-12-15", 3200, 3250, 3156.26, 3180),   # EP3's low
+            bar("2019-06-26", 12800, 13970, 12000, 13000),   # D week
+            bar("2020-03-13", 5100, 5900, 3782.13, 5500)]    # COVID low
+    assert running_low(bars, "2017-12-11", "2020-03-16") == Decimal("3156.26")
+    assert running_low(bars, "2019-06-24", "2020-03-16") == Decimal("3782.13")
+
+
 def test_ep5_frozen_el_reproduces_the_1272_exit():
     """EL* = 15,476 and prior ATH 69,000 give SPEC §11's Exit 1 of 83,558.53."""
     el = Decimal("15476")
@@ -912,8 +957,13 @@ def find_triggers(weeks: list[Week], rsi: list[Decimal | None]) -> list[str]:
 
 
 def prior_cycle_ath(weeks: list[Week], trigger_monday: str) -> tuple[Decimal, str]:
-    """Highest weekly high strictly preceding the trigger week. Returns
-    (price, that week's Monday). The downtrend scope starts at that week."""
+    """Highest weekly high strictly preceding the trigger week, full history.
+    Returns (price, that week's Monday).
+
+    EXIT ANCHOR ONLY — feeds §6.1's 1.272 extension. It does NOT define the
+    downtrend scope, the freshness window, or the episode low; those come from
+    downtrend_anchor (D). The two differ in EP4: exit anchor 19,798.68,
+    D = 13,970 (SPEC §13.3 v1.2.1)."""
     prior = [w for w in weeks if w.monday < trigger_monday]
     if not prior:
         raise ValueError("no weeks precede the trigger")
@@ -929,16 +979,33 @@ def running_low(bars: list[Bar], scope_start: str, upto: str) -> Decimal:
     return min(lows)
 
 
+def downtrend_anchor(weeks: list[Week], window_start: str,
+                     asof: str) -> tuple[Decimal, str]:
+    """D — the argmax-high week of [window_start, asof], walk-forward.
+
+    window_start = the PREVIOUS episode's activation (BoS date; data start if
+    none). D anchors the LH scan scope, the freshness window, the trigger
+    guard and the episode low (SPEC §13.3 v1.2.1). NOT the exit anchor —
+    that is prior_cycle_ath(), and they differ in EP4.
+    """
+    window = [w for w in weeks if window_start <= w.monday <= asof]
+    if not window:
+        raise ValueError("empty anchor window")
+    best = max(window, key=lambda w: w.high)
+    return best.high, best.monday
+
+
 def freeze_el(bars: list[Bar], scope_start: str, bos_date: str) -> Decimal:
     """EL* — the running low frozen at the BoS day (SPEC §13.1). From the BoS
-    onward this is the stop level; before the BoS it is only an anchor."""
+    onward this is the stop level; before the BoS it is only an anchor.
+    scope_start is D's Monday (downtrend_anchor), not the prior-ATH week."""
     return running_low(bars, scope_start, bos_date)
 ```
 
 - [ ] **Step 4: Run test to verify it passes**
 
 Run: `pytest tests/test_lifecycle.py -v`
-Expected: 7 passed
+Expected: 9 passed
 
 - [ ] **Step 5: Commit**
 
@@ -959,7 +1026,7 @@ git commit -m "feat(cycle-trader): episode lifecycle, clustering and EL* freeze"
 - Consumes: `Bar`, `Week` from Task 1
 - Produces: `LHCandidate` dataclass; `find_lh_candidates(weeks, bars, scope_start, trigger_monday, r_e=Decimal("15")) -> list[LHCandidate]`; `operative_lh(candidates, asof) -> LHCandidate | None`; `find_bos(bars, lh_price, after) -> str | None`; `find_swing_lows(weeks, r_down=Decimal("10")) -> list[...]`
 
-This is the load-bearing algorithm — SPEC §13.3 gives the pseudocode. Follow it exactly.
+This is the load-bearing algorithm — SPEC §13.3 **as corrected by v1.2.1** gives the pseudocode. Follow it exactly. The `scope_start` parameter is **D's Monday** (from `downtrend_anchor`), never the prior-ATH week — passing the prior-ATH week fails G2.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -1253,9 +1320,23 @@ git commit -m "feat(cycle-trader): ladder, 1.272 extension and mirror target"
 
 **Interfaces:**
 - Consumes: everything above
-- Produces: `desired_orders(state, lines, filled_purposes, total_units=Decimal(21)) -> tuple[DesiredOrder, ...]`, `roll_unfilled(acc_unfilled_units, ladder_units) -> dict[str, Decimal]`
+- Produces: `desired_orders(state, lines, filled_purposes, held_units, total_units=Decimal(21)) -> tuple[DesiredOrder, ...]`, `roll_unfilled(acc_unfilled_units, ladder_units) -> dict[str, Decimal]`
 
 **OQ-3 (owner decision 2026-07-24):** unfilled accumulation capital rolls into the **ladder** pool with the ladder's 2:4:8 proportions; ladder rungs that then go unfilled join the **breakout**. Total is 21 units (7 accumulation + 14 ladder).
+
+**Sell-side sizing rule (2026-07-24 review):** every sell order is sized from
+`held_units` — the units actually filled and in the account — never from
+`total_units`. A stop for 21 units against a 7-unit position is an order to sell
+BTC the account doesn't hold; the venue would reject it and the guard would abort
+the run. `held_units` is 0 in M1's stateless calls (no fill tracking yet) and
+comes from venue trade history in M2. Consequences: **no STOP rests while
+`held_units == 0`**, EXIT1 rests for `held_units / 2`, and the DISTRIBUTING
+stop/mirror rest for the post-Exit-1 remainder.
+
+**EXIT1 must rest.** In CONFIRMED state the desired set includes a sell-limit at
+`extension_1272(el_star, prior_ath)` for half the held units — this was missing
+from the first issue of this plan (the `EXIT1` purpose existed but was never
+emitted anywhere).
 
 - [ ] **Step 1: Write the failing test**
 
@@ -1270,7 +1351,8 @@ from engine.types import (DesiredOrder, EpisodeState, EpisodeStatus, OrderKind,
 def test_watching_state_rests_three_accumulation_limit_buys():
     state = EpisodeState(status=EpisodeStatus.WATCHING, trigger_date="2026-02-02")
     lines = {"t1": Decimal("52848"), "t2": Decimal("45849"), "t3": Decimal("38851")}
-    orders = desired_orders(state, lines, filled_purposes=set())
+    orders = desired_orders(state, lines, filled_purposes=set(),
+                            held_units=Decimal(0))
     assert {o.purpose for o in orders} == {OrderPurpose.T1, OrderPurpose.T2, OrderPurpose.T3}
     assert all(o.side is OrderSide.BUY and o.kind is OrderKind.LIMIT for o in orders)
     units = {o.purpose: o.units for o in orders}
@@ -1282,36 +1364,60 @@ def test_watching_state_rests_three_accumulation_limit_buys():
 def test_filled_tranches_are_not_re_rested():
     state = EpisodeState(status=EpisodeStatus.WATCHING, trigger_date="2022-05-23")
     lines = {"t1": Decimal("23188"), "t2": Decimal("21437"), "t3": Decimal("19685")}
-    orders = desired_orders(state, lines, filled_purposes={OrderPurpose.T1})
+    orders = desired_orders(state, lines, filled_purposes={OrderPurpose.T1},
+                            held_units=Decimal(1))
     assert OrderPurpose.T1 not in {o.purpose for o in orders}
 
 
-def test_confirmed_state_rests_ladder_stop_and_breakout():
+def test_confirmed_state_rests_ladder_stop_breakout_and_exit1():
     state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("152.40"),
-                         bos_week_high=Decimal("309.90"), bos_date="2015-01-28")
-    orders = desired_orders(state, lines={}, filled_purposes=set())
+                         bos_week_high=Decimal("309.90"), bos_date="2015-01-28",
+                         prior_ath=Decimal("1163.00"))
+    orders = desired_orders(state, lines={},
+                            filled_purposes={OrderPurpose.T1, OrderPurpose.T2,
+                                             OrderPurpose.T3},
+                            held_units=Decimal(7))
     purposes = {o.purpose for o in orders}
     assert {OrderPurpose.LADDER_050, OrderPurpose.LADDER_062,
             OrderPurpose.LADDER_0786, OrderPurpose.STOP,
-            OrderPurpose.BREAKOUT} <= purposes
+            OrderPurpose.BREAKOUT, OrderPurpose.EXIT1} <= purposes
     stop = next(o for o in orders if o.purpose is OrderPurpose.STOP)
     assert stop.side is OrderSide.SELL and stop.kind is OrderKind.STOP_MARKET
     assert stop.price == Decimal("152.40")
+    assert stop.units == Decimal(7)          # held units, NOT total_units
+    ex1 = next(o for o in orders if o.purpose is OrderPurpose.EXIT1)
+    assert ex1.side is OrderSide.SELL and ex1.kind is OrderKind.LIMIT
+    assert abs(ex1.price - Decimal("1437.88")) < Decimal("0.01")   # G1's Exit 1
+    assert ex1.units == Decimal("3.5")       # half the held units
     brk = next(o for o in orders if o.purpose is OrderPurpose.BREAKOUT)
     assert brk.kind is OrderKind.STOP_MARKET and brk.price == Decimal("309.90")
+
+
+def test_no_stop_and_no_exit1_while_nothing_is_held():
+    """A sell for units the account doesn't hold is an invalid order."""
+    state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("57800"),
+                         bos_week_high=Decimal("82850"), bos_date="2026-09-01",
+                         prior_ath=Decimal("126200"))
+    orders = desired_orders(state, lines={}, filled_purposes=set(),
+                            held_units=Decimal(0))
+    purposes = {o.purpose for o in orders}
+    assert OrderPurpose.STOP not in purposes
+    assert OrderPurpose.EXIT1 not in purposes
 
 
 def test_watching_state_has_no_stop_order():
     """SPEC §13.1: the stop only exists from the BoS onward."""
     state = EpisodeState(status=EpisodeStatus.WATCHING, running_low=Decimal("57800"))
     orders = desired_orders(state, {"t1": Decimal("1"), "t2": Decimal("1"),
-                                    "t3": Decimal("1")}, filled_purposes=set())
+                                    "t3": Decimal("1")}, filled_purposes=set(),
+                            held_units=Decimal(3))
     assert OrderPurpose.STOP not in {o.purpose for o in orders}
 
 
 def test_closed_state_rests_nothing():
     for status in (EpisodeStatus.CLOSED, EpisodeStatus.STOPPED, EpisodeStatus.EXPIRED):
-        assert desired_orders(EpisodeState(status=status), {}, set()) == ()
+        assert desired_orders(EpisodeState(status=status), {}, set(),
+                              held_units=Decimal(21)) == ()
 
 
 def test_oq3_roll_sends_unfilled_accumulation_to_the_ladder_in_2_4_8():
@@ -1340,10 +1446,15 @@ Expected: FAIL with `ModuleNotFoundError: No module named 'engine.orders'`
 
 ```python
 # engine/orders.py
-"""Desired order set per episode state — the v2 design's execution model."""
+"""Desired order set per episode state — the v2 design's execution model.
+
+Sell-side sizing rule: every sell order is sized from held_units (what the
+account actually holds), never from total capital. held_units == 0 in M1's
+stateless calls; M2 feeds it from venue trade history.
+"""
 from __future__ import annotations
 from decimal import Decimal
-from engine.levels import LADDER_UNITS, ladder_levels
+from engine.levels import LADDER_UNITS, extension_1272, ladder_levels
 from engine.types import (DesiredOrder, EpisodeState, EpisodeStatus, OrderKind,
                           OrderPurpose, OrderSide)
 
@@ -1362,6 +1473,7 @@ def roll_unfilled(acc_unfilled_units: Decimal, ladder_units: Decimal) -> dict[st
 
 def desired_orders(state: EpisodeState, lines: dict[str, Decimal],
                    filled_purposes: set[OrderPurpose],
+                   held_units: Decimal,
                    total_units: Decimal = Decimal(21)) -> tuple[DesiredOrder, ...]:
     if state.status in (EpisodeStatus.CLOSED, EpisodeStatus.STOPPED,
                         EpisodeStatus.EXPIRED, EpisodeStatus.IDLE):
@@ -1370,6 +1482,8 @@ def desired_orders(state: EpisodeState, lines: dict[str, Decimal],
     out: list[DesiredOrder] = []
 
     if state.status is EpisodeStatus.WATCHING:
+        # Pre-BoS: accumulation buys only. No stop (SPEC §13.1) and no exits —
+        # the 1.272 level is still a moving prospect, not an anchor.
         for purpose, key in ((OrderPurpose.T1, "t1"), (OrderPurpose.T2, "t2"),
                              (OrderPurpose.T3, "t3")):
             if purpose in filled_purposes or key not in lines:
@@ -1391,23 +1505,38 @@ def desired_orders(state: EpisodeState, lines: dict[str, Decimal],
                                     kind=OrderKind.LIMIT, price=price,
                                     units=pool[name]))
         unfilled_ladder = sum(o.units for o in out)
-        out.append(DesiredOrder(purpose=OrderPurpose.BREAKOUT, side=OrderSide.BUY,
-                                kind=OrderKind.STOP_MARKET,
-                                price=state.bos_week_high, units=unfilled_ladder))
-        out.append(DesiredOrder(purpose=OrderPurpose.STOP, side=OrderSide.SELL,
-                                kind=OrderKind.STOP_MARKET, price=state.el_star,
-                                units=total_units))
+        if unfilled_ladder > 0:
+            out.append(DesiredOrder(purpose=OrderPurpose.BREAKOUT, side=OrderSide.BUY,
+                                    kind=OrderKind.STOP_MARKET,
+                                    price=state.bos_week_high, units=unfilled_ladder))
+        if held_units > 0:
+            out.append(DesiredOrder(purpose=OrderPurpose.STOP, side=OrderSide.SELL,
+                                    kind=OrderKind.STOP_MARKET, price=state.el_star,
+                                    units=held_units))
+            out.append(DesiredOrder(purpose=OrderPurpose.EXIT1, side=OrderSide.SELL,
+                                    kind=OrderKind.LIMIT,
+                                    price=extension_1272(state.el_star, state.prior_ath),
+                                    units=held_units / Decimal(2)))
         return tuple(out)
 
     if state.status is EpisodeStatus.DISTRIBUTING:
-        if state.el_star is not None:
+        # held_units here = the post-Exit-1 remainder, from trade history.
+        if held_units > 0 and state.el_star is not None:
             out.append(DesiredOrder(purpose=OrderPurpose.STOP, side=OrderSide.SELL,
                                     kind=OrderKind.STOP_MARKET, price=state.el_star,
-                                    units=total_units / Decimal(2)))
-        if "mirror" in lines:
+                                    units=held_units))
+        if held_units > 0 and "mirror" in lines:
+            # Only present when the mirror SIGNAL has fired (armed + swing-low
+            # break, confirmation strictly preceding the break) — compute()
+            # gates this; no signal, no resting mirror sell (SPEC §6.2).
             out.append(DesiredOrder(purpose=OrderPurpose.MIRROR, side=OrderSide.SELL,
                                     kind=OrderKind.LIMIT, price=lines["mirror"],
-                                    units=total_units / Decimal(2)))
+                                    units=held_units))
+        if held_units > 0 and lines.get("mirror_fallback"):
+            # 8 weeks past the signal with no 50% bounce: sell at market.
+            out.append(DesiredOrder(purpose=OrderPurpose.MIRROR, side=OrderSide.SELL,
+                                    kind=OrderKind.MARKET, price=None,
+                                    units=held_units))
         return tuple(out)
 
     return tuple(out)
@@ -1416,7 +1545,7 @@ def desired_orders(state: EpisodeState, lines: dict[str, Decimal],
 - [ ] **Step 4: Run test to verify it passes**
 
 Run: `pytest tests/test_orders.py -v`
-Expected: 7 passed
+Expected: 8 passed
 
 - [ ] **Step 5: Commit**
 
@@ -1472,21 +1601,42 @@ def cy1():
 
 
 @pytest.fixture(scope="session")
-def episode_scope(weeks, weekly_rsi):
-    """Derive (trigger_monday, scope_start) per episode FROM THE ENGINE.
+def episode_scope(bars, weeks, weekly_rsi):
+    """Derive (trigger, D) per episode FROM THE ENGINE, chaining activations.
 
-    Never hard-code these: the reference JSONs label weeks by Sunday close and
+    Each episode's scope window starts at the PREVIOUS episode's activation
+    (its BoS), so episodes must be processed in trigger order: EP2's BoS feeds
+    EP3's window, and so on. This chain is also what makes EP4 come out right
+    (D = June-2019 13,970, not the Dec-2017 ATH).
+
+    Never hard-code dates: the reference JSONs label weeks by Sunday close and
     this codebase labels by ISO Monday, so pasted dates are off by six days.
     """
-    from engine.lifecycle import find_triggers, prior_cycle_ath
+    from engine.lifecycle import downtrend_anchor, find_triggers
+    from engine.structure import find_bos, find_lh_candidates, operative_lh
 
     triggers = find_triggers(weeks, weekly_rsi)
+    scopes: dict[str, tuple[str, str]] = {}   # trigger -> (D_monday, bos_date|None)
+    window_start = weeks[0].monday            # data start; EP1 has no predecessor
+    data_end = bars[-1].date
 
-    def scope_for(trigger_monday: str):
-        _ath, ath_week = prior_cycle_ath(weeks, trigger_monday)
-        return trigger_monday, ath_week
+    for trigger, nxt in zip(triggers, triggers[1:] + [None]):
+        era_end = nxt or data_end             # an episode's era ends at the next trigger
+        _d_price, d_week = downtrend_anchor(weeks, window_start, asof=era_end)
+        cands = find_lh_candidates(weeks, bars, scope_start=d_week,
+                                   trigger_monday=trigger)
+        lh = operative_lh(cands, asof=era_end)
+        bos = find_bos(bars, lh.price, after=lh.confirmed_at) if lh else None
+        if bos is not None and nxt is not None and bos >= nxt:
+            bos = None                        # never broke structure inside its era: expired
+        scopes[trigger] = (d_week, bos)
+        if bos is not None:
+            window_start = bos                # next episode's window starts here
 
-    return {"triggers": triggers, "scope_for": scope_for}
+    # Bounding D and the LH pick at era_end is a fixture convenience, not extra
+    # lookahead — every value is re-derived walk-forward inside the gate tests
+    # themselves via operative_lh(asof=...) at in-era dates.
+    return {"triggers": triggers, "scopes": scopes}
 ```
 
 ```python
@@ -1505,14 +1655,15 @@ def pct(a, b):
 
 def scope_for_episode(episode_scope, sunday_label: str):
     """Map a reference episode label (Sunday-anchored) to the engine-derived
-    trigger Monday and scope start. Asserts the engine actually found that
-    trigger rather than trusting a pasted constant."""
+    (trigger Monday, D). Asserts the engine actually found that trigger rather
+    than trusting a pasted constant."""
     from engine.bars import monday_of
     expected_monday = monday_of(sunday_label)
     assert expected_monday in episode_scope["triggers"], (
         f"engine did not detect a trigger at {expected_monday} "
         f"(from reference label {sunday_label}); found {episode_scope['triggers']}")
-    return episode_scope["scope_for"](expected_monday)
+    d_week, _bos = episode_scope["scopes"][expected_monday]
+    return expected_monday, d_week
 
 
 def test_g1_2015_entry(bars, weeks, episode_scope):
@@ -1582,9 +1733,10 @@ Expected: FAIL — either collection error (no `tests/gates/`) or assertion fail
 Expect failures in this order, and fix them in this order:
 
 1. **`find_triggers` doesn't produce the expected Monday.** `scope_for_episode` asserts this first and prints what the engine did find. Check the RSI series alignment (`wilder_rsi` returns `None` for the first 14 weeks) and the 26-quiet-week clustering before suspecting anything else.
-2. **`prior_cycle_ath` returns the wrong week.** It must scan *all* weeks strictly before the trigger, not a bounded window. EP3 and EP4 legitimately share the same prior ATH (19,798.68, Dec-2017).
-3. **A candidate is missing or an excluded high survives.** This is `find_lh_candidates`. Walk SPEC §13.3's pseudocode line by line against the failing week: the usual culprits are `L0` accidentally including the candidate week's own low, and the freshness test comparing against the wrong slice of prior lows.
-4. **BoS lands a week early or late.** `find_bos` must compare *daily* highs strictly greater than the LH, starting strictly after the confirmation date.
+2. **G2 fails on freshness (6,435 rejected) or EP4's low comes out 3,156.** You fed the prior-ATH week as scope instead of **D** — the exact bug the 2026-07-24 review caught. The scan scope and freshness window run from `downtrend_anchor` (D), whose window starts at the previous episode's BoS. `prior_cycle_ath` is ONLY for the 1.272 extension. See the "Scope anchors" table.
+3. **The activation chain is broken.** Each episode's window starts at the previous episode's BoS, so scopes must be derived in trigger order (the `episode_scope` fixture does this). If EP4's D is wrong, the bug may be in EP3's BoS, not EP4.
+4. **A candidate is missing or an excluded high survives.** This is `find_lh_candidates`. Walk SPEC §13.3 (v1.2.1) line by line against the failing week: the usual culprits are `L0` accidentally including the candidate week's own low, and the freshness window not starting at D.
+5. **BoS lands a week early or late.** `find_bos` must compare *daily* highs strictly greater than the LH, starting strictly after the confirmation date.
 
 - [ ] **Step 4: Run tests to verify they pass**
 
@@ -1635,7 +1787,12 @@ def test_g4_mirror_signal_and_fill(bars):
     assert abs(broken.low - Decimal("107255")) < Decimal("200") or \
            abs(broken.low - Decimal("107350")) < Decimal("200")
 
-    signal = next(b for b in window if b.low < broken.low)
+    # The break must come strictly AFTER the swing's confirmation (SPEC §6.2:
+    # "confirmation strictly precedes the break") — searching from the window
+    # start would latch onto the double bottom's own prints.
+    assert broken.confirmed_at is not None
+    signal = next(b for b in window
+                  if b.date > broken.confirmed_at and b.low < broken.low)
     assert monday_of(signal.date) == "2025-10-06"
 
     top = max(b.high for b in window if b.date <= signal.date)
@@ -1670,8 +1827,9 @@ def test_g5_operative_lh_is_82850_not_the_june_bounce(bars, weeks, episode_scope
     from engine.bars import monday_of
     trigger = monday_of("2026-02-01")           # -> 2026-01-26
     assert trigger in episode_scope["triggers"]
-    _t, scope_start = episode_scope["scope_for"](trigger)
-    cands = find_lh_candidates(weeks, bars, scope_start=scope_start,
+    d_week, _bos = episode_scope["scopes"][trigger]
+    assert d_week == "2025-10-06", "EP6's D is the 126,199.63 ATH week"
+    cands = find_lh_candidates(weeks, bars, scope_start=d_week,
                                trigger_monday=trigger)
     lh = operative_lh(cands, asof="2026-07-22")
     assert lh is not None
@@ -1856,7 +2014,16 @@ git commit -m "test(cycle-trader): EP2-EP5 structural regression"
 ## Task 13: OQ-3 synthetic fixture and CI
 
 **Files:**
-- Create: `tests/gates/test_oq3_synthetic.py`, `.github/workflows/gates.yml`
+- Create: `tests/gates/test_oq3_synthetic.py`, `~/apps/.github/workflows/cycle-trader-gates.yml`
+
+**Workflow location matters:** GitHub Actions only reads workflows from the
+**repository root's** `.github/workflows/` — and the repository is `~/apps`, not
+this directory. A workflow file under `crypto/cycle-trader/.github/` would sit
+there silently and never run (the first issue of this plan made exactly that
+mistake). Use a `paths:` filter so the suite runs only on cycle-trader changes.
+Before relying on CI at all, verify the `~/apps` repo actually has a GitHub
+remote with Actions enabled — if it has no remote, flag that to TJ; the gate
+suite still runs locally via `pytest` either way.
 
 The OQ-3 roll has **zero historical coverage** — accumulation filled 3/3 in every episode. EP6 may be the first to take this path, so it needs a synthetic fixture.
 
@@ -1872,9 +2039,12 @@ from engine.types import EpisodeState, EpisodeStatus, OrderPurpose
 
 
 def test_all_accumulation_unfilled_rolls_the_whole_pool_to_the_ladder():
+    """EP6's likely path: BoS with zero tranches filled, held_units 0."""
     state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("57800"),
-                         bos_week_high=Decimal("82850"), bos_date="2026-09-01")
-    orders = desired_orders(state, lines={}, filled_purposes=set())
+                         bos_week_high=Decimal("82850"), bos_date="2026-09-01",
+                         prior_ath=Decimal("126200"))
+    orders = desired_orders(state, lines={}, filled_purposes=set(),
+                            held_units=Decimal(0))
     ladder = [o for o in orders if o.purpose.name.startswith("LADDER")]
     assert sum(o.units for o in ladder) == Decimal(21), \
         "7 unfilled accumulation units must join the 14 ladder units"
@@ -1885,9 +2055,11 @@ def test_all_accumulation_unfilled_rolls_the_whole_pool_to_the_ladder():
 
 def test_partial_accumulation_fill_rolls_only_the_remainder():
     state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("57800"),
-                         bos_week_high=Decimal("82850"), bos_date="2026-09-01")
+                         bos_week_high=Decimal("82850"), bos_date="2026-09-01",
+                         prior_ath=Decimal("126200"))
     orders = desired_orders(state, lines={},
-                            filled_purposes={OrderPurpose.T1, OrderPurpose.T2})
+                            filled_purposes={OrderPurpose.T1, OrderPurpose.T2},
+                            held_units=Decimal(3))
     ladder = [o for o in orders if o.purpose.name.startswith("LADDER")]
     assert sum(o.units for o in ladder) == Decimal(18)  # 14 + T3's 4 units
 
@@ -1896,9 +2068,11 @@ def test_unfilled_ladder_units_join_the_breakout():
     pool = roll_unfilled(Decimal(7), Decimal(14))
     assert sum(pool.values()) == Decimal(21)
     state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("57800"),
-                         bos_week_high=Decimal("82850"), bos_date="2026-09-01")
+                         bos_week_high=Decimal("82850"), bos_date="2026-09-01",
+                         prior_ath=Decimal("126200"))
     orders = desired_orders(state, lines={},
-                            filled_purposes={OrderPurpose.LADDER_050})
+                            filled_purposes={OrderPurpose.LADDER_050},
+                            held_units=Decimal(3))   # the filled 0.5 rung
     brk = next(o for o in orders if o.purpose is OrderPurpose.BREAKOUT)
     ladder = [o for o in orders if o.purpose.name.startswith("LADDER")]
     assert brk.units == sum(o.units for o in ladder)
@@ -1913,12 +2087,14 @@ Expected: FAIL on the unit arithmetic until `roll_unfilled` is wired into `desir
 - [ ] **Step 3: Add the CI workflow and fix any failures**
 
 ```yaml
-# .github/workflows/gates.yml
+# ~/apps/.github/workflows/cycle-trader-gates.yml   (REPO ROOT, not this dir)
 name: CY-1 gates
 
 on:
   push:
+    paths: ["crypto/cycle-trader/**"]
   pull_request:
+    paths: ["crypto/cycle-trader/**"]
   workflow_dispatch:
 
 jobs:
@@ -1951,7 +2127,7 @@ Expected: all tests pass, including every gate
 
 ```bash
 cd ~/apps
-git add crypto/cycle-trader/tests/gates/test_oq3_synthetic.py crypto/cycle-trader/.github
+git add crypto/cycle-trader/tests/gates/test_oq3_synthetic.py .github/workflows/cycle-trader-gates.yml
 git commit -m "test(cycle-trader): OQ-3 synthetic fixture and gate CI"
 ```
 
@@ -2019,17 +2195,65 @@ Expected: FAIL with `ModuleNotFoundError: No module named 'engine.engine'`
 
 compute() answers one question: given everything known up to `asof`, what state
 is the episode in and what orders should be resting at the exchange?
+
+Scope discipline (SPEC §13.3 v1.2.1): episodes chain — each episode's scope
+window starts at the PREVIOUS episode's activation (BoS), and D (the window's
+argmax-high week) anchors structure, freshness and the episode low. The prior-
+cycle ATH anchors ONLY the 1.272 extension. EP4 is the episode where they differ.
 """
 from __future__ import annotations
+from dataclasses import replace
 from decimal import Decimal
-from engine.bars import to_weeks
+from engine.bars import monday_of, to_weeks
 from engine.levels import extension_1272, mirror_target
-from engine.lifecycle import find_triggers, freeze_el, prior_cycle_ath, running_low
+from engine.lifecycle import (downtrend_anchor, find_triggers, freeze_el,
+                              prior_cycle_ath, running_low)
 from engine.lines import lines_for
 from engine.orders import desired_orders
 from engine.rsi import wilder_rsi
-from engine.structure import find_bos, find_lh_candidates, operative_lh
+from engine.structure import (find_bos, find_lh_candidates, find_swing_lows,
+                              operative_lh)
 from engine.types import Bar, EngineResult, EpisodeState, EpisodeStatus, OnChain
+
+MIRROR_FALLBACK_DAYS = 56   # 8 weeks (SPEC §6.2)
+
+
+def _latest_episode(weeks, bars, triggers):
+    """Chain episodes in trigger order; return (trigger, D_monday) for the
+    latest one. Same chain as the gate fixtures — one rule, two callers."""
+    window_start = weeks[0].monday
+    d_week = window_start
+    for trigger, nxt in zip(triggers, triggers[1:] + [None]):
+        era_end = nxt or bars[-1].date
+        _dp, d_week = downtrend_anchor(weeks, window_start, asof=era_end)
+        cands = find_lh_candidates(weeks, bars, d_week, trigger)
+        lh = operative_lh(cands, asof=era_end)
+        bos = find_bos(bars, lh.price, after=lh.confirmed_at) if lh else None
+        if bos is not None and (nxt is None or bos < nxt):
+            window_start = bos
+    return triggers[-1], d_week
+
+
+def _mirror_lines(visible, weeks, bos, asof) -> dict[str, Decimal]:
+    """Mirror-exit lines, ONLY once a signal has fired (SPEC §6.2): armed is a
+    precondition handled by the caller; here we need a confirmed swing low
+    (confirmation strictly preceding the break) broken by a daily low."""
+    era_weeks = [w for w in weeks if w.monday >= monday_of(bos)]
+    swings = [s for s in find_swing_lows(era_weeks) if s.confirmed_at is not None]
+    for s in reversed(swings):                       # most recent swing first
+        brk = next((b for b in visible
+                    if b.date > s.confirmed_at and b.low < s.low), None)
+        if brk is None:
+            continue
+        top = max(b.high for b in visible if bos <= b.date <= brk.date)
+        after = [b for b in visible if b.date > brk.date]   # break day excluded
+        low_so_far = min([b.low for b in after] + [brk.low])
+        lines = {"mirror": mirror_target(top, low_so_far)}
+        days_since = (len([b for b in visible if brk.date < b.date <= asof]))
+        if days_since > MIRROR_FALLBACK_DAYS:
+            lines["mirror_fallback"] = Decimal(1)
+        return lines
+    return {}
 
 
 def compute(bars: list[Bar], onchain: dict[str, OnChain],
@@ -2044,52 +2268,54 @@ def compute(bars: list[Bar], onchain: dict[str, OnChain],
     if not triggers:
         return EngineResult(state=EpisodeState(status=EpisodeStatus.IDLE), orders=())
 
-    trigger = triggers[-1]
-    _ath_price, scope_start = prior_cycle_ath(weeks, trigger)
-    ath_price = _ath_price
+    trigger, d_week = _latest_episode(weeks, visible, triggers)
+    ath_price, _ath_week = prior_cycle_ath(weeks, trigger)   # exit anchor ONLY
 
-    cands = find_lh_candidates(weeks, visible, scope_start, trigger)
+    cands = find_lh_candidates(weeks, visible, d_week, trigger)
     lh = operative_lh(cands, asof=asof)
-    low = running_low(visible, scope_start, asof)
+    low = running_low(visible, d_week, asof)
 
     state = EpisodeState(
         status=EpisodeStatus.WATCHING, trigger_date=trigger, prior_ath=ath_price,
-        scope_start=scope_start, running_low=low,
+        scope_start=d_week, running_low=low,
         operative_lh=lh.price if lh else None,
         lh_confirmed_at=lh.confirmed_at if lh else None,
     )
 
     bos = find_bos(visible, lh.price, after=lh.confirmed_at) if lh else None
     if bos is not None:
-        el = freeze_el(visible, scope_start, bos)
-        bos_week = next(w for w in to_weeks([b for b in visible if b.date <= bos])
-                        if w.monday == to_weeks([b for b in visible
-                                                 if b.date == bos])[0].monday)
-        state = EpisodeState(
-            status=EpisodeStatus.CONFIRMED, trigger_date=trigger,
-            prior_ath=ath_price, scope_start=scope_start, running_low=low,
-            el_star=el, operative_lh=lh.price, lh_confirmed_at=lh.confirmed_at,
-            bos_date=bos, bos_week_high=bos_week.high,
-        )
-        ext = extension_1272(el, ath_price)
-        if max(b.high for b in visible if b.date >= bos) >= ext:
-            state = EpisodeState(**{**state.__dict__, "status": EpisodeStatus.DISTRIBUTING,
-                                    "exit1_done": True})
+        el = freeze_el(visible, d_week, bos)
+        bos_week_high = next(w.high for w in weeks if w.monday == monday_of(bos))
+        state = replace(state, status=EpisodeStatus.CONFIRMED, el_star=el,
+                        bos_date=bos, bos_week_high=bos_week_high)
+        if max(b.high for b in visible if b.date >= bos) >= extension_1272(el, ath_price):
+            state = replace(state, status=EpisodeStatus.DISTRIBUTING, exit1_done=True)
 
     lines: dict[str, Decimal] = {}
     if state.status is EpisodeStatus.WATCHING and asof in onchain:
         t1, t2, t3 = lines_for(onchain[asof])
         lines = {"t1": t1, "t2": t2, "t3": t3}
     elif state.status is EpisodeStatus.DISTRIBUTING:
-        after = [b for b in visible if b.date > (state.bos_date or "")]
-        if after:
-            top = max(b.high for b in after)
-            lines = {"mirror": mirror_target(top, min(b.low for b in after))}
+        lines = _mirror_lines(visible, weeks, state.bos_date, asof)
+        # No signal -> no mirror lines -> only the stop rests. SPEC §6.2.
 
-    return EngineResult(state=state, orders=desired_orders(state, lines, filled_purposes=set()))
+    return EngineResult(state=state,
+                        orders=desired_orders(state, lines, filled_purposes=set(),
+                                              held_units=Decimal(0)))
 ```
 
-**Note for the implementer:** `filled_purposes` is hard-coded empty here because M1 has no fill tracking — that is M2's job, fed from the venue's trade history. The signature already accepts it so M2 needs no engine change.
+**Notes for the implementer:**
+- `filled_purposes=set()` and `held_units=Decimal(0)` are hard-coded here because
+  M1 has no fill tracking — that is M2's job, fed from venue trade history. The
+  signatures already accept them so M2 needs no engine change. With
+  `held_units=0` every sell-side order is inert by construction (orders.py),
+  which is exactly right for an engine that cannot yet know what it holds.
+- `EpisodeState` uses `slots=True`, so `state.__dict__` does not exist — state
+  transitions must use `dataclasses.replace(...)` (the first issue of this plan
+  crashed here).
+- `_mirror_lines` enforces SPEC §6.2's ordering: a swing low counts only once
+  confirmed, the break must come strictly after the confirmation, the break day
+  is excluded from fill checks, and no mirror sell exists before a signal.
 
 - [ ] **Step 4: Run test to verify it passes**
 

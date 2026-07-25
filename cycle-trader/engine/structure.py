@@ -6,7 +6,8 @@ Terminology (SPEC §13.3 collapses the doc's three names into one):
 from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date as _date, timedelta
-from decimal import Decimal
+from decimal import Decimal, localcontext
+from engine.context import CTX
 from engine.types import Bar, Week
 
 R_E_DEFAULT = Decimal("15")
@@ -67,7 +68,18 @@ def find_lh_candidates(weeks: list[Week], bars: list[Bar], scope_start: str,
         if before_origin and l0 >= min(before_origin):
             continue  # not a fresh low
 
-        rally = (cand.high - l0) / l0 * Decimal(100)
+        # The one inexact computation in this module, and it feeds a strict
+        # threshold (`< r_e`), so it runs in the engine's pinned context —
+        # see engine/context.py. The pin is scoped to the expression rather
+        # than the function precisely to mark which line is inexact; every
+        # other operation here is a comparison or a min/max over raw OHLC.
+        # Measured on the frozen series: the candidate set is stable down to
+        # prec 3 and flips only at prec 1 (EP6: 8 candidates instead of 12),
+        # but the tightest real margin is 0.4988 pts (wk 2025-11-24 rallies
+        # +15.4988% against the R_e=15 cutoff), which the error clears only
+        # from prec >= 4.
+        with localcontext(CTX):
+            rally = (cand.high - l0) / l0 * Decimal(100)
         if rally < r_e:
             continue
 

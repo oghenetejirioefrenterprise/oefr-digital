@@ -1,4 +1,5 @@
-from decimal import Decimal
+from decimal import Decimal, Inexact, ROUND_FLOOR, localcontext
+from engine.context import CTX
 from engine.structure import find_lh_candidates, operative_lh, find_bos, first_bos
 from engine.types import Bar, Week
 
@@ -338,3 +339,41 @@ def test_first_bos_requires_a_strict_break_and_honours_its_window():
     assert first_bos(bars, cands, start="2015-01-01", end="2015-01-25") == (None, None)
     # `start` after the break: 305 is already dead
     assert first_bos(bars, cands, start="2015-01-27", end="2015-12-31") == (None, None)
+
+
+def test_rally_pct_is_independent_of_the_ambient_decimal_context():
+    """The rally percentage is this module's only inexact computation, and it
+    gates a strict threshold (`rally < r_e`, R_e=15), so an ambient precision
+    change can admit or drop a lower-high candidate -- and the operative LH is
+    what the BoS, the ladder leg and EL* all hang off.
+
+    Measured on the frozen series the candidate set survives down to prec 3 and
+    flips only at prec 1 (EP6 yields 8 candidates instead of 12), but the
+    tightest real margin is 0.4988 points (wk 2025-11-24 rallies +15.4988%
+    against the 15 cutoff), which the error clears only from prec >= 4.
+    engine/context.py pins the context; this test fails if that pin is removed.
+
+    The fixture's rally is deliberately non-terminating -- (82,850 - 60,000) /
+    60,000 = 38.0833... -- so precision is actually observable; a fixture with a
+    terminating quotient would pass unpinned. That property is asserted against
+    `CTX.prec` rather than a literal digit count: the guard is about ambient
+    *independence*, and hardcoding 34 digits here would make every future change
+    to the pin's magnitude fail this test for no substantive reason. The
+    magnitude itself is pinned where it actually binds -- levels.py needs
+    prec >= 10, the strictest of the three, and its guard fails at 9."""
+    weeks = [wk("2026-01-05", 100000, 90000),
+             wk("2026-05-04", 62000, 60000),
+             wk("2026-06-15", 82850, 70000)]
+    bars = [bar("2026-06-23", 61000, 62000, 59000)]
+    expected = find_lh_candidates(weeks, bars, "2026-01-05", "2026-02-02")
+    assert [c.price for c in expected] == [Decimal("82850")]
+    # saturates the pinned precision => the quotient does not terminate,
+    # so a precision change is observable in this fixture
+    assert len(expected[0].rally_pct.as_tuple().digits) == CTX.prec
+
+    with localcontext() as ctx:
+        ctx.prec = 2
+        ctx.rounding = ROUND_FLOOR
+        ctx.traps[Inexact] = True
+        got = find_lh_candidates(weeks, bars, "2026-01-05", "2026-02-02")
+    assert [c.rally_pct for c in got] == [c.rally_pct for c in expected]

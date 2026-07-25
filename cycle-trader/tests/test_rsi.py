@@ -1,4 +1,4 @@
-from decimal import Decimal
+from decimal import Decimal, Inexact, ROUND_FLOOR, localcontext
 from engine.rsi import wilder_rsi
 
 
@@ -102,3 +102,31 @@ def test_seed_window_covers_exactly_period_changes():
     closes.append(closes[-1] - Decimal(13))
     assert len(closes) == 15
     assert wilder_rsi(closes, period=14)[14] == Decimal(50)
+
+
+def test_rsi_is_independent_of_the_ambient_decimal_context():
+    """`decimal`'s context is process-global mutable state, and every division
+    in `wilder_rsi` is inherently inexact -- unlike the min/max engine modules,
+    which are exact at any precision. The output feeds a *strict threshold*
+    (`find_triggers`' `rsi < 35`), so ambient precision does not just blur a
+    number, it can arm an episode on the wrong week.
+
+    Measured on the frozen 780-week series: the trigger set flips at prec <= 2
+    (EP5 2022-05-16 -> 2022-05-09, EP6 2026-01-26 -> 2025-12-22). engine/
+    context.py pins the context; this test fails if that pin is removed.
+
+    Asserted against the module's own unpinned-ambient output rather than
+    hardcoded digits, so it pins *invariance* and cannot drift. The ambient
+    context is hostile on all three axes the pin covers -- with no pin, the
+    `Inexact` trap alone makes `gains / period` raise."""
+    closes = [Decimal(100)]
+    for step in (3, -5, 8, -2, -7, 4, 11, -6, 2, -9, 5, -1, 13, -4, 6, -12, 7):
+        closes.append(closes[-1] + Decimal(step))
+    expected = wilder_rsi(closes, period=14)
+    assert expected[-1] is not None and expected[-1] != expected[14]
+
+    with localcontext() as ctx:
+        ctx.prec = 2
+        ctx.rounding = ROUND_FLOOR
+        ctx.traps[Inexact] = True
+        assert wilder_rsi(closes, period=14) == expected

@@ -1,4 +1,4 @@
-from decimal import Decimal, localcontext
+from decimal import Decimal, Inexact, ROUND_FLOOR, localcontext
 
 from engine.levels import LADDER, LADDER_UNITS, ladder_levels, extension_1272, mirror_target
 
@@ -68,11 +68,24 @@ def test_levels_are_independent_of_the_ambient_decimal_context():
     serverless bundle can lower `prec` and silently move every level. Empirically
     these formulas are exact at prec >= 10; at prec 6 the 1.272 extension moves
     0.028 (breaking the +-0.01 assertions above) and at prec 3 it moves 0.55%
-    (breaking §10's +-0.5% gate tolerance). The module therefore pins its own
-    context -- this test fails if that pin is ever removed."""
+    (breaking §10's +-0.5% gate tolerance). engine/context.py pins the context --
+    this test fails if that pin is ever removed or weakened.
+
+    EP3's extension is asserted because it is the only 10-significant-digit value
+    here: the other three fit in <= 8 digits, so without it the test still passed
+    with the pin weakened to prec=8 and did not enforce the prec >= 10 threshold
+    its own docstring cites.
+
+    The ambient context is made hostile on all three axes the pin covers, not
+    just precision: `traps[Inexact]` would turn an unpinned division into an
+    exception rather than a wrong number."""
     with localcontext() as ctx:
         ctx.prec = 5
+        ctx.rounding = ROUND_FLOOR
+        ctx.traps[Inexact] = True
         lv = ladder_levels(Decimal("152.40"), Decimal("309.90"))
         assert lv["0.786"] == Decimal("186.105")
         assert extension_1272(Decimal("15476"), Decimal("69000")) == Decimal("83558.528")
+        assert extension_1272(Decimal("3156.26"), Decimal("19798.68")) == \
+            Decimal("24325.41824")
         assert mirror_target(Decimal("126255"), Decimal("102001")) == Decimal("114128")

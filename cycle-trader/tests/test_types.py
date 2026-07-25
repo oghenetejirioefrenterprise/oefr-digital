@@ -281,3 +281,48 @@ def test_midpoint_is_independent_of_the_ambient_decimal_context():
         assert oc.midpoint == expected
         # lines_for must carry the pinned value through, not recompute it
         assert lines_for(oc)[1] == expected
+
+
+# --------------------------------------------------------------------------
+# EpisodeState — enum coercion
+# --------------------------------------------------------------------------
+
+@pytest.mark.parametrize("status", list(EpisodeStatus))
+def test_episode_state_coerces_a_raw_status_string_to_the_enum(status):
+    """`status` is normalised like the Decimals and the dates beside it.
+
+    `EpisodeState` is the one type that comes back INTO the engine from
+    outside: M2 persists it to Supabase and reads it again next run, and JSON
+    has no enums, so `status` arrives as `"watching"`. `EpisodeStatus` is a
+    `str, Enum`, which makes that round-trip look harmless — the value compares
+    equal, prints the same, and serialises the same.
+
+    It is not harmless, because `engine/orders.py` dispatches on `status` two
+    different ways: `in NO_ORDERS` (equality, which a bare `str` satisfies) and
+    `is EpisodeStatus.X` (identity, which it does not). Uncoerced, four of the
+    seven statuses therefore fail in OPPOSITE directions — `'idle'` and
+    `'stopped'` silently return `()`, i.e. cancel every resting order, while
+    `'watching'`, `'confirmed'` and `'distributing'` raise. A stale `"stopped"`
+    row would disarm a live position without a word.
+
+    Coercing here fixes both halves at the source, for every caller, rather than
+    hardening one comparison in one function.
+    """
+    assert EpisodeState(status=status.value).status is status
+    assert EpisodeState(status=status).status is status
+
+
+def test_an_unknown_status_string_is_rejected_rather_than_carried():
+    """The coercion has to be a parse, not a cast: an unrecognised status must
+    fail here, where the row is read, and not several layers later as an
+    "unhandled episode status" from the order builder."""
+    with pytest.raises(ValueError):
+        EpisodeState(status="Watching")          # right word, wrong case
+    with pytest.raises(ValueError):
+        EpisodeState(status="accumulating")      # §1 prose, not a state value
+    with pytest.raises(ValueError):
+        EpisodeState(status=None)
+
+
+def test_the_default_status_is_still_the_enum():
+    assert EpisodeState().status is EpisodeStatus.IDLE

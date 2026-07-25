@@ -47,12 +47,23 @@ def _iso(v) -> str:
     return s
 
 
-def _normalise(obj, decimals: tuple[str, ...] = (), dates: tuple[str, ...] = ()) -> None:
+def _normalise(obj, decimals: tuple[str, ...] = (), dates: tuple[str, ...] = (),
+               enums: tuple[tuple[str, type], ...] = ()) -> None:
     """Coerce fields in place on a frozen dataclass.
 
     ``object.__setattr__`` is the sanctioned escape hatch for ``__post_init__``
     on a frozen dataclass, and works under ``slots=True``. ``None`` is left
-    alone so optional fields stay optional.
+    alone so optional fields stay optional — except for ``enums``, where a
+    ``None`` status is not an "unset optional" but an unusable state, so it is
+    rejected with everything else the enum does not recognise.
+
+    **Enums need this for the same reason Decimals do, and it is easier to
+    miss.** These are ``str, Enum`` members, so a value read back from JSON
+    (``"watching"``) compares equal, prints the same and serialises the same as
+    the member — while failing every ``is`` comparison. ``engine/orders.py``
+    dispatches with both ``in`` and ``is``, so an uncoerced status takes the
+    wrong branch on four of seven values, in both directions. Coercing at
+    construction means no consumer has to know which comparison it is holding.
     """
     for name in decimals:
         value = getattr(obj, name)
@@ -62,6 +73,14 @@ def _normalise(obj, decimals: tuple[str, ...] = (), dates: tuple[str, ...] = ())
         value = getattr(obj, name)
         if value is not None:
             object.__setattr__(obj, name, _iso(value))
+    for name, enum_cls in enums:
+        value = getattr(obj, name)
+        try:
+            object.__setattr__(obj, name, enum_cls(value))
+        except ValueError as exc:
+            raise ValueError(
+                f"{name} must be one of "
+                f"{[m.value for m in enum_cls]}, got {value!r}") from exc
 
 
 class EpisodeStatus(str, Enum):
@@ -183,6 +202,10 @@ class EpisodeState:
             decimals=("prior_ath", "running_low", "el_star", "operative_lh",
                       "bos_week_high"),
             dates=("trigger_date", "scope_start", "lh_confirmed_at", "bos_date"),
+            # The only field on the only type that comes back INTO the engine
+            # from storage: M2 persists this state to Supabase and reads it
+            # again next run, so `status` arrives as a JSON string.
+            enums=(("status", EpisodeStatus),),
         )
 
 

@@ -192,10 +192,24 @@ def test_confirmed_without_prior_ath_is_fine_while_nothing_is_held():
 
 def test_unknown_status_refuses_instead_of_resting_nothing():
     """A future EpisodeStatus falling through to `return ()` would read as
-    'cancel everything' at the venue. Refuse instead."""
+    'cancel everything' at the venue. Refuse instead.
+
+    Two layers, and both are asserted because they catch different things.
+    `EpisodeState` now rejects an unrecognised status at construction, which is
+    where a bad Supabase row is stopped — but that check knows only the members
+    that exist today, so it cannot see the case this fallthrough is for: a NEW
+    `EpisodeStatus` member added without a branch here. That one is a valid
+    member, constructs fine, and reaches the dispatch unhandled. It is
+    simulated by writing past `__post_init__` on the frozen instance, which is
+    the only way to hold a status the constructor would not mint.
+    """
+    with pytest.raises(ValueError, match="status must be one of"):
+        EpisodeState(status="teleporting")
+
+    state = EpisodeState(status=EpisodeStatus.IDLE)
+    object.__setattr__(state, "status", "teleporting")
     with pytest.raises(ValueError, match="unhandled"):
-        desired_orders(EpisodeState(status="teleporting"), {}, set(),
-                       held_units=Decimal(0))
+        desired_orders(state, {}, set(), held_units=Decimal(0))
 
 
 def test_negative_held_units_is_refused():
@@ -661,3 +675,49 @@ def test_accumulation_weights_are_the_frozen_1_2_4():
     assert [ACC_UNITS[p] for p in (OrderPurpose.T1, OrderPurpose.T2, OrderPurpose.T3)] \
         == [Decimal(1), Decimal(2), Decimal(4)]
     assert sum(ACC_UNITS.values()) + sum(LADDER_UNITS.values()) == Decimal(21)
+
+
+# --------------------------------------------------------------------------
+# dispatch parity — a state rehydrated from JSON must behave identically
+# --------------------------------------------------------------------------
+
+@pytest.mark.parametrize("status", list(EpisodeStatus))
+def test_dispatch_is_identical_for_a_status_read_back_from_json(status):
+    """The composed failure: `EpisodeState` coercion plus this module's mixed
+    `in` / `is` dispatch.
+
+    `desired_orders` tests `state.status in NO_ORDERS` (equality — a bare `str`
+    matches, because `EpisodeStatus` is a `str, Enum`) and then
+    `state.status is EpisodeStatus.WATCHING` (identity — a bare `str` does
+    not). Before `EpisodeState.__post_init__` coerced the field, a status
+    rehydrated from Supabase as a plain string diverged on four of the seven
+    values, and in opposite directions: `'idle'` / `'stopped'` returned `()`,
+    which the reconciler reads as *cancel every resting order* over a live
+    position, while `'watching'` / `'confirmed'` / `'distributing'` raised.
+
+    Parametrised over the whole enum rather than over the four that broke: the
+    claim is that the representation is irrelevant, and a new status must join
+    that claim automatically instead of being remembered.
+    """
+    fields = dict(el_star=Decimal("152.40"), bos_week_high=Decimal("309.90"),
+                  bos_date="2015-01-28", prior_ath=Decimal("1163.00"))
+    lines = {"t1": Decimal("300"), "t2": Decimal("290"), "t3": Decimal("280"),
+             "mirror": Decimal("700")}
+
+    def run(state):
+        try:
+            return desired_orders(state, lines, filled_purposes=set(),
+                                  held_units=Decimal(7))
+        except ValueError as exc:                 # NO_ORDERS members never raise
+            return f"ValueError: {exc}"
+
+    from_enum = run(EpisodeState(status=status, **fields))
+    from_json = run(EpisodeState(status=status.value, **fields))
+    assert from_json == from_enum
+    # ...and the four that used to diverge must be on the meaningful side of it:
+    # only the NO_ORDERS members may answer with an empty tuple.
+    if status in (EpisodeStatus.IDLE, EpisodeStatus.CLOSED,
+                  EpisodeStatus.STOPPED, EpisodeStatus.EXPIRED):
+        assert from_enum == ()
+    else:
+        assert from_enum != ()

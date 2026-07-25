@@ -826,6 +826,40 @@ lifetime — and this value **directly prices the resting sell order**.
 is M2/Task 14), and G4 runs the detector standalone per §13.9. Blocking M5
 alongside OQ-1 and the §4 over-commit.*
 
+**EVIDENCE — EP2–EP5 separate reading (b), and the reference implementation says
+(b). → Measured 2026-07-25, `tests/gates/test_regression_ep2_ep5.py`.**
+
+The text above says "G4 cannot separate them". That remains true of G4. The
+**historical record can**, and it was not consulted when OQ-7 was raised:
+
+| Reading | EP2 | EP3 | EP4 | EP5 |
+|---|---|---|---|---|
+| **(b) decline's top** — strict §4.3 mirror | exact | exact | exact | **exact — 2025-03-02 @ 93,923.26** |
+| **(a) swing week's own high** — implemented | exact | exact | exact | **WRONG — 2025-01-15 @ 98,804.845** |
+
+Run over the position lifetime (BoS → data end), armed at the Exit 1 print,
+`R_down = 10`, walk-forward 50 % target. Under (b) all four of `cy1_lifecycle.json`'s
+mirror exits reproduce **exactly** — date and price. Under (a) EP5 exits **six weeks
+early and 5.2 % high**: wk 2024-12-30's low is undercut on 2025-01-09, but nothing
+trades above that decline's 108,353 top until 109,588 prints on 2025-01-20, so under
+(b) the swing is not yet confirmed when (a) has already broken it.
+
+So **(b) is the reading that reproduces CY-1**, and §11's own EP5 row (93,923,
+2025-03-02) is unreachable under (a). This does not settle (b) by itself — the
+owner's decision and a §9 amendment are still required, and (b)'s "no mirror signal
+during a bear leg" consequence is unchanged and remains the reason it is a real
+question. But the burden has moved: shipping (a) knowingly fails §11.
+
+**The same run narrows (c).** Substituting the swing's own decline top for the
+lifetime argmax breaks the reproduction on **all four** episodes, so that candidate
+is eliminated. The BoS-origin and position-lifetime origins produce identical exits
+on all four and remain indistinguishable.
+
+**(a) the argmax scope is NOT addressed by this evidence.** The regression runs the
+implemented all-prior-weeks argmax only; "since the prior swing" has no unambiguous
+implementation to run against it (that ambiguity is the open question). It stays
+fully open, and nothing here should be read as evidence either way.
+
 **OQ-5 — EP3's 2019 BoS still lacks owner sign-off.**
 Flagged in Amendment 1 and in §11 ("no owner anchor for 2019 — rule output, owner
 sign-off pending"). It contributes +879.89% — **36% of the headline sum**. Until

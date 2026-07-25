@@ -591,6 +591,41 @@ totalling the $82,000 contributed.
   G4 passing must **not** be taken to imply an open EP5 position in Oct-2025;
   §11's EP5 exit stays 2025-03-02.
 
+### 13.9a `R_down = 10` is a half-line, and its default is untested (measured 2026-07-25)
+
+The **third** frozen constant found to be an edge rather than a point — and the
+first found to be wholly unexercised. Measured by varying the argument on G4's
+window (varying the *engine default* measures nothing; see the warning below):
+
+| `R_down` | G4's two named lows surviving | Total swings |
+|---|---|---|
+| 0 … 13.757 | **2 of 2** | 14 → 6 |
+| 13.7571 … 13.8334 | 1 of 2 | 6 |
+| ≥ 13.8335 | **0 of 2** | 5 |
+
+The two component declines are wk 2025-08-25 = **13.757009%** and wk 2025-09-01 =
+**13.833411%**. So history bounds `R_down` **from above only**:
+
+- `≤ 13.757` — both attributions survive, which is what the gate asserts
+- `≤ 13.833` — either attribution survives, §10 G4's literal wording
+
+**There is no lower edge at all.** G4's structure is still present at `R_down = 0`,
+and at −100. This differs in kind from the other two: `R_e` is a genuine two-sided
+band `(10.2771, 19.60784]` (§13.3a) and `QUIET_WEEKS` an interior plateau
+`[10, 57]` (§13.5), but `R_down` is a **half-line**. Any value from 0 to 13.75
+reproduces G4 identically.
+
+**`R_DOWN_DEFAULT` is dead code.** Setting it to `99` leaves all 212 tests green —
+every call site passes `r_down` explicitly. The constant is frozen in the engine
+and exercised by nothing, so a future edit to it is invisible to CI while silently
+changing the behaviour of any M2 caller that omits the argument.
+
+> **Methodology warning, learned by getting it wrong here.** Sweeping
+> `R_DOWN_DEFAULT` shows the gate passing at *every* value — not because the
+> constant is unconstrained, but because the gate never reads it. When measuring
+> whether a constant is load-bearing, confirm the code under test actually
+> consumes the thing being varied.
+
 ### 13.10 Week labelling in the reference JSONs
 
 §0 anchors weeks to **ISO Monday** and this doc names a week by its Monday. Every

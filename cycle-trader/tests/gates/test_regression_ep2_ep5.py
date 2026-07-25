@@ -610,8 +610,10 @@ def test_mirror_exit_reproduces_under_reading_b_and_ep5_separates_the_readings(
     Under reading (a) — the engine's current predicate, a high above the swing
     WEEK's own high — EP2, EP3 and EP4 still reproduce and **EP5 does not**: it
     signals on 2025-01-09 off the wk-2024-12-30 swing and exits 2025-01-15 @
-    98,804.845, six weeks early and 5.2% above the reference's 2025-03-02 @
-    93,923.26. The cause is visible in the data: wk 2024-12-30's low is undercut
+    98,804.845, **46 days (six and a half weeks) early** and 5.2% above the
+    reference's 2025-03-02 @ 93,923.26. Counted rather than eyeballed: an
+    "about six weeks" gloss rounds the wrong way and understates the miss.
+    The cause is visible in the data: wk 2024-12-30's low is undercut
     on 2025-01-09, but nothing trades above the 108,353 decline top until the
     109,588 print on 2025-01-20, so reading (b) has not yet confirmed that swing
     when reading (a) has.
@@ -629,12 +631,29 @@ def test_mirror_exit_reproduces_under_reading_b_and_ep5_separates_the_readings(
     assert strict is not None
     assert strict["date"] == ref["exit_mirror"]["date"]
     assert _2dp(strict["price"]) == ref["exit_mirror"]["px"]
-    # The signal's WEEK is the reference's `signal_week` on three of four
-    # (§13.10 normalisation applies: the reference labels EP3/EP4's by the
-    # FOLLOWING Monday, 2021-04-19 against the engine's 2021-04-12 — a
-    # reference-side labelling difference on the signal only; the fill it
-    # produces is identical to the dollar and is asserted above).
-    if label in ("EP2-2014-09-28", "EP5-2022-05-22"):
+    # The signal's WEEK, against the reference's `signal_week`.
+    #
+    # **§13.10 does NOT explain this field, and an earlier version of this
+    # comment wrongly said it did.** §13.10's convention is Sunday-*close*
+    # labels (a week named by the Sunday that ends it); `signal_week` does not
+    # follow it — EP2's 2017-07-10 and EP5's 2025-02-24 are true ISO Mondays
+    # needing no normalisation at all. The field is labelled off a **Sunday-
+    # START (Sun-Sat) week**, named by the Monday inside it. That coincides with
+    # the ISO Monday on every day of the week except Sunday, where it lands one
+    # week later — which is exactly EP3/EP4, whose signal prints Sunday
+    # 2021-04-18 and is labelled 2021-04-19 against the ISO 2021-04-12.
+    #
+    # Asserted as the rule rather than excused as a discrepancy on two of four:
+    # if the reference ever relabels this field the mechanism fails here instead
+    # of two episodes quietly dropping out of the check. The exits themselves are
+    # identical to the dollar under both conventions and are asserted above.
+    signal_day = date.fromisoformat(strict["signal"])
+    sunday_start = signal_day + timedelta(days=1 if signal_day.weekday() == 6 else 0)
+    assert monday_of(sunday_start.isoformat()) == ref["exit_mirror"]["signal_week"]
+    if label in ("EP3-2018-11-25", "EP4-2020-03-15"):
+        assert signal_day.weekday() == 6                      # the Sunday case
+        assert monday_of(strict["signal"]) != ref["exit_mirror"]["signal_week"]
+    else:
         assert monday_of(strict["signal"]) == ref["exit_mirror"]["signal_week"]
 
     loose = _mirror_exit(bars, got["bos"], exit1, CONFIRM_WEEK_HIGH)

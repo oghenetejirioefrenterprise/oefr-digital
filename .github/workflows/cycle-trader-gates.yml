@@ -126,9 +126,16 @@ jobs:
       #
       # DESELECTION is the third vector and it is NOT visible here: a `-k` or
       # `-m` in pyproject's addopts removes tests before they are counted, so
-      # both this total and the floors below fall together. What catches it is
-      # each floor being an absolute minimum rather than a comparison between
-      # two numbers that move in step.
+      # both this total and the floors below fall together.
+      #
+      # It is caught by the floors below, but ONLY because they now (a) parse the
+      # numerator out of pytest's "87/92 tests collected" deselect form and
+      # (b) refuse an unparseable count outright. The first version of this step
+      # did neither: `awk '{print $1}'` yielded "87/92", every `[ ]` comparison
+      # became a bash parse error, and an `if` swallowed it as false — so all
+      # five floors passed silently. Verified by attack: `-k` in addopts plus a
+      # dozen padding tests disabled G1/G2/G3 with the whole job green.
+      # If you touch this parsing, re-run that attack.
       - name: Run the full suite — every collected test must PASS
         run: |
           pytest -v --junit-xml=junit.xml
@@ -183,10 +190,23 @@ jobs:
         run: |
           set -e
           while read -r path floor; do
+            # Under deselection pytest prints "87/92 tests collected (5 deselected)",
+            # so a bare `print $1` yields "87/92" and every downstream `[ ]`
+            # comparison becomes a bash PARSE ERROR — which, inside an `if`, is a
+            # false condition and passes silently. That is how the F1 defect this
+            # step exists to prevent came back through a different door. Take the
+            # numerator only, and refuse anything that is not all digits.
             collected=$(pytest "$path" -q --collect-only \
-              | awk '/tests? collected/ { print $1; exit }')
+              | awk '/tests? collected/ { sub("/.*", "", $1); print $1; exit }')
             echo "$path: ${collected:-0} collected (floor $floor)"
-            if [ "${collected:-0}" -lt "$floor" ]; then
+            case "$collected" in
+              ''|*[!0-9]*)
+                echo "::error::$path — could not parse a collection count (got '${collected}')."
+                echo "::error::Refusing to treat an unparseable count as a pass."
+                exit 1
+                ;;
+            esac
+            if [ "$collected" -lt "$floor" ]; then
               echo "::error::$path collected ${collected:-0}, below its floor of $floor"
               exit 1
             fi

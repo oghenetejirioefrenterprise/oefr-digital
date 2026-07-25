@@ -10,14 +10,37 @@ market-structure break, exit half at the 1.272 extension and the rest on an arme
 mirror exit. Personal book — **fully separate from the v4 trading firm's capital,
 allocator, and gates.**
 
-**Current state: docs only.** The directory contains `PRD.md` and `SPEC.md` and no
-code. There is no package manifest, test runner, or build yet — do not fabricate
-commands for them; the first implementation session creates them.
+**Current state: M1 complete.** The engine and its gate suite are built and green.
+
+```bash
+source ~/venvs/oefr/bin/activate
+cd ~/apps/cycle-trader && pytest -q          # ~322 tests, a few seconds
+```
+
+- `engine/` — pure Python, stdlib only, **zero I/O and no clock**. `types, bars,
+  rsi, lines, fills, lifecycle, structure, levels, orders, context, engine`.
+  `engine.engine.compute(bars, onchain, prior_state, asof, ...)` is the single
+  public entry point M2 calls daily.
+- `data/loaders.py` — **test-only**. `engine/` must never import it; CI enforces
+  this with an AST purity gate (`tests/test_engine_purity.py`, deny-by-default,
+  recursive).
+- `data/reference/` — frozen snapshots (OHLC, CoinMetrics, checkonchain, the CY-1
+  reference lifecycle). Copied in at build time; **no runtime dependency on the v4
+  repo**.
+- `tests/gates/` — G1–G5 plus the EP2–EP5 structural regression and the OQ-3
+  synthetic fixture.
+- CI lives at the **repo root**, `~/apps/.github/workflows/cycle-trader-gates.yml`
+  — GitHub only reads workflows from there, and the repo is `~/apps`. It has
+  **never run**: `master` is well ahead of `origin`, and `oefr-digital` is a
+  **public** repo, so pushing makes the logs public. That is the owner's call.
+
+**M2 has not started.** No exchange adapter, no Supabase, no cron, no web app.
 
 This directory is *not* its own git repo. It is tracked inside the `~/apps` repo
 (`git rev-parse --show-toplevel` → `/home/oghenetejiri/apps`), so scope commits to
 these paths and prefix them `feat(cycle-trader):` / `docs(cycle-trader):` per the
-existing log.
+existing log. **Other sessions commit to this monorepo concurrently — never
+`git add -A`.**
 
 ## The Two Documents
 
@@ -122,6 +145,34 @@ M2). Do not edit v4 code from here.
   `~/.profile` (workspace convention)
 - Web app is a hosted read-only Next.js dashboard over Supabase; its only write path
   is the kill switch. Mobile deferred
+
+## What the M1 build learned — read before adding assertions
+
+Seven measured claims in `SPEC.md` had to be corrected during M1, and the pattern
+never varied: **computed numbers were right every time; transcribed and attributed
+ones were wrong.** Two rules follow, and they cost real time to learn.
+
+1. **Read values off the engine, never paste them.** A 10-decimal boundary relayed
+   between agents was already past the true edge and would have failed on correct
+   code.
+2. **Verify *which* test fails, not merely that one does.** Four of the seven
+   corrections were attribution errors — the right number credited to the wrong
+   gate. §13.3a and §13.9a both carry the scars.
+
+Two structural blind spots worth knowing:
+
+- **Mutation testing kills changes to code that exists and is blind to code that
+  is missing.** The build's first Critical (a breakout order re-arming after it
+  filled, unbounded) had no line to mutate. A reviewer walking the state machine
+  found it; 34/34 mutants had not.
+- **A constant measured on one gate is a fact about that gate, not about the
+  record.** Three frozen constants turned out to be *edges or plateaus* rather
+  than the unique values SPEC claimed — see §13.3a, §13.5, §13.9a.
+
+A shared mutation harness lives in the SDD workspace; it refuses ambiguous
+patterns (an identically-worded line in a neighbouring function silently mutated
+the wrong one) and compiles at `optimize=2`, so it cannot measure mutations to
+`assert` lines.
 
 ## Build Order
 

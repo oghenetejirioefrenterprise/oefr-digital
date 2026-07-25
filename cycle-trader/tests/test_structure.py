@@ -145,18 +145,41 @@ def test_d_guard_rejects_scope_that_postdates_the_trigger():
 
 
 def g1_weeks():
-    """G1's shape, trimmed so 305.00 (wk 2015-01-05, origin 255) is the ONLY
-    candidate: 2014-09-01's low is 450, which leaves the 480 week a +6.7%
-    rally rather than a second, never-broken candidate."""
-    return [wk("2014-09-01", 500, 450), wk("2014-09-29", 480, 275),
-            wk("2014-12-29", 300, 255), wk("2015-01-05", 305, 260)]
+    """G1's real weekly bars, verbatim from the reference dataset.
+
+    This is SPEC §13.3's own proof that the rally-origin window must include
+    the anchor week: **2014-12-29 has high 321.00 (the anchor, above the 305.00
+    candidate) AND low 255.00 (the origin)**. Under a `j+1` window that week is
+    invisible, the origin window is empty and this fixture yields NOTHING.
+
+    Two candidates come out of it — 321.00 (wk 2014-12-29, +16.7% off 275) and
+    305.00 (wk 2015-01-05, +19.6% off 255) — so tests below select 305 by price
+    rather than by position.
+    """
+    return [wk("2014-09-01", 497, 470.42), wk("2014-09-29", 397.75, 275),
+            wk("2014-12-29", 321.00, 255.00), wk("2015-01-05", 305.00, 262.08)]
+
+
+def lh305(cands):
+    return next(c for c in cands if c.price == Decimal("305"))
 
 
 def two_candidate_weeks():
-    """305 (wk 2015-01-05, origin 255) then a LOWER later candidate 260
-    (wk 2015-01-19, origin 200). The 290 week between them is +11.5% and is
-    not itself a candidate."""
+    """G1's weeks plus a LOWER later candidate, 260 (wk 2015-01-19, origin
+    200). The 290 week between them rallies from a 262.08 low that never
+    undercut 255, so it is not itself a candidate."""
     return g1_weeks() + [wk("2015-01-12", 290, 200), wk("2015-01-19", 260, 210)]
+
+
+def scope_weeks():
+    """D (2022-01-03) is a wide week: its 48,000 high is the anchor that makes
+    42,000 a candidate, and its 25,000 low is the freshness floor that denies
+    36,000. The 2021-12-27 week sits BEFORE the scope start and must be
+    invisible on both counts — it has both the higher high and the lower low."""
+    return [wk("2021-12-27", 90000, 20000),   # before scope_start
+            wk("2022-01-03", 48000, 25000),   # D == scope_start
+            wk("2022-01-10", 42000, 30000),
+            wk("2022-01-17", 36000, 33000)]
 
 
 def degree_weeks():
@@ -167,19 +190,28 @@ def degree_weeks():
 
 def test_the_scope_start_week_itself_is_inside_the_scan():
     """§13.3 scans weeks with `monday(i) >= monday(D)` and measures freshness
-    from `low[D ..]` — D's own week is in scope on both counts. Here D is a
-    wide week (48,000 / 25,000): it is the anchor that makes 42,000 a
-    candidate, and its 25,000 low is what denies 36,000 its fresh low."""
-    weeks = [wk("2022-01-03", 48000, 25000),   # D
-             wk("2022-01-10", 42000, 30000),
-             wk("2022-01-17", 36000, 33000)]
-    cands = find_lh_candidates(weeks, [], "2022-01-03", "2022-02-07")
+    from `low[D ..]` — D's own week is in scope on both counts."""
+    cands = find_lh_candidates(scope_weeks(), [], "2022-01-03", "2022-02-07")
     inner = next(c for c in cands if c.price == Decimal("42000"))
-    assert inner.anchor_week == "2022-01-03"
-    assert inner.origin_low == Decimal("25000")
+    assert inner.anchor_week == "2022-01-03"        # D anchors it
+    assert inner.origin_low == Decimal("25000")     # D's own low is the origin
     # 36,000 rallies +20% off 30,000 — degree passes; only D's 25,000 low
     # stops it. Drop D from the scan and this becomes a valid candidate.
     assert all(c.price != Decimal("36000") for c in cands)
+
+
+def test_weeks_before_the_scope_start_are_invisible():
+    """The `monday >= scope_start` filter is load-bearing in both roles.
+
+    2021-12-27's 90,000 high is the only thing that could anchor the 48,000
+    week, and its 20,000 low is below D's 25,000. If the filter is dropped,
+    48,000 becomes a candidate (anchored out of scope) and 42,000 stops being
+    one (its 25,000 origin is no longer fresh). On real data that mutation
+    takes EP2 from 25 candidates to 6 and every episode's BoS to None.
+    """
+    cands = find_lh_candidates(scope_weeks(), [], "2022-01-03", "2022-02-07")
+    assert all(c.price != Decimal("48000") for c in cands)   # cannot be anchored
+    assert any(c.price == Decimal("42000") for c in cands)   # 20,000 is not a floor
 
 
 def test_anchor_requires_a_strictly_higher_high():
@@ -213,42 +245,55 @@ def test_freshness_requires_a_strict_undercut():
 
 
 def test_confirmation_is_the_first_daily_undercut_after_the_candidate_week():
-    """§4.3 + §13.4: a DAILY low, strictly after week i ends. The candidate
-    week runs 2015-01-05..2015-01-11, so neither the mid-week undercut nor the
-    Sunday one confirms — the following Monday does."""
+    """§4.3 + §13.4: a DAILY low, strictly after week i ends. Week 2015-01-05
+    runs to Sunday 2015-01-11, so neither the mid-week undercut nor the Sunday
+    one confirms — the following Monday does.
+
+    These three bars are constructed, not historical: the real week never
+    traded below 255 before it closed (its low was 262.08), so the ordering
+    rule has no natural fixture.
+    """
     bars = [bar("2015-01-07", 260, 265, 250),   # inside week i
             bar("2015-01-11", 250, 255, 240),   # week i's last day (Sunday)
             bar("2015-01-12", 240, 245, 230)]   # first day after week i
-    cands = find_lh_candidates(g1_weeks(), bars, "2014-09-01", "2014-09-29")
-    assert cands[0].confirmed_at == "2015-01-12"
+    assert lh305(find_lh_candidates(g1_weeks(), bars, "2014-09-01",
+                                    "2014-09-29")).confirmed_at == "2015-01-12"
 
 
 def test_confirmation_undercut_is_strict():
-    """'strictly less than L₀' (§13.4). A low that prints exactly 255.00 does
-    not confirm the 255 origin."""
-    bars = [bar("2015-01-12", 260, 265, 255),   # equal to L0 — not an undercut
-            bar("2015-01-13", 255, 258, 254.99)]
-    cands = find_lh_candidates(g1_weeks(), bars, "2014-09-01", "2014-09-29")
-    assert cands[0].confirmed_at == "2015-01-13"
+    """'strictly less than L₀' (§13.4). A low printing exactly 255.00 does not
+    confirm the 255 origin; 2015-01-13's real 216.00 low does."""
+    bars = [bar("2015-01-12", 266.34, 272.43, 255.00),      # equal to L0
+            bar("2015-01-13", 267.10, 268.15, 216.00)]      # real bar
+    assert lh305(find_lh_candidates(g1_weeks(), bars, "2014-09-01",
+                                    "2014-09-29")).confirmed_at == "2015-01-13"
 
 
-def test_invalidation_requires_a_strictly_higher_high():
-    """§4.5 kills a candidate when a later high EXCEEDS it. A day printing
-    exactly 305.00 is not an exceedance and is not a BoS either."""
-    bars = [bar("2015-01-12", 240, 245, 230),      # confirmation
-            bar("2015-01-19", 300, 305, 295),      # exact touch — not a break
-            bar("2015-01-28", 300, 309.90, 295)]   # the break
-    cands = find_lh_candidates(g1_weeks(), bars, "2014-09-01", "2014-09-29")
-    assert cands[0].invalidated_at == "2015-01-28"
+def test_invalidation_ignores_highs_that_predate_the_candidate_week():
+    """§4.5 kills a candidate on a LATER high that EXCEEDS it. Both bounds are
+    load-bearing, and both fixtures here are real bars.
+
+    2014-12-31 printed 321.00 — above the 305 candidate — but it belongs to the
+    anchor week, before 305 existed. Without the `> cand_end` bound every
+    candidate is invalidated on sight and no BoS can ever print. The 2015-01-20
+    bar is constructed: an exact 305.00 touch is not an exceedance.
+    """
+    bars = [bar("2014-12-31", 311.10, 321.00, 310.69, 321.00),   # real, pre-dates week i
+            bar("2015-01-13", 267.10, 268.15, 216.00),           # real, confirms
+            bar("2015-01-20", 300, 305, 295),                    # exact touch
+            bar("2015-01-26", 254.67, 309.90, 254.67, 274.80)]   # real, the break
+    lh = lh305(find_lh_candidates(g1_weeks(), bars, "2014-09-01", "2014-09-29"))
+    assert lh.confirmed_at == "2015-01-13"
+    assert lh.invalidated_at == "2015-01-26"
 
 
 def test_operative_lh_is_the_most_recent_candidate_not_the_highest():
-    """'Operative LH = the most recent valid candidate' (§4). With 305 and a
-    later, lower 260 both live, the operative LH is 260."""
-    bars = [bar("2015-01-26", 250, 255, 240),   # confirms 305 (low < 255)
+    """'Operative LH = the most recent valid candidate' (§4). With 321, 305 and
+    a later, lower 260 all live, the operative LH is 260."""
+    bars = [bar("2015-01-26", 250, 255, 240),   # confirms 321 and 305
             bar("2015-02-02", 210, 215, 190)]   # confirms 260 (low < 200)
     cands = find_lh_candidates(two_candidate_weeks(), bars, "2014-09-01", "2014-09-29")
-    assert {c.price for c in cands} == {Decimal("305"), Decimal("260")}
+    assert {c.price for c in cands} == {Decimal("321"), Decimal("305"), Decimal("260")}
     assert operative_lh(cands, asof="2015-02-02").price == Decimal("260")
     assert operative_lh(cands, asof="2015-02-01").price == Decimal("305")
 
@@ -256,7 +301,7 @@ def test_operative_lh_is_the_most_recent_candidate_not_the_highest():
 def test_an_unconfirmed_candidate_is_never_operative():
     """A more recent candidate that has not been confirmed cannot displace an
     older confirmed one (§4.3 — unusable before confirmation)."""
-    bars = [bar("2015-01-26", 250, 255, 240)]   # confirms 305 only
+    bars = [bar("2015-01-26", 250, 255, 240)]   # confirms 321 and 305 only
     cands = find_lh_candidates(two_candidate_weeks(), bars, "2014-09-01", "2014-09-29")
     assert next(c for c in cands if c.price == Decimal("260")).confirmed_at is None
     assert operative_lh(cands, asof="2015-12-31").price == Decimal("305")
@@ -266,8 +311,8 @@ def test_find_bos_excludes_the_after_day_and_requires_a_strict_break():
     """§4: BoS is a daily high ABOVE the LH, strictly after `after`."""
     bars = [bar("2015-01-14", 300, 306, 295),      # would break, but is `after`
             bar("2015-01-20", 300, 305, 295),      # exact touch — not above
-            bar("2015-01-28", 300, 309.90, 295)]
-    assert find_bos(bars, Decimal("305"), after="2015-01-14") == "2015-01-28"
+            bar("2015-01-26", 254.67, 309.90, 254.67)]
+    assert find_bos(bars, Decimal("305"), after="2015-01-14") == "2015-01-26"
 
 
 def test_first_bos_ignores_a_break_on_the_confirmation_day():
@@ -276,18 +321,20 @@ def test_first_bos_ignores_a_break_on_the_confirmation_day():
     kills the candidate, so no later day can produce one either."""
     bars = [bar("2015-01-12", 240, 306, 230)]
     cands = find_lh_candidates(g1_weeks(), bars, "2014-09-01", "2014-09-29")
-    assert cands[0].confirmed_at == "2015-01-12"
-    assert cands[0].invalidated_at == "2015-01-12"
+    assert lh305(cands).confirmed_at == "2015-01-12"
+    assert lh305(cands).invalidated_at == "2015-01-12"
     assert first_bos(bars, cands, start="2015-01-01", end="2015-12-31") == (None, None)
 
 
 def test_first_bos_requires_a_strict_break_and_honours_its_window():
-    bars = [bar("2015-01-12", 240, 245, 230),      # confirmation
-            bar("2015-01-20", 300, 305, 295),      # exact touch — not a break
-            bar("2015-01-28", 300, 309.90, 295)]   # the break
+    """The real G1 break: 2015-01-26's 309.90 high through the 305 LH."""
+    bars = [bar("2015-01-13", 267.10, 268.15, 216.00),           # real, confirms
+            bar("2015-01-20", 300, 305, 295),                    # exact touch
+            bar("2015-01-26", 254.67, 309.90, 254.67, 274.80)]   # real, the break
     cands = find_lh_candidates(g1_weeks(), bars, "2014-09-01", "2014-09-29")
-    assert first_bos(bars, cands, start="2015-01-01", end="2015-12-31")[0] == "2015-01-28"
+    bos, broken = first_bos(bars, cands, start="2015-01-01", end="2015-12-31")
+    assert (bos, broken.price) == ("2015-01-26", Decimal("305"))
     # `end` excludes the break day
-    assert first_bos(bars, cands, start="2015-01-01", end="2015-01-27") == (None, None)
-    # `start` after the break: the candidate is already dead, so nothing fires
-    assert first_bos(bars, cands, start="2015-01-29", end="2015-12-31") == (None, None)
+    assert first_bos(bars, cands, start="2015-01-01", end="2015-01-25") == (None, None)
+    # `start` after the break: 305 is already dead
+    assert first_bos(bars, cands, start="2015-01-27", end="2015-12-31") == (None, None)

@@ -30,7 +30,11 @@ WHAT IS ASSERTED, AND WHAT IS DELIBERATELY NOT
 -----------------------------------------------
 Asserted: fill dates, fill prices, accumulation line values, EL*, the prior-cycle
 ATH, the 1.272 level, and both exits' dates and prices — SPEC §14's "assert
-structural facts" list, all of which reconcile exactly.
+structural facts" list, all of which reconcile exactly. Since 2026-07-25 the
+**buy side** as well: `bos_week_high`, the three ladder rungs (levels, weights
+and the three fills that happened), and the breakout's level, size and fill day.
+Fourteen of the twenty-one units are spent there and none of it was pinned; see
+that section's own header for what the omission was hiding.
 
 NOT asserted: pnl percentages. §11's figures disagree with the reference by
 +0.5 to +1.1 points each (§14 OQ-4, explicitly non-blocking; owner 2026-07-24:
@@ -64,11 +68,14 @@ import pytest
 
 from engine.bars import monday_of, to_weeks
 from engine.context import CTX
-from engine.fills import buy_limit_fill, sell_limit_fill
-from engine.levels import extension_1272, mirror_target
+from engine.engine import compute
+from engine.fills import buy_limit_fill, buy_stop_fill, sell_limit_fill
+from engine.levels import LADDER_UNITS, extension_1272, mirror_target
 from engine.lifecycle import freeze_el, prior_cycle_ath
 from engine.lines import lines_for
 from engine.structure import R_DOWN_DEFAULT, find_swing_lows
+from engine.types import (EpisodeState, EpisodeStatus, OrderKind,
+                          OrderPurpose, OrderSide)
 
 #: The four episodes that activated. EP1 expired and EP6 is still watching, so
 #: neither has a fill; `test_the_unactivated_episodes_have_no_fills` asserts that
@@ -81,6 +88,25 @@ ACTIVATED = ("EP2-2014-09-28", "EP3-2018-11-25", "EP4-2020-03-15",
 CONFIRM_WEEK_HIGH = "a"
 CONFIRM_DECLINE_TOP = "b"
 
+#: The reference's reserve rows, in its own order, joined to the engine's ladder
+#: BY NAME. `levels.LADDER` and this dict are two dicts with matching keys and no
+#: guaranteed shared ordering, so zipping them would be silently wrong the day
+#: either is reordered — the same argument `orders.LADDER_PURPOSE` makes.
+RESERVE = {"F_0.5": ("0.5", OrderPurpose.LADDER_050),
+           "F_0.62": ("0.62", OrderPurpose.LADDER_062),
+           "F_0.786": ("0.786", OrderPurpose.LADDER_0786)}
+
+#: Accumulation filled 3/3 in every activated episode (§14 OQ-3) — 7 units.
+ACCUMULATED = frozenset({OrderPurpose.T1, OrderPurpose.T2, OrderPurpose.T3})
+ACCUMULATED_UNITS = Decimal(7)
+
+#: Half a cent. The reference records prices to 2dp and this suite compares the
+#: engine's exact arithmetic against them, so the tolerance is exactly the
+#: rounding the reference applied — see
+#: `test_the_2dp_record_is_ambiguous_only_at_an_exact_half_cent`, which shows
+#: that a plain `quantize` cannot be used and why the tolerance hides nothing.
+HALF_CENT = Decimal("0.005")
+
 
 def _2dp(value: Decimal) -> Decimal:
     """The reference records prices to 2dp; the engine returns exact arithmetic
@@ -91,6 +117,11 @@ def _2dp(value: Decimal) -> Decimal:
 def _week_end(monday: str) -> str:
     y, m, d = (int(x) for x in monday.split("-"))
     return (date(y, m, d) + timedelta(days=6)).isoformat()
+
+
+def _day_before(iso: str) -> str:
+    y, m, d = (int(x) for x in iso.split("-"))
+    return (date(y, m, d) - timedelta(days=1)).isoformat()
 
 
 def _first_actionable_day(trigger_monday: str) -> str:
@@ -391,6 +422,53 @@ def test_the_reference_file_is_what_this_suite_expects(cy1, reference):
         # market fallback. If a rule change flips one to "fallback" the exit
         # price becomes a market print and this table stops meaning what it says.
         assert ref["exit_mirror"]["mode"] == "fill_50"
+
+    # --- the BUY side, same treatment ------------------------------------
+    # Every buy-side assertion in this file reads these fields at run time, so
+    # this is where a data refresh has to report itself for them too. The rungs
+    # are listed in the reference's F_0.5 / F_0.62 / F_0.786 order as
+    # (level, fill date or None, fill price or None); the breakout as
+    # (date, price, units).
+    expected_buy = {
+        "EP2-2014-09-28": {
+            "leg_high": "309.90",
+            "reserve": [("231.15", "2015-02-02", "226.93"),
+                        ("212.25", "2015-02-05", "212.25"),
+                        ("186.10", None, None)],
+            "breakout": ("2015-07-12", "309.90", "8"),
+        },
+        "EP3-2018-11-25": {
+            "leg_high": "5275.01",
+            "reserve": [("4215.64", None, None), ("3961.39", None, None),
+                        ("3609.67", None, None)],
+            "breakout": ("2019-04-08", "5275.01", "14"),
+        },
+        "EP4-2020-03-15": {
+            "leg_high": "12123.46",
+            "reserve": [("7952.80", None, None), ("6951.84", None, None),
+                        ("5567.17", None, None)],
+            "breakout": ("2020-08-17", "12123.46", "14"),
+        },
+        "EP5-2022-05-22": {
+            "leg_high": "25250.00",
+            "reserve": [("20363.00", "2023-03-09", "20363.00"),
+                        ("19190.12", None, None), ("17567.64", None, None)],
+            "breakout": ("2023-03-14", "25250.00", "12"),
+        },
+    }
+    for label, exp in expected_buy.items():
+        ref = reference[label]
+        assert ref["anchors"]["leg_high"] == Decimal(exp["leg_high"])
+        assert [r["name"] for r in ref["reserve"]] == list(RESERVE)
+        for row, (lvl, fill_date, px) in zip(ref["reserve"], exp["reserve"]):
+            assert row["lvl"] == Decimal(lvl)
+            assert row["filled"] is (fill_date is not None)
+            assert row.get("date") == fill_date
+            assert row.get("px") == (None if px is None else Decimal(px))
+        assert (ref["breakout"]["date"], ref["breakout"]["px"],
+                ref["breakout"]["units"]) == (exp["breakout"][0],
+                                              Decimal(exp["breakout"][1]),
+                                              Decimal(exp["breakout"][2]))
 
 
 # --------------------------------------------------------------------------
@@ -915,3 +993,316 @@ def test_pnl_is_not_asserted_because_spec_and_the_reference_disagree(
         f"{label}: SPEC §11 {spec_11[label]} vs reference {reference_value}. "
         "If these now agree, §14 OQ-4 has been resolved and this test should be "
         "replaced by a real pnl assertion — not deleted.")
+
+
+# --------------------------------------------------------------------------
+# the buy side: BoS-week high, the ladder, the breakout
+# --------------------------------------------------------------------------
+#
+# Until this section existed, the reproduction stopped at the entry. The gates
+# asserted the trigger chain, the operative LH, EL*, the accumulation fills and
+# both exits — and nothing at all about how the other **fourteen of the
+# twenty-one units** get spent. Grepped before writing: `226.93` (EP2's 0.5-rung
+# fill), `5275.01`, `12123.46` and `20363` each appeared zero times under
+# `tests/`. Every number below already came out right; the point is that nothing
+# was holding them there, and mutation testing is structurally blind to the
+# class of error that pins a value to the wrong target.
+#
+# So, as everywhere else in this file, the expected values are read from `cy1` at
+# run time and the engine's are read from `compute` — never transcribed.
+
+
+def _settled_bos_week(bos: str) -> str:
+    """The Sunday that closes the BoS week: the earliest `asof` at which the
+    ladder and the breakout are priceable at all (`engine.engine`, boundary 3).
+    """
+    return _week_end(monday_of(bos))
+
+
+def _ledger_from(reference_row) -> tuple[frozenset, Decimal]:
+    """The (filled_purposes, held_units) the reference's own record implies.
+
+    Accumulation is 3/3 on all four episodes, plus whichever rungs the reference
+    marks filled, at `LADDER_UNITS`' 2 : 4 : 8. Derived rather than tabulated so
+    EP2's two filled rungs and EP5's one are the reference's claim, not this
+    file's.
+    """
+    filled, held = set(ACCUMULATED), ACCUMULATED_UNITS
+    for row in reference_row["reserve"]:
+        if row["filled"]:
+            name, purpose = RESERVE[row["name"]]
+            filled.add(purpose)
+            held += LADDER_UNITS[name]
+    return frozenset(filled), held
+
+
+def _confirmed_at(bars, onchain, asof, filled, held):
+    result = compute(bars, onchain, EpisodeState(), asof=asof,
+                     filled_purposes=filled, held_units=held)
+    assert result.state.status is EpisodeStatus.CONFIRMED, (
+        f"{asof}: expected a CONFIRMED episode, got {result.state.status}")
+    return result
+
+
+def _priced(result) -> dict:
+    return {o.purpose: o for o in result.orders}
+
+
+def _breakout_fill(bars, level: Decimal, after: str, strict: bool):
+    """The breakout fallback's fill, with the TOUCH predicate parametrised.
+
+    SPEC contradicts itself here and the record can tell the two apart:
+
+      §0 / §5   "intraweek trade **above** X = any daily high > X" — strict.
+      §13.2     buy-stop touch = "daily high **>=** level", and §13 overrides
+                the older prose.
+
+    `engine.fills.buy_stop_fill` implements §13.2, and
+    `test_the_breakout_reproduces_and_ep5_separates_the_touch_predicate` checks
+    this harness against it on the non-strict branch, so the only thing varied
+    is the one comparison. The fill PRICE is `max(level, open)` either way.
+    """
+    for bar in bars:
+        if bar.date <= after:
+            continue
+        if bar.high > level if strict else bar.high >= level:
+            return bar.date, max(level, bar.open)
+    return None, None
+
+
+@pytest.mark.parametrize("label", ACTIVATED)
+def test_the_bos_week_high_reproduces_and_ep4_needs_the_settled_week(
+        label, bars, onchain, scope, reference):
+    """`bos_week_high` is the reference's `leg_high`, and it is the input the
+    entire buy side is priced off — all three rungs and the breakout level.
+
+    EP4 is the episode that makes this a real assertion rather than a
+    restatement of the BoS date. Its BoS prints 2020-07-27 (Monday) but the
+    week's high, 12,123.46, does not arrive until the Sunday that closes it. Run
+    a day early and the engine's running high is 11,861.00 — 2.2% low — which
+    moves every ladder rung down and sets the breakout buy-stop *inside* the
+    week that broke structure. The other three episodes print their high before
+    the Sunday and are inert here, which is asserted rather than glossed: the
+    inequality is `<=` for all four and strict for EP4.
+    """
+    bos = scope[label]["bos"]
+    settled = _confirmed_at(bars, onchain, _settled_bos_week(bos),
+                            ACCUMULATED, ACCUMULATED_UNITS)
+    assert settled.state.bos_week_high == reference[label]["anchors"]["leg_high"]
+
+    a_day_early = compute(bars, onchain, EpisodeState(),
+                          asof=_day_before(_settled_bos_week(bos)),
+                          filled_purposes=ACCUMULATED,
+                          held_units=ACCUMULATED_UNITS)
+    assert a_day_early.state.bos_week_high <= settled.state.bos_week_high
+    if label == "EP4-2020-03-15":
+        assert a_day_early.state.bos_week_high < settled.state.bos_week_high
+    # ...and while the week is open nothing priced off it may rest (boundary 3).
+    assert not ({p for p, _ in RESERVE.values()} | {OrderPurpose.BREAKOUT}) & \
+        set(_priced(a_day_early))
+
+
+@pytest.mark.parametrize("label", ACTIVATED)
+def test_the_ladder_levels_and_weights_reproduce(label, bars, onchain, scope,
+                                                 reference):
+    """SPEC §5's three rungs, read off `compute`'s resting orders.
+
+    Taken from the order set rather than from `levels.ladder_levels` directly,
+    because the failure this is guarding is not "the retracement arithmetic is
+    wrong" — that is two lines and already unit-tested — but "the wrong leg was
+    fed to it, or the rungs were joined to their weights by position". EP2 and
+    EP3 are the pair that catch the latter: their weights are the same 2 : 4 : 8
+    while their levels are three orders of magnitude apart.
+
+    Prices are compared to the reference's 2dp record within half a cent, which
+    is exactly the rounding the reference applied. That is not slack —
+    `test_the_2dp_record_is_ambiguous_only_at_an_exact_half_cent` shows the
+    tolerance is reached by exactly one rung, for a reason, and that no
+    quantiser reproduces the record on all twelve.
+    """
+    bos = scope[label]["bos"]
+    orders = _priced(_confirmed_at(bars, onchain, _settled_bos_week(bos),
+                                   ACCUMULATED, ACCUMULATED_UNITS))
+    for row in reference[label]["reserve"]:
+        name, purpose = RESERVE[row["name"]]
+        order = orders[purpose]
+        assert abs(order.price - row["lvl"]) <= HALF_CENT, (
+            f"{label} {row['name']}: engine {order.price} vs reference "
+            f"{row['lvl']}")
+        assert order.units == row["w"] == LADDER_UNITS[name]
+    # The leg the rungs retrace: deepest rung below shallowest, both strictly
+    # inside (EL*, BoS-week high]. A ladder that priced off the wrong leg can
+    # still land three descending numbers; it cannot land them in this interval.
+    prices = [orders[p].price for _, p in RESERVE.values()]
+    assert prices == sorted(prices, reverse=True)
+    assert scope[label]["el_star"] < prices[-1]
+    assert prices[0] < reference[label]["anchors"]["leg_high"]
+
+
+def test_the_2dp_record_is_ambiguous_only_at_an_exact_half_cent(bars, onchain,
+                                                                scope,
+                                                                reference):
+    """Why the rungs are compared within half a cent instead of by `quantize`.
+
+    The engine returns exact Decimal arithmetic and the reference records two
+    decimal places, so the comparison has to name a rounding — and **no single
+    rounding mode reproduces the reference on all twelve rungs**. Four of them
+    land on an exact half-cent tie:
+
+        EP2 0.786   186.1050    -> record 186.10   (half-even agrees)
+        EP3 0.5     4215.635    -> record 4215.64  (half-even agrees)
+        EP3 0.62    3961.3850   -> record 3961.39  (half-even gives ...38)
+        EP4 0.5     7952.795    -> record 7952.80  (half-even agrees)
+
+    ROUND_HALF_EVEN gets three of the four; ROUND_HALF_UP would get EP3's 0.62
+    and then lose EP2's 0.786 (186.11). The pattern is what a float round-trip
+    does: 3961.385 as a binary double is 3961.38500000000021..., just above the
+    tie, while 186.105 is 186.10499999999999..., just below. The reference was
+    produced in floats; the engine is exact by construction and is not wrong
+    here.
+
+    So the honest claim is "the reference is this value rounded to the cent, and
+    at an exact tie the direction is not determined" — which is what the
+    tolerance says. This test is what stops it being slack: every rung must be
+    either an exact `_2dp` match or an exact half-cent tie, nothing in between,
+    and the tie set must be exactly those four.
+    """
+    ties, mismatches = [], []
+    for label in ACTIVATED:
+        orders = _priced(_confirmed_at(
+            bars, onchain, _settled_bos_week(scope[label]["bos"]),
+            ACCUMULATED, ACCUMULATED_UNITS))
+        for row in reference[label]["reserve"]:
+            _name, purpose = RESERVE[row["name"]]
+            exact = orders[purpose].price
+            gap = abs(exact - row["lvl"])
+            if gap == HALF_CENT:                     # an exact rounding tie
+                ties.append((label, row["name"], exact, row["lvl"]))
+            elif _2dp(exact) != row["lvl"]:          # not a tie, and not equal
+                mismatches.append((label, row["name"], exact, row["lvl"]))
+    assert mismatches == [], (
+        "these rungs differ from the reference by something other than a "
+        f"rounding tie: {mismatches}")
+    assert [(label, name) for label, name, _e, _r in ties] == [
+        ("EP2-2014-09-28", "F_0.786"),
+        ("EP3-2018-11-25", "F_0.5"),
+        ("EP3-2018-11-25", "F_0.62"),
+        ("EP4-2020-03-15", "F_0.5"),
+    ]
+    # ...and the one the two conventions actually disagree about, named.
+    disagrees = [(label, name) for label, name, exact, recorded in ties
+                 if _2dp(exact) != recorded]
+    assert disagrees == [("EP3-2018-11-25", "F_0.62")]
+
+
+@pytest.mark.parametrize("label", ACTIVATED)
+def test_the_ladder_rung_fills_reproduce(label, bars, onchain, scope, reference):
+    """§5's rungs are buy-limits, walked forward from the settled BoS week to
+    the breakout — and three of the twelve filled.
+
+    The window's far end is the breakout, because the breakout deploys the whole
+    remaining pool (SPEC §5) and after it the buy side of the episode is over;
+    a rung that "fills" past it is spending capital already spent. That end is
+    the reference's own breakout date, so this test does not depend on the touch
+    predicate the next one is about.
+
+    Both halves are asserted. The three fills pin date and price — EP2's 0.5 rung
+    gap-opens at 226.93, 1.8% below its 231.15 level, so `min(level, open)` is
+    genuinely exercised — and the nine non-fills pin that the other rungs were
+    never touched, which is what makes EP2's 8-unit and EP5's 12-unit breakout
+    the right size rather than a coincidence.
+    """
+    bos = scope[label]["bos"]
+    settled = _settled_bos_week(bos)
+    orders = _priced(_confirmed_at(bars, onchain, settled,
+                                   ACCUMULATED, ACCUMULATED_UNITS))
+    window = [b for b in bars
+              if settled < b.date <= reference[label]["breakout"]["date"]]
+
+    for row in reference[label]["reserve"]:
+        _name, purpose = RESERVE[row["name"]]
+        level = orders[purpose].price
+        hit = next(((b.date, buy_limit_fill(b, level)) for b in window
+                    if buy_limit_fill(b, level) is not None), None)
+        if not row["filled"]:
+            assert hit is None, f"{label} {row['name']} filled at {hit}"
+            continue
+        assert hit is not None, f"{label} {row['name']} never filled"
+        fill_date, fill_price = hit
+        assert fill_date == row["date"]
+        assert _2dp(fill_price) == row["px"]
+
+
+@pytest.mark.parametrize("label", ACTIVATED)
+def test_the_breakout_reproduces_and_ep5_separates_the_touch_predicate(
+        label, bars, onchain, scope, reference):
+    """SPEC §5's breakout fallback: level, size, and the day it fills.
+
+    **Level and size come from `compute`** and reproduce exactly on all four,
+    which is the part that matters most — the size is §14 OQ-3's second leg
+    (unfilled ladder rolls into the breakout) measured against the record rather
+    than against the owner's sentence. EP3 and EP4 carry the full 14; EP2 carries
+    8 because two rungs filled; EP5 carries 12 because one did. A reading that
+    rolled to the breakout at the wrong point gets 14 everywhere.
+
+    **The fill day exposes a contradiction inside SPEC, and EP5 is where it
+    bites.** §0 and §5 define "intraweek trade above X" as `daily high > X`;
+    §13.2's primitive table gives the buy-stop touch as `daily high >= level`,
+    and §13 overrides the older prose. The two agree on EP2, EP3 and EP4. On EP5
+    they do not: 2023-02-21 printed a high of **exactly** 25,250.00, the
+    BoS-week high to the cent.
+
+      strict `>`   breakout 2023-03-14 @ 25,250 — the reference, exactly.
+      §13.2 `>=`   breakout 2023-02-21, three weeks earlier.
+
+    It is not a cosmetic date. Under `>=` the breakout fires *before* EP5's 0.5
+    rung fills on 2023-03-09, so that rung never fills at all and the breakout
+    carries 14 units instead of 12 — a different position, differently sized,
+    entered 21 days and ~$1,000 apart. The record needs the strict reading; the
+    shipped `buy_stop_fill` implements the other one, and a real exchange stop
+    behaves like `>=`.
+
+    Not resolved here (CLAUDE.md rule 3 — amendment by addition, owner
+    approval). Both readings are pinned, as §6.2's two confirmation readings are
+    above, so settling it flips this test rather than hiding in it.
+    """
+    ref, bos = reference[label], scope[label]["bos"]
+    breakout_ref = ref["breakout"]
+
+    # --- level and size, through compute, with the reference's own ledger ---
+    filled, held = _ledger_from(ref)
+    at_the_break = _priced(_confirmed_at(bars, onchain,
+                                         _day_before(breakout_ref["date"]),
+                                         filled, held))
+    order = at_the_break[OrderPurpose.BREAKOUT]
+    assert order.price == ref["anchors"]["leg_high"] == breakout_ref["px"]
+    assert order.units == breakout_ref["units"]
+    assert order.kind is OrderKind.STOP_MARKET and order.side is OrderSide.BUY
+    # The rungs the reference records as filled are not re-rested beside it.
+    assert not (filled & set(at_the_break))
+
+    # --- the fill day, under both readings ---------------------------------
+    after_bos_week = _settled_bos_week(bos)
+    strict = _breakout_fill(bars, order.price, after_bos_week, strict=True)
+    assert strict == (breakout_ref["date"], breakout_ref["px"])
+
+    loose = _breakout_fill(bars, order.price, after_bos_week, strict=False)
+    # The harness's non-strict branch IS `buy_stop_fill`; checked, not asserted
+    # in prose, so this cannot drift into a second implementation.
+    engine_side = next(((b.date, buy_stop_fill(b, order.price)) for b in bars
+                        if b.date > after_bos_week
+                        and buy_stop_fill(b, order.price) is not None), None)
+    assert loose == engine_side
+
+    if label == "EP5-2022-05-22":
+        assert loose == ("2023-02-21", Decimal("25250.0"))
+        assert loose[0] < strict[0]
+        touched = next(b for b in bars if b.date == "2023-02-21")
+        assert touched.high == order.price          # the tie, to the cent
+        # ...and the consequence: the 0.5 rung's fill day is inside the gap, so
+        # under `>=` it never fills and the breakout would carry the full 14.
+        rung = next(r for r in ref["reserve"] if r["name"] == "F_0.5")
+        assert loose[0] < rung["date"] < strict[0]
+        assert order.units == Decimal(12)
+    else:
+        assert loose == strict

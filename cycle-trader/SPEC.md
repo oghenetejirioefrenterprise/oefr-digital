@@ -473,30 +473,39 @@ by 152.40 on 2015-01-14, BoS week 2015-01-26 @ 309.90 · G2 `+63.2%` off 6,435, 
 `cy1_lifecycle.json → ep6_operative_by_Re` confirms R10 → 67,292 (wrong), R15 and
 R20 → 82,850.
 
-### 13.3a `R_e = 15` is an edge, not a unique point (measured 2026-07-25)
+### 13.3a `R_e = 15` is an edge, not a unique point (bisected 2026-07-25)
 
-§4.2 calls 15 "the unique value passing all gates", and CLAUDE.md repeats it. Swept
-against the full M1 suite, **that is not true**:
+§4.2 calls 15 "the unique value passing all gates", and CLAUDE.md repeated it.
+**Neither is true**, and the two measurements below must be kept apart — an
+earlier revision of this section conflated them and had to be corrected.
 
-| `R_e` | Result |
-|---|---|
-| 13.5 | fails |
-| **13.8 · 13.9 · 14 · 14.5 · 14.99 · 15** | **all pass 190/190** |
-| 15.01 · 16 · 19.6 · 20 | fail |
+**What HISTORY constrains** — the §10 gates alone, i.e. the owner's five chart
+reads against the frozen data:
 
-So 15 is the **upper edge** of a passing interval of roughly `(13.5, 15.0]`. The
-gates cannot distinguish 14 from 15.
+> **`R_e ∈ (12.0422, 19.60784]` all reproduce every historical gate.**
+> A **7.57-point-wide band.** Verified at 12.05 · 13 · 14 · 15 · 17 · 19.5 · 19.6.
 
-What §4.2's evidence actually establishes is narrower and still sound: **R10 and
-R20 both fail** — R10 admits the +11% FTX bounce, R20 rejects Jan-2015's +19.6%
-rally and loses G1's 2015-01-26 BoS. Both remain true. The overclaim is "unique",
-not the choice of 15.
+Both edges are real historical events: the upper is **G1's own LH rally**
+(255.00 → 305.00 = +19.60784%), the lower is EP3's wk **2018-12-10** at
++12.0422% off 3,222.00 — admitting it breaks **G2** via the episode chain.
 
-This does not make the engine wrong — 15 is the owner's value and it passes. It
-means the *record cannot justify* 15 over 14 on gate evidence alone, exactly as
-§13.5's 26-quiet-week plateau cannot justify 26 over 30. Treat both as
-owner-chosen constants that sit safely inside a passing region, and do not cite
-either as gate-derived.
+**What the M1 SUITE constrains** — `(13.78809, 15.00]`, much narrower. But that
+narrowness is **self-imposed and carries no historical authority**: the upper edge
+comes from `test_degree_is_inclusive_at_exactly_r_e`, a *constructed* exactly-15%
+rally, and the lower from `test_rally_below_15_percent_is_rejected`, built on G5's
++13.78809% bounce. So "R_e = 15.01 fails" is a fact about a fixture, not about
+Bitcoin.
+
+**Consequences.** §4.2's supporting evidence remains sound as far as it goes —
+R10 and R20 do both fail (R10 admits the +11% FTX bounce; R20 rejects Jan-2015's
++19.6% rally and loses G1's BoS). But 15 is the upper edge of a wide historical
+band, and the record cannot prefer it to 14, or to 17. This does not make the
+engine wrong: 15 is the owner's value and it passes everything.
+
+This is the **second** frozen constant found to be an edge rather than a point —
+`QUIET_WEEKS = 26` sits inside a `[10, 57]` plateau (§13.5). Treat both as
+owner-chosen values sitting safely inside a passing region. **Do not tune them,
+and do not cite them as gate-derived.**
 
 ### 13.4 Confirmation resolution
 

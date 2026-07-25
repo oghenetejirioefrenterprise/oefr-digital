@@ -49,6 +49,26 @@ def test_sell_stop_gap_open_below_level_fills_at_open():
     assert sell_stop_fill(bar(15000, 15200, 14000), Decimal("15476")) == Decimal("15000")
 
 
+def test_sell_limit_no_touch_returns_none():
+    """A rally that never reaches the target sells nothing.
+
+    Symmetric to test_buy_limit_no_touch_returns_none, which the buy side has and
+    the sell side did not. Without it, deleting `sell_limit_fill`'s no-touch guard
+    leaves the suite green — an Exit 1 at the 1.272 extension, or an Exit 2 mirror
+    target, filling on a day price never came near.
+    """
+    assert sell_limit_fill(bar(80000, 82000, 79000), Decimal("83558.53")) is None
+
+
+def test_sell_stop_no_touch_returns_none():
+    """A day that holds above `EL*` does not stop the book out.
+
+    This is the only capital protection in the strategy, and it was the primitive
+    whose guard could be deleted outright with nothing objecting.
+    """
+    assert sell_stop_fill(bar(16000, 16500, 15600), Decimal("15476")) is None
+
+
 def test_exact_touch_fills_on_every_primitive():
     """SPEC §13.2's touch tests are `low <= level` / `high >= level`, not `<` / `>`.
 

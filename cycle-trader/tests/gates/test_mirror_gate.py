@@ -18,6 +18,16 @@ yet** — `mirror_signal` / `_walk_forward_fill` below are a test-local harness,
 a gate cannot pin code that does not exist. `engine/orders.py` already consumes a
 ready-made `lines["mirror"]` value, so whoever computes it (M2/Task 14) inherits an
 unpinned rule. That is a real gap, recorded here rather than papered over.
+
+AND THE HARNESS ITSELF PICKS AN UNDECIDED RULE. `_walk_forward_fill` is handed a
+`top` computed as `max(b.high for b in window if b.date <= signal.date)` — the
+argmax from the **harness window start**, which is an arbitrary boundary §13.9
+chose for this fixture. §6.2 defines the target as `(top_high + low_so_far) / 2`
+and never says over what window `top_high` is scanned. The M1 plan's
+`_mirror_lines` sketch scans from the BoS; a live position would presumably scan
+its own lifetime, which §13.9 explicitly disables here. The three origins can
+give three different resting sell prices. Not in §14's open items — escalated as
+obligation 3 in `find_swing_lows`.
 """
 from decimal import Decimal
 
@@ -86,6 +96,17 @@ def test_g4_detects_the_double_bottom_and_nothing_spurious(g4_swings):
     emits half the window. The two double-bottom weeks are the load-bearing rows;
     the rest are the honest consequence of `R_down = 10` on this window and are
     pinned so a rule change reports itself here rather than as a moved signal.
+
+    **This pin is fixture-derived, not a chart the owner drew.** §10 G4 asserts a
+    signal and a fill and nothing about the swing SET, so everything here beyond
+    the two double-bottom rows is this task's own construction. It is what bounds
+    `R_down` from below (see `test_r_down_is_a_half_line_not_a_band`, where the
+    two authorities are kept apart), and it is also the only thing in the suite
+    that separates the two readings of §6.2's confirmation reference price: under
+    the strict §4.3 mirror (`b.high > top.high`) none of the five post-crash rows
+    below confirms at all, because nothing trades back above the 126,199.63 ATH.
+    §10 G4's own chart read cannot tell the readings apart. See
+    `find_swing_lows`' obligation 2.
     """
     got = {s.week_monday: s.low for s in g4_swings}
     assert got == {
@@ -265,47 +286,89 @@ def test_g4_walk_forward_target_is_unobservable_here(g4_window, g4_swings):
     assert min(b.low for b in between) > signal.low
 
 
-def test_g4_r_down_10_is_load_bearing_upward_only(g4_window, g4_swings):
-    """`R_down = 10` is a frozen owner choice (§6.2). G4 constrains it from ABOVE
-    only, and this test says which direction the evidence actually runs.
+def test_r_down_is_a_half_line_not_a_band(g4_window, g4_swings):
+    """`R_down = 10` is a frozen owner choice (§6.2). **§10 G4 bounds it from
+    ABOVE ONLY — there is no lower edge at all.** Bisected 2026-07-25; an earlier
+    version of this test said "insensitive below 10" off a single `R_down = 5`
+    probe, which understated it.
 
-    UPPER — real, and tight. Both double-bottom legs decline only −13.76% /
-    −13.83% off the wk-2025-08-11 top of 124,474.00, so **`R_down = 14` already
-    deletes the structure §10 G4 names**. What survives at 15 is a set of
-    post-crash swings whose earliest is wk 2025-10-13 — after the break — so no
-    signal can land in the week of 2025-10-06 at all. This also records why §9's
-    rejection of `R_down = 10` **for the LH side** does not transfer: the two
-    knobs are independent, and the mirror side needs the looser one.
+    This makes `R_down` structurally unlike the project's other two constants,
+    and the difference is worth naming: `R_e` sits in a genuine two-sided band
+    (§13.3a, `(10.2771, 19.60784]`), `QUIET_WEEKS` sits in an interior plateau
+    (§13.5, `[10, 57]`), and `R_down` sits on a **half-line**. Nothing in §10
+    stops it going to 0, or negative — G4 reproduces at `R_down = -100`, because
+    a looser threshold only ever ADDS shallower swings, and none of them is the
+    most recent confirmed swing at the 2025-10-10 break.
 
-    LOWER — G4 is INSENSITIVE, and pretending otherwise would overstate it.
-    Dropping to `R_down = 5` admits exactly one extra week (2025-09-15, −8.11%)
-    and changes neither the double-bottom attribution nor the signal, because the
-    extra swing is shallower than the ones already present and is never the most
-    recent confirmed swing at the break. So nothing in §10 bounds `R_down` from
-    below; 10 is the owner's number, not a fitted one.
+        Reading                                        Passing band
+        §10 G4 as this gate asserts it (both legs)     (-inf, 13.757009495958995...]
+        §10 G4 read literally ("either attribution")   (-inf, 13.833410993460482...]
+        this suite's own set-equality pin              (8.106110513038868..., 10.374335202532256...]
+
+    The upper edges ARE the two component declines off the wk-2025-08-11 top of
+    124,474.00 — that is why they are edges, and both are inclusive (`decline <
+    r_down` skips, so `r_down == decline` still qualifies). So `R_down = 14`
+    already deletes the structure §10 G4 names. This is also why §9's rejection
+    of `R_down = 10` **for the LH side** does not transfer: the knobs are
+    independent and the mirror side needs the looser one.
+
+    **The third row has no historical authority and is labelled so deliberately**
+    (the separation §13.3a insists on). Its edges come from
+    `test_g4_detects_the_double_bottom_and_nothing_spurious`, a fixture this task
+    wrote — the lower edge is wk 2025-09-15's −8.106% (a week the set pin
+    excludes) and the upper is wk 2025-09-29's −10.374% (one it includes).
+    Neither is a chart the owner drew. Quoting that band as though §10 produced
+    it would be exactly the overstatement §13.3a was written to stop.
     """
     window, wks = g4_window
 
-    at_14 = find_swing_lows(wks, window, r_down=Decimal("14"))
-    assert all(s.week_monday not in DOUBLE_BOTTOM for s in at_14)
+    def double_bottom_in(r_down):
+        return {s.week_monday for s in find_swing_lows(wks, window, r_down=r_down)
+                } & set(DOUBLE_BOTTOM)
 
+    # --- no lower edge: the gate's structure survives arbitrarily loose values
+    for loose in ("-100", "0", "5", "10"):
+        assert double_bottom_in(Decimal(loose)) == set(DOUBLE_BOTTOM)
+
+    # --- upper edges, bisected, each pinned at and just past the boundary.
+    # The engine's own decline_pct values are used as the edges rather than
+    # transcribed constants: they ARE the boundary, and a data refresh that moves
+    # a low must move both together or this fails.
+    declines = {s.week_monday: s.decline_pct for s in g4_swings
+                if s.week_monday in DOUBLE_BOTTOM}
+    e_both, e_either = min(declines.values()), max(declines.values())
+    assert declines["2025-08-25"] == e_both
+    assert Decimal("13.7570094959") < e_both < Decimal("13.7570094960")
+    assert Decimal("13.8334109934") < e_either < Decimal("13.8334109935")
+
+    eps = Decimal("1e-20")
+    assert double_bottom_in(e_both) == set(DOUBLE_BOTTOM)          # inclusive
+    assert double_bottom_in(e_both + eps) == {"2025-09-01"}        # both -> either
+    assert double_bottom_in(e_either) == {"2025-09-01"}            # inclusive
+    assert double_bottom_in(e_either + eps) == set()               # gone entirely
+
+    # ...and past the edge no signal can land in G4's week at all, because every
+    # surviving swing is post-crash.
     at_15 = find_swing_lows(wks, window, r_down=Decimal("15"))
     assert min(s.week_monday for s in at_15) == "2025-10-13"
     assert all(mirror_signal(window, s) is None
                or monday_of(mirror_signal(window, s).date) != "2025-10-06"
                for s in at_15)
 
-    at_5 = find_swing_lows(wks, window, r_down=Decimal("5"))
-    extra = {s.week_monday for s in at_5} - {s.week_monday for s in g4_swings}
-    assert extra == {"2025-09-15"}
-    assert next(s for s in at_5 if s.week_monday == "2025-09-15").low \
-        > max(DOUBLE_BOTTOM.values())
+    # --- the fixture-derived band, kept separate and labelled as such
+    lo = next(s for s in find_swing_lows(wks, window, r_down=Decimal("5"))
+              if s.week_monday == "2025-09-15").decline_pct
+    hi = next(s.decline_pct for s in g4_swings if s.week_monday == "2025-09-29")
+    assert Decimal("8.1061105130") < lo < Decimal("8.1061105131")
+    assert Decimal("10.3743352025") < hi < Decimal("10.3743352026")
+    pinned = {s.week_monday for s in g4_swings}
+    assert {s.week_monday for s in find_swing_lows(wks, window, r_down=lo)} != pinned
+    assert {s.week_monday
+            for s in find_swing_lows(wks, window, r_down=lo + eps)} == pinned
+    assert {s.week_monday for s in find_swing_lows(wks, window, r_down=hi)} == pinned
+    assert {s.week_monday
+            for s in find_swing_lows(wks, window, r_down=hi + eps)} != pinned
 
-    # The engine's own numbers for the two named lows, read off the r_down=5 run
-    # so they exist as computed values rather than hand arithmetic.
-    declines = {s.week_monday: s.decline_pct for s in at_5}
-    assert Decimal("13.75") < declines["2025-08-25"] < Decimal("13.76")
-    assert Decimal("13.83") < declines["2025-09-01"] < Decimal("13.84")
     assert all(s.top_high == Decimal("124474.00")
                for s in g4_swings if s.week_monday in DOUBLE_BOTTOM)
 

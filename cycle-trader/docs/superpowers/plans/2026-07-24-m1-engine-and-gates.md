@@ -1065,7 +1065,7 @@ git commit -m "feat(cycle-trader): episode lifecycle, clustering and EL* freeze"
 
 **Interfaces:**
 - Consumes: `Bar`, `Week` from Task 1
-- Produces: `LHCandidate` dataclass; `find_lh_candidates(weeks, bars, scope_start, trigger_monday, r_e=Decimal("15")) -> list[LHCandidate]`; `operative_lh(candidates, asof) -> LHCandidate | None`; `find_bos(bars, lh_price, after) -> str | None` (fixed-price helper); `first_bos(bars, candidates, start, end) -> (bos_date, broken_candidate) | (None, None)` (walk-forward reconstruction — the only correct way to find a historical BoS); `find_swing_lows(weeks, r_down=Decimal("10")) -> list[...]`
+- Produces: `LHCandidate` dataclass; `find_lh_candidates(weeks, bars, scope_start, trigger_monday, r_e=Decimal("15")) -> list[LHCandidate]`; `operative_lh(candidates, asof) -> LHCandidate | None`; `find_bos(bars, lh_price, after) -> str | None` (fixed-price helper); `first_bos(bars, candidates, start, end) -> (bos_date, broken_candidate) | (None, None)` (walk-forward reconstruction — the only correct way to find a historical BoS); `find_swing_lows(weeks, bars, r_down=Decimal("10")) -> list[SwingLow]` **(AS SHIPPED, 29c8104 — takes `bars`; the plan's original `(weeks, r_down)` signature is superseded. Confirmation is day-resolution: first daily high strictly above the candidate week's high after that week ends. A week-label rule is up to 3 days of lookahead on G4's own data. Returns only CONFIRMED swings — callers must not re-filter on `confirmed_at`. `SwingLow` fields: `week_monday, low, decline_pct, confirmed_at, top_week, top_high`; `top_high` is the QUALIFYING decline's top, NOT §6.2's mirror-fill `top_high`.)**
 
 This is the load-bearing algorithm — SPEC §13.3 **as corrected by v1.2.1** gives the pseudocode. Follow it exactly. The `scope_start` parameter is **D's Monday** (from `downtrend_anchor`), never the prior-ATH week — passing the prior-ATH week fails G2.
 
@@ -1978,7 +1978,15 @@ def test_g5_accumulation_lines_and_no_fills(bars, onchain):
 Run: `pytest tests/gates/test_mirror_gate.py tests/gates/test_ep6_gate.py -v`
 Expected: FAIL with `ImportError: cannot import name 'find_swing_lows'`
 
-- [ ] **Step 3: Implement `find_swing_lows` and make both gates pass**
+- [x] **Step 3: Implement `find_swing_lows` and make both gates pass**
+
+> **SUPERSEDED BY WHAT SHIPPED (29c8104).** The sketch below is kept as the
+> historical brief. Three things changed and are reviewed/accepted: it takes
+> `bars` and confirms at DAY resolution (the week-label rule here is up to 3
+> days of lookahead on G4's own data); `SwingLow` carries `top_week`/`top_high`;
+> and the docstring escalates three undecided §6.2 questions (argmax scope,
+> confirmation reference price, mirror-fill `top_high` scan origin). Read
+> `engine/structure.py`, not this block.
 
 ```python
 # append to engine/structure.py
@@ -2398,7 +2406,10 @@ def _mirror_lines(visible, weeks, bos, armed_since, asof) -> dict[str, Decimal]:
     break of the May-2024 swing predates Exit 1 (2024-11-11) and must not
     produce a mirror sell."""
     era_weeks = [w for w in weeks if w.monday >= monday_of(bos)]
-    swings = [s for s in find_swing_lows(era_weeks) if s.confirmed_at is not None]
+    # AS SHIPPED (29c8104): takes `bars` too, and already drops unconfirmed
+    # swings, so the old `if s.confirmed_at is not None` filter is dead code.
+    era_bars = [b for b in visible if b.date >= monday_of(bos)]
+    swings = find_swing_lows(era_weeks, era_bars)
     for s in reversed(swings):                       # most recent swing first
         earliest = max(s.confirmed_at, armed_since)
         brk = next((b for b in visible

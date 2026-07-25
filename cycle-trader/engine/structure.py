@@ -170,16 +170,47 @@ def find_swing_lows(weeks: list[Week], bars: list[Bar],
     EP5's 2025-02-24 signal.** Shipping this reading unqualified into a running
     position would be a silent rule change of the kind §9 forbids.
 
-    CONFIRMATION IS DAY-RESOLUTION
-    ------------------------------
-    First daily high strictly above the candidate week's high, after that week
-    ends — the mirror of `find_lh_candidates`'s confirmation and of §13.4's
-    "confirmation is a daily low, strictly less than L₀". A week label would
-    declare the swing confirmed on the Monday of a week whose high is not known
-    until Sunday, i.e. up to six days of lookahead (CLAUDE.md rule 5). On G4's
-    data both readings confirm the double bottom in time for the 2025-10-10
-    break, so the gate does not separate them; the daily rule is chosen because
-    it is the one that cannot peek, not because the gate forces it.
+    CONFIRMATION, part 1: RESOLUTION is daily, and that part is settled
+    -------------------------------------------------------------------
+    Confirmation is a *daily* event, not a week label: a week label would declare
+    the swing confirmed on the Monday of a week whose high is not known until
+    Sunday, i.e. lookahead (CLAUDE.md rule 5). Measured on G4's own window that
+    is not hypothetical — a week-label rule stamps wk 2025-08-25 confirmed
+    2025-09-08 when the confirming high printed 2025-09-10 (2 days), and wk
+    2025-08-18 confirmed 2025-09-08 against 2025-09-11 (3 days). §13.4 settles
+    the resolution question for §4 and the same argument transfers.
+
+    CONFIRMATION, part 2: the REFERENCE PRICE is an open question — §14 material
+    ---------------------------------------------------------------------------
+    §6.2 says only "confirmed by a subsequent higher high" and never says higher
+    than *what*. Two readings, and **this function implements the first**:
+
+      (a) `b.high > cand.high`  — higher than the SWING WEEK's own high.
+          Structurally this mirrors `find_lh_candidates`'s **invalidation**
+          (`b.high > cand.high`), not its confirmation.
+      (b) `b.high > top.high`   — higher than the decline's argmax top. THIS is
+          the strict §4.3 mirror: §4.3 confirms against `L₀`, the level the
+          rally *originated* from, whose swing-side twin is `top.high`, not the
+          candidate's own high.
+
+    So the symmetry argument does not favour (a); an earlier version of this
+    docstring claimed it did and was wrong. **G4 cannot separate them** — both
+    double-bottom legs still signal 2025-10-10 either way (a: confirmed
+    2025-09-10; b: 2025-10-05). They diverge completely after the crash:
+
+        wk 2025-11-24   (a) confirmed 2025-12-03   (b) NEVER
+        wk 2025-12-01   (a) confirmed 2025-12-09   (b) NEVER
+
+    Under (b) nothing confirms until a new ATH prints, so a live position in a
+    bear leg would **never receive a mirror signal at all**. That is an
+    exit-behaviour difference, i.e. §9-amendment material, not a detail.
+
+    OBLIGATIONS CARRIED OUT OF THIS FUNCTION (M2 / §9, owner decision needed)
+    ------------------------------------------------------------------------
+    1. The argmax scope above ("since the prior swing" vs all prior weeks).
+    2. The confirmation reference price, (a) vs (b), immediately above.
+    3. §6.2's mirror-fill `top_high` has **no defined scan origin** — see the
+       note below. All three change which orders exist; none is in §14 yet.
 
     `top_high` IS NOT THE MIRROR FILL'S `top_high`
     ----------------------------------------------
@@ -187,6 +218,14 @@ def find_swing_lows(weeks: list[Week], bars: list[Bar],
     is `(top_high + low_so_far) / 2` over the decline being retraced, whose top
     is the argmax up to the break. G4 separates the two by 1,725.63: the swing's
     top is wk 2025-08-11's 124,474.00, the fill's is 2025-10-06's 126,199.63.
+    (Substituting this one fills 2025-10-11 @ 113,237.00 — 0.756% off, outside
+    §10's ±0.5% band and on the wrong date, so G4 fails loudly on the swap.)
+
+    **And §6.2 never says over what window the fill's `top_high` is scanned.**
+    G4's harness takes the argmax from the harness window start; the M1 plan's
+    `_mirror_lines` sketch takes it from the BoS; a live position would
+    presumably use the position lifetime, which §13.9 explicitly disables for
+    G4. This directly sets a resting sell price and is obligation 3 above.
     """
     out: list[SwingLow] = []
     for i, cand in enumerate(weeks):

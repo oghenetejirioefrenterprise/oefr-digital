@@ -1,8 +1,11 @@
 """Episode lifecycle: trigger detection, 26-quiet-week clustering, downtrend
-scope, the running low, and the EL* freeze at BoS (SPEC §1 and §13.1)."""
+scope, the running low, the EL* freeze at BoS, and the episode chain
+(SPEC §1, §13.1, §13.3)."""
 from __future__ import annotations
+from dataclasses import dataclass
 from decimal import Decimal
 from engine.bars import monday_of
+from engine.structure import LHCandidate, find_lh_candidates, first_bos
 from engine.types import Bar, Week
 
 RSI_TRIGGER = Decimal("35")
@@ -112,3 +115,59 @@ def freeze_el(bars: list[Bar], scope_start: str, bos_date: str) -> Decimal:
     onward this is the stop level; before the BoS it is only an anchor.
     scope_start is D's Monday (downtrend_anchor), not the prior-ATH week."""
     return running_low(bars, scope_start, bos_date)
+
+
+@dataclass(frozen=True, slots=True)
+class Episode:
+    """One episode's derived scope. `bos_date`/`broken_lh` are None if it never
+    activated within its era."""
+    trigger: str
+    window_start: str
+    d_week: str
+    candidates: tuple[LHCandidate, ...]
+    bos_date: str | None
+    broken_lh: LHCandidate | None
+
+
+def chain_episodes(weeks: list[Week], bars: list[Bar], triggers: list[str],
+                   data_end: str) -> list[Episode]:
+    """Derive every episode's scope, in trigger order (SPEC §13.3).
+
+    Episodes **chain**: each one's anchor window starts at the *previous*
+    episode's activation (its BoS; the data start if none), so they cannot be
+    computed independently. Three traps are baked in here rather than left to
+    each caller, because each has a wrong answer that looks reasonable:
+
+    - **D is bounded at the episode's OWN trigger**, never at the era end.
+      Bounding at the era end leaks the following bull run into the argmax and
+      D becomes Dec-2017 for EP2 and Nov-2021 for EP4 — both wrong, and both
+      still produce a plausible-looking downtrend.
+    - **The BoS is found by walking days against the THEN-operative LH**
+      (`first_bos`), never by breaking today's. Asking `operative_lh` for a
+      post-BoS date does not return None; it falls back to an older, higher
+      candidate (EP2: 305.00 on the break day, then 453.92 from 2015-01-27), so
+      a "today's LH" reconstruction silently records the wrong structure or no
+      activation at all.
+    - **The era ends at the next episode's trigger** (§1: expiry "bounded by the
+      next episode's trigger"), so an episode cannot activate on structure that
+      belongs to its successor.
+
+    `triggers` must be `find_triggers`' output for `weeks`. This function is
+    called by `engine.engine.compute` and by the gate fixtures — one rule, two
+    callers, so a mutation of the chain cannot pass the gates while shipping
+    something else.
+    """
+    episodes: list[Episode] = []
+    window_start = weeks[0].monday          # data start; EP1 has no predecessor
+    for trigger, nxt in zip(triggers, list(triggers[1:]) + [None]):
+        era_end = nxt or data_end
+        _d_price, d_week = downtrend_anchor(weeks, window_start, asof=trigger)
+        candidates = find_lh_candidates(weeks, bars, scope_start=d_week,
+                                        trigger_monday=trigger)
+        bos, broken = first_bos(bars, candidates, start=trigger, end=era_end)
+        episodes.append(Episode(trigger=trigger, window_start=window_start,
+                                d_week=d_week, candidates=tuple(candidates),
+                                bos_date=bos, broken_lh=broken))
+        if bos is not None:
+            window_start = bos              # the next episode's window starts here
+    return episodes

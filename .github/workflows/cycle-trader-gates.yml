@@ -106,3 +106,14 @@ jobs:
             | awk '/tests? collected/ { print $1; exit }')
           echo "gate tests collected: ${collected:-0}"
           test "${collected:-0}" -ge 75
+
+      # Same argument, one level up. `compute()` is the only thing M2 calls, so
+      # tests/test_engine.py orphaning itself — a rename, a conftest fixture
+      # error that skips rather than fails — would leave the entry point
+      # unverified while the gates (which never call it) stay green.
+      - name: Assert the entry-point suite actually ran
+        run: |
+          collected=$(pytest tests/test_engine.py -q --collect-only \
+            | awk '/tests? collected/ { print $1; exit }')
+          echo "compute() tests collected: ${collected:-0}"
+          test "${collected:-0}" -ge 47

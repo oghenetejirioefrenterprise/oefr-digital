@@ -5,8 +5,8 @@ Terminology (SPEC §13.3 collapses the doc's three names into one):
 """
 from __future__ import annotations
 from dataclasses import dataclass
-from datetime import date as _date, timedelta
 from decimal import Decimal, localcontext
+from engine.bars import week_end as _week_end
 from engine.context import CTX
 from engine.types import Bar, Week
 
@@ -24,11 +24,6 @@ class LHCandidate:
     rally_pct: Decimal
     confirmed_at: str | None
     invalidated_at: str | None
-
-
-def _week_end(monday: str) -> str:
-    y, m, d = (int(x) for x in monday.split("-"))
-    return (_date(y, m, d) + timedelta(days=6)).isoformat()
 
 
 def find_lh_candidates(weeks: list[Week], bars: list[Bar], scope_start: str,

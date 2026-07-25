@@ -9,6 +9,19 @@ def monday_of(date: str) -> str:
     return (d - timedelta(days=d.weekday())).isoformat()
 
 
+def week_end(monday: str) -> str:
+    """The Sunday closing an ISO week, given its Monday.
+
+    The counterpart of `monday_of`, and the boundary three separate rules hang
+    off: §13.4's confirmation ("the first DAY after week i"), §13.5's settled
+    weekly RSI, and §5's "after the BoS week". It lives here, next to
+    `monday_of`, because two definitions of a week boundary in one package is
+    exactly the kind of thing that drifts apart in a later edit.
+    """
+    y, m, d = (int(x) for x in monday[:10].split("-"))
+    return (_date(y, m, d) + timedelta(days=6)).isoformat()
+
+
 def to_weeks(bars: list[Bar]) -> list[Week]:
     """Aggregate daily bars into ISO-Monday-anchored weeks, in date order.
 

@@ -147,6 +147,38 @@ the capital plan — a stop for 21 units against a 7-unit position is an order t
 sell BTC the account doesn't hold. (2026-07-24 review; first issue of this table
 omitted Exit 1 and rested the mirror sell unconditionally.)
 
+### Simultaneous resting orders over-commit the book — M5 blocker
+
+**Found 2026-07-25 during the M1 build, by executing the order builder.** The table
+above rests multiple orders against the *same* units. SPEC §5/§6 are backtest rules
+where fills are evaluated once per daily bar and mutual exclusion is implicit; this
+table carried that assumption onto a live venue without stating it.
+
+**Buy side, `confirmed`:** the ladder rungs and the breakout stop rest
+simultaneously for the same pool — **200% of the capital plan resting every day**.
+Both can execute within one day:
+
+| Intraday path | Over-spend |
+|---|---|
+| 0.5 rung fills, then price breaks the BoS high | +3 units (+14%) |
+| 0.5 and 0.62 fill, then break | +9 units (+43%) |
+| all three rungs fill, then break | +21 units (**+100%** — 42 spent against a 21-unit plan) |
+
+**Sell side is worse — it is steady state, not an intraday race:** `confirmed` rests
+`STOP(H)` + `EXIT1(H/2)` = **1.5×** held units every day; `distributing` rests
+`STOP(H)` + `MIRROR(H)` = **2×**. On a venue that reserves base balance for resting
+sells — Binance does, for `LIMIT` and `STOP_LOSS` alike — **the second order is
+rejected on day one of M3**, before any strategy logic is exercised.
+
+This also collides with §7 interlock 2: if the notional cap is set at plan size, the
+**normal** daily order set trips it.
+
+`engine/orders.py` is the wrong layer to fix this — it has no intraday fill
+visibility. Resolutions are venue-side (**OCO / order-list** linking the ladder
+rungs to the breakout, and the stop to each exit) or a pre-place check in `guard/`
+that re-reads trade history. **Blocks M5 alongside OQ-1.** Do not arm live until the
+desired-order set is mutually exclusive at the venue.
+
 ### Order types
 
 Per owner instruction, limit where possible; market only where the system is
@@ -310,7 +342,7 @@ variant SPEC §9 rejects. Comparing against either produces nonsense.
 | **M2** | Data adapters, Supabase state + journal, daily Vercel cron, Telegram alerts — **signals only** | Parallel-run agreement vs v4 `cycle_watch.py` (PRD M2 criterion) |
 | **M3** | Venue adapter, reconciler, guard — **dry-run + testnet only** | Testnet episode replays correctly; every interlock provably refuses |
 | **M4** | Web app: read-only dashboard + kill switch | Kill switch works before any live order can exist |
-| **M5** | **Arm live** | OQ-1 settled (OQ-3 resolved 2026-07-24) + 30 clean dry-run days |
+| **M5** | **Arm live** | OQ-1 settled · **mutual exclusion at the venue** (§4's over-commit) · 30 clean dry-run days |
 
 Real money appears only at M5, behind a kill switch that already exists and
 interlocks already proven to fire.

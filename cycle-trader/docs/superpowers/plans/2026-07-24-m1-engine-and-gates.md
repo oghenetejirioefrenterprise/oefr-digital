@@ -1785,7 +1785,11 @@ def test_g1_2015_entry(bars, weeks, episode_scope):
     assert lh.price == Decimal("305.00")
     assert lh.week_monday == "2015-01-05"
     assert lh.origin_low == Decimal("255.00")
-    assert lh.confirmed_at == "2015-01-14"
+    # G1's prose says "confirmed by 152.40 on 2015-01-14" — but 152.40 is the
+    # EPISODE LOW, and 2015-01-14 is the day it printed. §4.3/§13.4's rule is
+    # the first daily low STRICTLY BELOW L0=255, which is 2015-01-13 (216.00).
+    # Verified against the frozen data. Asserting the prose date fails correct code.
+    assert lh.confirmed_at == "2015-01-13"
     assert pct(lh.rally_pct, Decimal("19.6")) < Decimal("1")
 
     bos = find_bos(bars, lh.price, after=lh.confirmed_at)

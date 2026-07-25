@@ -541,11 +541,18 @@ G4 use Mondays, but G2's "week of 2020-02-16" / "week of 2020-08-02" and G5's
 "week of 2026-05-10" are Sunday labels — ISO Mondays 2020-02-10, 2020-07-27 and
 2026-05-04. An assertion that pastes a §10 label as a Monday fails on G2 and G5.
 
-**G5's "confirmed 2026-06-07" is also a Sunday label, not a fill-style daily
-date.** The confirming daily low prints **2026-06-05** (Friday of the week ending
-Sunday 06-07) — verified by execution. Contrast G1's "confirmed by 152.40 on
-2015-01-14", which *is* a true daily date. Assert 2026-06-05 for the daily value,
-or compare at week resolution.
+**Neither G1's nor G5's stated confirmation date is the rule's confirmation
+date.** §4.3/§13.4 define confirmation as the **first daily low strictly below
+`L₀`** — both gates instead name the *dramatic* low that followed it:
+
+| Gate | §10 prose | Rule's actual output | Why they differ |
+|---|---|---|---|
+| G1 | "confirmed by 152.40 on 2015-01-14" | **2015-01-13** (low 216.00) | 152.40 is the episode low; the first low under `L₀`=255 came a day earlier |
+| G5 | "confirmed 2026-06-07" | **2026-06-05** | 06-07 is a Sunday *label*; the confirming low printed the Friday inside that week |
+
+Both verified by execution against the frozen data. A gate test asserting either
+prose date **fails on correct code**. Assert the rule's output, or compare at week
+resolution.
 
 ---
 

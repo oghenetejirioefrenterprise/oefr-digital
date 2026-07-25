@@ -609,11 +609,32 @@ The two component declines are wk 2025-08-25 = **13.757009%** and wk 2025-09-01 
 - `≤ 13.757` — both attributions survive, which is what the gate asserts
 - `≤ 13.833` — either attribution survives, §10 G4's literal wording
 
-**There is no lower edge at all.** G4's structure is still present at `R_down = 0`,
-and at −100. This differs in kind from the other two: `R_e` is a genuine two-sided
-band `(10.2771, 19.60784]` (§13.3a) and `QUIET_WEEKS` an interior plateau
-`[10, 57]` (§13.5), but `R_down` is a **half-line**. Any value from 0 to 13.75
-reproduces G4 identically.
+**~~There is no lower edge at all.~~ RETRACTED 2026-07-25 — see below.** G4's
+structure alone is still present at `R_down = 0` and at −100, and this section
+originally generalised that to "history bounds `R_down` from above only". **That
+was wrong**: it measured one gate's window and called it the record.
+
+**The EP2–EP5 reproduction bounds `R_down` from below.** Bisected on the
+four-episode mirror-exit reproduction (§14 OQ-7's run):
+
+| Episode | lower edge |
+|---|---|
+| EP3 / EP4 | 8.3220 |
+| EP2 | 8.5077 |
+| **EP5 (binding)** | **9.5476** |
+
+Independently confirmed by running `tests/gates/test_regression_ep2_ep5.py`
+against a swept default: **fails** at 0, 5, 8.3 and 9.5; **passes** from 9.55 up.
+
+So the record bounds `R_down` on **both** sides — **`(9.5476, 13.757]`** — making
+it a genuine two-sided band like `R_e`, not a half-line. Note how close the frozen
+value sits to the lower edge: **10 clears it by 0.45 points**, versus 3.76 points
+of headroom above. That is the strongest available defence of `R_down = 10` as a
+frozen constant, and it only appears once the *episodes* are reproduced rather
+than G4 alone.
+
+The general lesson, and the reason this retraction exists: a bound measured on one
+gate is a fact about that gate, not about the record.
 
 **`R_DOWN_DEFAULT` is dead code.** Setting it to `99` leaves all 212 tests green —
 every call site passes `r_down` explicitly. The constant is frozen in the engine
@@ -634,6 +655,17 @@ identical; only the labels differ. G1's "BoS week of 2015-01-26" is
 `cy1_lifecycle.json`'s `2015-02-01`; its LH "week of 2015-01-05" is `2015-01-11`.
 A reproduction harness must normalise labels before comparing, or it will report a
 6-day error on every structural date.
+
+**This convention does NOT cover `exit_mirror.signal_week`** (found 2026-07-25).
+That field is labelled off a **Sunday-START (Sun–Sat)** week, not a Sunday close.
+EP2's `2017-07-10` and EP5's `2025-02-24` are both true ISO Mondays and compare
+directly with no normalisation; EP3/EP4's `2021-04-19` looks like a mismatch
+against the engine's ISO Monday `2021-04-12` only because its signal day
+(2021-04-18) is itself a **Sunday**, so it falls into the *next* Sun-start week.
+The exit produced is identical either way — verified by forcing the signal day to
+2021-04-19: same top 64,854, same `low_so_far` 46,930, same fill 2021-04-28 @
+55,892.00. So this section's blanket "the weeks are identical; only the labels
+differ" holds for week *labels* but not for this field.
 
 **§10 itself mixes conventions** (labels carried from their sources): G1, G3 and
 G4 use Mondays, but G2's "week of 2020-02-16" / "week of 2020-08-02" and G5's
@@ -852,8 +884,13 @@ question. But the burden has moved: shipping (a) knowingly fails §11.
 
 **The same run narrows (c).** Substituting the swing's own decline top for the
 lifetime argmax breaks the reproduction on **all four** episodes, so that candidate
-is eliminated. The BoS-origin and position-lifetime origins produce identical exits
-on all four and remain indistinguishable.
+is eliminated. *(Corrected 2026-07-25: an earlier wording claimed the **BoS** and
+**position-lifetime** origins were shown indistinguishable. They cannot be — in
+that harness `scope_start = BoS` **is** the position lifetime, so they are identical
+by construction, not by measurement. What the run actually compares is the BoS
+origin against the **detector's window start**, and those two produce identical
+exits on all four. A first-accumulation-fill scope was separately confirmed to
+reproduce as well, so the conclusion stands; only the attribution was wrong.)*
 
 **(a) the argmax scope is NOT addressed by this evidence.** The regression runs the
 implemented all-prior-weeks argmax only; "since the prior swing" has no unambiguous

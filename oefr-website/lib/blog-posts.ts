@@ -4163,7 +4163,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "Hurricane Insurance Claim Denied for \"Pre-Existing Damage\"? The Before-Photo Evidence That Actually Wins (2026)",
     description:
-      "After a hurricane, the most common denial is \"pre-existing damage.\" Here's the dated before/after photo system, the wind-vs-flood policy split, how the percentage hurricane deductible really works, the NFIP 60-day Proof-of-Loss clock, and the appeal framework adjusters actually read.",
+      "After a hurricane, the most common denial is \"pre-existing damage.\" Here's the dated before/after photo system, the room-by-room home inventory insurers can actually pay from, the wind-vs-flood policy split, how the percentage hurricane deductible really works, the NFIP 60-day Proof-of-Loss clock, and the appeal framework adjusters actually read.",
     keywords: [
       "hurricane insurance claim denied preexisting damage",
       "pre storm photo documentation insurance",
@@ -4183,6 +4183,10 @@ export const blogPosts: BlogPost[] = [
       "2 percent hurricane deductible",
       "named storm deductible vs hurricane deductible",
       "hurricane deductible calendar year florida",
+      "home inventory checklist for insurance",
+      "how to do a home inventory for insurance",
+      "room by room home inventory list",
+      "home inventory before hurricane season",
     ],
     publishedDate: "2026-07-14",
     readingTime: "9 min read",
@@ -4248,6 +4252,29 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Home Inventory Beats Memory</h2>
       <p class="text-slate-300 leading-relaxed mb-6">
         Contents claims fail on vagueness: "electronics and clothes" is not a claim line. A usable inventory has room, item, make/model, serial when available, approximate age, and estimated value — plus a photo pointer. Build it <strong class="text-white">before</strong> peak season if you can; after a storm, rebuild from before-photos and receipts while memory is fresh. Serial numbers on HVAC, appliances, and TVs are especially useful when the carrier questions whether an item existed or was already damaged.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-10 mb-4">How to Do a Room-by-Room Home Inventory (the Version an Insurer Can Pay From)</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Most home inventories die because they start as a perfectionist spreadsheet project. The version that survives — and the version a contents adjuster can actually work from — is built in two passes: a <strong class="text-white">fast video pass today</strong>, then a written pass that turns the video into claim lines.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Pass 1 — the 15-minute narrated video walkthrough.</strong> Phone in landscape, walk every room in one continuous take per room. Narrate as you go: room name, what you're pointing at, anything with a story ("bought the sofa in 2024, about $1,800"). Open closets, drawers, cabinets, the garage, the attic access. Film appliance and electronics <strong class="text-white">nameplates and serial stickers</strong> up close — HVAC condenser and air handler, water heater, washer/dryer, refrigerator, TVs, computers. This single video is the seed for every later claim line, and it timestamps the condition of everything in the house on a known date.
+      </p>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <strong class="text-white">Pass 2 — turn the video into claim lines.</strong> A line an adjuster can price has seven fields: <strong class="text-white">room · item · make/model · serial (if printed) · approximate age · estimated replacement value · photo/video pointer</strong>. Work one room at a time from the video; don't chase completeness on day one. Prioritize the lines that move claim math: appliances, electronics, furniture, tools, jewelry/art (which may have policy sub-limits — check your declarations page), and anything over a few hundred dollars. Attach or photograph receipts for big-ticket items where you still have them; for everything else, the video plus a reasonable value estimate is far better than a blank row.
+      </p>
+      <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-5 mb-6">
+        <p class="text-slate-300 mb-2"><strong class="text-white">Inventory rules that decide whether it holds up:</strong></p>
+        <ul class="text-slate-300 space-y-2 list-disc pl-5">
+          <li><strong class="text-white">Off-site the same day:</strong> cloud drive or email-to-yourself. An inventory that drowns with the house is worth nothing.</li>
+          <li><strong class="text-white">Serials beat descriptions:</strong> "Samsung 65-inch, serial 0AB3…" survives a coverage fight; "big TV" does not.</li>
+          <li><strong class="text-white">Refresh on a trigger, not a schedule:</strong> new major purchase, renovation, or the start of Atlantic season (June 1) — re-shoot changed rooms only.</li>
+          <li><strong class="text-white">Don't wait for the named storm:</strong> once a watch is issued you'll be boarding windows, not filming closets — and post-landfall footage proves nothing about prior condition.</li>
+        </ul>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        After a storm, the same inventory becomes your rebuttal file: the denial letter says "insufficient documentation" or "pre-existing," and you answer with inventory line, serial, and the dated video frame. Values and coverage for specific items depend on your policy's terms and sub-limits — verify against your own declarations page; this is documentation guidance, not legal or insurance advice.
       </p>
 
       <h2 class="text-2xl font-bold text-white mt-10 mb-4">Adjuster Meeting: Co-Photograph, Don't Argue First</h2>
@@ -4322,6 +4349,10 @@ export const blogPosts: BlogPost[] = [
       {
         q: "Is a documentation kit a substitute for a public adjuster?",
         a: "No. A documentation kit organizes evidence and deadlines. It does not negotiate with your insurer or practice law. For large, complex, or bad-faith disputes, consider a licensed public adjuster or attorney in your state in addition to a clean evidence file.",
+      },
+      {
+        q: "How detailed does a home inventory need to be for an insurance claim?",
+        a: "Detailed enough that an adjuster can price each line: room, item, make/model, serial number where printed, approximate age, estimated replacement value, and a photo or video pointer. A narrated room-by-room video walkthrough backed up off-site covers most of this in one pass — then convert the highest-value items (appliances, electronics, furniture, tools, jewelry) into written lines first. Check your declarations page for sub-limits on categories like jewelry and art.",
       },
     ],
   },

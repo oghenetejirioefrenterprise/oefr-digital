@@ -158,11 +158,20 @@ def test_r_e_15_is_the_upper_edge_of_the_passing_interval(bars, weeks,
     the claim is false**, so the name and the docstring now state what the
     evidence actually shows. Swept by editing `R_E_DEFAULT` and re-running:
 
-      historical gates alone   PASS over R_e in (12.0422, 19.60784]
-      full suite               PASS over R_e in [13.78809, 15.00]
+      §10 chart reads only (G1/G2/G3)   PASS over R_e in (10.2771, 19.60784]
+      + §13.3's chain table              PASS over R_e in (12.0422, 19.60784]
+      full suite                         PASS over R_e in [13.78809, 15.00]
 
     Neither interval pins 15. All three gates return the identical operative
     LH at 14 and at 15, so no chart read in §10 can tell them apart.
+
+    The two bands are kept separate because they rest on different evidence.
+    The chart-read band is 9.33 points wide and is bounded by §10's own reads
+    at both ends. Tightening it to 7.57 costs an assumption: the 12.0422 edge
+    comes from an **EP3** entry in §13.3's executed table, and EP3 is the one
+    episode §11 flags as having **no owner anchor** — so the narrower band
+    rests on rule output rather than on a chart the owner drew. Quoting the
+    tighter band as though the owner's evidence produced it would overstate it.
 
     Both full-suite edges come from SYNTHETIC fixtures in
     tests/test_structure.py, not from history: the upper edge is
@@ -196,6 +205,10 @@ def test_r_e_15_is_the_upper_edge_of_the_passing_interval(bars, weeks,
     assert ftx.origin_low == Decimal("15588.00")
     assert Decimal("10") < ftx.rally_pct < Decimal("15")      # engine's number
     assert pct(ftx.rally_pct, Decimal("10.28")) < Decimal("1")
+    # This rally IS the lower edge of the §10 chart-read band: G3 is the gate
+    # that fails first as R_e falls, and it fails exactly when this week stops
+    # being excluded. Pinned tightly so the band quoted above stays honest.
+    assert Decimal("10.2771") < ftx.rally_pct < Decimal("10.2772")
 
     # Raising R_e destroys G1: 305.00 stops being generated and the operative
     # LH reverts to the previous structure — §4's failure signature exactly.
@@ -222,10 +235,26 @@ def test_r_e_15_is_the_upper_edge_of_the_passing_interval(bars, weeks,
     assert any(c.price == Decimal("305.00") for c in at_edge)
     assert all(c.price != Decimal("305.00") for c in past_edge)
 
-    # LOWER: set by EP3's wk 2018-12-10 (high 3,610.00 off L0 3,222.00,
-    # +12.0422%). It is the highest-rallying week the gates require to stay
-    # OUT; admitting it perturbs EP3's structure and the chain carries that
-    # into EP4, which is how a too-low R_e breaks G2 rather than G3.
+    # LOWER, two of them, because the §10 chart reads and §13.3's chain table
+    # break at different places. Measured by running each gate individually
+    # across the band:
+    #
+    #   R_e      G1     G2     G3     chain
+    #   10.2770  PASS   PASS   FAIL   FAIL
+    #   10.2772  PASS   PASS   PASS   FAIL
+    #   12.0422  PASS   PASS   PASS   FAIL
+    #   12.0423  PASS   PASS   PASS   PASS
+    #
+    # **G2 passes at every value tested** — an earlier version of this comment
+    # claimed a too-low R_e "breaks G2 rather than G3", which is exactly
+    # backwards. The chart read that breaks at the bottom is G3, at its own FTX
+    # bounce (asserted above, 10.27713...%). What breaks at 12.0422 is the
+    # CHAIN GATE, via EP3.
+    #
+    # The EP3 perturbation is also strictly local: at 12.0422 EP3's BoS moves
+    # 2019-04-02 -> 2018-12-18 and its broken LH 4,450.38 -> 3,610.00, but
+    # EP4's D stays 2019-06-24 because 13,970 remains the argmax over the
+    # widened window. So it does NOT propagate, which is why G2 is unaffected.
     ep3_d, ep3_trigger = "2017-12-11", "2018-11-19"
     assert episode_scope["scopes"][ep3_trigger][0] == ep3_d
     admits = find_lh_candidates(weeks, bars, scope_start=ep3_d,
@@ -308,7 +337,12 @@ def test_g2_2020_entry(bars, weeks, episode_scope):
     """LH 10,500 (week of 2020-02-16, +63% off Dec-2019 6,435). The early-March
     ~9.2k high is EXCLUDED: its origin ~8.5k was not a fresh low.
     BoS = week of 2020-08-02. Note the operative LH PREDATES this trigger
-    (SPEC §4), which is legal and is what the anchor guard exists to bound."""
+    (SPEC §4), which is legal and is what the anchor guard exists to bound.
+
+    The two week labels in this docstring are §10's own, and both are SUNDAY
+    labels (§13.10) — "2020-02-16" and "2020-08-02" are the ISO Mondays
+    2020-02-10 and 2020-07-27 that the assertions below use. Same weeks, not a
+    contradiction."""
     trigger, scope_start = scope_for_episode(episode_scope, "2020-03-15",
                                              expected_d="2019-06-24")
     cands = find_lh_candidates(weeks, bars, scope_start=scope_start,
@@ -411,7 +445,8 @@ def test_g3_2022_entry(bars, weeks, episode_scope):
         > Decimal("15")
 
     # The Nov FTX bounce is excluded by a DIFFERENT rule — degree, not freshness.
-    # Its rally is asserted in test_r_e_15_is_the_unique_gate_passing_value,
+    # Its rally is asserted in
+    # test_r_e_15_is_the_upper_edge_of_the_passing_interval,
     # which reads the ENGINE's rally_pct off the r_e=10 candidate rather than
     # recomputing it here: at R_e=15 this week is not a candidate at all, so no
     # engine-computed number for it exists in `cands` to assert against, and

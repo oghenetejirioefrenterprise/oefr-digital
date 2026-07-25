@@ -479,15 +479,28 @@ R20 → 82,850.
 **Neither is true**, and the two measurements below must be kept apart — an
 earlier revision of this section conflated them and had to be corrected.
 
-**What HISTORY constrains** — the §10 gates alone, i.e. the owner's five chart
-reads against the frozen data:
+**What HISTORY constrains.** Two different bands, depending on whether you count
+only the owner's chart reads or also §13.3's derived chain table:
 
-> **`R_e ∈ (12.0422, 19.60784]` all reproduce every historical gate.**
-> A **7.57-point-wide band.** Verified at 12.05 · 13 · 14 · 15 · 17 · 19.5 · 19.6.
+| Scope | Passing band | Width | Lower edge set by |
+|---|---|---|---|
+| **§10 chart reads only** (G1/G2/G3) | `(10.2771, 19.60784]` | **9.33 pts** | **G3** — the FTX bounce's own rally; fails at 10.2770, passes at 10.2772 |
+| **+ §13.3's executed chain table** | `(12.0422, 19.60784]` | 7.57 pts | the **chain gate**, via EP3 wk 2018-12-10 (+12.0422% off 3,222.00) |
 
-Both edges are real historical events: the upper is **G1's own LH rally**
-(255.00 → 305.00 = +19.60784%), the lower is EP3's wk **2018-12-10** at
-+12.0422% off 3,222.00 — admitting it breaks **G2** via the episode chain.
+The upper edge is the same in both and is **G1's own LH rally**
+(255.00 → 305.00 = +19.60784%).
+
+Two things follow. First, the owner's actual chart reads bound `R_e` only to a
+**9.33-point** band — wider still than the 7.57 quoted before. Second, the
+tightening to 12.0422 comes from an **EP3** assertion, and EP3 is precisely the
+episode §11 flags as having *no owner anchor* ("owner sign-off pending"). So the
+narrower band rests on rule output, not on a chart read.
+
+*(An earlier revision of this section claimed the lower edge "breaks G2 via the
+episode chain". That was wrong on both counts and is corrected here: **G2 passes
+at every value tested**, down to 10.277; the perturbation at 12.00 changes EP3's
+BoS only — 2019-04-02 → 2018-12-18 — and does not propagate, because EP4's D
+stays 2019-06-24 with 13,970 still the argmax over the widened window.)*
 
 **What the M1 SUITE constrains** — `(13.78809, 15.00]`, much narrower. But that
 narrowness is **self-imposed and carries no historical authority**: the upper edge

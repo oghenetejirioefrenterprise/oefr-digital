@@ -274,7 +274,7 @@ optional.
 | Layer | Test |
 |---|---|
 | Engine | G1–G5 as executable fixtures (SPEC §10), in CI |
-| Engine | §11 regression reproducing `cy1_lifecycle.json` (subject to OQ-4) |
+| Engine | **Structural regression** against `cy1_lifecycle.json`: LH prices, BoS weeks, fill dates, fill prices, exit dates, exit prices for EP2–EP5. These reconcile exactly. Derived pnl percentages are informational, **not asserted** — owner 2026-07-24: cumulative return is not the point, autonomous execution is |
 | Engine | Determinism property: identical inputs → identical outputs |
 | Engine | **Synthetic fixtures for paths with no historical coverage** — chiefly the OQ-3 roll (accumulation unfilled at BoS → ladder → breakout), which never occurred in EP2–EP5 and which EP6 may be the first to take |
 | Reconciler | Partial fill · cancel/place race · already-filled · missed run · double run |
@@ -332,7 +332,11 @@ owner before the executor can be correct:
   overlapped historically, and the cash-flow record gives each a fresh $10k.
 
 OQ-2 (MAE convention), OQ-4 (§11 pnl figures vs the reference) and OQ-5 (EP3
-sign-off) affect reporting only and may trail.
+sign-off) are **explicitly non-blocking** per owner 2026-07-24 — they concern the
+accuracy of the historical record, not execution behaviour, and the record is not a
+product goal. They stay on file and are not work items. **OQ-1 is the sole remaining
+blocker on live arming**, because it is the one open question that changes what the
+executor does.
 
 ### PRD changes required
 
@@ -360,5 +364,7 @@ Nothing here touches §§0–14, and every gate must keep passing.
 - **Vercel serverless offers no static IP**, so key allow-listing is unavailable.
 - **GitHub/Vercel cron are best-effort schedulers.** Tolerable only because orders
   rest at the exchange; a late run delays an amendment, never a fill.
-- **n=5 episodes.** The record is anatomy, not statistics, and the headline figure
-  is provisional pending OQ-4 and OQ-5. Autonomy does not make it more certain.
+- **n=5 episodes.** The record is anatomy, not statistics. It exists to make future
+  drawdowns readable as in-distribution (worst sit-throughs were −49% and −64% MAE),
+  not to forecast returns — and autonomy does not make it more certain. The product
+  goal is faithful autonomous execution of the frozen rules, not a return figure.

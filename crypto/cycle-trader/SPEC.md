@@ -451,6 +451,19 @@ A reproduction harness must normalise labels before comparing, or it will report
 These are genuine rule questions. Each needs a decision, then an appended
 amendment with a new version + hash; none may be silently adopted.
 
+**Priority, per owner 2026-07-24:** *"the cumulative return is not really relevant,
+being able to autonomously execute based on the strategy is the main point."*
+Accordingly only questions that change **execution behaviour** block the build.
+**OQ-1 blocks live arming. OQ-3 is resolved. OQ-2, OQ-4 and OQ-5 are explicitly
+non-blocking** — they concern the accuracy of the historical record, which is
+context for reading drawdowns, not a product goal. They stay on file, unresolved,
+and are not to be treated as work items unless the owner reopens them.
+
+Consequence for the gate suite: **assert structural facts** — LH prices, BoS weeks,
+fill dates, fill prices, exit dates, exit prices — all of which reconcile exactly
+with `cy1_lifecycle.json`. Treat derived pnl percentages as informational and
+target the reference implementation's values, not §11's transcriptions.
+
 **OQ-1 — Concurrent episodes and capital independence.**
 EP3 (trigger 2018-11-25) is still fully positioned when EP4 triggers 2020-03-15;
 both exit 2021-04-28, and both draw on the same 19,798.68 prior-cycle ATH. §2 says

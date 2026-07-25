@@ -230,18 +230,19 @@ def _swing_lows(weeks, bars, confirm, r_down=R_DOWN_DEFAULT):
 #: the three tests that need them. Keyed on the scope start rather than on the
 #: bar list, which is safe only because every call in this file passes the same
 #: full history — stated so a future caller slicing `bars` differently notices.
-_SWING_SCANS: dict[tuple[str, str], list] = {}
+_SWING_SCANS: dict[tuple[str, str, Decimal], list] = {}
 
 
-def _lifetime_swings(bars, scope_start, confirm):
-    key = (scope_start, confirm)
+def _lifetime_swings(bars, scope_start, confirm, r_down=R_DOWN_DEFAULT):
+    key = (scope_start, confirm, r_down)
     if key not in _SWING_SCANS:
         window = [b for b in bars if b.date >= scope_start]
-        _SWING_SCANS[key] = _swing_lows(to_weeks(window), window, confirm)
+        _SWING_SCANS[key] = _swing_lows(to_weeks(window), window, confirm, r_down)
     return _SWING_SCANS[key]
 
 
-def _mirror_exit(bars, scope_start, armed_from, confirm, top_from_swing=False):
+def _mirror_exit(bars, scope_start, armed_from, confirm, top_from_swing=False,
+                 r_down=R_DOWN_DEFAULT):
     """§6.2 end to end, over the position lifetime.
 
     Scope = [BoS, data end] (§6.2: "only structure formed during the episode's
@@ -255,7 +256,7 @@ def _mirror_exit(bars, scope_start, armed_from, confirm, top_from_swing=False):
     fill's `top_high`"). It breaks every episode; see the test.
     """
     window = [b for b in bars if b.date >= scope_start]
-    swings = _lifetime_swings(bars, scope_start, confirm)
+    swings = _lifetime_swings(bars, scope_start, confirm, r_down)
 
     signal = broken = None
     for bar in window:
@@ -702,6 +703,166 @@ def test_the_mirror_fill_top_is_the_lifetime_argmax_not_the_swing_top(
     from_armed = _mirror_exit(bars, exit1, exit1, CONFIRM_DECLINE_TOP)
     assert (from_armed["date"], from_armed["price"]) == \
         (from_bos["date"], from_bos["price"])
+
+
+# --------------------------------------------------------------------------
+# R_down's lower edge — the constant this reproduction constrains
+# --------------------------------------------------------------------------
+
+#: The week whose swing, once ADMITTED, breaks each episode's reproduction — the
+#: week that sets that episode's lower `R_down` edge. Only the week IDENTITY is
+#: named here; every percentage below is read off the engine's own `decline_pct`.
+#: Naming the week is what makes the edge attributable instead of a bare number,
+#: and it is what fails if a data refresh moves the low that produces it.
+R_DOWN_LOWER_EDGE_WEEK = {"EP2-2014-09-28": "2017-06-05",
+                          "EP3-2018-11-25": "2021-02-15",
+                          "EP4-2020-03-15": "2021-02-15",
+                          "EP5-2022-05-22": "2024-12-09"}
+#: ...and the week whose swing, once EXCLUDED, breaks it — the upper edge.
+R_DOWN_UPPER_EDGE_WEEK = {"EP2-2014-09-28": "2017-05-29",
+                          "EP3-2018-11-25": "2021-03-22",
+                          "EP4-2020-03-15": "2021-03-22",
+                          "EP5-2022-05-22": "2025-01-13"}
+EPSILON = Decimal("1e-20")
+
+
+def _decline_pct(bars, scope, label, week):
+    """The ENGINE's decline percentage for one week of one episode's lifetime.
+
+    Scanned at `r_down = 0` so the week is present whatever its depth. Reading
+    the edge off the detector rather than pasting a figure is the whole point:
+    every wrong number in this build has been a copied one, and a transcribed
+    boundary that sits a hair past the true edge fails on correct code.
+    """
+    swings = _lifetime_swings(bars, scope[label]["bos"], CONFIRM_DECLINE_TOP,
+                              Decimal("0"))
+    return next(s[3] for s in swings if s[0] == week)
+
+
+def _reproduces_mirror(bars, scope, reference, label, r_down):
+    ref = reference[label]["exit_mirror"]
+    got = _mirror_exit(bars, scope[label]["bos"],
+                       reference[label]["exit_ext_1272"]["date"],
+                       CONFIRM_DECLINE_TOP, r_down=r_down)
+    return got is not None and got["date"] == ref["date"] \
+        and _2dp(got["price"]) == ref["px"]
+
+
+@pytest.mark.parametrize("label", ACTIVATED)
+def test_each_episode_bounds_r_down_from_below(label, bars, scope, reference):
+    """§13.9a said `R_down` had "no lower edge at all". **This run falsifies it.**
+
+    §13.9a's measurement was made on G4's window, where a looser `R_down` only
+    ever adds shallower swings and none of them is the most recent confirmed
+    swing at the break — so G4 reproduces down to `R_down = -100`. On a full
+    episode lifetime that does not hold: a shallower swing admitted anywhere
+    between the Exit 1 print and the real signal becomes "the most recent
+    confirmed swing", is broken earlier, and the exit moves.
+
+    Measured per episode, `r_down` passed explicitly (never by editing
+    `R_DOWN_DEFAULT`, which would measure nothing and would leave the assertion
+    at the mercy of whoever changes the default):
+
+        EP2   8.5076627658…   wk 2017-06-05
+        EP3   8.3219752057…   wk 2021-02-15
+        EP4   8.3219752057…   wk 2021-02-15   (same week: EP3 and EP4 exit together)
+        EP5   9.5476423795…   wk 2024-12-09   <- binding
+
+    The edge is EXCLUSIVE at the bottom, and that follows from the detector's own
+    `decline < r_down: continue`: a swing whose decline exactly equals `r_down`
+    is admitted, so the reproduction fails AT the edge and passes an epsilon
+    above it. Both directions are asserted — an assertion that only checked the
+    passing side would be satisfied by an `R_down` with no lower edge at all,
+    which is precisely the claim being falsified.
+    """
+    edge = _decline_pct(bars, scope, label, R_DOWN_LOWER_EDGE_WEEK[label])
+    expected = {"EP2-2014-09-28": ("8.5076627658", "8.5076627659"),
+                "EP3-2018-11-25": ("8.3219752057", "8.3219752058"),
+                "EP4-2020-03-15": ("8.3219752057", "8.3219752058"),
+                "EP5-2022-05-22": ("9.5476423795", "9.5476423796")}[label]
+    assert Decimal(expected[0]) < edge < Decimal(expected[1])
+
+    assert not _reproduces_mirror(bars, scope, reference, label, edge)
+    assert _reproduces_mirror(bars, scope, reference, label, edge + EPSILON)
+
+    # ...and the inclusivity is pinned against the ENGINE, not just the harness.
+    # Without this the two `_reproduces_mirror` calls above only exercise
+    # `_swing_lows`' copy of the predicate, and mutating `find_swing_lows`'
+    # `decline < r_down` to `<=` survives the whole file: no week's decline is
+    # exactly 10.000…, so the cross-check cannot see it either. Fed a REAL
+    # decline as the threshold, it can.
+    window = [b for b in bars if b.date >= scope[label]["bos"]]
+    weeks_in_window = to_weeks(window)
+    at_edge = find_swing_lows(weeks_in_window, window, r_down=edge)
+    past_edge = find_swing_lows(weeks_in_window, window, r_down=edge + EPSILON)
+    edge_week = R_DOWN_LOWER_EDGE_WEEK[label]
+    assert any(s.week_monday == edge_week for s in at_edge)
+    assert all(s.week_monday != edge_week for s in past_edge)
+
+    # ...and the upper edge, INCLUSIVE, for the same reason in mirror image:
+    # raising `r_down` past a swing's decline removes it, and the swing that the
+    # signal actually breaks is the one that goes.
+    upper = _decline_pct(bars, scope, label, R_DOWN_UPPER_EDGE_WEEK[label])
+    assert _reproduces_mirror(bars, scope, reference, label, upper)
+    assert not _reproduces_mirror(bars, scope, reference, label, upper + EPSILON)
+    assert edge < upper
+
+
+def test_ep5_is_the_binding_lower_edge_and_the_frozen_r_down_clears_it(
+        bars, scope, reference):
+    """What makes 9.5476… the band's floor rather than merely one of four.
+
+    The joint lower edge is the MAXIMUM of the per-episode edges, because the
+    band is the intersection: `R_down` must be high enough for every episode.
+    EP5's is strictly the largest, and the two below it are what make that a
+    binding constraint rather than a coincidence — asserted as an ordering so a
+    data change that reshuffles them reports itself here.
+
+        band from these four episodes   (9.5476…, 17.6241…]
+        band from §10 G4                (-inf, 13.7570…]     <- test_mirror_gate
+        joint                           (9.5476…, 13.7570…]
+
+    **The two authorities are kept apart** (§13.3a's discipline). The floor is
+    this file's; the ceiling is G4's, and these episodes tolerate `R_down` up to
+    17.6241… on their own — so quoting 13.757 as "the episodes' upper edge" would
+    misattribute it. §13.9a's `(9.5476, 13.757]` is correct only as the joint
+    band.
+
+    The frozen `R_down = 10` clears the floor by **0.45 points** and sits 3.76
+    below the joint ceiling. That is a real defence of the constant and it is
+    also the tightest margin any of this system's three constants has: `R_e = 15`
+    sits at the TOP of its band (§13.3a) and `QUIET_WEEKS = 26` sits in an
+    interior plateau (§13.5), while `R_down = 10` sits near the bottom of its
+    own. An `R_down` of 9.5 would break EP5's recorded exit.
+    """
+    edges = {label: _decline_pct(bars, scope, label,
+                                 R_DOWN_LOWER_EDGE_WEEK[label])
+             for label in ACTIVATED}
+    binding = max(edges.values())
+    assert binding == edges["EP5-2022-05-22"]
+    for label in ("EP2-2014-09-28", "EP3-2018-11-25", "EP4-2020-03-15"):
+        assert edges[label] < binding
+    # EP3 and EP4 share an edge because they share an exit — the §14 OQ-1
+    # concurrent-episode pair. Asserted so "four episodes, three edges" is a
+    # stated fact rather than a surprise.
+    assert edges["EP3-2018-11-25"] == edges["EP4-2020-03-15"]
+    assert edges["EP2-2014-09-28"] != edges["EP3-2018-11-25"]
+
+    # The frozen constant clears the floor, and every episode reproduces at it.
+    assert R_DOWN_DEFAULT == Decimal("10")
+    assert binding < R_DOWN_DEFAULT
+    assert Decimal("0.45") < R_DOWN_DEFAULT - binding < Decimal("0.46")
+    for label in ACTIVATED:
+        assert _reproduces_mirror(bars, scope, reference, label, R_DOWN_DEFAULT)
+    # ...and a plausible "round it down a bit" value does not.
+    assert not _reproduces_mirror(bars, scope, reference, "EP5-2022-05-22",
+                                  Decimal("9.5"))
+
+    # The ceiling these episodes impose is their own, and it is well above G4's.
+    ceiling = min(_decline_pct(bars, scope, label, R_DOWN_UPPER_EDGE_WEEK[label])
+                  for label in ACTIVATED)
+    assert Decimal("17.6241636133") < ceiling < Decimal("17.6241636134")
+    assert ceiling > Decimal("13.7570094960")     # G4's, from test_mirror_gate
 
 
 # --------------------------------------------------------------------------

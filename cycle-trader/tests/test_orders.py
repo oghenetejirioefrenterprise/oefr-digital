@@ -347,6 +347,60 @@ def test_breakout_carries_exactly_the_still_unfilled_ladder_units():
         + units[OrderPurpose.LADDER_0786]
 
 
+def test_breakout_is_not_re_rested_once_it_has_filled():
+    """Q-1, review round 1. A CRITICAL defect mutation testing cannot find:
+    the bug was *missing* code, and mutants only perturb code that exists.
+
+    After the breakout fills, spot is ABOVE bos_week_high, so re-placing the
+    buy-stop there triggers **on placement** — 21 more units at market. And
+    `filled_purposes` is a set, so it reads {BREAKOUT} again the next run, and
+    the next: 21 units a day until the quote balance is gone.
+
+    The asymmetry that hid it: EXIT1 got explicit suppression because a filled
+    Exit 1 does not zero `held_units`; MIRROR and STOP are gated by
+    `held_units > 0`. A filled BREAKOUT *raises* `held_units`, so nothing
+    gated it — and it is the path all four historical episodes took.
+    """
+    state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("5000"),
+                         bos_week_high=Decimal("10500"), prior_ath=Decimal("69000"))
+    orders = desired_orders(state, {}, {OrderPurpose.BREAKOUT}, held_units=Decimal(21))
+    assert OrderPurpose.BREAKOUT not in {o.purpose for o in orders}
+
+
+def test_a_filled_breakout_also_retires_every_remaining_ladder_rung():
+    """SPEC §5: the fallback buys ALL unfilled ladder units. Once it has
+    filled, the pool is fully deployed by definition, so a rung still resting
+    would spend capital that no longer exists."""
+    state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("5000"),
+                         bos_week_high=Decimal("10500"), prior_ath=Decimal("69000"))
+    orders = desired_orders(state, {}, {OrderPurpose.BREAKOUT}, held_units=Decimal(21))
+    assert not ({OrderPurpose.LADDER_050, OrderPurpose.LADDER_062,
+                 OrderPurpose.LADDER_0786} & {o.purpose for o in orders})
+
+
+def test_a_filled_breakout_leaves_the_sell_side_fully_armed():
+    """Suppressing the buy side must not disarm the stop protecting what the
+    breakout just bought."""
+    state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("5000"),
+                         bos_week_high=Decimal("10500"), prior_ath=Decimal("69000"))
+    orders = desired_orders(state, {}, {OrderPurpose.BREAKOUT}, held_units=Decimal(21))
+    assert {o.purpose for o in orders} == {OrderPurpose.STOP, OrderPurpose.EXIT1}
+    stop = next(o for o in orders if o.purpose is OrderPurpose.STOP)
+    assert stop.units == Decimal(21) and stop.price == Decimal("5000")
+
+
+def test_the_desired_set_is_stable_across_repeated_runs_after_a_breakout():
+    """The reconciler is idempotent only if the set stops growing. Run N+1 and
+    N+2 see the identical `filled_purposes` set, so they must agree."""
+    state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("5000"),
+                         bos_week_high=Decimal("10500"), prior_ath=Decimal("69000"))
+    filled = {OrderPurpose.BREAKOUT}
+    assert (desired_orders(state, {}, filled, held_units=Decimal(21))
+            == desired_orders(state, {}, filled, held_units=Decimal(21)))
+    assert sum(o.units for o in desired_orders(state, {}, filled, Decimal(21))
+               if o.side is OrderSide.BUY) == 0
+
+
 def test_no_breakout_rests_once_every_ladder_rung_has_filled():
     """Nothing left to chase; a zero-size stop-market would be rejected."""
     state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("152.40"),
@@ -437,6 +491,22 @@ def test_distributing_treats_a_falsy_fallback_flag_as_not_fired():
     assert mirror.kind is OrderKind.LIMIT
 
 
+def test_mirror_price_must_be_positive():
+    """Q-2, review round 1. The one sell price the first sweep missed.
+
+    §13.2: a sell-limit below market fills at max(level, open) — a mirror
+    target of 0 dumps the whole remainder at market. The realistic fault is a
+    corrupt `top_high` feeding mirror_target, which yields a plausible-looking
+    but far-too-low number rather than an obviously absurd one. `_watching`
+    already refuses a non-positive line for exactly this reason.
+    """
+    state = EpisodeState(status=EpisodeStatus.DISTRIBUTING, el_star=Decimal("15476"),
+                         exit1_done=True)
+    for bad in (Decimal(0), Decimal("-1"), Decimal("1e-8") * 0):
+        with pytest.raises(ValueError, match="mirror"):
+            desired_orders(state, {"mirror": bad}, set(), held_units=Decimal("3.5"))
+
+
 def test_distributing_with_nothing_held_rests_nothing():
     state = EpisodeState(status=EpisodeStatus.DISTRIBUTING, el_star=Decimal("15476"),
                          exit1_done=True)
@@ -493,11 +563,50 @@ def test_roll_rejects_a_negative_or_empty_ladder_pool():
 
 def test_roll_is_unaffected_by_a_hostile_ambient_decimal_context():
     """The division is inexact, so an ambient prec change would move the sizes
-    of every rolled ladder rung. engine.context.CTX pins it."""
+    of every rolled ladder rung. engine.context.CTX pins it.
+
+    prec=1 also exercises the pool ADDITION: `Decimal(14) + Decimal(1)` is
+    `2E+1` at one significant digit, exact addends notwithstanding."""
     baseline = roll_unfilled(Decimal(1), Decimal(14))
+    for prec in (1, 4):
+        with localcontext() as ctx:
+            ctx.prec = prec
+            assert roll_unfilled(Decimal(1), Decimal(14)) == baseline, prec
+
+
+def test_exit1_units_are_unaffected_by_a_hostile_ambient_decimal_context():
+    """Q-3, review round 1. `/2` terminating in base 10 gives exactness only
+    when the halved coefficient still fits in `prec` — and `held_units` is
+    plausibly a 34-digit rolled rung size (a filled 0.5 rung on a 15-unit pool
+    is exactly 2.142857...143). At prec 2 the halving returns 1.1, a +2.7%
+    over-sell of the take-profit."""
+    held = roll_unfilled(Decimal(1), Decimal(14))["0.5"]
+    state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("5000"),
+                         bos_week_high=Decimal("10500"), prior_ath=Decimal("69000"))
+    baseline = next(o for o in desired_orders(state, {}, set(), held_units=held)
+                    if o.purpose is OrderPurpose.EXIT1).units
+    with localcontext(CTX):
+        assert baseline == held / Decimal(2)
     with localcontext() as ctx:
-        ctx.prec = 4
-        assert roll_unfilled(Decimal(1), Decimal(14)) == baseline
+        ctx.prec = 1
+        assert next(o for o in desired_orders(state, {}, set(), held_units=held)
+                    if o.purpose is OrderPurpose.EXIT1).units == baseline
+
+
+def test_breakout_units_are_unaffected_by_a_hostile_ambient_decimal_context():
+    """Q-3, second half: the breakout size is a running sum of three 34-digit
+    rung sizes. At prec 1 that sum rounds to 3E+1 — 30 units ordered against a
+    15-unit pool, a 100% over-order."""
+    state = EpisodeState(status=EpisodeStatus.CONFIRMED, el_star=Decimal("5000"),
+                         bos_week_high=Decimal("10500"), prior_ath=Decimal("69000"))
+    filled = {OrderPurpose.T2, OrderPurpose.T3}      # 1 accumulation unit rolls
+    baseline = next(o for o in desired_orders(state, {}, filled, Decimal(6))
+                    if o.purpose is OrderPurpose.BREAKOUT).units
+    assert baseline == Decimal(15)
+    with localcontext() as ctx:
+        ctx.prec = 1
+        assert next(o for o in desired_orders(state, {}, filled, Decimal(6))
+                    if o.purpose is OrderPurpose.BREAKOUT).units == Decimal(15)
 
 
 # --- cross-cutting invariants ---------------------------------------------

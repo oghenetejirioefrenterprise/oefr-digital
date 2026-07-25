@@ -41,14 +41,30 @@ not exist; the venue rejects it and the guard aborts the run. With
 `held_units == 0` nothing sell-side may rest. M1 has no fill tracking, so
 callers pass 0; M2 feeds it from venue trade history.
 
-**Decimal context.** `roll_unfilled` divides by the ladder's total weight and
-that division is genuinely inexact for six of the eight reachable pools (14+1
-through 14+6), so it runs inside `with localcontext(CTX):` per the engine-wide
-convention in `engine/context.py` — an ambient `prec` change would otherwise
-resize every rolled rung. Exit 1's halving is *not* inexact (`/2` terminates in
-base 10 for any finite Decimal) and is left unpinned; it would round only if
-`held_units` carried more than `prec` significant digits, which a venue balance
-does not. Everything else here is comparison, selection and dict lookup.
+**Decimal context.** Every unit computation in this module is pinned, via
+`with localcontext(CTX):` or the `_total` helper. The generalisation that got
+this wrong twice is worth stating plainly: **`decimal` rounds every result that
+exceeds the context precision, whether or not the operation is exact.** So
+"this operation is exact" is never on its own a reason to leave it unpinned —
+only "this result cannot exceed `prec` digits" is, and unit counts are order
+sizes, so being wrong about that is an over- or under-order rather than a
+display artifact. Concretely, at an ambient `prec` of 1:
+
+- `roll_unfilled`'s division by the total weight is genuinely inexact for six of
+  the eight reachable pools (14+1 … 14+6);
+- the running sum of rolled rung sizes that becomes the `BREAKOUT` quantity is
+  three 34-digit values totalling `3E+1` — 30 units against a 15-unit pool;
+- `ladder_units + acc_unfilled_units` (`14 + 1`) gives `2E+1`, and
+  `total_units - ACC_TOTAL` (`21 - 7`) gives `1E+1`. Both addends exact, both
+  results wrong;
+- Exit 1's halving of `held_units` returns `1` against a true `1.0714…`.
+
+That last one was excused in this module's first issue because `/2` terminates
+in base 10. It does — but termination gives exactness only while the halved
+coefficient still fits in `prec`, and `held_units` is plausibly a 34-digit
+rolled rung size (a filled 0.5 rung on a 15-unit pool is exactly
+`2.142857…143`). At prec 2 it returns `1.1`, a 2.7% over-sell. Everything
+outside those is comparison, selection or dict lookup.
 """
 from __future__ import annotations
 
@@ -59,11 +75,27 @@ from engine.levels import LADDER_UNITS, extension_1272, ladder_levels
 from engine.types import (DesiredOrder, EpisodeState, EpisodeStatus, OrderKind,
                           OrderPurpose, OrderSide)
 
+def _total(values) -> Decimal:
+    """Sum Decimals under the pinned context.
+
+    `sum()` at ambient precision is not safe here even though every addend is
+    exact: `decimal` rounds *every* result that exceeds the context precision,
+    exact or not (see `engine/context.py`'s closing paragraph). At an ambient
+    `prec` of 1, `Decimal(14) + Decimal(1)` is `2E+1`. Unit counts are order
+    sizes, so that is a 33% over-order, not a display artifact.
+    """
+    with localcontext(CTX):
+        total = Decimal(0)
+        for value in values:
+            total += value
+        return total
+
+
 #: SPEC §2 — accumulation weighted 1 : 2 : 4 across T1 : T2 : T3 (1/7, 2/7, 4/7).
 ACC_UNITS = {OrderPurpose.T1: Decimal(1),
              OrderPurpose.T2: Decimal(2),
              OrderPurpose.T3: Decimal(4)}
-ACC_TOTAL = sum(ACC_UNITS.values(), Decimal(0))          # 7
+ACC_TOTAL = _total(ACC_UNITS.values())                   # 7
 #: Which key of the daily `lines` dict prices each tranche (SPEC §3).
 ACC_LINE_KEY = {OrderPurpose.T1: "t1", OrderPurpose.T2: "t2", OrderPurpose.T3: "t3"}
 #: Joined to `LADDER_UNITS` / `ladder_levels` BY KEY. `LADDER_UNITS.keys() ==
@@ -98,9 +130,9 @@ def roll_unfilled(acc_unfilled_units: Decimal,
         raise ValueError(f"acc_unfilled_units must not be negative, got {acc_unfilled_units}")
     if ladder_units <= 0:
         raise ValueError(f"ladder_units must be positive, got {ladder_units}")
-    pool = ladder_units + acc_unfilled_units
-    total_weight = sum(LADDER_UNITS.values(), Decimal(0))
+    total_weight = _total(LADDER_UNITS.values())
     with localcontext(CTX):
+        pool = ladder_units + acc_unfilled_units
         return {name: pool * weight / total_weight
                 for name, weight in LADDER_UNITS.items()}
 
@@ -121,6 +153,18 @@ def desired_orders(state: EpisodeState,
     ``"mirror"`` plus a truthy ``"mirror_fallback"`` once §6.2's 8-week deadline
     has passed. `filled_purposes` is what has already executed;
     `held_units` is what the account holds *now*.
+
+    **Caller contract — `bos_week_high` must be the FINALISED BoS-week high.**
+    This function has no date input and no clock, so it rests the breakout
+    buy-stop as soon as the status is `CONFIRMED`. SPEC §5 scopes the fallback
+    to *"the first daily trade above the BoS-week high **after the BoS week**"*,
+    and that "after" is delegated entirely to the caller. Pass a *running*
+    weekly high while the BoS week is still open and the buy-stop fills on any
+    new high inside that week — buying the top of the very week that broke
+    structure. The gates would catch it (G1 and G3 fill at exactly 309.90 and
+    25,250, which only the settled-week reading reproduces), but they run in CI,
+    not in front of the venue. `compute()` must not call this with `CONFIRMED`
+    until the BoS week has closed.
 
     Raises `ValueError` on any state that cannot be turned into a coherent order
     set — see the module docstring for why refusing beats emitting a smaller set.
@@ -197,29 +241,46 @@ def _confirmed(state: EpisodeState, filled_purposes: set[OrderPurpose],
 
     out: list[DesiredOrder] = []
 
-    # OQ-3 leg 1 — accumulation that never filled joins the ladder pool.
-    acc_unfilled = sum((units for purpose, units in ACC_UNITS.items()
-                        if purpose not in filled_purposes), Decimal(0))
-    pool = roll_unfilled(acc_unfilled, total_units - ACC_TOTAL)
-    levels = ladder_levels(state.el_star, state.bos_week_high)
+    # The breakout fallback deploys the ENTIRE remaining pool (SPEC §5), so once
+    # it has filled the buy side of this episode is finished — no rung and no
+    # second breakout. Re-resting either would spend capital already deployed,
+    # and the breakout is the worse of the two: after it fills, spot is above
+    # bos_week_high, so a buy-stop re-placed there triggers ON PLACEMENT, every
+    # run, until the quote balance is exhausted. Nothing else gates it —
+    # a filled breakout *raises* held_units — and it is the branch all four
+    # historical episodes took (§14 OQ-3). Suppression must be keyed on
+    # BREAKOUT's own fill, never on callers marking the rungs filled: they were
+    # not filled, and the journal must not say they were.
+    if OrderPurpose.BREAKOUT not in filled_purposes:
+        # OQ-3 leg 1 — accumulation that never filled joins the ladder pool.
+        acc_unfilled = _total(units for purpose, units in ACC_UNITS.items()
+                              if purpose not in filled_purposes)
+        with localcontext(CTX):
+            ladder_pool = total_units - ACC_TOTAL
+        pool = roll_unfilled(acc_unfilled, ladder_pool)
+        levels = ladder_levels(state.el_star, state.bos_week_high)
 
-    unfilled_ladder = Decimal(0)
-    for name, price in levels.items():
-        purpose = LADDER_PURPOSE[name]
-        if purpose in filled_purposes:
-            continue
-        units = pool[name]
-        unfilled_ladder += units
-        out.append(DesiredOrder(purpose=purpose, side=OrderSide.BUY,
-                                kind=OrderKind.LIMIT, price=price, units=units))
+        unfilled_ladder = Decimal(0)
+        for name, price in levels.items():
+            purpose = LADDER_PURPOSE[name]
+            if purpose in filled_purposes:
+                continue
+            units = pool[name]
+            # Summing rolled rung sizes is inexact: on a 15-unit pool each is a
+            # 34-digit expansion, and at an ambient prec of 1 the total rounds to
+            # 3E+1 — 30 units ordered against a 15-unit pool.
+            with localcontext(CTX):
+                unfilled_ladder += units
+            out.append(DesiredOrder(purpose=purpose, side=OrderSide.BUY,
+                                    kind=OrderKind.LIMIT, price=price, units=units))
 
-    # OQ-3 leg 2 — ladder rungs still unfilled join the breakout fallback.
-    # Buy-STOP at the BoS-week high, not a limit: §13.2 and §5 both, and G1/G3
-    # fill it *at* 309.90 / 25,250, which only max(level, open) reproduces.
-    if unfilled_ladder > 0:
-        out.append(DesiredOrder(purpose=OrderPurpose.BREAKOUT, side=OrderSide.BUY,
-                                kind=OrderKind.STOP_MARKET,
-                                price=state.bos_week_high, units=unfilled_ladder))
+        # OQ-3 leg 2 — ladder rungs still unfilled join the breakout fallback.
+        # Buy-STOP at the BoS-week high, not a limit: §13.2 and §5 both, and
+        # G1/G3 fill it *at* 309.90 / 25,250, which only max(level, open) gives.
+        if unfilled_ladder > 0:
+            out.append(DesiredOrder(purpose=OrderPurpose.BREAKOUT, side=OrderSide.BUY,
+                                    kind=OrderKind.STOP_MARKET,
+                                    price=state.bos_week_high, units=unfilled_ladder))
 
     if held_units > 0:
         # §6.3 as narrowed by §13.1: a touch of the frozen EL*, from the BoS
@@ -239,10 +300,16 @@ def _confirmed(state: EpisodeState, filled_purposes: set[OrderPurpose],
                     f"{state.el_star}: the 1.272 extension would price at or "
                     "under the stop, and a sell-limit below market fills "
                     "immediately at max(level, open)")
+            # `/2` terminates in base 10, but termination gives exactness only
+            # while the halved coefficient still fits in `prec`, and held_units
+            # is plausibly a 34-digit rolled rung size. At an ambient prec of 2
+            # the halving returns 1.1 against a true 1.0714... — a 2.7% over-sell.
+            with localcontext(CTX):
+                exit1_units = held_units / Decimal(2)
             out.append(DesiredOrder(purpose=OrderPurpose.EXIT1, side=OrderSide.SELL,
                                     kind=OrderKind.LIMIT,
                                     price=extension_1272(state.el_star, state.prior_ath),
-                                    units=held_units / Decimal(2)))
+                                    units=exit1_units))
     return tuple(out)
 
 
@@ -278,6 +345,13 @@ def _distributing(state: EpisodeState, lines: dict[str, Decimal],
             # Present only once the mirror SIGNAL has fired (armed + swing-low
             # break, confirmation strictly preceding the break). compute() gates
             # this; no signal, no resting mirror sell (SPEC §6.2).
+            if lines["mirror"] <= 0:
+                # §13.2: a sell-limit below market fills at max(level, open), so
+                # a collapsed target dumps the whole remainder at market. The
+                # realistic fault is a corrupt top_high feeding mirror_target,
+                # which produces a plausible-looking number, not an absurd one.
+                raise ValueError(
+                    f"mirror target must be positive, got {lines['mirror']}")
             out.append(DesiredOrder(purpose=OrderPurpose.MIRROR, side=OrderSide.SELL,
                                     kind=OrderKind.LIMIT, price=lines["mirror"],
                                     units=held_units))

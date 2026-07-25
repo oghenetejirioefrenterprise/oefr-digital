@@ -49,6 +49,24 @@ def test_sell_stop_gap_open_below_level_fills_at_open():
     assert sell_stop_fill(bar(15000, 15200, 14000), Decimal("15476")) == Decimal("15000")
 
 
+def test_exact_touch_fills_on_every_primitive():
+    """SPEC §13.2's touch tests are `low <= level` / `high >= level`, not `<` / `>`.
+
+    A mutation run over these four functions showed the strict-inequality variant
+    (`low < level`, `high > level`) surviving the whole suite: no test above puts
+    an extreme exactly on the level. Nothing in today's gate data lands there —
+    2015-07-12's high is 317.99 against a 309.90 breakout, 2023-03-14's 26,386.87
+    against 25,250 — so the gates would not catch it either. The exposure is live:
+    a resting order at a level the day exactly touches, and never a tick beyond,
+    is filled by the exchange and dropped by a strict-inequality engine. That is a
+    tranche the book silently never bought.
+    """
+    assert buy_limit_fill(bar(100, 110, 90), Decimal("90")) == Decimal("90")
+    assert buy_stop_fill(bar(300, 309.90, 295), Decimal("309.90")) == Decimal("309.90")
+    assert sell_limit_fill(bar(80000, 83558.53, 79000), Decimal("83558.53")) == Decimal("83558.53")
+    assert sell_stop_fill(bar(16000, 16500, 15476), Decimal("15476")) == Decimal("15476")
+
+
 def test_verified_ep4_gap_day_reproduces_all_three_tranches():
     """2020-03-16: open 5360.33, lines 5566.46 / 5135.22 / 4703.98."""
     b = bar("5360.33", "5365.42", "4442.12")

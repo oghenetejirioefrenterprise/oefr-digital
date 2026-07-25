@@ -1,6 +1,7 @@
 from decimal import Decimal, Inexact, ROUND_FLOOR, localcontext
 from engine.context import CTX
-from engine.structure import find_lh_candidates, operative_lh, find_bos, first_bos
+from engine.structure import (find_lh_candidates, operative_lh, find_bos, first_bos,
+                              find_swing_lows)
 from engine.types import Bar, Week
 
 
@@ -383,3 +384,136 @@ def test_rally_pct_is_independent_of_the_ambient_decimal_context():
         ctx.traps[Inexact] = True
         got = find_lh_candidates(weeks, bars, "2026-01-05", "2026-02-02")
     assert [c.rally_pct for c in got] == [c.rally_pct for c in expected]
+
+
+# --- swing lows (SPEC §6.2, R_down) -----------------------------------------
+# G4 runs the detector on one real window and cannot reach its boundaries: on
+# that data every decline clears R_down by >1 point, no confirming high ties the
+# swing's own high, and no bar inside a swing week exceeds it. These fixtures
+# hold those edges. They are synthetic on purpose — SPEC §6.2 states the rule,
+# and a rule's boundary is a claim about the rule, not about 2025.
+
+
+def swing_fixture(low, *, top_high=Decimal("60000")):
+    """Three weeks: a top, the candidate low, then a higher high that confirms."""
+    return ([wk("2026-01-05", top_high, Decimal("55000")),
+             wk("2026-01-12", Decimal("52000"), low),
+             wk("2026-01-19", Decimal("53000"), Decimal("51000"))],
+            [bar("2026-01-20", 52500, 53000, 51000)])
+
+
+def test_swing_decline_is_inclusive_at_exactly_r_down():
+    """§6.2: "a decline >= 10%". Exactly 10% qualifies — the engine's guard is
+    `decline < r_down: continue`, and flipping it to `<=` drops this swing."""
+    weeks, bars = swing_fixture(Decimal("54000"))     # (60000-54000)/60000 = 10%
+    got = find_swing_lows(weeks, bars, r_down=Decimal("10"))
+    assert [s.week_monday for s in got] == ["2026-01-12"]
+    assert got[0].decline_pct == Decimal("10")
+    # ...and a hair under is rejected, so the boundary is pinned from both sides.
+    weeks, bars = swing_fixture(Decimal("54000.01"))
+    assert find_swing_lows(weeks, bars, r_down=Decimal("10")) == []
+
+
+def test_swing_decline_is_measured_from_the_argmax_high_not_the_prior_week():
+    """The decline's top is the ARGMAX high over prior weeks, not the immediately
+    preceding week. Here the argmax (70,000) is two weeks back and the adjacent
+    week only reaches 56,000 — a `weeks[i-1]` reading measures −3.6% and emits
+    nothing, while the rule measures −20%.
+
+    This is also the fixture that shows the KNOWN SIMPLIFICATION documented on
+    `find_swing_lows`: the argmax runs over ALL prior weeks in scope, so the
+    lower intervening top is ignored. Under §6.2's "since the prior swing"
+    wording the answer could differ. Recorded, not endorsed — M2 owns the fix.
+    """
+    weeks = [wk("2026-01-05", 70000, 65000),          # the argmax top
+             wk("2026-01-12", 56000, 55000),
+             wk("2026-01-19", 57000, 56000),          # candidate: -20% off 70000
+             wk("2026-01-26", 58000, 57000)]
+    bars = [bar("2026-01-19", 56500, 57000, 56000),   # confirms wk 2026-01-12
+            bar("2026-01-27", 57500, 58000, 57000)]   # confirms wk 2026-01-19
+    got = {s.week_monday: s for s in find_swing_lows(weeks, bars,
+                                                     r_down=Decimal("10"))}
+    assert set(got) == {"2026-01-12", "2026-01-19"}
+    assert all(s.top_week == "2026-01-05" and s.top_high == Decimal("70000")
+               for s in got.values())
+    # The discriminating one: wk 2026-01-19's low (56,000) equals the PRIOR
+    # week's high, so a `weeks[i - 1]` reading measures a 0% decline and drops
+    # it. Off the argmax it is −20% and survives.
+    assert got["2026-01-19"].decline_pct == Decimal("20")
+    assert weeks[1].high == weeks[2].low
+
+
+def test_swing_confirmation_requires_a_strictly_higher_high():
+    """§6.2: "confirmed by a subsequent HIGHER high". A tie is not higher."""
+    weeks, bars = swing_fixture(Decimal("50000"))
+    tie = [bar("2026-01-20", 51000, 52000, 51000)]          # == the swing's high
+    assert find_swing_lows(weeks, tie, r_down=Decimal("10")) == []
+    over = [bar("2026-01-20", 51000, 52000.01, 51000)]
+    assert len(find_swing_lows(weeks, over, r_down=Decimal("10"))) == 1
+
+
+def test_swing_confirmation_ignores_highs_inside_the_candidates_own_week():
+    """Confirmation is a SUBSEQUENT high: the search starts after the candidate
+    week ends (Sunday 2026-01-18), so an intraweek spike cannot self-confirm.
+
+    Without the `_week_end` bound the candidate week's own Thursday would
+    confirm it, which is the swing-side twin of §4.3's no-lookahead rule."""
+    weeks, _bars = swing_fixture(Decimal("50000"))
+    inside = [bar("2026-01-15", 51000, 59000, 50000),       # Thursday, huge high
+              bar("2026-01-18", 51000, 59000, 50000)]       # Sunday, still inside
+    assert find_swing_lows(weeks, inside, r_down=Decimal("10")) == []
+    after = inside + [bar("2026-01-19", 51000, 52500, 51000)]
+    got = find_swing_lows(weeks, after, r_down=Decimal("10"))
+    assert [s.confirmed_at for s in got] == ["2026-01-19"]
+
+
+def test_unconfirmed_swings_are_dropped_entirely():
+    """A swing that never sees a higher high is not returned at all — §6.2 makes
+    confirmation a precondition of the break, so an unconfirmed swing is not a
+    usable object. G4's wk 2025-10-06 (the deepest decline in its window) is the
+    real-data instance of this."""
+    weeks, _bars = swing_fixture(Decimal("50000"))
+    assert find_swing_lows(weeks, [], r_down=Decimal("10")) == []
+
+
+def test_swing_low_is_the_weeks_low_not_its_high():
+    weeks, bars = swing_fixture(Decimal("50000"))
+    got = find_swing_lows(weeks, bars, r_down=Decimal("10"))
+    assert got[0].low == Decimal("50000")
+
+
+def test_decline_pct_is_independent_of_the_ambient_decimal_context():
+    """`decline_pct` is `find_swing_lows`' only inexact computation and it gates
+    a strict threshold (`decline < r_down`), so an ambient precision change can
+    admit or drop a swing — and the swing set is what §6.2's mirror exit breaks.
+
+    Same construction as the rally-percentage guard above: the fixture's decline
+    is deliberately non-terminating — (60,000 − 50,000) / 60,000 = 16.666...% —
+    so precision is observable, and the property is asserted against `CTX.prec`
+    rather than a literal digit count. Fails if engine/context.py's pin is
+    removed from this function."""
+    weeks, bars = swing_fixture(Decimal("50000"))
+    expected = find_swing_lows(weeks, bars, r_down=Decimal("10"))
+    assert len(expected) == 1
+    assert len(expected[0].decline_pct.as_tuple().digits) == CTX.prec
+
+    with localcontext() as ctx:
+        ctx.prec = 2
+        ctx.rounding = ROUND_FLOOR
+        ctx.traps[Inexact] = True
+        got = find_swing_lows(weeks, bars, r_down=Decimal("10"))
+    assert [s.decline_pct for s in got] == [s.decline_pct for s in expected]
+
+
+def test_a_non_positive_top_is_skipped_rather_than_dividing_by_zero():
+    """The decline divides by `top.high`, so a zero/negative argmax high would
+    raise DivisionByZero under the engine's pinned (default-trap) context rather
+    than skipping the week. Unreachable on the frozen series — every week has a
+    positive high — but `engine/` takes its weeks from an M2 adapter, and a feed
+    hole that arrives as 0 must not take the daily run down. Mirrors the
+    `l0 <= 0` guard in `find_lh_candidates`."""
+    weeks = [wk("2026-01-05", 0, 0),
+             wk("2026-01-12", 52000, 50000),
+             wk("2026-01-19", 53000, 51000)]
+    bars = [bar("2026-01-20", 52500, 53000, 51000)]
+    assert find_swing_lows(weeks, bars, r_down=Decimal("10")) == []

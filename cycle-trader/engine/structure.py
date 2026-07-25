@@ -124,6 +124,93 @@ def find_bos(bars: list[Bar], lh_price: Decimal, after: str) -> str | None:
     return next((b.date for b in bars if b.date > after and b.high > lh_price), None)
 
 
+@dataclass(frozen=True, slots=True)
+class SwingLow:
+    week_monday: str
+    low: Decimal
+    decline_pct: Decimal
+    confirmed_at: str | None
+    #: The argmax-high week the decline is measured FROM, and its high. This is
+    #: **not** the `top_high` of §6.2's mirror fill — see the note in
+    #: `find_swing_lows`.
+    top_week: str
+    top_high: Decimal
+
+
+def find_swing_lows(weeks: list[Week], bars: list[Bar],
+                    r_down: Decimal = R_DOWN_DEFAULT) -> list[SwingLow]:
+    """SPEC §6.2's swing lows: the LH rule mirrored with `R_down`.
+
+    A weekly low preceded by a decline of at least `r_down`% from the argmax
+    high since the prior swing, confirmed by a subsequent higher high.
+    Unconfirmed candidates are dropped, so every returned swing is usable; §6.2
+    requires confirmation to precede the break, which is the CALLER's ordering
+    check (`bar.date > swing.confirmed_at`).
+
+    **Scope is the caller's.** §6.2 restricts the scan to structure formed during
+    the position's lifetime; this function has no notion of a position, so pass
+    the window you mean. §13.9's G4 harness disables that scope by passing
+    2025-08-01 → 2025-12-31 directly.
+
+    `r_down` is a frozen owner choice (§6.2), not a tunable. It is a parameter
+    only so the gate can demonstrate two-sidedness; production passes the default.
+
+    KNOWN SIMPLIFICATION — an M2 obligation, not a settled rule
+    -----------------------------------------------------------
+    §6.2 says the decline is measured "from the argmax high **since the prior
+    swing**", which is self-referential (the swing set is what we are computing)
+    and underspecified. What runs here is the argmax over **all prior weeks in
+    the passed scope**, which is not the same rule: after a lower top T2 < T1, a
+    dip that is ≥ `r_down`% off T1 but < `r_down`% off T2 is wrongly accepted.
+
+    G4's bounded window sidesteps this — its argmax is a single monotone run up
+    to the 2025-10-06 ATH — so the gate cannot distinguish the two readings and
+    must not be read as endorsing this one. **M2's live mirror detector must
+    implement the since-prior-swing argmax and prove it still reproduces G4 and
+    EP5's 2025-02-24 signal.** Shipping this reading unqualified into a running
+    position would be a silent rule change of the kind §9 forbids.
+
+    CONFIRMATION IS DAY-RESOLUTION
+    ------------------------------
+    First daily high strictly above the candidate week's high, after that week
+    ends — the mirror of `find_lh_candidates`'s confirmation and of §13.4's
+    "confirmation is a daily low, strictly less than L₀". A week label would
+    declare the swing confirmed on the Monday of a week whose high is not known
+    until Sunday, i.e. up to six days of lookahead (CLAUDE.md rule 5). On G4's
+    data both readings confirm the double bottom in time for the 2025-10-10
+    break, so the gate does not separate them; the daily rule is chosen because
+    it is the one that cannot peek, not because the gate forces it.
+
+    `top_high` IS NOT THE MIRROR FILL'S `top_high`
+    ----------------------------------------------
+    This is the top of the decline that *qualifies* the swing. §6.2's fill target
+    is `(top_high + low_so_far) / 2` over the decline being retraced, whose top
+    is the argmax up to the break. G4 separates the two by 1,725.63: the swing's
+    top is wk 2025-08-11's 124,474.00, the fill's is 2025-10-06's 126,199.63.
+    """
+    out: list[SwingLow] = []
+    for i, cand in enumerate(weeks):
+        prior = weeks[:i]
+        if not prior:
+            continue
+        top = max(prior, key=lambda w: w.high)
+        if top.high <= 0:
+            continue
+        # Inexact, and it feeds a strict threshold (`< r_down`), so it runs in
+        # the engine's pinned context — same treatment as the rally % above.
+        with localcontext(CTX):
+            decline = (top.high - cand.low) / top.high * Decimal(100)
+        if decline < r_down:
+            continue
+        cand_end = _week_end(cand.monday)
+        confirmed_at = next((b.date for b in bars
+                             if b.date > cand_end and b.high > cand.high), None)
+        out.append(SwingLow(week_monday=cand.monday, low=cand.low,
+                            decline_pct=decline, confirmed_at=confirmed_at,
+                            top_week=top.monday, top_high=top.high))
+    return [s for s in out if s.confirmed_at is not None]
+
+
 def first_bos(bars: list[Bar], candidates: list[LHCandidate], start: str,
               end: str) -> tuple[str, LHCandidate] | tuple[None, None]:
     """Walk-forward BoS: the first day in [start, end] whose high exceeds the

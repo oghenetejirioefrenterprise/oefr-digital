@@ -32,6 +32,26 @@ requests, `os`, `json`, `pathlib`, `random` or `data.loaders` (which
 predicted that particular import. An allowlist edit is a deliberate act with a
 diff; a grep pattern that never learned about `polars` is silent.
 
+**An allowlisted module is not an allowlisted module.** Two of the five stdlib
+modules carry, alongside the thing `engine/` needs, the exact thing the purity
+rule forbids — and in both cases the import that reaches it is legal:
+
+  `datetime`  `date` and `timedelta` are calendar arithmetic;
+              `datetime.datetime` is the clock. `from datetime import datetime`
+              passed the allowlist, and the clock was caught only at the call.
+  `decimal`   `localcontext` is the pinned-context convention;
+              `setcontext` / `getcontext().prec = N` are its negation — they
+              replace or mutate the THREAD-GLOBAL context that
+              `engine/context.py` exists to make irrelevant, for the whole
+              serverless bundle, invisibly to CI's clean process.
+
+So `ALLOWED_FROM_IMPORTS` narrows `datetime` to its calendar names and
+`GLOBAL_STATE_CALLS` denies `decimal`'s two mutators. Both live inside
+`_violations` rather than in a test of their own, because `_violations` is the
+reusable checker: anything else that consumes it (the recursion test, a future
+pre-commit hook, M2's own package) would otherwise inherit a hole that this
+file's green did not show.
+
 `test_the_checker_actually_catches_impurity` is the load-bearing test here: it
 feeds the checker the violations AND the four false-positive hazards above, so
 this file cannot rot into a gate that passes because it inspects nothing.
@@ -54,6 +74,22 @@ CLOCK_CALLS = frozenset({"now", "utcnow", "today", "fromtimestamp", "monotonic",
 #: Builtins that touch the outside world or execute untrusted text.
 IMPURE_BUILTIN_CALLS = frozenset({"open", "input", "print", "eval", "exec",
                                   "compile", "__import__", "breakpoint"})
+#: Calls that mutate PROCESS-GLOBAL state. `decimal` is allowlisted because the
+#: pinned-context convention needs `localcontext`, and the allowlist alone
+#: cannot tell that convention apart from its own negation: `setcontext(CTX)`
+#: at module scope, or `getcontext().prec = N`, replaces or mutates the
+#: thread's context for the whole bundle. That is exactly what
+#: `engine/context.py` exists to defend against, it is a plausible tidy-up of
+#: the nine `with localcontext(CTX):` blocks, and it changes nothing in CI —
+#: which runs the gates in a clean process. Denied by name, both spellings.
+#: See `test_the_pinned_context_may_not_be_installed_globally`.
+GLOBAL_STATE_CALLS = frozenset({"setcontext", "getcontext"})
+#: `datetime` is allowlisted for calendar arithmetic, so the half of it that
+#: reads the clock has to be excluded by NAME at the import. `datetime.datetime`
+#: is the class carrying `now`/`utcnow`/`fromtimestamp`; `date` and `timedelta`
+#: carry no clock. A plain `import datetime` binds the whole module and is
+#: refused for the same reason.
+ALLOWED_FROM_IMPORTS = {"datetime": frozenset({"date", "timedelta"})}
 
 
 def _modules(root: Path = ENGINE) -> list[Path]:
@@ -82,6 +118,12 @@ def _violations(source: str, filename: str) -> list[str]:
                 root = alias.name.split(".")[0]
                 if root not in ALLOWED_IMPORTS:
                     out.append(f"{filename}:{node.lineno} imports {alias.name!r}")
+                elif root in ALLOWED_FROM_IMPORTS:
+                    # The module object exposes every name, including the ones
+                    # the from-import allowlist below exists to withhold.
+                    out.append(f"{filename}:{node.lineno} imports the whole "
+                               f"{alias.name!r} module; import the allowed "
+                               f"names explicitly")
         elif isinstance(node, ast.ImportFrom):
             if node.level:                      # relative import
                 out.append(f"{filename}:{node.lineno} relative import")
@@ -89,6 +131,15 @@ def _violations(source: str, filename: str) -> list[str]:
             root = (node.module or "").split(".")[0]
             if root not in ALLOWED_IMPORTS:
                 out.append(f"{filename}:{node.lineno} imports from {node.module!r}")
+            else:
+                permitted = ALLOWED_FROM_IMPORTS.get(root)
+                if permitted is not None:
+                    for alias in node.names:
+                        if alias.name not in permitted:
+                            out.append(
+                                f"{filename}:{node.lineno} imports "
+                                f"{root}.{alias.name} — only "
+                                f"{sorted(permitted)} carry no clock")
         elif isinstance(node, ast.Call):
             func = node.func
             if isinstance(func, ast.Name):
@@ -99,6 +150,9 @@ def _violations(source: str, filename: str) -> list[str]:
                 continue
             if name in CLOCK_CALLS:
                 out.append(f"{filename}:{node.lineno} reads the clock: {name}()")
+            elif name in GLOBAL_STATE_CALLS:
+                out.append(f"{filename}:{node.lineno} mutates process-global "
+                           f"decimal state: {name}()")
             elif isinstance(func, ast.Name) and name in IMPURE_BUILTIN_CALLS:
                 out.append(f"{filename}:{node.lineno} impure builtin: {name}()")
     return out
@@ -139,6 +193,12 @@ def test_datetime_is_imported_only_for_calendar_arithmetic():
 
     The engine takes ISO date strings and does week arithmetic on them; nothing
     in it may ask what day it is. `date` and `timedelta` are the calendar half.
+
+    `_violations` now enforces this too (`ALLOWED_FROM_IMPORTS`), so this is a
+    second angle rather than the only one — kept because it states the rule as
+    the positive fact and names the offending module in the failure, and
+    because `test_engine_is_pure` would otherwise be the sole reporter of a
+    regression it describes only as "not pure".
     """
     names: set[str] = set()
     for path in _modules():
@@ -224,11 +284,21 @@ def fill(bar, level):
         ("def f():\n    return open('x').read()", "open", 1),
         ("def f(s):\n    return compile(s, '<s>', 'exec')", "compile", 1),
         ("def f(x):\n    print(x)", "print", 1),
-        # clock reads, including off imports that are themselves legal
-        ("import datetime\ndef f():\n    return datetime.datetime.now()", "now", 1),
+        # the clock half of an ALLOWED module, refused at the import itself
+        ("from datetime import datetime", "datetime.datetime", 1),
+        ("from datetime import *", "datetime.*", 1),
+        # clock reads, including off imports that are themselves legal.
+        # `import datetime` scores twice: binding the module is its own
+        # violation (it exposes every name), and the call is a second.
+        ("import datetime\ndef f():\n    return datetime.datetime.now()", "now", 2),
         ("from datetime import date\ndef f():\n    return date.today()", "today", 1),
         ("import datetime\ndef f():\n    return datetime.datetime.utcnow()",
-         "utcnow", 1),
+         "utcnow", 2),
+        # process-global decimal state, off an ALLOWED import (see
+        # test_the_pinned_context_may_not_be_installed_globally)
+        ("from decimal import setcontext\nsetcontext(None)", "setcontext", 1),
+        ("from decimal import getcontext\ndef f():\n    getcontext().prec = 1",
+         "getcontext", 1),
         # `time` is both a forbidden import and a clock call: two distinct hits
         ("import time\ndef f():\n    return time.time()", "time", 2),
         ("import time\ndef f():\n    return time.monotonic()", "monotonic", 2),
@@ -238,3 +308,89 @@ def fill(bar, level):
         assert found, f"{marker!r} slipped through the purity checker"
         assert len(found) == expected, f"{marker!r}: {found}"
         assert any(marker in v for v in found), f"{marker!r} not named in {found}"
+
+
+def test_the_pinned_context_may_not_be_installed_globally():
+    """`decimal` is allowlisted, and two of its functions undo the reason it is.
+
+    `engine/context.py` exists because `decimal`'s context is process-global
+    mutable state that any co-resident library in the Vercel bundle can move,
+    so every inexact computation in `engine/` runs inside
+    ``with localcontext(CTX):``. There are nine such blocks. The obvious tidy-up
+    is to install the context once at import time instead — and that is the
+    exact hazard the module was written to defend against:
+
+        `setcontext(CTX)`        replaces the thread's context wholesale, so the
+                                 engine's arithmetic becomes import-order
+                                 dependent AND the pinned context leaks out into
+                                 everything else sharing the thread.
+        `getcontext().prec = N`  mutates the live context in place — same reach,
+                                 no assignment to grep for.
+
+    Both read as ordinary `decimal` usage, both would have passed the allowlist
+    (the import is legal; only the call is not), and neither changes a single
+    number in CI, which runs the gates in a clean process. That combination —
+    plausible, invisible locally, global at runtime — is why they are denied by
+    name rather than left to review.
+
+    Written as its own test rather than two more rows in the catalogue above
+    because the thing being pinned is a refactor a maintainer would consider
+    reasonable, and the reasoning has to survive next to it.
+    """
+    tidied_up = '''
+from decimal import Decimal, setcontext
+from engine.context import CTX
+
+setcontext(CTX)
+
+def ladder(el_star, high):
+    return high - Decimal("0.5") * (high - el_star)
+'''
+    found = _violations(tidied_up, "levels.py")
+    assert len(found) == 1 and "setcontext" in found[0]
+
+    in_place = '''
+from decimal import getcontext
+
+def widen():
+    getcontext().prec = 50
+'''
+    found = _violations(in_place, "levels.py")
+    assert len(found) == 1 and "getcontext" in found[0]
+
+    # ...and off the module, which is how it is most often written.
+    qualified = "import decimal\ndef f():\n    decimal.setcontext(decimal.Context())"
+    found = _violations(qualified, "levels.py")
+    assert len(found) == 1 and "setcontext" in found[0]
+
+    # The convention these replace must stay legal — a gate that also forbade
+    # `localcontext` would force the very global install it is meant to prevent.
+    legal = ("from decimal import Decimal, localcontext\n"
+             "from engine.context import CTX\n"
+             "def f(a, b):\n"
+             "    with localcontext(CTX):\n"
+             "        return a / b\n")
+    assert _violations(legal, "levels.py") == []
+
+
+def test_datetimes_clock_half_is_denied_by_the_checker_itself():
+    """`_violations` is the reusable checker, so the datetime carve-out belongs
+    in it.
+
+    `datetime` is on the allowlist for calendar arithmetic, which means
+    `from datetime import datetime` — the class carrying `.now()`,
+    `.utcnow()` and `.fromtimestamp()` — passed `_violations` cleanly and was
+    caught only by `test_datetime_is_imported_only_for_calendar_arithmetic`
+    further down this file. That made the checker weaker than its own green
+    suggested: anything reusing `_violations` (the recursion test, a future
+    pre-commit hook, M2's own package) inherited the hole.
+
+    The clock is now refused at the import as well as at the call, so a module
+    that merely *holds* the clock class fails without having to call it.
+    """
+    assert _violations("from datetime import datetime", "m.py") != []
+    assert _violations("import datetime", "m.py") != []
+    assert _violations("from datetime import *", "m.py") != []
+    # ...and the calendar half stays legal, in both spellings.
+    assert _violations("from datetime import date", "m.py") == []
+    assert _violations("from datetime import date, timedelta", "m.py") == []

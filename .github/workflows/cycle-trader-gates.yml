@@ -1,0 +1,98 @@
+# CY-1 gate suite.
+#
+# LOCATION IS LOAD-BEARING. GitHub Actions reads workflows only from the
+# repository root's .github/workflows/, and the repository here is ~/apps — the
+# whole monorepo — not ~/apps/cycle-trader. A copy of this file under
+# cycle-trader/.github/workflows/ is an ordinary text file: it never runs, and
+# nothing warns you. The `paths:` filter is what keeps it from firing on the
+# other ~60 projects in this repo.
+#
+# Why CI rather than a local hook (CLAUDE.md, "Environment"): a full
+# 2011->present rebuild exceeds Vercel's function timeout, so the gates cannot
+# live with the deployment. CI imports the same package Vercel deploys, so the
+# gates verify the code that actually trades.
+#
+# The suite must also run from a cold clone with one command (PRD §P2):
+#
+#     git clone <repo> && cd <repo>/cycle-trader && pip install ".[dev]" && pytest
+#
+# There is no network access, no API key and no fixture generation step — every
+# input is a frozen snapshot under cycle-trader/data/reference/.
+name: CY-1 gates
+
+on:
+  push:
+    paths:
+      - "cycle-trader/**"
+      # Changes to the workflow itself must exercise the workflow itself.
+      - ".github/workflows/cycle-trader-gates.yml"
+  pull_request:
+    paths:
+      - "cycle-trader/**"
+      - ".github/workflows/cycle-trader-gates.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cy1-gates-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cycle-trader
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # ~400 MB of history across ~60 unrelated projects. Shallow + cone
+          # sparse-checkout keeps this to the one directory the gates read.
+          fetch-depth: 1
+          sparse-checkout: cycle-trader
+          sparse-checkout-cone-mode: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # A sparse or shallow checkout that quietly landed an empty tree would
+      # otherwise show green on a suite that collected nothing. Assert the
+      # frozen inputs are present before anything can pass.
+      - name: Assert the frozen reference data is present
+        run: |
+          test -s data/reference/btc_daily_full.json
+          test -s data/reference/checkonchain_pricing.json
+          test -s data/reference/coinmetrics_btc.csv
+          test -s data/reference/cy1_lifecycle_reference.json
+
+      - name: Install
+        run: pip install -e ".[dev]"
+
+      # engine/ must stay stdlib-only, I/O-free and clock-free (CLAUDE.md).
+      # Checked by AST in tests/test_engine_purity.py rather than by grep: four
+      # legitimate constructs in this package (Bar.from_json, bar.open,
+      # `from datetime import date, timedelta`, decimal.localcontext) make a
+      # sound regex either wrong or unreadable. That file's own
+      # `test_the_checker_actually_catches_impurity` proves the check has teeth.
+      # Run first and alone so an impure engine fails in seconds with an
+      # unambiguous step name, instead of inside a 250-test run.
+      - name: Assert engine has no I/O, no clock and no third-party imports
+        run: pytest tests/test_engine_purity.py -v
+
+      - name: Run the full suite
+        run: pytest -v
+
+      # A suite that silently stopped collecting the gates would still be green:
+      # `pytest` exits 0 on zero tests matched under a path that still exists.
+      # The gates are the point of this workflow, so a floor is asserted. It only
+      # ever needs raising, never lowering — a drop below it means gates were
+      # deleted or stopped being collected, which is the event worth failing on.
+      - name: Assert the gates actually ran
+        run: |
+          collected=$(pytest tests/gates -q --collect-only \
+            | awk '/tests? collected/ { print $1; exit }')
+          echo "gate tests collected: ${collected:-0}"
+          test "${collected:-0}" -ge 69
